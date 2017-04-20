@@ -1,0 +1,429 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Dec 07 2006 14:30:18 +0900 (JST) -->
+<pathway name="path:map04010sce" org="map" number="04010sce"
+         title="MAPK signaling pathway"
+         image="http://www.genome.jp/kegg/pathway/map/map04010sce.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04010sce">
+    <entry id="1" name="sce:YBR083" type="other">
+        <graphics name="YBR083" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="758" y="421" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="sce:YHR084" type="other">
+        <graphics name="YHR084" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="452" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="sce:YPL049C+YDR480" type="other">
+        <graphics name="DIG1, RST1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="408" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="sce:YGR040" type="other">
+        <graphics name="YGR040" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="611" y="452" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="sce:YDL159" type="other">
+        <graphics name="YDL159" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="537" y="452" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="sce:YLR362" type="other">
+        <graphics name="YLR362" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="463" y="452" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="sce:YHL007" type="other">
+        <graphics name="YHL007" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="389" y="452" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="sce:YLR229" type="other">
+        <graphics name="YLR229" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="315" y="452" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="sce:YNL098" type="other">
+        <graphics name="YNL098" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="203" y="424" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="sce:YER118" type="other">
+        <graphics name="YER118" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="163" y="452" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="sce:YGR088" type="other">
+        <graphics name="YGR088" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="814" y="375" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="sce:YKR095" type="other">
+        <graphics name="YKR095" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="613" y="274" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="sce:YHR030" type="other">
+        <graphics name="YHR030" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="613" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="sce:YLR342" type="other">
+        <graphics name="YLR342" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="315" y="291" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="sce:YPR165" type="other">
+        <graphics name="YPR165" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="315" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="sce:YLR332" type="other">
+        <graphics name="YLR332" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="163" y="253" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="sce:YOR008C+YNL283C+YOL105" type="other">
+        <graphics name="SLG1, WSC1, HCS77..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="163" y="225" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="sce:YCL027" type="other">
+        <graphics name="YCL027" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="815" y="141" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="sce:YPL049C+YDR480" type="other">
+        <graphics name="DIG1, RST1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="97" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="sce:YNL271" type="other">
+        <graphics name="YNL271" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="390" y="186" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="path:map04110" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04110.html">
+        <graphics name="Cell cycle" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="796" y="177" width="65" height="21"/>
+    </entry>
+    <entry id="22" name="sce:YDR461W+YNL145" type="other">
+        <graphics name="MFA1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="89" y="156" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="sce:YFL026" type="other">
+        <graphics name="YFL026" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="163" y="125" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="sce:YKL178" type="other">
+        <graphics name="YKL178" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="163" y="156" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="sce:YPL187W+YGL089" type="other">
+        <graphics name="MF(ALPHA)1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="89" y="125" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="sce:YHR005" type="other">
+        <graphics name="YHR005" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="238" y="140" width="45" height="17"/>
+    </entry>
+    <entry id="27" name="sce:YOR212" type="other">
+        <graphics name="YOR212" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="169" width="45" height="17"/>
+    </entry>
+    <entry id="28" name="sce:YJR086" type="other">
+        <graphics name="YJR086" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="186" width="45" height="17"/>
+    </entry>
+    <entry id="29" name="sce:YBR200" type="other">
+        <graphics name="YBR200" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="366" y="118" width="45" height="17"/>
+    </entry>
+    <entry id="30" name="sce:YHL007" type="other">
+        <graphics name="YHL007" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="390" y="140" width="45" height="17"/>
+    </entry>
+    <entry id="31" name="sce:YAL041" type="other">
+        <graphics name="YAL041" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="315" y="177" width="45" height="17"/>
+    </entry>
+    <entry id="32" name="sce:YLR229" type="other">
+        <graphics name="YLR229" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="315" y="140" width="45" height="17"/>
+    </entry>
+    <entry id="33" name="sce:YDR103" type="other">
+        <graphics name="YDR103" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="500" y="115" width="45" height="17"/>
+    </entry>
+    <entry id="34" name="sce:YLR362" type="other">
+        <graphics name="YLR362" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="465" y="140" width="45" height="17"/>
+    </entry>
+    <entry id="35" name="sce:YDL159" type="other">
+        <graphics name="YDL159" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="538" y="140" width="45" height="17"/>
+    </entry>
+    <entry id="36" name="sce:YBL016" type="other">
+        <graphics name="YBL016" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="612" y="140" width="45" height="17"/>
+    </entry>
+    <entry id="37" name="sce:YNL053" type="other">
+        <graphics name="YNL053" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="613" y="194" width="45" height="17"/>
+    </entry>
+    <entry id="38" name="sce:YHR084" type="other">
+        <graphics name="YHR084" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="140" width="45" height="17"/>
+    </entry>
+    <entry id="39" name="sce:YJL157" type="other">
+        <graphics name="YJL157" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="177" width="45" height="17"/>
+    </entry>
+    <entry id="40" name="sce:YMR043" type="other">
+        <graphics name="YMR043" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="758" y="112" width="45" height="17"/>
+    </entry>
+    <entry id="41" name="sce:YBL105" type="other">
+        <graphics name="YBL105" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="389" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="42" name="sce:YJL095" type="other">
+        <graphics name="YJL095" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="463" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="43" name="sce:YOR231W+YPL140" type="other">
+        <graphics name="MKK1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="538" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="44" name="sce:YPL089" type="other">
+        <graphics name="YPL089" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="45" name="sce:YGR032" type="other">
+        <graphics name="YGR032" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="813" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="46" name="sce:YLR362" type="other">
+        <graphics name="YLR362" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="464" y="324" width="45" height="17"/>
+    </entry>
+    <entry id="47" name="sce:YER111C+YLR182" type="other">
+        <graphics name="SWI4..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="283" width="45" height="17"/>
+    </entry>
+    <entry id="48" name="sce:YIL147" type="other">
+        <graphics name="YIL147" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="164" y="367" width="45" height="17"/>
+    </entry>
+    <entry id="49" name="sce:YLR006" type="other">
+        <graphics name="YLR006" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="389" y="366" width="45" height="17"/>
+    </entry>
+    <entry id="50" name="sce:YNR031" type="other">
+        <graphics name="YNR031" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="463" y="366" width="45" height="17"/>
+    </entry>
+    <entry id="51" name="sce:YJL128" type="other">
+        <graphics name="YJL128" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="537" y="366" width="45" height="17"/>
+    </entry>
+    <entry id="52" name="sce:YLR113" type="other">
+        <graphics name="YLR113" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="611" y="366" width="45" height="17"/>
+    </entry>
+    <entry id="53" name="sce:YMR043" type="other">
+        <graphics name="YMR043" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="346" width="45" height="17"/>
+    </entry>
+    <entry id="54" name="sce:YMR037C+YKL062" type="other">
+        <graphics name="MSN2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="366" width="45" height="17"/>
+    </entry>
+    <entry id="55" name="sce:YML004" type="other">
+        <graphics name="YML004" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="814" y="355" width="45" height="17"/>
+    </entry>
+    <entry id="56" name="path:map04010" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04010">
+        <graphics name="TITLE:MAPK signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="226" y="39" width="227" height="25"/>
+    </entry>
+    <entry id="57" name="sce:YER118" type="other">
+        <graphics name="YER118" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="163" y="325" width="45" height="17"/>
+    </entry>
+    <entry id="58" name="sce:YHL007" type="other">
+        <graphics name="YHL007" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="390" y="324" width="45" height="17"/>
+    </entry>
+    <entry id="59" name="sce:YDL235" type="other">
+        <graphics name="YDL235" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="277" y="366" width="45" height="17"/>
+    </entry>
+    <entry id="60" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="501" y="128" width="287" height="62"/>
+        <component id="30"/>
+        <component id="33"/>
+        <component id="34"/>
+        <component id="35"/>
+        <component id="36"/>
+    </entry>
+    <entry id="61" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="178" width="65" height="54"/>
+        <component id="27"/>
+        <component id="28"/>
+    </entry>
+    <entry id="62" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="613" y="264" width="65" height="57"/>
+        <component id="12"/>
+        <component id="13"/>
+    </entry>
+    <entry id="63" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="356" width="65" height="57"/>
+        <component id="53"/>
+        <component id="54"/>
+    </entry>
+    <relation entry1="25" entry2="23" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="22" entry2="24" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="23" entry2="26" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="24" entry2="26" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="61" entry2="32" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="31" entry2="32" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="32" entry2="30" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="32" entry2="20" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="26" entry2="61" type="PPrel">
+        <subtype name="dissociation" value="-+-"/>
+    </relation>
+    <relation entry1="29" entry2="32" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="29" entry2="30" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="30" entry2="34" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="34" entry2="35" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="35" entry2="36" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="36" entry2="38" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="36" entry2="39" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="36" entry2="19" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="37" entry2="36" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="19" entry2="38" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="38" entry2="40" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="38" entry2="18" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="16" entry2="15" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="14" entry2="15" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="15" entry2="41" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="41" entry2="42" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="42" entry2="43" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="43" entry2="13" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="13" entry2="44" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="13" entry2="47" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="44" entry2="45" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="57" entry2="58" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="58" entry2="46" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="46" entry2="51" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="48" entry2="59" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="59" entry2="49" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="49" entry2="50" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="50" entry2="51" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="51" entry2="52" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="52" entry2="54" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="54" entry2="55" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="54" entry2="11" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="10" entry2="8" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="9" entry2="8" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="8" entry2="7" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="7" entry2="6" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="6" entry2="5" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="5" entry2="4" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="4" entry2="3" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="3" entry2="2" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="1" entry2="2" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="15" entry2="20" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+</pathway>

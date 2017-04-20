@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Oct 18 2006 05:34:48 +0900 (JST) -->
+<pathway name="path:map01510" org="map" number="01510"
+         title="Neurodegenerative Disorders"
+         image="http://www.genome.jp/kegg/pathway/map/map01510.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map01510">
+    <entry id="1" name="ko:K05640" type="ortholog">
+        <graphics name="GFAP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="129" y="302" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="path:map04620" type="map"
+        link="http://www.genome.jp/kegg-bin/mark_pathway_www?@map04620/default%3dred/orth:CASP8">
+        <graphics name="Toll-like receptor signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="308" y="461" width="108" height="33"/>
+    </entry>
+    <entry id="7" name="path:map00010" type="map"
+        link="http://www.genome.jp/kegg-bin/mark_pathway_www?@map00010/default%3dred/hsa:2597/mmu:14433/rno:24383">
+        <graphics name="Glycolysis / Gluconeogenesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="264" y="396" width="103" height="33"/>
+    </entry>
+    <entry id="8" name="path:map04120" type="map"
+        link="http://www.genome.jp/kegg-bin/mark_pathway_www?@map04120/default%3dred/hsa:55294/mmu:50754">
+        <graphics name="Ubiquitin mediated proteolysis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="275" y="92" width="72" height="53"/>
+    </entry>
+    <entry id="11" name="ko:K02158" type="ortholog">
+        <graphics name="BAD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="529" y="182" width="46" height="17"/>
+    </entry>
+    <entry id="12" name="hsa:2597+mmu:14433+rno:2438" type="other">
+        <graphics name="GAPDH, GAPD..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="338" y="274" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K04364" type="ortholog">
+        <graphics name="GRB2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="390" y="317" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K05611" type="ortholog">
+        <graphics name="UCHL1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="458" y="92" width="46" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K04528" type="ortholog">
+        <graphics name="SNCA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="409" y="92" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K04380" type="ortholog">
+        <graphics name="MAPT" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="275" y="165" width="46" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K03361" type="ortholog">
+        <graphics name="CDC4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="275" y="141" width="46" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K05639" type="ortholog">
+        <graphics name="APLP1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="81" y="302" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K02583" type="ortholog">
+        <graphics name="NGFR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="33" y="302" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K00518" type="ortholog">
+        <graphics name="1.15.1.1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="679" y="204" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="path:map05030" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map05030.html">
+        <graphics name="Amyotrophic lateral sclerosis (ALS)" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="650" y="239" width="69" height="35"/>
+    </entry>
+    <entry id="23" name="path:map05040" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map05040.html">
+        <graphics name="Huntington's disease" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="641" y="387" width="69" height="35"/>
+    </entry>
+    <entry id="24" name="path:map04630" type="map"
+        link="http://www.genome.jp/kegg-bin/mark_pathway_www?@map04630/default%3dred/orth:BCL2L1/orth:GRB2/hsa:1387/mmu:12914/rno:54244">
+        <graphics name="Jak-STAT signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="629" y="314" width="107" height="33"/>
+    </entry>
+    <entry id="26" name="ko:K05626" type="ortholog">
+        <graphics name="DRPLA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="358" y="390" width="45" height="17"/>
+    </entry>
+    <entry id="27" name="ko:K02187" type="ortholog">
+        <graphics name="CASP3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="406" y="261" width="45" height="17"/>
+    </entry>
+    <entry id="28" name="ko:K02159" type="ortholog">
+        <graphics name="BAX" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="476" y="260" width="45" height="17"/>
+    </entry>
+    <entry id="29" name="ko:K04533" type="ortholog">
+        <graphics name="HD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="578" y="382" width="46" height="17"/>
+    </entry>
+    <entry id="30" name="ko:K04575" type="ortholog">
+        <graphics name="ALS2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="618" y="204" width="45" height="17"/>
+    </entry>
+    <entry id="31" name="path:map05010" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map05010.html">
+        <graphics name="Alzheimer's disease" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="140" y="254" width="69" height="35"/>
+    </entry>
+    <entry id="32" name="ko:K02161" type="ortholog">
+        <graphics name="BCL2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="240" y="295" width="45" height="17"/>
+    </entry>
+    <entry id="34" name="ko:K05687" type="ortholog">
+        <graphics name="PARK7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="409" y="117" width="45" height="17"/>
+    </entry>
+    <entry id="35" name="ko:K05688" type="ortholog">
+        <graphics name="PINK1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="457" y="117" width="45" height="17"/>
+    </entry>
+    <entry id="36" name="path:map04010" type="map">
+        <graphics name="MAPK signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="131" y="112" width="73" height="52"/>
+    </entry>
+    <entry id="37" name="ko:K04574" type="ortholog">
+        <graphics name="NEFH" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="645" y="180" width="45" height="17"/>
+    </entry>
+    <entry id="38" name="ko:K04396" type="ortholog">
+        <graphics name="CASP6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="390" y="339" width="45" height="17"/>
+    </entry>
+    <entry id="39" name="ko:K04520" type="ortholog">
+        <graphics name="APP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="134" y="186" width="46" height="17"/>
+    </entry>
+    <entry id="40" name="ko:K04398" type="ortholog">
+        <graphics name="CASP8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="283" y="346" width="45" height="17"/>
+    </entry>
+    <entry id="41" name="path:map05050" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map05050.html">
+        <graphics name="Dentatorubropallidoluysian atrophy (DRPLA)" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="431" y="396" width="69" height="34"/>
+    </entry>
+    <entry id="42" name="ko:K05634" type="ortholog">
+        <graphics name="PRNP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="87" y="352" width="45" height="17"/>
+    </entry>
+    <entry id="43" name="path:map01510" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map01510">
+        <graphics name="TITLE:Neurodegenerative Disorders" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="185" y="44" width="256" height="26"/>
+    </entry>
+    <entry id="44" name="path:map05060" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map05060.html">
+        <graphics name="Prion disease" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="161" y="360" width="69" height="34"/>
+    </entry>
+    <entry id="45" name="ko:K04505 ko:K04522" type="ortholog">
+        <graphics name="PSEN1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="166" y="221" width="45" height="17"/>
+    </entry>
+    <entry id="46" name="ko:K04524" type="ortholog">
+        <graphics name="APOE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="105" y="223" width="45" height="17"/>
+    </entry>
+    <entry id="47" name="ko:K04531" type="ortholog">
+        <graphics name="APBA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="361" y="209" width="45" height="17"/>
+    </entry>
+    <entry id="48" name="ko:K04556" type="ortholog">
+        <graphics name="PARK2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="361" y="92" width="45" height="17"/>
+    </entry>
+    <entry id="49" name="path:map05020" type="map">
+        <graphics name="Parkinson's disease" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="410" y="159" width="69" height="35"/>
+    </entry>
+    <entry id="50" name="ko:K04570" type="ortholog">
+        <graphics name="BCL2L1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="361" y="236" width="45" height="17"/>
+    </entry>
+    <entry id="51" name="ko:K04569" type="ortholog" map="22"/>
+    <entry id="52" name="ko:K04529" type="ortholog" map="31"/>
+    <entry id="54" name="ko:K04638" type="ortholog" map="23"/>
+    <entry id="55" name="ko:K04559" type="ortholog" map="23"/>
+    <entry id="56" name="path:map04520" type="map"
+        link="http://www.genome.jp/kegg-bin/mark_pathway_www?@map04520/default%3dred/hsa:1387/mmu:12914/rno:54244">
+        <graphics name="Adherens junction" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="330" y="500" width="101" height="18"/>
+    </entry>
+    <entry id="57" name="path:map04310" type="map">
+        <graphics name="Wnt signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="505" y="469" width="64" height="51"/>
+    </entry>
+    <entry id="58" name="path:map04350" type="map">
+        <graphics name="TGF-beta signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="587" y="469" width="68" height="50"/>
+    </entry>
+    <entry id="59" name="hsa:3309+mmu:1482" type="other">
+        <graphics name="HSPA5..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="177" y="302" width="45" height="17"/>
+    </entry>
+    <entry id="60" name="path:map04060" type="map">
+        <graphics name="Cytokine-cytokine receptor interaction" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="96" y="439" width="73" height="52"/>
+    </entry>
+    <entry id="61" name="path:map04540" type="map">
+        <graphics name="Gap junction" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="191" y="452" width="85" height="19"/>
+    </entry>
+    <entry id="62" name="path:map04330" type="map"
+        link="http://www.genome.jp/kegg-bin/mark_pathway_www?@map04330/default%3dred/hsa:1387/mmu:12914/rno:54244">
+        <graphics name="Notch signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="423" y="470" width="64" height="50"/>
+    </entry>
+    <entry id="63" name="path:map04210" type="map"
+        link="http://www.genome.jp/kegg-bin/mark_pathway_www?@map04210/default%3dred/">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="578" y="101" width="69" height="26"/>
+    </entry>
+    <entry id="64" name="ko:K01370" type="ortholog">
+        <graphics name="CASP1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="285" y="223" width="45" height="17"/>
+    </entry>
+    <entry id="65" name="ko:K04397" type="ortholog">
+        <graphics name="CASP7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="270" y="248" width="45" height="17"/>
+    </entry>
+    <entry id="66" name="path:map04510" type="map"
+        link="http://www.genome.jp/kegg-bin/mark_pathway_www?@map04510/default%3dred/hsa:2885/hsa:572/hsa:596/mmu:14784/mmu:12015/mmu:12043/rno:64639/rno:24224/rno:81504">
+        <graphics name="Focal adhesion" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="645" y="67" width="80" height="24"/>
+    </entry>
+    <entry id="67" name="path:map04320" type="map">
+        <graphics name="Dorso-ventral axis formation" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="126" y="487" width="96" height="26"/>
+    </entry>
+    <entry id="68" name="path:map04910" type="map"
+        link="http://www.genome.jp/kegg-bin/mark_pathway_www?@map04910/default%3dred/hsa:2885/hsa:572/mmu:14784/mmu:12015/rno:64639/rno:81504">
+        <graphics name="Insulin signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="629" y="136" width="105" height="29"/>
+    </entry>
+    <entry id="69" name="path:map04020" type="map">
+        <graphics name="Calcium signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="667" y="469" width="65" height="50"/>
+    </entry>
+    <entry id="70" name="ko:K04498" type="ortholog">
+        <graphics name="P300" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="508" y="401" width="45" height="17"/>
+    </entry>
+</pathway>

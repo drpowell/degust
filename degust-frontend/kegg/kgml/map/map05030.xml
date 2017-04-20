@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 13 2006 16:15:45 +0900 (JST) -->
+<pathway name="path:map05030" org="map" number="05030"
+         title="Amyotrophic lateral sclerosis (ALS)"
+         image="http://www.genome.jp/kegg/pathway/map/map05030.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map05030">
+    <entry id="1" name="cpd:C00001" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00001">
+        <graphics name="C00001" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="555" y="96" width="8" height="8"/>
+    </entry>
+    <entry id="2" name="cpd:C00007" type="other"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00007">
+        <graphics name="C00007" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="555" y="68" width="8" height="8"/>
+    </entry>
+    <entry id="3" name="cpd:C00027" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00027">
+        <graphics name="C00027" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="439" y="96" width="8" height="8"/>
+    </entry>
+    <entry id="4" name="cpd:C00704" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00704">
+        <graphics name="C00704" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="352" y="96" width="8" height="8"/>
+    </entry>
+    <entry id="5" name="cpd:C00070" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00070">
+        <graphics name="C00070" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="64" y="252" width="8" height="8"/>
+    </entry>
+    <entry id="6" name="hsa:2876 mmu:14775 rno:24404" type="other">
+        <graphics name="GPX1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="488" y="82" width="46" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K03781" type="ortholog">
+        <graphics name="KATE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="488" y="108" width="46" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K00518" type="ortholog">
+        <graphics name="1.15.1.1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="387" y="166" width="46" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K00518" type="ortholog">
+        <graphics name="1.15.1.1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="390" y="82" width="46" height="17"/>
+    </entry>
+    <entry id="10" name="path:map04210" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04210.html">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="455" y="369" width="65" height="30"/>
+    </entry>
+    <entry id="11" name="ko:K04573" type="ortholog">
+        <graphics name="NEF3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="723" y="230" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K02158" type="ortholog">
+        <graphics name="BAD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="303" y="361" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K04574" type="ortholog">
+        <graphics name="NEFH" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="723" y="253" width="45" height="16"/>
+    </entry>
+    <entry id="14" name="ko:K04572" type="ortholog">
+        <graphics name="NEFL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="723" y="208" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K02159" type="ortholog">
+        <graphics name="BAX" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="303" y="380" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="hsa:5530 mmu:19055 rno:24674" type="other">
+        <graphics name="PPP3CA, CALN, CALNA..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="88" y="373" width="46" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K04570" type="ortholog">
+        <graphics name="BCL2L1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="303" y="416" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K04575" type="ortholog">
+        <graphics name="ALS2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="161" y="458" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K02161" type="ortholog">
+        <graphics name="BCL2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="303" y="437" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K04569" type="ortholog">
+        <graphics name="CCS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="96" y="235" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K05613" type="ortholog">
+        <graphics name="SLC1A2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="154" y="374" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="path:map05030" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map05030">
+        <graphics name="TITLE:Amyotrophic lateral sclerosis (ALS)" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="162" y="41" width="235" height="26"/>
+    </entry>
+    <entry id="23" name="ko:K04571" type="ortholog">
+        <graphics name="SSR4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="234" y="219" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K04451" type="ortholog">
+        <graphics name="TP53" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="303" y="335" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K04567" type="ortholog">
+        <graphics name="LYSU" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="217" y="190" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ko:K00518" type="ortholog">
+        <graphics name="1.15.1.1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="161" y="251" width="45" height="17"/>
+    </entry>
+    <relation entry1="25" entry2="26" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="23" entry2="26" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="26" entry2="21" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="26" entry2="16" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="26" entry2="24" type="PPrel">
+        <subtype name="indirect" value="..>"/>
+    </relation>
+    <relation entry1="20" entry2="26" type="PPrel">
+        <subtype name="compound" value="5"/>
+    </relation>
+    <relation entry1="7" entry2="9" type="PPrel">
+        <subtype name="compound" value="3"/>
+    </relation>
+    <relation entry1="6" entry2="9" type="PPrel">
+        <subtype name="compound" value="3"/>
+    </relation>
+    <relation entry1="9" entry2="4" type="PCrel"/>
+    <relation entry1="6" entry2="1" type="PCrel"/>
+    <relation entry1="2" entry2="6" type="PCrel"/>
+    <relation entry1="2" entry2="7" type="PCrel"/>
+    <relation entry1="7" entry2="1" type="PCrel"/>
+</pathway>

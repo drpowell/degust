@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 20 2006 17:48:45 +0900 (JST) -->
+<pathway name="path:map05210" org="map" number="05210"
+         title="Colorectal cancer"
+         image="http://www.genome.jp/kegg/pathway/map/map05210.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map05210">
+    <entry id="1" name="ko:K04388" type="ortholog">
+        <graphics name="TGFBR2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1023" y="649" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K02187" type="ortholog">
+        <graphics name="CASP3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="556" y="516" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K04377" type="ortholog">
+        <graphics name="MYC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="903" y="425" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K04399" type="ortholog">
+        <graphics name="CASP9" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="420" y="508" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="ko:K02085" type="ortholog">
+        <graphics name="APC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="677" y="247" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K02157 ko:K04385" type="ortholog">
+        <graphics name="AXIN1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="632" y="247" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K04451" type="ortholog">
+        <graphics name="TP53" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="900" y="767" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K02159" type="ortholog">
+        <graphics name="BAX" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1023" y="702" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K08737" type="ortholog">
+        <graphics name="MSH6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1078" y="675" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="path:hsa04210" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04210.html">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="712" y="316" width="109" height="40"/>
+    </entry>
+    <entry id="11" name="hsa:595+mmu:12443+rno:5891" type="other">
+        <graphics name="CCND1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1021" y="401" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K02105" type="ortholog">
+        <graphics name="CTNNB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="674" y="264" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K03083" type="ortholog">
+        <graphics name="GSK3B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="591" y="264" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="path:hsa04010" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04010.html">
+        <graphics name="MAPK signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="679" y="426" width="102" height="38"/>
+    </entry>
+    <entry id="15" name="ko:K08738" type="ortholog">
+        <graphics name="CYC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="553" y="781" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K02161" type="ortholog">
+        <graphics name="BCL2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="632" y="742" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K08731" type="ortholog">
+        <graphics name="BIRC5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1020" y="207" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K04377" type="ortholog">
+        <graphics name="MYC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1020" y="242" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K02085" type="ortholog">
+        <graphics name="APC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="682" y="148" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K04456" type="ortholog">
+        <graphics name="AKT" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="523" y="311" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K08732" type="ortholog">
+        <graphics name="RALGDS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="525" y="467" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="ko:K08733" type="ortholog">
+        <graphics name="APPL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="420" y="525" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="ko:K00922 ko:K02649" type="ortholog">
+        <graphics name="2.7.1.153..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="498" y="353" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K04388" type="ortholog">
+        <graphics name="TGFBR2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="275" y="602" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K08736" type="ortholog">
+        <graphics name="MSH3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1023" y="675" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ko:K04500" type="ortholog">
+        <graphics name="SMAD2_3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="426" y="595" width="45" height="17"/>
+    </entry>
+    <entry id="27" name="ko:K04384" type="ortholog">
+        <graphics name="TGFB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="194" y="593" width="45" height="17"/>
+    </entry>
+    <entry id="28" name="ko:K02157 ko:K04385" type="ortholog">
+        <graphics name="AXIN1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="630" y="166" width="45" height="17"/>
+    </entry>
+    <entry id="29" name="ko:K02353" type="ortholog">
+        <graphics name="DVL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="372" y="206" width="45" height="17"/>
+    </entry>
+    <entry id="30" name="ko:K02432 ko:K02235 ko:K02329 ko:K02354 ko:K02375 ko:K02376 ko:K02378 ko:K02534 ko:K02645 ko:K02842" type="ortholog">
+        <graphics name="FZD1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="275" y="206" width="45" height="17"/>
+    </entry>
+    <entry id="31" name="ko:K06765" type="ortholog">
+        <graphics name="DCC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="275" y="517" width="45" height="17"/>
+    </entry>
+    <entry id="32" name="path:map05210" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map05210">
+        <graphics name="TITLE:Colorectal cancer" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="139" y="40" width="178" height="26"/>
+    </entry>
+    <entry id="33" name="path:hsa04350" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04350.html">
+        <graphics name="TGF-beta signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="604" y="568" width="102" height="38"/>
+    </entry>
+    <entry id="34" name="path:hsa04210" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04210.html">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="719" y="765" width="109" height="40"/>
+    </entry>
+    <entry id="35" name="path:hsa04310" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04310.html">
+        <graphics name="Wnt signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="482" y="206" width="111" height="39"/>
+    </entry>
+    <entry id="36" name="path:hsa04110" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04110.html">
+        <graphics name="Cell cycle" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="1022" y="331" width="102" height="38"/>
+    </entry>
+    <entry id="37" name="ko:K02158" type="ortholog">
+        <graphics name="BAD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="612" y="337" width="45" height="17"/>
+    </entry>
+    <entry id="38" name="ko:K04371" type="ortholog">
+        <graphics name="RK1_2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="762" y="400" width="45" height="17"/>
+    </entry>
+    <entry id="39" name="hsa:595+mmu:12443+rno:5891" type="other">
+        <graphics name="CCND1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1020" y="265" width="45" height="17"/>
+    </entry>
+    <entry id="40" name="ko:K04368" type="ortholog">
+        <graphics name="MAP2K1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="603" y="400" width="45" height="17"/>
+    </entry>
+    <entry id="41" name="ko:K04501" type="ortholog">
+        <graphics name="SMAD4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="426" y="627" width="45" height="17"/>
+    </entry>
+    <entry id="42" name="ko:K08845 ko:K04365 ko:K04366" type="ortholog">
+        <graphics name="ARAF..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="524" y="400" width="45" height="17"/>
+    </entry>
+    <entry id="43" name="ko:K07827" type="ortholog">
+        <graphics name="KRAS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="443" y="400" width="45" height="17"/>
+    </entry>
+    <entry id="44" name="ko:K03099" type="ortholog">
+        <graphics name="SOS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="419" y="360" width="45" height="17"/>
+    </entry>
+    <entry id="45" name="ko:K04364" type="ortholog">
+        <graphics name="GRB2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="347" y="360" width="45" height="17"/>
+    </entry>
+    <entry id="46" name="ko:K04363 ko:K05089 ko:K04361 ko:K05087 ko:K05099" type="ortholog">
+        <graphics name="PDGFRA..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="275" y="360" width="45" height="17"/>
+    </entry>
+    <entry id="47" name="ko:K04674" type="ortholog">
+        <graphics name="TGFBR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="275" y="585" width="45" height="17"/>
+    </entry>
+    <entry id="48" name="ko:K02187" type="ortholog">
+        <graphics name="CASP3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="355" y="476" width="45" height="17"/>
+    </entry>
+    <entry id="49" name="ko:K04399" type="ortholog">
+        <graphics name="CASP9" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="612" y="362" width="45" height="17"/>
+    </entry>
+    <entry id="50" name="ko:K08735" type="ortholog">
+        <graphics name="MSH2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="880" y="544" width="45" height="17"/>
+    </entry>
+    <entry id="51" name="ko:K08734" type="ortholog">
+        <graphics name="MLH1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="880" y="523" width="45" height="17"/>
+    </entry>
+    <entry id="52" name="ko:K04440" type="ortholog">
+        <graphics name="JNK" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="680" y="467" width="45" height="17"/>
+    </entry>
+    <entry id="53" name="ko:K04448" type="ortholog">
+        <graphics name="JUN" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="903" y="375" width="45" height="17"/>
+    </entry>
+    <entry id="54" name="ko:K04379" type="ortholog">
+        <graphics name="FOS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="903" y="400" width="45" height="17"/>
+    </entry>
+    <entry id="55" name="ko:K04392 ko:K07860 ko:K07861 ko:K07862" type="ortholog">
+        <graphics name="RAC1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="602" y="468" width="45" height="17"/>
+    </entry>
+    <entry id="56" name="ko:K02105" type="ortholog">
+        <graphics name="CTNNB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="672" y="183" width="45" height="17"/>
+    </entry>
+    <entry id="57" name="ko:K03083" type="ortholog">
+        <graphics name="GSK3B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="589" y="183" width="45" height="17"/>
+    </entry>
+    <entry id="58" name="ko:K02620 ko:K04492" type="ortholog">
+        <graphics name="TCF7..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="905" y="224" width="45" height="17"/>
+    </entry>
+    <entry id="59" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="420" y="517" width="65" height="54"/>
+        <component id="4"/>
+        <component id="22"/>
+    </entry>
+    <entry id="60" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="275" y="594" width="65" height="54"/>
+        <component id="24"/>
+        <component id="47"/>
+    </entry>
+    <relation entry1="58" entry2="17" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="58" entry2="18" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="58" entry2="39" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="53" entry2="11" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="54" entry2="11" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="3" entry2="11" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="26" entry2="41" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="42" entry2="40" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="40" entry2="38" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="38" entry2="53" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="38" entry2="54" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="38" entry2="3" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="20" entry2="13" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="20" entry2="37" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="20" entry2="49" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="23" entry2="20" type="PPrel">
+        <subtype name="indirect" value="..>"/>
+    </relation>
+</pathway>

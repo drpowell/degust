@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 13 2006 16:15:58 +0900 (JST) -->
+<pathway name="path:map05060" org="map" number="05060"
+         title="Prion disease"
+         image="http://www.genome.jp/kegg/pathway/map/map05060.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map05060">
+    <entry id="1" name="ko:K05639" type="ortholog">
+        <graphics name="APLP1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="232" y="290" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K05638" type="ortholog">
+        <graphics name="NFE2L2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="278" y="250" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K02161" type="ortholog">
+        <graphics name="BCL2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="162" y="290" width="45" height="16"/>
+    </entry>
+    <entry id="4" name="ko:K04077" type="ortholog">
+        <graphics name="GROEL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="163" y="120" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="hsa:3309+mmu:14828+rno:2561" type="other">
+        <graphics name="HSPA5..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="217" y="120" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="path:map05060" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map05060">
+        <graphics name="TITLE:Prion disease" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="112" y="44" width="115" height="27"/>
+    </entry>
+    <entry id="7" name="ko:K05635" type="ortholog">
+        <graphics name="LAMC1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="107" y="195" width="46" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K05636" type="ortholog">
+        <graphics name="LAMB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="107" y="175" width="46" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K05637" type="ortholog">
+        <graphics name="LAMA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="107" y="155" width="46" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K02998" type="ortholog">
+        <graphics name="RP-SAe" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="276" y="140" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K05634" type="ortholog">
+        <graphics name="PRNP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="197" y="196" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K05640" type="ortholog">
+        <graphics name="GFAP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="129" y="251" width="45" height="17"/>
+    </entry>
+    <relation entry1="7" entry2="11" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="11" entry2="12" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="3" entry2="11" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="1" entry2="11" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="2" entry2="11" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="10" entry2="11" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="5" entry2="11" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="4" entry2="11" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+</pathway>

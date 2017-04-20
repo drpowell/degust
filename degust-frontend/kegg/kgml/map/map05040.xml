@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 13 2006 16:15:49 +0900 (JST) -->
+<pathway name="path:map05040" org="map" number="05040"
+         title="Huntington's disease"
+         image="http://www.genome.jp/kegg/pathway/map/map05040.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map05040">
+    <entry id="1" name="ko:K05625" type="ortholog">
+        <graphics name="TGM2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="396" y="256" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K04638" type="ortholog">
+        <graphics name="SRRBL1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="295" y="89" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K04650" type="ortholog">
+        <graphics name="NCOR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="323" y="290" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K08051" type="ortholog">
+        <graphics name="PLEKHA8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="204" y="113" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="ko:K04364" type="ortholog">
+        <graphics name="GRB2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="174" y="315" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K02183" type="ortholog">
+        <graphics name="CALM" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="262" y="371" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K01697" type="ortholog">
+        <graphics name="4.2.1.22" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="309" y="316" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="hsa:2597+mmu:14433+rno:2438" type="other">
+        <graphics name="GAPDH, GAPD..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="341" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K04355" type="ortholog">
+        <graphics name="BDNF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="225" y="340" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="path:map04210" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04210.html">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="611" y="198" width="69" height="26"/>
+    </entry>
+    <entry id="11" name="ko:K04644 ko:K04645 ko:K04646" type="ortholog">
+        <graphics name="CLTA..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="204" y="96" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K04451" type="ortholog">
+        <graphics name="TP53" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="108" y="249" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K04352" type="ortholog">
+        <graphics name="RASA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="164" y="276" width="46" height="16"/>
+    </entry>
+    <entry id="14" name="ko:K04498" type="ortholog">
+        <graphics name="P300" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="147" y="138" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="path:map05040" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map05040">
+        <graphics name="TITLE:Huntington's disease" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="126" y="43" width="142" height="26"/>
+    </entry>
+    <entry id="16" name="ko:K04649" type="ortholog">
+        <graphics name="HIP2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="325" y="230" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K04648" type="ortholog">
+        <graphics name="DCTN1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="55" y="198" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K04398" type="ortholog">
+        <graphics name="CASP8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="390" y="112" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K01370 ko:K02187 ko:K04396" type="ortholog">
+        <graphics name="CASP1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="316" y="182" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K04647" type="ortholog">
+        <graphics name="HAP1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="147" y="198" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K02187" type="ortholog">
+        <graphics name="CASP3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="503" y="112" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="ko:K04533" type="ortholog">
+        <graphics name="HD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="231" y="196" width="46" height="17"/>
+    </entry>
+    <entry id="23" name="ko:K04559" type="ortholog">
+        <graphics name="HIP1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="261" y="113" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="204" y="105" width="65" height="54"/>
+        <component id="4"/>
+        <component id="11"/>
+    </entry>
+    <entry id="25" name="ko:K02187" type="ortholog" map="10"/>
+    <entry id="26" name="ko:K04398" type="ortholog" map="10"/>
+    <relation entry1="20" entry2="17" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="20" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="12" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="13" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="5" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="22" entry2="9" type="GErel">
+        <subtype name="repression" value="--|"/>
+    </relation>
+    <relation entry1="6" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="8" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="7" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="3" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="22" entry2="14" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="2" entry2="23" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="23" entry2="18" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="18" entry2="21" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="22" entry2="24" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="22" entry2="23" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="22" entry2="16" type="PPrel">
+        <subtype name="indirect" value="..>"/>
+    </relation>
+    <relation entry1="21" entry2="10" type="maplink">
+        <subtype name="activation" value="-->"/>
+    </relation>
+</pathway>

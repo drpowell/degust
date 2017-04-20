@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 09 2006 07:12:35 +0900 (JST) -->
+<pathway name="path:map04140" org="map" number="04140"
+         title="Regulation of autophagy"
+         image="http://www.genome.jp/kegg/pathway/map/map04140.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04140">
+    <entry id="1" name="hsa:10533 mmu:74244 ath:At5g45900 ddi:DDB0214819 dme:CG5489-PA cel:M7.5 spo:SPBC6B1.05c cal:orf19.707 ago:AER298C sce:YHR171W" type="other">
+        <graphics name="ATG7, APG7L..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="424" y="494" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="cpd:C00350" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00350">
+        <graphics name="C00350" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="567" y="495" width="8" height="8"/>
+    </entry>
+    <entry id="3" name="cpd:C04549" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C04549">
+        <graphics name="C04549" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="568" y="356" width="8" height="8"/>
+    </entry>
+    <entry id="4" name="cpd:C01194" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C01194">
+        <graphics name="C01194" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="503" y="356" width="8" height="8"/>
+    </entry>
+    <entry id="5" name="ko:K08343" type="ortholog">
+        <graphics name="ATG3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="503" y="494" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K08337" type="ortholog">
+        <graphics name="ATG7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="345" y="494" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K08341" type="ortholog">
+        <graphics name="GABARAP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="266" y="494" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K08340" type="ortholog">
+        <graphics name="ATG16" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="661" y="434" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K08339" type="ortholog">
+        <graphics name="ATG5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="582" y="434" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K08338" type="ortholog">
+        <graphics name="ATG10" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="503" y="434" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K08337" type="ortholog">
+        <graphics name="ATG7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="424" y="434" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K08336" type="ortholog">
+        <graphics name="ATG12" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="345" y="434" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K08335" type="ortholog">
+        <graphics name="ATG14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="503" y="293" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K08333" type="ortholog">
+        <graphics name="PIK3R4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="448" y="320" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K08332" type="ortholog">
+        <graphics name="VAC8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="538" y="202" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K08331" type="ortholog">
+        <graphics name="ATG13" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="538" y="175" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K08269" type="ortholog">
+        <graphics name="ULK" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="175" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K08329" type="ortholog">
+        <graphics name="ATG17" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="148" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K08330" type="ortholog">
+        <graphics name="ATG11" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="202" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="path:map04130" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04130.html">
+        <graphics name="SNARE interactions in vesicular transport" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="504" y="581" width="109" height="40"/>
+    </entry>
+    <entry id="21" name="cpd:C00913" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00913">
+        <graphics name="C00913" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="582" y="328" width="8" height="8"/>
+    </entry>
+    <entry id="22" name="vg:NC_002058_1" type="other"
+        link="http://www.genome.jp/dbget-bin/www_bget?vg+NC_002058_1">
+        <graphics name="NC_002058_1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="702" y="176" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="cpd:C15181" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C15181">
+        <graphics name="C15181" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="582" y="313" width="8" height="8"/>
+    </entry>
+    <entry id="24" name="ko:K04687" type="ortholog">
+        <graphics name="IFNG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="766" y="229" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K05414" type="ortholog">
+        <graphics name="IFNA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="765" y="207" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ko:K08334" type="ortholog">
+        <graphics name="BECN1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="503" y="266" width="45" height="17"/>
+    </entry>
+    <entry id="27" name="ko:K00914" type="ortholog">
+        <graphics name="2.7.1.137" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="503" y="320" width="45" height="17"/>
+    </entry>
+    <entry id="28" name="ko:K04526" type="ortholog">
+        <graphics name="INS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="55" y="174" width="45" height="17"/>
+    </entry>
+    <entry id="29" name="ko:K07198" type="ortholog">
+        <graphics name="PRKAA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="238" y="231" width="45" height="17"/>
+    </entry>
+    <entry id="30" name="path:map04140" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04140">
+        <graphics name="TITLE:Regulation of autophagy" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="165" y="40" width="235" height="26"/>
+    </entry>
+    <entry id="31" name="path:map04210" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04210.html">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="849" y="550" width="93" height="40"/>
+    </entry>
+    <entry id="32" name="path:map01510" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map01510.html">
+        <graphics name="Neurodegenerative Disorders" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="710" y="603" width="109" height="40"/>
+    </entry>
+    <entry id="33" name="path:map04612" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04612.html">
+        <graphics name="Antigen processing and presentation" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="709" y="559" width="109" height="40"/>
+    </entry>
+    <entry id="34" name="path:map04010" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04010.html">
+        <graphics name="MAPK signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="331" y="101" width="109" height="40"/>
+    </entry>
+    <entry id="35" name="path:map04150" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04150.html">
+        <graphics name="mTOR signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="331" y="175" width="109" height="40"/>
+    </entry>
+    <entry id="36" name="path:map04910" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04910.html">
+        <graphics name="Insulin signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="163" y="175" width="109" height="40"/>
+    </entry>
+    <entry id="37" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="503" y="175" width="135" height="91"/>
+        <component id="15"/>
+        <component id="16"/>
+        <component id="17"/>
+        <component id="18"/>
+        <component id="19"/>
+    </entry>
+    <entry id="38" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="476" y="293" width="120" height="91"/>
+        <component id="13"/>
+        <component id="14"/>
+        <component id="26"/>
+        <component id="27"/>
+    </entry>
+    <relation entry1="17" entry2="18" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="17" entry2="19" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="16" entry2="17" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="15" entry2="16" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="13" entry2="26" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="13" entry2="27" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="14" entry2="27" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="27" entry2="4" type="PCrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="23" entry2="27" type="PCrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="21" entry2="27" type="PCrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="12" entry2="11" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="11" entry2="10" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="10" entry2="9" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="9" entry2="8" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="7" entry2="6" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="6" entry2="1" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="1" entry2="5" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="5" entry2="2" type="PCrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+</pathway>

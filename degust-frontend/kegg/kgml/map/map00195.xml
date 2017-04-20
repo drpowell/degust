@@ -1,0 +1,460 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Sep 26 2006 01:16:40 +0900 (JST) -->
+<pathway name="path:map00195" org="map" number="00195"
+         title="Photosynthesis"
+         image="http://www.genome.jp/kegg/pathway/map/map00195.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map00195">
+    <entry id="1" name="ko:K02695" type="ortholog">
+        <graphics name="PSAH" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="420" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K02639" type="ortholog">
+        <graphics name="PETF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="598" y="198" width="18" height="18"/>
+    </entry>
+    <entry id="3" name="ko:K02638" type="ortholog">
+        <graphics name="PETE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="526" y="352" width="32" height="32"/>
+    </entry>
+    <entry id="4" name="path:map00196" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map00196.html">
+        <graphics name="Photosynthesis - antenna proteins" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="319" y="160" width="101" height="28"/>
+    </entry>
+    <entry id="5" name="ec:3.6.3.14" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+3.6.3.14">
+        <graphics name="3.6.3.14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="856" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ec:3.6.3.14" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+3.6.3.14">
+        <graphics name="3.6.3.14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="811" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K08906" type="ortholog">
+        <graphics name="PETJ" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="696" y="576" width="46" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K08904" type="ortholog">
+        <graphics name="PSB28-2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="284" y="578" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K08903" type="ortholog">
+        <graphics name="PSB28" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="578" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K08902" type="ortholog">
+        <graphics name="PSB27" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="194" y="578" width="46" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K03542" type="ortholog">
+        <graphics name="PSBS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="194" y="561" width="46" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K03541" type="ortholog">
+        <graphics name="PSBR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="148" y="561" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K02702" type="ortholog">
+        <graphics name="PSAX" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="375" y="649" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K02717" type="ortholog">
+        <graphics name="PSBP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="420" y="544" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="cpd:C00005" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00005">
+        <graphics name="C00005" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="487" y="123" width="8" height="8"/>
+    </entry>
+    <entry id="16" name="cpd:C00006" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00006">
+        <graphics name="C00006" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="550" y="124" width="8" height="8"/>
+    </entry>
+    <entry id="17" name="ec:1.18.1.2" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+1.18.1.2">
+        <graphics name="1.18.1.2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="524" y="213" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="cpd:C00080" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00080">
+        <graphics name="C00080" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="413" y="402" width="8" height="8"/>
+    </entry>
+    <entry id="19" name="ec:3.6.3.14" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+3.6.3.14">
+        <graphics name="3.6.3.14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="766" y="632" width="46" height="17"/>
+    </entry>
+    <entry id="20" name="ec:3.6.3.14" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+3.6.3.14">
+        <graphics name="3.6.3.14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="720" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ec:3.6.3.14" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+3.6.3.14">
+        <graphics name="3.6.3.14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="675" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="ec:3.6.3.14" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+3.6.3.14">
+        <graphics name="3.6.3.14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="630" y="632" width="46" height="17"/>
+    </entry>
+    <entry id="23" name="ec:3.6.3.14" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+3.6.3.14">
+        <graphics name="3.6.3.14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="584" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ec:3.6.3.14" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+3.6.3.14">
+        <graphics name="3.6.3.14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="539" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ec:1.10.99.1" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+1.10.99.1">
+        <graphics name="1.10.99.1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="411" y="339" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="cpd:C02185" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C02185">
+        <graphics name="C02185" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="331" y="293" width="8" height="8"/>
+    </entry>
+    <entry id="27" name="cpd:C02061" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C02061">
+        <graphics name="C02061" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="300" y="261" width="8" height="8"/>
+    </entry>
+    <entry id="28" name="cpd:C00034" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00034">
+        <graphics name="C00034" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="210" y="361" width="8" height="8"/>
+    </entry>
+    <entry id="29" name="cpd:C00001" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00001">
+        <graphics name="C00001" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="186" y="401" width="8" height="8"/>
+    </entry>
+    <entry id="30" name="cpd:C00007" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00007">
+        <graphics name="C00007" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="237" y="402" width="8" height="8"/>
+    </entry>
+    <entry id="31" name="path:map00195" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map00195">
+        <graphics name="TITLE:Photosynthesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="127" y="55" width="148" height="26"/>
+    </entry>
+    <entry id="32" name="ec:3.6.3.14" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+3.6.3.14">
+        <graphics name="3.6.3.14" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="803" y="105" width="45" height="17"/>
+    </entry>
+    <entry id="33" name="cpd:C00080" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00080">
+        <graphics name="C00080" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="209" y="402" width="8" height="8"/>
+    </entry>
+    <entry id="34" name="cpd:C00080" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00080">
+        <graphics name="C00080" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="533" y="124" width="8" height="8"/>
+    </entry>
+    <entry id="35" name="cpd:C00080" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00080">
+        <graphics name="C00080" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="804" y="401" width="8" height="8"/>
+    </entry>
+    <entry id="36" name="cpd:C00080" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00080">
+        <graphics name="C00080" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="413" y="197" width="8" height="8"/>
+    </entry>
+    <entry id="37" name="cpd:C00008" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00008">
+        <graphics name="C00008" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="743" y="66" width="8" height="8"/>
+    </entry>
+    <entry id="38" name="cpd:C00009" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00009">
+        <graphics name="C00009" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="757" y="66" width="8" height="8"/>
+    </entry>
+    <entry id="39" name="cpd:C00080" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00080">
+        <graphics name="C00080" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="803" y="62" width="8" height="8"/>
+    </entry>
+    <entry id="40" name="cpd:C00002" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00002">
+        <graphics name="C00002" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="854" y="62" width="8" height="8"/>
+    </entry>
+    <entry id="41" name="path:map00710" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map00710.html">
+        <graphics name="Carbon fixation" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="588" y="52" width="134" height="40"/>
+    </entry>
+    <entry id="42" name="ko:K02635" type="ortholog">
+        <graphics name="PETB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="539" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="43" name="ko:K02637" type="ortholog">
+        <graphics name="PETD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="584" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="44" name="ko:K02634" type="ortholog">
+        <graphics name="PETA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="630" y="509" width="46" height="17"/>
+    </entry>
+    <entry id="45" name="ec:1.10.99.1" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+1.10.99.1">
+        <graphics name="1.10.99.1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="675" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="46" name="ko:K02642" type="ortholog">
+        <graphics name="PETL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="720" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="47" name="ko:K02643" type="ortholog">
+        <graphics name="PETM" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="766" y="509" width="46" height="17"/>
+    </entry>
+    <entry id="48" name="ko:K03689" type="ortholog">
+        <graphics name="PETN" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="811" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="49" name="ko:K02640" type="ortholog">
+        <graphics name="PETG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="856" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="50" name="ko:K02638" type="ortholog">
+        <graphics name="PETE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="540" y="576" width="46" height="17"/>
+    </entry>
+    <entry id="51" name="ko:K02639" type="ortholog">
+        <graphics name="PETF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="591" y="576" width="45" height="17"/>
+    </entry>
+    <entry id="52" name="ec:1.18.1.2" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+1.18.1.2">
+        <graphics name="1.18.1.2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="644" y="576" width="46" height="17"/>
+    </entry>
+    <entry id="53" name="ko:K02690" type="ortholog">
+        <graphics name="PSAB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="148" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="54" name="ko:K02691" type="ortholog">
+        <graphics name="PSAC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="194" y="632" width="46" height="17"/>
+    </entry>
+    <entry id="55" name="ko:K02692" type="ortholog">
+        <graphics name="PSAD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="56" name="ko:K02693" type="ortholog">
+        <graphics name="PSAE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="284" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="57" name="ko:K02694" type="ortholog">
+        <graphics name="PSAF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="330" y="632" width="46" height="17"/>
+    </entry>
+    <entry id="58" name="ko:K08905" type="ortholog">
+        <graphics name="PSAG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="375" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="59" name="ko:K02696" type="ortholog">
+        <graphics name="PSAI" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="103" y="649" width="45" height="17"/>
+    </entry>
+    <entry id="60" name="ko:K02697" type="ortholog">
+        <graphics name="PSAJ" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="148" y="649" width="45" height="17"/>
+    </entry>
+    <entry id="61" name="ko:K02698" type="ortholog">
+        <graphics name="PSAK" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="194" y="649" width="46" height="17"/>
+    </entry>
+    <entry id="62" name="ko:K02699" type="ortholog">
+        <graphics name="PSAL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="649" width="45" height="17"/>
+    </entry>
+    <entry id="63" name="ko:K02700" type="ortholog">
+        <graphics name="PSAM" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="284" y="649" width="45" height="17"/>
+    </entry>
+    <entry id="64" name="ko:K02701" type="ortholog">
+        <graphics name="PSAN" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="330" y="649" width="46" height="17"/>
+    </entry>
+    <entry id="65" name="ko:K02689" type="ortholog">
+        <graphics name="PSAA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="103" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="66" name="ko:K02724" type="ortholog">
+        <graphics name="PSBZ" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="148" y="578" width="45" height="17"/>
+    </entry>
+    <entry id="67" name="ko:K02718" type="ortholog">
+        <graphics name="PSBT" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="561" width="45" height="17"/>
+    </entry>
+    <entry id="68" name="ko:K02710" type="ortholog">
+        <graphics name="PSBI" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="330" y="544" width="46" height="17"/>
+    </entry>
+    <entry id="69" name="ko:K02716" type="ortholog">
+        <graphics name="PSBO" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="375" y="544" width="45" height="17"/>
+    </entry>
+    <entry id="70" name="ko:K02719" type="ortholog">
+        <graphics name="PSBU" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="284" y="561" width="45" height="17"/>
+    </entry>
+    <entry id="71" name="ko:K02720" type="ortholog">
+        <graphics name="PSBV" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="330" y="561" width="46" height="17"/>
+    </entry>
+    <entry id="72" name="ko:K02721" type="ortholog">
+        <graphics name="PSBW" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="375" y="561" width="45" height="17"/>
+    </entry>
+    <entry id="73" name="ko:K02722" type="ortholog">
+        <graphics name="PSBX" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="420" y="561" width="45" height="17"/>
+    </entry>
+    <entry id="74" name="ko:K02723" type="ortholog">
+        <graphics name="PSBY" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="103" y="578" width="45" height="17"/>
+    </entry>
+    <entry id="75" name="ko:K02709" type="ortholog">
+        <graphics name="PSBH" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="284" y="544" width="45" height="17"/>
+    </entry>
+    <entry id="76" name="ko:K08901" type="ortholog">
+        <graphics name="PSBQ" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="103" y="561" width="45" height="17"/>
+    </entry>
+    <entry id="77" name="ko:K02714" type="ortholog">
+        <graphics name="PSBM" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="544" width="45" height="17"/>
+    </entry>
+    <entry id="78" name="ko:K02712" type="ortholog">
+        <graphics name="PSBK" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="194" y="544" width="46" height="17"/>
+    </entry>
+    <entry id="79" name="ko:K02711" type="ortholog">
+        <graphics name="PSBJ" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="148" y="544" width="45" height="17"/>
+    </entry>
+    <entry id="80" name="ko:K02713" type="ortholog">
+        <graphics name="PSBL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="103" y="544" width="45" height="17"/>
+    </entry>
+    <entry id="81" name="ko:K02708" type="ortholog">
+        <graphics name="PSBF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="330" y="509" width="46" height="17"/>
+    </entry>
+    <entry id="82" name="ko:K02707" type="ortholog">
+        <graphics name="PSBE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="284" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="83" name="ko:K02704" type="ortholog">
+        <graphics name="PSBB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="84" name="ko:K02705" type="ortholog">
+        <graphics name="PSBC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="194" y="509" width="46" height="17"/>
+    </entry>
+    <entry id="85" name="ko:K02706" type="ortholog">
+        <graphics name="PSBD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="148" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="86" name="ko:K02703" type="ortholog">
+        <graphics name="PSBA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="103" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="87" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="262" y="544" width="382" height="106"/>
+        <component id="8"/>
+        <component id="9"/>
+        <component id="10"/>
+        <component id="11"/>
+        <component id="11"/>
+        <component id="12"/>
+        <component id="12"/>
+        <component id="14"/>
+        <component id="66"/>
+        <component id="67"/>
+        <component id="68"/>
+        <component id="69"/>
+        <component id="70"/>
+        <component id="71"/>
+        <component id="72"/>
+        <component id="73"/>
+        <component id="74"/>
+        <component id="75"/>
+        <component id="76"/>
+        <component id="77"/>
+        <component id="78"/>
+        <component id="79"/>
+        <component id="80"/>
+        <component id="81"/>
+        <component id="82"/>
+        <component id="83"/>
+        <component id="84"/>
+        <component id="85"/>
+        <component id="86"/>
+    </entry>
+    <entry id="88" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="262" y="641" width="382" height="54"/>
+        <component id="1"/>
+        <component id="13"/>
+        <component id="53"/>
+        <component id="54"/>
+        <component id="55"/>
+        <component id="56"/>
+        <component id="57"/>
+        <component id="58"/>
+        <component id="59"/>
+        <component id="60"/>
+        <component id="61"/>
+        <component id="62"/>
+        <component id="63"/>
+        <component id="64"/>
+        <component id="65"/>
+    </entry>
+    <entry id="89" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="698" y="509" width="382" height="37"/>
+        <component id="42"/>
+        <component id="43"/>
+        <component id="44"/>
+        <component id="45"/>
+        <component id="46"/>
+        <component id="47"/>
+        <component id="48"/>
+        <component id="49"/>
+    </entry>
+    <entry id="90" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="698" y="632" width="382" height="37"/>
+        <component id="5"/>
+        <component id="6"/>
+        <component id="19"/>
+        <component id="20"/>
+        <component id="21"/>
+        <component id="22"/>
+        <component id="23"/>
+        <component id="24"/>
+    </entry>
+</pathway>

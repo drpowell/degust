@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 13 2006 16:15:53 +0900 (JST) -->
+<pathway name="path:map05050" org="map" number="05050"
+         title="Dentatorubropallidoluysian atrophy (DRPLA)"
+         image="http://www.genome.jp/kegg/pathway/map/map05050.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map05050">
+    <entry id="1" name="ko:K04527" type="ortholog">
+        <graphics name="INSR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="189" y="101" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="path:map04210" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04210.html">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="584" y="227" width="69" height="26"/>
+    </entry>
+    <entry id="3" name="ko:K05628" type="ortholog">
+        <graphics name="RERE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="243" y="174" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K04526" type="ortholog">
+        <graphics name="INS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="103" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="path:map05050" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map05050">
+        <graphics name="TITLE:Dentatorubropallidoluysian atrophy (DRPLA)" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="197" y="43" width="282" height="26"/>
+    </entry>
+    <entry id="6" name="ko:K05627" type="ortholog">
+        <graphics name="BAIAP2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="164" width="46" height="17"/>
+    </entry>
+    <entry id="7" name="hsa:2597+mmu:14433+rno:2438" type="other">
+        <graphics name="GAPDH, GAPD..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="134" y="173" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K01370 ko:K02187 ko:K04397 ko:K04398" type="ortholog">
+        <graphics name="CASP1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="283" y="212" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K05626" type="ortholog">
+        <graphics name="DRPLA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="192" y="225" width="46" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K05629 ko:K05630 ko:K05631 ko:K05632 ko:K05633" type="ortholog">
+        <graphics name="AIP1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="262" width="45" height="17"/>
+    </entry>
+    <relation entry1="4" entry2="1" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="1" entry2="6" type="PPrel">
+        <subtype name="indirect" value="..>"/>
+    </relation>
+    <relation entry1="9" entry2="10" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="7" entry2="9" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="6" entry2="9" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="3" entry2="9" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+</pathway>

@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Mar 06 2007 07:29:11 +0900 (JST) -->
+<pathway name="path:map00402" org="map" number="00402"
+         title="Benzoxazinone biosynthesis"
+         image="http://www.genome.jp/kegg/pathway/map/map00402.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map00402">
+    <entry id="1" name="path:map00402" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map00402">
+        <graphics name="TITLE:Benzoxazinone biosynthesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="306" y="52" width="247" height="27"/>
+    </entry>
+    <entry id="2" name="path:map00400" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map00400.html">
+        <graphics name="Phenylalanine, tyrosine and tryptophan biosynthesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="284" y="117" width="142" height="25"/>
+    </entry>
+    <entry id="3" name="cpd:C04831" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C04831">
+        <graphics name="C04831" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="400" y="638" width="8" height="8"/>
+    </entry>
+    <entry id="4" name="cpd:C04720" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C04720">
+        <graphics name="C04720" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="282" y="638" width="8" height="8"/>
+    </entry>
+    <entry id="5" name="cpd:C15771" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C15771">
+        <graphics name="C15771" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="282" y="571" width="8" height="8"/>
+    </entry>
+    <entry id="6" name="cpd:C15772" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C15772">
+        <graphics name="C15772" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="400" y="504" width="8" height="8"/>
+    </entry>
+    <entry id="7" name="cpd:C15770" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C15770">
+        <graphics name="C15770" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="282" y="504" width="8" height="8"/>
+    </entry>
+    <entry id="8" name="cpd:C15769" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C15769">
+        <graphics name="C15769" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="282" y="437" width="8" height="8"/>
+    </entry>
+    <entry id="9" name="cpd:C11130" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C11130">
+        <graphics name="C11130" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="282" y="371" width="8" height="8"/>
+    </entry>
+    <entry id="10" name="cpd:C12312" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C12312">
+        <graphics name="C12312" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="282" y="305" width="8" height="8"/>
+    </entry>
+    <entry id="11" name="cpd:C00463" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00463">
+        <graphics name="C00463" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="282" y="238" width="8" height="8"/>
+    </entry>
+    <entry id="12" name="cpd:C03506" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C03506">
+        <graphics name="C03506" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="282" y="171" width="8" height="8"/>
+    </entry>
+    <entry id="13" name="ec:2.4.1.202" type="enzyme" reaction="rn:R04579"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.4.1.202">
+        <graphics name="2.4.1.202" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="336" y="638" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="up:Q84TC2_MAIZE" type="other" reaction="rn:R07424"
+        link="http://www.genome.jp/dbget-bin/www_bget?up+Q84TC2_MAIZE">
+        <graphics name="Q84TC2_MAIZE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="282" y="532" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="up:Q8W2B7_MAIZE" type="other" reaction="rn:R07426"
+        link="http://www.genome.jp/dbget-bin/www_bget?up+Q8W2B7_MAIZE">
+        <graphics name="Q8W2B7_MAIZE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="336" y="504" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="up:C71C3_MAIZE up:Q58A29_WHEAT up:Q8S9E7_WHEAT up:Q58A28_WHEAT" type="other" reaction="rn:R07423"
+        link="http://www.genome.jp/dbget-bin/www_bget?up+C71C3_MAIZE+Q58A29_WHEAT+Q8S9E7_WHEAT+Q58A28_WHEAT">
+        <graphics name="C71C3_MAIZE..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="282" y="466" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="up:C71C1_MAIZE up:Q58A31_WHEAT up:Q58A30_WHEAT up:Q8S9E9_WHEAT" type="other" reaction="rn:R07422"
+        link="http://www.genome.jp/dbget-bin/www_bget?up+C71C1_MAIZE+Q58A31_WHEAT+Q58A30_WHEAT+Q8S9E9_WHEAT">
+        <graphics name="C71C1_MAIZE..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="282" y="399" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="up:C71C2_MAIZE up:Q8S9E8_WHEAT up:Q58A33_WHEAT up:Q58A32_WHEAT" type="other" reaction="rn:R07421"
+        link="http://www.genome.jp/dbget-bin/www_bget?up+C71C2_MAIZE+Q8S9E8_WHEAT+Q58A33_WHEAT+Q58A32_WHEAT">
+        <graphics name="C71C2_MAIZE..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="282" y="334" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="up:C71C4_MAIZE up:Q8S9E6_WHEAT up:Q58A34_WHEAT up:Q8S9E5_WHEAT" type="other" reaction="rn:R07403"
+        link="http://www.genome.jp/dbget-bin/www_bget?up+C71C4_MAIZE+Q8S9E6_WHEAT+Q58A34_WHEAT+Q8S9E5_WHEAT">
+        <graphics name="C71C4_MAIZE..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="282" y="266" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ec:4.1.2.8" type="enzyme" reaction="rn:R02340"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+4.1.2.8">
+        <graphics name="4.1.2.8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="282" y="199" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ec:4.1.1.48" type="enzyme" map="2"
+        link="http://www.genome.jp/dbget-bin/show_pathway?map00400+4.1.1.48"/>
+    <entry id="22" name="ec:4.2.1.20" type="enzyme" map="2"
+        link="http://www.genome.jp/dbget-bin/show_pathway?map00400+4.2.1.20"/>
+    <relation entry1="19" entry2="20" type="ECrel">
+        <subtype name="compound" value="11"/>
+    </relation>
+    <relation entry1="18" entry2="19" type="ECrel">
+        <subtype name="compound" value="10"/>
+    </relation>
+    <relation entry1="17" entry2="18" type="ECrel">
+        <subtype name="compound" value="9"/>
+    </relation>
+    <relation entry1="16" entry2="17" type="ECrel">
+        <subtype name="compound" value="8"/>
+    </relation>
+    <relation entry1="14" entry2="16" type="ECrel">
+        <subtype name="compound" value="7"/>
+    </relation>
+    <relation entry1="15" entry2="16" type="ECrel">
+        <subtype name="compound" value="7"/>
+    </relation>
+    <relation entry1="14" entry2="15" type="ECrel">
+        <subtype name="compound" value="7"/>
+    </relation>
+    <relation entry1="20" entry2="2" type="maplink">
+        <subtype name="compound" value="12"/>
+    </relation>
+    <reaction name="rn:R04579" type="irreversible">
+        <substrate name="cpd:C04720"/>
+        <product name="cpd:C04831"/>
+    </reaction>
+    <reaction name="rn:R07425" type="irreversible">
+        <substrate name="cpd:C15771"/>
+        <product name="cpd:C04720"/>
+    </reaction>
+    <reaction name="rn:R07424" type="irreversible">
+        <substrate name="cpd:C15770"/>
+        <product name="cpd:C15771"/>
+    </reaction>
+    <reaction name="rn:R07426" type="irreversible">
+        <substrate name="cpd:C15770"/>
+        <product name="cpd:C15772"/>
+    </reaction>
+    <reaction name="rn:R07423" type="irreversible">
+        <substrate name="cpd:C15769"/>
+        <product name="cpd:C15770"/>
+    </reaction>
+    <reaction name="rn:R07422" type="irreversible">
+        <substrate name="cpd:C11130"/>
+        <product name="cpd:C15769"/>
+    </reaction>
+    <reaction name="rn:R07421" type="irreversible">
+        <substrate name="cpd:C12312"/>
+        <product name="cpd:C11130"/>
+    </reaction>
+    <reaction name="rn:R07403" type="irreversible">
+        <substrate name="cpd:C00463"/>
+        <product name="cpd:C12312"/>
+    </reaction>
+    <reaction name="rn:R02340" type="irreversible">
+        <substrate name="cpd:C03506"/>
+        <product name="cpd:C00463"/>
+    </reaction>
+</pathway>

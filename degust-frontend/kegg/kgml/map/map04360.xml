@@ -1,0 +1,607 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 13 2006 16:07:41 +0900 (JST) -->
+<pathway name="path:map04360" org="map" number="04360"
+         title="Axon guidance"
+         image="http://www.genome.jp/kegg/pathway/map/map04360.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04360">
+    <entry id="1" name="hsa:27289+mmu:22388" type="other">
+        <graphics name="RND1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="759" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K04630" type="ortholog">
+        <graphics name="GNAI" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="216" y="411" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K04630" type="ortholog">
+        <graphics name="GNAI" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="411" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K04189" type="ortholog">
+        <graphics name="CXCR4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="411" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="ko:K04371" type="ortholog">
+        <graphics name="RK1_2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="780" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K04392 ko:K07860 ko:K07861 ko:K07862" type="ortholog">
+        <graphics name="RAC1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="695" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K04392 ko:K07860 ko:K07861 ko:K07862" type="ortholog">
+        <graphics name="RAC1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="609" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K04392 ko:K07860 ko:K07861 ko:K07862" type="ortholog">
+        <graphics name="RAC1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="240" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K04392 ko:K07860 ko:K07861 ko:K07862" type="ortholog">
+        <graphics name="RAC1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="63" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K06765" type="ortholog">
+        <graphics name="DCC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="176" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K06765" type="ortholog">
+        <graphics name="DCC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="107" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K04446" type="ortholog">
+        <graphics name="NFATC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="99" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K04348 ko:K06268" type="ortholog">
+        <graphics name="PPP3C..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="99" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K07520" type="ortholog">
+        <graphics name="ABLIM" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="63" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K07522" type="ortholog">
+        <graphics name="NTNG1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="365" y="209" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K06845" type="ortholog">
+        <graphics name="NTN4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="365" y="182" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K06850" type="ortholog">
+        <graphics name="SLIT3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="365" y="534" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K06839" type="ortholog">
+        <graphics name="SLIT2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="365" y="492" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K06838" type="ortholog">
+        <graphics name="SLIT1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="365" y="469" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K05703" type="ortholog">
+        <graphics name="FYN" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="554" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K05725" type="ortholog">
+        <graphics name="PTK2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="159" y="337" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="ko:K04393" type="ortholog">
+        <graphics name="CDC42" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="480" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="ko:K04514" type="ortholog">
+        <graphics name="ROCK" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="294" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K04409 ko:K04410 ko:K05733 ko:K05734 ko:K05735 ko:K05736" type="ortholog">
+        <graphics name="PAK1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="695" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K04409 ko:K04410 ko:K05733 ko:K05734 ko:K05735 ko:K05736" type="ortholog">
+        <graphics name="PAK1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="609" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ko:K04513" type="ortholog">
+        <graphics name="RHOA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="723" width="45" height="17"/>
+    </entry>
+    <entry id="27" name="ko:K04513" type="ortholog">
+        <graphics name="RHOA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="294" width="45" height="17"/>
+    </entry>
+    <entry id="28" name="path:hsa04810" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04810.html">
+        <graphics name="Regulation of actin cytoskeleton" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="990" y="780" width="111" height="41"/>
+    </entry>
+    <entry id="29" name="path:hsa04810" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04810.html">
+        <graphics name="Regulation of actin cytoskeleton" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="925" y="480" width="111" height="41"/>
+    </entry>
+    <entry id="30" name="path:hsa04060" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04060.html">
+        <graphics name="Cytokine-cytokine receptor interaction" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="387" y="373" width="111" height="41"/>
+    </entry>
+    <entry id="31" name="path:hsa04010" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04010.html">
+        <graphics name="MAPK signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="674" y="370" width="111" height="41"/>
+    </entry>
+    <entry id="32" name="ko:K05719" type="ortholog">
+        <graphics name="ITGB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="780" width="45" height="17"/>
+    </entry>
+    <entry id="33" name="hsa:5921+mmu:218397+rno:2567" type="other">
+        <graphics name="RASA1, RASA..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="216" y="266" width="45" height="17"/>
+    </entry>
+    <entry id="34" name="ko:K06765" type="ortholog">
+        <graphics name="DCC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="90" width="45" height="17"/>
+    </entry>
+    <entry id="35" name="ko:K04393" type="ortholog">
+        <graphics name="CDC42" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="262" width="45" height="17"/>
+    </entry>
+    <entry id="36" name="cpd:C00076" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00076">
+        <graphics name="C00076" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="565" y="99" width="8" height="8"/>
+    </entry>
+    <entry id="37" name="hsa:4690+mmu:1797" type="other">
+        <graphics name="NCK1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="63" width="45" height="17"/>
+    </entry>
+    <entry id="38" name="ko:K06755" type="ortholog">
+        <graphics name="ROBO3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="525" width="45" height="17"/>
+    </entry>
+    <entry id="39" name="ko:K04514" type="ortholog">
+        <graphics name="ROCK" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="133" width="45" height="17"/>
+    </entry>
+    <entry id="40" name="ko:K07528" type="ortholog">
+        <graphics name="DPYSL2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="554" width="45" height="17"/>
+    </entry>
+    <entry id="41" name="ko:K06753" type="ortholog">
+        <graphics name="ROBO1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="492" width="45" height="17"/>
+    </entry>
+    <entry id="42" name="ko:K07525" type="ortholog">
+        <graphics name="NGEF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="294" width="45" height="17"/>
+    </entry>
+    <entry id="43" name="ko:K04352" type="ortholog">
+        <graphics name="RASA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="331" width="45" height="17"/>
+    </entry>
+    <entry id="44" name="ko:K06619" type="ortholog">
+        <graphics name="ABL1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="247" width="45" height="17"/>
+    </entry>
+    <entry id="45" name="ko:K07521" type="ortholog">
+        <graphics name="UNC5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="159" width="45" height="17"/>
+    </entry>
+    <entry id="46" name="ko:K04189" type="ortholog">
+        <graphics name="CXCR4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="306" y="411" width="45" height="17"/>
+    </entry>
+    <entry id="47" name="ko:K05102 ko:K05103 ko:K05104 ko:K05105 ko:K05106 ko:K05107 ko:K05108 ko:K05109" type="ortholog">
+        <graphics name="PHA1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="294" width="45" height="17"/>
+    </entry>
+    <entry id="48" name="ko:K07523" type="ortholog">
+        <graphics name="NGL1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="209" width="45" height="17"/>
+    </entry>
+    <entry id="49" name="ko:K06754" type="ortholog">
+        <graphics name="ROBO2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="469" width="45" height="17"/>
+    </entry>
+    <entry id="50" name="ko:K06844" type="ortholog">
+        <graphics name="NTN3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="365" y="161" width="45" height="17"/>
+    </entry>
+    <entry id="51" name="ko:K05725" type="ortholog">
+        <graphics name="PTK2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="780" width="45" height="17"/>
+    </entry>
+    <entry id="52" name="ko:K05463" type="ortholog">
+        <graphics name="FNB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="306" y="337" width="45" height="17"/>
+    </entry>
+    <entry id="53" name="ko:K05110 ko:K05111 ko:K05112 ko:K05113 ko:K05114" type="ortholog">
+        <graphics name="PHB1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="319" width="45" height="17"/>
+    </entry>
+    <entry id="54" name="ko:K06529" type="ortholog">
+        <graphics name="SEMA7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="365" y="780" width="45" height="17"/>
+    </entry>
+    <entry id="55" name="ko:K05462" type="ortholog">
+        <graphics name="FNA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="306" y="277" width="45" height="17"/>
+    </entry>
+    <entry id="56" name="ko:K05703" type="ortholog">
+        <graphics name="FYN" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="216" y="288" width="45" height="17"/>
+    </entry>
+    <entry id="57" name="ko:K04513" type="ortholog">
+        <graphics name="RHOA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="133" width="45" height="17"/>
+    </entry>
+    <entry id="58" name="ko:K06843" type="ortholog">
+        <graphics name="NTN1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="365" y="134" width="45" height="17"/>
+    </entry>
+    <entry id="59" name="ko:K07524" type="ortholog">
+        <graphics name="RGS3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="233" y="367" width="45" height="17"/>
+    </entry>
+    <entry id="60" name="path:map04360" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04360">
+        <graphics name="TITLE:Axon guidance" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="137" y="40" width="161" height="25"/>
+    </entry>
+    <entry id="61" name="path:hsa04810" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04810.html">
+        <graphics name="Regulation of actin cytoskeleton" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="845" y="331" width="111" height="41"/>
+    </entry>
+    <entry id="62" name="hsa:23365+mmu:6963" type="other">
+        <graphics name="ARHGEF12..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="723" width="45" height="17"/>
+    </entry>
+    <entry id="63" name="ko:K05099" type="ortholog">
+        <graphics name="MET" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="711" width="45" height="17"/>
+    </entry>
+    <entry id="64" name="ko:K07530" type="ortholog">
+        <graphics name="RHOD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="656" width="45" height="17"/>
+    </entry>
+    <entry id="65" name="ko:K06572" type="ortholog">
+        <graphics name="PLXNC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="813" width="45" height="17"/>
+    </entry>
+    <entry id="66" name="ko:K04371" type="ortholog">
+        <graphics name="RK1_2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="331" width="45" height="17"/>
+    </entry>
+    <entry id="67" name="ko:K07529" type="ortholog">
+        <graphics name="DPYSL5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="571" width="45" height="17"/>
+    </entry>
+    <entry id="68" name="ko:K07531" type="ortholog">
+        <graphics name="RND1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="637" width="45" height="17"/>
+    </entry>
+    <entry id="69" name="ko:K05743 ko:K05744" type="ortholog">
+        <graphics name="LIMK1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="792" y="609" width="45" height="17"/>
+    </entry>
+    <entry id="70" name="ko:K06821" type="ortholog">
+        <graphics name="PLXNB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="694" width="45" height="17"/>
+    </entry>
+    <entry id="71" name="ko:K02833 ko:K07827 ko:K07828" type="ortholog">
+        <graphics name="HRAS..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="331" width="45" height="17"/>
+    </entry>
+    <entry id="72" name="ko:K06820" type="ortholog">
+        <graphics name="PLXNA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="597" width="45" height="16"/>
+    </entry>
+    <entry id="73" name="ko:K06840" type="ortholog">
+        <graphics name="SEMA3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="365" y="614" width="45" height="17"/>
+    </entry>
+    <entry id="74" name="ko:K06842" type="ortholog">
+        <graphics name="SEMA6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="306" y="750" width="45" height="17"/>
+    </entry>
+    <entry id="75" name="ko:K06521" type="ortholog">
+        <graphics name="SEMA4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="306" y="693" width="45" height="17"/>
+    </entry>
+    <entry id="76" name="ko:K06841" type="ortholog">
+        <graphics name="SEMA5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="306" y="729" width="45" height="17"/>
+    </entry>
+    <entry id="77" name="ko:K07526" type="ortholog">
+        <graphics name="SRGAP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="552" y="480" width="45" height="17"/>
+    </entry>
+    <entry id="78" name="ko:K02090" type="ortholog">
+        <graphics name="CDK5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="554" width="45" height="17"/>
+    </entry>
+    <entry id="79" name="ko:K07527" type="ortholog">
+        <graphics name="FPS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="582" width="45" height="17"/>
+    </entry>
+    <entry id="80" name="ko:K06724" type="ortholog">
+        <graphics name="NRP1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="613" width="45" height="17"/>
+    </entry>
+    <entry id="81" name="ko:K06550" type="ortholog">
+        <graphics name="L1CAM" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="651" width="45" height="17"/>
+    </entry>
+    <entry id="82" name="ko:K05765" type="ortholog">
+        <graphics name="CFL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="868" y="609" width="45" height="17"/>
+    </entry>
+    <entry id="83" name="ko:K04409 ko:K04410 ko:K05733 ko:K05734 ko:K05735 ko:K05736" type="ortholog">
+        <graphics name="PAK1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="251" width="45" height="17"/>
+    </entry>
+    <entry id="84" name="hsa:6387+mmu:20315+rno:2477" type="other">
+        <graphics name="CXCL12, SDF1A, SDF1B, SDF1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="388" y="411" width="46" height="17"/>
+    </entry>
+    <entry id="85" name="ko:K03083" type="ortholog">
+        <graphics name="GSK3B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="634" y="526" width="45" height="17"/>
+    </entry>
+    <entry id="86" name="hsa:8440+mmu:17974+ptr:45947" type="other">
+        <graphics name="NCK2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="233" y="337" width="45" height="17"/>
+    </entry>
+    <entry id="87" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="99" width="65" height="54"/>
+        <component id="11"/>
+        <component id="34"/>
+    </entry>
+    <entry id="88" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="168" width="65" height="54"/>
+        <component id="10"/>
+        <component id="45"/>
+    </entry>
+    <entry id="89" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="605" width="65" height="53"/>
+        <component id="72"/>
+        <component id="80"/>
+    </entry>
+    <entry id="90" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="716" y="563" width="65" height="54"/>
+        <component id="40"/>
+        <component id="67"/>
+    </entry>
+    <entry id="91" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="468" y="703" width="65" height="54"/>
+        <component id="63"/>
+        <component id="70"/>
+    </entry>
+    <relation entry1="13" entry2="87" type="PPrel">
+        <subtype name="compound" value="36"/>
+    </relation>
+    <relation entry1="58" entry2="87" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="87" entry2="37" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="37" entry2="9" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="9" entry2="14" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="57" entry2="39" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="58" entry2="88" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="55" entry2="33" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="55" entry2="56" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="52" entry2="86" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="86" entry2="21" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="55" entry2="47" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="53" entry2="52" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="47" entry2="44" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="53" entry2="44" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="47" entry2="42" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="42" entry2="27" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="27" entry2="23" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="8" entry2="83" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="35" entry2="83" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="47" entry2="43" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="53" entry2="43" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="84" entry2="46" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="46" entry2="2" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="84" entry2="4" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="4" entry2="3" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="19" entry2="49" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="19" entry2="41" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="18" entry2="49" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="18" entry2="41" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="49" entry2="77" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="41" entry2="77" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="73" entry2="80" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="81" entry2="80" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="72" entry2="7" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="7" entry2="25" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="72" entry2="68" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="6" entry2="24" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="70" entry2="62" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="62" entry2="26" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="70" entry2="1" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="1" entry2="62" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="54" entry2="32" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="54" entry2="65" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="87" entry2="57" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="59" entry2="2" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="42" entry2="8" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="42" entry2="35" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="43" entry2="71" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="77" entry2="22" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="38" entry2="41" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="64" entry2="68" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="70" entry2="6" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="20" entry2="72" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="85" entry2="40" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="78" entry2="40" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="79" entry2="40" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="79" entry2="72" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="25" entry2="69" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="69" entry2="82" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="15" entry2="48" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="52" entry2="59" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="72" entry2="78" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="64" entry2="72" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="13" entry2="12" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="dephosphorylation" value="-p"/>
+    </relation>
+    <relation entry1="71" entry2="66" type="PPrel">
+        <subtype name="indirect" value="..>"/>
+    </relation>
+    <relation entry1="51" entry2="5" type="PPrel">
+        <subtype name="indirect" value="..>"/>
+    </relation>
+    <relation entry1="75" entry2="70" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="20" entry2="78" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="32" entry2="51" type="PPrel">
+        <subtype name="indirect" value="..>"/>
+    </relation>
+</pathway>

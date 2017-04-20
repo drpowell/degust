@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Apr 13 2006 14:24:05 +0900 (JST) -->
+<pathway name="path:map00534" org="map" number="00534"
+         title="Heparan sulfate biosynthesis"
+         image="http://www.genome.jp/kegg/pathway/map/map00534.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map00534">
+    <entry id="1" name="path:map00532" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map00532.html">
+        <graphics name="Chondroitin sulfate biosynthesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="321" y="99" width="116" height="34"/>
+    </entry>
+    <entry id="2" name="ec:2.8.2.29" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.29">
+        <graphics name="2.8.2.29" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="963" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ec:2.8.2.29" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.29">
+        <graphics name="2.8.2.29" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1116" y="134" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ec:2.8.2.30" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.30">
+        <graphics name="2.8.2.30" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="788" y="312" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="ec:5.1.3.17" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+5.1.3.17">
+        <graphics name="5.1.3.17" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="706" y="312" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ec:2.8.2.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-">
+        <graphics name="2.8.2.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="703" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ec:2.8.2.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-">
+        <graphics name="2.8.2.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1032" y="312" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ec:2.8.2-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2-">
+        <graphics name="2.8.2-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1081" y="312" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ec:2.8.2-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2-">
+        <graphics name="2.8.2-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="752" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ec:2.8.2.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-">
+        <graphics name="2.8.2.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="842" y="431" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ec:2.8.2.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-">
+        <graphics name="2.8.2.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="843" y="635" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ec:2.8.2.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-">
+        <graphics name="2.8.2.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="676" y="431" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ec:2.8.2.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-">
+        <graphics name="2.8.2.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="842" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="glycan:G00164" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?glycan+G00164">
+        <graphics name="G00164" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="320" y="421" width="8" height="8"/>
+    </entry>
+    <entry id="15" name="glycan:G00163" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?glycan+G00163">
+        <graphics name="G00163" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="320" y="342" width="8" height="8"/>
+    </entry>
+    <entry id="16" name="glycan:G00162" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?glycan+G00162">
+        <graphics name="G00162" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="320" y="269" width="8" height="8"/>
+    </entry>
+    <entry id="17" name="glycan:G00157" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?glycan+G00157">
+        <graphics name="G00157" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="320" y="191" width="8" height="8"/>
+    </entry>
+    <entry id="18" name="ec:2.8.2.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-">
+        <graphics name="2.8.2.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="929" y="134" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ec:2.8.2.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-">
+        <graphics name="2.8.2.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1005" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ec:2.8.2.- ec:3.1.1.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-+3.1.1.-">
+        <graphics name="2.8.2.-..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="344" y="604" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ec:2.8.2.- ec:3.1.1.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-+3.1.1.-">
+        <graphics name="2.8.2.-..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="344" y="584" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="ec:2.8.2.- ec:3.1.1.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-+3.1.1.-">
+        <graphics name="2.8.2.-..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="295" y="604" width="46" height="17"/>
+    </entry>
+    <entry id="23" name="ec:2.4.1.224 ec:2.4.1.225" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.4.1.224+2.4.1.225">
+        <graphics name="2.4.1.224..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="344" y="482" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ec:2.4.1.224 ec:2.4.1.225" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.4.1.224+2.4.1.225">
+        <graphics name="2.4.1.224..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="295" y="482" width="46" height="17"/>
+    </entry>
+    <entry id="25" name="ec:2.4.1.223 ec:2.4.1.224" type="enzyme" reaction="rn:R05936"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.4.1.223+2.4.1.224">
+        <graphics name="2.4.1.223..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="320" y="387" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ec:2.4.1.223 ec:2.4.1.224" type="enzyme" reaction="rn:R05930"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.4.1.223+2.4.1.224">
+        <graphics name="2.4.1.223..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="320" y="240" width="46" height="17"/>
+    </entry>
+    <entry id="27" name="ec:2.8.2.- ec:3.1.1.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-+3.1.1.-">
+        <graphics name="2.8.2.-..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="295" y="584" width="46" height="17"/>
+    </entry>
+    <entry id="28" name="cpd:C00054" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00054">
+        <graphics name="C00054" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="365" y="624" width="8" height="8"/>
+    </entry>
+    <entry id="29" name="cpd:C00053" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00053">
+        <graphics name="C00053" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="234" y="564" width="8" height="8"/>
+    </entry>
+    <entry id="30" name="ec:2.8.2-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2-">
+        <graphics name="2.8.2-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="978" y="134" width="45" height="17"/>
+    </entry>
+    <entry id="31" name="ec:5.1.3.17" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+5.1.3.17">
+        <graphics name="5.1.3.17" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="701" y="134" width="45" height="17"/>
+    </entry>
+    <entry id="32" name="ec:2.4.1.224 ec:2.4.1.225" type="enzyme" reaction="rn:R05935"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.4.1.224+2.4.1.225">
+        <graphics name="2.4.1.224..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="320" y="312" width="45" height="17"/>
+    </entry>
+    <entry id="33" name="ec:5.1.3.17" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+5.1.3.17">
+        <graphics name="5.1.3.17" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="871" y="134" width="45" height="17"/>
+    </entry>
+    <entry id="34" name="ec:2.8.2-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2-">
+        <graphics name="2.8.2-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="812" y="134" width="45" height="17"/>
+    </entry>
+    <entry id="35" name="ec:2.8.2.23" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.23">
+        <graphics name="2.8.2.23" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1136" y="312" width="45" height="17"/>
+    </entry>
+    <entry id="36" name="ec:2.8.2.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.8.2.-">
+        <graphics name="2.8.2.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="763" y="134" width="45" height="17"/>
+    </entry>
+    <entry id="37" name="ec:5.1.3.17" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+5.1.3.17">
+        <graphics name="5.1.3.17" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1032" y="134" width="45" height="17"/>
+    </entry>
+    <entry id="38" name="path:map00534" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map00534">
+        <graphics name="TITLE:Heparan sulfate biosynthesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="173" y="46" width="258" height="27"/>
+    </entry>
+    <entry id="39" name="path:map00531" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map00531.html">
+        <graphics name="Glycosaminoglycan degradation" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="1098" y="539" width="116" height="34"/>
+    </entry>
+    <entry id="40" name="cpd:C00033" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00033">
+        <graphics name="C00033" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="275" y="624" width="8" height="8"/>
+    </entry>
+    <entry id="41" name="ec:2.4.1.135" type="enzyme" map="1"
+        link="http://www.genome.jp/dbget-bin/show_pathway?map00532+2.4.1.135"/>
+    <entry id="42" name="ec:2.4.1.174" type="enzyme" map="1"
+        link="http://www.genome.jp/dbget-bin/show_pathway?map00532+2.4.1.174"/>
+    <relation entry1="26" entry2="32" type="ECrel">
+        <subtype name="compound" value="16"/>
+    </relation>
+    <relation entry1="25" entry2="32" type="ECrel">
+        <subtype name="compound" value="15"/>
+    </relation>
+    <relation entry1="24" entry2="25" type="ECrel">
+        <subtype name="compound" value="14"/>
+    </relation>
+    <relation entry1="23" entry2="25" type="ECrel">
+        <subtype name="compound" value="14"/>
+    </relation>
+    <relation entry1="26" entry2="1" type="maplink">
+        <subtype name="compound" value="17"/>
+    </relation>
+    <reaction name="rn:R05936" type="reversible">
+        <substrate name="gl:G00163"/>
+        <product name="gl:G00164"/>
+    </reaction>
+    <reaction name="rn:R05930" type="reversible">
+        <substrate name="gl:G00157"/>
+        <product name="gl:G00162"/>
+    </reaction>
+    <reaction name="rn:R05935" type="reversible">
+        <substrate name="gl:G00162"/>
+        <product name="gl:G00163"/>
+    </reaction>
+</pathway>

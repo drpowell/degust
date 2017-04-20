@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Dec 06 2006 11:50:04 +0900 (JST) -->
+<pathway name="path:map05216" org="map" number="05216"
+         title="Thyroid cancer"
+         image="http://www.genome.jp/kegg/pathway/map/map05216.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map05216">
+    <entry id="1" name="ko:K02833 ko:K07828 ko:K07827" type="ortholog">
+        <graphics name="HRAS..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="369" y="308" width="46" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K08530" type="ortholog">
+        <graphics name="NR1C3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="762" y="409" width="46" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K04365" type="ortholog">
+        <graphics name="BRAF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="446" y="308" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K04365" type="ortholog">
+        <graphics name="BRAF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="446" y="185" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="path:hsa04520" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04520.html">
+        <graphics name="Adherens junction" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="402" y="726" width="102" height="38"/>
+    </entry>
+    <entry id="6" name="ko:K04371" type="ortholog">
+        <graphics name="RK1_2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="602" y="308" width="46" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K04368 ko:K04369" type="ortholog">
+        <graphics name="MAP2K1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="524" y="308" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K09293" type="ortholog">
+        <graphics name="PAX8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="708" y="362" width="46" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K04451" type="ortholog">
+        <graphics name="TP53" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="772" y="598" width="46" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K08524 ko:K08525 ko:K08526" type="ortholog">
+        <graphics name="NR2B1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="762" y="382" width="46" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K02105" type="ortholog">
+        <graphics name="CTNNB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="489" y="682" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="path:hsa04010" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04010.html">
+        <graphics name="MAPK signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="566" y="237" width="102" height="38"/>
+    </entry>
+    <entry id="13" name="ko:K04377" type="ortholog">
+        <graphics name="MYC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="835" y="673" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K05689" type="ortholog">
+        <graphics name="CDHE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="221" y="682" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="path:map05216" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map05216">
+        <graphics name="TITLE:Thyroid cancer" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="127" y="39" width="155" height="25"/>
+    </entry>
+    <entry id="16" name="path:hsa04110" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04110.html">
+        <graphics name="Cell cycle" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="773" y="557" width="102" height="38"/>
+    </entry>
+    <entry id="17" name="path:hsa03320" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa03320.html">
+        <graphics name="PPAR signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="483" y="394" width="103" height="38"/>
+    </entry>
+    <entry id="18" name="path:hsa04310" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04310.html">
+        <graphics name="Wnt signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="576" y="726" width="102" height="38"/>
+    </entry>
+    <entry id="19" name="ko:K04371" type="ortholog">
+        <graphics name="RK1_2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="602" y="166" width="46" height="17"/>
+    </entry>
+    <entry id="20" name="hsa:595+hsa:894+hsa:896+mmu:12443+mmu:12444+mmu:12445+rno:25193+rno:5891" type="other">
+        <graphics name="CCND1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="835" y="696" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K04368 ko:K04369" type="ortholog">
+        <graphics name="MAP2K1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="524" y="166" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="ko:K04365" type="ortholog">
+        <graphics name="BRAF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="446" y="150" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="ko:K02833 ko:K07828 ko:K07827" type="ortholog">
+        <graphics name="HRAS..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="369" y="149" width="46" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K05126 ko:K09288 ko:K09289" type="ortholog">
+        <graphics name="RET..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="277" y="117" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K03176 ko:K09290 ko:K09291 ko:K09292" type="ortholog">
+        <graphics name="NTRK1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="221" y="164" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ko:K02620 ko:K04492" type="ortholog">
+        <graphics name="TCF7..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="721" y="682" width="45" height="17"/>
+    </entry>
+    <relation entry1="24" entry2="23" type="PPrel">
+        <subtype name="indirect" value="..>"/>
+    </relation>
+    <relation entry1="25" entry2="23" type="PPrel">
+        <subtype name="indirect" value="..>"/>
+    </relation>
+    <relation entry1="23" entry2="22" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="22" entry2="21" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="4" entry2="21" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="21" entry2="19" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="3" entry2="7" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="7" entry2="6" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="1" entry2="3" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="8" entry2="10" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="11" entry2="14" type="PPrel">
+        <subtype name="dissociation" value="-+-"/>
+    </relation>
+    <relation entry1="11" entry2="26" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="26" entry2="13" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="26" entry2="20" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+</pathway>

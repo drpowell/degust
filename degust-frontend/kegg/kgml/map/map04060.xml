@@ -1,0 +1,1993 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 13 2006 14:45:02 +0900 (JST) -->
+<pathway name="path:map04060" org="map" number="04060"
+         title="Cytokine-cytokine receptor interaction"
+         image="http://www.genome.jp/kegg/pathway/map/map04060.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04060">
+    <entry id="6" name="ko:K05430" type="ortholog">
+        <graphics name="IL4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="486" y="701" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="hsa:659+mmu:1216" type="other">
+        <graphics name="BMPR2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="468" width="46" height="17"/>
+    </entry>
+    <entry id="8" name="hsa:659+mmu:1216" type="other">
+        <graphics name="BMPR2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="428" width="46" height="17"/>
+    </entry>
+    <entry id="9" name="hsa:93+mmu:1148" type="other">
+        <graphics name="ACVR2B..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="293" width="46" height="17"/>
+    </entry>
+    <entry id="10" name="hsa:91+mmu:11479+rno:2938" type="other">
+        <graphics name="ACVR1B, ACVRLK4..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="310" width="46" height="17"/>
+    </entry>
+    <entry id="11" name="hsa:92+mmu:1148" type="other">
+        <graphics name="ACVR2A, ACVR2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="214" width="46" height="17"/>
+    </entry>
+    <entry id="12" name="hsa:90+mmu:1147" type="other">
+        <graphics name="ACVR1, ACVRLK2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="270" width="46" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K05135" type="ortholog">
+        <graphics name="IL10RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="788" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K05138" type="ortholog">
+        <graphics name="IL22RA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="771" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K05070" type="ortholog">
+        <graphics name="IL2RG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="630" width="46" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K05070" type="ortholog">
+        <graphics name="IL2RG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="587" width="46" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K05070" type="ortholog">
+        <graphics name="IL2RG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="526" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K05070" type="ortholog">
+        <graphics name="IL2RG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="481" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K05070" type="ortholog">
+        <graphics name="IL2RG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="437" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K05070" type="ortholog">
+        <graphics name="IL2RG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="388" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K05069" type="ortholog">
+        <graphics name="IL2RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="570" width="46" height="17"/>
+    </entry>
+    <entry id="22" name="ko:K05069" type="ortholog">
+        <graphics name="IL2RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="371" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="ko:K04738" type="ortholog">
+        <graphics name="CSF2RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="220" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K04738" type="ortholog">
+        <graphics name="CSF2RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="175" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K05058" type="ortholog">
+        <graphics name="LIFR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="570" y="496" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ko:K05058" type="ortholog">
+        <graphics name="LIFR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="432" width="45" height="17"/>
+    </entry>
+    <entry id="27" name="ko:K05058" type="ortholog">
+        <graphics name="LIFR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="368" width="45" height="17"/>
+    </entry>
+    <entry id="28" name="ko:K05058" type="ortholog">
+        <graphics name="LIFR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="303" width="45" height="17"/>
+    </entry>
+    <entry id="29" name="ko:K05060" type="ortholog">
+        <graphics name="IL6ST" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="570" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="30" name="ko:K05060" type="ortholog">
+        <graphics name="IL6ST" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="449" width="45" height="17"/>
+    </entry>
+    <entry id="31" name="ko:K05060" type="ortholog">
+        <graphics name="IL6ST" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="385" width="45" height="17"/>
+    </entry>
+    <entry id="32" name="ko:K05060" type="ortholog">
+        <graphics name="IL6ST" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="320" width="45" height="17"/>
+    </entry>
+    <entry id="33" name="ko:K05060" type="ortholog">
+        <graphics name="IL6ST" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="272" width="45" height="17"/>
+    </entry>
+    <entry id="34" name="ko:K05060" type="ortholog">
+        <graphics name="IL6ST" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="225" width="45" height="17"/>
+    </entry>
+    <entry id="35" name="ko:K05060" type="ortholog">
+        <graphics name="IL6ST" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="178" width="45" height="17"/>
+    </entry>
+    <entry id="36" name="ko:K05174" type="ortholog">
+        <graphics name="IL18RAP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="905" width="46" height="17"/>
+    </entry>
+    <entry id="37" name="ko:K05173" type="ortholog">
+        <graphics name="IL18R1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="888" width="46" height="17"/>
+    </entry>
+    <entry id="38" name="ko:K04723" type="ortholog">
+        <graphics name="IL1RAP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="861" width="46" height="17"/>
+    </entry>
+    <entry id="39" name="ko:K04387" type="ortholog">
+        <graphics name="IL1R2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="844" width="46" height="17"/>
+    </entry>
+    <entry id="40" name="ko:K04723" type="ortholog">
+        <graphics name="IL1RAP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="818" width="46" height="17"/>
+    </entry>
+    <entry id="41" name="ko:K04386" type="ortholog">
+        <graphics name="IL1R1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="801" width="46" height="17"/>
+    </entry>
+    <entry id="42" name="ko:K05165" type="ortholog">
+        <graphics name="IL17RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="702" width="46" height="17"/>
+    </entry>
+    <entry id="43" name="ko:K05164" type="ortholog">
+        <graphics name="IL17R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="660" width="46" height="17"/>
+    </entry>
+    <entry id="44" name="hsa:657+mmu:12166+rno:8150" type="other">
+        <graphics name="BMPR1A, ACVRLK3..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="579" width="46" height="17"/>
+    </entry>
+    <entry id="45" name="hsa:92+mmu:1148" type="other">
+        <graphics name="ACVR2A, ACVR2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="562" width="46" height="17"/>
+    </entry>
+    <entry id="46" name="hsa:658+mmu:1216" type="other">
+        <graphics name="BMPR1B..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="533" width="46" height="17"/>
+    </entry>
+    <entry id="47" name="hsa:92+mmu:1617" type="other">
+        <graphics name="ACVR2A, ACVR2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="516" width="46" height="17"/>
+    </entry>
+    <entry id="48" name="hsa:657+mmu:12166+rno:8150" type="other">
+        <graphics name="BMPR1A, ACVRLK3..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="485" width="46" height="17"/>
+    </entry>
+    <entry id="49" name="hsa:658+mmu:1216" type="other">
+        <graphics name="BMPR1B..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="445" width="46" height="17"/>
+    </entry>
+    <entry id="50" name="hsa:90+mmu:1147" type="other">
+        <graphics name="ACVR1, ACVRLK2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="405" width="46" height="17"/>
+    </entry>
+    <entry id="51" name="hsa:659+mmu:1216" type="other">
+        <graphics name="BMPR2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="388" width="46" height="17"/>
+    </entry>
+    <entry id="52" name="hsa:90+mmu:1147" type="other">
+        <graphics name="ACVR1, ACVRLK2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="358" width="45" height="17"/>
+    </entry>
+    <entry id="53" name="hsa:269+mmu:110542+rno:2953" type="other">
+        <graphics name="AMHR2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="341" width="45" height="17"/>
+    </entry>
+    <entry id="54" name="hsa:93+mmu:1148" type="other">
+        <graphics name="ACVR2B..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="253" width="46" height="17"/>
+    </entry>
+    <entry id="55" name="hsa:91+mmu:11479+rno:2938" type="other">
+        <graphics name="ACVR1B, ACVRLK4..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="231" width="46" height="17"/>
+    </entry>
+    <entry id="56" name="hsa:90+mmu:1147" type="other">
+        <graphics name="ACVR1, ACVRLK2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="191" width="46" height="17"/>
+    </entry>
+    <entry id="57" name="hsa:92+mmu:1148" type="other">
+        <graphics name="ACVR2A, ACVR2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="174" width="46" height="17"/>
+    </entry>
+    <entry id="58" name="hsa:7046+mmu:21812+rno:2959" type="other">
+        <graphics name="TGFBR1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="135" width="46" height="17"/>
+    </entry>
+    <entry id="59" name="ko:K04388" type="ortholog">
+        <graphics name="TGFBR2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="118" width="46" height="17"/>
+    </entry>
+    <entry id="60" name="ko:K05482" type="ortholog">
+        <graphics name="IL18" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="896" width="45" height="17"/>
+    </entry>
+    <entry id="61" name="ko:K04519" type="ortholog">
+        <graphics name="IL1B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="843" width="45" height="17"/>
+    </entry>
+    <entry id="62" name="ko:K04383" type="ortholog">
+        <graphics name="IL1A" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="819" width="45" height="17"/>
+    </entry>
+    <entry id="63" name="ko:K05493" type="ortholog">
+        <graphics name="IL17E" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="713" width="45" height="17"/>
+    </entry>
+    <entry id="64" name="ko:K05490" type="ortholog">
+        <graphics name="IL17B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="690" width="45" height="17"/>
+    </entry>
+    <entry id="65" name="ko:K05489" type="ortholog">
+        <graphics name="IL17" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="660" width="45" height="17"/>
+    </entry>
+    <entry id="66" name="hsa:8200+mmu:1456" type="other">
+        <graphics name="GDF5..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="570" width="45" height="17"/>
+    </entry>
+    <entry id="67" name="hsa:655+mmu:1216" type="other">
+        <graphics name="BMP7..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="526" width="45" height="17"/>
+    </entry>
+    <entry id="68" name="hsa:650+mmu:1215" type="other">
+        <graphics name="BMP2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="436" width="45" height="17"/>
+    </entry>
+    <entry id="69" name="ko:K04665" type="ortholog">
+        <graphics name="AMH" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="350" width="46" height="17"/>
+    </entry>
+    <entry id="70" name="hsa:83729+mmu:1632" type="other">
+        <graphics name="INHBE..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="276" width="45" height="17"/>
+    </entry>
+    <entry id="71" name="hsa:3626+mmu:1632" type="other">
+        <graphics name="INHBC..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="72" name="hsa:3625+mmu:1632" type="other">
+        <graphics name="INHBB..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="231" width="45" height="17"/>
+    </entry>
+    <entry id="73" name="hsa:3624+mmu:1632" type="other">
+        <graphics name="INHBA..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="209" width="45" height="17"/>
+    </entry>
+    <entry id="74" name="hsa:7043+mmu:2180" type="other">
+        <graphics name="TGFB3..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="150" width="45" height="17"/>
+    </entry>
+    <entry id="75" name="hsa:7042+mmu:2180" type="other">
+        <graphics name="TGFB2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="127" width="45" height="17"/>
+    </entry>
+    <entry id="76" name="hsa:7040+mmu:2180" type="other">
+        <graphics name="TGFB1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1280" y="103" width="45" height="17"/>
+    </entry>
+    <entry id="77" name="ko:K05156" type="ortholog">
+        <graphics name="TNFRSF19L" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="903" width="45" height="17"/>
+    </entry>
+    <entry id="78" name="ko:K05155" type="ortholog">
+        <graphics name="TNFRSF19" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="881" width="45" height="17"/>
+    </entry>
+    <entry id="79" name="ko:K05163" type="ortholog">
+        <graphics name="XEDAR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="853" width="45" height="17"/>
+    </entry>
+    <entry id="80" name="ko:K05162" type="ortholog">
+        <graphics name="DAR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="821" width="45" height="17"/>
+    </entry>
+    <entry id="81" name="ko:K05151" type="ortholog">
+        <graphics name="TNFRSF13C" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="785" width="45" height="17"/>
+    </entry>
+    <entry id="82" name="ko:K05150" type="ortholog">
+        <graphics name="TNFRSF13B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="758" width="45" height="17"/>
+    </entry>
+    <entry id="83" name="hsa:608+mmu:2193" type="other">
+        <graphics name="TNFRSF17..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="731" width="45" height="17"/>
+    </entry>
+    <entry id="84" name="hsa:8784+mmu:2193" type="other">
+        <graphics name="TNFRSF18..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="694" width="45" height="17"/>
+    </entry>
+    <entry id="85" name="ko:K05142" type="ortholog">
+        <graphics name="TNFRSF4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="671" width="45" height="17"/>
+    </entry>
+    <entry id="86" name="ko:K05146" type="ortholog">
+        <graphics name="TNFRSF9" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="648" width="45" height="17"/>
+    </entry>
+    <entry id="87" name="ko:K05145" type="ortholog">
+        <graphics name="TNFRSF8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="625" width="45" height="17"/>
+    </entry>
+    <entry id="88" name="ko:K05144" type="ortholog">
+        <graphics name="TNFRSF7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="603" width="45" height="17"/>
+    </entry>
+    <entry id="89" name="ko:K03160" type="ortholog">
+        <graphics name="TNFRSF5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="580" width="45" height="17"/>
+    </entry>
+    <entry id="90" name="ko:K04390" type="ortholog">
+        <graphics name="TNFRSF6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1163" y="542" width="45" height="17"/>
+    </entry>
+    <entry id="91" name="hsa:877" type="other">
+        <graphics name="877" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="503" width="45" height="17"/>
+    </entry>
+    <entry id="92" name="hsa:8764+mmu:23097" type="other">
+        <graphics name="TNFRSF14..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="463" width="45" height="17"/>
+    </entry>
+    <entry id="93" name="ko:K03159" type="ortholog">
+        <graphics name="TNFRSF3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="437" width="45" height="17"/>
+    </entry>
+    <entry id="94" name="ko:K05480" type="ortholog">
+        <graphics name="DA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="853" width="45" height="17"/>
+    </entry>
+    <entry id="95" name="ko:K05480" type="ortholog">
+        <graphics name="DA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="821" width="45" height="17"/>
+    </entry>
+    <entry id="96" name="ko:K05476" type="ortholog">
+        <graphics name="TNFSF13B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="771" width="45" height="17"/>
+    </entry>
+    <entry id="97" name="ko:K05475" type="ortholog">
+        <graphics name="TNFSF13" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="744" width="45" height="17"/>
+    </entry>
+    <entry id="98" name="ko:K05479" type="ortholog">
+        <graphics name="TNFSF18" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="694" width="45" height="17"/>
+    </entry>
+    <entry id="99" name="ko:K05469" type="ortholog">
+        <graphics name="TNFSF4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="671" width="45" height="17"/>
+    </entry>
+    <entry id="100" name="ko:K05472" type="ortholog">
+        <graphics name="TNFSF9" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="648" width="45" height="17"/>
+    </entry>
+    <entry id="101" name="ko:K05471" type="ortholog">
+        <graphics name="TNFSF8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="625" width="45" height="17"/>
+    </entry>
+    <entry id="102" name="ko:K05470" type="ortholog">
+        <graphics name="TNFSF7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="603" width="45" height="17"/>
+    </entry>
+    <entry id="103" name="ko:K03161" type="ortholog">
+        <graphics name="TNFSF5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="580" width="45" height="17"/>
+    </entry>
+    <entry id="104" name="ko:K04389" type="ortholog">
+        <graphics name="TNFSF6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="542" width="45" height="17"/>
+    </entry>
+    <entry id="105" name="hsa:8740+mmu:5093" type="other">
+        <graphics name="TNFSF14..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1081" y="482" width="45" height="17"/>
+    </entry>
+    <entry id="106" name="ko:K03157" type="ortholog">
+        <graphics name="LTB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1081" y="450" width="45" height="17"/>
+    </entry>
+    <entry id="107" name="ko:K05468" type="ortholog">
+        <graphics name="LTA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1081" y="426" width="45" height="17"/>
+    </entry>
+    <entry id="108" name="ko:K05135" type="ortholog">
+        <graphics name="IL10RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="879" width="45" height="17"/>
+    </entry>
+    <entry id="109" name="ko:K05140" type="ortholog">
+        <graphics name="IL28RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="862" width="45" height="17"/>
+    </entry>
+    <entry id="110" name="ko:K05139" type="ortholog">
+        <graphics name="IL22RA2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="814" width="45" height="17"/>
+    </entry>
+    <entry id="111" name="ko:K05138" type="ortholog">
+        <graphics name="IL22RA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="724" width="45" height="17"/>
+    </entry>
+    <entry id="112" name="ko:K05136" type="ortholog">
+        <graphics name="IL20RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="681" width="45" height="17"/>
+    </entry>
+    <entry id="113" name="ko:K05135" type="ortholog">
+        <graphics name="IL10RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="651" width="45" height="17"/>
+    </entry>
+    <entry id="114" name="ko:K05134" type="ortholog">
+        <graphics name="IL10RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="634" width="45" height="17"/>
+    </entry>
+    <entry id="115" name="ko:K05133" type="ortholog">
+        <graphics name="IFNGR2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="584" width="45" height="17"/>
+    </entry>
+    <entry id="116" name="ko:K05132" type="ortholog">
+        <graphics name="IFNGR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="567" width="45" height="17"/>
+    </entry>
+    <entry id="117" name="ko:K05131" type="ortholog">
+        <graphics name="IFNAR2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="508" width="45" height="17"/>
+    </entry>
+    <entry id="118" name="ko:K05130" type="ortholog">
+        <graphics name="IFNAR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="491" width="45" height="17"/>
+    </entry>
+    <entry id="119" name="ko:K05092" type="ortholog">
+        <graphics name="FLT3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="399" width="45" height="17"/>
+    </entry>
+    <entry id="120" name="ko:K05091" type="ortholog">
+        <graphics name="KIT" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="374" width="45" height="17"/>
+    </entry>
+    <entry id="121" name="ko:K05090" type="ortholog">
+        <graphics name="CSF1R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="348" width="45" height="17"/>
+    </entry>
+    <entry id="122" name="ko:K04361" type="ortholog">
+        <graphics name="GFR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="323" width="45" height="17"/>
+    </entry>
+    <entry id="123" name="ko:K05099" type="ortholog">
+        <graphics name="MET" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="297" width="45" height="17"/>
+    </entry>
+    <entry id="124" name="ko:K05097" type="ortholog">
+        <graphics name="FLT4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="967" y="264" width="46" height="17"/>
+    </entry>
+    <entry id="125" name="ko:K05098" type="ortholog">
+        <graphics name="KDR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="967" y="238" width="46" height="17"/>
+    </entry>
+    <entry id="126" name="ko:K05096" type="ortholog">
+        <graphics name="FLT1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="967" y="211" width="46" height="17"/>
+    </entry>
+    <entry id="127" name="hsa:5159+mmu:1859" type="other">
+        <graphics name="PDGFRB..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="965" y="175" width="45" height="17"/>
+    </entry>
+    <entry id="128" name="hsa:5159+mmu:1859" type="other">
+        <graphics name="PDGFRB..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="965" y="148" width="45" height="17"/>
+    </entry>
+    <entry id="129" name="hsa:5156+mmu:1859" type="other">
+        <graphics name="PDGFRA..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="965" y="131" width="45" height="17"/>
+    </entry>
+    <entry id="130" name="hsa:5156+mmu:1859" type="other">
+        <graphics name="PDGFRA..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="965" y="105" width="45" height="17"/>
+    </entry>
+    <entry id="131" name="ko:K05446" type="ortholog">
+        <graphics name="IL26" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="924" width="46" height="17"/>
+    </entry>
+    <entry id="132" name="hsa:28261" type="other">
+        <graphics name="28261" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="893" width="46" height="17"/>
+    </entry>
+    <entry id="133" name="hsa:28261" type="other">
+        <graphics name="28261" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="871" width="46" height="17"/>
+    </entry>
+    <entry id="134" name="hsa:28261" type="other">
+        <graphics name="28261" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="848" width="46" height="17"/>
+    </entry>
+    <entry id="135" name="ko:K05445" type="ortholog">
+        <graphics name="IL22" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="800" width="46" height="17"/>
+    </entry>
+    <entry id="136" name="hsa:11009+mmu:9367" type="other">
+        <graphics name="IL24..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="738" width="46" height="17"/>
+    </entry>
+    <entry id="137" name="hsa:50604+mmu:5818" type="other">
+        <graphics name="IL20..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="711" width="46" height="17"/>
+    </entry>
+    <entry id="138" name="hsa:29949+mmu:32924" type="other">
+        <graphics name="IL19..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="685" width="46" height="17"/>
+    </entry>
+    <entry id="139" name="ko:K05443" type="ortholog">
+        <graphics name="IL10" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="643" width="46" height="17"/>
+    </entry>
+    <entry id="140" name="ko:K04687" type="ortholog">
+        <graphics name="IFNG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="884" y="575" width="45" height="17"/>
+    </entry>
+    <entry id="141" name="ko:K05442" type="ortholog">
+        <graphics name="IFNT1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="884" y="544" width="45" height="17"/>
+    </entry>
+    <entry id="142" name="ko:K05441" type="ortholog">
+        <graphics name="IFNK" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="884" y="522" width="45" height="17"/>
+    </entry>
+    <entry id="143" name="ko:K05440" type="ortholog">
+        <graphics name="IFNW1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="884" y="500" width="45" height="17"/>
+    </entry>
+    <entry id="144" name="ko:K05415" type="ortholog">
+        <graphics name="IFNB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="884" y="478" width="46" height="17"/>
+    </entry>
+    <entry id="145" name="ko:K05414" type="ortholog">
+        <graphics name="IFNA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="884" y="457" width="46" height="17"/>
+    </entry>
+    <entry id="146" name="ko:K05454" type="ortholog">
+        <graphics name="FLT3LG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="399" width="46" height="17"/>
+    </entry>
+    <entry id="147" name="ko:K05461" type="ortholog">
+        <graphics name="KITLG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="374" width="46" height="17"/>
+    </entry>
+    <entry id="148" name="ko:K05453" type="ortholog">
+        <graphics name="CSF1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="348" width="46" height="17"/>
+    </entry>
+    <entry id="149" name="ko:K04357" type="ortholog">
+        <graphics name="GF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="323" width="46" height="17"/>
+    </entry>
+    <entry id="150" name="ko:K05460" type="ortholog">
+        <graphics name="HGF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="297" width="46" height="17"/>
+    </entry>
+    <entry id="151" name="hsa:7424+mmu:2234" type="other">
+        <graphics name="VEGFC..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="272" width="45" height="17"/>
+    </entry>
+    <entry id="152" name="hsa:7422+mmu:2233" type="other">
+        <graphics name="VEGF..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="225" width="45" height="17"/>
+    </entry>
+    <entry id="153" name="hsa:7423+mmu:2234" type="other">
+        <graphics name="VEGFB, VRF..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="202" width="45" height="17"/>
+    </entry>
+    <entry id="154" name="hsa:80301+mmu:7178" type="other">
+        <graphics name="PLEKHQ1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="177" width="46" height="17"/>
+    </entry>
+    <entry id="155" name="hsa:5155+mmu:1859" type="other">
+        <graphics name="PDGFB..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="152" width="46" height="17"/>
+    </entry>
+    <entry id="156" name="mmu:18590+rno:2526" type="other">
+        <graphics name="Pdgfa..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="128" width="46" height="17"/>
+    </entry>
+    <entry id="157" name="hsa:56034+mmu:5463" type="other">
+        <graphics name="PDGFC..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="883" y="104" width="46" height="17"/>
+    </entry>
+    <entry id="158" name="ko:K05082" type="ortholog">
+        <graphics name="TPOR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="769" y="904" width="45" height="17"/>
+    </entry>
+    <entry id="159" name="ko:K05081" type="ortholog">
+        <graphics name="PRLR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="769" y="878" width="45" height="17"/>
+    </entry>
+    <entry id="160" name="ko:K05080" type="ortholog">
+        <graphics name="GHR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="769" y="834" width="45" height="17"/>
+    </entry>
+    <entry id="161" name="ko:K05079" type="ortholog">
+        <graphics name="POR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="769" y="791" width="45" height="17"/>
+    </entry>
+    <entry id="162" name="ko:K05078" type="ortholog">
+        <graphics name="TSLPR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="708" width="45" height="17"/>
+    </entry>
+    <entry id="163" name="ko:K05072" type="ortholog">
+        <graphics name="IL7R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="691" width="45" height="17"/>
+    </entry>
+    <entry id="164" name="ko:K05075" type="ortholog">
+        <graphics name="IL21R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="613" width="46" height="17"/>
+    </entry>
+    <entry id="165" name="ko:K05074" type="ortholog">
+        <graphics name="IL15RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="553" width="46" height="17"/>
+    </entry>
+    <entry id="166" name="ko:K05073" type="ortholog">
+        <graphics name="IL9R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="509" width="45" height="17"/>
+    </entry>
+    <entry id="167" name="ko:K05072" type="ortholog">
+        <graphics name="IL7R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="464" width="45" height="17"/>
+    </entry>
+    <entry id="168" name="ko:K05071" type="ortholog">
+        <graphics name="IL4R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="420" width="45" height="17"/>
+    </entry>
+    <entry id="169" name="ko:K05070" type="ortholog">
+        <graphics name="IL2RG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="344" width="46" height="17"/>
+    </entry>
+    <entry id="170" name="ko:K05069" type="ortholog">
+        <graphics name="IL2RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="327" width="46" height="17"/>
+    </entry>
+    <entry id="171" name="ko:K05068" type="ortholog">
+        <graphics name="IL2RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="310" width="46" height="17"/>
+    </entry>
+    <entry id="172" name="ko:K05067" type="ortholog">
+        <graphics name="IL5RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="203" width="45" height="17"/>
+    </entry>
+    <entry id="173" name="ko:K04737" type="ortholog">
+        <graphics name="IL3RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="158" width="45" height="17"/>
+    </entry>
+    <entry id="174" name="ko:K04738" type="ortholog">
+        <graphics name="CSF2RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="131" width="45" height="17"/>
+    </entry>
+    <entry id="175" name="ko:K05066" type="ortholog">
+        <graphics name="CSF2RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="114" width="45" height="17"/>
+    </entry>
+    <entry id="176" name="ko:K00431" type="ortholog">
+        <graphics name="1.11.1.8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="904" width="46" height="17"/>
+    </entry>
+    <entry id="177" name="ko:K05439" type="ortholog">
+        <graphics name="PRL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="878" width="46" height="17"/>
+    </entry>
+    <entry id="178" name="hsa:268" type="other">
+        <graphics name="AMH" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="845" width="46" height="17"/>
+    </entry>
+    <entry id="179" name="hsa:268" type="other">
+        <graphics name="AMH" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="822" width="46" height="17"/>
+    </entry>
+    <entry id="180" name="ko:K05437" type="ortholog">
+        <graphics name="PO" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="791" width="46" height="17"/>
+    </entry>
+    <entry id="181" name="ko:K05436" type="ortholog">
+        <graphics name="TSLP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="699" width="46" height="17"/>
+    </entry>
+    <entry id="182" name="ko:K05434" type="ortholog">
+        <graphics name="IL21" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="684" y="622" width="45" height="17"/>
+    </entry>
+    <entry id="183" name="ko:K05433" type="ortholog">
+        <graphics name="IL15" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="684" y="569" width="45" height="17"/>
+    </entry>
+    <entry id="184" name="ko:K05432" type="ortholog">
+        <graphics name="IL9" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="684" y="516" width="45" height="17"/>
+    </entry>
+    <entry id="185" name="ko:K05431" type="ortholog">
+        <graphics name="IL7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="684" y="472" width="45" height="17"/>
+    </entry>
+    <entry id="186" name="ko:K05430" type="ortholog">
+        <graphics name="IL4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="684" y="429" width="45" height="17"/>
+    </entry>
+    <entry id="187" name="ko:K05429" type="ortholog">
+        <graphics name="IL2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="352" width="46" height="17"/>
+    </entry>
+    <entry id="188" name="ko:K05428" type="ortholog">
+        <graphics name="IL5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="212" width="46" height="17"/>
+    </entry>
+    <entry id="189" name="ko:K04736" type="ortholog">
+        <graphics name="IL3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="167" width="46" height="17"/>
+    </entry>
+    <entry id="190" name="ko:K05427" type="ortholog">
+        <graphics name="CSF2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="685" y="123" width="46" height="17"/>
+    </entry>
+    <entry id="191" name="ko:K05063" type="ortholog">
+        <graphics name="IL12RB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="907" width="46" height="17"/>
+    </entry>
+    <entry id="192" name="ko:K05065" type="ortholog">
+        <graphics name="IL23R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="890" width="46" height="17"/>
+    </entry>
+    <entry id="193" name="ko:K05064" type="ortholog">
+        <graphics name="IL12RB2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="859" width="46" height="17"/>
+    </entry>
+    <entry id="194" name="ko:K05063" type="ortholog">
+        <graphics name="IL12RB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="842" width="46" height="17"/>
+    </entry>
+    <entry id="195" name="ko:K05076" type="ortholog">
+        <graphics name="IL13RA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="568" y="758" width="46" height="17"/>
+    </entry>
+    <entry id="196" name="ko:K05071" type="ortholog">
+        <graphics name="IL4R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="568" y="741" width="46" height="17"/>
+    </entry>
+    <entry id="197" name="ko:K05076" type="ortholog">
+        <graphics name="IL13RA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="568" y="710" width="46" height="17"/>
+    </entry>
+    <entry id="198" name="ko:K05071" type="ortholog">
+        <graphics name="IL4R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="568" y="693" width="46" height="17"/>
+    </entry>
+    <entry id="199" name="ko:K05062" type="ortholog">
+        <graphics name="LEPR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="571" y="606" width="46" height="17"/>
+    </entry>
+    <entry id="200" name="ko:K05061" type="ortholog">
+        <graphics name="CSF3R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="570" y="576" width="46" height="17"/>
+    </entry>
+    <entry id="201" name="ko:K05059" type="ortholog">
+        <graphics name="CNTFR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="415" width="45" height="17"/>
+    </entry>
+    <entry id="202" name="ko:K05059" type="ortholog">
+        <graphics name="CNTFR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="351" width="45" height="17"/>
+    </entry>
+    <entry id="203" name="ko:K05057" type="ortholog">
+        <graphics name="OSMR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="255" width="45" height="17"/>
+    </entry>
+    <entry id="204" name="ko:K05058" type="ortholog">
+        <graphics name="LIFR" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="208" width="45" height="17"/>
+    </entry>
+    <entry id="205" name="ko:K05056" type="ortholog">
+        <graphics name="IL11RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="161" width="45" height="17"/>
+    </entry>
+    <entry id="206" name="ko:K05060" type="ortholog">
+        <graphics name="IL6ST" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="131" width="45" height="17"/>
+    </entry>
+    <entry id="207" name="ko:K05055" type="ortholog">
+        <graphics name="IL6R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="114" width="45" height="17"/>
+    </entry>
+    <entry id="208" name="ko:K05426" type="ortholog">
+        <graphics name="IL23A" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="899" width="45" height="17"/>
+    </entry>
+    <entry id="209" name="ko:K05406 ko:K05425" type="ortholog">
+        <graphics name="IL12A..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="851" width="45" height="17"/>
+    </entry>
+    <entry id="210" name="ko:K05435" type="ortholog">
+        <graphics name="IL13" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="486" y="750" width="45" height="17"/>
+    </entry>
+    <entry id="211" name="ko:K05424" type="ortholog">
+        <graphics name="LEP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="606" width="45" height="17"/>
+    </entry>
+    <entry id="212" name="ko:K05423" type="ortholog">
+        <graphics name="CSF3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="576" width="45" height="17"/>
+    </entry>
+    <entry id="213" name="ko:K05422" type="ortholog">
+        <graphics name="CTF1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="496" width="45" height="17"/>
+    </entry>
+    <entry id="214" name="ko:K05421" type="ortholog">
+        <graphics name="BSF3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="431" width="45" height="17"/>
+    </entry>
+    <entry id="215" name="ko:K05420" type="ortholog">
+        <graphics name="CNTF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="367" width="45" height="17"/>
+    </entry>
+    <entry id="216" name="ko:K05419" type="ortholog">
+        <graphics name="LIF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="312" width="45" height="17"/>
+    </entry>
+    <entry id="217" name="ko:K05418" type="ortholog">
+        <graphics name="OSM" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="264" width="45" height="17"/>
+    </entry>
+    <entry id="218" name="hsa:500" type="other">
+        <graphics name="500" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="217" width="45" height="17"/>
+    </entry>
+    <entry id="219" name="ko:K05417" type="ortholog">
+        <graphics name="IL11" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="170" width="45" height="17"/>
+    </entry>
+    <entry id="220" name="ko:K05405" type="ortholog">
+        <graphics name="IL6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="487" y="122" width="45" height="17"/>
+    </entry>
+    <entry id="221" name="ko:GPR2" type="ortholog">
+        <graphics name="GPR2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="783" width="45" height="17"/>
+    </entry>
+    <entry id="222" name="ko:K04178" type="ortholog">
+        <graphics name="CCR3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="632" width="45" height="17"/>
+    </entry>
+    <entry id="223" name="ko:K04176" type="ortholog">
+        <graphics name="CCR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="537" width="45" height="17"/>
+    </entry>
+    <entry id="224" name="ko:K04180" type="ortholog">
+        <graphics name="CCR5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="428" width="45" height="17"/>
+    </entry>
+    <entry id="225" name="ko:K04177" type="ortholog">
+        <graphics name="CCR2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="370" width="45" height="17"/>
+    </entry>
+    <entry id="226" name="ko:K04182" type="ortholog">
+        <graphics name="CCR7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="313" width="45" height="17"/>
+    </entry>
+    <entry id="227" name="ko:K04179" type="ortholog">
+        <graphics name="CCR4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="254" width="45" height="17"/>
+    </entry>
+    <entry id="228" name="ko:K04184" type="ortholog">
+        <graphics name="CCR9" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="209" width="45" height="17"/>
+    </entry>
+    <entry id="229" name="ko:K04181" type="ortholog">
+        <graphics name="CCR6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="183" width="45" height="17"/>
+    </entry>
+    <entry id="230" name="ko:K04183" type="ortholog">
+        <graphics name="CCR8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="376" y="157" width="45" height="17"/>
+    </entry>
+    <entry id="231" name="hsa:636" type="other">
+        <graphics name="BICD1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="874" width="45" height="17"/>
+    </entry>
+    <entry id="232" name="mmu:2030" type="other">
+        <graphics name="2030" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="851" width="45" height="17"/>
+    </entry>
+    <entry id="233" name="mmu:2030" type="other">
+        <graphics name="2030" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="828" width="45" height="17"/>
+    </entry>
+    <entry id="234" name="hsa:10850+mmu:2030" type="other">
+        <graphics name="CCL27..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="793" width="45" height="17"/>
+    </entry>
+    <entry id="235" name="hsa:56477+mmu:56838+rno:11449" type="other">
+        <graphics name="CCL28..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="771" width="45" height="17"/>
+    </entry>
+    <entry id="236" name="hsa:1034" type="other">
+        <graphics name="1034" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="735" width="45" height="17"/>
+    </entry>
+    <entry id="237" name="hsa:6369+mmu:5622" type="other">
+        <graphics name="CCL24..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="713" width="45" height="17"/>
+    </entry>
+    <entry id="238" name="hsa:6356+mmu:2029" type="other">
+        <graphics name="CCL11, SCYA11..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="691" width="45" height="17"/>
+    </entry>
+    <entry id="239" name="hsa:6355+mmu:2030" type="other">
+        <graphics name="CCL8, SCYA8..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="668" width="45" height="17"/>
+    </entry>
+    <entry id="240" name="hsa:635" type="other">
+        <graphics name="BHMT" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="633" width="45" height="17"/>
+    </entry>
+    <entry id="241" name="hsa:636" type="other">
+        <graphics name="BICD1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="598" width="45" height="17"/>
+    </entry>
+    <entry id="242" name="hsa:636" type="other">
+        <graphics name="BICD1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="576" width="45" height="17"/>
+    </entry>
+    <entry id="243" name="hsa:635" type="other">
+        <graphics name="BHMT" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="554" width="45" height="17"/>
+    </entry>
+    <entry id="244" name="hsa:6352+mmu:20304+rno:8178" type="other">
+        <graphics name="CCL5..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="519" width="45" height="17"/>
+    </entry>
+    <entry id="245" name="hsa:6354+mmu:2030" type="other">
+        <graphics name="CCL7..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="496" width="45" height="17"/>
+    </entry>
+    <entry id="246" name="hsa:635" type="other">
+        <graphics name="BHMT" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="474" width="45" height="17"/>
+    </entry>
+    <entry id="247" name="hsa:6348+mmu:20302+rno:2554" type="other">
+        <graphics name="CCL3, SCYA3..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="439" width="45" height="17"/>
+    </entry>
+    <entry id="248" name="hsa:6351+mmu:2030" type="other">
+        <graphics name="CCL4..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="416" width="45" height="17"/>
+    </entry>
+    <entry id="249" name="mmu:2029" type="other">
+        <graphics name="2029" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="382" width="45" height="17"/>
+    </entry>
+    <entry id="250" name="hsa:6347+mmu:20296+rno:2477" type="other">
+        <graphics name="CCL2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="359" width="45" height="17"/>
+    </entry>
+    <entry id="251" name="hsa:6366+mmu:20298+mmu:18829+mmu:6595" type="other">
+        <graphics name="CCL21..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="324" width="45" height="17"/>
+    </entry>
+    <entry id="252" name="hsa:6363+mmu:2404" type="other">
+        <graphics name="CCL19..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="301" width="45" height="17"/>
+    </entry>
+    <entry id="253" name="hsa:6367+mmu:20299+rno:11755" type="other">
+        <graphics name="CCL22, SCYA22..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="266" width="45" height="17"/>
+    </entry>
+    <entry id="254" name="hsa:6361+mmu:2029" type="other">
+        <graphics name="CCL17, SCYA17..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="243" width="45" height="17"/>
+    </entry>
+    <entry id="255" name="hsa:6370+mmu:2030" type="other">
+        <graphics name="CCL25..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="209" width="45" height="17"/>
+    </entry>
+    <entry id="256" name="hsa:636" type="other">
+        <graphics name="BICD1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="183" width="45" height="17"/>
+    </entry>
+    <entry id="257" name="hsa:6346+mmu:2029" type="other">
+        <graphics name="CCL1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="292" y="157" width="45" height="17"/>
+    </entry>
+    <entry id="258" name="ko:K04192" type="ortholog">
+        <graphics name="CX3CR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="838" width="45" height="17"/>
+    </entry>
+    <entry id="259" name="ko:K04193" type="ortholog">
+        <graphics name="XCR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="723" width="45" height="17"/>
+    </entry>
+    <entry id="260" name="ko:K04191" type="ortholog">
+        <graphics name="CXCR6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="492" width="45" height="17"/>
+    </entry>
+    <entry id="261" name="ko:BLR1" type="ortholog">
+        <graphics name="BLR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="464" width="45" height="17"/>
+    </entry>
+    <entry id="262" name="ko:K04189" type="ortholog">
+        <graphics name="CXCR4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="436" width="45" height="17"/>
+    </entry>
+    <entry id="263" name="ko:K04188" type="ortholog">
+        <graphics name="CXCR3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="364" width="45" height="17"/>
+    </entry>
+    <entry id="264" name="ko:K04175" type="ortholog">
+        <graphics name="IL8RA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="281" width="45" height="17"/>
+    </entry>
+    <entry id="265" name="ko:K05050" type="ortholog">
+        <graphics name="IL8RB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="220" width="45" height="17"/>
+    </entry>
+    <entry id="266" name="hsa:6376+mmu:20312+rno:8980" type="other">
+        <graphics name="CX3CL1, SCYD1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="838" width="45" height="17"/>
+    </entry>
+    <entry id="267" name="hsa:684" type="other">
+        <graphics name="BST2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="734" width="45" height="17"/>
+    </entry>
+    <entry id="268" name="hsa:6375+mmu:1696" type="other">
+        <graphics name="XCL1, LTN, SCYC1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="712" width="45" height="17"/>
+    </entry>
+    <entry id="269" name="hsa:9547+mmu:5726" type="other">
+        <graphics name="CXCL14, SCYB14..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="599" width="45" height="17"/>
+    </entry>
+    <entry id="270" name="hsa:5196+mmu:5674" type="other">
+        <graphics name="PF4..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="570" width="45" height="17"/>
+    </entry>
+    <entry id="271" name="mmu:2030" type="other">
+        <graphics name="2030" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="541" width="45" height="17"/>
+    </entry>
+    <entry id="272" name="hsa:58191+mmu:6610" type="other">
+        <graphics name="CXCL16..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="492" width="45" height="17"/>
+    </entry>
+    <entry id="273" name="hsa:10563+mmu:5598" type="other">
+        <graphics name="CXCL13..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="464" width="45" height="17"/>
+    </entry>
+    <entry id="274" name="hsa:6387+mmu:20315+rno:2477" type="other">
+        <graphics name="CXCL12, SDF1A, SDF1B, SDF1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="436" width="45" height="17"/>
+    </entry>
+    <entry id="275" name="hsa:6373+mmu:56066+rno:30523" type="other">
+        <graphics name="CXCL11..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="387" width="45" height="17"/>
+    </entry>
+    <entry id="276" name="hsa:3627+mmu:15945+rno:24592" type="other">
+        <graphics name="CXCL10..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="363" width="45" height="17"/>
+    </entry>
+    <entry id="277" name="hsa:4283+mmu:1732" type="other">
+        <graphics name="CXCL9..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="339" width="45" height="17"/>
+    </entry>
+    <entry id="278" name="hsa:357" type="other">
+        <graphics name="SHROOM2, APXL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="279" name="hsa:637" type="other">
+        <graphics name="BID" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="268" width="45" height="17"/>
+    </entry>
+    <entry id="280" name="hsa:5473+mmu:57349+rno:24635" type="other">
+        <graphics name="PPBP..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="235" width="45" height="17"/>
+    </entry>
+    <entry id="281" name="hsa:6374+mmu:2031" type="other">
+        <graphics name="CXCL5, SCYB5..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="213" width="45" height="17"/>
+    </entry>
+    <entry id="282" name="ko:K03158" type="ortholog">
+        <graphics name="TNFRSF1A" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="410" width="45" height="17"/>
+    </entry>
+    <entry id="283" name="ko:K05141" type="ortholog">
+        <graphics name="TNFRSF1B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="384" width="45" height="17"/>
+    </entry>
+    <entry id="284" name="hsa:4804+mmu:1805" type="other">
+        <graphics name="NGFR..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="357" width="45" height="17"/>
+    </entry>
+    <entry id="285" name="hsa:27242+mmu:9418" type="other">
+        <graphics name="TNFRSF21..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="333" width="45" height="17"/>
+    </entry>
+    <entry id="286" name="ko:K05149" type="ortholog">
+        <graphics name="TNFRSF12A" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="309" width="45" height="17"/>
+    </entry>
+    <entry id="287" name="hsa:8718+mmu:8503" type="other">
+        <graphics name="TNFRSF25, TNFRSF12..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="285" width="45" height="17"/>
+    </entry>
+    <entry id="288" name="ko:K05147" type="ortholog">
+        <graphics name="TNFRSF11A" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="261" width="45" height="17"/>
+    </entry>
+    <entry id="289" name="hsa:8742+mmu:2194" type="other">
+        <graphics name="TNFSF12..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1081" y="309" width="45" height="17"/>
+    </entry>
+    <entry id="290" name="hsa:879" type="other">
+        <graphics name="879" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="162" width="46" height="17"/>
+    </entry>
+    <entry id="291" name="ko:K05148" type="ortholog">
+        <graphics name="TNFRSF11B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="223" width="46" height="17"/>
+    </entry>
+    <entry id="292" name="hsa:8795+mmu:2193" type="other">
+        <graphics name="TNFRSF10B..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="138" width="46" height="17"/>
+    </entry>
+    <entry id="293" name="hsa:8743+mmu:2203" type="other">
+        <graphics name="TNFSF10..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1079" y="162" width="45" height="17"/>
+    </entry>
+    <entry id="294" name="hsa:879" type="other">
+        <graphics name="879" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="114" width="46" height="17"/>
+    </entry>
+    <entry id="295" name="hsa:879" type="other">
+        <graphics name="879" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1164" y="185" width="46" height="17"/>
+    </entry>
+    <entry id="296" name="hsa:9966+mmu:32662" type="other">
+        <graphics name="TNFSF15..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1079" y="114" width="45" height="17"/>
+    </entry>
+    <entry id="297" name="path:map04060" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04060">
+        <graphics name="TITLE:Cytokine-cytokine receptor interaction" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="234" y="40" width="352" height="25"/>
+    </entry>
+    <entry id="298" name="ko:K03156" type="ortholog">
+        <graphics name="TNFA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1081" y="395" width="45" height="17"/>
+    </entry>
+    <entry id="299" name="hsa:292" type="other">
+        <graphics name="SLC25A5, ANT2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="191" width="45" height="17"/>
+    </entry>
+    <entry id="300" name="hsa:2920+mmu:20310+rno:11410" type="other">
+        <graphics name="CXCL2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="169" width="45" height="17"/>
+    </entry>
+    <entry id="301" name="hsa:2919+mmu:1482" type="other">
+        <graphics name="CXCL1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="106" y="147" width="45" height="17"/>
+    </entry>
+    <entry id="302" name="hsa:8600+mmu:2194" type="other">
+        <graphics name="TNFSF11..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1080" y="261" width="45" height="17"/>
+    </entry>
+    <entry id="303" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="123" width="65" height="54"/>
+        <component id="206"/>
+        <component id="207"/>
+    </entry>
+    <entry id="304" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="170" width="65" height="54"/>
+        <component id="35"/>
+        <component id="205"/>
+    </entry>
+    <entry id="305" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="217" width="65" height="54"/>
+        <component id="34"/>
+        <component id="204"/>
+    </entry>
+    <entry id="306" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="264" width="65" height="54"/>
+        <component id="33"/>
+        <component id="203"/>
+    </entry>
+    <entry id="307" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="312" width="65" height="54"/>
+        <component id="28"/>
+        <component id="32"/>
+    </entry>
+    <entry id="308" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="368" width="65" height="71"/>
+        <component id="27"/>
+        <component id="31"/>
+        <component id="202"/>
+    </entry>
+    <entry id="309" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="432" width="65" height="71"/>
+        <component id="26"/>
+        <component id="30"/>
+        <component id="201"/>
+    </entry>
+    <entry id="310" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="570" y="505" width="65" height="54"/>
+        <component id="25"/>
+        <component id="29"/>
+    </entry>
+    <entry id="311" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="568" y="702" width="66" height="54"/>
+        <component id="197"/>
+        <component id="198"/>
+    </entry>
+    <entry id="312" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="568" y="750" width="66" height="54"/>
+        <component id="195"/>
+        <component id="196"/>
+    </entry>
+    <entry id="313" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="851" width="66" height="54"/>
+        <component id="193"/>
+        <component id="194"/>
+    </entry>
+    <entry id="314" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="569" y="899" width="66" height="54"/>
+        <component id="191"/>
+        <component id="192"/>
+    </entry>
+    <entry id="315" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="123" width="65" height="54"/>
+        <component id="174"/>
+        <component id="175"/>
+    </entry>
+    <entry id="316" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="167" width="65" height="54"/>
+        <component id="24"/>
+        <component id="173"/>
+    </entry>
+    <entry id="317" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="212" width="65" height="54"/>
+        <component id="23"/>
+        <component id="172"/>
+    </entry>
+    <entry id="318" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="327" width="66" height="71"/>
+        <component id="169"/>
+        <component id="170"/>
+        <component id="171"/>
+    </entry>
+    <entry id="319" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="380" width="65" height="54"/>
+        <component id="20"/>
+        <component id="22"/>
+    </entry>
+    <entry id="320" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="429" width="65" height="54"/>
+        <component id="19"/>
+        <component id="168"/>
+    </entry>
+    <entry id="321" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="473" width="65" height="54"/>
+        <component id="18"/>
+        <component id="167"/>
+    </entry>
+    <entry id="322" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="518" width="65" height="54"/>
+        <component id="17"/>
+        <component id="166"/>
+    </entry>
+    <entry id="323" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="570" width="66" height="71"/>
+        <component id="16"/>
+        <component id="21"/>
+        <component id="165"/>
+    </entry>
+    <entry id="324" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="768" y="622" width="66" height="54"/>
+        <component id="15"/>
+        <component id="164"/>
+    </entry>
+    <entry id="325" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="767" y="700" width="65" height="54"/>
+        <component id="162"/>
+        <component id="163"/>
+    </entry>
+    <entry id="326" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="965" y="140" width="65" height="54"/>
+        <component id="128"/>
+        <component id="129"/>
+    </entry>
+    <entry id="327" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="500" width="65" height="54"/>
+        <component id="117"/>
+        <component id="118"/>
+    </entry>
+    <entry id="328" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="576" width="65" height="54"/>
+        <component id="115"/>
+        <component id="116"/>
+    </entry>
+    <entry id="329" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="643" width="65" height="54"/>
+        <component id="113"/>
+        <component id="114"/>
+    </entry>
+    <entry id="330" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="780" width="65" height="54"/>
+        <component id="13"/>
+        <component id="14"/>
+    </entry>
+    <entry id="331" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="966" y="871" width="65" height="54"/>
+        <component id="108"/>
+        <component id="109"/>
+    </entry>
+    <entry id="332" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="127" width="66" height="54"/>
+        <component id="58"/>
+        <component id="59"/>
+    </entry>
+    <entry id="333" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="183" width="66" height="54"/>
+        <component id="56"/>
+        <component id="57"/>
+    </entry>
+    <entry id="334" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="223" width="66" height="54"/>
+        <component id="11"/>
+        <component id="55"/>
+    </entry>
+    <entry id="335" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="262" width="66" height="54"/>
+        <component id="12"/>
+        <component id="54"/>
+    </entry>
+    <entry id="336" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="302" width="66" height="54"/>
+        <component id="9"/>
+        <component id="10"/>
+    </entry>
+    <entry id="337" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="350" width="65" height="54"/>
+        <component id="52"/>
+        <component id="53"/>
+    </entry>
+    <entry id="338" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="397" width="66" height="54"/>
+        <component id="50"/>
+        <component id="51"/>
+    </entry>
+    <entry id="339" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="437" width="66" height="54"/>
+        <component id="8"/>
+        <component id="49"/>
+    </entry>
+    <entry id="340" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="477" width="66" height="54"/>
+        <component id="7"/>
+        <component id="48"/>
+    </entry>
+    <entry id="341" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="525" width="66" height="54"/>
+        <component id="46"/>
+        <component id="47"/>
+    </entry>
+    <entry id="342" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1364" y="571" width="66" height="54"/>
+        <component id="44"/>
+        <component id="45"/>
+    </entry>
+    <entry id="343" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="810" width="66" height="54"/>
+        <component id="40"/>
+        <component id="41"/>
+    </entry>
+    <entry id="344" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="853" width="66" height="54"/>
+        <component id="38"/>
+        <component id="39"/>
+    </entry>
+    <entry id="345" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1363" y="897" width="66" height="54"/>
+        <component id="36"/>
+        <component id="37"/>
+    </entry>
+    <relation entry1="301" entry2="265" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="300" entry2="265" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="299" entry2="265" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="281" entry2="265" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="280" entry2="265" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="279" entry2="265" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="278" entry2="265" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="279" entry2="264" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="278" entry2="264" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="277" entry2="263" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="276" entry2="263" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="275" entry2="263" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="274" entry2="262" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="273" entry2="261" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="272" entry2="260" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="268" entry2="259" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="267" entry2="259" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="266" entry2="258" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="257" entry2="230" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="256" entry2="229" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="255" entry2="228" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="254" entry2="227" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="253" entry2="227" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="252" entry2="226" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="251" entry2="226" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="250" entry2="225" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="249" entry2="225" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="248" entry2="224" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="247" entry2="224" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="246" entry2="225" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="246" entry2="222" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="245" entry2="225" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="245" entry2="223" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="244" entry2="224" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="244" entry2="223" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="244" entry2="222" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="243" entry2="223" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="242" entry2="223" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="241" entry2="223" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="240" entry2="223" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="240" entry2="222" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="239" entry2="222" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="238" entry2="222" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="237" entry2="222" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="236" entry2="222" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="235" entry2="222" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="235" entry2="221" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="234" entry2="221" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="220" entry2="303" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="219" entry2="304" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="218" entry2="305" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="217" entry2="306" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="216" entry2="307" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="215" entry2="308" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="214" entry2="309" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="213" entry2="310" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="212" entry2="200" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="211" entry2="199" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="6" entry2="311" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="210" entry2="312" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="209" entry2="313" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="208" entry2="314" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="190" entry2="315" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="189" entry2="316" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="188" entry2="317" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="187" entry2="318" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="187" entry2="319" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="186" entry2="320" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="185" entry2="321" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="184" entry2="322" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="183" entry2="323" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="182" entry2="324" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="181" entry2="325" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="180" entry2="161" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="179" entry2="160" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="178" entry2="160" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="177" entry2="159" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="176" entry2="158" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="157" entry2="130" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="156" entry2="130" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="156" entry2="326" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="155" entry2="130" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="155" entry2="326" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="155" entry2="127" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="154" entry2="127" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="153" entry2="126" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="152" entry2="126" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="152" entry2="125" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="151" entry2="125" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="151" entry2="124" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="150" entry2="123" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="149" entry2="122" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="148" entry2="121" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="147" entry2="120" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="146" entry2="119" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="145" entry2="327" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="144" entry2="327" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="143" entry2="327" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="142" entry2="327" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="141" entry2="327" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="140" entry2="328" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="139" entry2="329" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="138" entry2="112" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="137" entry2="112" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="137" entry2="111" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="136" entry2="112" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="136" entry2="111" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="135" entry2="330" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="135" entry2="110" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="134" entry2="331" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="133" entry2="331" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="132" entry2="331" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="293" entry2="294" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="293" entry2="292" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="293" entry2="290" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="293" entry2="295" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="293" entry2="291" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="302" entry2="291" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="302" entry2="288" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="289" entry2="286" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="298" entry2="283" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="298" entry2="282" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="107" entry2="283" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="107" entry2="282" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="107" entry2="93" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="107" entry2="92" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="106" entry2="93" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="105" entry2="93" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="105" entry2="92" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="105" entry2="91" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="104" entry2="91" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="104" entry2="90" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="103" entry2="89" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="102" entry2="88" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="101" entry2="87" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="100" entry2="86" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="99" entry2="85" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="98" entry2="84" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="97" entry2="83" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="97" entry2="82" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="96" entry2="83" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="96" entry2="82" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="96" entry2="81" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="95" entry2="80" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="94" entry2="79" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="76" entry2="332" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="75" entry2="332" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="74" entry2="332" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="73" entry2="333" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="73" entry2="334" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="73" entry2="335" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="73" entry2="336" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="72" entry2="333" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="72" entry2="334" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="72" entry2="335" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="72" entry2="336" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="71" entry2="333" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="71" entry2="334" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="71" entry2="335" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="71" entry2="336" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="70" entry2="333" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="70" entry2="334" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="70" entry2="335" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="70" entry2="336" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="69" entry2="337" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="68" entry2="338" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="68" entry2="339" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="68" entry2="340" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="67" entry2="341" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="66" entry2="342" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="65" entry2="43" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="64" entry2="42" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="63" entry2="42" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="62" entry2="343" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="62" entry2="344" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="61" entry2="343" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="61" entry2="344" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="60" entry2="345" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+</pathway>

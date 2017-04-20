@@ -1,0 +1,268 @@
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#right-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="{{home_link}}">Degust : </a>
+          <span class="navbar-brand exp-name"></span>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
+          <li><a class="log-link" href="#">Logs</a>
+          <li><a id="tour" href="#">Tour</a>
+          <li><a class="config hide" href="#">Configure</a>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QC <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" class='p-value-histogram'>P-value histogram</a></li>
+              <li><a href="#" class='bargraph-libsize'>Library size</a></li>
+              <li><a href="#" class='expression-boxplot'>Expression box-whisker</a></li>
+            </ul>
+          </li>
+          <li><a href="#about-modal" data-toggle="modal">About</a>
+        </ul>
+      </div>
+    </div>
+
+    <div class='log-list'>
+      <h4>Log messages</h4>
+    </div>
+
+    <div class='container'>
+      <div class='right'>
+        <ul class="nav nav-tabs">
+          <li id='select-options'><a href="#">Options</a></li>
+          <li id='select-single-gene-expr'><a href="#">Gene</a></li>
+        </ul>
+
+        <div class='single-gene-expr'>
+        </div>
+
+        <div class='filter options'>
+          <h4>Options</h4>
+          <div title='Filter genes by False Discovery Rate' data-placement='left'>
+            <label>FDR cut-off</label>
+            <input class="fdr-fld" type="text" value="0.01" />
+            <div id='fdrSlider'></div>
+            <span class="dropdown">
+              <button class="btn-link dropdown-toggle" type="button" id="dropFDR" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu shortcut-fdr" aria-labelledby="dropFDR">
+                <li><a href="#" data-val='1'>1</a></li>
+                <li><a href="#" data-val='0.05'>0.05</a></li>
+                <li><a href="#" data-val='0.01'>0.01</a></li>
+                <li><a href="#" data-val='0.001'>0.001</a></li>
+                <li><a href="#" data-val='0.0001'>0.0001</a></li>
+              </ul>
+            </span>
+          </div>
+          <div title='Filter genes by absolute log fold change between any pair of samples' data-placement='left'>
+            <label>abs log FC</label>
+            <input class="fc-fld" type="text" value="0" />
+            <div id='fcSlider'></div>
+            <span class="dropdown">
+              <button class="btn-link dropdown-toggle" type="button" id="dropFC" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu shortcut-fc" aria-labelledby="dropFC">
+                <li><a href="#" data-val='0'>0 (all)</a></li>
+                <li><a href="#" data-val='0.585'>0.585 (&gt; 1.5x)</a></li>
+                <li><a href="#" data-val='1'>1 (&gt; 2x)</a></li>
+                <li><a href="#" data-val='2'>2 (&gt; 4x)</a></li>
+                <li><a href="#" data-val='3'>3 (&gt; 8x)</a></li>
+                <li><a href="#" data-val='4'>4 (&gt; 16x)</a></li>
+              </ul>
+            </span>
+          </div>
+          <div title='Show FC from selected condition' data-placement='left'>
+            <label for='fc-relative'>FC relative to</label>
+            <select id='fc-relative'></select>
+          </div>
+          <div title='FC for the MA-plot' data-placement='left' class='ma-fc-col-opt'>
+            <label for='ma-fc-col'>MA-Plot FC</label>
+            <select id='ma-fc-col'></select>
+          </div>
+          <div title='Show raw counts (or counts-per-million) in the table' data-placement='left' class='show-counts-opt'>
+            <label for='show-counts'>Show Counts</label>
+            <select id='show-counts'>
+              <option value='no'>No</option>
+              <option value='yes'>Yes</option>
+              <option value='cpm'>As counts-per-million</option>
+            </select>
+          </div>
+          <div class='pca-opts'>
+            <div class='pca-title'>MDS options</div>
+            <div title='Number of genes to use for the MDS plot' data-placement='left' class='pca-num-genes-opt'>
+              <label>Num genes</label>
+              <input class="num-genes-fld" type="text" value="50" />
+              <div id='numGenesSlider'></div>
+            </div>
+            <div title='Number of genes to ignore for the MDS plot' data-placement='left' class='pca-skip-genes-opt'>
+              <label>Skip genes</label>
+              <input class="skip-genes-fld" type="text" value="50" />
+              <div id='skipGenesSlider'></div>
+            </div>
+            <div title='MDS dimensions to plot' data-placement='left' class='pca-dims-opt'>
+              <label>Dimensions</label>
+              <input class="pca-dims-fld" type="text" value="50" disabled />
+              <div id='pcaDimsSlider'></div>
+            </div>
+            <div title='MDS in 2d or 3d' data-placement='left' class='mds-2d3d-opt'>
+              <label for='mds-2d3d'>MDS plot</label>
+              <select id='mds-2d3d'>
+                <option value='2d'>2d</option>
+                <option value='3d'>3d</option>
+              </select>
+            </div>
+          </div><!-- div.pca-opts -->
+        </div>
+
+        <div class='filter kegg-filter'>
+          <h4>Kegg Pathway</h4>
+          <select id='kegg'></select>
+        </div>
+
+        <div class='text-right'>
+          <a class="genesets-toggle" role="button" data-toggle="collapse" href="#genesets" aria-expanded="false" aria-controls="genesets">
+              Gene Sets
+          </a>
+        </div>
+        <div class="collapse" id="genesets">
+          <div class='filter'>
+            <h4>Gene Sets</h4>
+            <a class='btn btn-primary btn-xs geneset-save'>Save Current as Gene Set</a>
+            <div class="geneset-search">
+              <label>Search</label>
+              <input type="text" class='search' />
+            </div>
+          </div>
+        </div>
+
+        <div class='text-right'>
+          <a class='show-r-code' href='#'>Show R code</a>
+        </div>
+
+        <div class='text-right'>
+          <a class='update-link' href='#'>Update Link</a>
+        </div>
+
+        <div class='text-right'>
+          <a class='show-heatmap' href='#'>Show heatmap</a>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-xs-2 conditions'>
+          <h3>Conditions</h3>
+          <div id='files'></div>
+          <div id='hidden-factors'><h4>Hidden Factors</h4></div>
+          <label for='dge-method'>Method</label>
+          <select id='dge-method'>
+            <option value='voom'>Voom/Limma</option>
+            <option value='edgeR'>edgeR</option>
+            <option value='voom-weights'>Voom (sample weights)</option>
+          </select>
+          <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
+            Sample weights
+          </a>
+          <div class='weights collapse'>
+          </div>
+        </div>
+
+        <div class='col-xs-6' id='expression'>
+          <div id='loading'><img src='{{asset_base}}images/ajax-loader.gif'></div>
+          <ul class="nav nav-tabs">
+            <li id='select-pc'><a href="#">Expression : Parallel Coordinates</a></li>
+            <li id='select-ma'><a href="#">Expression : MA plot</a></li>
+            <li id='select-pca'><a href="#">MDS plot</a></li>
+          </ul>
+          <div id="dge-pc" class="parcoords"></div>
+          <div id="dge-ma" class="dge-ma"></div>
+          <div id="dge-pca"></div>
+        </div><!-- expression -->
+      </div><!-- row -->
+
+      <div class='row'>
+        <div id="heatmap-info"></div>
+        <div id='heatmap'></div>
+      </div>
+
+      <div class='row'>
+        <h2>Genes</h2>
+        <div>
+          <div class="tab-search">
+            Search:
+            <input type="text">
+          </div>
+          <div id='csv-download-div'>
+            <a id='csv-download' href='#'>Download CSV</a>
+            <span class="dropdown">
+                <button class="btn-link dropdown-toggle" type="button" id="dropDownload" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <span class="caret"></span>
+                </button>
+              <ul class="dropdown-menu download" aria-labelledby="dropDownload">
+                <li><a href="#" class='download-csv'>Download as CSV</a></li>
+                <li><a href="#" class='download-tsv'>Download as TSV</a></li>
+                <li><a href="#" class='download-odf'>Download as ODF</a></li>
+              <ul>
+            </span>
+          </div>
+          <div id="grid-info"></div>
+        </div>
+        <div id="grid"></div>
+        <div id="gene-info"></div>
+      </div>
+
+    </div>
+
+    <div id='kegg-image'></div>
+
+    <!-- About box Modal -->
+    <div id="about-modal"></div>
+
+    <!-- Error box Modal -->
+    <div id='error-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>x</button>
+            <h3>Error</h3>
+          </div>
+          <div class='modal-body'>
+            Error Message:
+            <pre class='error-msg'></pre>
+            Input:
+            <pre class='error-input'></pre>
+          </div>
+          <div class='modal-footer'>
+            <button class='btn btn-primary' data-dismiss='modal' aria-hidden='true'>Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal for showing R code -->
+    <div id='code-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>x</button>
+            <h3>DGE R Code</h3>
+          </div>
+          <div class='modal-body'>
+            This is the R code the backend used to perform the DGE analysis for the current page.
+            <pre class='r-code'>
+            </pre>
+          </div>
+          <div class='modal-footer'>
+            <button class='btn btn-primary' data-dismiss='modal' aria-hidden='true'>Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->

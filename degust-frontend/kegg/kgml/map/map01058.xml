@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Jan 31 2007 01:56:08 +0900 (JST) -->
+<pathway name="path:map01058" org="map" number="01058"
+         title="Acridone alkaloid biosynthesis"
+         image="http://www.genome.jp/kegg/pathway/map/map01058.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map01058">
+    <entry id="2" name="cpd:C10722" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C10722">
+        <graphics name="C10722" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="533" y="599" width="62" height="9"/>
+    </entry>
+    <entry id="3" name="cpd:C10632" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C10632">
+        <graphics name="C10632" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="333" y="599" width="55" height="9"/>
+    </entry>
+    <entry id="4" name="cpd:C10738" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C10738">
+        <graphics name="C10738" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="126" y="599" width="58" height="9"/>
+    </entry>
+    <entry id="5" name="cpd:C12093" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C12093">
+        <graphics name="C12093" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="340" y="235" width="8" height="8"/>
+    </entry>
+    <entry id="6" name="cpd:C12092" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C12092">
+        <graphics name="C12092" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="481" y="235" width="8" height="8"/>
+    </entry>
+    <entry id="7" name="cpd:C03005" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C03005">
+        <graphics name="C03005" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="481" y="141" width="8" height="8"/>
+    </entry>
+    <entry id="8" name="cpd:C00108" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00108">
+        <graphics name="C00108" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="340" y="141" width="8" height="8"/>
+    </entry>
+    <entry id="9" name="ec:2.3.1.159" type="enzyme" reaction="rn:R07250"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.3.1.159">
+        <graphics name="2.3.1.159" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="405" y="236" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ec:6.2.1.32" type="enzyme" reaction="rn:R07416"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+6.2.1.32">
+        <graphics name="6.2.1.32" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="482" y="182" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ec:2.1.1.111" type="enzyme" reaction="rn:R00984"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+2.1.1.111">
+        <graphics name="2.1.1.111" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="404" y="141" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="path:map00400" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map00400.html">
+        <graphics name="Phenylalanine, tyrosine and tryptophan biosynthesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="189" y="141" width="157" height="34"/>
+    </entry>
+    <entry id="13" name="path:map01058" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map01058">
+        <graphics name="TITLE:Acridone alkaloid biosynthesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="175" y="54" width="271" height="29"/>
+    </entry>
+    <entry id="15" name="ec:2.4.2.18" type="enzyme" map="12"
+        link="http://www.genome.jp/dbget-bin/show_pathway?map00400+2.4.2.18"/>
+    <entry id="16" name="ec:4.1.3.27" type="enzyme" map="12"
+        link="http://www.genome.jp/dbget-bin/show_pathway?map00400+4.1.3.27"/>
+    <relation entry1="10" entry2="11" type="ECrel">
+        <subtype name="compound" value="7"/>
+    </relation>
+    <relation entry1="9" entry2="10" type="ECrel">
+        <subtype name="compound" value="6"/>
+    </relation>
+    <relation entry1="11" entry2="12" type="maplink">
+        <subtype name="compound" value="8"/>
+    </relation>
+    <reaction name="rn:R07250" type="irreversible">
+        <substrate name="cpd:C12092"/>
+        <product name="cpd:C12093"/>
+    </reaction>
+    <reaction name="rn:R07416" type="irreversible">
+        <substrate name="cpd:C03005"/>
+        <product name="cpd:C12092"/>
+    </reaction>
+    <reaction name="rn:R00984" type="irreversible">
+        <substrate name="cpd:C00108"/>
+        <product name="cpd:C03005"/>
+    </reaction>
+</pathway>

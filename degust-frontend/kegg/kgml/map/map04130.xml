@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 09 2006 07:11:51 +0900 (JST) -->
+<pathway name="path:map04130" org="map" number="04130"
+         title="SNARE interactions in vesicular transport"
+         image="http://www.genome.jp/kegg/pathway/map/map04130.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04130">
+    <entry id="1" name="ko:K08497" type="ortholog">
+        <graphics name="SEC20" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="318" y="652" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K08507" type="ortholog">
+        <graphics name="USE1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="318" y="635" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K08492" type="ortholog">
+        <graphics name="STX18" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="318" y="618" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K08491" type="ortholog">
+        <graphics name="STX17" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="220" y="618" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="ko:K08517" type="ortholog">
+        <graphics name="SEC22" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="383" y="571" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K08504" type="ortholog">
+        <graphics name="BET1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="198" y="571" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K08516" type="ortholog">
+        <graphics name="YKT6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="294" y="489" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K08495" type="ortholog">
+        <graphics name="GOSR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="294" y="472" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K08490" type="ortholog">
+        <graphics name="STX5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="294" y="455" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K08517" type="ortholog">
+        <graphics name="SEC22" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="245" y="489" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K08496" type="ortholog">
+        <graphics name="GOSR2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="245" y="472" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K08490" type="ortholog">
+        <graphics name="STX5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="245" y="455" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K08505" type="ortholog">
+        <graphics name="SFT1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="382" y="373" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K08509" type="ortholog">
+        <graphics name="SNAP29" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="294" y="378" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K08498 ko:K08499 ko:K08500" type="ortholog">
+        <graphics name="STX6..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="245" y="398" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K08489" type="ortholog">
+        <graphics name="STX16" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="245" y="378" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K08487" type="ortholog">
+        <graphics name="STX11" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="245" y="358" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K08516" type="ortholog">
+        <graphics name="YKT6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="416" y="320" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K08515" type="ortholog">
+        <graphics name="VAMP7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="404" y="276" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K08493" type="ortholog">
+        <graphics name="VTI1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="504" y="294" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K08501 ko:VAM8 ko:K08503" type="ortholog">
+        <graphics name="STX8..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="504" y="277" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="ko:K08488" type="ortholog">
+        <graphics name="STX7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="504" y="260" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="ko:K08493" type="ortholog">
+        <graphics name="VTI1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="424" y="177" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K08498 ko:K08499 ko:K08500" type="ortholog">
+        <graphics name="STX6..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="424" y="160" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K08489" type="ortholog">
+        <graphics name="STX16" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="424" y="143" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ko:K08513" type="ortholog">
+        <graphics name="VAMP4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="361" y="120" width="45" height="17"/>
+    </entry>
+    <entry id="27" name="ko:K08514" type="ortholog">
+        <graphics name="VAMP5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="346" y="91" width="45" height="17"/>
+    </entry>
+    <entry id="28" name="ko:K08513" type="ortholog">
+        <graphics name="VAMP4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="262" y="192" width="45" height="17"/>
+    </entry>
+    <entry id="29" name="ko:K08512" type="ortholog">
+        <graphics name="VAMP8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="125" y="249" width="45" height="17"/>
+    </entry>
+    <entry id="30" name="ko:K08510" type="ortholog">
+        <graphics name="VAMP1_2_3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="113" y="226" width="45" height="17"/>
+    </entry>
+    <entry id="31" name="ko:K08508" type="ortholog">
+        <graphics name="SNAP23" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="280" y="88" width="45" height="17"/>
+    </entry>
+    <entry id="32" name="ko:K08506" type="ortholog">
+        <graphics name="SYP7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="269" y="635" width="45" height="17"/>
+    </entry>
+    <entry id="33" name="ko:K08508" type="ortholog">
+        <graphics name="SNAP23" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="118" y="125" width="45" height="17"/>
+    </entry>
+    <entry id="34" name="ko:STX1A ko:K08486" type="ortholog">
+        <graphics name="STX1A..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="235" y="88" width="45" height="17"/>
+    </entry>
+    <entry id="35" name="ko:STX1A ko:K08486" type="ortholog">
+        <graphics name="STX1A..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="73" y="125" width="45" height="17"/>
+    </entry>
+    <entry id="36" name="path:map04130" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04130">
+        <graphics name="TITLE:SNARE interactions in vesicular transport" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="217" y="36" width="356" height="25"/>
+    </entry>
+    <entry id="37" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="96" y="125" width="110" height="37"/>
+        <component id="33"/>
+        <component id="35"/>
+    </entry>
+    <entry id="38" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="258" y="88" width="110" height="37"/>
+        <component id="31"/>
+        <component id="34"/>
+    </entry>
+    <entry id="39" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="424" y="160" width="65" height="71"/>
+        <component id="23"/>
+        <component id="24"/>
+        <component id="25"/>
+    </entry>
+    <entry id="40" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="504" y="277" width="65" height="71"/>
+        <component id="20"/>
+        <component id="21"/>
+        <component id="22"/>
+    </entry>
+    <entry id="41" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="294" y="472" width="65" height="71"/>
+        <component id="7"/>
+        <component id="8"/>
+        <component id="9"/>
+    </entry>
+    <entry id="42" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="245" y="472" width="65" height="71"/>
+        <component id="10"/>
+        <component id="11"/>
+        <component id="12"/>
+    </entry>
+    <entry id="43" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="318" y="635" width="65" height="71"/>
+        <component id="1"/>
+        <component id="2"/>
+        <component id="3"/>
+    </entry>
+    <relation entry1="30" entry2="37" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="28" entry2="38" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="26" entry2="39" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="18" entry2="40" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="13" entry2="41" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="6" entry2="42" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="5" entry2="43" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+</pathway>

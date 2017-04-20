@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 08 2006 11:01:14 +0900 (JST) -->
+<pathway name="path:map04710" org="map" number="04710"
+         title="Circadian rhythm"
+         image="http://www.genome.jp/kegg/pathway/map/map04710.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04710">
+    <entry id="1" name="ko:K03729 ko:K03730" type="ortholog">
+        <graphics name="BHLHB2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="253" y="193" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K02295" type="ortholog">
+        <graphics name="CRY" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="329" y="331" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K02295" type="ortholog">
+        <graphics name="CRY" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="212" y="331" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="path:map04710" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04710">
+        <graphics name="TITLE:Circadian rhythm" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="103" y="43" width="122" height="26"/>
+    </entry>
+    <entry id="5" name="ko:K02296" type="ortholog">
+        <graphics name="ARNTL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="573" y="234" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K02223 ko:K09026" type="ortholog">
+        <graphics name="CLOCK..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="573" y="251" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K02295" type="ortholog">
+        <graphics name="CRY" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="340" y="260" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K02295" type="ortholog">
+        <graphics name="CRY" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="212" y="260" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K08959 ko:K08960" type="ortholog">
+        <graphics name="CSNK1D..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="340" y="226" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K08959 ko:K08960" type="ortholog">
+        <graphics name="CSNK1D..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="212" y="226" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K03728" type="ortholog">
+        <graphics name="NR1D1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="670" y="299" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K02633" type="ortholog">
+        <graphics name="PER" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="340" y="243" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K02633" type="ortholog">
+        <graphics name="PER" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="212" y="243" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K02633" type="ortholog">
+        <graphics name="PER" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="212" y="154" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K08959 ko:K08960" type="ortholog">
+        <graphics name="CSNK1D..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="212" y="100" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="212" y="243" width="65" height="71"/>
+        <component id="8"/>
+        <component id="10"/>
+        <component id="13"/>
+    </entry>
+    <entry id="17" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="340" y="243" width="65" height="71"/>
+        <component id="7"/>
+        <component id="9"/>
+        <component id="12"/>
+    </entry>
+    <entry id="18" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="573" y="243" width="65" height="54"/>
+        <component id="5"/>
+        <component id="6"/>
+    </entry>
+    <relation entry1="15" entry2="14" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="17" entry2="18" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="18" entry2="1" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="18" entry2="2" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="18" entry2="11" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="11" entry2="5" type="GErel">
+        <subtype name="repression" value="--|"/>
+    </relation>
+    <relation entry1="18" entry2="14" type="GErel">
+        <subtype name="expression" value="-->"/>
+    </relation>
+    <relation entry1="16" entry2="17" type="PPrel">
+        <subtype name="state" value="==>"/>
+    </relation>
+    <relation entry1="2" entry2="3" type="PPrel">
+        <subtype name="state" value="==>"/>
+    </relation>
+    <relation entry1="14" entry2="13" type="PPrel">
+        <subtype name="state" value="==>"/>
+    </relation>
+    <relation entry1="3" entry2="8" type="PPrel">
+        <subtype name="state" value="==>"/>
+    </relation>
+</pathway>

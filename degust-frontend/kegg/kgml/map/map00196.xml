@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Oct 04 2006 10:38:27 +0900 (JST) -->
+<pathway name="path:map00196" org="map" number="00196"
+         title="Photosynthesis - antenna proteins"
+         image="http://www.genome.jp/kegg/pathway/map/map00196.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map00196">
+    <entry id="1" name="path:map00195" type="map">
+        <graphics name="Photosynthesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="819" y="403" width="95" height="28"/>
+    </entry>
+    <entry id="2" name="path:map00195" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map00195.html">
+        <graphics name="Photosynthesis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="375" y="409" width="95" height="28"/>
+    </entry>
+    <entry id="3" name="path:map00196" type="map">
+        <graphics name="TITLE:Photosynthesis - antenna proteins" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="532" y="51" width="298" height="26"/>
+    </entry>
+    <entry id="4" name="ko:K08910" type="ortholog">
+        <graphics name="LHCA4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1045" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="ko:K08909" type="ortholog">
+        <graphics name="LHCA3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="1000" y="513" width="46" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K08908" type="ortholog">
+        <graphics name="LHCA2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="954" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K08907" type="ortholog">
+        <graphics name="LHCA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="909" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K08917" type="ortholog">
+        <graphics name="LHCB6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="827" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K08916" type="ortholog">
+        <graphics name="LHCB5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="782" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K08915" type="ortholog">
+        <graphics name="LHCB4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="737" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K08914" type="ortholog">
+        <graphics name="LHCB3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="692" y="513" width="46" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K08913" type="ortholog">
+        <graphics name="LHCB2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="646" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K08912" type="ortholog">
+        <graphics name="LHCB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="601" y="513" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K05386" type="ortholog">
+        <graphics name="CPEZ" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="503" y="560" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K05385" type="ortholog">
+        <graphics name="CPEY" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="458" y="560" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K05384" type="ortholog">
+        <graphics name="CPEU" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="413" y="560" width="46" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K05383" type="ortholog">
+        <graphics name="CPET" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="367" y="560" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K05382" type="ortholog">
+        <graphics name="CPES" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="322" y="560" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K05381" type="ortholog">
+        <graphics name="CPER" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="277" y="560" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K05380" type="ortholog">
+        <graphics name="CPEE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="232" y="560" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K05378" type="ortholog">
+        <graphics name="CPEC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="187" y="560" width="46" height="17"/>
+    </entry>
+    <entry id="22" name="ko:K05377" type="ortholog">
+        <graphics name="CPEB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="141" y="560" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="ko:K05376" type="ortholog">
+        <graphics name="CPEA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="96" y="560" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K02290" type="ortholog">
+        <graphics name="CPCG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="366" y="515" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K02289 ko:K02632" type="ortholog">
+        <graphics name="CPCF..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="515" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ec:4.-.-.-" type="enzyme"
+        link="http://www.genome.jp/dbget-bin/www_bget?enzyme+4.-.-.-">
+        <graphics name="4.-.-.-" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="277" y="515" width="44" height="17"/>
+    </entry>
+    <entry id="27" name="ko:K02287" type="ortholog">
+        <graphics name="CPCD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="232" y="515" width="45" height="17"/>
+    </entry>
+    <entry id="28" name="ko:K02286 ko:K02630" type="ortholog">
+        <graphics name="CPCC..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="187" y="515" width="46" height="17"/>
+    </entry>
+    <entry id="29" name="ko:K02285 ko:K02629" type="ortholog">
+        <graphics name="CPCB..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="141" y="515" width="45" height="17"/>
+    </entry>
+    <entry id="30" name="ko:K02284 ko:K02628" type="ortholog">
+        <graphics name="CPCA..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="96" y="515" width="45" height="17"/>
+    </entry>
+    <entry id="31" name="ko:K02097" type="ortholog">
+        <graphics name="APCF" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="470" width="45" height="17"/>
+    </entry>
+    <entry id="32" name="ko:K02096" type="ortholog">
+        <graphics name="APCE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="277" y="470" width="44" height="17"/>
+    </entry>
+    <entry id="33" name="ko:K02095" type="ortholog">
+        <graphics name="APCD" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="232" y="470" width="45" height="17"/>
+    </entry>
+    <entry id="34" name="ko:K02094" type="ortholog">
+        <graphics name="APCC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="187" y="470" width="46" height="17"/>
+    </entry>
+    <entry id="35" name="ko:K02093" type="ortholog">
+        <graphics name="APCB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="141" y="470" width="45" height="17"/>
+    </entry>
+    <entry id="36" name="ko:K02092" type="ortholog">
+        <graphics name="APCA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="96" y="470" width="45" height="17"/>
+    </entry>
+    <entry id="37" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="209" y="470" width="290" height="37"/>
+        <component id="31"/>
+        <component id="32"/>
+        <component id="33"/>
+        <component id="34"/>
+        <component id="35"/>
+        <component id="36"/>
+    </entry>
+    <entry id="38" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="231" y="515" width="335" height="37"/>
+        <component id="24"/>
+        <component id="25"/>
+        <component id="26"/>
+        <component id="27"/>
+        <component id="28"/>
+        <component id="29"/>
+        <component id="30"/>
+    </entry>
+    <entry id="39" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="300" y="560" width="472" height="37"/>
+        <component id="14"/>
+        <component id="15"/>
+        <component id="16"/>
+        <component id="17"/>
+        <component id="18"/>
+        <component id="19"/>
+        <component id="20"/>
+        <component id="21"/>
+        <component id="22"/>
+        <component id="23"/>
+    </entry>
+    <entry id="40" name="undefined" type="group">
+        <graphics fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="300" y="515" width="492" height="147"/>
+        <component id="37"/>
+        <component id="38"/>
+        <component id="39"/>
+    </entry>
+</pathway>

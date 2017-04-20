@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 13 2006 16:15:36 +0900 (JST) -->
+<pathway name="path:map05020" org="map" number="05020"
+         title="Parkinson's disease"
+         image="http://www.genome.jp/kegg/pathway/map/map05020.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map05020">
+    <entry id="1" name="hsa:156" type="other">
+        <graphics name="ADRBK1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="471" y="53" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K05687" type="ortholog">
+        <graphics name="PARK7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="409" y="407" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K05688" type="ortholog">
+        <graphics name="PINK1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="409" y="379" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="path:map04210" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04210.html">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="673" y="271" width="69" height="26"/>
+    </entry>
+    <entry id="5" name="ko:K00501" type="ortholog">
+        <graphics name="1.14.16.2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="328" y="127" width="46" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K04558" type="ortholog">
+        <graphics name="SNCAIP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="409" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K04243" type="ortholog">
+        <graphics name="GPR37" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="410" y="340" width="46" height="16"/>
+    </entry>
+    <entry id="8" name="ko:K04555" type="ortholog">
+        <graphics name="UBE2G2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="211" y="352" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K04556" type="ortholog">
+        <graphics name="PARK2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="308" y="339" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K04528" type="ortholog">
+        <graphics name="SNCA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="407" y="127" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K04557" type="ortholog">
+        <graphics name="PNUTL1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="409" y="255" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K05611" type="ortholog">
+        <graphics name="UCHL1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="308" y="198" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K04551" type="ortholog">
+        <graphics name="UBB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="69" y="255" width="46" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K04554" type="ortholog">
+        <graphics name="UBE2J2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="211" y="327" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="path:map05020" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map05020">
+        <graphics name="TITLE:Parkinson's disease" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="139" y="40" width="180" height="26"/>
+    </entry>
+    <entry id="16" name="ko:K04553" type="ortholog">
+        <graphics name="UBE2L6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="211" y="267" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K04556" type="ortholog">
+        <graphics name="PARK2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="309" y="255" width="46" height="17"/>
+    </entry>
+    <entry id="18" name="ko:STX1A" type="ortholog">
+        <graphics name="STX1A" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="439" y="232" width="46" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K03178" type="ortholog">
+        <graphics name="UBE1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="126" y="255" width="46" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K04552" type="ortholog">
+        <graphics name="UBE2L3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="211" y="241" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="cpd:C03758" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C03758">
+        <graphics name="C03758" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="539" y="44" width="8" height="8"/>
+    </entry>
+    <relation entry1="13" entry2="19" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="19" entry2="14" type="PPrel">
+        <subtype name="ubiquination" value="+u"/>
+    </relation>
+    <relation entry1="9" entry2="7" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="17" entry2="11" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="17" entry2="6" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="11" entry2="18" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="5" entry2="10" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+</pathway>

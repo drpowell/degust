@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 13 2006 16:13:47 +0900 (JST) -->
+<pathway name="path:map05010" org="map" number="05010"
+         title="Alzheimer's disease"
+         image="http://www.genome.jp/kegg/pathway/map/map05010.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map05010">
+    <entry id="1" name="cpd:C00027" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00027">
+        <graphics name="C00027" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="625" y="476" width="8" height="8"/>
+    </entry>
+    <entry id="2" name="cpd:C00070 cpd:C14818" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00070+C14818">
+        <graphics name="C00070..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="550" y="467" width="8" height="8"/>
+    </entry>
+    <entry id="3" name="path:map05020" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map05020.html">
+        <graphics name="Parkinson's disease" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="745" y="160" width="69" height="35"/>
+    </entry>
+    <entry id="4" name="ko:K06172" type="ortholog">
+        <graphics name="APH1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="346" y="364" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="path:map04110hsa" type="map">
+        <graphics name="Cell cycle" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="63" y="186" width="67" height="23"/>
+    </entry>
+    <entry id="6" name="ko:K01389" type="ortholog">
+        <graphics name="3.4.24.11" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="475" y="299" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K03083" type="ortholog">
+        <graphics name="GSK3B" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="438" y="519" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K04380" type="ortholog">
+        <graphics name="MAPT" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="548" y="519" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K02187" type="ortholog">
+        <graphics name="CASP3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="522" y="541" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="path:map04210" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04210.html">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="710" y="401" width="69" height="26"/>
+    </entry>
+    <entry id="11" name="ko:K04397" type="ortholog">
+        <graphics name="CASP7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="579" y="541" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K06170" type="ortholog">
+        <graphics name="PEN2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="300" y="347" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K04528" type="ortholog">
+        <graphics name="SNCA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="663" y="179" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K04505 ko:K04522" type="ortholog">
+        <graphics name="PSEN1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="346" y="347" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K02187" type="ortholog">
+        <graphics name="CASP3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="224" y="406" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K06171" type="ortholog">
+        <graphics name="NCSTN" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="300" y="364" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K03910" type="ortholog">
+        <graphics name="A2M" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="324" y="150" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K01408" type="ortholog">
+        <graphics name="3.4.24.56" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="421" y="299" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K04532" type="ortholog">
+        <graphics name="APPBP1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="93" y="237" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K04521 ko:K07747" type="ortholog">
+        <graphics name="3.4.23.46..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="169" y="321" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="path:map05010" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map05010">
+        <graphics name="TITLE:Alzheimer's disease" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="148" y="43" width="184" height="25"/>
+    </entry>
+    <entry id="22" name="ko:K04520" type="ortholog">
+        <graphics name="APP" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="169" y="217" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="hsa:2597+mmu:14433+rno:2438" type="other">
+        <graphics name="GAPDH, GAPD..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="239" y="256" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K04524" type="ortholog">
+        <graphics name="APOE" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="525" y="218" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K04529" type="ortholog">
+        <graphics name="APBB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="93" y="215" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ko:K01059" type="ortholog">
+        <graphics name="3.1.1.34" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="525" y="196" width="45" height="17"/>
+    </entry>
+    <entry id="27" name="ko:K04550" type="ortholog">
+        <graphics name="LRP1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="324" y="179" width="45" height="17"/>
+    </entry>
+    <relation entry1="22" entry2="25" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="19" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="22" entry2="27" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="17" entry2="27" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="26" entry2="27" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="22" entry2="24" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="22" entry2="23" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="20" entry2="22" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="7" entry2="8" type="PPrel">
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+</pathway>

@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: May 09 2006 13:21:36 +0900 (JST) -->
+<pathway name="path:map02030" org="map" number="02030"
+         title="Bacterial chemotaxis"
+         image="http://www.genome.jp/kegg/pathway/map/map02030.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map02030">
+    <entry id="1" name="ko:K03410" type="ortholog">
+        <graphics name="CHEC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="378" y="219" width="46" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K03409" type="ortholog">
+        <graphics name="CHEX" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="301" y="147" width="46" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K03411" type="ortholog">
+        <graphics name="CHED" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="378" y="243" width="46" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K03776" type="ortholog">
+        <graphics name="AER" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="77" y="205" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="path:map02040" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map02040.html">
+        <graphics name="Flagellar assembly" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="447" y="120" width="118" height="25"/>
+    </entry>
+    <entry id="6" name="path:map02030" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map02030">
+        <graphics name="TITLE:Bacterial chemotaxis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="277" y="42" width="192" height="27"/>
+    </entry>
+    <entry id="7" name="ko:K02557" type="ortholog">
+        <graphics name="MOTB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="491" y="180" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K02556" type="ortholog">
+        <graphics name="MOTA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="491" y="163" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K02417" type="ortholog">
+        <graphics name="FLINY" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="400" y="188" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K02416" type="ortholog">
+        <graphics name="FLIM" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="400" y="171" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K02410" type="ortholog">
+        <graphics name="FLIG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="400" y="154" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K03414" type="ortholog">
+        <graphics name="CHEZ" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="312" y="227" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K03413" type="ortholog">
+        <graphics name="CHEY" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="301" y="171" width="46" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K00575" type="ortholog">
+        <graphics name="CHER" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="193" y="252" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K03415" type="ortholog">
+        <graphics name="CHEV" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="218" y="204" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K03408" type="ortholog">
+        <graphics name="CHEW" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="204" y="187" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K03407" type="ortholog">
+        <graphics name="CHEA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="190" y="170" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K03412" type="ortholog">
+        <graphics name="CHEB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="193" y="106" width="46" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K03406 ko:K05874 ko:K05875 ko:K05876 ko:K05877" type="ortholog">
+        <graphics name="MCP..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="77" y="169" width="45" height="17"/>
+    </entry>
+    <relation entry1="19" entry2="17" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="4" entry2="17" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="17" entry2="18" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="17" entry2="13" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="12" entry2="13" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="dephosphorylation" value="-p"/>
+    </relation>
+    <relation entry1="18" entry2="19" type="PPrel">
+        <subtype name="demethylation" value="-m"/>
+    </relation>
+    <relation entry1="18" entry2="4" type="PPrel">
+        <subtype name="demethylation" value="-m"/>
+    </relation>
+    <relation entry1="14" entry2="4" type="PPrel">
+        <subtype name="methylation" value="+m"/>
+    </relation>
+    <relation entry1="14" entry2="19" type="PPrel">
+        <subtype name="methylation" value="+m"/>
+    </relation>
+    <relation entry1="13" entry2="10" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+</pathway>

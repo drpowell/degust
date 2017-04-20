@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 09 2006 07:11:43 +0900 (JST) -->
+<pathway name="path:map04120" org="map" number="04120"
+         title="Ubiquitin mediated proteolysis"
+         image="http://www.genome.jp/kegg/pathway/map/map04120.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04120">
+    <entry id="1" name="ko:K06689" type="ortholog">
+        <graphics name="UBE2D_E" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="430" y="459" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K06688" type="ortholog">
+        <graphics name="UBE2C" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="430" y="128" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K03875" type="ortholog">
+        <graphics name="SKP2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="744" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K03876" type="ortholog">
+        <graphics name="MEL26" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="694" y="605" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="ko:K03869" type="ortholog">
+        <graphics name="CUL3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="518" y="605" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K06689" type="ortholog">
+        <graphics name="UBE2D_E" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="430" y="774" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K03868" type="ortholog">
+        <graphics name="RBX1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="563" y="605" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K03868" type="ortholog">
+        <graphics name="RBX1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="608" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K03178" type="ortholog">
+        <graphics name="UBE1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="337" y="774" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K03178" type="ortholog">
+        <graphics name="UBE1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="337" y="605" width="45" height="17"/>
+    </entry>
+    <entry id="12" name="ko:K03178" type="ortholog">
+        <graphics name="UBE1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="337" y="438" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K03178" type="ortholog">
+        <graphics name="UBE1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="337" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="14" name="ko:K03874 ko:K04678 ko:K05630 ko:K05632 ko:K05633" type="ortholog">
+        <graphics name="HECT..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="528" y="774" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K03873" type="ortholog">
+        <graphics name="TCEB2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="563" y="455" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K03872" type="ortholog">
+        <graphics name="TCEB1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="518" y="455" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K03868" type="ortholog">
+        <graphics name="RBX1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="608" y="438" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K03870" type="ortholog">
+        <graphics name="CUL2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="563" y="438" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K03871" type="ortholog">
+        <graphics name="VHL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="518" y="438" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K02207" type="ortholog">
+        <graphics name="UBE2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="430" y="438" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K03178" type="ortholog">
+        <graphics name="UBE1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="337" y="128" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="path:map03050" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map03050.html">
+        <graphics name="Proteasome" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="145" y="909" width="71" height="37"/>
+    </entry>
+    <entry id="23" name="ko:K03359" type="ortholog">
+        <graphics name="APC12" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="608" y="179" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K03358" type="ortholog">
+        <graphics name="APC11" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="563" y="179" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K03357" type="ortholog">
+        <graphics name="APC10" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="518" y="179" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="ko:K03356" type="ortholog">
+        <graphics name="APC9" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="608" y="162" width="45" height="17"/>
+    </entry>
+    <entry id="27" name="ko:K03355" type="ortholog">
+        <graphics name="APC8" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="563" y="162" width="45" height="17"/>
+    </entry>
+    <entry id="28" name="ko:K03354" type="ortholog">
+        <graphics name="APC7" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="518" y="162" width="45" height="17"/>
+    </entry>
+    <entry id="29" name="ko:K03353" type="ortholog">
+        <graphics name="APC6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="608" y="145" width="45" height="17"/>
+    </entry>
+    <entry id="30" name="ko:K03352" type="ortholog">
+        <graphics name="APC5" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="563" y="145" width="45" height="17"/>
+    </entry>
+    <entry id="31" name="ko:K03351" type="ortholog">
+        <graphics name="APC4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="518" y="145" width="45" height="17"/>
+    </entry>
+    <entry id="32" name="ko:K03350" type="ortholog">
+        <graphics name="APC3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="608" y="128" width="45" height="17"/>
+    </entry>
+    <entry id="33" name="ko:K03349" type="ortholog">
+        <graphics name="APC2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="563" y="128" width="45" height="17"/>
+    </entry>
+    <entry id="34" name="ko:K03364" type="ortholog">
+        <graphics name="CDH1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="694" y="149" width="45" height="17"/>
+    </entry>
+    <entry id="35" name="ko:K03363" type="ortholog">
+        <graphics name="CDC20" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="694" y="128" width="45" height="17"/>
+    </entry>
+    <entry id="36" name="ko:K03348" type="ortholog">
+        <graphics name="APC1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="518" y="128" width="45" height="17"/>
+    </entry>
+    <entry id="37" name="ko:K03362" type="ortholog">
+        <graphics name="MET30" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="694" y="335" width="45" height="17"/>
+    </entry>
+    <entry id="38" name="ko:K03361" type="ortholog">
+        <graphics name="CDC4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="694" y="314" width="45" height="17"/>
+    </entry>
+    <entry id="39" name="ko:K03360" type="ortholog">
+        <graphics name="GRR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="694" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="40" name="ko:K03347" type="ortholog">
+        <graphics name="CUL1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="563" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="41" name="ko:K03094" type="ortholog">
+        <graphics name="SKP1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="518" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="42" name="ko:K02207" type="ortholog">
+        <graphics name="UBE2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="430" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="43" name="path:map04120" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04120">
+        <graphics name="TITLE:Ubiquitin mediated proteolysis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="134" y="31" width="195" height="26"/>
+    </entry>
+    <relation entry1="6" entry2="14" type="PPrel">
+        <subtype name="binding/association" value="---"/>
+    </relation>
+    <relation entry1="21" entry2="2" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="13" entry2="42" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="12" entry2="20" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="12" entry2="1" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="10" entry2="6" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+</pathway>

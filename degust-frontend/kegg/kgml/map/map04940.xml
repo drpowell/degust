@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 09 2006 07:15:50 +0900 (JST) -->
+<pathway name="path:map04940" org="map" number="04940"
+         title="Type I diabetes mellitus"
+         image="http://www.genome.jp/kegg/pathway/map/map04940.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04940">
+    <entry id="1" name="ko:K06470" type="ortholog">
+        <graphics name="CD28" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="566" y="222" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="path:map04210" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04210.html">
+        <graphics name="Apoptosis" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="137" y="491" width="71" height="25"/>
+    </entry>
+    <entry id="3" name="ko:K05406 ko:K05425" type="ortholog">
+        <graphics name="IL12A..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="512" y="263" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K01294" type="ortholog">
+        <graphics name="3.4.17.10" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="164" y="231" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="ko:K05412 ko:K05413" type="ortholog">
+        <graphics name="CD80..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="458" y="222" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K07817" type="ortholog">
+        <graphics name="PTPRN" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="164" y="211" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K01580" type="ortholog">
+        <graphics name="4.1.1.15" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="164" y="190" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="hsa:3382 rno:81024 mmu:15893 ptr:463264 cfa:475242 gga:420581 xla:379786" type="ortholog">
+        <graphics name="3382..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="164" y="271" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K05429" type="ortholog">
+        <graphics name="IL2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="540" y="342" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="path:map04660" type="map"
+        link="http://www.genome.jp/kegg/pathway/map/map04660.html">
+        <graphics name="T cell receptor signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="641" y="211" width="99" height="38"/>
+    </entry>
+    <entry id="14" name="ko:K04526" type="ortholog">
+        <graphics name="INS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="164" y="170" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="ko:K04389" type="ortholog">
+        <graphics name="TNFSF6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="315" y="410" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K01353" type="ortholog">
+        <graphics name="3.4.21.79" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="261" y="462" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K06752" type="ortholog">
+        <graphics name="MHC2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="458" y="199" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K06751" type="ortholog">
+        <graphics name="MHC1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="207" y="387" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K04390" type="ortholog">
+        <graphics name="TNFRSF6" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="207" y="410" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="ko:K04687" type="ortholog">
+        <graphics name="IFNG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="261" y="484" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K04687" type="ortholog">
+        <graphics name="IFNG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="597" y="342" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="ko:K07818" type="ortholog">
+        <graphics name="PRF1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="261" y="443" width="45" height="17"/>
+    </entry>
+    <entry id="23" name="ko:K04383 ko:K04519" type="ortholog">
+        <graphics name="IL1A..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="261" y="544" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K03156" type="ortholog">
+        <graphics name="TNFA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="261" y="525" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="ko:K05468" type="ortholog">
+        <graphics name="LTA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="261" y="503" width="45" height="17"/>
+    </entry>
+    <entry id="26" name="path:map04940" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04940">
+        <graphics name="TITLE:Type I diabetes mellitus" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="166" y="41" width="218" height="24"/>
+    </entry>
+    <entry id="27" name="cpd:C00704 cpd:C00027 cpd:C00533" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00704+C00027+C00533">
+        <graphics name="C00704..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="263" y="563" width="8" height="8"/>
+    </entry>
+    <entry id="28" name="ko:K04077" type="ortholog">
+        <graphics name="GROEL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="164" y="251" width="45" height="17"/>
+    </entry>
+    <relation entry1="5" entry2="1" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="15" entry2="19" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+</pathway>

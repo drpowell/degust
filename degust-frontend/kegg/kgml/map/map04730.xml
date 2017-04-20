@@ -1,0 +1,342 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 09 2006 07:14:58 +0900 (JST) -->
+<pathway name="path:map04730" org="map" number="04730"
+         title="Long-term depression"
+         image="http://www.genome.jp/kegg/pathway/map/map04730.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04730">
+    <entry id="1" name="ko:K05858" type="ortholog">
+        <graphics name="PLCB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="477" y="515" width="45" height="17"/>
+    </entry>
+    <entry id="2" name="ko:K04634 ko:K04635" type="ortholog">
+        <graphics name="GNAQ..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="394" y="515" width="45" height="17"/>
+    </entry>
+    <entry id="3" name="ko:K05197 ko:K05198 ko:K05199" type="ortholog">
+        <graphics name="GRIA1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="468" width="45" height="17"/>
+    </entry>
+    <entry id="4" name="ko:K04961" type="ortholog">
+        <graphics name="RYR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="575" y="425" width="45" height="17"/>
+    </entry>
+    <entry id="5" name="ko:K01047" type="ortholog">
+        <graphics name="3.1.1.4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="477" y="550" width="45" height="17"/>
+    </entry>
+    <entry id="6" name="ko:K01047" type="ortholog">
+        <graphics name="3.1.1.4" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="477" y="239" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K04630 ko:K04534 ko:K04535 ko:K04632 ko:K04346 ko:K04639" type="ortholog">
+        <graphics name="GNAI..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="394" y="623" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K04630 ko:K04534 ko:K04535 ko:K04632 ko:K04346 ko:K04639" type="ortholog">
+        <graphics name="GNAI..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="394" y="583" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="ko:K04630 ko:K04534 ko:K04535 ko:K04632 ko:K04346 ko:K04639" type="ortholog">
+        <graphics name="GNAI..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="394" y="550" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K00491" type="ortholog">
+        <graphics name="1.14.13.39" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="85" y="185" width="46" height="17"/>
+    </entry>
+    <entry id="11" name="cpd:C00219" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00219">
+        <graphics name="C00219" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="633" y="240" width="8" height="8"/>
+    </entry>
+    <entry id="12" name="cpd:C00533" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00533">
+        <graphics name="C00533" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="136" y="186" width="8" height="8"/>
+    </entry>
+    <entry id="13" name="cpd:C00641" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00641">
+        <graphics name="C00641" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="614" y="515" width="8" height="8"/>
+    </entry>
+    <entry id="14" name="cpd:C01245" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C01245">
+        <graphics name="C01245" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="523" y="332" width="8" height="8"/>
+    </entry>
+    <entry id="15" name="ko:K05858" type="ortholog">
+        <graphics name="PLCB" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="477" y="277" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="ko:K04634 ko:K04635" type="ortholog">
+        <graphics name="GNAQ..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="394" y="277" width="45" height="17"/>
+    </entry>
+    <entry id="17" name="ko:K04603 ko:K04604" type="ortholog">
+        <graphics name="GRM1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="515" width="45" height="17"/>
+    </entry>
+    <entry id="18" name="cpd:C01330" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C01330">
+        <graphics name="C01330" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="393" y="468" width="8" height="8"/>
+    </entry>
+    <entry id="19" name="cpd:C01330" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C01330">
+        <graphics name="C01330" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="391" y="344" width="8" height="8"/>
+    </entry>
+    <entry id="20" name="cpd:C00025" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00025">
+        <graphics name="C00025" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="206" y="494" width="8" height="8"/>
+    </entry>
+    <entry id="21" name="ko:K02677" type="ortholog">
+        <graphics name="CPKC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="699" y="276" width="45" height="17"/>
+    </entry>
+    <entry id="22" name="cpd:C00942" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00942">
+        <graphics name="C00942" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="449" y="136" width="8" height="8"/>
+    </entry>
+    <entry id="23" name="ko:K05087" type="ortholog">
+        <graphics name="IGF1R" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="622" width="45" height="17"/>
+    </entry>
+    <entry id="24" name="ko:K04578" type="ortholog">
+        <graphics name="CRHR1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="582" width="45" height="17"/>
+    </entry>
+    <entry id="25" name="cpd:C00076" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00076">
+        <graphics name="C00076" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="393" y="409" width="8" height="8"/>
+    </entry>
+    <entry id="26" name="cpd:C01245" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C01245">
+        <graphics name="C01245" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="523" y="457" width="8" height="8"/>
+    </entry>
+    <entry id="27" name="cpd:C01330" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C01330">
+        <graphics name="C01330" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="391" y="300" width="8" height="8"/>
+    </entry>
+    <entry id="28" name="cpd:C00165" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00165">
+        <graphics name="C00165" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="584" y="277" width="8" height="8"/>
+    </entry>
+    <entry id="29" name="cpd:C00219" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00219">
+        <graphics name="C00219" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="634" y="550" width="8" height="8"/>
+    </entry>
+    <entry id="30" name="path:hsa04080" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04080.html">
+        <graphics name="Neuroactive ligand-receptor interaction" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="247" y="118" width="94" height="47"/>
+    </entry>
+    <entry id="31" name="cpd:C00025" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00025">
+        <graphics name="C00025" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="204" y="301" width="8" height="8"/>
+    </entry>
+    <entry id="32" name="ko:K05256" type="ortholog">
+        <graphics name="CRH" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="117" y="582" width="46" height="17"/>
+    </entry>
+    <entry id="33" name="path:hsa04020" type="map"
+        link="http://www.genome.jp/kegg/pathway/hsa/hsa04020.html">
+        <graphics name="Calcium signaling pathway" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="456" y="474" width="100" height="37"/>
+    </entry>
+    <entry id="34" name="ko:K05459" type="ortholog">
+        <graphics name="IGF1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="117" y="622" width="46" height="17"/>
+    </entry>
+    <entry id="35" name="ko:K01769" type="ortholog">
+        <graphics name="4.6.1.2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="394" y="137" width="45" height="17"/>
+    </entry>
+    <entry id="36" name="ko:K04630 ko:K04534 ko:K04535 ko:K04632 ko:K04346 ko:K04639" type="ortholog">
+        <graphics name="GNAI..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="394" y="239" width="45" height="17"/>
+    </entry>
+    <entry id="37" name="ko:K05207" type="ortholog">
+        <graphics name="GRID2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="238" width="45" height="17"/>
+    </entry>
+    <entry id="38" name="ko:K07376" type="ortholog">
+        <graphics name="PRKG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="503" y="137" width="45" height="17"/>
+    </entry>
+    <entry id="39" name="ko:K04344" type="ortholog">
+        <graphics name="CACNA1A" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="406" width="45" height="17"/>
+    </entry>
+    <entry id="40" name="ko:K08067" type="ortholog">
+        <graphics name="GSBS" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="586" y="114" width="45" height="17"/>
+    </entry>
+    <entry id="41" name="hsa" type="other">
+        <graphics name="hsa" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="301" width="45" height="17"/>
+    </entry>
+    <entry id="42" name="ko:K05197 ko:K05198 ko:K05199" type="ortholog">
+        <graphics name="GRIA1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="322" y="344" width="46" height="17"/>
+    </entry>
+    <entry id="43" name="path:map04730" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04730">
+        <graphics name="TITLE:Long-term depression" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="153" y="42" width="190" height="26"/>
+    </entry>
+    <entry id="44" name="ko:K04371" type="ortholog">
+        <graphics name="RK1_2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="623" y="189" width="45" height="17"/>
+    </entry>
+    <entry id="45" name="ko:K04368 ko:K04369" type="ortholog">
+        <graphics name="MAP2K1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="548" y="189" width="46" height="17"/>
+    </entry>
+    <entry id="46" name="ko:K08845 ko:K04365 ko:K04366" type="ortholog">
+        <graphics name="ARAF..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="477" y="189" width="45" height="17"/>
+    </entry>
+    <entry id="47" name="ko:K02833 ko:K07827 ko:K07828" type="ortholog">
+        <graphics name="HRAS..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="394" y="189" width="45" height="17"/>
+    </entry>
+    <entry id="48" name="ko:K03456 ko:K04354 ko:K04382" type="ortholog">
+        <graphics name="PPP2R1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="665" y="114" width="45" height="17"/>
+    </entry>
+    <entry id="49" name="ko:K05854" type="ortholog">
+        <graphics name="LYN" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="477" y="311" width="45" height="17"/>
+    </entry>
+    <entry id="50" name="ko:K04603 ko:K04604" type="ortholog">
+        <graphics name="GRM1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="321" y="277" width="45" height="17"/>
+    </entry>
+    <entry id="51" name="ko:K04958 ko:K04959 ko:K04960" type="ortholog">
+        <graphics name="ITPR1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="566" y="384" width="45" height="17"/>
+    </entry>
+    <relation entry1="37" entry2="31" type="PCrel"/>
+    <relation entry1="50" entry2="31" type="PCrel"/>
+    <relation entry1="42" entry2="31" type="PCrel"/>
+    <relation entry1="3" entry2="20" type="PCrel"/>
+    <relation entry1="17" entry2="20" type="PCrel"/>
+    <relation entry1="10" entry2="35" type="PPrel">
+        <subtype name="compound" value="12"/>
+    </relation>
+    <relation entry1="35" entry2="38" type="PPrel">
+        <subtype name="compound" value="22"/>
+    </relation>
+    <relation entry1="6" entry2="21" type="PPrel">
+        <subtype name="compound" value="11"/>
+    </relation>
+    <relation entry1="15" entry2="21" type="PPrel">
+        <subtype name="compound" value="28"/>
+    </relation>
+    <relation entry1="15" entry2="51" type="PPrel">
+        <subtype name="compound" value="14"/>
+    </relation>
+    <relation entry1="21" entry2="39" type="PPrel">
+        <subtype name="compound" value="25"/>
+    </relation>
+    <relation entry1="39" entry2="25" type="PPrel">
+        <subtype name="compound" value="21"/>
+    </relation>
+    <relation entry1="4" entry2="25" type="PPRel">
+        <subtype name="compound" value="21"/>
+    </relation>
+    <relation entry1="4" entry2="39" type="PPRel">
+        <subtype name="compound" value="21"/>
+    </relation>
+    <relation entry1="1" entry2="51" type="PPRel">
+        <subtype name="compound" value="26"/>
+    </relation>
+    <relation entry1="1" entry2="21" type="PPRel">
+        <subtype name="compound" value="13"/>
+    </relation>
+    <relation entry1="5" entry2="21" type="PPRel">
+        <subtype name="compound" value="29"/>
+    </relation>
+    <relation entry1="10" entry2="47" type="PPRel">
+        <subtype name="compound" value="12"/>
+    </relation>
+    <relation entry1="38" entry2="40" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="47" entry2="46" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="46" entry2="45" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="45" entry2="44" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="50" entry2="36" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="36" entry2="6" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="44" entry2="6" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="50" entry2="16" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="16" entry2="15" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="42" entry2="49" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="49" entry2="21" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="17" entry2="2" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="2" entry2="1" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="17" entry2="9" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="9" entry2="5" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="32" entry2="24" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="24" entry2="8" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="34" entry2="23" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="23" entry2="7" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="40" entry2="48" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="48" entry2="45" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="48" entry2="44" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="48" entry2="21" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+</pathway>

@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<!DOCTYPE pathway SYSTEM "http://www.genome.jp/kegg/xml/KGML_v0.6.1_.dtd">
+<!-- Creation date: Nov 28 2006 06:15:38 +0900 (JST) -->
+<pathway name="path:map04740" org="map" number="04740"
+         title="Olfactory transduction"
+         image="http://www.genome.jp/kegg/pathway/map/map04740.gif"
+         link="http://www.genome.jp/dbget-bin/show_pathway?map04740">
+    <entry id="1" name="cpd:C00942" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00942">
+        <graphics name="C00942" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="405" y="309" width="8" height="8"/>
+    </entry>
+    <entry id="2" name="cpd:C00575" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00575">
+        <graphics name="C00575" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="294" y="388" width="8" height="8"/>
+    </entry>
+    <entry id="3" name="cpd:C00076" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00076">
+        <graphics name="C00076" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="279" y="515" width="8" height="8"/>
+    </entry>
+    <entry id="4" name="cpd:C00115" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C00115">
+        <graphics name="C00115" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="618" y="429" width="8" height="8"/>
+    </entry>
+    <entry id="5" name="cpd:C01330" type="compound"
+        link="http://www.genome.jp/dbget-bin/www_bget?compound+C01330">
+        <graphics name="C01330" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="circle" x="279" y="576" width="8" height="8"/>
+    </entry>
+    <entry id="6" name="ko:K04515" type="ortholog">
+        <graphics name="CAMK2" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="191" y="426" width="45" height="17"/>
+    </entry>
+    <entry id="7" name="ko:K04633" type="ortholog">
+        <graphics name="GNAL" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="211" y="292" width="45" height="17"/>
+    </entry>
+    <entry id="8" name="ko:K02183" type="ortholog">
+        <graphics name="CALM" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="300" y="462" width="45" height="17"/>
+    </entry>
+    <entry id="9" name="hsa:5137+mmu:18575+rno:8174" type="other">
+        <graphics name="PDE1C..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="371" y="401" width="45" height="17"/>
+    </entry>
+    <entry id="10" name="ko:K04345" type="ortholog">
+        <graphics name="PKA" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="454" y="199" width="45" height="17"/>
+    </entry>
+    <entry id="11" name="ko:K08043" type="ortholog">
+        <graphics name="ADCY3" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="136" y="389" width="46" height="17"/>
+    </entry>
+    <entry id="12" name="rno:11391" type="other">
+        <graphics name="11391" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="557" y="308" width="45" height="17"/>
+    </entry>
+    <entry id="13" name="ko:K08327" type="ortholog">
+        <graphics name="PDC" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="246" y="237" width="45" height="17"/>
+    </entry>
+    <entry id="15" name="hsa:409+mmu:216869+rno:25388+ptr:454450+bta:281638+dre:39409" type="other">
+        <graphics name="ARRB2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="226" y="154" width="45" height="17"/>
+    </entry>
+    <entry id="16" name="path:map04740" type="map"
+        link="http://www.genome.jp/dbget-bin/get_linkdb?pathway+map04740">
+        <graphics name="TITLE:Olfactory transduction" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="roundrectangle" x="159" y="39" width="222" height="25"/>
+    </entry>
+    <entry id="17" name="ko:K04950 ko:K04951 ko:K04952" type="ortholog">
+        <graphics name="CNGA3..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="136" y="546" width="46" height="17"/>
+    </entry>
+    <entry id="18" name="ko:K07376" type="ortholog">
+        <graphics name="PRKG" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="288" y="323" width="45" height="17"/>
+    </entry>
+    <entry id="19" name="ko:K08328" type="ortholog">
+        <graphics name="GUCA1" fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="474" y="382" width="45" height="17"/>
+    </entry>
+    <entry id="20" name="hsa:157+mmu:320129+rno:25372+bta:28213" type="other">
+        <graphics name="ADRBK2..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="273" y="183" width="45" height="17"/>
+    </entry>
+    <entry id="21" name="ko:K05027 ko:K05028 ko:K05029 ko:K05030" type="ortholog">
+        <graphics name="CLCA1..." fgcolor="#000000" bgcolor="#FFFFFF"
+             type="rectangle" x="557" y="427" width="45" height="17"/>
+    </entry>
+    <relation entry1="12" entry2="18" type="PPrel">
+        <subtype name="compound" value="1"/>
+    </relation>
+    <relation entry1="11" entry2="17" type="PPrel">
+        <subtype name="compound" value="2"/>
+    </relation>
+    <relation entry1="10" entry2="11" type="PPrel">
+        <subtype name="compound" value="2"/>
+    </relation>
+    <relation entry1="8" entry2="17" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+    </relation>
+    <relation entry1="17" entry2="19" type="PPrel">
+        <subtype name="compound" value="3"/>
+    </relation>
+    <relation entry1="17" entry2="21" type="PPrel">
+        <subtype name="compound" value="3"/>
+    </relation>
+    <relation entry1="7" entry2="11" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="8" entry2="6" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="8" entry2="9" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="19" entry2="12" type="PPrel">
+        <subtype name="activation" value="-->"/>
+    </relation>
+    <relation entry1="10" entry2="13" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="18" entry2="11" type="PPrel">
+        <subtype name="activation" value="-->"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="10" entry2="12" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="6" entry2="11" type="PPrel">
+        <subtype name="inhibition" value="--|"/>
+        <subtype name="phosphorylation" value="+p"/>
+    </relation>
+    <relation entry1="7" entry2="13" type="PPrel">
+        <subtype name="dissociation" value="-+-"/>
+    </relation>
+</pathway>
