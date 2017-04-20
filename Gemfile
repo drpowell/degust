@@ -43,6 +43,7 @@ group :development do
   gem 'binding_of_caller'
 
   gem 'capistrano'
+  gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
