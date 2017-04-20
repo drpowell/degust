@@ -1,0 +1,30 @@
+.margin-top {
+  margin-top: 20px;
+}
+
+.jumbotron {
+  text-align: center;
+  padding: 30px 60px;
+
+  h1 {
+    font-weight: bold;
+    font-size: 90px;
+  }
+
+}
+
+#forkme {
+  position: relative;
+  height: 0;
+
+  img {
+    position: absolute;
+    top: -29px;
+    right: -60px;
+    border: 0;
+  }
+}
+
+main {
+  background-color: #fff;
+}

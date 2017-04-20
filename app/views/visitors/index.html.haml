@@ -1,0 +1,51 @@
+-# Page Content
+.container
+
+  .row
+    .margin-top.jumbotron.col-md-8
+      #forkme
+        %a{:href => 'https://github.com/drpowell/degust'}
+          %img{:src => 'https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png', :alt=>'Fork me on GitHub'}
+      %h1 Degust
+      %p.lead
+        RNA-seq exploration, analysis and visualisation
+      %p
+        Simply upload a CSV file of read counts for each replicate; then view your DGE data
+      %p
+        %a.btn.btn-primary.btn-large(href='/upload') Upload your counts file &raquo;
+
+    .margin-top.col-md-4
+      .panel.panel-default
+        .panel-body
+          %h3 Get Started
+          %p Get started with Degust with your own data set.  Just upload a CSV counts file from your RNA-seq experiment, or upload a CSV file containing your own analysis (eg. from Limma/Voom, edgeR or DESeq).
+          %a.btn.btn-default.btn-block{:href=>'/upload'} Upload &raquo;
+      - if !user_signed_in?
+        %a.btn.btn-block.btn-social.btn-twitter{:href => "/auth/twitter"}
+          %span.fa.fa-twitter
+          Sign in with Twitter
+        %a.btn.btn-block.btn-social.btn-google{:href => "/auth/google_oauth2"}
+          %span.fa.fa-google
+          Sign in with Google
+    -#.col-md-4
+  -#.row
+
+  .row
+    .col-md-4
+      .panel.panel-default
+        .panel-body
+          %h3 Play with a Demo
+          %p
+            Try a demo of Degust on a real data set.  See the CSV
+            %a{:href=>"http://vicbioinformatics.com/degust/example-counts.csv"}
+              counts file
+            2used to create this example
+          %a.btn.btn-default.btn-block{:href=>'http://vicbioinformatics.com/degust/r-json.cgi?code=example'} Try the demo &raquo;
+    .col-md-4
+      .panel.panel-default
+        .panel-body
+          %h3 Watch a Demo
+          %p Watch of video of Degust in action on a real data set.
+          %a.btn.btn-default.btn-block{:href=>'https://www.youtube.com/watch?v=ucucQ_LtZ1g'} Watch video &raquo;
+
+-#.container

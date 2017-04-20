@@ -1,0 +1,22 @@
+- if user_signed_in?
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle"=>"dropdown","role"=>"button","aria-haspopup"=>"true", "aria-expanded"=>"false" }
+      = current_user.name
+      .caret
+    %ul.dropdown-menu
+      %li
+        = link_to 'Your data', visited_path
+      %li
+        = link_to 'Upload new', upload_path
+      %li
+        = link_to "Sign out", signout_path
+- else
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle"=>"dropdown","role"=>"button","aria-haspopup"=>"true", "aria-expanded"=>"false" }
+      Sign in
+      .caret
+    %ul.dropdown-menu
+      %li
+        = link_to "Via Twitter", "/auth/twitter"
+      %li
+        = link_to "Via Google", "/auth/google_oauth2"

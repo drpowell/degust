@@ -1,0 +1,18 @@
+= content_for :title, "Degust - sessions"
+
+.container
+
+  .row
+    .col-md-12
+      .page-header
+        %h1 Your Data
+  .row
+    .col-md-12
+      .mine
+        - if @mine.length
+          %h4 My Data sets
+          = render :partial => "table", :locals => { :list => @mine }
+      .visited
+        - if @others.length
+          %h4 Data sets shared with me
+          = render :partial => "table", :locals => { :list => @others }
