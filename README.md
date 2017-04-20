@@ -20,3 +20,6 @@ For frontend development:
     (cd degust-frontend ; ./node_modules/.bin/grunt watch)
 
 
+For production deploy
+
+    cap production deploy
