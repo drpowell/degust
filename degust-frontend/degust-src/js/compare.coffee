@@ -53,19 +53,16 @@ class BackendCommon
     @script: (typ,params) ->
         "#{window.my_code}/#{typ}" + if params then "?#{params}" else ""
 
-    constructor: (@settings, configured) ->
+    constructor: (@settings, configured, @full_settings) ->
         # Ensure we have been configured!
         if !configured
             window.location = BackendCommon.config_url()
 
-        if @settings['locked']
+        if @settings['config_locked'] && !@full_settings['is_owner']
             $('a.config').hide()
         else
             $('a.config').removeClass('hide')
             $('a.config').attr('href', BackendCommon.config_url())
-
-        if @settings['extra_menu_html']
-            $('#right-navbar-collapse').append(@settings['extra_menu_html'])
 
     request_kegg_data: (callback) ->
         d3.tsv(BackendCommon.script('kegg_titles'), (err,ec_data) ->
@@ -75,8 +72,8 @@ class BackendCommon
         )
 
 class WithBackendNoAnalysis
-    constructor: (@settings, @process_dge_data) ->
-        @backend = new BackendCommon(@settings, @settings.fc_columns.length > 0)
+    constructor: (@settings, @process_dge_data, @full_settings) ->
+        @backend = new BackendCommon(@settings, @settings.fc_columns.length > 0, @full_settings)
 
         $('.conditions').hide()
         $('a.show-r-code').hide()
@@ -117,8 +114,8 @@ class WithBackendNoAnalysis
         )
 
 class WithBackendAnalysis
-    constructor: (@settings, @process_dge_data) ->
-        @backend = new BackendCommon(@settings, @settings.replicates.length > 0)
+    constructor: (@settings, @process_dge_data, @full_settings) ->
+        @backend = new BackendCommon(@settings, @settings.replicates.length > 0, @full_settings)
 
         $('.conditions').show()
         $('a.show-r-code').show()
@@ -1056,9 +1053,9 @@ init_page = (use_backend) ->
 
     if use_backend
         if settings.analyze_server_side
-            g_backend = new WithBackendAnalysis(settings, process_dge_data)
+            g_backend = new WithBackendAnalysis(settings, process_dge_data, full_settings)
         else
-            g_backend = new WithBackendNoAnalysis(settings, process_dge_data)
+            g_backend = new WithBackendNoAnalysis(settings, process_dge_data, full_settings)
     else
         g_backend = new WithoutBackend(settings, process_dge_data)
 
@@ -1069,6 +1066,10 @@ init_page = (use_backend) ->
 
     fdrThreshold = settings['fdrThreshold'] if settings['fdrThreshold'] != undefined
     fcThreshold  = settings['fcThreshold']  if settings['fcThreshold'] != undefined
+
+    if full_settings?
+        if full_settings['extra_menu_html']
+            $('#right-navbar-collapse').append(full_settings['extra_menu_html'])
 
     $("select#kegg").change(kegg_selected)
 
@@ -1107,7 +1108,8 @@ init = () ->
             url: BackendCommon.script("settings"),
             dataType: 'json'
         }).done((json) ->
-            window.settings = json
+            window.full_settings = json
+            window.settings = json.settings
             init_page(true)
          ).fail((x) ->
             log_error "Failed to get settings!",x

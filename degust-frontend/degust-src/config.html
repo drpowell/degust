@@ -21,7 +21,7 @@
           <a class="navbar-brand" href="/">Degust : </a>
           <span class="navbar-brand exp-name">unnamed</span>
         </div>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
           <li><a class="log-link" href="#">Logs</a>
           <li><a class="view" href="#">View</a>
           <li><a href="#about-modal" data-toggle="modal">About</a>
@@ -46,6 +46,7 @@
               <input class="name" type="text" name="name" placeholder="Unnamed" title="Optional: Give your experiment a name" data-placement='right' size='30' />
             </div>
           </div>
+
           <div class="form-group">
             <label class="control-label col-sm-3">Format type</label>
             <div class="controls col-sm-6">
@@ -96,7 +97,7 @@
               <div class="controls col-sm-6">
                 <input class="min-counts" type="text" name="min-counts" placeholder="0" title="Optional: Minimum read count required in at least one replicate or the gene is ignored" data-placement='right' />
               </div>
-            </div>        
+            </div>
             <div class="form-group">
               <label class="control-label col-sm-3" for="name">Min gene CPM</label>
               <div class="controls col-sm-2">
@@ -105,6 +106,13 @@
               <label class="control-label col-sm-2" for="name">in at least samples</label>
               <div class="controls col-sm-3">
                 <input class="min-cpm-samples" type="text" name="min-cpm" placeholder="0" title="Optional: A gene must have at a CPM of at least this, in at least the number of specified samples" data-placement='right' />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="config-locked">Config locked</label>
+              <div class="controls col-sm-6">
+                <input id="config-locked" type="checkbox" title="Lock the configuration page so only you can change it (you must be logged in)" data-placement='right' />
               </div>
             </div>
 
@@ -171,7 +179,7 @@
             <div class="col-sm-12">
               <button type="submit" id="save" class="btn btn-success">Save changes</button>
               <button type="button" id="cancel" class="btn btn-default">Revert</button>
-              <a class="view btn btn-default" href="#" title="View main page.  Note unsaved configuration will be lost" data-placement='right'>View</a> 
+              <a class="view btn btn-default" href="#" title="View main page.  Note unsaved configuration will be lost" data-placement='right'>View</a>
             </div>
           </div>
         </form>

@@ -42,17 +42,32 @@ class DegustController < ApplicationController
             v.last = DateTime.now
             v.save
         end
-        res = de_setting.settings_with_defaults
+        res = {settings: de_setting.settings_with_defaults}
         res['extra_menu_html'] = render_to_string(partial: 'layouts/navigation_links.html.erb')
+        res['is_logged_in'] = !current_user.nil?
+        res['is_owner'] = de_setting.is_owner(current_user)
         render :json => res
     end
 
     def save_settings
         de_setting = DeSetting.find_by_secure_id(params[:id])
-        ok = de_setting.update_from_json(JSON.parse(params['settings']))
+        new_settings = JSON.parse(params['settings'])
+
+        if !de_setting.can_modify(current_user)
+            render status: 400, plain: 'Access denied : locked'
+            return
+        end
+
+        # Not allowed to set "locked" unless you own it
+        if !de_setting.is_owner(current_user) && new_settings['config_locked']
+            render status: 400, plain: 'Access denied : not-owner'
+            return
+        end
+
+        ok = de_setting.update_from_json(new_settings)
         if !ok
             #raise ActionController::BadRequest.new('Invalid character in field')
-            render status: 400, text: 'Invalid character in field'
+            render status: 400, plain: 'Invalid character in field'
         else
             de_setting.save!
         end

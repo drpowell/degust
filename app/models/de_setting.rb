@@ -40,6 +40,18 @@ class DeSetting < ApplicationRecord
         visiteds.where(:user => user).first
     end
 
+    def is_owner(user)
+        !user.nil? && self.user == user
+    end
+
+    def is_locked
+        settings_as_json['config_locked']
+    end
+
+    def can_modify(user)
+        is_owner(user) || !is_locked()
+    end
+
 private
     def randomize_id
         begin

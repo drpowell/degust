@@ -114,6 +114,9 @@ set_multi_select = (el, opts, selected) ->
 update_data = () ->
     return if !data
 
+    if mod_settings['extra_menu_html']
+        $('#right-navbar-collapse').append(mod_settings['extra_menu_html'])
+
     title = mod_settings.name || "Unnamed"
     $(".exp-name").text(title)
     document.title = title
@@ -168,13 +171,16 @@ update_data = () ->
     $('.condition:not(.template)').remove()
     for r in mod_settings.replicates
         [n,lst] = r
-        create_condition_widget(n || 'Unknown', lst, 
+        create_condition_widget(n || 'Unknown', lst,
             n in (mod_settings['init_select'] || []),
             n in (mod_settings['hidden_factor'] || [])
             )
 
     $('#analyze-server-side').prop('checked', mod_settings.analyze_server_side)
     update_analyze_server_side()
+
+    $('#config-locked').prop('checked', mod_settings.config_locked)
+    $('#config-locked').prop('disabled', !full_settings.is_owner)
 
 update_table = () ->
     columns = column_keys.map((key,i) ->
@@ -290,6 +296,10 @@ init_page = () ->
         init_table()
     )
 
+    if full_settings?
+        if full_settings['extra_menu_html']
+            $('#right-navbar-collapse').append(full_settings['extra_menu_html'])
+
     $('input.fmt').click(update_data)
     $('#save').click(save)
     $('#cancel').click(() -> reset_settings(); update_data())
@@ -334,6 +344,10 @@ init_page = () ->
 
     $('#analyze-server-side').change(update_analyze_server_side)
 
+    $('#config-locked').change(() ->
+        mod_settings.config_locked = $('#config-locked').is(':checked')
+    )
+
     $('select#fdr-column').change(() ->
         v = +$("select#fdr-column option:selected").val()
         mod_settings.fdr_column = if v == -1 then '' else column_keys[v]
@@ -367,7 +381,8 @@ init = () ->
             url: script("settings"),
             dataType: 'json'
         }).done((json) ->
-            window.settings = json
+            window.full_settings = json
+            window.settings = json.settings
             init_page()
          ).fail((x) ->
             log_error "Failed to get settings!",x
