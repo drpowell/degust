@@ -1,1 +1,1 @@
-window.degust_version = '2.1'
+window.degust_version = '3.0.0'

@@ -1,0 +1,280 @@
+
+#main-loading { position: absolute; top: 100px; left: 250px; }
+
+#files { border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 3px 8px; margin-top: 10px}
+#files label { display: block; font-weight: normal; }
+#hidden-factors { border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 3px 8px; margin-top: 10px; opacity: 0.8; }
+#hidden-factors h4 {font-size: 12px;}
+#hidden-factors label {font-size: 10px;}
+
+#dge-pc { height: 250px; }
+
+#dge-ma { height: 330px; }
+
+#grid { height: 300px; }
+#grid-info { font-size: 9pt; }
+.tab-search { font-size: 9pt; float: right; margin-top: -10px; }
+.tab-search .active { background-color: gold; }
+
+.genesets-toggle, #genesets {display: none;}
+.geneset-save { width: 100%;}
+.geneset-search input.search { width: 150px; margin: 5px 0;}
+.geneset-search .ui-autocomplete-loading {
+    background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+}
+.weights {font-size: 12px;}
+.weights .name {font-weight: bold; text-align: right; width: 95px; display: inline-block; margin-right: 10px;}
+.weights .val { width:20px; width: 50px; display: inline-block;}
+.weights-toggle { margin-top: 8px; font-size: 10px; }
+
+div#csv-download-div { float: right; margin: -7px 30px 0 0; }
+a#csv-download { font-size: 9pt; }
+
+.conditions { display: none; }
+.hide { display: none !important; }
+
+.slick-row { font-size: 9pt; }
+.slick-row:hover {
+  font-weight: bold;
+  color: #069;
+}
+
+.slick-row .counts { margin-left: 10px; color: #999;}
+.slick-row .counts span:nth-child(odd) { color: #bbb; }
+
+div.right { float: right; }
+div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 0 3px; margin-top: 15px}
+.filter label, .filter input { display: inline-block; font-size: 8pt; }
+.filter select { display: inline-block; font-size: 8pt; max-width: 200px; }
+.filter label { width: 70px; text-align: right; }
+.filter input { width: 50px; }
+.kegg-filter { display: none; }
+#fdrSlider, #fcSlider, #numGenesSlider, #skipGenesSlider, #pcaDimsSlider { display: inline-block; width: 50px; margin: 0 10px; font-size: 8pt}
+#fc-relative, #ma-fc-col { width: 115px; height: auto; }
+.filter input.error { background-color: #fbb; }
+
+.ec-group { display: none; }
+
+.neg  { height: 100%; background-color: #ddf; }
+.pos  { height: 100%; background-color: #fdd; }
+
+#expression { position: relative; }
+#loading { position: absolute; top: 100px; left: 250px; }
+
+.ui-dialog .ui-state-hover { border: 0; }
+
+
+#gene-info { font-size: 9pt; height: 5em;}
+#gene-info .lbl { width: 100px; font-weight: bold; display: inline-block;}
+
+.r-code { font-size: 11px; }
+.error-msg, .error-input { font-size: 11px; }
+
+/* Hide all options or controls that are displayed conditionally */
+.conditions, .config, a.show-r-code, a.show-heatmap, #dge-ma, #dge-pca, .ma-fc-col-opt, .pca-opts, #hidden-factors, .weights-toggle  {
+  display: none;
+}
+
+a.show-r-code, a.show-heatmap, a.update-link {
+  font-size: 10px;
+}
+
+.pca-opts { border-top: solid 1px black; margin-top: 5px}
+.pca-opts .pca-title { font-size: 10pt; font-weight: bold; margin-bottom: 3px; }
+
+.warning { background-color: red; }
+
+/* Tour ***********************************************************************/
+.popover.wide { max-width: 460px; }
+
+/* Heatmap ***********************************************************************/
+
+#heatmap-info { font-size: 9pt; height: 2em; }
+#heatmap-info .lbl { margin-left: 20px; font-weight: bold; display: inline-block;}
+
+#heatmap .extent {
+  fill: #990;
+  fill-opacity: .2;
+  stroke: #000;
+}
+
+#heatmap .info {
+  font-size: 10px;
+}
+
+#heatmap .legend {
+  font-size: 10px;
+}
+
+#heatmap .legend path {
+  display: none;
+}
+
+#heatmap .legend line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#heatmap #arrow, #heatmap .arrow {
+    stroke-width:2;
+}
+
+
+/* PCA-plot / MDS-plot ***********************************************************/
+
+#dge-pca .label { font-size: 100%; }
+#dge-pca .title { font-size: 70%; font-weight: bold; }
+
+#dge-pca .scatter .axis line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar-chart .bar:hover { fill: brown; }
+
+
+.bar-chart .axis path, .bar-chart .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#dge-pca .bar-chart .axis { font: 10px sans-serif; }
+#dge-pca .bar-chart { position: absolute; bottom: 0; left: 510px; }
+#dge-pca .bar-chart .x.axis path { display: none; }
+
+/* MA-plot ***********************************************************************/
+
+.dge-ma { position: relative; }
+
+.dge-ma .extent {
+  fill: #000;
+  fill-opacity: .2;
+  stroke: #fff;
+}
+
+.dge-ma .axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+
+.dge-ma div.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: #333;
+  color: #fff;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+.dge-ma div.tooltip table {
+  font: 12px sans-serif;
+  color: #fff;
+}
+
+.dge-ma > svg { 
+  pointer-events: none;
+}
+.dge-ma > svg, .dge-ma > canvas { 
+  font: 14px sans-serif;
+  position: absolute;
+}
+.dge-ma .axis line, .dge-ma .axis path {
+  fill: none;
+  stroke: #222;
+  shape-rendering: crispEdges;
+}
+
+/* Edit overlay ***********************************************************************/
+
+.edit-overlay {
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.4;
+    z-index: 10000;
+}
+
+.edit-backdrop {
+    position: absolute;
+    border-radius: 5px;
+    background: inherit;
+    z-index: 10000;
+}
+
+.edit-elem {
+    position: relative;
+    z-index: 10001;
+}
+
+.edit-btns {
+    padding: 2px;
+}
+
+/* Boxplot (also see d3.boxplot.css) *****************************************************/
+
+.expression-boxplot .axis path, .expression-boxplot .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+/* Gene expression strip chart ***********************************************************************/
+
+.strip-chart .axis path, .strip-chart .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.strip-chart .axis { font: 10px sans-serif; }
+
+.single-gene-expr { display: none; }   /* Hide this on startup */
+
+.single-gene-expr div.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: #333;
+  color: #fff;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+.single-gene-expr div.tooltip table {
+  font: 12px sans-serif;
+  color: #fff;
+}
+
+
+/* Print overlay ***********************************************************************/
+.print-popup {
+        position: absolute;
+        background-color: #f2f2f2;
+        border-radius: 4px;
+
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        min-width: 150px;
+        border: 1px solid #d4d4d4;
+
+        z-index:11200;
+}
+
+.print-backdrop {
+        position: fixed;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: black;
+        opacity: 0.4;
+        z-index: 200;
+}
