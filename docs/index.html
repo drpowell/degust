@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Degust by David R. Powell</title>
+
+    <link rel="stylesheet" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/local.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <script type="text/javascript">
+    var _gaq = window._gaq || [];
+    _gaq.push(['drp._setAccount', 'UA-45207067-1']);
+    _gaq.push(['drp._trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+    <div id="header_wrap" class="outer">
+      <a href='http://degust.erc.monash.edu/degust/compare.html?code=example'>
+        <img class='screenshot' src='images/screenshot-small.png' />
+      </a>
+        <header class="inner">
+          <h1 id="project_title">Degust</h1>
+          <h2 id="project_tagline">Take the time to digest and appreciate your Differential Gene Expression data</h2>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Degust</h1>
+        <p>An interactive web tool for visualising Differential Gene Expression data</p>
+        <p><a class='link-big' href='http://degust.erc.monash.edu/degust/compare.html?code=example'>Try a live demo</a></p>
+        <p>or watch a <a href="https://www.youtube.com/watch?v=ucucQ_LtZ1g">screencast</a> of Degust in action</p>
+
+        <h2>Using Degust</h2>
+        <p>There are three alternative ways to use Degust.  Briefly, these are: </p>
+        <ul>
+          <li>Upload a CSV of counts per gene to our <a href='http://degust.erc.monash.edu/upload'>public server</a>.
+          <li>Do your own analysis, and upload a CSV of your analysis to our <a href='http://degust.erc.monash.edu/upload'>public server</a>.
+          <li>Do your own analysis and create a single HTML file to view and share using <a href='dist/latest/degust.py'>degust.py</a>.
+        </ul>
+
+        <h3>Use Degust with per gene read counts</h3>
+        <p>Create your CSV file with read counts per gene - the CSV file requirements are documented on the <a href='http://degust.erc.monash.edu/upload#csv-counts'>upload page</a>.  You'll then be directed to web page to specify the columns of your CSV including which samples are replicates.  The back-end will then analyse your data using <a href='http://bioinf.wehi.edu.au/RNAseqCaseStudy/'>voom/limma</a>, and you can visualise the results with Degust.</p>
+        <p>Using Degust in this manner has the advantage that you can select, within Degust, the conditions you wish to compare.  That is, selected 2 samples and a moderated t-test is performed for each gene.  Select 3 or more samples and a moderated F-test is used.
+
+        <h3>Use Degust with pre-analysed data</h3>
+        <p>Perform your own differential expression analysis and produce a CSV file of your results - the CSV file requirements are documented on the <a href='http://degust.erc.monash.edu/upload#csv-logfc'>upload page</a>.  You can then specify which columns are which, and visualise your results with Degust.
+
+        <h3>Use Degust as a single HTML</h3>
+        <p>Perform your own differential expression analysis and produce a CSV file of your results.  You then use a python script, <a href='dist/latest/degust.py'>degust.py</a>, to embed your CSV file in an HTML file that can be directly loaded by in browser.
+
+        <h3>Example using Degust from a LIMMA analysis</h3>
+        <a name='example-limma'></a>
+        <p>Assuming you have analysed your data using R with <a href='http://bioinf.wehi.edu.au/RNAseqCaseStudy/'>voom/limma</a>, and have a <code>MArrayLM</code> object containing your results you can use Degust as follows.</p>
+        <pre>
+          &gt; # Save our analysis object 'efit' to a CSV file
+          &gt; class(efit)
+          [1] "MArrayLM"
+          attr(,"package")
+          [1] "limma"
+          &gt; colnames(efit)
+          [1] "GppX" "luxS" "cdhR"
+          &gt; write.csv(topTable(efit, number=Inf), 'dge.csv', row.names=F)
+          &gt; quit()
+          bash$
+        </pre>
+
+        <p>The file we created above, dge.csv, could be loaded directly onto the <a href='http://degust.erc.monash.edu/upload'>public server.</a></p>
+        <p>Alternatively, you can create your own HTML file using <a href='dist/latest/degust.py'>degust.py</a> as follows:</p>
+        <pre>
+          bash$ python degust.py -o dge.html --name 'My DGE experiment' \
+                                 --primary 'WT'  --avg AveExpr --fdr adj.P.Val \
+                                 --logFC "GppX,luxS,cdhR" \
+                                 --info "Feature,product" dge.csv
+        </pre>
+
+      </section>
+
+      <section class="inner">
+        <h3>Contact</h3>
+        <p>Degust was written by <a href='http://thunking.drp.id.au/'>David R. Powell</a> (<a href='http://twitter.com/d_r_powell'>@d_r_powell</a>).<p>
+        <p>Please raise any issues on the <a href='https://github.com/drpowell/degust/issues'>Github issues page</a></p>
+
+        <h3>Degust is supported in part by</h3>
+        <a href='http://www.monash.edu/'>
+          <img class='logo' src='http://www.vicbioinformatics.com/images/vbc/monash_logo.gif'/>
+        </a>
+    </div>
+
+    <a href="https://github.com/drpowell/degust"><img class='fork-me' src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+  </body>
+</html>

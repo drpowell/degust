@@ -1,0 +1,27 @@
+.screenshot {
+  float: right;
+  width: 350px;
+
+  border: none;
+  box-shadow: none;
+}
+
+a.link-big { font-size: 32px; }
+
+#html-example { font-size: 12px; }
+
+.fork-me {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    border: 0;
+    width: inherit;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+img.logo {
+  width: auto;
+}
