@@ -17,6 +17,8 @@ For production build (minifies js, and no source-maps)
 
 For frontend development:
   
+   
+    (cd degust-frontend ; ./node_modules/.bin/grunt build)
     (cd degust-frontend ; ./node_modules/.bin/grunt watch)
 
 
