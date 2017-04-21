@@ -6,6 +6,15 @@
     .col-md-12
       .page-header
         %h1 Your Data
+
+  - if !current_user.nil?
+    .row
+      .col-md-12
+        You are logged in as
+        %b #{current_user.name}
+        via
+        %b #{if current_user.provider == "twitter" then "twitter" else "google" end}
+
   .row
     .col-md-12
       .mine
