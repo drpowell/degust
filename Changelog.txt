@@ -1,0 +1,97 @@
+v3.0.0
+  * New backend in rails
+  * Allow locking of config by logged-in users
+  * Add logged-in user info to degust page
+
+v2.1
+  * Fix CSV downloading in chrome
+  * Fix handling of files with NA strings
+
+v2.0
+  * New build with nodejs backend.  Rudimentry support for login to track datasets
+  * Added "save as SVG/PNG" to many plots (right-click)
+  * Heatmap may show replicates (right-click to select)
+  * Added colour schemes to heatmap
+  * Added 3 new QC plots:  Library size, expression box-whisker, p-value histogram
+  * Added gene-expression plot when hovering on table, heatmap or ma-plot
+  * Download support for CSV, TSV or ODF
+
+v0.21
+  * Added voomWithQualityWeights option to server version
+
+v0.20
+  * Add pulldown to select FDR & FC cutoffs
+
+v0.19
+  * Fix MDS plots.  Previously was not normalising for library size.
+
+v0.18
+  * New condition selector.  Better when changing many conditions
+  * Change to external R templates
+  * Add selector for DGE method:  currently voom/limma or edgeR
+
+v0.17
+  * Allow linking directly to a plot type using a hash parameter
+  * Fix bug in labelling of MDS plot when changing condition slection
+
+v0.16
+  * Fix table search when number column included in table
+  * Fix bug when '&' used in condition name
+  * Add title to page
+  * Rotate heatmap scale so it fits better.
+
+v0.15
+  * Update heatmap to use web-worker to compute clustering
+  * Change colours in heatmap, table, kegg to be consistent with red is +ve, blue is -ve
+  * Add a legend to the heatmap
+  * Heatmap now ignores the "FC relative to" value.  It is always relative to the row average
+  * Add an MDS plot enabled only when per-replicate count data is available
+
+v0.14
+  * Option to display counts-per-million instead of raw counts
+  * Make the parallel-coordinates plot as wide as possible
+
+v0.13
+  * Add warning to all pages if using IE
+
+v0.12
+  * Ability to specify count columns in degust.py
+  * Allow text selection in the gene table
+
+v0.11.2
+  * Workaround issue with centering of bootstraptour popup.
+
+v0.11.1
+  * Add axis labels to the MA-plot
+
+v0.11
+  * Add option to degust.py to load tab-delimitered files
+  * Add option to degust.py to process cuffdiff output (gene_exp.diff).  Note this is still experimental
+
+v0.10.1
+  * Improve layout on small displays
+
+v0.10
+  * Make the external URL link used for double-clicking the gene table configurable
+
+v0.9
+  * Fix log FC filter to use the largest FC between any sample pair
+
+v0.8
+  * Add script to allow building of a single standalone html
+  * Add a tour of the site features
+  * Add loading page when for when pulling down large js
+
+v0.7
+  * Renamed to "degust" : take the time to appreciate your RNA-seq data...
+  * Add "show r code" functionality
+  * Add ability to upload and display user analyed DGE results
+  * Major code re-organisation to allow combined assets
+
+v0.6
+  * Changed MA-plot to use canvas.  *much snappier*
+
+v0.5
+  * Added MA-plot
+  * Better data model handling.  Should be easier to support different formats, and
+    to configure standalone
