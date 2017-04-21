@@ -69,4 +69,5 @@ namespace :deploy do
     end
 end
 
-after "deploy", "deploy:frontend", "deploy:restart"
+after "deploy", "deploy:frontend"
+after "deploy", "deploy:restart"
