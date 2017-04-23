@@ -17,8 +17,10 @@ css = {axis: 'axis', scatter: 'scatter'}
 
 class ScatterPlot
     constructor: (@opts={}) ->
+        @opts.name ?= "scatter"         # Used for saving filename
         @opts.padding ?= 30
-        @opts.xaxis_loc ?= 'zero'
+        @opts.xaxis_loc ?= 'zero'       # 'zero' or 'bottom'
+        @opts.yaxis_loc ?= 'left'       # 'zero' or 'left'
         @opts.colouring ?= () -> 'blue'
         @opts.alpha ?= () -> 0.7
         @opts.size ?= () -> 3
@@ -102,8 +104,8 @@ class ScatterPlot
         @svg.select("g.brush").remove()
         @svg.selectAll(".#{css.axis}").remove()
 
-        @x_val = x_val = (d) => d[@xColumn.idx]
-        @y_val = y_val = (d) => d[@yColumn.idx]
+        @x_val = x_val = (d) => @xColumn.get(d)
+        @y_val = y_val = (d) => @yColumn.get(d)
 
         @xScale = xScale = d3.scale.linear()
                      .domain(d3.extent(@data, (d) => x_val(d)).map((x) => x))
@@ -140,6 +142,16 @@ class ScatterPlot
                     yScale.domain()[0]
             else yScale.domain()[0]
 
+        yaxis_loc = switch (@opts.yaxis_loc)
+            when 'left' then xScale.domain()[0]
+            when 'zero'
+                if (xScale.domain()[0]<0 && xScale.domain()[1]>0)
+                    0
+                else
+                    xScale.domain()[0]
+            else xScale.domain()[0]
+        console.log xScale.domain()
+
         @svg.append("g")
             .attr("class", css.axis)
             .attr("transform", "translate(0,#{yScale(xaxis_loc)})")
@@ -153,7 +165,7 @@ class ScatterPlot
 
         @svg.append("g")
             .attr("class", css.axis)
-            .attr("transform", "translate(#{@opts.padding},0)")
+            .attr("transform", "translate(#{xScale(yaxis_loc)},0)")
             .call(yAxis)
            .append("text")
             .attr("transform", "rotate(-90)")
@@ -166,7 +178,7 @@ class ScatterPlot
 
 
     _make_menu: (el) ->
-        print_menu = (new Print((() => @_svg_for_print()), "scatter-plot")).menu()
+        print_menu = (new Print((() => @_svg_for_print()), @opts.name)).menu()
         # menu = [
         #        divider: true
         #        ]
@@ -185,6 +197,8 @@ class ScatterPlot
                 canvas: false
                 height: 300
                 width: 600
+                xaxis_loc: @opts.xaxis_loc
+                yaxis_loc: @opts.yaxis_loc
                 )
         sub.update_data(@data, @xColumn, @yColumn, @colouring)
         svg = d3.select(sub.svg.node().cloneNode(true))

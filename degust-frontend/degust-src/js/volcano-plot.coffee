@@ -1,6 +1,6 @@
-class MAPlot extends ScatterPlot
+class VolcanoPlot extends ScatterPlot
     constructor: (@opts) ->
-        @opts.name ?= 'MA-plot'
+        @opts.name ?= 'Volcano-plot'
         super(@opts)
 
         @tooltip = d3.select(@opts.elem).append("div")
@@ -10,11 +10,11 @@ class MAPlot extends ScatterPlot
         @on('mouseover.tooltip', (d, loc, loc_doc) => @_show_info(d, loc))
         @on('mouseout.tooltip', () => @_hide_info())
 
-    update_data: (data, @avg_col, @logfc_col, colour, @info_cols, @fdr_col) ->
+    update_data: (data, @logfc_col, @fdr_col, colour, @info_cols) ->
         super(data,
-             {name: "Ave Expr", get: (d) -> d[avg_col.idx] },
-             {name: "log FC", get: (d) -> d[logfc_col.idx] },
-             colour)
+              {name: "log FC", get: (d) -> d[logfc_col.idx] },
+              {name: "-log10 FDR", get: (d) -> -Math.log10(d[fdr_col.idx]) },
+              colour)
 
     # Display and fill in the tooltip
     _show_info: (rows, loc) ->
@@ -46,4 +46,4 @@ class MAPlot extends ScatterPlot
 
 
 
-window.MAPlot = MAPlot
+window.VolcanoPlot = VolcanoPlot

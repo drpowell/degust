@@ -284,6 +284,7 @@ colour_by_pval = (col) ->
 # Globals for widgets
 parcoords = null
 ma_plot = null
+volcano_plot = null
 pca_plot = null
 current_plot = null    # parcoords OR ma_plot OR pca_plot depending which is active
 gene_expr = null
@@ -397,6 +398,7 @@ set_plot = (typ, force_update) ->
         when 'mds'       then plot=pca_plot; activate=activate_pca_plot
         when 'ma'        then plot=ma_plot; activate=activate_ma_plot
         when 'parcoords' then plot=parcoords; activate=activate_parcoords
+        when 'volcano'   then plot=volcano_plot; activate=activate_volcano
     if (current_plot != plot || force_update)
         activate()
         may_warn_mds()
@@ -481,10 +483,10 @@ activate_single_gene_expr = () ->
 activate_parcoords = () ->
     may_set_plot_var('parcoords')
     current_plot = parcoords
-    $('#dge-ma,#dge-pca').hide()
+    $('#dge-ma,#dge-pca,#dge-volcano').hide()
     $('#dge-pc').show()
     $('#select-pc').addClass('active')
-    $('#select-ma,#select-pca').removeClass('active')
+    $('#select-ma,#select-pca,#select-volcano').removeClass('active')
     $('.ma-fc-col-opt').hide()
     $('.pca-opts').hide()
     heatmap.enabled(true)
@@ -493,10 +495,22 @@ activate_parcoords = () ->
 activate_ma_plot = () ->
     may_set_plot_var('ma')
     current_plot = ma_plot
-    $('#dge-pc,#dge-pca').hide()
+    $('#dge-pc,#dge-pca,#dge-volcano').hide()
     $('#dge-ma').show()
     $('#select-ma').addClass('active')
-    $('#select-pc,#select-pca').removeClass('active')
+    $('#select-pc,#select-pca,#select-volcano').removeClass('active')
+    $('.ma-fc-col-opt').show()
+    $('.pca-opts').hide()
+    heatmap.enabled(true)
+    update_data()
+
+activate_volcano = () ->
+    may_set_plot_var('volcano')
+    current_plot = volcano_plot
+    $('#dge-pc,#dge-pca,#dge-ma').hide()
+    $('#dge-volcano').show()
+    $('#select-volcano').addClass('active')
+    $('#select-pc,#select-pca,#select-ma').removeClass('active')
     $('.ma-fc-col-opt').show()
     $('.pca-opts').hide()
     heatmap.enabled(true)
@@ -505,10 +519,10 @@ activate_ma_plot = () ->
 activate_pca_plot = () ->
     may_set_plot_var('mds')
     current_plot = pca_plot
-    $('#dge-pc,#dge-ma').hide()
+    $('#dge-pc,#dge-ma,#dge-volcano').hide()
     $('#dge-pca').show()
     $('#select-pca').addClass('active')
-    $('#select-pc,#select-ma').removeClass('active')
+    $('#select-pc,#select-ma,#select-volcano').removeClass('active')
     $('.ma-fc-col-opt').hide()
     heatmap.enabled(false)
     $('.pca-opts').show()
@@ -542,6 +556,7 @@ init_charts = () ->
     ma_plot = new MAPlot(
         elem: '#dge-ma'
         filter: expr_filter
+        xaxis_loc: 'zero'
         brush_enable: true
         canvas: true
         height: 300
@@ -549,6 +564,18 @@ init_charts = () ->
         )
     ma_plot.on("mouseover.main", (rows) -> heatmap.highlight(rows); gene_expr.select(g_data, rows))
     ma_plot.on("mouseout.main", () -> heatmap.unhighlight())
+
+    volcano_plot = new VolcanoPlot(
+        elem: '#dge-volcano'
+        filter: expr_filter
+        yaxis_loc: 'zero'
+        brush_enable: true
+        canvas: true
+        height: 300
+        width: 600
+        )
+    volcano_plot.on("mouseover.main", (rows) -> heatmap.highlight(rows); gene_expr.select(g_data, rows))
+    volcano_plot.on("mouseout.main", () -> heatmap.unhighlight())
 
     pca_plot = new GenePCA(
         elem: '#dge-pca'
@@ -579,6 +606,10 @@ init_charts = () ->
         heatmap.schedule_update(d)
     )
     ma_plot.on("brush", (d) ->
+        gene_table.set_data(d)
+        heatmap.schedule_update(d)
+    )
+    volcano_plot.on("brush", (d) ->
         gene_table.set_data(d)
         heatmap.schedule_update(d)
     )
@@ -1010,6 +1041,16 @@ update_data = () ->
                             g_data.columns_by_type('info'),
                             pval_col
                             )
+    else if current_plot == volcano_plot
+        ma_fc = $('select#ma-fc-col option:selected').val()
+        ma_fc = g_data.columns_by_type(['fc','primary'])[ma_fc].name
+        fc_col = g_data.columns_by_type('fc_calc').filter((c) -> c.name == ma_fc)[0]
+        volcano_plot.update_data(g_data.get_data(),
+                            fc_col,
+                            pval_col,
+                            colour_by_pval(pval_col.idx),
+                            g_data.columns_by_type('info'),
+                            )
     else if current_plot == pca_plot
         cols = g_data.columns_by_type('fc_calc').map((c) -> c.name)
         count_cols = g_data.columns_by_type('count').filter((c) -> cols.indexOf(c.parent)>=0)
@@ -1083,6 +1124,7 @@ init_page = (use_backend) ->
     $('#select-pc a').click((e) ->  e.preventDefault(); set_plot('parcoords'))
     $('#select-ma a').click((e) ->  e.preventDefault(); set_plot('ma'))
     $('#select-pca a').click((e) -> e.preventDefault(); set_plot('mds'))
+    $('#select-volcano a').click((e) -> e.preventDefault(); set_plot('volcano'))
     $('#select-options a').click((e) ->  e.preventDefault(); activate_options())
     $('#select-single-gene-expr a').click((e) -> e.preventDefault(); activate_single_gene_expr())
 

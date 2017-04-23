@@ -11,6 +11,8 @@
 
 #dge-ma { height: 330px; }
 
+#dge-volcano { height: 330px; }
+
 #grid { height: 300px; }
 #grid-info { font-size: 9pt; }
 .tab-search { font-size: 9pt; float: right; margin-top: -10px; }
@@ -71,7 +73,7 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
 .error-msg, .error-input { font-size: 11px; }
 
 /* Hide all options or controls that are displayed conditionally */
-.conditions, .config, a.show-r-code, a.show-heatmap, #dge-ma, #dge-pca, .ma-fc-col-opt, .pca-opts, #hidden-factors, .weights-toggle  {
+.conditions, .config, a.show-r-code, a.show-heatmap, #dge-ma, #dge-pca, #dge-volcano, .ma-fc-col-opt, .pca-opts, #hidden-factors, .weights-toggle  {
   display: none;
 }
 
