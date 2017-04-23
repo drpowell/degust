@@ -24,6 +24,7 @@ class ScatterPlot
         @opts.size ?= () -> 3
         @opts.filter ?= () -> true
         @opts.brush_enable ?= false
+        @opts.animate ?= false             # Attempt to transition dots around.  Only works for canvas
 
         @elem = d3.select(@opts.elem).append('div')
         @elem.attr('class', css.scatter)
@@ -165,11 +166,32 @@ class ScatterPlot
 
 
     _make_menu: (el) ->
-        print_menu = (new Print(@svg, "scatter-plot")).menu()
-        menu = [
-               divider: true
-               ]
-        d3.select(el).on('contextmenu', d3.contextMenu(menu.concat(print_menu))) # attach menu to element
+        print_menu = (new Print((() => @_svg_for_print()), "scatter-plot")).menu()
+        # menu = [
+        #        divider: true
+        #        ]
+        d3.select(el).on('contextmenu', d3.contextMenu(print_menu))
+
+
+    _svg_for_print: () ->
+        if (!@opts.canvas)
+            return @svg.node()
+        holder = document.createElement('div')
+        holder.setAttribute('id','scatter-print-holder')
+        document.body.append(holder)
+        sub = new ScatterPlot(
+                elem: '#scatter-print-holder'
+                filter: @opts.filter
+                canvas: false
+                height: 300
+                width: 600
+                )
+        sub.update_data(@data, @xColumn, @yColumn, @colouring)
+        svg = d3.select(sub.svg.node().cloneNode(true))
+        svg.attr('class','')
+        Print.copy_svg_style_deep(sub.svg, svg)
+        document.body.removeChild(holder)
+        {svg: svg.node(), width: @width, height: @height}
 
     _chooseOne: (v1,v2) ->
         if (v1 != null)
@@ -235,8 +257,8 @@ class ScatterPlot
 
 
         # And animate the moving dots
-        dots.transition()
-            .attr("transform", (d) => "translate(#{@xScale(@x_val(d))}, #{@yScale(@y_val(d))})")
+        dd = if @opts.animate then dots.transition() else dots
+        dd.attr("transform", (d) => "translate(#{@xScale(@x_val(d))}, #{@yScale(@y_val(d))})")
 
     # Event handler for mouse-move.
     # debouce the lookup as it is potentially expensive

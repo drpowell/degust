@@ -332,7 +332,8 @@ kegg_mouseover = (obj) ->
 gene_table_mouseover = (item) ->
     current_plot.highlight([item])
     ec_col = g_data.column_by_type('ec')
-    kegg.highlight(item[ec_col.idx])
+    if ec_col?
+        kegg.highlight(item[ec_col.idx])
     heatmap.highlight([item])
     gene_expr.select(g_data, [item])
 

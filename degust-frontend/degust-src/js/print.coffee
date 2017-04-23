@@ -12,12 +12,13 @@ class Print
         ]
 
     _get_svg: () ->
-        if (typeof @svg == "function")
-            r=@svg()
-        else if (@svg instanceof d3.selection)
-            r=@svg.node()
-        else
-            r=@svg
+        r = @svg
+        if (typeof r == "function")
+            r=r()
+
+        if (r instanceof d3.selection)
+            r=r.node()
+
         if ('svg' of r)
             [r.svg, r.width, r.height]
         else

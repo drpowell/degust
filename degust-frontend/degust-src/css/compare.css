@@ -149,11 +149,6 @@ a.show-r-code, a.show-heatmap, a.update-link {
   position: relative;
 }
 
-.scatter .axis text {
-    font-family: sans-serif;
-    font-size: 9px;
-}
-
 .scatter > svg, .scatter > canvas {
   font: 14px sans-serif;
   position: absolute;
@@ -171,6 +166,11 @@ a.show-r-code, a.show-heatmap, a.update-link {
 }
 
 /* MA-plot ***********************************************************************/
+
+#dge-ma .scatter .axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
 
 #dge-ma div.tooltip {
   position: absolute;
@@ -282,4 +282,8 @@ a.show-r-code, a.show-heatmap, a.update-link {
         background-color: black;
         opacity: 0.4;
         z-index: 200;
+}
+
+.print-popup label {
+    width: 80px;
 }
