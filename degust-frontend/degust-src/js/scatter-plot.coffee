@@ -150,7 +150,6 @@ class ScatterPlot
                 else
                     xScale.domain()[0]
             else xScale.domain()[0]
-        console.log xScale.domain()
 
         @svg.append("g")
             .attr("class", css.axis)

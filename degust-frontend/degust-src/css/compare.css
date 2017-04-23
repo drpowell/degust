@@ -174,7 +174,9 @@ a.show-r-code, a.show-heatmap, a.update-link {
     font-size: 9px;
 }
 
-#dge-ma div.tooltip {
+/* Tooltips ***********************************************************************/
+
+#dge-ma div.tooltip, #dge-volcano div.tooltip {
   position: absolute;
   text-align: center;
   padding: 2px;
@@ -186,7 +188,7 @@ a.show-r-code, a.show-heatmap, a.update-link {
   pointer-events: none;
   width: 200px;
 }
-#dge-ma div.tooltip table {
+#dge-ma div.tooltip table, #dge-volcano div.tooltip table {
   font: 12px sans-serif;
   color: #fff;
 }

@@ -28,9 +28,9 @@ class VolcanoPlot extends ScatterPlot
         @info_cols.forEach((c) ->
             info += "<tr><td><b>#{c.name}</b>:<td>#{row[c.idx]}"
         )
-        info += "<tr><td><b>Ave Expr</b>:<td>#{fmt row[@avg_col.idx]}"
         info += "<tr><td><b>log FC</b>:<td>#{fmt row[@logfc_col.idx]}"
         info += "<tr><td><b>FDR</b>:<td>#{fmt2 row[@fdr_col.idx]}"
+        info += "<tr><td><b>-log10 FDR</b>:<td>#{fmt -Math.log10(row[@fdr_col.idx])}"
         info += "</table>"
         if rows.length>1
             info += "(And #{rows.length-1} other#{if rows.length>2 then 's' else ''})"
