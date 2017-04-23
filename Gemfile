@@ -35,6 +35,8 @@ gem 'omniauth-google-oauth2'
 gem 'simple_form'
 
 gem 'browser-timezone-rails'
+gem 'rails-backup-migrate'
+
 
 group :development do
   gem 'better_errors'
