@@ -59,7 +59,7 @@ class GeneData
             for c in @columns
                 if c.type in ['fc','abs','avg','fdr','count','p']
                     d[c.idx] = +d[c.idx]
-        fdr_col = @column_by_type('fdr')
+        fdr_col = @column_by_type('fdr')?.idx
         @data.sort((a,b) -> a[fdr_col] - b[fdr_col])
         @_totals = {}
         null
@@ -101,7 +101,7 @@ class GeneData
     column_by_type: (type) ->
         for col in @columns
             if col.type == type
-                return col.idx
+                return col
         return null
 
     # Lookup a column by index

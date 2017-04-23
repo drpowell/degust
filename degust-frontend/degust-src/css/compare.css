@@ -143,22 +143,36 @@ a.show-r-code, a.show-heatmap, a.update-link {
 #dge-pca .bar-chart { position: absolute; bottom: 0; left: 510px; }
 #dge-pca .bar-chart .x.axis path { display: none; }
 
-/* MA-plot ***********************************************************************/
+/* Scatter plot ***********************************************************************/
 
-.dge-ma { position: relative; }
+.scatter {
+  position: relative;
+}
 
-.dge-ma .extent {
+.scatter .axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+
+.scatter > svg, .scatter > canvas {
+  font: 14px sans-serif;
+  position: absolute;
+}
+.scatter .axis line, .scatter .axis path {
+  fill: none;
+  stroke: #222;
+  shape-rendering: crispEdges;
+}
+
+.scatter .extent {
   fill: #000;
   fill-opacity: .2;
   stroke: #fff;
 }
 
-.dge-ma .axis text {
-    font-family: sans-serif;
-    font-size: 9px;
-}
+/* MA-plot ***********************************************************************/
 
-.dge-ma div.tooltip {
+#dge-ma div.tooltip {
   position: absolute;
   text-align: center;
   padding: 2px;
@@ -168,23 +182,11 @@ a.show-r-code, a.show-heatmap, a.update-link {
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
+  width: 200px;
 }
-.dge-ma div.tooltip table {
+#dge-ma div.tooltip table {
   font: 12px sans-serif;
   color: #fff;
-}
-
-.dge-ma > svg { 
-  pointer-events: none;
-}
-.dge-ma > svg, .dge-ma > canvas { 
-  font: 14px sans-serif;
-  position: absolute;
-}
-.dge-ma .axis line, .dge-ma .axis path {
-  fill: none;
-  stroke: #222;
-  shape-rendering: crispEdges;
 }
 
 /* Edit overlay ***********************************************************************/

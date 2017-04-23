@@ -325,14 +325,14 @@ kegg_mouseover = (obj) ->
     ec_col = g_data.column_by_type('ec')
     return if ec_col==null
     for row in g_data.get_data()
-        rows.push(row) if row[ec_col] == ec
+        rows.push(row) if row[ec_col.idx] == ec
     current_plot.highlight(rows)
 
 # highlight parallel coords (and/or kegg)
 gene_table_mouseover = (item) ->
     current_plot.highlight([item])
     ec_col = g_data.column_by_type('ec')
-    kegg.highlight(item[ec_col])
+    kegg.highlight(item[ec_col.idx])
     heatmap.highlight([item])
     gene_expr.select(g_data, [item])
 
@@ -538,9 +538,16 @@ init_charts = () ->
         filter: expr_filter
         )
 
-    ma_plot = new MAPlot({elem: '#dge-ma', filter: expr_filter})
-    ma_plot.on("mouseover", (rows) -> heatmap.highlight(rows); gene_expr.select(g_data, rows))
-    ma_plot.on("mouseout", () -> heatmap.unhighlight())
+    ma_plot = new MAPlot(
+        elem: '#dge-ma'
+        filter: expr_filter
+        brush_enable: true
+        canvas: true
+        height: 300
+        width: 600
+        )
+    ma_plot.on("mouseover.main", (rows) -> heatmap.highlight(rows); gene_expr.select(g_data, rows))
+    ma_plot.on("mouseout.main", () -> heatmap.unhighlight())
 
     pca_plot = new GenePCA(
         elem: '#dge-pca'
@@ -706,7 +713,7 @@ expr_filter = (row) ->
     # If a Kegg pathway is selected, filter to that.
     if kegg_filter.length>0
         ec_col = g_data.column_by_type('ec')
-        return row[ec_col] in kegg_filter
+        return row[ec_col.idx] in kegg_filter
 
     true
 
@@ -887,7 +894,7 @@ calc_kegg_colours = () ->
     return if ec_col==null
     fc_cols = g_data.columns_by_type('fc_calc')[1..]
     for row in g_data.get_data()
-        ec = row[ec_col]
+        ec = row[ec_col.idx]
         continue if !ec
         for col in fc_cols
             v = row[col.idx]
@@ -919,7 +926,7 @@ process_kegg_data = (ec_data) ->
     have_ec = {}
     ec_col = g_data.column_by_type('ec')
     for row in g_data.get_data()
-        have_ec[row[ec_col]]=1
+        have_ec[row[ec_col.idx]]=1
 
     ec_data.sort((a,b) ->
         a=a.title.toLowerCase()
@@ -986,23 +993,22 @@ update_data = () ->
     g_data.set_relative(fc_relative)
 
     dims = g_data.columns_by_type('fc_calc')
-    ec_col = g_data.column_by_type('ec')
     pval_col = g_data.column_by_type('fdr')
-    color = colour_by_pval(pval_col)
-
 
     if current_plot == parcoords
         extent = ParCoords.calc_extent(g_data.get_data(), dims)
-        parcoords.update_data(g_data.get_data(), dims, extent, color)
+        parcoords.update_data(g_data.get_data(), dims, extent, colour_by_pval(pval_col.idx))
     else if current_plot == ma_plot
         ma_fc = $('select#ma-fc-col option:selected').val()
         ma_fc = g_data.columns_by_type(['fc','primary'])[ma_fc].name
-        col = g_data.columns_by_type('fc_calc').filter((c) -> c.name == ma_fc)
-        log_error("Can't find proper column for MA-plot") if col.length!=1
-        ma_plot.update_data(g_data.get_data(), col, g_data.columns_by_type('avg'),
-                            color,
+        fc_col = g_data.columns_by_type('fc_calc').filter((c) -> c.name == ma_fc)[0]
+        ma_plot.update_data(g_data.get_data(),
+                            g_data.columns_by_type('avg')[0],
+                            fc_col,
+                            colour_by_pval(pval_col.idx),
                             g_data.columns_by_type('info'),
-                            pval_col)
+                            pval_col
+                            )
     else if current_plot == pca_plot
         cols = g_data.columns_by_type('fc_calc').map((c) -> c.name)
         count_cols = g_data.columns_by_type('count').filter((c) -> cols.indexOf(c.parent)>=0)
