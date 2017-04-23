@@ -6,7 +6,7 @@ class UserFile < ApplicationRecord
       self.content_type = f.content_type
       self.size = f.size
       self.md5 = Digest::MD5.file(f.path).to_s
-      self.location = Rails.root.join('uploads', self.md5)
+      self.location = "uploads/#{self.md5}"
 
       if !File.exists?(self.location)
         FileUtils.cp f.tempfile, self.location
