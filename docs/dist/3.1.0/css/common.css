@@ -1,0 +1,68 @@
+
+.btn-inverse { color: #fff; background-color: #333; border-color: #555; }
+.btn-inverse:hover { background-color: #fff; }
+
+div#beta { position: relative; height: 0}
+#beta img { position: relative; width: 150px; top: -55px; left: -90px;}
+.supported-by a { display: block; }
+
+div#forkme { position: relative; height: 0 }
+#forkme img { position: absolute; top: -48px; right: -60px; border 0; }
+
+/* Override bootstrap popover z-index to ensure it is on top of the navbar */
+.popover { z-index: 1090; }
+
+
+/*  ****************************************************/
+.warning-popover { 
+    position: relative; 
+    top: 70px; 
+    z-index: 1100;
+}
+
+.warning-popover .browser-warning { 
+    position: absolute; 
+    width: 700px;
+    left: 50%;
+    margin-left: -350px;
+}
+
+.browser-warning {
+    background-color: #eaa;
+    border: thin black solid;
+    border-radius: 10px;
+    padding: 5px 20px;
+}
+
+
+
+/* Log message panel ****************************************************/
+
+.log-list {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 60px;
+
+    border: thin solid black;
+    background: #ddd;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 99;
+    max-height: 600px;
+    overflow: scroll;
+}
+
+.log-list .error { color: red; }
+.log-list .warn { color: yellow; }
+.log-list .info { color: blue; }
+
+.log-link { opacity: 0.4; }
+
+/* Fix slickgrid & bootstrap 3 incompatibility ******************************/
+
+#grid, #grid div {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
