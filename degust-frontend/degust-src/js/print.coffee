@@ -50,8 +50,6 @@ class Print
             .enter()
             .append('div')
             .attr('class', 'print-popup')
-            .style('left', (d3.event.pageX - 2) + 'px')
-            .style('top', (d3.event.pageY - 2) + 'px')
             .style('display', 'block')
 
         [svg,w,h] = @_get_svg()

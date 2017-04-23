@@ -264,8 +264,11 @@ a.show-r-code, a.show-heatmap, a.update-link {
         padding: 20px;
         font-family: Arial, sans-serif;
         font-size: 14px;
-        min-width: 150px;
         border: 1px solid #d4d4d4;
+        width: 400px;
+        margin-left: -200px;     /* For centering */
+        left: 50%;
+        top: 300px;
 
         z-index:11200;
 }
