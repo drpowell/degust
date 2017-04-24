@@ -2,6 +2,13 @@
 
 .container
   %h1 Upload
+
+  - if !user_signed_in?
+    .alert.alert-warning.dropdown{:role=>"alert"}
+      We recommend you
+      = render 'layouts/nav_links_for_auth', :as_button => true
+      to track and control uploaded data sets.
+
   Upload a CSV or tab-separated file of your RNA-Seq data.  One row per gene, and one column of read counts per replicate.
   %form{:name=>'upload', :action=>'upload', :method=>'post', :enctype=>'multipart/form-data'}
     .form-group
