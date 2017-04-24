@@ -189,7 +189,7 @@ class ScatterPlot
             return @svg.node()
         holder = document.createElement('div')
         holder.setAttribute('id','scatter-print-holder')
-        document.body.append(holder)
+        document.body.appendChild(holder)
         sub = new ScatterPlot(
                 elem: '#scatter-print-holder'
                 filter: @opts.filter
