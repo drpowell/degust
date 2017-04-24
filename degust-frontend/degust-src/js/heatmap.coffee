@@ -89,7 +89,7 @@ class Heatmap
         @opts.h_pad ?= 20
         @opts.h ?= 20
         @opts.label_width ?= 120
-        @opts.legend_height ?= 40;
+        @opts.legend_height ?= 50;
 
         @opts.width = d3.select(@opts.elem).node().clientWidth - 20;
 
@@ -242,7 +242,7 @@ class Heatmap
                .text("Heatmap log-fold-change ")
 
         width = 100
-        @legend.attr("transform", "translate(#{@opts.width-width}, #{@height - @opts.legend_height})")
+        @legend.attr("transform", "translate(#{@opts.width-width-20}, #{@height - @opts.legend_height})")
 
         steps = width
         stepToVal = d3.scale.linear().domain([0, steps-1]).range([-@max, @max])
