@@ -26,13 +26,16 @@ class DegustLogic
 
         return nil if method.nil?
 
-        input = ApplicationController.render(template: "degust/#{method}.R.erb", assigns: params, layout: false)
-        return input
+        ApplicationController.render(template: "degust/#{method}.R.erb", assigns: params, layout: false)
     end
 
-    def self.run_r_code(de_setting, query)
+    def self.get_versions_code()
+        ApplicationController.render(template: "degust/versions.R.erb", layout: false)
+    end
+
+    def self.run_r_code(make_code)
         tempfile = Dir.mktmpdir("R-tmp", "#{Rails.root.to_s}/tmp/")
-        code = get_r_code(de_setting, query, tempfile)
+        code = make_code.call(tempfile)
 
         sout = serr = exit_status = nil
         Open3.popen3('R','-q','--vanilla') do |stdin, stdout, stderr, wait_thr|
@@ -46,12 +49,23 @@ class DegustLogic
             return {error: {input: code, msg: serr, stdout: sout, exit_status: exit_status}}
         end
 
-        output = File.read(tempfile + '/output.txt')
-        extra = JSON.parse(File.read(tempfile +"/extra.json"))
-        res = {csv: output, extra: extra }
+        output = ""
+        begin
+            output = File.read(tempfile + '/output.txt')
+        rescue Errno::ENOENT
+            # Ignore
+        end
+
+        extra = ""
+        begin
+            JSON.parse(File.read(tempfile +"/extra.json"))
+        rescue Errno::ENOENT
+            # Ignore
+        end
+
+        res = {csv: output, extra: extra, stdout: sout, stderr: serr }
         FileUtils.remove_dir(tempfile)
 
-        #req.app.utility.caching.store(cacheKey, outStr);
         return res
     end
 

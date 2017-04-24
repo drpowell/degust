@@ -80,7 +80,8 @@ class DegustController < ApplicationController
         cache = ActiveSupport::Cache::FileStore.new("#{Rails.root.to_s}/tmp/R-cache", expires_in: 7.days)
         json = cache.fetch(cacheKey) do
                   logger.info "Not cached."
-                  DegustLogic.run_r_code(de_setting, params)
+                  make_code = lambda {|tempfile| DegustLogic.get_r_code(de_setting, params, tempfile)}
+                  DegustLogic.run_r_code(make_code)
                end
         render json: json
     end
@@ -88,7 +89,8 @@ class DegustController < ApplicationController
     def dge_r_code
         de_setting = DeSetting.find_by_secure_id(params[:id])
         str = DegustLogic.get_r_code(de_setting, params, 'output_dir', false)
-        render plain: str
+        json = DegustLogic.run_r_code( lambda{|tempfile| DegustLogic.get_versions_code()} )
+        render plain: str + json[:stdout].html_safe
     end
 
     require 'csv'
