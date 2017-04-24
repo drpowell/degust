@@ -1,31 +1,60 @@
-%table.table.visited
-  %tr
-    %th Name
-    %th Size
-    %th Created
-    %th Last visited
-    %th Owner
-    %th
+%table.table.visited.tablesorter
+  %thead
+    %tr
+      %th Name
+      %th Size
+      %th Created
+      %th Last visited
+      %th Owner
+      %th
+  %tbody
   - list.each do |de|
     %tr
       %td
         %a{:href=>"/degust/compare.html?code=#{de.secure_id}"}
           = de.name || "<Unnamed>"
-      %td
+      %td{"data-val" => de.user_file.size}
         = number_to_human_size(de.user_file.size)
-      %td.smaller
+      %td.smaller{"data-val" => de.created_at.to_i}
         = de.created_at.to_formatted_s(:rfc822)
-      %td.smaller
+      %td.smaller{"data-val" => de.last_visit_by(current_user).last.to_i}
         = de.last_visit_by(current_user).last.to_formatted_s(:rfc822)
       -#   = moment(val.last).format("MMMM Do YYYY, h:mm:ss a")}
       %td
         = de.user.nil? ? '<Anonymous>' : de.user.name
-      - if de.user == current_user
-        %td
-          = link_to "View", de_setting_path(de.secure_id),
-            :class => 'btn btn-info'
+      %td
+        = link_to "View", de_setting_path(de.secure_id),
+          :class => 'btn btn-info'
+        - if de.user == current_user
           = link_to "Delete", de_setting_path(de.secure_id),
             :method => :delete,
             :class => 'btn btn-danger',
             :data =>  { confirm: 'Are you certain you want to delete this data?' }
-        -#   %a.btn.btn-danger{:href => 'de_settings#destroy'} Delete!
+
+:javascript
+  $.tablesorter.addParser({
+    // set a unique id
+    id: 'data',
+    is: function(s, table, cell, $cell) {
+      // return false so this parser is not auto detected
+      return false;
+    },
+    format: function(s, table, cell, cellIndex) {
+      var $cell = $(cell);
+      return $cell.attr('data-val') || s;
+    },
+    // flag for filter widget (true = ALWAYS search parsed values; false = search cell text)
+    parsed: false,
+    // set type, either numeric or text
+    type: 'numeric'
+  });
+
+  $('.tablesorter').tablesorter({
+    theme : 'blue',
+    headers: {
+        1 : { sorter: 'data' },
+        2 : { sorter: 'data' },
+        3 : { sorter: 'data' },
+        5 : { sorter: false },
+     },
+  });
