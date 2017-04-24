@@ -223,7 +223,7 @@ class ScatterPlot
         ctx = @gDot.node().getContext("2d")
         ctx.clearRect(0,0,@opts.width, @opts.height)
         i=@data.length
-        while(i--)
+        while(i--)                           # Reverse order! for smallest-pvalue rendering last
             do (i) =>
                 d = @data[i]
                 if (@opts.filter(d))
@@ -242,7 +242,7 @@ class ScatterPlot
     _draw_dots_svg: (colouring) ->
         kept  = @data.filter((d) => @opts.filter(d))
         dots = @svg.selectAll(".dot")
-                   .data(kept)
+                   .data(kept.reverse())        # Reverse order! for smallest-pvalue rendering last
         dots.exit().remove()
 
         # Create the dots and labels
