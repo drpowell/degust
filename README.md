@@ -74,4 +74,4 @@ The simplest approach is to download [degust.py](http://drpowell.github.io/degus
 See [INSTALL.md](INSTALL.md)
 
 ## License ##
-Degust is released under the GPL v3 (or later) license, see <a href='http://github.com/Victorian-Bioinformatics-Consortium/degust/blob/master/COPYING.txt'>COPYING.txt</a>
+Degust is released under the GPL v3 (or later) license, see <a href='http://github.com/drpowell/degust/blob/master/COPYING.txt'>COPYING.txt</a>
