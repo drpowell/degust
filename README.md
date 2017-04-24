@@ -11,11 +11,11 @@ Read a summary on the <a href='http://drpowell.github.io/degust/'>Degust home pa
 
 ## Example Screenshots
 
-<a href="docs/images/screenshot-libsize.png"><img src="docs/images/screenshot-libsize.png" style="width: 200px;"/></a>
-<a href="docs/images/screenshot-mds.png"><img src="docs/images/screenshot-mds.png" style="width: 400px;"/></a>
+<a href="docs/images/screenshot-libsize.png"><img src="docs/images/screenshot-libsize.png" width="200"/></a>
+<a href="docs/images/screenshot-mds.png"><img src="docs/images/screenshot-mds.png" width="400"/></a>
 <br/>
-<a href="docs/images/screenshot-boxplot.png"><img src="docs/images/screenshot-boxplot.png" style="width: 200px;"/></a>
-<a href="docs/images/screenshot-mds3d.png"><img src="docs/images/screenshot-mds3d.png" style="width: 400px;"/></a>
+<a href="docs/images/screenshot-boxplot.png"><img src="docs/images/screenshot-boxplot.png" width="200"/></a>
+<a href="docs/images/screenshot-mds3d.png"><img src="docs/images/screenshot-mds3d.png" width="400"/></a>
 
 # FAQ
 
