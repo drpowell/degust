@@ -136,59 +136,6 @@ class WorkerWrapper
 window.WorkerWrapper = WorkerWrapper
 
 # ------------------------------------------------------------
-# SVG Downloading
-#
-class SVG
-    # Recursively call copyStyle
-    @copyStyleDeep = (src,dest) ->
-        SVG.copyStyle(src, dest)
-
-        sChildren = src.node().childNodes
-        dChildren = dest.node().childNodes
-        console.log "Mismatch number of children!" if sChildren.length != dChildren.length
-        for i in [0...sChildren.length]
-            if sChildren[i].nodeType == Node.ELEMENT_NODE
-                SVG.copyStyleDeep(d3.select(sChildren[i]), d3.select(dChildren[i]))
-
-   # Copy the style of the src nodes.  Just the styles that are important
-    @copyStyle = (src, dest) ->
-            # Hide any "visibilty" hidden nodes.  Necessary for InkScape
-            if (src.style('visibility') == 'hidden')
-               dest.style('display','none')
-            else if src.node().tagName == 'text'
-                ['font-size','font-family'].forEach((a) ->
-                    dest.style(a, src.style(a))
-                )
-                # convert dx/dy from 'em' to 'px'.
-                ['dx','dy'].forEach((a) ->
-                    if (m = /(.*)em/.exec(dest.attr(a)))
-                        dest.attr(a, m[1] * 10)       # Assume 10px font-size.  HACK
-                )
-            else  if src.node().tagName in ['rect','line','path']
-                ['fill','stroke','fill-opacity'].forEach((a) ->
-                    dest.style(a, src.style(a))
-                )
-
-    # Download an SVG element.  Expects the passed element selector to have an
-    # attribute 'data-for' that is a selector for the SVG to download
-    @download_svg = (e) ->
-        svg_elem = d3.select(d3.select(e).attr('data-for'))
-        node = svg_elem.node().cloneNode(true)
-        SVG.copyStyleDeep(svg_elem, d3.select(node))
-
-        d3.select(node)
-          .attr("version", 1.1)
-          .attr("xmlns", "http://www.w3.org/2000/svg")
-
-        wrapper = document.createElement('div')
-        wrapper.appendChild(node)
-        html = wrapper.innerHTML
-        d3.select(e)
-          .attr("href-lang", "image/svg+xml")
-          .attr("href", "data:image/svg+xml;base64,\n" + btoa(html))
-
-@download_svg = SVG.download_svg
-# ------------------------------------------------------------
 # Dynamic JS loading
 #
 class DynamicJS
