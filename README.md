@@ -9,9 +9,13 @@ View a [short video](https://www.youtube.com/watch?v=ucucQ_LtZ1g) of the interfa
 
 Read a summary on the <a href='http://drpowell.github.io/degust/'>Degust home page</a>.
 
-## Example Screenshot
+## Example Screenshots
 
-![Degust screenshot](screenshot-2.png)
+<a href="docs/images/screenshot-libsize.png"><img src="docs/images/screenshot-libsize.png" style="width: 200px;"/></a>
+<a href="docs/images/screenshot-mds.png"><img src="docs/images/screenshot-mds.png" style="width: 400px;"/></a>
+<br/>
+<a href="docs/images/screenshot-boxplot.png"><img src="docs/images/screenshot-boxplot.png" style="width: 200px;"/></a>
+<a href="docs/images/screenshot-mds3d.png"><img src="docs/images/screenshot-mds3d.png" style="width: 400px;"/></a>
 
 # FAQ
 
