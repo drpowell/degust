@@ -24,11 +24,11 @@
         = de.user.nil? ? '<Anonymous>' : de.user.name
       %td
         = link_to "View", de_setting_path(de.secure_id),
-          :class => 'btn btn-info'
+          :class => 'btn btn-info btn-xs'
         - if de.user == current_user
           = link_to "Delete", de_setting_path(de.secure_id),
             :method => :delete,
-            :class => 'btn btn-danger',
+            :class => 'btn btn-danger btn-xs',
             :data =>  { confirm: 'Are you certain you want to delete this data?' }
 
 :javascript
