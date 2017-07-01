@@ -5,7 +5,12 @@
   "scripts": {
     "start": "grunt"
   },
+  "browserify-shim": {
+    "vue": "global:Vue"
+  },
   "dependencies": {
+    "browserify-shim": "^3.8.14",
+    "coffeeify": "^2.1.0",
     "grunt": "^0.4.x",
     "grunt-browserify": "^5.0.0",
     "grunt-cli": "^0.1.13",

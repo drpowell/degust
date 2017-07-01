@@ -6,8 +6,8 @@ class BarGraph
         @opts.margin_l ||= 50
         @opts.margin_r ||= 10
         @opts.margin_b ||= 40
-        @opts.ylabel || = ''
-        @opts.xlabel || = ''
+        @opts.ylabel ||= ''
+        @opts.xlabel ||= ''
         @opts.title ||= ''
         @opts.fill ||= () -> 'steelblue'
         @opts.rotate_labels ||= false

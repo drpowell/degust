@@ -48,7 +48,7 @@ module.exports = function(grunt) {
     browserify: {
       dist: {
         options: {
-          transforms: ['coffeeify','hbsfy'],
+          transform: ['coffeeify','hbsfy','vueify','browserify-shim'],
           debug: !grunt.config('compress')
         },
         files: [
