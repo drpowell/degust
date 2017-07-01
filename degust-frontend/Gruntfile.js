@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     watch: {
       clientCoffee: {
         files: ['degust-src/**/*.coffee','degust-src/**/*.hbs'],
-        tasks: ['coffeeify']
+        tasks: ['browserify']
       },
       copy: {
         files: ['degust-src/*.html','degust-src/css/*.css'],
@@ -45,8 +45,8 @@ module.exports = function(grunt) {
       }
     },
 
-    coffeeify: {
-      basic: {
+    browserify: {
+      dist: {
         options: {
           transforms: ['coffeeify','hbsfy'],
           debug: !grunt.config('compress')
@@ -96,12 +96,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-newer');
-  grunt.loadNpmTasks('grunt-coffeeify');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-remove');
 
-  grunt.registerTask('default', ['newer:copy', 'newer:coffeeify', 'newer:cssmin']);
-  grunt.registerTask('build', ['cssmin', 'coffeeify', 'copy:degust']);
-  grunt.registerTask('production', ['cssmin', 'coffeeify', 'uglify', 'copy:degust']);
+  grunt.registerTask('default', ['newer:copy', 'newer:browserify', 'newer:cssmin']);
+  grunt.registerTask('build', ['cssmin', 'browserify', 'copy:degust']);
+  grunt.registerTask('production', ['cssmin', 'browserify', 'uglify', 'copy:degust']);
 
 };
