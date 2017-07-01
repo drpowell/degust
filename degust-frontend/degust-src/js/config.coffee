@@ -1,5 +1,5 @@
+
 script = (typ) -> "#{window.my_code}/#{typ}"
-view_url = () -> "compare.html?code=#{window.my_code}"
 
 # mod_settings will contain a copy of the current settings
 mod_settings = null
@@ -262,37 +262,12 @@ create_condition_widget = (name, selected, is_init, is_hidden) ->
 common_prefix = (lst) ->
     lst = lst.slice(0).sort()
     tem1 = lst[0]
-    s = tem1.length;
-    tem2 = lst.pop();
-    while(s && tem2.indexOf(tem1) == -1)
+    s = tem1.length
+    tem2 = lst.pop()
+    while(s && (tem2.indexOf(tem1) == -1 || "_-".indexOf(tem1[s-1])>=0))
         tem1 = tem1.substring(0, --s)
     tem1
 
-
-del_condition_widget = (e) ->
-    $(e.target).parents(".condition").remove()
-
-conditions_to_settings = () ->
-    c = []
-    init_select = []
-    hidden_factor = []
-    $('.condition:not(.template)').each( (i,e) ->
-        lst = []
-        $('select.columns option:selected',e).each( (j,opt) -> lst.push( column_keys[+$(opt).val()]) )
-        name = $('.col-name',e).val() || "Cond #{i+1}"
-        c.push([name, lst])
-        init_select.push(name) if $('.init-select input',e).is(':checked')
-        hidden_factor.push(name) if $('.hidden-factor input',e).is(':checked')
-    )
-    mod_settings.replicates = c
-    mod_settings.init_select = init_select
-    mod_settings.hidden_factor = hidden_factor
-
-update_analyze_server_side = () ->
-    server_side = $('#analyze-server-side').is(':checked')
-    $('.server-side-analysis-fields').toggle(server_side)
-    $('.user-analysed-fields').toggle(!server_side)
-    mod_settings.analyze_server_side = server_side
 
 init_page = () ->
     reset_settings()
@@ -309,10 +284,6 @@ init_page = () ->
         if full_settings['extra_menu_html']
             $('#right-navbar-collapse').append(full_settings['extra_menu_html'])
 
-    $('input.fmt').click(update_data)
-    $('#save').click(save)
-    $('#cancel').click(() -> reset_settings(); update_data())
-    $('.view').attr('href', view_url())
 
     $('select.ec-column').change(() ->
         mod_settings.ec_column = +$("select.ec-column option:selected").val()
@@ -332,54 +303,7 @@ init_page = () ->
         warnings()
     )
 
-    $('select.info-columns').change(() ->
-        info=[]
-        $("select.info-columns option:selected").each (i,e) -> info.push(column_keys[+$(e).val()])
-        mod_settings.info_columns = info
-    )
-    $("select.info-columns").multiselect(
-        noneSelectedText: '-- None selected --'
-        selectedList: 4
-    )
-
-    $('#add-condition').click(() ->
-        w = create_condition_widget("", [])
-        if $('.condition:not(.template)').length <= 2
-            $('.init-select input',w).prop('checked',true)
-            $('.hidden-factor input',w).prop('checked',false)
-    )
-
-    $('.del-condition').click(del_condition_widget)
-
-    $('#analyze-server-side').change(update_analyze_server_side)
-
-    $('#config-locked').change(() ->
-        mod_settings.config_locked = $('#config-locked').is(':checked')
-    )
-
-    $('select#fdr-column').change(() ->
-        v = +$("select#fdr-column option:selected").val()
-        mod_settings.fdr_column = if v == -1 then '' else column_keys[v]
-        warnings()
-    )
-
-    $('select#avg-column').change(() ->
-        v = +$("select#avg-column option:selected").val()
-        mod_settings.avg_column = if v == -1 then '' else column_keys[v]
-        warnings()
-    )
-
-    $('select.fc-columns').change(() ->
-        fc_cols=[]
-        $("select.fc-columns option:selected").each (i,e) -> fc_cols.push(column_keys[+$(e).val()])
-        mod_settings.fc_columns = fc_cols
-    )
-    $("select.fc-columns").multiselect(
-        noneSelectedText: '-- None selected --'
-        selectedList: 4
-    )
-
-init = () ->
+init = (settings_cb) ->
     code = get_url_vars()["code"]
     if !code?
         log_error("No code defined")
@@ -392,11 +316,120 @@ init = () ->
         }).done((json) ->
             window.full_settings = json
             window.settings = json.settings
-            init_page()
+            settings_cb(json)
+            #init_page()
          ).fail((x) ->
             log_error "Failed to get settings!",x
         )
 
+get_csv_data = (self) ->
+    d3.text(script("partial_csv"), "text/csv", (err,dat) ->
+        if err
+            $('div.container').text("ERROR : #{err}")
+            return
+        self.csv_data = dat
+    )
+
+
 $(document).ready(() -> setup_nav_bar() )
-$(document).ready(() -> init() )
+#$(document).ready(() -> init() )
 $(document).ready(() -> $('[title]').tooltip())
+
+flds_optional = ["ec_column","link_column","link_url","min_counts","min_cpm","min_cpm_samples",
+                 "fdr_column","avg_column"]
+from_server_model = (mdl) ->
+    res = $.extend(true, {}, mdl)
+
+    # Optional fields, we use empty string to mean missing
+    for c in flds_optional
+        res[c] ?= ""
+
+    # init_select goes into replicates
+    new_reps = []
+    for r in res.replicates
+        new_reps.push(
+            name: r[0]
+            cols: r[1]
+            init: r[0] in res.init_select
+            factor: r[0] in res.hidden_factor
+        )
+    res.replicates = new_reps
+
+    console.log("server model",mdl,res)
+    res
+
+to_server_model = (mdl) ->
+    res = $.extend(true, {}, mdl)
+    res.info_columns ?= []
+    res.fc_columns ?= []
+    # Optional fields, we use empty string to mean missing
+    for c in flds_optional
+        if res[c]==""
+            delete res[c]
+    res.init_select = []
+    res.hidden_factor = []
+    new_reps = []
+    for r in res.replicates
+        new_reps.push([r.name, r.cols])
+        if r.init
+            res.init_select.push(r.name)
+        if r.factor
+            res.hidden_factor.push(r.name)
+    res.replicates = new_reps
+
+    console.log("my model",mdl,res)
+    res
+
+
+Multiselect = require('vue-multiselect').default
+
+module.exports =
+    components: { Multiselect },
+    methods:
+        save: () ->
+            to_server_model(this.settings)
+        revert: () ->
+            this.settings = from_server_model(this.orig_settings.settings)
+        add_replicate: () ->
+            r = {name:"",cols:[],init:false,factor:false}
+            this.settings.replicates.push(r)
+            if this.settings.replicates.length<=2
+                r.init=true
+        del_replicate: (idx) ->
+            this.settings.replicates.splice(idx, 1)
+        selected_reps: (rep) ->
+            n = common_prefix(rep.cols)
+            rep.name = n
+    data: ->
+        settings:
+            info_columns: []
+            fc_columns: []
+        csv_data: ""
+        orig_settings:
+            is_owner: false
+
+    computed:
+        code: () ->
+            get_url_vars()["code"]
+        view_url: () ->
+            "compare.html?code=#{this.code}"
+        can_lock: () ->
+            this.orig_settings.is_owner
+        columns_info: () ->
+            console.log "Parsing!"
+            asRows = null
+            if this.settings.csv_format
+                asRows = d3.csv.parseRows(this.csv_data)
+            else
+                asRows = d3.tsv.parseRows(this.csv_data)
+            [column_keys,asRows...] = asRows
+            column_keys ?= []
+            column_keys
+
+    mounted: ->
+        self = this
+        init((new_settings) ->
+            self.orig_settings=new_settings
+            self.revert()
+        )
+        get_csv_data(self)

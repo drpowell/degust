@@ -1,5 +1,10 @@
 
-require('./lib/jquery.multiselect.js')
 
 # Ours
-require('./config.coffee')
+config = require('./config.vue')
+Vue = require('./lib/vue')
+
+new Vue(
+    el: '#app'
+    render: (h) -> h(config)
+)

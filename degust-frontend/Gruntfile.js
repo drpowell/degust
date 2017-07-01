@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 
     watch: {
       clientCoffee: {
-        files: ['degust-src/**/*.coffee','degust-src/**/*.hbs'],
+        files: ['degust-src/**/*.coffee','degust-src/**/*.hbs','degust-src/**/*.vue'],
         tasks: ['browserify']
       },
       copy: {
