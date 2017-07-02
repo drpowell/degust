@@ -16,28 +16,6 @@ warnings = () ->
 valid_int = (str) ->
     str!='' && parseInt(str).toString() == str
 
-check_conditon_names = (settings) ->
-    invalid = []
-    for rep in settings.replicates
-        invalid.push(rep[0]) if (rep[0] in column_keys)
-    if (invalid.length == 0)
-        false
-    else
-        msgs = invalid.map((c) -> "ERROR : Cannot use condition name '#{c}', it is column name")
-        msgs.join("<br/>")
-
-
-update_data = () ->
-    return if !data
-
-    if mod_settings['extra_menu_html']
-        $('#right-navbar-collapse').append(mod_settings['extra_menu_html'])
-
-    title = mod_settings.name || "Unnamed"
-    $(".exp-name").text(title)
-    document.title = title
-
-
 # Return the longest common prefix of the list of strings passed in
 common_prefix = (lst) ->
     lst = lst.slice(0).sort()
@@ -118,6 +96,9 @@ module.exports =
         asRows: []
         orig_settings:
             is_owner: false
+        modal:
+            msgs: ""
+            msgs_class: ""
     computed:
         code: () ->
             get_url_vars()["code"]
@@ -141,17 +122,19 @@ module.exports =
             column_keys
     methods:
         save: () ->
-            # err = check_conditon_names(settings)
-            # if err
-            #     $('#saving-modal .modal-body').html('<div class="alert alert-danger">' + err + '</div>')
-            #     $('#saving-modal').modal({'backdrop': true, 'keyboard' : true})
-            #     $('#saving-modal .view').hide()
-            #     $('#saving-modal .modal-footer').show()
-            #     $('#saving-modal #close-modal').click( () -> $('#saving-modal').modal('hide'))
-            #     return
+            err = this.check_conditon_names()
+            if err.length>0
+                this.modal.msgs_class = 'alert alert-danger'
+                this.modal.msgs = err
+                $('#saving-modal').modal({'backdrop': true, 'keyboard' : true})
+                $('#saving-modal .view').hide()
+                $('#saving-modal .modal-footer').show()
+                $('#saving-modal #close-modal').click( () -> $('#saving-modal').modal('hide'))
+                return
 
             $('#saving-modal').modal({'backdrop': 'static', 'keyboard' : false})
-            $('#saving-modal .modal-body').html("Saving...")
+            this.modal.msgs_class = 'alert alert-info'
+            this.modal.msgs = ["Saving..."]
             $('#saving-modal .modal-footer').hide()
 
             to_send = to_server_model(this.settings)
@@ -160,20 +143,30 @@ module.exports =
                 url: this.script("settings")
                 data: {settings: JSON.stringify(to_send)}
                 dataType: 'json'
-            ).done((x) ->
-                $('#saving-modal .modal-body').html("<div class='alert alert-success'>Save successful.</div>")
+            ).done((x) =>
+                this.modal.msgs_class = 'alert alert-success'
+                this.modal.msgs = ["Save successful"]
                 $('#saving-modal .view').show()
-            ).fail((x) ->
+            ).fail((x) =>
                 log_error("ERROR",x)
-                $('#saving-modal .modal-body').html("Failed : #{x.responseText}")
+                this.modal.msgs_class = 'alert alert-danger'
+                this.modal.msgs = ["Failed : #{x.responseText}"]
                 $('#saving-modal .view').hide()
-            ).always(() ->
+            ).always(() =>
                 $('#saving-modal').modal({'backdrop': true, 'keyboard' : true})
                 $('#saving-modal .modal-footer').show()
                 $('#saving-modal #close-modal').click( () -> window.location = window.location)
             )
         revert: () ->
             this.settings = from_server_model(this.orig_settings.settings)
+        check_conditon_names: () ->
+            invalid = []
+            for rep in this.settings.replicates
+                if (rep.name in this.columns_info)
+                    invalid.push("ERROR : Cannot use condition name '#{rep.name}', it is already a column name")
+                if (rep.name=="")
+                    invalid.push("Missing condition name")
+            invalid
         add_replicate: () ->
             r = {name:"",cols:[],init:false,factor:false}
             this.settings.replicates.push(r)
@@ -211,8 +204,11 @@ module.exports =
                         return
                     this.orig_settings=json
                     this.revert()
+                    if this.orig_settings['extra_menu_html']
+                        $('#right-navbar-collapse').append(this.orig_settings['extra_menu_html'])
                 )
     watch:
+        'settings.name': () -> document.title = this.settings.name
         csv_data: () ->
             # Guess the format, if we haven't set a name yet
             if this.name==""

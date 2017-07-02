@@ -23,6 +23,22 @@
 
 <template>
     <div>
+
+        <div class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/">Degust : </a>
+              <span class="navbar-brand exp-name">{{settings.name}}</span>
+            </div>
+            <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
+              <li><a class="log-link" href="#">Logs</a></li>
+              <li><a class="view" v-bind:href="view_url">View</a></li>
+              <li><a href="#about-modal" data-toggle="modal">About</a></li>
+            </ul>
+          </div>
+        </div>
+
+
         <div class='log-list'>
           <h4>Log messages</h4>
         </div>
@@ -219,11 +235,13 @@
                 <h3 id="myModalLabel">Saving settings</h3>
               </div>
               <div class="modal-body">
+                  <div v-for='msg in modal.msgs' :class='modal.msgs_class'>
+                      {{msg}}
+                  </div>
               </div>
               <div class="modal-footer">
                 <button id="close-modal" class="btn btn-primary">Close</button>
                 <a v-bind:href="view_url" class="view btn btn-default">View</a>
-                <!-- <button class="btn btn-primary">Save changes</button> -->
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
