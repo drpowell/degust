@@ -56,7 +56,7 @@
               <div class="form-group">
                 <label class="control-label col-sm-3">Info columns</label>
                 <div class="controls col-sm-6">
-                  <multiselect v-model="settings.info_columns" :options="columns_info" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="false" />
+                  <multiselect v-model="settings.info_columns" :options="columns_info" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="true" placeholder="Add column"/>
                 </div>
               </div>
 
@@ -208,7 +208,7 @@
             </div> <!-- options -->
           </div> <!-- row -->
 
-          <div id="grid-info" class="row"></div>
+          <div class="row">Number of columns = {{columns_info.length}}</div>
           <div id="grid" class="row"></div>
         </div> <!-- container -->
 
