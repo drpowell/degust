@@ -5,6 +5,7 @@
     #grid-info { font-size: 9pt; }
     #grid .slick-row { font-size: 8pt; }
     #grid .slick-row:hover { font-weight: normal }
+    #grid { z-index: 0; }
 
     .conditions { border: 1px solid #aaa; border-radius: 5px; padding: 0 3px; }
 
