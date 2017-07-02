@@ -26,15 +26,7 @@ common_prefix = (lst) ->
         tem1 = tem1.substring(0, --s)
     tem1
 
-
-init_page = () ->
-    if full_settings?
-        if full_settings['extra_menu_html']
-            $('#right-navbar-collapse').append(full_settings['extra_menu_html'])
-
-
 $(document).ready(() -> setup_nav_bar() )
-#$(document).ready(() -> init() )
 $(document).ready(() -> $('[title]').tooltip())
 
 
@@ -85,9 +77,12 @@ to_server_model = (mdl) ->
 
 
 Multiselect = require('vue-multiselect').default
+Modal = require('modal-vue').default
 
 module.exports =
-    components: { Multiselect },
+    components:
+        Multiselect: Multiselect
+        Modal: Modal
     data: ->
         settings:
             info_columns: []
@@ -97,6 +92,7 @@ module.exports =
         orig_settings:
             is_owner: false
         modal:
+            show: false
             msgs: ""
             msgs_class: ""
     computed:
@@ -121,21 +117,26 @@ module.exports =
             column_keys ?= []
             column_keys
     methods:
+        closeModal: () ->
+            if this.modal.reload_on_close
+                window.location = window.location
+            else
+                this.modal.show=false
+
         save: () ->
             err = this.check_conditon_names()
             if err.length>0
                 this.modal.msgs_class = 'alert alert-danger'
                 this.modal.msgs = err
-                $('#saving-modal').modal({'backdrop': true, 'keyboard' : true})
-                $('#saving-modal .view').hide()
-                $('#saving-modal .modal-footer').show()
-                $('#saving-modal #close-modal').click( () -> $('#saving-modal').modal('hide'))
+                this.modal.show = true
+                this.modal.view = false
+                this.modal.reload_on_close=false
                 return
 
-            $('#saving-modal').modal({'backdrop': 'static', 'keyboard' : false})
             this.modal.msgs_class = 'alert alert-info'
             this.modal.msgs = ["Saving..."]
-            $('#saving-modal .modal-footer').hide()
+            this.modal.show = true
+            this.modal.reload_on_close=false
 
             to_send = to_server_model(this.settings)
             $.ajax(
@@ -146,16 +147,16 @@ module.exports =
             ).done((x) =>
                 this.modal.msgs_class = 'alert alert-success'
                 this.modal.msgs = ["Save successful"]
-                $('#saving-modal .view').show()
+                this.modal.view = true
+                this.modal.show = true
+                this.modal.reload_on_close=true
             ).fail((x) =>
                 log_error("ERROR",x)
                 this.modal.msgs_class = 'alert alert-danger'
                 this.modal.msgs = ["Failed : #{x.responseText}"]
-                $('#saving-modal .view').hide()
-            ).always(() =>
-                $('#saving-modal').modal({'backdrop': true, 'keyboard' : true})
-                $('#saving-modal .modal-footer').show()
-                $('#saving-modal #close-modal').click( () -> window.location = window.location)
+                this.modal.view = false
+                this.modal.show = true
+                this.modal.reload_on_close=true
             )
         revert: () ->
             this.settings = from_server_model(this.orig_settings.settings)

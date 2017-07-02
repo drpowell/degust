@@ -228,24 +228,18 @@
           <div id="grid" class="row"></div>
         </div> <!-- container -->
 
-        <div id="saving-modal" class="modal fade" tabindex="-1" role="dialog">
-          <div class='modal-dialog'>
-            <div class='modal-content'>
-              <div class='modal-header'>
-                <h3 id="myModalLabel">Saving settings</h3>
+        <modal :showModal="modal.show" :closeAction="closeModal">
+          <h1 slot="header">Saving settings</h1>
+          <div slot="body">
+              <div v-for='msg in modal.msgs' :class='modal.msgs_class'>
+                  {{msg}}
               </div>
-              <div class="modal-body">
-                  <div v-for='msg in modal.msgs' :class='modal.msgs_class'>
-                      {{msg}}
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <button id="close-modal" class="btn btn-primary">Close</button>
-                <a v-bind:href="view_url" class="view btn btn-default">View</a>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+          </div>
+          <div slot="footer">
+            <button @click='closeModal' class="btn btn-primary">Close</button>
+            <a v-if="modal.view" v-bind:href="view_url" class="view btn btn-default">View</a>
+          </div>
+        </modal>
 
         <!-- Modal -->
         <div id="about-modal"></div>
