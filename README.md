@@ -19,29 +19,7 @@ Read a summary on the <a href='http://drpowell.github.io/degust/'>Degust home pa
 
 # FAQ
 
-### How can a gene have zero counts for all samples but has a non-zero fold-change?
-
-This can happen when using the backend of Degust.  Degust uses voom (or edgeR) to perform the expression analysis.  Voom adds a small constant (0.5), to each count, normalizes for library size, then takes the log.  This means when you have a count of 0 across all samples, but different library sizes, it is possible to compute a non-zero fold-change.
-
-We recommend setting **Min read count** on the configuration page to a small value, say 10.
-
-### What is the **Min read count** setting?
-
-This is the minimum number of reads required in at least one sample to keep the gene in the analysis.  That is, a given gene is omitted if the number of reads across all samples is below this setting.
-
-
-### I don't see an option to display an MDS plot
-
-The MDS plot is only available when you have included "count" columns
-
-### How is the MDS plot calculated
-
-  * First genes that don't pass the "FDR cut-off" or "abs log FC" filters are ignored.  Using these filters is "cheating" when doing an MDS plot to look at replicate clustering
-  * The remaining genes have the counts for each replicate log-transformed.
-  * The genes are then ranked by decreasing variance.  That is, the most variable genes are "at the top"
-  * Then the top "Skip genes" are ignored.
-  * And the next "Num genes" are selected.
-  * These selected genes are used to compute an MDS (or PCA) plot
+See [FAQ.md](FAQ.md)
 
 # Installation
 
