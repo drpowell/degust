@@ -28,7 +28,7 @@ The MDS plot is only available when you have included "count" columns
 
 First upload your count matrix, and note the special code created in the url.  eg. `73fb85e4625f5bdd08cfeb3b9fc7a7f2`
 
-You may download the settings in a json format.  Note here the use of the [https://stedolan.github.io/jq/](jq) tool, this isn't necessary but it does make for nicer formatting of the json.
+You may download the settings in a json format.  Note here the use of the [jq](https://stedolan.github.io/jq/) tool, this isn't necessary but it does make for nicer formatting of the json.
 
     curl 'http://degust.erc.monash.edu/degust/73fb85e4625f5bdd08cfeb3b9fc7a7f2/settings' | jq '.settings' > foo.json
 
