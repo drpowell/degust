@@ -22,7 +22,6 @@ set :deploy_to, "/mnt/degust-rails/"
 set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "db/production.sqlite3"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "uploads", "log", "degust-frontend/node_modules", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/R-cache"

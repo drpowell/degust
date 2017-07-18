@@ -25,3 +25,35 @@ For development:
 For production deploy.  Configure `config/deploy/production.rb`
 
     cap production deploy
+
+
+
+
+
+
+
+Using rbenv
+----------
+
+As the install user:
+  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+
+Add to .bashrc
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+  export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+Install ruby-build
+  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+Install ruby 2.4.0
+  rbenv install 2.4.0
+
+And use it
+  rbenv global 2.4.0
+
+Install bundler
+  gem install bundler
+
+
+
