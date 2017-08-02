@@ -1,39 +1,9 @@
-Install
----------------
+# Install
+Degust can be installed natively or using Docker.
 
-Ensure rails 4.2 is installed.  Install the necessary gems:
+## Native
 
-    bundle install
-
-Build the js frontend
-
-    rake degust:deps
-    rake degust:build
-
-For production build (minifies js, and no source-maps)
-
-    rake degust:build RAILS_ENV=production
-
-
-For development:
-
-    (cd degust-frontend ; ./node_modules/.bin/grunt build)
-    (cd degust-frontend ; ./node_modules/.bin/grunt watch)
-    rails s
-
-
-For production deploy.  Configure `config/deploy/production.rb`
-
-    cap production deploy
-
-
-
-
-
-
-
-Using rbenv
-----------
+### Install Ruby using rbenv (optional)
 
 As the install user:
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
@@ -55,5 +25,42 @@ And use it
 Install bundler
   gem install bundler
 
+### Install Degust
 
+Ensure rails 4.2 is installed.  Install the necessary gems:
 
+    bundle install
+
+Build the js frontend
+
+    rake degust:deps
+    rake degust:build
+
+For production build (minifies js, and no source-maps)
+
+    rake degust:build RAILS_ENV=production
+
+For development:
+
+    (cd degust-frontend ; ./node_modules/.bin/grunt build)
+    (cd degust-frontend ; ./node_modules/.bin/grunt watch)
+    rails s
+
+For production deploy.  Configure `config/deploy/production.rb`
+
+    cap production deploy
+
+## Docker
+Ensure Docker is installed, clone this repository, and then from inside the cloned
+repository, run:
+
+    docker build . --tag degust
+
+Once the build process has completed, you will have a docker image tagged as "degust" on your system.
+To run this container, run:
+
+    docker run -p 80:3000 degust
+
+This will start degust in the docker container, and allow access to the container via port 80 on your machine.
+To access the website, go to `http://localhost/` on your web browser. You can change `80` to any port you wish 
+to have degust listening on.
