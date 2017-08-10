@@ -58,7 +58,7 @@ class DegustLogic
 
         extra = ""
         begin
-            JSON.parse(File.read(tempfile +"/extra.json"))
+            extra = JSON.parse(File.read(tempfile +"/extra.json"))
         rescue Errno::ENOENT
             # Ignore
         end
