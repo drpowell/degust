@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true, cwd: 'degust-src',
-            src: ['*.html','css/*.css','css/images/**','images/**'], dest: 'degust-dist/'
+            src: ['*.html','css/*.css','css/images/**','images/**','css/fonts/**'], dest: 'degust-dist/'
           },
         ]
       }
