@@ -33,6 +33,9 @@ class GeneTable
         @grid.onSort.subscribe( (e,args) => @opts.sorter(args) )
         @grid.onViewportChanged.subscribe( (e,args) => @_update_info() )
 
+        #@grid.onHeaderMouseEnter.subscribe((e,args) => console.log("enter",e,args))
+        #@grid.onHeaderMouseLeave.subscribe((e,args) => console.log("leave",e,args))
+
         # Set up event callbacks
         if @opts.mouseover
             @grid.onMouseEnter.subscribe( (e,args) =>
@@ -66,7 +69,9 @@ class GeneTable
         @dataView.setItems(data)
         @dataView.reSort()
         @dataView.endUpdate()
-        @grid.setColumns(columns) if columns
+        if columns
+            @grid.setColumns(columns)
+            $("[title]",@opts.elem).popover({trigger: 'hover',placement: 'top',container: 'body',html:true})
 
     # Refresh the view.  Call this when the filter changes
     refresh: () ->

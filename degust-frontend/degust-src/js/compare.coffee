@@ -699,6 +699,10 @@ set_gene_table = (data) ->
         if col.type in ['fdr','p']
             hsh.width = 70
             hsh.maxWidth = 70
+        switch col.type
+            when 'fdr'     then hsh.toolTip = "False Discovery Rate"
+            when 'p'       then hsh.toolTip = "Raw P value"
+            when 'fc_calc' then hsh.toolTip = "Log<sub>2</sub> Fold-change"
         hsh
     )
     gene_table.set_data(data, columns)
