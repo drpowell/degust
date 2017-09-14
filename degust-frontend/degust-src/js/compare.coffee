@@ -776,7 +776,7 @@ odf_fmt = (cols,rows) ->
 do_download = (fmt) ->
     items = gene_table.get_data()
     return if items.length==0
-    cols = g_data.columns_by_type(['info','fc_calc','count','fdr','avg'])
+    cols = g_data.columns_by_type(['info','fc_calc','count','fdr','avg','p'])
     count_cols = g_data.columns_by_type('count')
     keys = cols.map((c) -> c.name).concat(count_cols.map((c) -> c.name+" CPM"))
     rows = items.map( (r) ->
