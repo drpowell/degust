@@ -52,6 +52,8 @@ class GeneTable
                 @opts.dblclick(@grid.getDataItem(args.row))
             )
 
+    resort: () -> @dataView.reSort()
+
     sort: (sorter) -> @dataView.sort(sorter)
 
     get_data: () ->
