@@ -7,12 +7,13 @@
 	} else {
 		root.d3.contextMenu = factory(root.d3);
 	}
-}(	this, 
+}(	this,
 	function(d3) {
 		return function (menu, opts) {
 
 			var openCallback,
-				closeCallback;
+				closeCallback,
+				postOpenCallback;
 
 			if (typeof opts === 'function') {
 				openCallback = opts;
@@ -20,6 +21,7 @@
 				opts = opts || {};
 				openCallback = opts.onOpen;
 				closeCallback = opts.onClose;
+				postOpenCallback = opts.onPostOpen;
 			}
 
 			// create the div element that will hold the context menu
@@ -43,7 +45,7 @@
 				d3.selectAll('.d3-context-menu').html('');
 				var list = d3.selectAll('.d3-context-menu')
 					.on('contextmenu', function(d) {
-						d3.select('.d3-context-menu').style('display', 'none'); 
+						d3.select('.d3-context-menu').style('display', 'none');
 		  				d3.event.preventDefault();
 						d3.event.stopPropagation();
 					})
@@ -96,6 +98,12 @@
 					.style('left', (d3.event.pageX - 2) + 'px')
 					.style('top', (d3.event.pageY - 2) + 'px')
 					.style('display', 'block');
+
+				// the postOpenCallback allows an action to fire after the menu is displayed
+				// Useful for placement and styling
+				if (postOpenCallback) {
+					postOpenCallback(d3.select('.d3-context-menu'), data,index);
+				}
 
 				d3.event.preventDefault();
 				d3.event.stopPropagation();
