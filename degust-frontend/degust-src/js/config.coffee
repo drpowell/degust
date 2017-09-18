@@ -40,9 +40,18 @@ warnings = () ->
 valid_int = (str) ->
     str!='' && parseInt(str).toString() == str
 
+valid_float = (str) ->
+    !isNaN(parseFloat(str))
+
 optional_number = (obj, fld, str) ->
     if valid_int(str)
         obj[fld] =  parseInt(str)
+    else
+        delete obj[fld]
+
+optional_float = (obj, fld, str) ->
+    if valid_float(str)
+        obj[fld] =  parseFloat(str)
     else
         delete obj[fld]
 
@@ -76,7 +85,7 @@ save = (ev) ->
         return
 
     optional_number(mod_settings, "min_counts", $("input.min-counts").val())
-    optional_number(mod_settings, "min_cpm", $("input.min-cpm").val())
+    optional_float(mod_settings, "min_cpm", $("input.min-cpm").val())
     optional_number(mod_settings, "min_cpm_samples", $("input.min-cpm-samples").val())
 
     $('#saving-modal').modal({'backdrop': 'static', 'keyboard' : false})
