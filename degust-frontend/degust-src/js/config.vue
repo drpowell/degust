@@ -127,30 +127,6 @@
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <label class="control-label col-sm-3" for="organism">Organism</label>
-                  <div class="controls col-sm-1">
-                    <select class="form-control" title="Specifying organism may be useful to downstream tools" data-placement='right' >
-                        <option>Other</option>
-                        <option val="human">Human</option>
-                        <option val="mouse">Mouse</option>
-                    </select>
-                  </div>
-
-                  <label class="control-label col-sm-1" for="id-column">ID column</label>
-                  <div class="controls col-sm-2">
-                      <select class="form-control" title="Gene ID Column" data-placement='right' ></select>
-                  </div>
-                  <label class="control-label col-sm-1" for="id-type">ID type</label>
-                  <div class="controls col-sm-2">
-                      <select class="form-control" title="ID Column type" data-placement='right' >
-                          <option>Other</option>
-                          <option>Ensembl Gene ID</option>
-                          <option>Gene Symbol</option>
-                      </select>
-                  </div>
-                </div>
-
                 <div class="condition-group conditions">
                   <div class="form-group">
                     <span class="control-label col-sm-3">Condition name</span>
@@ -207,7 +183,7 @@
                 <div class="form-group">
                   <label class="control-label col-sm-3">Fold-change columns</label>
                   <div class="controls col-sm-3">
-                    <multiselect v-model="settings.fc_columns" :options="columns_info" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="false" placeholder="Pick some" title="Columns containg the log fold-change data" data-placement='right'/>
+                    <multiselect v-model="settings.fc_columns" :options="columns_info" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="false" placeholder="Pick some" title="Columns containing the log fold-change data" data-placement='right'/>
                   </div>
                 </div>
               </div>

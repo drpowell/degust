@@ -13,8 +13,11 @@ warnings = () ->
     if !mod_settings.analyze_server_side && !mod_settings.avg_column
         $(el).text('You must specify the Average Expression column')
 
-valid_int = (str) ->
-    str!='' && parseInt(str).toString() == str
+valid_int = (n) ->
+    !isNaN(n) && (n % 1 == 0)
+
+valid_float = (n) ->
+    !isNaN(n)
 
 # Return the longest common prefix of the list of strings passed in
 common_prefix = (lst) ->
@@ -72,7 +75,6 @@ to_server_model = (mdl) ->
             res.hidden_factor.push(r.name)
     res.replicates = new_reps
 
-    console.log("my model",mdl,res)
     res
 
 
@@ -124,7 +126,7 @@ module.exports =
                 this.modal.show=false
 
         save: () ->
-            err = this.check_conditon_names()
+            err = this.check_errs()
             if err.length>0
                 this.modal.msgs_class = 'alert alert-danger'
                 this.modal.msgs = err
@@ -160,6 +162,15 @@ module.exports =
             )
         revert: () ->
             this.settings = from_server_model(this.orig_settings.settings)
+        check_errs: () ->
+            errs = this.check_conditon_names()
+            if !(valid_int(this.settings.min_counts))
+                errs.push("Invalid min read count value")
+            if !(valid_float(this.settings.min_cpm))
+                errs.push("Invalid CPM value")
+            if !(valid_int(this.settings.min_cpm_samples))
+                errs.push("Invalid 'in at least samples'")
+            errs
         check_conditon_names: () ->
             invalid = []
             for rep in this.settings.replicates
