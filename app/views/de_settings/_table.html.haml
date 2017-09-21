@@ -11,7 +11,7 @@
   - list.each do |de|
     %tr
       %td
-        %a{:href=>"/degust/compare.html?code=#{de.secure_id}"}
+        %a{:href=>de_setting_path(de.secure_id)}
           = de.name || "<Unnamed>"
       %td{"data-val" => de.user_file.size}
         = number_to_human_size(de.user_file.size)

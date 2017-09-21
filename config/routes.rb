@@ -24,5 +24,5 @@ Rails.application.routes.draw do
     end
   end
   get '/degust/kegg/*page' => 'degust#static_kegg'
-  get '/degust/*page' => 'degust#static'
+  get '/degust/*page' => 'degust#static', :as => :degust_page
 end
