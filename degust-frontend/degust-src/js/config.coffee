@@ -179,6 +179,16 @@ module.exports =
                 if (rep.name=="")
                     invalid.push("Missing condition name")
             invalid
+
+        # Return the condition names for the given replicate name.  Used in displaying options
+        conditions_for_rep: (name) ->
+            res=[]
+            this.settings.replicates.forEach((rep) ->
+                if (name in rep.cols)
+                    res.push(if rep.name=="" then "<unnamed>" else rep.name)
+            )
+            res
+
         add_replicate: () ->
             r = {name:"",cols:[],init:false,factor:false}
             this.settings.replicates.push(r)

@@ -1,3 +1,4 @@
+<style src="../../node_modules/vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
     .options { border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 10px 3px; }
 
@@ -18,8 +19,12 @@
 
     /* Hack to improve layout of multiselect */
     .conditions .multiselect__single {display: none;}
+
+    .multiselect__option {padding: 5px; font-size: 12px; min-height: auto;}
+    .multiselect__content-wrapper { border: thin solid black;}
+
+    .rep_used { padding: 0 3px; background-color: #ddd; border-radius: 3px; margin-left: 10px; float: right;}
 </style>
-<style src="../../node_modules/vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 
 <template>
@@ -140,7 +145,16 @@
                     </div>
                     <div class="col-sm-9">
                       <div class="col-sm-8">
-                        <multiselect v-model="rep.cols" :options="columns_info" @input='selected_reps(rep)' :multiple="true" :close-on-select="false" :show-labels="false" :searchable="false" placeholder="Pick some" />
+                        <multiselect v-model="rep.cols" :options="columns_info"
+                                     @input='selected_reps(rep)'
+                                     :multiple="true" :close-on-select="false"
+                                     :show-labels="false" :searchable="false" placeholder="Pick some" >
+                          <template slot="option" scope="props">
+                            <div>{{props.option}}
+                                <span class='rep_used' v-for='cond in conditions_for_rep(props.option)'>{{cond}}</span>
+                            </div>
+                          </template>
+                        </multiselect>
                       </div>
                       <label class='init-select'>
                           <input v-model='rep.init' type="checkbox" />Initial select
