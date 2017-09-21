@@ -14,8 +14,12 @@
     .del-condition { float: right; }
 
     .init-select, .hidden-factor {margin-left: 15px; font-size: smaller;}
+    .condition-up-down {display: inline-block; position: absolute;; width: 15px; height: 15px}
+    .condition-up-down .glyphicon-triangle-top {position: absolute; top: 4px;}
+    .condition-up-down .glyphicon-triangle-bottom {position: absolute; top: 20px;}
+    .disabled {opacity: 0.5;}
 
-    .col-name {width: 100%;}
+    .col-name {width: 100%; margin-left: 16px; padding: 7px 0;}
 
     /* Hack to improve layout of multiselect */
     .conditions .multiselect__single {display: none;}
@@ -139,33 +143,45 @@
                     <span class="control-label col-sm-1">Replicates</span>
                   </div>
 
-                  <div v-for='(rep,idx) in settings.replicates' class="form-group condition">
-                    <div class="controls col-sm-3">
-                      <input v-model='rep.name' class="control-label col-name" placeholder="Condition Name"/>
-                    </div>
-                    <div class="col-sm-9">
-                      <div class="col-sm-8">
-                        <multiselect v-model="rep.cols" :options="columns_info"
-                                     @input='selected_reps(rep)'
-                                     :multiple="true" :close-on-select="false"
-                                     :show-labels="false" :searchable="false" placeholder="Pick some" >
-                          <template slot="option" scope="props">
-                            <div>{{props.option}}
-                                <span class='rep_used' v-for='cond in conditions_for_rep(props.option)'>{{cond}}</span>
+                  <div>
+                      <div v-for='(rep,idx) in settings.replicates' class="form-group condition">
+                        <div class="controls col-sm-3">
+                            <div class='condition-up-down'>
+                                <span @click='move_replicate(idx,-1)' :class='{disabled: idx==0}'
+
+                                      class='glyphicon glyphicon-triangle-top'></span>
+                                <span @click='move_replicate(idx,1)' :class='{disabled: idx+1==settings.replicates.length}'
+                                      class='glyphicon glyphicon-triangle-bottom'></span>
                             </div>
-                          </template>
-                        </multiselect>
+                          <input v-model='rep.name' class="control-label col-name" placeholder="Condition Name"/>
+                        </div>
+                        <div class="col-sm-9">
+                          <div class="col-sm-8">
+                            <multiselect v-model="rep.cols" :options="columns_info"
+                                         @input='selected_reps(rep)'
+                                         :multiple="true" :close-on-select="false"
+                                         :show-labels="false" :searchable="false"
+                                         placeholder="Pick some">
+                              <template slot="option" scope="props">
+                                <div>{{props.option}}
+                                    <span class='rep_used' v-for='cond in conditions_for_rep(props.option)'>{{cond}}</span>
+                                </div>
+                              </template>
+                            </multiselect>
+                          </div>
+                          <div class="col-sm-4">
+                              <label class='init-select'>
+                                  <input v-model='rep.init' type="checkbox" />Initial select
+                              </label>
+                              <label class='hidden-factor'>
+                                  <input v-model='rep.factor' type="checkbox" />Hidden Factor
+                              </label>
+                              <button v-on:click='del_replicate(idx)' type="button" class="del-condition">&times;</button>
+                          </div>
+                        </div>
                       </div>
-                      <label class='init-select'>
-                          <input v-model='rep.init' type="checkbox" />Initial select
-                      </label>
-                      <label class='hidden-factor'>
-                          <input v-model='rep.factor' type="checkbox" />Hidden Factor
-                      </label>
-                      <button v-on:click='del_replicate(idx)' type="button" class="del-condition">&times;</button>
-                    </div>
                   </div>
-                </div>
+                </div> <!-- conditions -->
 
                 <div class="form-group">
                   <div class="col-sm-3">

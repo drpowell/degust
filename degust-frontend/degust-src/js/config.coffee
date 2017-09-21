@@ -21,11 +21,12 @@ valid_float = (n) ->
 
 # Return the longest common prefix of the list of strings passed in
 common_prefix = (lst) ->
+    return "" if lst.length==0
     lst = lst.slice(0).sort()
     tem1 = lst[0]
     s = tem1.length
     tem2 = lst.pop()
-    while(s && (tem2.indexOf(tem1) == -1 || "_-".indexOf(tem1[s-1])>=0))
+    while(s && (tem2.indexOf(tem1) != 0 || "_-".indexOf(tem1[s-1])>=0))
         tem1 = tem1.substring(0, --s)
     tem1
 
@@ -196,6 +197,11 @@ module.exports =
                 r.init=true
         del_replicate: (idx) ->
             this.settings.replicates.splice(idx, 1)
+        move_replicate: (idx, dir) ->
+            if idx+dir>=0 && idx+dir<this.settings.replicates.length
+                r = this.settings.replicates.splice(idx,1)
+                this.settings.replicates.splice(idx+dir, 0, r[0])
+
         selected_reps: (rep) ->
             n = common_prefix(rep.cols)
             rep.name = n
