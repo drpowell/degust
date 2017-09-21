@@ -7,6 +7,17 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
+set :deploy_to, "/mnt/degust-staging/"
+set :branch, "vue"
+
+append :linked_files, "db/staging.sqlite3"
+
+server "degust.erc.monash.edu",
+  user: "degust2",
+  roles: %w(app db web),
+  ssh_options: {
+      keys_only: true,    # Important to stop Net::SSH trying all keys in the agent!
+  }
 
 
 # role-based syntax
