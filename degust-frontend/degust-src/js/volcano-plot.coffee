@@ -12,8 +12,8 @@ class VolcanoPlot extends ScatterPlot
 
     update_data: (data, @logfc_col, @fdr_col, colour, @info_cols) ->
         super(data,
-              {name: "log FC", get: (d) -> d[logfc_col.idx] },
-              {name: "-log10 FDR", get: (d) -> -Math.log10(d[fdr_col.idx]) },
+              {name: "log FC", get: (d) => d[@logfc_col.idx] },
+              {name: "-log10 FDR", get: (d) => -Math.log10(d[@fdr_col.idx]) },
               colour)
 
     # Display and fill in the tooltip

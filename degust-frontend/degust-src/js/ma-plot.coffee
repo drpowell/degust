@@ -12,8 +12,8 @@ class MAPlot extends ScatterPlot
 
     update_data: (data, @avg_col, @logfc_col, colour, @info_cols, @fdr_col) ->
         super(data,
-             {name: "Ave Expr", get: (d) -> d[avg_col.idx] },
-             {name: "log FC", get: (d) -> d[logfc_col.idx] },
+             {name: "Ave Expr", get: (d) => d[@avg_col.idx] },
+             {name: "log FC", get: (d) => d[@logfc_col.idx] },
              colour)
 
     # Display and fill in the tooltip
