@@ -8,6 +8,7 @@ namespace :degust do
     Dir.chdir('degust-frontend') do
       case Rails.env
       when 'production' then my_system("./node_modules/.bin/grunt production")
+      when 'staging' then my_system("./node_modules/.bin/grunt --stack production")
       else my_system("./node_modules/.bin/grunt build")
       end
     end
