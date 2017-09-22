@@ -63,7 +63,7 @@ namespace :deploy do
 
     task :restart do
         on roles(:app) do
-            execute "touch #{ current_path }/tmp/restart.txt"
+            execute "kill `cat #{ current_path }/tmp/pids/server.pid`"
         end
     end
 end
