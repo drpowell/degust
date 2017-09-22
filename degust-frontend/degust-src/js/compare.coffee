@@ -531,6 +531,8 @@ activate_pca_plot = () ->
     $('.pca-opts').show()
     numGenesSlider.set_max(100, 1, g_data.get_data().length, true)
     skipGenesSlider.set_max(0, 0, g_data.get_data().length, true)
+    fdrSlider.set_val(1,true)
+    fcSlider.set_val(0,true)
 
     update_data()
 
