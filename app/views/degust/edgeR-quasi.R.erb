@@ -1,0 +1,34 @@
+<%= render "degust/common.R.erb" %>
+
+cont.matrix <- <%== @cont_matrix %>
+
+y <- DGEList(counts=counts)
+
+y <- calcNormFactors(y, method="TMM")
+
+y <- estimateDisp(y,design)
+
+fit <- glmQLFit(y,design)
+qlf <- glmQLFTest(fit,contrast=cont.matrix)
+
+
+out <- topTags(qlf, n=Inf, sort.by='none')$table
+
+lfc <- as.matrix(out[, c(1:ncol(cont.matrix))])
+colnames(lfc) <- colnames(cont.matrix)
+
+# Output with column names for degust
+out2 <- cbind(lfc,
+			  'P.Value'   = out[,'PValue'],
+			  'adj.P.Val' = out[,'FDR'],
+			  'AveExpr'   = out[,'logCPM'],
+			  x[, c(<%== @export_cols %>)] )
+
+write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+
+cat(
+   toJSON(list(prior_df=qlf$prior.df,
+			   design=data.frame(qlf$design)
+		 )),
+   file="<%== @output_dir %>/extra.json"
+)

@@ -21,6 +21,7 @@ class DegustLogic
         method = case query['method']
                  when 'voom' then 'voom'
                  when 'edgeR' then 'edgeR'
+                 when 'edgeR-quasi' then 'edgeR-quasi'
                  when 'voom-weights' then 'voom-weights'
                  end
 
