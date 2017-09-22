@@ -1143,6 +1143,7 @@ init_page = (use_backend) ->
 
     fdrThreshold = settings['fdrThreshold'] if settings['fdrThreshold'] != undefined
     fcThreshold  = settings['fcThreshold']  if settings['fcThreshold'] != undefined
+    $('select#dge-method').val(settings['dge_method']) if settings['dge_method']?
 
     if full_settings?
         if full_settings['extra_menu_html']

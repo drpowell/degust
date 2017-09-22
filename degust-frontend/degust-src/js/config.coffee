@@ -54,6 +54,12 @@ from_server_model = (mdl) ->
         )
     res.replicates = new_reps
 
+    if res.dge_method?
+        res.dge_method = dge_methods.filter((r) -> r.value == res.dge_method)
+        if res.dge_method.length>0
+        then res.dge_method=res.dge_method[0]
+        else delete res.dge_method
+
     console.log("server model",mdl,res)
     res
 
@@ -75,9 +81,20 @@ to_server_model = (mdl) ->
         if r.factor
             res.hidden_factor.push(r.name)
     res.replicates = new_reps
+    if res.fdrThreshold==""
+        delete res.fdrThreshold
+    if res.dge_method?
+        res.dge_method = res.dge_method.value
+    if !res.dge_method?
+        delete res.dge_method
 
     res
 
+dge_methods = [{value: 'voom', label: 'Voom/Limma'},
+               {value: 'edgeR-quasi', label: 'edgeR quasi-likelihood'},
+               {value: 'edgeR', label: 'edgeR'},
+               {value: 'voom-weights', label: 'Voom (sample weights)'}
+              ]
 
 Multiselect = require('vue-multiselect').default
 Modal = require('modal-vue').default
@@ -94,10 +111,12 @@ module.exports =
         asRows: []
         orig_settings:
             is_owner: false
+        advanced: false
         modal:
             show: false
             msgs: ""
             msgs_class: ""
+        dge_methods: dge_methods
     computed:
         code: () ->
             get_url_vars()["code"]
@@ -235,6 +254,7 @@ module.exports =
                     if this.orig_settings['extra_menu_html']
                         $('#right-navbar-collapse').append(this.orig_settings['extra_menu_html'])
                 )
+
     watch:
         'settings.name': () -> document.title = this.settings.name
         csv_data: () ->

@@ -28,6 +28,10 @@
     .multiselect__content-wrapper { border: thin solid black;}
 
     .rep_used { padding: 0 3px; background-color: #ddd; border-radius: 3px; margin-left: 10px; float: right;}
+
+    .fade-enter-active, .fade-leave-active { transition: opacity .5s }
+    .fade-enter, .fade-leave-to  { opacity: 0  }
+
 </style>
 
 
@@ -83,25 +87,6 @@
                 <label class="control-label col-sm-3">Info columns</label>
                 <div class="controls col-sm-6">
                   <multiselect v-model="settings.info_columns" :options="columns_info" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="true" placeholder="Add column"/>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="control-label col-sm-3">EC Number column</label>
-                <div class="controls col-sm-3">
-                  <multiselect v-model="settings.ec_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Optional ---"></multiselect>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-sm-3">Gene link column</label>
-                <div class="controls col-sm-3">
-                  <multiselect v-model="settings.link_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Optional ---"></multiselect>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-sm-3">Gene link URL</label>
-                <div class="controls col-sm-3">
-                  <input v-model='settings.link_url' class="form-control" type="text" size='50' placeholder="Leave blank to have Degust guess" title="Optional: External link for genes.  Any '%s' in the link will be replaced by the defined link column" data-placement='right' />
                 </div>
               </div>
 
@@ -219,6 +204,48 @@
                 </div>
               </div>
 
+              <button type='button' @click='advanced=!advanced'
+                      class='btn btn-default btn-sm pull-right' style='margin-top:-45px;'>
+                  Extra settings
+              </button>
+              <transition name="fade">
+                  <div v-show='advanced'>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">EC Number column</label>
+                        <div class="controls col-sm-3">
+                          <multiselect v-model="settings.ec_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Optional ---"></multiselect>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">Gene link column</label>
+                        <div class="controls col-sm-3">
+                          <multiselect v-model="settings.link_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Optional ---"></multiselect>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3">Gene link URL</label>
+                        <div class="controls col-sm-3">
+                          <input v-model='settings.link_url' class="form-control" type="text" size='50' placeholder="Leave blank to have Degust guess" title="Optional: External link for genes.  Any '%s' in the link will be replaced by the defined link column" data-placement='right' />
+                        </div>
+                      </div>
+
+                      <div v-if='settings.analyze_server_side'>
+                          <div class="form-group">
+                            <label class="control-label col-sm-3">Default analysis</label>
+                            <div class="controls col-sm-3">
+                                <multiselect v-model="settings.dge_method" :options="dge_methods" track-by='value' label='label' :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Optional ---"></multiselect>
+                                </select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-sm-3">Default FDR</label>
+                            <div class="controls col-sm-3">
+                                <input v-model.number='settings.fdrThreshold' class="form-control" type="text" placeholder="1" title="Optional: Default FDR threshold for display" data-placement='right' />
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </transition>
 
               <div class="form-group">
                 <div class="col-sm-12">
