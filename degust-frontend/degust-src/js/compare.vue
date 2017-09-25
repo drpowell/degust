@@ -104,7 +104,7 @@
           </div>
           <div title='Show raw counts (or counts-per-million) in the table' data-placement='left' class='show-counts-opt'>
             <label for='show-counts'>Show Counts</label>
-            <select id='show-counts'>
+            <select v-model="show_counts">
               <option value='no'>No</option>
               <option value='yes'>Yes</option>
               <option value='cpm'>As counts-per-million</option>

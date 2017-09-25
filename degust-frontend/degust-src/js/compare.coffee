@@ -294,7 +294,6 @@ requested_kegg = false
 
 
 # Globals for settings
-show_counts = 'no'   # Possible values 'yes','no','cpm'
 fdrThreshold = 1
 fcThreshold = 0
 sortAbsLogFC = true
@@ -418,7 +417,7 @@ get_state = () ->
     state = {}
     state.plot = plot
     def = (val, def) -> if val==def then null else val
-    state.show_counts = def(show_counts,'no')
+    state.show_counts = def(g_vue_obj.show_counts,'no')
     state.fdrThreshold = def(fdrThreshold,1)
     state.fcThreshold = def(fcThreshold,0)
     state.sortAbsLogFC = def(sortAbsLogFC, true)
@@ -449,8 +448,7 @@ set_state = (state, force_update) ->
     fcSlider.set_val(state.fcThreshold, true) if state.fcThreshold?
 
     if state.show_counts?
-        $('select#show-counts').val(state.show_counts)
-        update_flags()
+        g_vue_obj.show_counts = state.show_counts
         gene_table.invalidate()
 
     numGenesSlider.set_val(+state.numGenesThreshold, true) if state.numGenesSlider?
@@ -732,11 +730,11 @@ set_gene_table = (data) ->
 fc_div = (n, column, row) ->
     colour = if n>0.1 then "pos" else if n<-0.1 then "neg" else ""
     countStr = ""
-    if show_counts=='yes'
+    if g_vue_obj.show_counts=='yes'
         count_columns = g_data.assoc_column_by_type('count',column.name)
         vals = count_columns.map((c,i) -> "<span>#{row[c.idx]}</span>")
         countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
-    else if show_counts=='cpm'
+    else if g_vue_obj.show_counts=='cpm'
         count_columns = g_data.assoc_column_by_type('count',column.name)
         vals = count_columns.map((c) ->
             tot = g_data.get_total(c)
@@ -938,10 +936,6 @@ init_slider = () ->
     $('#ma-fc-col').change((e) ->
         update_data()
     )
-    $('#show-counts').change((e) ->
-        update_flags()
-        gene_table.invalidate()
-    )
     $('#mds-2d3d').change((e) ->
         redraw_plot()
     )
@@ -1035,13 +1029,8 @@ process_dge_data = (data, columns) ->
         g_tour_setup = true
         setup_tour(if settings.show_tour? then settings.show_tour else true)
 
-update_flags = () ->
-    show_counts = $('select#show-counts option:selected').val()
-
 # Called whenever the data is changed, or the "checkboxes" are modified
 update_data = () ->
-    update_flags()
-
     # Set the 'relative' column
     fc_relative = $('select#fc-relative option:selected').val()
     if fc_relative<0
@@ -1166,11 +1155,14 @@ module.exports =
         load_failed: false
         load_success: false
         num_loading: 0
+        show_counts: 'no'
     computed:
         code: () ->
             get_url_vars()["code"]
         asset_base: () -> this.settings?.asset_base || ''
         home_link: () -> this.settings?.home_link || '/'
+    watch:
+        show_counts: () -> gene_table.invalidate()
     methods:
         init: () ->
             if !this.code?
