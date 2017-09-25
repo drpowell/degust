@@ -1,13 +1,8 @@
-num_loading = 0
-start_loading = () ->
-    num_loading += 1
-    $('#loading').show()
-    $('#dge-pc,#dge-ma,#dge-pca').css('opacity',0.4)
-done_loading = () ->
-    num_loading -= 1
-    if num_loading==0
-        $('#loading').hide()
-        $('#dge-pc,#dge-ma,#dge-pca').css('opacity',1)
+
+g_vue_obj = null
+
+start_loading = () -> g_vue_obj.num_loading += 1
+done_loading  = () -> g_vue_obj.num_loading -= 1
 
 html_escape = (str) ->
     $('<div/>').text(str).html()
@@ -1170,6 +1165,7 @@ module.exports =
         full_settings: {}
         load_failed: false
         load_success: false
+        num_loading: 0
     computed:
         code: () ->
             get_url_vars()["code"]
@@ -1202,5 +1198,6 @@ module.exports =
                         $('.error-msg').append(pre)
                     )
                 )
-    mounted: ->
+    mounted: () ->
+        g_vue_obj = this
         this.init()

@@ -191,17 +191,19 @@
         </div>
 
         <div class='col-xs-6' id='expression'>
-          <div id='loading'><img :src='asset_base + "images/ajax-loader.gif"'></div>
+          <div v-show='num_loading>0' class='loading'><img :src='asset_base + "images/ajax-loader.gif"'></div>
           <ul class="nav nav-tabs">
             <li id='select-pc'><a href="#">Parallel Coordinates</a></li>
             <li id='select-ma'><a href="#">MA plot</a></li>
             <li id='select-pca'><a href="#">MDS plot</a></li>
             <li id='select-volcano'><a href="#">Volcano</a></li>
           </ul>
-          <div id="dge-pc" class="parcoords"></div>
-          <div id="dge-ma" class="dge-ma"></div>
-          <div id="dge-pca"></div>
-          <div id="dge-volcano" class="dge-ma"></div>
+          <div v-bind:style="{ opacity: num_loading>0 ? 0.4 : 1 }">
+            <div id="dge-pc" class="parcoords"></div>
+            <div id="dge-ma" class="dge-ma"></div>
+            <div id="dge-pca"></div>
+            <div id="dge-volcano" class="dge-ma"></div>
+          </div>
         </div><!-- expression -->
       </div><!-- row -->
 
