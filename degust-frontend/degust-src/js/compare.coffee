@@ -1110,23 +1110,9 @@ show_r_code = () ->
         $('div#code-modal').modal()
     )
 
-render_page = (template) ->
-    # Show the main html
-    opts =
-        asset_base: settings.asset_base || ''
-        home_link: settings.home_link || '/'
-
-    body = $(template(opts))
-    $('#replace-me').replaceWith(body)
-    $('#main-loading').hide()
+init_page = (use_backend) ->
     setup_nav_bar()
     $('[title]').tooltip()
-
-render_main_page = () -> render_page(require("../templates/compare-body.hbs"))
-render_fail_page = () -> render_page(require("../templates/fail.hbs"))
-
-init_page = (use_backend) ->
-    render_main_page()
 
     g_data = new GeneData([],[])
 
@@ -1178,27 +1164,43 @@ init_page = (use_backend) ->
     #$(window).bind( 'hashchange', update_from_link )
     $(window).bind('resize', () -> heatmap.resize())
 
-init = () ->
-    code = get_url_vars()["code"]
-    if !code?
-        init_page(false)
-    else
-        window.my_code = code
-        $.ajax({
-            type: "GET",
-            url: BackendCommon.script("settings"),
-            dataType: 'json'
-        }).done((json) ->
-            window.full_settings = json
-            window.settings = json.settings
-            init_page(true)
-         ).fail((x) ->
-            log_error "Failed to get settings!",x
-            render_fail_page()
-            pre = $("<pre></pre>")
-            pre.text("Error failed to get settings : #{x.responseText}")
-            $('.error-msg').append(pre)
-        )
-
-
-$(document).ready(() -> init() )
+module.exports =
+    data: () ->
+        settings: {}
+        full_settings: {}
+        load_failed: false
+        load_success: false
+    computed:
+        code: () ->
+            get_url_vars()["code"]
+        asset_base: () -> this.settings?.asset_base || ''
+        home_link: () -> this.settings?.home_link || '/'
+    methods:
+        init: () ->
+            if !this.code?
+                this.load_success=true
+                this.$nextTick(() -> init_page(false))
+            else
+                window.my_code = this.code
+                $.ajax({
+                    type: "GET",
+                    url: BackendCommon.script("settings"),
+                    dataType: 'json'
+                }).done((json) =>
+                    window.full_settings = json
+                    window.settings = json.settings
+                    this.full_settings = json
+                    this.settings = json.settings
+                    this.load_success=true
+                    this.$nextTick(() -> init_page(true))
+                 ).fail((x) =>
+                    log_error "Failed to get settings!",x
+                    this.load_failed = true
+                    this.$nextTick(() ->
+                        pre = $("<pre></pre>")
+                        pre.text("Error failed to get settings : #{x.responseText}")
+                        $('.error-msg').append(pre)
+                    )
+                )
+    mounted: ->
+        this.init()

@@ -1,3 +1,17 @@
+<style>
+</style>
+<template>
+<div>
+    <div v-if='load_failed' class="container">
+      <div class="jumbotron">
+        <h1>Degust</h1>
+        <p><a :href='home_link'>Degust</a> failed to load your data :(</p>
+        <p>Error</p>
+        <div class='error-msg'></div>
+      </div>
+    </div>
+
+  <div v-if='load_success'>
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -8,14 +22,14 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="{{home_link}}">Degust : </a>
+          <a class="navbar-brand" :href="home_link">Degust : </a>
           <span class="navbar-brand exp-name"></span>
         </div>
 
         <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
-          <li><a class="log-link" href="#">Logs</a>
-          <li><a id="tour" href="#">Tour</a>
-          <li><a class="config hide" href="#">Configure</a>
+          <li><a class="log-link" href="#">Logs</a></li>
+          <li><a id="tour" href="#">Tour</a></li>
+          <li><a class="config hide" href="#">Configure</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QC <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -24,7 +38,7 @@
               <li><a href="#" class='expression-boxplot'>Expression box-whisker</a></li>
             </ul>
           </li>
-          <li><a href="#about-modal" data-toggle="modal">About</a>
+          <li><a href="#about-modal" data-toggle="modal">About</a></li>
         </ul>
       </div>
     </div>
@@ -177,7 +191,7 @@
         </div>
 
         <div class='col-xs-6' id='expression'>
-          <div id='loading'><img src='{{asset_base}}images/ajax-loader.gif'></div>
+          <div id='loading'><img :src='asset_base + "images/ajax-loader.gif"'></div>
           <ul class="nav nav-tabs">
             <li id='select-pc'><a href="#">Parallel Coordinates</a></li>
             <li id='select-ma'><a href="#">MA plot</a></li>
@@ -214,7 +228,7 @@
                 <li><a href="#" class='download-csv'>Download as CSV</a></li>
                 <li><a href="#" class='download-tsv'>Download as TSV</a></li>
                 <li><a href="#" class='download-odf'>Download as ODF</a></li>
-              <ul>
+              </ul>
             </span>
           </div>
           <div id="grid-info"></div>
@@ -270,3 +284,8 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+  </div>
+</div>
+</template>
+
+<script lang='coffee' src="./compare.coffee"></script>

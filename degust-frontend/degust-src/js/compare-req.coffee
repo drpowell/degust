@@ -20,4 +20,12 @@ require("./edit-list.coffee")
 require('./normalize.coffee')
 require('./qc.coffee')
 require('./gene-expression.coffee')
-require('./compare.coffee')
+
+# Ours
+compare = require('./compare.vue')
+Vue = require('./lib/vue')
+
+new Vue(
+    el: '#replace-me'
+    render: (h) -> h(compare)
+)
