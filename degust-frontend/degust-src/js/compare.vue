@@ -72,23 +72,16 @@
           </div>
 
           <div title='Filter genes by absolute log fold change between any pair of samples' data-placement='left'>
-            <label>abs log FC</label>
-            <input class="fc-fld" type="text" value="0" />
-            <div id='fcSlider'></div>
-            <span class="dropdown">
-              <button class="btn-link dropdown-toggle" type="button" id="dropFC" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu shortcut-fc" aria-labelledby="dropFC">
-                <li><a href="#" data-val='0'>0 (all)</a></li>
-                <li><a href="#" data-val='0.585'>0.585 (&gt; 1.5x)</a></li>
-                <li><a href="#" data-val='1'>1 (&gt; 2x)</a></li>
-                <li><a href="#" data-val='2'>2 (&gt; 4x)</a></li>
-                <li><a href="#" data-val='3'>3 (&gt; 8x)</a></li>
-                <li><a href="#" data-val='4'>4 (&gt; 16x)</a></li>
-              </ul>
-            </span>
+            <label>abs logFC</label>
+            <slider-text class='slider-control'
+                        v-model='fcThreshold'
+                        :step-values='fcStepValues'
+                        :validator="fcValidator"
+                        :dropdowns="[{label: '0 (all)', value: 0},{label: '0.585 (> 1.5x)',value: 0.585},{label:'1 (> 2x)',value:1},{label:'2 (> 4x)',value:2},{label:'3 (> 8x)',value:3},{label:'4 (> 16x)',value:4}]"
+                        >
+            </slider-text>
           </div>
+
           <div title='Show FC from selected condition' data-placement='left'>
             <label for='fc-relative'>FC relative to</label>
             <select id='fc-relative'></select>

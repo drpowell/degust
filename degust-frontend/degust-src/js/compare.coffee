@@ -294,7 +294,6 @@ requested_kegg = false
 
 
 # Globals for settings
-fcThreshold = 0
 sortAbsLogFC = true
 
 fcSlider = null
@@ -399,7 +398,7 @@ set_plot = (typ, force_update) ->
 may_warn_mds = () ->
     if (current_plot == pca_plot)
         $('.fdr-fld').toggleClass('warning', g_vue_obj.fdrThreshold<1)
-        $('.fc-fld').toggleClass('warning', fcThreshold>0)
+        $('.fc-fld').toggleClass('warning', g_vue_obj.fcThreshold>0)
     else
         $('.fdr-fld').toggleClass('warning', false)
         $('.fc-fld').toggleClass('warning', false)
@@ -417,7 +416,7 @@ get_state = () ->
     def = (val, def) -> if val==def then null else val
     state.show_counts = def(g_vue_obj.show_counts,'no')
     state.fdrThreshold = def(g_vue_obj.fdrThreshold,1)
-    state.fcThreshold = def(fcThreshold,0)
+    state.fcThreshold = def(g_vue_obj.fcThreshold,0)
     state.sortAbsLogFC = def(sortAbsLogFC, true)
     fc_rel = $('select#fc-relative option:selected').val()
     state.fc_relative = def(+fc_rel, 0)
@@ -443,7 +442,7 @@ set_state = (state, force_update) ->
     #     ma_plot.brush_extent(state.ma_brush)
 
     g_vue_obj.fdrThreshold = state.fdrThreshold if state.fdrThreshold?
-    fcSlider.set_val(state.fcThreshold, true) if state.fcThreshold?
+    g_vue_obj.fcThreshold  = state.fcThreshold  if state.fcThreshold?
 
     if state.show_counts?
         g_vue_obj.show_counts = state.show_counts
@@ -753,11 +752,11 @@ gene_table_filter = (item) ->
 
 # Filter to decide which rows to plot on the parallel coordinates widget
 expr_filter = (row) ->
-    if fcThreshold>0
+    if g_vue_obj.fcThreshold>0
         # Filter using largest FC between any pair of samples
         fc = g_data.columns_by_type('fc').map((c) -> row[c.idx])
         extent_fc = d3.extent(fc.concat([0]))
-        if Math.abs(extent_fc[0] - extent_fc[1]) < fcThreshold
+        if Math.abs(extent_fc[0] - extent_fc[1]) < g_vue_obj.fcThreshold
             return false
 
     # Filter by FDR
@@ -849,25 +848,6 @@ redraw_plot = () ->
         current_plot.brush()
 
 init_slider = () ->
-    # wire up the slider to apply the filter to the model
-    fcSlider = new Slider(
-          id: "#fcSlider"
-          input_id: "input.fc-fld"
-          step_values: (Number(x.toFixed(2)) for x in [0..5] by 0.01)
-          val: fcThreshold
-          validator: (v) ->
-             n = Number(v)
-             !(isNaN(n) || n<0)
-          on_change: (v) ->
-             Slick.GlobalEditorLock.cancelCurrentEdit()
-             if (fcThreshold != v)
-               window.clearTimeout(h_runfilters)
-               h_runfilters = window.setTimeout(redraw_plot, 10)
-               fcThreshold = v
-               may_warn_mds()
-    )
-    $('.shortcut-fc a').click((e) -> e.preventDefault(); fcSlider.set_val($(this).data('val'), true))
-
     numGenesSlider = new Slider(
           id: "#numGenesSlider"
           input_id: "input.num-genes-fld"
@@ -1095,7 +1075,7 @@ init_page = (use_backend) ->
     document.title = title
 
     g_vue_obj.fdrThreshold = settings['fdrThreshold'] if settings['fdrThreshold'] != undefined
-    fcThreshold  = settings['fcThreshold']  if settings['fcThreshold'] != undefined
+    g_vue_obj.fcThreshold  = settings['fcThreshold']  if settings['fcThreshold'] != undefined
     $('select#dge-method').val(settings['dge_method']) if settings['dge_method']?
 
     if full_settings?
@@ -1143,6 +1123,10 @@ module.exports =
         num_loading: 0
         show_counts: 'no'
         fdrThreshold: 0.1
+        fcThreshold: 1
+        fcStepValues:
+            Number(x.toFixed(2)) for x in [0..5] by 0.01
+
     computed:
         code: () ->
             get_url_vars()["code"]
@@ -1152,9 +1136,10 @@ module.exports =
         show_counts: () -> gene_table.invalidate()
         fdrThreshold: (val,old) ->
             if (val != old)
-                window.clearTimeout(h_runfilters)
-                h_runfilters = window.setTimeout(redraw_plot, 10)
-                may_warn_mds()
+                this.redraw()
+        fcThreshold: (val,old) ->
+            if (val != old)
+                this.redraw()
     methods:
         init: () ->
             if !this.code?
@@ -1182,9 +1167,17 @@ module.exports =
                         $('.error-msg').append(pre)
                     )
                 )
+        redraw: () ->
+            window.clearTimeout(h_runfilters)
+            h_runfilters = window.setTimeout(redraw_plot, 10)
+            may_warn_mds()
+
         fdrValidator: (v) ->
             n = Number(v)
             !(isNaN(n) || n<0 || n>1)
+        fcValidator: (v) ->
+             n = Number(v)
+             !(isNaN(n) || n<0)
 
     mounted: () ->
         g_vue_obj = this
