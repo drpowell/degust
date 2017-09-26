@@ -1,4 +1,5 @@
 <style>
+    .slider-control { display: inline-block; }
 </style>
 <template>
 <div>
@@ -61,21 +62,15 @@
           <h4>Options</h4>
           <div title='Filter genes by False Discovery Rate' data-placement='left'>
             <label>FDR cut-off</label>
-            <input class="fdr-fld" type="text" value="0.01" />
-            <div id='fdrSlider'></div>
-            <span class="dropdown">
-              <button class="btn-link dropdown-toggle" type="button" id="dropFDR" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu shortcut-fdr" aria-labelledby="dropFDR">
-                <li><a href="#" data-val='1'>1</a></li>
-                <li><a href="#" data-val='0.05'>0.05</a></li>
-                <li><a href="#" data-val='0.01'>0.01</a></li>
-                <li><a href="#" data-val='0.001'>0.001</a></li>
-                <li><a href="#" data-val='0.0001'>0.0001</a></li>
-              </ul>
-            </span>
+            <slider-text class='slider-control'
+                        v-model='fdrThreshold'
+                        :step-values='[0, 1e-6, 1e-5, 1e-4, 0.001, .01, .02, .03, .04, .05, 0.1, 1]'
+                        :validator="fdrValidator"
+                        :dropdowns="[{label: '1', value: 1},{label: '0.05',value: 0.05},{label:'0.01',value:0.01},{label:'0.001',value:0.001},{label:'0.0001',value:0.0001}]"
+                        >
+            </slider-text>
           </div>
+
           <div title='Filter genes by absolute log fold change between any pair of samples' data-placement='left'>
             <label>abs log FC</label>
             <input class="fc-fld" type="text" value="0" />
