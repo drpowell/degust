@@ -295,15 +295,6 @@ requested_kegg = false
 # Globals for settings
 sortAbsLogFC = true
 
-pcaDimsSlider = null
-
-numGenesThreshold = 50
-numGenesSlider = null    # Need a handle on this to update number of genes
-skipGenesThreshold = 50
-skipGenesSlider = null   # Need a handle on this to update number of genes
-pcaDimension = 1
-pcaDimsSlider = null
-
 searchStr = ""
 kegg_filter = []
 h_runfilters = null
@@ -410,9 +401,9 @@ get_state = () ->
     fc_rel = $('select#fc-relative option:selected').val()
     state.fc_relative = def(+fc_rel, 0)
     if plot=='mds'
-        state.numGenesThreshold = numGenesThreshold
-        state.skipGenesThreshold = skipGenesThreshold
-        state.pcaDimension = pcaDimension
+        state.numGenesThreshold = g_vue_obj.numGenesThreshold
+        state.skipGenesThreshold = g_vue_obj.skipGenesThreshold
+        state.pcaDimension = g_vue_obj.pcaDimension
     # if plot=='ma'
     #     ex = ma_plot.brush_extent()
     state.searchStr = def(searchStr,"")
@@ -437,9 +428,10 @@ set_state = (state, force_update) ->
         g_vue_obj.show_counts = state.show_counts
         gene_table.invalidate()
 
-    numGenesSlider.set_val(+state.numGenesThreshold, true) if state.numGenesSlider?
-    skipGenesSlider.set_val(+state.skipGenesSlider, true) if state.skipGenesSlider?
-    pcaDimsSlider.set_val(+state.pcaDimension, true) if state.pcaDimension?
+
+    g_vue_obj.numGenesThreshold = +state.numGenesThreshold if state.numGenesThreshold?
+    g_vue_obj.skipGenesThreshold = +state.skipGenesThreshold if state.skipGenesThreshold?
+    g_vue_obj.pcaDimension = +state.pcaDimension if state.pcaDimension?
 
     update_search_str(state.searchStr, true) if (state.searchStr?)
     sortAbsLogFC = (!state.sortAbsLogFC? || state.sortAbsLogFC!='false')
@@ -508,8 +500,10 @@ activate_pca_plot = () ->
     $('.ma-fc-col-opt').hide()
     heatmap.enabled(false)
     $('.pca-opts').show()
-    numGenesSlider.set_max(100, 1, g_data.get_data().length, true)
-    skipGenesSlider.set_max(0, 0, g_data.get_data().length, true)
+    g_vue_obj.numGenesThreshold = 100
+    g_vue_obj.skipGenesThreshold = 0
+    g_vue_obj.maxGenes = g_data.get_data().length
+    g_vue_obj.pcaDimension = 1
     g_vue_obj.fdrThreshold = 1
     g_vue_obj.fcThreshold = 0
     update_data()
@@ -584,11 +578,11 @@ init_charts = () ->
         elem: '#dge-pca'
         filter: expr_filter
         colour: g_colour_by_parent
-        sel_dimension: (d) => pcaDimsSlider.set_val(+d, true)
+        sel_dimension: (d) => g_vue_obj.pcaDimension = +d
         params: () ->
-            skip: +skipGenesThreshold
-            num: +numGenesThreshold
-            dims: [+pcaDimension, +pcaDimension+1, +pcaDimension+2]
+            skip: +g_vue_obj.skipGenesThreshold
+            num: +g_vue_obj.numGenesThreshold
+            dims: [+g_vue_obj.pcaDimension, +g_vue_obj.pcaDimension+1, +g_vue_obj.pcaDimension+2]
             plot_2d3d: $('select#mds-2d3d option:selected').val()
 
         )
@@ -836,49 +830,6 @@ redraw_plot = () ->
         g_vue_obj.current_plot.brush()
 
 init_slider = () ->
-    numGenesSlider = new Slider(
-          id: "#numGenesSlider"
-          input_id: "input.num-genes-fld"
-          val: numGenesThreshold
-          validator: (v) ->
-             n = Number(v)
-             !(isNaN(n) || n<0)
-          on_change: (v) ->
-             Slick.GlobalEditorLock.cancelCurrentEdit()
-             if (numGenesThreshold != v)
-               window.clearTimeout(h_runfilters)
-               h_runfilters = window.setTimeout(redraw_plot, 10)
-               numGenesThreshold = v
-    )
-    skipGenesSlider = new Slider(
-          id: "#skipGenesSlider"
-          input_id: "input.skip-genes-fld"
-          val: skipGenesThreshold
-          validator: (v) ->
-             n = Number(v)
-             !(isNaN(n) || n<0)
-          on_change: (v) ->
-             Slick.GlobalEditorLock.cancelCurrentEdit()
-             if (skipGenesThreshold != v)
-               window.clearTimeout(h_runfilters)
-               h_runfilters = window.setTimeout(redraw_plot, 10)
-               skipGenesThreshold = v
-    )
-    pcaDimsSlider = new Slider(
-          id: "#pcaDimsSlider"
-          input_id: "input.pca-dims-fld"
-          step_values: [1..10]
-          val: pcaDimension
-          fmt: (v) -> v+" vs "+(v+1)
-          validator: (v) ->
-             n = Number(v)
-             !(isNaN(n) || n<0)
-          on_change: (v) ->
-            if (pcaDimension != v)
-                window.clearTimeout(h_runfilters)
-                h_runfilters = window.setTimeout(redraw_plot, 10)
-                pcaDimension = v
-    )
     $('#fc-relative').change((e) ->
         update_data()
     )
@@ -1115,6 +1066,10 @@ module.exports =
         fcThreshold: 0
         fcStepValues:
             Number(x.toFixed(2)) for x in [0..5] by 0.01
+        numGenesThreshold: 0
+        skipGenesThreshold: 0
+        pcaDimension: 1
+        maxGenes: 0
 
     computed:
         code: () ->
@@ -1124,13 +1079,26 @@ module.exports =
         fdrWarning: () -> this.current_plot == pca_plot && this.fdrThreshold<1
         fcWarning: () -> this.current_plot == pca_plot && this.fcThreshold>0
     watch:
-        show_counts: () -> gene_table.invalidate()
+        show_counts: () ->
+            gene_table.invalidate()
         fdrThreshold: (val,old) ->
             if (val != old)
                 this.redraw()
         fcThreshold: (val,old) ->
             if (val != old)
                 this.redraw()
+        numGenesThreshold: (val,old) ->
+            if (val != old)
+                this.redraw()
+        skipGenesThreshold: (val,old) ->
+            if (val != old)
+                this.redraw()
+        pcaDimension: (val,old) ->
+            if (val != old)
+                this.redraw()
+        maxGenes: (val) ->
+            this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
+            this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
     methods:
         init: () ->
             if !this.code?
@@ -1162,10 +1130,11 @@ module.exports =
             window.clearTimeout(h_runfilters)
             h_runfilters = window.setTimeout(redraw_plot, 10)
 
+        fmtPCAText: (v) -> v+" vs "+(v+1)
         fdrValidator: (v) ->
             n = Number(v)
             !(isNaN(n) || n<0 || n>1)
-        fcValidator: (v) ->
+        intValidator: (v) ->
              n = Number(v)
              !(isNaN(n) || n<0)
 

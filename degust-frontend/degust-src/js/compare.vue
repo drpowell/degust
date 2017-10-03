@@ -77,7 +77,7 @@
             <slider-text class='slider-control'
                         v-model='fcThreshold'
                         :step-values='fcStepValues'
-                        :validator="fcValidator"
+                        :validator="intValidator"
                         :dropdowns="[{label: '0 (all)', value: 0},{label: '0.585 (> 1.5x)',value: 0.585},{label:'1 (> 2x)',value:1},{label:'2 (> 4x)',value:2},{label:'3 (> 8x)',value:3},{label:'4 (> 16x)',value:4}]"
                         :warning="fcWarning"
                         >
@@ -104,18 +104,33 @@
             <div class='pca-title'>MDS options</div>
             <div title='Number of genes to use for the MDS plot' data-placement='left' class='pca-num-genes-opt'>
               <label>Num genes</label>
-              <input class="num-genes-fld" type="text" value="50" />
-              <div id='numGenesSlider'></div>
+              <slider-text class='slider-control'
+                          v-model='numGenesThreshold'
+                          :step-values='fcStepValues'
+                          :validator="intValidator"
+                          ref='num_genes'
+                          >
+              </slider-text>
             </div>
             <div title='Number of genes to ignore for the MDS plot' data-placement='left' class='pca-skip-genes-opt'>
               <label>Skip genes</label>
-              <input class="skip-genes-fld" type="text" value="50" />
-              <div id='skipGenesSlider'></div>
+              <slider-text class='slider-control'
+                          v-model='skipGenesThreshold'
+                          :validator="intValidator"
+                          ref='skip_genes'
+                          >
+              </slider-text>
             </div>
             <div title='MDS dimensions to plot' data-placement='left' class='pca-dims-opt'>
               <label>Dimensions</label>
-              <input class="pca-dims-fld" type="text" value="50" disabled />
-              <div id='pcaDimsSlider'></div>
+              <slider-text class='slider-control'
+                          v-model='pcaDimension'
+                          :step-values='[1,2,3,4,5,6,7,8,9,10]'
+                          :validator="intValidator"
+                          :fmt='fmtPCAText'
+                          :text-disable='true'
+                          >
+              </slider-text>
             </div>
             <div title='MDS in 2d or 3d' data-placement='left' class='mds-2d3d-opt'>
               <label for='mds-2d3d'>MDS plot</label>

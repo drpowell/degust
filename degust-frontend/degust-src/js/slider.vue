@@ -5,9 +5,10 @@
 <template>
     <div>
         <input type="text" :class="{error: isError, warning: isWarning}"
-               :value="value | fmt" v-on:input="value = $event.target.value" />
+               :disabled='textDisable'
+               :value="this.my_fmt(value)" v-on:input="value = $event.target.value" />
         <div class='slider' v-once></div>
-        <span v-if='dropdowns !== null' class="dropdown">
+        <span v-if='dropdowns' class="dropdown">
           <button class="btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="caret"></span>
           </button>
@@ -30,6 +31,7 @@ module.exports =
         value_in: 0
         validator: null
         fmt: null
+        textDisable: false
         dropdowns: null
         stepValues:
             default: () -> [0..10]
@@ -38,8 +40,9 @@ module.exports =
         value: this.value_in
         isError: false
         isWarning: false
+        stepValuesCur: this.stepValues
         slider:
-            data: this.stepValues
+            data: this.stepValuesCur
 
     mounted: () ->
         this.setup()
@@ -52,8 +55,20 @@ module.exports =
             if this.validator?
                 this.isError = !this.validator(this.value)
             this.$emit('input', this.value)
-    filters:
-        fmt: (v) ->
+
+    methods:
+        setup: () ->
+            this.slider = $(".slider",this.$el).slider({
+              animate: true,
+              min: 0,
+              max: this.stepValuesCur.length-1,
+              value: 1,
+              slide: (event, ui) =>
+                this.value = this.stepValuesCur[ui.value]
+            })
+            this.set_slider(this.value)
+
+        my_fmt: (v) ->
             if this.fmt?
                 return this.fmt(v)
             n=Number(v)
@@ -63,23 +78,10 @@ module.exports =
                 n.toExponential(0)
             else
                 v
-
-    methods:
-        setup: () ->
-            this.slider = $(".slider",this.$el).slider({
-              animate: true,
-              min: 0,
-              max: this.stepValues.length-1,
-              value: 1,
-              slide: (event, ui) =>
-                this.value = this.stepValues[ui.value]
-            })
-            this.set_slider(this.value)
-
         # Set the slider to the nearest entry
         set_slider: (v) ->
           set_i=0
-          $.each(this.stepValues, (i,v2) ->
+          $.each(this.stepValuesCur, (i,v2) ->
             if (v2<=v)
               set_i = i
           )
@@ -87,20 +89,12 @@ module.exports =
 
         set_max: (val, min, max, log) ->
             if !log
-                @stepValues = (x for x in [min..max] by 10)
+                @stepValuesCur = (x for x in [min..max] by 10)
             else
                 # FIXME
-                @stepValues = [0,1,2,3,4,5,10,20,100,200,Math.floor(max/3),Math.floor(max/2),max]
-                @stepValues = @stepValues.filter((v) -> v>=min && v<=max)
-            @slider.slider("option", "max", @stepValues.length-1)
+                @stepValuesCur = [0,1,2,3,4,5,10,20,100,200,Math.floor(max/3),Math.floor(max/2),max]
+                @stepValuesCur = @stepValuesCur.filter((v) -> v>=min && v<=max)
+            @slider.slider("option", "max", @stepValuesCur.length-1)
             @set_slider(val)
-            $(@opts.input_id).val(@fmt(val))
-            @opts.on_change(val)
-
-        set_val: (val, fire_change) ->
-            $(@opts.input_id).val(@fmt(val))
-            @set_slider(val)
-            if fire_change?
-                @opts.on_change(val)
 
 </script>
