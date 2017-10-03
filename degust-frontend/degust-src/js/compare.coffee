@@ -281,7 +281,6 @@ parcoords = null
 ma_plot = null
 volcano_plot = null
 pca_plot = null
-current_plot = null    # parcoords OR ma_plot OR pca_plot depending which is active
 gene_expr = null
 
 gene_table = null
@@ -318,11 +317,11 @@ kegg_mouseover = (obj) ->
     return if ec_col==null
     for row in g_data.get_data()
         rows.push(row) if row[ec_col.idx] == ec
-    current_plot.highlight(rows)
+    g_vue_obj.current_plot.highlight(rows)
 
 # highlight parallel coords (and/or kegg)
 gene_table_mouseover = (item) ->
-    current_plot.highlight([item])
+    g_vue_obj.current_plot.highlight([item])
     ec_col = g_data.column_by_type('ec')
     if ec_col?
         kegg.highlight(item[ec_col.idx])
@@ -330,7 +329,7 @@ gene_table_mouseover = (item) ->
     gene_expr.select(g_data, [item])
 
 gene_table_mouseout = () ->
-    current_plot.unhighlight()
+    g_vue_obj.current_plot.unhighlight()
     $('#gene-info').html('')
     kegg.unhighlight()
     heatmap.unhighlight()
@@ -390,7 +389,7 @@ set_plot = (typ, force_update) ->
         when 'ma'        then plot=ma_plot; activate=activate_ma_plot
         when 'parcoords' then plot=parcoords; activate=activate_parcoords
         when 'volcano'   then plot=volcano_plot; activate=activate_volcano
-    if (current_plot != plot || force_update)
+    if (g_vue_obj.current_plot != plot || force_update)
         activate()
 
 get_state = () ->
@@ -465,7 +464,7 @@ activate_single_gene_expr = () ->
 
 activate_parcoords = () ->
     may_set_plot_var('parcoords')
-    current_plot = parcoords
+    g_vue_obj.current_plot = parcoords
     $('#dge-ma,#dge-pca,#dge-volcano').hide()
     $('#dge-pc').show()
     $('#select-pc').addClass('active')
@@ -477,7 +476,7 @@ activate_parcoords = () ->
 
 activate_ma_plot = () ->
     may_set_plot_var('ma')
-    current_plot = ma_plot
+    g_vue_obj.current_plot = ma_plot
     $('#dge-pc,#dge-pca,#dge-volcano').hide()
     $('#dge-ma').show()
     $('#select-ma').addClass('active')
@@ -489,7 +488,7 @@ activate_ma_plot = () ->
 
 activate_volcano = () ->
     may_set_plot_var('volcano')
-    current_plot = volcano_plot
+    g_vue_obj.current_plot = volcano_plot
     $('#dge-pc,#dge-pca,#dge-ma').hide()
     $('#dge-volcano').show()
     $('#select-volcano').addClass('active')
@@ -501,7 +500,7 @@ activate_volcano = () ->
 
 activate_pca_plot = () ->
     may_set_plot_var('mds')
-    current_plot = pca_plot
+    g_vue_obj.current_plot = pca_plot
     $('#dge-pc,#dge-ma,#dge-volcano').hide()
     $('#dge-pca').show()
     $('#select-pca').addClass('active')
@@ -601,7 +600,7 @@ init_charts = () ->
     kegg = new Kegg(
         elem: 'div#kegg-image'
         mouseover: kegg_mouseover
-        mouseout: () -> current_plot.unhighlight()
+        mouseout: () -> g_vue_obj.current_plot.unhighlight()
         )
 
     # update grid on brush
@@ -648,7 +647,7 @@ init_charts = () ->
         show_elem: '.show-heatmap'
     )
     heatmap.on("mouseover", (d) ->
-        current_plot.highlight([d])
+        g_vue_obj.current_plot.highlight([d])
         msg = ""
         for col in g_data.columns_by_type(['info'])
           msg += "<span class='lbl'>#{col.name}: </span><span>#{d[col.idx]}</span>"
@@ -656,7 +655,7 @@ init_charts = () ->
         gene_expr.select(g_data, [d])
     )
     heatmap.on("mouseout", (d) ->
-        current_plot.unhighlight()
+        g_vue_obj.current_plot.unhighlight()
         $('#heatmap-info').html("")
     )
     heatmap.on("need_update", () -> update_data())
@@ -833,8 +832,8 @@ init_genesets = () ->
     );
 
 redraw_plot = () ->
-    if current_plot?
-        current_plot.brush()
+    if g_vue_obj.current_plot?
+        g_vue_obj.current_plot.brush()
 
 init_slider = () ->
     numGenesSlider = new Slider(
@@ -992,10 +991,10 @@ update_data = () ->
     dims = g_data.columns_by_type('fc_calc')
     pval_col = g_data.column_by_type('fdr')
 
-    if current_plot == parcoords
+    if g_vue_obj.current_plot == parcoords
         extent = ParCoords.calc_extent(g_data.get_data(), dims)
         parcoords.update_data(g_data.get_data(), dims, extent, colour_by_pval(pval_col.idx))
-    else if current_plot == ma_plot
+    else if g_vue_obj.current_plot == ma_plot
         ma_fc = $('select#ma-fc-col option:selected').val()
         ma_fc = g_data.columns_by_type(['fc','primary'])[ma_fc].name
         fc_col = g_data.columns_by_type('fc_calc').filter((c) -> c.name == ma_fc)[0]
@@ -1006,7 +1005,7 @@ update_data = () ->
                             g_data.columns_by_type('info'),
                             pval_col
                             )
-    else if current_plot == volcano_plot
+    else if g_vue_obj.current_plot == volcano_plot
         ma_fc = $('select#ma-fc-col option:selected').val()
         ma_fc = g_data.columns_by_type(['fc','primary'])[ma_fc].name
         fc_col = g_data.columns_by_type('fc_calc').filter((c) -> c.name == ma_fc)[0]
@@ -1016,7 +1015,7 @@ update_data = () ->
                             colour_by_pval(pval_col.idx),
                             g_data.columns_by_type('info'),
                             )
-    else if current_plot == pca_plot
+    else if g_vue_obj.current_plot == pca_plot
         cols = g_data.columns_by_type('fc_calc').map((c) -> c.name)
         count_cols = g_data.columns_by_type('count').filter((c) -> cols.indexOf(c.parent)>=0)
         pca_plot.update_data(g_data, count_cols)
@@ -1036,7 +1035,7 @@ update_data = () ->
         heatmap.update_columns(g_data, heatmap_dims, centre)
 
     # Ensure the brush callbacks are called (updates heatmap & table)
-    current_plot.brush()
+    g_vue_obj.current_plot.brush()
 
 show_r_code = () ->
     g_backend.request_r_code((d) ->
@@ -1107,6 +1106,7 @@ module.exports =
     data: () ->
         settings: {}
         full_settings: {}
+        #current_plot: null         # Not included as we don't want it reactive.  FIXME when plots are all components
         load_failed: false
         load_success: false
         num_loading: 0
