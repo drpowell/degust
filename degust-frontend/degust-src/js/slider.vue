@@ -4,9 +4,9 @@
 </style>
 <template>
     <div>
-        <input type="text" :class="{error: isError}"
+        <input type="text" :class="{error: isError, warning: isWarning}"
                :value="value | fmt" v-on:input="value = $event.target.value" />
-        <div class='slider'></div>
+        <div class='slider' v-once></div>
         <span v-if='dropdowns !== null' class="dropdown">
           <button class="btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="caret"></span>
@@ -21,10 +21,12 @@
 </template>
 
 <script lang='coffee'>
+
 module.exports =
     model:
         prop: 'value_in'        # Change default name for v-model
     props:
+        warning: false
         value_in: 0
         validator: null
         fmt: null
@@ -35,11 +37,16 @@ module.exports =
     data: () ->
         value: this.value_in
         isError: false
+        isWarning: false
+        slider:
+            data: this.stepValues
 
     mounted: () ->
         this.setup()
 
     watch:
+        warning: (v) -> this.isWarning = v
+        value_in: (v) -> this.value = v
         value: () ->
             this.set_slider(this.value)
             if this.validator?
@@ -67,17 +74,7 @@ module.exports =
               slide: (event, ui) =>
                 this.value = this.stepValues[ui.value]
             })
-
-            # self = this
-            # $(@opts.input_id).keyup(() ->
-            #   v = $(this).val()
-            #   if self.opts.validator(v)
-            #     $(this).removeClass('error')
-            #     self.set_slider(v)
-            #     self.opts.on_change(v)
-            #   else
-            #     $(this).addClass('error')
-            # )
+            this.set_slider(this.value)
 
         # Set the slider to the nearest entry
         set_slider: (v) ->

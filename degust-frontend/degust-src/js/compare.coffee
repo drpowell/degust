@@ -296,7 +296,6 @@ requested_kegg = false
 # Globals for settings
 sortAbsLogFC = true
 
-fcSlider = null
 pcaDimsSlider = null
 
 numGenesThreshold = 50
@@ -393,15 +392,6 @@ set_plot = (typ, force_update) ->
         when 'volcano'   then plot=volcano_plot; activate=activate_volcano
     if (current_plot != plot || force_update)
         activate()
-        may_warn_mds()
-
-may_warn_mds = () ->
-    if (current_plot == pca_plot)
-        $('.fdr-fld').toggleClass('warning', g_vue_obj.fdrThreshold<1)
-        $('.fc-fld').toggleClass('warning', g_vue_obj.fcThreshold>0)
-    else
-        $('.fdr-fld').toggleClass('warning', false)
-        $('.fc-fld').toggleClass('warning', false)
 
 get_state = () ->
     plot =
@@ -522,8 +512,7 @@ activate_pca_plot = () ->
     numGenesSlider.set_max(100, 1, g_data.get_data().length, true)
     skipGenesSlider.set_max(0, 0, g_data.get_data().length, true)
     g_vue_obj.fdrThreshold = 1
-    fcSlider.set_val(0,true)
-
+    g_vue_obj.fcThreshold = 0
     update_data()
 
 calc_max_parcoords_width = () ->
@@ -1122,8 +1111,8 @@ module.exports =
         load_success: false
         num_loading: 0
         show_counts: 'no'
-        fdrThreshold: 0.1
-        fcThreshold: 1
+        fdrThreshold: 1
+        fcThreshold: 0
         fcStepValues:
             Number(x.toFixed(2)) for x in [0..5] by 0.01
 
@@ -1132,6 +1121,8 @@ module.exports =
             get_url_vars()["code"]
         asset_base: () -> this.settings?.asset_base || ''
         home_link: () -> this.settings?.home_link || '/'
+        fdrWarning: () -> this.current_plot == pca_plot && this.fdrThreshold<1
+        fcWarning: () -> this.current_plot == pca_plot && this.fcThreshold>0
     watch:
         show_counts: () -> gene_table.invalidate()
         fdrThreshold: (val,old) ->
@@ -1170,7 +1161,6 @@ module.exports =
         redraw: () ->
             window.clearTimeout(h_runfilters)
             h_runfilters = window.setTimeout(redraw_plot, 10)
-            may_warn_mds()
 
         fdrValidator: (v) ->
             n = Number(v)

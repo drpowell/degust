@@ -67,6 +67,7 @@
                         :step-values='[0, 1e-6, 1e-5, 1e-4, 0.001, .01, .02, .03, .04, .05, 0.1, 1]'
                         :validator="fdrValidator"
                         :dropdowns="[{label: '1', value: 1},{label: '0.05',value: 0.05},{label:'0.01',value:0.01},{label:'0.001',value:0.001},{label:'0.0001',value:0.0001}]"
+                        :warning="fdrWarning"
                         >
             </slider-text>
           </div>
@@ -78,6 +79,7 @@
                         :step-values='fcStepValues'
                         :validator="fcValidator"
                         :dropdowns="[{label: '0 (all)', value: 0},{label: '0.585 (> 1.5x)',value: 0.585},{label:'1 (> 2x)',value:1},{label:'2 (> 4x)',value:2},{label:'3 (> 8x)',value:3},{label:'4 (> 16x)',value:4}]"
+                        :warning="fcWarning"
                         >
             </slider-text>
           </div>
