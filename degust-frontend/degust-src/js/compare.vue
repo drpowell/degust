@@ -134,7 +134,7 @@
             </div>
             <div title='MDS in 2d or 3d' data-placement='left' class='mds-2d3d-opt'>
               <label for='mds-2d3d'>MDS plot</label>
-              <select id='mds-2d3d'>
+              <select v-model='mds_2d3d'>
                 <option value='2d'>2d</option>
                 <option value='3d'>3d</option>
               </select>

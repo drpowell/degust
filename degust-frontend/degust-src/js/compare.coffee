@@ -583,8 +583,7 @@ init_charts = () ->
             skip: +g_vue_obj.skipGenesThreshold
             num: +g_vue_obj.numGenesThreshold
             dims: [+g_vue_obj.pcaDimension, +g_vue_obj.pcaDimension+1, +g_vue_obj.pcaDimension+2]
-            plot_2d3d: $('select#mds-2d3d option:selected').val()
-
+            plot_2d3d: g_vue_obj.mds_2d3d
         )
     pca_plot.on("top_genes", (top) =>
         gene_table.set_data(top)
@@ -836,9 +835,6 @@ init_slider = () ->
     $('#ma-fc-col').change((e) ->
         update_data()
     )
-    $('#mds-2d3d').change((e) ->
-        redraw_plot()
-    )
 
 calc_kegg_colours = () ->
     ec_dirs = {}
@@ -1070,6 +1066,7 @@ module.exports =
         skipGenesThreshold: 0
         pcaDimension: 1
         maxGenes: 0
+        mds_2d3d: '2d'
 
     computed:
         code: () ->
@@ -1094,6 +1091,9 @@ module.exports =
             if (val != old)
                 this.redraw()
         pcaDimension: (val,old) ->
+            if (val != old)
+                this.redraw()
+        mds_2d3d: (val,old) ->
             if (val != old)
                 this.redraw()
         maxGenes: (val) ->

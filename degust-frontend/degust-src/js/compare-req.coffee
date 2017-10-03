@@ -4,7 +4,6 @@ require("./lib/numeric-1.2.6.js")
 
 # Ours
 require('./print.coffee')
-require('./slider.coffee')
 require('./gene_table.coffee')
 require('./parcoords.coffee')
 require('./scatter-plot.coffee')
