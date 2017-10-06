@@ -195,32 +195,6 @@ a.show-r-code, a.show-heatmap, a.update-link {
 
 /* Edit overlay ***********************************************************************/
 
-.edit-overlay {
-    position: fixed;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: black;
-    opacity: 0.4;
-    z-index: 10000;
-}
-
-.edit-backdrop {
-    position: absolute;
-    border-radius: 5px;
-    background: inherit;
-    z-index: 10000;
-}
-
-.edit-elem {
-    position: relative;
-    z-index: 10001;
-}
-
-.edit-btns {
-    padding: 2px;
-}
 
 /* Boxplot (also see d3.boxplot.css) *****************************************************/
 
