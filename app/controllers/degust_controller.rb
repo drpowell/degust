@@ -27,7 +27,7 @@ class DegustController < ApplicationController
 
     def csv
         de_setting = DeSetting.find_by_secure_id(params[:id])
-        send_file de_setting.user_files.location
+        send_file de_setting.user_file.location
     end
 
     def settings
