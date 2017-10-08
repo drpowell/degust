@@ -61,16 +61,11 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
 #gene-info { font-size: 9pt; height: 5em;}
 #gene-info .lbl { width: 100px; font-weight: bold; display: inline-block;}
 
-.r-code { font-size: 11px; }
 .error-msg, .error-input { font-size: 11px; }
 
 /* Hide all options or controls that are displayed conditionally */
-.config, a.show-r-code, a.show-heatmap, #dge-ma, #dge-pca, #dge-volcano, .ma-fc-col-opt, .pca-opts, #hidden-factors, .weights-toggle  {
+a.show-heatmap, #dge-ma, #dge-pca, #dge-volcano, .ma-fc-col-opt, .pca-opts, #hidden-factors, .weights-toggle  {
   display: none;
-}
-
-a.show-r-code, a.show-heatmap, a.update-link {
-  font-size: 10px;
 }
 
 .pca-opts { border-top: solid 1px black; margin-top: 5px}

@@ -1,6 +1,10 @@
 <style>
     .slider-control { display: inline-block; }
+    a.sm-link { font-size: 10px;}
+    .r-code { font-size: 11px; max-height: 60%;}
+
 </style>
+
 <template>
 <div>
     <div v-if='load_failed' class="container">
@@ -164,15 +168,15 @@
         </div>
 
         <div class='text-right' v-show='settings.analyze_server_side'>
-          <a class='show-r-code' href='#'>Show R code</a>
+          <a class='sm-link' @click='show_r_code'>Show R code</a>
         </div>
 
         <div class='text-right'>
-          <a class='update-link' href='#'>Update Link</a>
+          <a class='sm-link' @click='update_url_link'>Update Link</a>
         </div>
 
         <div class='text-right'>
-          <a class='show-heatmap' href='#'>Show heatmap</a>
+          <a class='sm-link' href='#'>Show heatmap</a>
         </div>
       </div>
 
@@ -260,24 +264,19 @@
     </div><!-- /.modal -->
 
     <!-- Modal for showing R code -->
-    <div id='code-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
-      <div class='modal-dialog'>
-        <div class='modal-content'>
-          <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>x</button>
-            <h3>DGE R Code</h3>
-          </div>
-          <div class='modal-body'>
+    <modal :showModal='r_code.length>0' :closeAction='close_r_code'>
+        <h3 slot='header'>DGE R Code</h3>
+        <div slot='body'>
             This is the R code the backend used to perform the DGE analysis for the current page.
             <pre class='r-code'>
+                {{r_code}}
             </pre>
-          </div>
-          <div class='modal-footer'>
-            <button class='btn btn-primary' data-dismiss='modal' aria-hidden='true'>Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+        <div slot='footer'>
+          <button class='btn btn-primary' @click='close_r_code'>Close</button>
+        </div>
+    </modal>
+
   </div>
 </div>
 </template>

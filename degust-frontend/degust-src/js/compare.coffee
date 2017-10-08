@@ -107,9 +107,6 @@ may_set_plot_var = (typ) ->
     else
         set_hash_var({plot: typ})
 
-update_link = () ->
-    set_hash_var(get_state())
-
 update_from_link = (force_update) ->
     set_state(get_hash_vars(), force_update)
 
@@ -724,12 +721,6 @@ update_data = () ->
     # Ensure the brush callbacks are called (updates heatmap & table)
     g_vue_obj.current_plot.brush()
 
-show_r_code = () ->
-    g_backend.request_r_code((d) ->
-        $('div#code-modal .modal-body pre').text(d)
-        $('div#code-modal').modal()
-    )
-
 init_page = () ->
     setup_nav_bar()
     $('[title]').tooltip()
@@ -754,9 +745,6 @@ init_page = () ->
     $('#select-options a').click((e) ->  e.preventDefault(); activate_options())
     $('#select-single-gene-expr a').click((e) -> e.preventDefault(); activate_single_gene_expr())
 
-    $('a.show-r-code').click((e) -> e.preventDefault(); show_r_code())
-    $('a.update-link').click((e) -> e.preventDefault(); update_link())
-
     $('a.p-value-histogram').click((e) -> e.preventDefault(); QC.pvalue_histogram(g_data))
     $('a.bargraph-libsize').click((e) -> e.preventDefault(); QC.library_size_bargraph(g_data, g_colour_by_parent))
     $('a.expression-boxplot').click((e) -> e.preventDefault(); QC.expression_boxplot(g_data, g_colour_by_parent))
@@ -773,6 +761,7 @@ init_page = () ->
 
 sliderText = require('./slider.vue')
 conditions = require('./conditions-selector.vue')
+Modal = require('modal-vue').default
 
 Vue = require('./lib/vue')
 require('./backend.coffee')
@@ -782,6 +771,7 @@ module.exports =
     components:
         sliderText: sliderText
         conditionsSelector: conditions
+        Modal: Modal
     data: () ->
         settings: {}
         full_settings: {}
@@ -799,6 +789,7 @@ module.exports =
         pcaDimension: 1
         maxGenes: 0
         mds_2d3d: '2d'
+        r_code: ''
         dge_method: null
         sel_conditions: []
 
@@ -884,6 +875,18 @@ module.exports =
         redraw: () ->
             window.clearTimeout(h_runfilters)
             h_runfilters = window.setTimeout(redraw_plot, 10)
+
+        # Update the URL with the current page state
+        update_url_link: () ->
+            set_hash_var(get_state())
+
+        # Request and display r-code for current selection
+        show_r_code: () ->
+            p = this.backend.request_r_code(this.dge_method, this.sel_conditions)
+            p.then((d) =>
+                this.r_code = d
+            )
+        close_r_code: () -> this.r_code = ''
 
         fmtPCAText: (v) -> v+" vs "+(v+1)
         fdrValidator: (v) ->

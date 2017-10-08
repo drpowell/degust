@@ -97,7 +97,7 @@ class WithBackendAnalysis
     _extra_info: (extra) ->
         html = ""
         if extra.sample_weights?
-            $('.weights-toggle').show()
+            $('.weights-toggle').show()     # FIXME
             html = $("<div></div>")
             for i in [0...extra.sample_weights.length]
                 html.append("<div><span class='name'>#{extra.samples[i]}</span><span class='val'>#{extra.sample_weights[i]}</span></div>")
@@ -119,7 +119,7 @@ class WithBackendAnalysis
                 log_error(err)
                 return
 
-            if (json.error?)
+            if (json.error?)    # FIXME
                 log_error("Error doing DGE",json.error)
                 $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
                 $('div#error-modal .modal-body pre.error-input').text(json.error.input)
@@ -159,13 +159,13 @@ class WithBackendAnalysis
             @events.$emit("dge_data", data, data_cols)
         )
 
-    request_r_code: (callback) ->
-        columns = @current_selection
-        method = @_get_dge_method()
-        req = BackendCommon.script("dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
-        d3.text(req, (err,data) ->
-            log_debug("Downloaded R Code : len=#{data.length}",data,err)
-            callback(data)
+    request_r_code: (method,columns) ->
+        new Promise((resolve) ->
+            req = BackendCommon.script("dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
+            d3.text(req, (err,data) ->
+                log_debug("Downloaded R Code : len=#{data.length}",data,err)
+                resolve(data)
+            )
         )
 
 # FIXME
