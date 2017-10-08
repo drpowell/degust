@@ -30,7 +30,7 @@
         <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
           <li><a class="log-link" href="#">Logs</a></li>
           <li><a id="tour" href="#">Tour</a></li>
-          <li><a class="config hide" href="#">Configure</a></li>
+          <li><a class="config" :href="config_url" v-show='can_configure'>Configure</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QC <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -163,7 +163,7 @@
           </div>
         </div>
 
-        <div class='text-right'>
+        <div class='text-right' v-show='settings.analyze_server_side'>
           <a class='show-r-code' href='#'>Show R code</a>
         </div>
 
@@ -177,23 +177,10 @@
       </div>
 
       <div class='row'>
-        <div class='col-xs-2 conditions'>
-          <h3>Conditions</h3>
-          <div id='files'></div>
-          <div id='hidden-factors'><h4>Hidden Factors</h4></div>
-          <label for='dge-method'>Method</label>
-          <select id='dge-method'>
-            <option value='voom'>Voom/Limma</option>
-            <option value='edgeR-quasi'>edgeR quasi-likelihood</option>
-            <option value='edgeR'>edgeR</option>
-            <option value='voom-weights'>Voom (sample weights)</option>
-          </select>
-          <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
-            Sample weights
-          </a>
-          <div class='weights collapse'>
-          </div>
-        </div>
+        <conditions-selector v-show='settings.analyze_server_side'
+                            :settings='settings'
+                            :dge_method='dge_method' :sel_conditions='sel_conditions' @apply='change_samples'>
+        </conditions-selector>
 
         <div class='col-xs-6' id='expression'>
           <div v-show='num_loading>0' class='loading'><img :src='asset_base + "images/ajax-loader.gif"'></div>

@@ -24,6 +24,7 @@ compare = require('./compare.vue')
 Vue = require('./lib/vue')
 
 new Vue(
+    name: 'app'
     el: '#replace-me'
     render: (h) -> h(compare)
 )

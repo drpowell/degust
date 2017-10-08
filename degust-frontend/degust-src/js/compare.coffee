@@ -1,268 +1,9 @@
 
 g_vue_obj = null
 
-start_loading = () -> g_vue_obj.num_loading += 1
-done_loading  = () -> g_vue_obj.num_loading -= 1
-
 html_escape = (str) ->
     $('<div/>').text(str).html()
 
-class WithoutBackend
-    constructor: (@settings, @process_dge_data) ->
-        $('.conditions').hide()
-        $('.config').hide()
-        $('a.show-r-code').hide()
-
-    request_init_data: () ->
-        start_loading()
-        if @settings.csv_data
-            # csv data is already in document
-            log_info("Using embedded csv")
-            @_data_ready(@settings.csv_data)
-        else
-            d3.text(@settings.csv_file, "text/csv", (err,dat) =>
-                log_info("Downloaded csv")
-                log_debug("Downloaded csv",dat,err)
-                if err
-                    log_error(err)
-                    return
-                @_data_ready(dat)
-            )
-
-    _data_ready: (dat) ->
-        if @settings.csv_format
-            data = d3.csv.parse(dat)
-        else
-            data = d3.tsv.parse(dat)
-        @process_dge_data(data, @settings.columns)
-        done_loading()
-
-    request_kegg_data: (callback) ->
-        log_error("Get KEGG data not supported without backend")
-
-# BackendCommon - used by both WithBackendNoAnalysis and WithBackendAnalysis
-class BackendCommon
-    @config_url: () ->
-        "config.html?code=#{window.my_code}"
-
-    @script: (typ,params) ->
-        "#{window.my_code}/#{typ}" + if params then "?#{params}" else ""
-
-    constructor: (@settings, configured, @full_settings) ->
-        # Ensure we have been configured!
-        if !configured
-            window.location = BackendCommon.config_url()
-
-        if @settings['config_locked'] && !@full_settings['is_owner']
-            $('a.config').hide()
-        else
-            $('a.config').removeClass('hide')
-            $('a.config').attr('href', BackendCommon.config_url())
-
-    request_kegg_data: (callback) ->
-        d3.tsv(BackendCommon.script('kegg_titles'), (err,ec_data) ->
-            log_info("Downloaded kegg : rows=#{ec_data.length}")
-            log_debug("Downloaded kegg : rows=#{ec_data.length}",ec_data,err)
-            callback(ec_data)
-        )
-
-class WithBackendNoAnalysis
-    constructor: (@settings, @process_dge_data, @full_settings) ->
-        @backend = new BackendCommon(@settings, @settings.fc_columns.length > 0, @full_settings)
-
-        $('.conditions').hide()
-        $('a.show-r-code').hide()
-
-    request_kegg_data: (callback) ->
-        @backend.request_kegg_data(callback)
-
-    request_init_data: () ->
-        req = BackendCommon.script("csv")
-        start_loading()
-        d3.text(req, (err, dat) =>
-            log_info("Downloaded DGE CSV: len=#{dat.length}")
-            done_loading()
-            if err
-                log_error(err)
-                return
-
-            if @settings.csv_format
-               data = d3.csv.parse(dat)
-            else
-               data = d3.tsv.parse(dat)
-            log_info("Parsed DGE CSV : rows=#{data.length}")
-            log_debug("Parsed DGE CSV : rows=#{data.length}",data,err)
-
-            data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
-            data_cols.push({idx: '_dummy', type: 'primary', name:@settings.primary_name})
-            @settings.fc_columns.forEach((n) ->
-                data_cols.push({idx: n, type: 'fc', name: n})
-            )
-            data_cols.push({idx: @settings.fdr_column, name: @settings.fdr_column, type: 'fdr'})
-            data_cols.push({idx: @settings.avg_column, name: @settings.avg_column, type: 'avg'})
-            if @settings.ec_column?
-                data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
-            if @settings.link_column?
-                data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
-
-            @process_dge_data(data, data_cols)
-        )
-
-class WithBackendAnalysis
-    constructor: (@settings, @process_dge_data, @full_settings) ->
-        @backend = new BackendCommon(@settings, @settings.replicates.length > 0, @full_settings)
-
-        $('.conditions').show()
-        $('a.show-r-code').show()
-
-        $('select#dge-method').click((e) => @_select_sample())
-
-    request_kegg_data: (callback) ->
-        @backend.request_kegg_data(callback)
-
-    request_init_data: () ->
-        @_init_condition_selector()
-
-    _extra_info: (extra) ->
-        html = ""
-        if extra.sample_weights?
-            $('.weights-toggle').show()
-            html = $("<div></div>")
-            for i in [0...extra.sample_weights.length]
-                html.append("<div><span class='name'>#{extra.samples[i]}</span><span class='val'>#{extra.sample_weights[i]}</span></div>")
-        else
-            $('.weights-toggle').hide()
-        $('.weights').html(html)
-
-    _request_dge_data: () ->
-        columns = @current_selection
-        return if columns.length <= 1
-
-        # load csv file and create the chart
-        method = @_get_dge_method()
-        req = BackendCommon.script("dge","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
-        start_loading()
-        d3.json(req, (err, json) =>
-            done_loading()
-
-            if err
-                log_error(err)
-                return
-
-            if (json.error?)
-                log_error("Error doing DGE",json.error)
-                $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
-                $('div#error-modal .modal-body pre.error-input').text(json.error.input)
-                $('div#error-modal').modal()
-                return
-
-            data = d3.csv.parse(json.csv);
-            log_info("Downloaded DGE counts : rows=#{data.length}")
-            log_debug("Downloaded DGE counts : rows=#{data.length}",data,err)
-            log_info("Extra info : ",json.extra)
-
-            @_extra_info(json.extra)
-
-
-            data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
-            pri=true
-            columns.forEach((n) ->
-                typ = if pri then 'primary' else 'fc'
-                data_cols.push({idx: n, type: typ, name: n})
-                pri=false
-            )
-            data_cols.push({idx: 'adj.P.Val', name: 'FDR', type: 'fdr'})
-            data_cols.push({idx: 'AveExpr', name: 'AveExpr', type: 'avg'})
-            if data[0]["P.Value"]?
-                data_cols.push({idx: 'P.Value', name: 'P value', type: 'p'})
-
-            if @settings.ec_column?
-                data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
-            if @settings.link_column?
-                data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
-            @settings.replicates.forEach(([name,reps]) ->
-                reps.forEach((rep) ->
-                    data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
-                )
-            )
-
-            @process_dge_data(data, data_cols)
-        )
-
-    request_r_code: (callback) ->
-        columns = @current_selection
-        method = @_get_dge_method()
-        req = BackendCommon.script("dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
-        d3.text(req, (err,data) ->
-            log_debug("Downloaded R Code : len=#{data.length}",data,err)
-            callback(data)
-        )
-
-    _get_dge_method: () ->
-        $('select#dge-method option:selected').val()
-
-    _set_dge_method: (method) ->
-        $('select#dge-method').val(method)
-
-    # Display the sample selector.
-    _select_sample: (e) ->
-        current_dge_method = @_get_dge_method()
-
-        # EditList will do nothing if the specified element is already in "edit" mode
-        new EditList(
-            elem: '.conditions'
-            apply: () => @_update_samples()
-            cancel: () =>
-                @_set_selected_cols(@current_selection)
-                @_set_dge_method(current_dge_method)
-        )
-
-    # This reads the state of the form checkboxes and stores it in @current_selection
-    # Note we do it this way rather than a getter because we can't seem to capture
-    # a checkbox change event *before* the checkbox is updated.  So, doing it
-    # this way allows us to "cancel" an checkbox changes after the fact
-    _update_selected_cols: () ->
-        cols = []
-        # Create a list of conditions that are selected
-        $('#files input:checked').each( (i, n) =>
-            name = $(n).data('rep')
-            cols.push(name)
-        )
-        @current_selection = cols
-
-    _set_selected_cols: (cols) ->
-        $('#files input:checkbox').each( (i, n) =>
-            name = $(n).data('rep')
-            $(n).prop('checked', name in cols)
-        )
-
-    _update_samples: () ->
-        @_update_selected_cols()
-        @_request_dge_data()
-
-    _init_condition_selector: () ->
-        init_select = @settings['init_select'] || []
-        hidden_factor = @settings['hidden_factor'] || []
-        hidden_div = $("<div></div>")
-        $.each(@settings.replicates, (i, rep) =>
-            name = rep[0]
-            if name in hidden_factor
-                hidden_div.append($("<div><label>#{name}</label></div>"))
-            else
-                div = $("""<label>
-                            <input type='checkbox' title='Select this condition' data-placement='right'> #{name}
-                           </label>
-                        """)
-                $("#files").append(div)
-                $("input",div).data('rep',name)
-        )
-        $("#files input").change((e) => @_select_sample(e))
-        if hidden_factor.length>0
-            $('#hidden-factors').append(hidden_div)
-            $('#hidden-factors').show()
-
-        @_set_selected_cols(init_select)
-        @_update_samples()
 
 blue_to_brown = d3.scale.linear()
   .domain([0,0.05,1])
@@ -288,7 +29,6 @@ kegg = null
 heatmap = null
 
 g_data = null
-g_backend = null
 requested_kegg = false
 
 
@@ -990,28 +730,16 @@ show_r_code = () ->
         $('div#code-modal').modal()
     )
 
-init_page = (use_backend) ->
+init_page = () ->
     setup_nav_bar()
     $('[title]').tooltip()
-
-    g_data = new GeneData([],[])
-
-    if use_backend
-        if settings.analyze_server_side
-            g_backend = new WithBackendAnalysis(settings, process_dge_data, full_settings)
-        else
-            g_backend = new WithBackendNoAnalysis(settings, process_dge_data, full_settings)
-    else
-        g_backend = new WithoutBackend(settings, process_dge_data)
-
 
     title = settings.name || "Unnamed"
     $(".exp-name").text(title)
     document.title = title
 
-    g_vue_obj.fdrThreshold = settings['fdrThreshold'] if settings['fdrThreshold'] != undefined
-    g_vue_obj.fcThreshold  = settings['fcThreshold']  if settings['fcThreshold'] != undefined
-    $('select#dge-method').val(settings['dge_method']) if settings['dge_method']?
+    g_vue_obj.fdrThreshold = settings['fdrThreshold'] if settings['fdrThreshold']?
+    g_vue_obj.fcThreshold  = settings['fcThreshold']  if settings['fcThreshold']?
 
     if full_settings?
         if full_settings['extra_menu_html']
@@ -1039,17 +767,21 @@ init_page = (use_backend) ->
     init_download_link()
     init_genesets()
 
-    g_backend.request_init_data()
-
     #$(window).bind( 'hashchange', update_from_link )
     $(window).bind('resize', () -> heatmap.resize())
 
 
 sliderText = require('./slider.vue')
+conditions = require('./conditions-selector.vue')
+
+Vue = require('./lib/vue')
+require('./backend.coffee')
 
 module.exports =
+    name: 'compare'
     components:
         sliderText: sliderText
+        conditionsSelector: conditions
     data: () ->
         settings: {}
         full_settings: {}
@@ -1067,35 +799,30 @@ module.exports =
         pcaDimension: 1
         maxGenes: 0
         mds_2d3d: '2d'
+        dge_method: null
+        sel_conditions: []
 
     computed:
-        code: () ->
-            get_url_vars()["code"]
+        code: () -> get_url_vars()["code"]
         asset_base: () -> this.settings?.asset_base || ''
         home_link: () -> this.settings?.home_link || '/'
         fdrWarning: () -> this.current_plot == pca_plot && this.fdrThreshold<1
         fcWarning: () -> this.current_plot == pca_plot && this.fcThreshold>0
+        can_configure: () ->
+            !this.settings.config_locked || this.full_settings.is_owner
+        config_url: () -> "config.html?code=#{this.code}"
     watch:
+        settings: () ->
+            this.dge_method = this.settings.dge_method
+            this.sel_conditions = this.settings.init_select || []
         show_counts: () ->
             gene_table.invalidate()
-        fdrThreshold: (val,old) ->
-            if (val != old)
-                this.redraw()
-        fcThreshold: (val,old) ->
-            if (val != old)
-                this.redraw()
-        numGenesThreshold: (val,old) ->
-            if (val != old)
-                this.redraw()
-        skipGenesThreshold: (val,old) ->
-            if (val != old)
-                this.redraw()
-        pcaDimension: (val,old) ->
-            if (val != old)
-                this.redraw()
-        mds_2d3d: (val,old) ->
-            if (val != old)
-                this.redraw()
+        fdrThreshold: () -> this.redraw()
+        fcThreshold: () -> this.redraw()
+        numGenesThreshold: () -> this.redraw()
+        skipGenesThreshold: () -> this.redraw()
+        pcaDimension: () -> this.redraw()
+        mds_2d3d: () -> this.redraw()
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
@@ -1103,7 +830,7 @@ module.exports =
         init: () ->
             if !this.code?
                 this.load_success=true
-                this.$nextTick(() -> init_page(false))
+                this.$nextTick(() -> this.initBackend(false))
             else
                 window.my_code = this.code
                 $.ajax({
@@ -1116,7 +843,7 @@ module.exports =
                     this.full_settings = json
                     this.settings = json.settings
                     this.load_success=true
-                    this.$nextTick(() -> init_page(true))
+                    this.$nextTick(() -> this.initBackend(true))
                  ).fail((x) =>
                     log_error "Failed to get settings!",x
                     this.load_failed = true
@@ -1126,6 +853,34 @@ module.exports =
                         $('.error-msg').append(pre)
                     )
                 )
+        initBackend: (use_backend) ->
+            this.gene_data = new GeneData([],[])
+
+            this.ev_backend = new Vue()
+            this.ev_backend.$on("start_loading", () => this.num_loading+=1)
+            this.ev_backend.$on("done_loading", () => this.num_loading-=1)
+            this.ev_backend.$on("dge_data", (data,cols) -> process_dge_data(data,cols))
+
+            if !use_backend
+                this.backend = new WithoutBackend(this.settings, this.ev_backend)
+            else
+                if this.settings.analyze_server_side
+                    this.backend = new WithBackendAnalysis(this.settings, this.ev_backend)
+                else
+                    this.backend = new WithBackendNoAnalysis(this.settings, this.ev_backend)
+            init_page()  # TODO - move this
+            this.request_data()
+
+        # Send a request to the backend.  First request, or when selected samples has changed
+        request_data: () ->
+            this.backend.request_data(this.dge_method, this.sel_conditions)
+
+        # Selected samples have changed, request a new dge
+        change_samples: (cur) ->
+            this.dge_method = cur.dge_method
+            this.sel_conditions = cur.sel_conditions
+            this.request_data()
+
         redraw: () ->
             window.clearTimeout(h_runfilters)
             h_runfilters = window.setTimeout(redraw_plot, 10)
