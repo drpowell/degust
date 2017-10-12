@@ -29,6 +29,12 @@ config = {
                 use: [ 'vue-loader' ]
             },
             {
+                test: /\.(html)$/,
+                use: {
+                    loader: 'html-loader',
+                }
+            },
+            {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     loader: "css-loader",
