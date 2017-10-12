@@ -43,7 +43,7 @@
               <li><a href="#" class='expression-boxplot'>Expression box-whisker</a></li>
             </ul>
           </li>
-          <li><a href="#about-modal" data-toggle="modal">About</a></li>
+          <li><a href="#about-modal" @click='show_about=true'>About</a></li>
         </ul>
       </div>
     </div>
@@ -240,7 +240,7 @@
     <div id='kegg-image'></div>
 
     <!-- About box Modal -->
-    <div id="about-modal"></div>
+    <about :show='show_about' @close='show_about=false'></about>
 
     <!-- Error box Modal -->
     <div id='error-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>

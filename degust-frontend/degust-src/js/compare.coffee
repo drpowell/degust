@@ -761,6 +761,7 @@ init_page = () ->
 
 sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
+about = require('./about.vue').default
 Modal = require('modal-vue').default
 
 require('./backend.coffee')
@@ -770,6 +771,7 @@ module.exports =
     components:
         sliderText: sliderText
         conditionsSelector: conditions
+        about: about
         Modal: Modal
     data: () ->
         settings: {}
@@ -789,6 +791,7 @@ module.exports =
         maxGenes: 0
         mds_2d3d: '2d'
         r_code: ''
+        show_about: false
         dge_method: null
         sel_conditions: []
 
