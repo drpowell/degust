@@ -14,7 +14,7 @@ require('./gene_data.coffee')
 # Display a popup warning, or fill in a warning box if using IE
 add_browser_warning = () ->
 	if window.navigator.userAgent.indexOf("MSIE ")>=0
-		html = null #require("../templates/browser-warning.hbs")()  FIXME
+		html = require("./browser-warning.html")
 		outer = $('.browser-warning-outer')
 		if outer.length==0
 			# No container found, let's create a popup one
