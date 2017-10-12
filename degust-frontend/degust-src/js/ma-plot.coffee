@@ -1,7 +1,8 @@
 class MAPlot extends ScatterPlot
-    constructor: (@opts) ->
+    constructor: (opts) ->
+        super(opts)
+        @opts = opts
         @opts.name ?= 'MA-plot'
-        super(@opts)
 
         @tooltip = d3.select(@opts.elem).append("div")
                      .attr("class", "tooltip")

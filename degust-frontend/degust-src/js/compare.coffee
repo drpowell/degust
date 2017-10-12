@@ -759,11 +759,10 @@ init_page = () ->
     $(window).bind('resize', () -> heatmap.resize())
 
 
-sliderText = require('./slider.vue')
-conditions = require('./conditions-selector.vue')
+sliderText = require('./slider.vue').default
+conditions = require('./conditions-selector.vue').default
 Modal = require('modal-vue').default
 
-Vue = require('./lib/vue')
 require('./backend.coffee')
 
 module.exports =

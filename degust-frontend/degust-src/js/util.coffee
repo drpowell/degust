@@ -104,7 +104,7 @@ window.set_hash_var = (set) ->
         window.location.hash = ''
 
 window.setup_nav_bar = () ->
-    about = $(require("../templates/about.hbs")(version: degust_version))
+    about = null # FIXME $(require("../templates/about.hbs")(version: degust_version))
     $('#about-modal').replaceWith(about)
     $("a.log-link").click(() -> $('.log-list').toggle())
 

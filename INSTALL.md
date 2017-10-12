@@ -42,8 +42,8 @@ For production build (minifies js, and no source-maps)
 
 For development:
 
-    (cd degust-frontend ; ./node_modules/.bin/grunt build)
-    (cd degust-frontend ; ./node_modules/.bin/grunt watch)
+    (cd degust-frontend ; ./node_modules/.bin/webpack build)
+    (cd degust-frontend ; ./node_modules/.bin/webpack --watch)
     rails s
 
 For production deploy.  Configure `config/deploy/production.rb`

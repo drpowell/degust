@@ -3,34 +3,25 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "start": "grunt"
-  },
-  "browserify-shim": {
-    "vue": "global:Vue"
+    "start": "webpack"
   },
   "dependencies": {
-    "browserify-shim": "^3.8.14",
-    "coffee-script": "^1.12.7",
-    "coffeeify": "^2.1.0",
-    "grunt": "^0.4.x",
-    "grunt-browserify": "^5.0.0",
-    "grunt-cli": "^0.1.13",
-    "grunt-concurrent": "^2.x.x",
-    "grunt-contrib-clean": "^0.6.x",
-    "grunt-contrib-coffee": "^0.13.0",
-    "grunt-contrib-copy": "^0.8.x",
-    "grunt-contrib-cssmin": "^0.14.0",
-    "grunt-contrib-jshint": "^0.11.x",
-    "grunt-contrib-less": "^1.x.x",
-    "grunt-contrib-uglify": "^0.9.x",
-    "grunt-contrib-watch": "^0.6.x",
-    "grunt-newer": "^1.x.x",
-    "grunt-nodemon": "^0.4.x",
-    "grunt-remove": "^0.1.0",
-    "handlebars": "^4.0.3",
-    "hbsfy": "^2.3.1",
+    "webpack": "^3.7.1"
+  },
+  "devDependencies": {
+    "coffee-loader": "^0.8.0",
+    "coffeescript": "^2.0.1",
+    "copy-webpack-plugin": "^4.1.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "glob": "^7.1.2",
     "modal-vue": "0.0.3",
-    "vue-multiselect": "^2.0.0-beta.15",
-    "vueify": "^9.4.1"
+    "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
+    "vue": "^2.4.4",
+    "vue-loader": "^13.3.0",
+    "vue-multiselect": "^2.0.3",
+    "vue-template-compiler": "^2.4.4"
   }
 }

@@ -49,7 +49,7 @@
 
 <script lang='coffee'>
 
-editOverlay = require('./edit-overlay.vue')
+editOverlay = require('./edit-overlay.vue').default
 
 module.exports =
     components:

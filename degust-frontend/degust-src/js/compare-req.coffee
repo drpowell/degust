@@ -1,6 +1,10 @@
 
+require('./common-req.coffee')
+
 require("./lib/bootstrap-tour.js")
 require("./lib/numeric-1.2.6.js")
+require("./d3-req.coffee")
+require("./slickgrid-req.coffee")
 
 # Ours
 require('./print.coffee')
@@ -20,8 +24,8 @@ require('./qc.coffee')
 require('./gene-expression.coffee')
 
 # Ours
-compare = require('./compare.vue')
-Vue = require('./lib/vue')
+compare = require('./compare.vue').default
+global.Vue = Vue = require('vue').default
 
 new Vue(
     name: 'app'
