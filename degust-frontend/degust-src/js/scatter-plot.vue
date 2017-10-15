@@ -165,7 +165,7 @@ class ScatterPlot
                          .x(xScale)
                          .y(yScale)
                          .clamp([false,false])
-                         .on("brush",  () => @_brushed())
+                         .on("brush",  () => @_brushed_dots())
                      #   .on("end", () => @_brushed())    # Needed as "brush" isn't fired on clearing
             @gBrush.call(@mybrush)
 
@@ -348,7 +348,7 @@ class ScatterPlot
     _brush_empty: () ->
         @opts.brush_enable && @mybrush.empty()
 
-    _brushed: () ->
+    _brushed_dots: () ->
         sel = @_selected()
         @dispatch.brush(sel, !@_brush_empty())
 
@@ -390,9 +390,9 @@ class ScatterPlot
     on: (t,func) ->
         @dispatch.on(t, func)
 
-    brush: () ->
+    reFilter: () ->
         @_draw_dots(@colouring || @opts.colouring)
-        @_brushed()
+        @_brushed_dots()
 
 module.exports =
     props:
@@ -405,6 +405,9 @@ module.exports =
         colour:
             type: Function
             default: () -> 'blue'
+        filter:
+            type: Function
+            default: () -> true
         alpha: () -> 0.7
         size: () -> 3
         brushEnable: false
@@ -417,7 +420,7 @@ module.exports =
             type: Array
             default: () -> []
     computed:
-        needsRedraw: () ->
+        needsUpdate: () ->
             # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
             this.data
             this.xColumn
@@ -425,8 +428,8 @@ module.exports =
             this.colour
             Date.now()
     watch:
-        needsRedraw: () ->
-            this.redraw()
+        needsUpdate: () ->
+            this.update()
         highlight: (v) ->
             if v.length>0
                 this.me.highlight(v)
@@ -434,10 +437,12 @@ module.exports =
                 this.me.unhighlight()
 
     methods:
-        redraw: () ->
+        update: () ->
             #console.log "scatter-plot redraw()",this
             if this.data? && this.xColumn? && this.yColumn?
                 this.me.update_data(this.data,this.xColumn,this.yColumn,this.colour)
+        reFilter: () ->
+            this.me.reFilter()
 
     mounted: () ->
         this.$nextTick(() ->
@@ -451,7 +456,7 @@ module.exports =
                 colouring: this.colouring
                 alpha: this.alpha
                 size: this.size
-                filter: () -> true
+                filter: this.filter
                 brush_enable: this.brushEnable
                 animate: this.animate
                 canvas: this.canvas
@@ -461,6 +466,6 @@ module.exports =
             this.me.on('mouseout.tooltip', () => this.$emit('mouseout'))
             this.me.on('brush', (d) => this.$emit('brush', Object.freeze(d)))
 
-            this.redraw()
+            this.update()
         )
 </script>

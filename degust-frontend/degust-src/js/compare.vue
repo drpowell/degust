@@ -209,7 +209,9 @@
           </ul>
           <div v-bind:style="{ opacity: num_loading>0 ? 0.4 : 1 }">
               <ma-plot v-if='cur_plot=="ma"'
-                       :data='expr_data'
+                       :data='gene_data_rows'
+                       :filter='expr_filter'
+                       :filter-changed='filter_changed'
                        :logfc-col='ma_plot_fc_col'
                        :avg-col='avg_column'
                        :fdr-col='fdr_column'
@@ -220,7 +222,9 @@
                        >
               </ma-plot>
               <volcano-plot v-if='cur_plot=="volcano"'
-                       :data='expr_data'
+                       :data='gene_data_rows'
+                       :filter='expr_filter'
+                       :filter-changed='filter_changed'
                        :logfc-col='ma_plot_fc_col'
                        :avg-col='avg_column'
                        :fdr-col='fdr_column'

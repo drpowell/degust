@@ -24,9 +24,10 @@
 
 <template>
     <div>
-        <scatter-plot class='volcano-plot'
+        <scatter-plot class='volcano-plot' ref='scatter'
                       yaxis-loc='zero'
                       :data='data'
+                      :filter='filter'
                       :x-column='xColumn' :y-column='yColumn'
                       :colour='colour'
                       :highlight='highlight'
@@ -70,9 +71,14 @@ module.exports =
         infoCols: null
         fdrCol: null
         highlight: null
+        filter: null
+        filterChanged: null
     data: () ->
         hover: []
         tooltipLoc: [0,0]
+    watch:
+        filterChanged: () ->
+            this.$refs.scatter.reFilter()
     computed:
         xColumn: () ->
             xCol = this.logfcCol

@@ -24,8 +24,9 @@
 
 <template>
     <div>
-        <scatter-plot class='ma-plot'
+        <scatter-plot class='ma-plot' ref='scatter'
                     :data='data'
+                    :filter='filter'
                     :x-column='xColumn' :y-column='yColumn'
                     :colour='colour'
                     :highlight='highlight'
@@ -68,9 +69,14 @@ module.exports =
             default: []
         fdrCol: null
         highlight: null
+        filter: null
+        filterChanged: null
     data: () ->
         hover: []
         tooltipLoc: [0,0]
+    watch:
+        filterChanged: () ->
+            this.$refs.scatter.reFilter()
     computed:
         xColumn: () ->
             xCol = this.avgCol

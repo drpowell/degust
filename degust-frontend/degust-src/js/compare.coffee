@@ -686,6 +686,8 @@ module.exports =
         can_configure: () ->
             !this.settings.config_locked || this.full_settings.is_owner
         config_url: () -> "config.html?code=#{this.code}"
+        gene_data_rows: () ->
+            this.gene_data.get_data()
         expr_data: () ->
             console.log "computing expr_data.  orig length=", this.gene_data.get_data().length
             Object.freeze(this.gene_data.get_data().filter((v) => this.expr_filter(v)))
@@ -701,6 +703,10 @@ module.exports =
             this.gene_data.columns_by_type(['fc','primary'])
         info_columns: () ->
             this.gene_data.columns_by_type(['info'])
+        filter_changed: () ->
+            this.fdrThreshold
+            this.fcThreshold
+            Date.now()
     watch:
         settings: () ->
             this.dge_method = this.settings.dge_method
@@ -761,16 +767,18 @@ module.exports =
         request_data: () ->
             this.backend.request_data(this.dge_method, this.sel_conditions)
 
+        process_dge_data: (data, cols) ->
+            this.gene_data = Object.freeze(new GeneData(data, cols))
+            this.fc_relative_i = 0
+            this.ma_plot_fc_col_i = 1
+            this.genes_selected = this.gene_data.get_data()
+            this.genes_highlight = []
+
         # Selected samples have changed, request a new dge
         change_samples: (cur) ->
             this.dge_method = cur.dge_method
             this.sel_conditions = cur.sel_conditions
             this.request_data()
-
-        process_dge_data: (data, cols) ->
-            this.gene_data = Object.freeze(new GeneData(data, cols))
-            this.fc_relative_i = 0
-            this.ma_plot_fc_col_i = 1
 
         redraw: () ->
             window.clearTimeout(h_runfilters)
