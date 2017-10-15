@@ -3,10 +3,6 @@
 
 #dge-pc { height: 250px; }
 
-#dge-ma { height: 330px; }
-
-#dge-volcano { height: 330px; }
-
 #grid { height: 300px; }
 #grid-info { font-size: 9pt; }
 .tab-search { font-size: 9pt; float: right; margin-top: -10px; }
@@ -44,7 +40,6 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
 .filter label { width: 70px; text-align: right; }
 .filter input { width: 50px; }
 .kegg-filter { display: none; }
-#fc-relative, #ma-fc-col { width: 115px; height: auto; }
 .filter input.error { background-color: #fbb; }
 
 .ec-group { display: none; }
@@ -64,7 +59,7 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
 .error-msg, .error-input { font-size: 11px; }
 
 /* Hide all options or controls that are displayed conditionally */
-a.show-heatmap, #dge-ma, #dge-pca, #dge-volcano, .ma-fc-col-opt, .pca-opts, #hidden-factors, .weights-toggle  {
+#dge-ma, #dge-pca, #dge-volcano  {
   display: none;
 }
 
@@ -131,28 +126,6 @@ a.show-heatmap, #dge-ma, #dge-pca, #dge-volcano, .ma-fc-col-opt, .pca-opts, #hid
 #dge-pca .bar-chart .axis { font: 10px sans-serif; }
 #dge-pca .bar-chart { position: absolute; bottom: 0; left: 510px; }
 #dge-pca .bar-chart .x.axis path { display: none; }
-
-/* Scatter plot ***********************************************************************/
-
-.scatter {
-  position: relative;
-}
-
-.scatter > svg, .scatter > canvas {
-  font: 14px sans-serif;
-  position: absolute;
-}
-.scatter .axis line, .scatter .axis path {
-  fill: none;
-  stroke: #222;
-  shape-rendering: crispEdges;
-}
-
-.scatter .extent {
-  fill: #000;
-  fill-opacity: .2;
-  stroke: #fff;
-}
 
 /* MA-plot ***********************************************************************/
 

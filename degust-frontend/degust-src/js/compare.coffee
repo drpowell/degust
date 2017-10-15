@@ -198,7 +198,7 @@ activate_parcoords = () ->
     $('#dge-pc').show()
     $('#select-pc').addClass('active')
     $('#select-ma,#select-pca,#select-volcano').removeClass('active')
-    $('.ma-fc-col-opt').hide()
+    #$('.ma-fc-col-opt').hide()
     $('.pca-opts').hide()
     heatmap.enabled(true)
     update_data()
@@ -210,7 +210,7 @@ activate_ma_plot = () ->
     $('#dge-ma').show()
     $('#select-ma').addClass('active')
     $('#select-pc,#select-pca,#select-volcano').removeClass('active')
-    $('.ma-fc-col-opt').show()
+    #$('.ma-fc-col-opt').show()
     $('.pca-opts').hide()
     heatmap.enabled(true)
     update_data()
@@ -222,7 +222,7 @@ activate_volcano = () ->
     $('#dge-volcano').show()
     $('#select-volcano').addClass('active')
     $('#select-pc,#select-pca,#select-ma').removeClass('active')
-    $('.ma-fc-col-opt').show()
+    #$('.ma-fc-col-opt').show()
     $('.pca-opts').hide()
     heatmap.enabled(true)
     update_data()
@@ -234,7 +234,7 @@ activate_pca_plot = () ->
     $('#dge-pca').show()
     $('#select-pca').addClass('active')
     $('#select-pc,#select-ma,#select-volcano').removeClass('active')
-    $('.ma-fc-col-opt').hide()
+    #$('.ma-fc-col-opt').hide()
     heatmap.enabled(false)
     $('.pca-opts').show()
     g_vue_obj.numGenesThreshold = 100
@@ -565,14 +565,6 @@ redraw_plot = () ->
     if g_vue_obj.current_plot?
         g_vue_obj.current_plot.brush()
 
-init_slider = () ->
-    $('#fc-relative').change((e) ->
-        update_data()
-    )
-    $('#ma-fc-col').change((e) ->
-        update_data()
-    )
-
 calc_kegg_colours = () ->
     ec_dirs = {}
     ec_col = g_data.column_by_type('ec')
@@ -631,17 +623,17 @@ process_dge_data = (data, columns) ->
     g_data = new GeneData(data, columns)
 
     # Setup FC "relative" pulldown
-    opts = ""
-    for col,i in g_data.columns_by_type(['fc','primary'])
-        opts += "<option value='#{i}'>#{html_escape col.name}</option>"
-    opts += "<option value='-1'>Average</option>"
-    $('select#fc-relative').html(opts)
+    # opts = ""
+    # for col,i in g_data.columns_by_type(['fc','primary'])
+    #     opts += "<option value='#{i}'>#{html_escape col.name}</option>"
+    # opts += "<option value='-1'>Average</option>"
+    # $('select#fc-relative').html(opts)
 
     # Setup MA-plot pulldown
-    opts = ""
-    for col,i in g_data.columns_by_type(['fc','primary'])
-        opts += "<option value='#{i}' #{if i==1 then 'selected' else ''}>#{html_escape col.name}</option>"
-    $('select#ma-fc-col').html(opts)
+    # opts = ""
+    # for col,i in g_data.columns_by_type(['fc','primary'])
+    #     opts += "<option value='#{i}' #{if i==1 then 'selected' else ''}>#{html_escape col.name}</option>"
+    # $('select#ma-fc-col').html(opts)
 
     if g_data.column_by_type('ec') == null
         $('.kegg-filter').hide()
@@ -738,10 +730,6 @@ init_page = () ->
 
     $("select#kegg").change(kegg_selected)
 
-    $('#select-pc a').click((e) ->  e.preventDefault(); set_plot('parcoords'))
-    $('#select-ma a').click((e) ->  e.preventDefault(); set_plot('ma'))
-    $('#select-pca a').click((e) -> e.preventDefault(); set_plot('mds'))
-    $('#select-volcano a').click((e) -> e.preventDefault(); set_plot('volcano'))
     $('#select-options a').click((e) ->  e.preventDefault(); activate_options())
     $('#select-single-gene-expr a').click((e) -> e.preventDefault(); activate_single_gene_expr())
 
@@ -751,7 +739,6 @@ init_page = () ->
 
     init_charts()
     init_search()
-    init_slider()
     init_download_link()
     init_genesets()
 
@@ -763,6 +750,8 @@ sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 about = require('./about.vue').default
 Modal = require('modal-vue').default
+maPlot = require('./ma-plot.vue').default
+volcanoPlot = require('./volcano-plot.vue').default
 
 require('./backend.coffee')
 
@@ -773,16 +762,19 @@ module.exports =
         conditionsSelector: conditions
         about: about
         Modal: Modal
+        maPlot: maPlot
+        volcanoPlot: volcanoPlot
     data: () ->
         settings: {}
         full_settings: {}
-        #current_plot: null         # Not included as we don't want it reactive.  FIXME when plots are all components
         load_failed: false
         load_success: false
         num_loading: 0
         show_counts: 'no'
         fdrThreshold: 1
         fcThreshold: 0
+        fc_relative_i: null
+        ma_plot_fc_col_i: null
         fcStepValues:
             Number(x.toFixed(2)) for x in [0..5] by 0.01
         numGenesThreshold: 0
@@ -794,6 +786,11 @@ module.exports =
         show_about: false
         dge_method: null
         sel_conditions: []
+        #current_plot: null         # Not included as we don't want it reactive.  FIXME when plots are all components
+        cur_plot: 'ma-plot'
+        gene_data: new GeneData([],[])
+        plot_colouring: (d) => blue_to_brown(d[this.fdr_column.idx])
+
 
     computed:
         code: () -> get_url_vars()["code"]
@@ -804,6 +801,19 @@ module.exports =
         can_configure: () ->
             !this.settings.config_locked || this.full_settings.is_owner
         config_url: () -> "config.html?code=#{this.code}"
+        expr_data: () ->
+            console.log "computing expr_data", this.gene_data.get_data().length
+            this.gene_data.get_data().filter((v) => this.expr_filter(v))
+        avg_column: () ->
+            this.gene_data.columns_by_type('avg')[0]
+        fdr_column: () ->
+            this.gene_data.columns_by_type('fdr')[0]
+        fc_relative: () ->
+            this.fc_columns[this.fc_relative_i]
+        ma_plot_fc_col: () ->
+            this.fc_columns[this.ma_plot_fc_col_i]
+        fc_columns: () ->
+            this.gene_data.columns_by_type(['fc','primary'])
     watch:
         settings: () ->
             this.dge_method = this.settings.dge_method
@@ -847,12 +857,10 @@ module.exports =
                     )
                 )
         initBackend: (use_backend) ->
-            this.gene_data = new GeneData([],[])
-
             this.ev_backend = new Vue()
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
             this.ev_backend.$on("done_loading", () => this.num_loading-=1)
-            this.ev_backend.$on("dge_data", (data,cols) -> process_dge_data(data,cols))
+            this.ev_backend.$on("dge_data", (data,cols) => this.process_dge_data(data,cols))
 
             if !use_backend
                 this.backend = new WithoutBackend(this.settings, this.ev_backend)
@@ -873,6 +881,11 @@ module.exports =
             this.dge_method = cur.dge_method
             this.sel_conditions = cur.sel_conditions
             this.request_data()
+
+        process_dge_data: (data, cols) ->
+            this.gene_data = Object.freeze(new GeneData(data, cols))
+            this.fc_relative_i = 0
+            this.ma_plot_fc_col_i = 1
 
         redraw: () ->
             window.clearTimeout(h_runfilters)
@@ -897,6 +910,27 @@ module.exports =
         intValidator: (v) ->
              n = Number(v)
              !(isNaN(n) || n<0)
+
+        # Check if the passed row passes filters for : FDR, FC, Kegg
+        expr_filter: (row) ->
+            #console.log "filter"
+            if this.fcThreshold>0
+                # Filter using largest FC between any pair of samples
+                fc = this.gene_data.columns_by_type('fc').map((c) -> row[c.idx])
+                extent_fc = d3.extent(fc.concat([0]))
+                if Math.abs(extent_fc[0] - extent_fc[1]) < this.fcThreshold
+                    return false
+
+            # Filter by FDR
+            pval_col = this.fdr_column
+            return false if row[pval_col.idx] > this.fdrThreshold
+
+            # If a Kegg pathway is selected, filter to that.
+            if kegg_filter.length>0
+                ec_col = this.gene_data.column_by_type('ec')
+                return row[ec_col.idx] in kegg_filter
+
+            true
 
     mounted: () ->
         g_vue_obj = this

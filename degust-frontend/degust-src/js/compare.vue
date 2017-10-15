@@ -90,11 +90,16 @@
 
           <div title='Show FC from selected condition' data-placement='left'>
             <label for='fc-relative'>FC relative to</label>
-            <select id='fc-relative'></select>
+            <select id='fc-relative' v-model='fc_relative_i'>
+                <option v-for='(col,i) in fc_columns' :value='i'>{{col.name}}</option>
+                <option value='-1'>Average</option>
+            </select>
           </div>
-          <div title='FC for the MA-plot' data-placement='left' class='ma-fc-col-opt'>
+          <div title='FC for the MA-plot' data-placement='left'>
             <label for='ma-fc-col'>MA-Plot FC</label>
-            <select id='ma-fc-col'></select>
+            <select id='ma-fc-col' v-model='ma_plot_fc_col_i'>
+                <option v-for='(col,i) in fc_columns' :value='i'>{{col.name}}</option>
+            </select>
           </div>
           <div title='Show raw counts (or counts-per-million) in the table' data-placement='left' class='show-counts-opt'>
             <label for='show-counts'>Show Counts</label>
@@ -189,19 +194,44 @@
         <div class='col-xs-6' id='expression'>
           <div v-show='num_loading>0' class='loading'><img :src='asset_base + "images/ajax-loader.gif"'></div>
           <ul class="nav nav-tabs">
-            <li id='select-pc'><a href="#">Parallel Coordinates</a></li>
-            <li id='select-ma'><a href="#">MA plot</a></li>
-            <li id='select-pca'><a href="#">MDS plot</a></li>
-            <li id='select-volcano'><a href="#">Volcano</a></li>
+            <li>
+                <a href="#">Parallel Coordinates</a>
+            </li>
+            <li :class='{active: cur_plot=="ma-plot"}'>
+                <a @click='cur_plot="ma-plot"'>MA plot</a>
+            </li>
+            <li>
+                <a href="#">MDS plot</a>
+            </li>
+            <li :class='{active: cur_plot=="volcano-plot"}'>
+                <a @click='cur_plot="volcano-plot"'>Volcano</a>
+            </li>
           </ul>
           <div v-bind:style="{ opacity: num_loading>0 ? 0.4 : 1 }">
-            <div id="dge-pc" class="parcoords"></div>
-            <div id="dge-ma" class="dge-ma"></div>
-            <div id="dge-pca"></div>
-            <div id="dge-volcano" class="dge-ma"></div>
+              <ma-plot v-if='cur_plot=="ma-plot"'
+                       :data='expr_data'
+                       :logfc-col='ma_plot_fc_col'
+                       :avg-col='avg_column'
+                       :colour='plot_colouring'
+                       >
+              </ma-plot>
+              <volcano-plot v-if='cur_plot=="volcano-plot"'
+                       :data='expr_data'
+                       :logfc-col='ma_plot_fc_col'
+                       :fdr-col='fdr_column'
+                       :colour='plot_colouring'
+                       >
+              </volcano-plot>
           </div>
         </div><!-- expression -->
       </div><!-- row -->
+
+      <div class='row'>
+          <div id="dge-pc" class="parcoords"></div>
+          <div id="dge-ma" class="dge-ma"></div>
+          <div id="dge-pca"></div>
+          <div id="dge-volcano" class="dge-ma"></div>
+      </div>
 
       <div class='row'>
         <div id="heatmap-info"></div>
