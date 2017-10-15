@@ -215,6 +215,7 @@
                        :fdr-col='fdr_column'
                        :colour='plot_colouring'
                        :info-cols='info_columns'
+                       @brush='set_genes_selected'
                        >
               </ma-plot>
               <volcano-plot v-if='cur_plot=="volcano"'
@@ -224,13 +225,14 @@
                        :fdr-col='fdr_column'
                        :colour='plot_colouring'
                        :info-cols='info_columns'
+                       @brush='set_genes_selected'
                        >
               </volcano-plot>
           </div>
         </div><!-- expression -->
       </div><!-- row -->
 
-      <div class='row'>
+      <div class='row hide'>
           <div id="dge-pc" class="parcoords"></div>
           <div id="dge-ma" class="dge-ma"></div>
           <div id="dge-pca"></div>

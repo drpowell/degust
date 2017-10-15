@@ -448,8 +448,9 @@ module.exports =
                 canvas: this.canvas
                 padding: 30
             )
-            this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', d, loc))
+            this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', Object.freeze(d), loc))
             this.me.on('mouseout.tooltip', () => this.$emit('mouseout'))
+            this.me.on('brush', (d) => this.$emit('brush', Object.freeze(d)))
 
             this.redraw()
         )

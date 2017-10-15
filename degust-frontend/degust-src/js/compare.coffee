@@ -790,7 +790,7 @@ module.exports =
         cur_plot: 'ma'
         gene_data: new GeneData([],[])
         plot_colouring: (d) => blue_to_brown(d[this.fdr_column.idx])
-
+        genes_selected: []
 
     computed:
         code: () -> get_url_vars()["code"]
@@ -892,6 +892,9 @@ module.exports =
         redraw: () ->
             window.clearTimeout(h_runfilters)
             h_runfilters = window.setTimeout(redraw_plot, 10)
+
+        set_genes_selected: (d) ->
+            this.genes_selected = d
 
         # Update the URL with the current page state
         update_url_link: () ->

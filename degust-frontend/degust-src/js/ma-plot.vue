@@ -31,6 +31,7 @@
                     :brush-enable='true' :canvas='true'
                     @mouseover='show_info'
                     @mouseout='hide_info'
+                    @brush='brushed'
                     >
         </scatter-plot>
         <div class='tooltip' v-if='hover.length>0' :style="tooltipStyle">
@@ -86,6 +87,8 @@ module.exports =
     methods:
         fmt: (val) -> val.toFixed(2)
         fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)
+        brushed: (d) ->
+            this.$emit('brush', d)
         show_info: (d,loc) ->
             this.hover=d
             this.tooltipLoc = loc
