@@ -611,7 +611,7 @@ init_page = () ->
     $('a.bargraph-libsize').click((e) -> e.preventDefault(); QC.library_size_bargraph(g_data, g_colour_by_parent))
     $('a.expression-boxplot').click((e) -> e.preventDefault(); QC.expression_boxplot(g_data, g_colour_by_parent))
 
-    init_charts()
+    #init_charts()
     init_download_link()
 
     #$(window).bind( 'hashchange', update_from_link )
@@ -766,7 +766,7 @@ module.exports =
             this.maxGenes = this.gene_data.get_data().length
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1
-            this.genes_selected = this.gene_data.get_data()
+            this.genes_selected = Object.freeze(this.gene_data.get_data())
             this.genes_highlight = []
             this.colour_by_condition = if this.fc_columns.length<=10 then d3.scale.category10() else d3.scale.category20()
 
