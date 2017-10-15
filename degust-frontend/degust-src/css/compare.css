@@ -3,11 +3,6 @@
 
 #dge-pc { height: 250px; }
 
-#grid { height: 300px; }
-#grid-info { font-size: 9pt; }
-.tab-search { font-size: 9pt; float: right; margin-top: -10px; }
-.tab-search .active { background-color: gold; }
-
 .genesets-toggle, #genesets {display: none;}
 .geneset-save { width: 100%;}
 .geneset-search input.search { width: 150px; margin: 5px 0;}
@@ -23,15 +18,6 @@ div#csv-download-div { float: right; margin: -7px 30px 0 0; }
 a#csv-download { font-size: 9pt; }
 
 .hide { display: none !important; }
-
-.slick-row { font-size: 9pt; }
-.slick-row:hover {
-  font-weight: bold;
-  color: #069;
-}
-
-.slick-row .counts { margin-left: 10px; color: #999;}
-.slick-row .counts span:nth-child(odd) { color: #bbb; }
 
 div.right { float: right; }
 div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 0 3px; margin-top: 15px}
@@ -52,16 +38,7 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
 
 .ui-dialog .ui-state-hover { border: 0; }
 
-
-#gene-info { font-size: 9pt; height: 5em;}
-#gene-info .lbl { width: 100px; font-weight: bold; display: inline-block;}
-
 .error-msg, .error-input { font-size: 11px; }
-
-/* Hide all options or controls that are displayed conditionally */
-#dge-ma, #dge-pca, #dge-volcano  {
-  display: none;
-}
 
 .pca-opts { border-top: solid 1px black; margin-top: 5px}
 .pca-opts .pca-title { font-size: 10pt; font-weight: bold; margin-bottom: 3px; }

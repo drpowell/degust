@@ -1,0 +1,110 @@
+<style scoped>
+</style>
+
+<template>
+    <div id="grid" ref='outer'>
+    </div>
+</template>
+
+<script lang='coffee'>
+
+# Slick grid
+require('./lib/jquery.event.drag-2.2.js')
+require('./lib/slick.core.js')
+require('./lib/slick.grid.js')
+require('./lib/slick.dataview.js')
+
+# Vue wrapper for slick-grid
+#   mouseover: callback for row mouse-over
+#   mouserout: callback for row mouse-out
+#   dblclick: callback for row double-click
+module.exports =
+    name: 'slick-table'
+    props:
+        rows:
+            default: []
+            required: true
+        columns:
+            default: []
+            required: true
+    mounted: () ->
+        grid_options =
+            enableCellNavigation: true
+            enableColumnReorder: false
+            multiColumnSort: false
+            forceFitColumns: true
+            enableTextSelectionOnCells: true
+
+        @dataView = new Slick.Data.DataView()
+        @grid = new Slick.Grid(this.$refs.outer, @dataView, [], grid_options)
+
+        @dataView.onRowCountChanged.subscribe( (e, args) =>
+          @grid.updateRowCount()
+          @grid.render()
+          @_update_info()
+        )
+
+        @dataView.onRowsChanged.subscribe( (e, args) =>
+          @grid.invalidateRows(args.rows)
+          @grid.render()
+        )
+
+        @grid.onSort.subscribe( (e,args) => @opts.sorter(args) )
+        @grid.onViewportChanged.subscribe( (e,args) => @_update_info() )
+
+        #@grid.onHeaderMouseEnter.subscribe((e,args) => console.log("enter",e,args))
+        #@grid.onHeaderMouseLeave.subscribe((e,args) => console.log("leave",e,args))
+
+        # Set up event callbacks
+        @grid.onMouseEnter.subscribe( (e,args) =>
+            i = @grid.getCellFromEvent(e).row
+            d = @dataView.getItem(i)
+            this.$emit('mouseover', d)
+        )
+        @grid.onMouseLeave.subscribe( (e,args) =>
+            this.$emit('mouseout')
+        )
+        @grid.onDblClick.subscribe( (e,args) =>
+            this.$emit('dblclick', @grid.getDataItem(args.row))
+        )
+    watch:
+        rows: () -> this.set_data_now(false)
+        columns: () -> this.set_data_now(true)
+    methods:
+        resort: () -> @dataView.reSort()
+
+        sort: (sorter) -> @dataView.sort(sorter)
+
+        get_data: () ->
+            @dataView.getItems()
+
+        set_data: (data, columns) ->
+            if columns
+                scheduler.schedule_now('gene_table', () => @set_data_now(data, columns))
+            else
+                scheduler.schedule('gene_table', () => @set_data_now(data))
+
+        set_data_now: (new_columns) ->
+            console.log "set_data_now new_columns=",new_columns
+            @dataView.beginUpdate()
+            @grid.setColumns([]) if new_columns
+            @dataView.setItems(this.rows)
+            @dataView.reSort()
+            @dataView.endUpdate()
+            if new_columns
+                @grid.setColumns(this.columns)
+                #FIXME $("[title]",@opts.elem).popover({trigger: 'hover',placement: 'top',container: 'body',html:true})
+
+        # Refresh the view.  Call this when the filter changes
+        refresh: () ->
+            @dataView.refresh()
+
+        # Redraw the table, use when the content of cells has changed
+        invalidate: () ->
+            @grid.invalidate()
+
+        _update_info: () ->
+            view = @grid.getViewport()
+            btm = d3.min [view.bottom, @dataView.getLength()]
+            this.$emit('info', {top:view.top, btm:btm, total:@dataView.getLength()})
+</script>

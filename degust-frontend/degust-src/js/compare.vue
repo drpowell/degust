@@ -103,7 +103,7 @@
           </div>
           <div title='Show raw counts (or counts-per-million) in the table' data-placement='left' class='show-counts-opt'>
             <label for='show-counts'>Show Counts</label>
-            <select v-model="show_counts">
+            <select v-model="showCounts">
               <option value='no'>No</option>
               <option value='yes'>Yes</option>
               <option value='cpm'>As counts-per-million</option>
@@ -246,29 +246,9 @@
 
       <div class='row'>
         <h2>Genes</h2>
-        <div>
-          <div class="tab-search">
-            Search:
-            <input type="text">
-            <span class='glyphicon glyphicon-cog gene-table-settings'></span>
-          </div>
-          <div id='csv-download-div'>
-            <a id='csv-download' href='#'>Download CSV</a>
-            <span class="dropdown">
-                <button class="btn-link dropdown-toggle" type="button" id="dropDownload" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  <span class="caret"></span>
-                </button>
-              <ul class="dropdown-menu download" aria-labelledby="dropDownload">
-                <li><a href="#" class='download-csv'>Download as CSV</a></li>
-                <li><a href="#" class='download-tsv'>Download as TSV</a></li>
-                <li><a href="#" class='download-odf'>Download as ODF</a></li>
-              </ul>
-            </span>
-          </div>
-          <div id="grid-info"></div>
-        </div>
-        <div id="grid"></div>
-        <div id="gene-info"></div>
+        <gene-table :gene-data='gene_data' :link-url='settings.link_url'
+                    :rows='genes_selected' :show-counts='showCounts'>
+        </gene-table>
       </div>
 
     </div>

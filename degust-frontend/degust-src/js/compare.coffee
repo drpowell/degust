@@ -24,7 +24,6 @@ volcano_plot = null
 pca_plot = null
 gene_expr = null
 
-gene_table = null
 kegg = null
 heatmap = null
 
@@ -35,7 +34,6 @@ requested_kegg = false
 # Globals for settings
 sortAbsLogFC = true
 
-searchStr = ""
 kegg_filter = []
 h_runfilters = null
 g_tour_setup = false
@@ -65,35 +63,6 @@ gene_table_mouseout = () ->
     kegg.unhighlight()
     heatmap.unhighlight()
 
-
-# Rules for guess best info link based on some ID
-guess_link_info =
-    [{re: /^ENS/, link: 'http://ensembl.org/Multi/Search/Results?q=%s;site=ensembl'},
-     {re: /^CG/, link: 'http://flybase.org/cgi-bin/uniq.html?species=Dmel&cs=yes&db=fbgn&caller=genejump&context=%s'},
-     {re: /^/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
-    ]
-
-# Guess the link using the guess_link_info table
-guess_link = (info) ->
-    return if !info?
-    for o in guess_link_info
-        return o.link if info.match(o.re)
-    return null
-
-# Open a page for the given gene.  Use either the defined link or guess one.
-# The "ID" column can be specified as 'link' otherwise the first 'info' column is used
-gene_table_dblclick = (item) ->
-    cols = g_data.columns_by_type(['link'])
-    if cols.length==0
-        cols = g_data.columns_by_type(['info'])
-    if cols.length>0
-        info = item[cols[0].idx]
-        link = if settings.link_url? then settings.link_url else guess_link(info)
-        log_debug("Dbl click.  Using info/link",info,link)
-        if link?
-            link = link.replace(/%s/, info)
-            window.open(link)
-            window.focus()
 
 get_default_plot_typ = () ->
     if g_data.columns_by_type(['fc','primary']).length>2
@@ -163,7 +132,7 @@ set_state = (state, force_update) ->
 
     if state.show_counts?
         g_vue_obj.show_counts = state.show_counts
-        gene_table.invalidate()
+        gene_table.refresh()
 
 
     g_vue_obj.numGenesThreshold = +state.numGenesThreshold if state.numGenesThreshold?
@@ -269,17 +238,17 @@ init_gene_table_menu = () ->
     )
 
 init_charts = () ->
-    gene_table = new GeneTable(
-        elem: '#grid'
-        elem_info: '#grid-info'
-        sorter: do_sort
-        mouseover: gene_table_mouseover
-        mouseout: gene_table_mouseout
-        dblclick: gene_table_dblclick
-        filter: gene_table_filter
-        )
-
-    init_gene_table_menu()
+    # gene_table = new GeneTable(
+    #     elem: '#grid'
+    #     elem_info: '#grid-info'
+    #     sorter: do_sort
+    #     mouseover: gene_table_mouseover
+    #     mouseout: gene_table_mouseout
+    #     dblclick: gene_table_dblclick
+    #     filter: gene_table_filter
+    #     )
+    #
+    # init_gene_table_menu()
 
     parcoords = new ParCoords(
         elem: '#dge-pc'
@@ -396,78 +365,6 @@ init_charts = () ->
         colour: g_colour_by_parent
     )
 
-
-comparer = (x,y) -> (if x == y then 0 else (if x > y then 1 else -1))
-
-do_sort = (args) ->
-    column = g_data.column_by_idx(args.sortCol.field)
-    gene_table.sort((r1,r2) ->
-        r = 0
-        x=r1[column.idx]; y=r2[column.idx]
-        if column.type in ['fc_calc']
-            if sortAbsLogFC
-            then r = comparer(Math.abs(x), Math.abs(y))
-            else r = comparer(x, y)
-        else if column.type in ['fdr']
-            r = comparer(x, y)
-        else
-            r = comparer(x,y)
-        r * (if args.sortAsc then 1 else -1)
-    )
-
-set_gene_table = (data) ->
-    column_keys = g_data.columns_by_type(['info','fdr','p'])
-    column_keys = column_keys.concat(g_data.columns_by_type('fc_calc'))
-    columns = column_keys.map((col) ->
-        hsh =
-            id: col.idx
-            name: col.name
-            field: col.idx
-            sortable: true
-            formatter: (i,c,val,m,row) ->
-                if col.type in ['fc_calc']
-                    fc_div(val, col, row)
-                else if col.type in ['fdr','p']
-                    if val<0.01 then val.toExponential(2) else val.toFixed(2)
-                else
-                    val
-        if col.type in ['fdr','p']
-            hsh.width = 70
-            hsh.maxWidth = 70
-        switch col.type
-            when 'fdr'     then hsh.toolTip = "False Discovery Rate"
-            when 'p'       then hsh.toolTip = "Raw P value"
-            when 'fc_calc' then hsh.toolTip = "Log<sub>2</sub> Fold-change"
-        hsh
-    )
-    gene_table.set_data(data, columns)
-
-fc_div = (n, column, row) ->
-    colour = if n>0.1 then "pos" else if n<-0.1 then "neg" else ""
-    countStr = ""
-    if g_vue_obj.show_counts=='yes'
-        count_columns = g_data.assoc_column_by_type('count',column.name)
-        vals = count_columns.map((c,i) -> "<span>#{row[c.idx]}</span>")
-        countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
-    else if g_vue_obj.show_counts=='cpm'
-        count_columns = g_data.assoc_column_by_type('count',column.name)
-        vals = count_columns.map((c) ->
-            tot = g_data.get_total(c)
-            val = (1000000 * row[c.idx]/tot).toFixed(1)
-            "<span>#{val}</span>"
-        )
-        countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
-    "<div class='#{colour}'>#{n.toFixed(2)}#{countStr}</div>"
-
-
-gene_table_filter = (item) ->
-    return true if searchStr == ""
-    for col in g_data.columns_by_type('info')
-        str = item[col.idx]
-        return true if str? && typeof str == 'string' &&
-                       str.toLowerCase().indexOf(searchStr)>=0
-    false
-
 # Filter to decide which rows to plot on the parallel coordinates widget
 expr_filter = (row) ->
     if g_vue_obj.fcThreshold>0
@@ -487,19 +384,6 @@ expr_filter = (row) ->
         return row[ec_col.idx] in kegg_filter
 
     true
-
-update_search_str = (str, fillbox=false) ->
-    searchStr = str.toLowerCase()
-    $(".tab-search input").toggleClass('active', searchStr != "")
-    gene_table.refresh()
-    if (fillbox)
-        $(".tab-search input").val(str)
-
-init_search = () ->
-    $(".tab-search input").keyup (e) ->
-                    Slick.GlobalEditorLock.cancelCurrentEdit()
-                    this.value = "" if e.which == 27     # Clear on "Esc"
-                    update_search_str(this.value)
 
 # Format data as ODF as used by GenePattern
 # http://software.broadinstitute.org/cancer/software/genepattern/file-formats-guide#ODF
@@ -738,9 +622,7 @@ init_page = () ->
     $('a.expression-boxplot').click((e) -> e.preventDefault(); QC.expression_boxplot(g_data, g_colour_by_parent))
 
     init_charts()
-    init_search()
     init_download_link()
-    init_genesets()
 
     #$(window).bind( 'hashchange', update_from_link )
     $(window).bind('resize', () -> heatmap.resize())
@@ -752,6 +634,7 @@ about = require('./about.vue').default
 Modal = require('modal-vue').default
 maPlot = require('./ma-plot.vue').default
 volcanoPlot = require('./volcano-plot.vue').default
+geneTable = require('./gene-table.vue').default
 
 require('./backend.coffee')
 
@@ -764,13 +647,14 @@ module.exports =
         Modal: Modal
         maPlot: maPlot
         volcanoPlot: volcanoPlot
+        geneTable: geneTable
     data: () ->
         settings: {}
         full_settings: {}
         load_failed: false
         load_success: false
         num_loading: 0
-        show_counts: 'no'
+        showCounts: 'no'
         fdrThreshold: 1
         fcThreshold: 0
         fc_relative_i: null
@@ -802,8 +686,8 @@ module.exports =
             !this.settings.config_locked || this.full_settings.is_owner
         config_url: () -> "config.html?code=#{this.code}"
         expr_data: () ->
-            console.log "computing expr_data", this.gene_data.get_data().length
-            this.gene_data.get_data().filter((v) => this.expr_filter(v))
+            console.log "computing expr_data.  orig length=", this.gene_data.get_data().length
+            Object.freeze(this.gene_data.get_data().filter((v) => this.expr_filter(v)))
         avg_column: () ->
             this.gene_data.columns_by_type('avg')[0]
         fdr_column: () ->
@@ -820,8 +704,6 @@ module.exports =
         settings: () ->
             this.dge_method = this.settings.dge_method
             this.sel_conditions = this.settings.init_select || []
-        show_counts: () ->
-            gene_table.invalidate()
         fdrThreshold: () -> this.redraw()
         fcThreshold: () -> this.redraw()
         numGenesThreshold: () -> this.redraw()

@@ -4,11 +4,9 @@ require('./common-req.coffee')
 require("./lib/bootstrap-tour.js")
 require("./lib/numeric-1.2.6.js")
 require("./d3-req.coffee")
-require("./slickgrid-req.coffee")
 
 # Ours
 require('./print.coffee')
-require('./gene_table.coffee')
 require('./parcoords.coffee')
 require('./scatter-plot.coffee')
 require('./ma-plot.coffee')
