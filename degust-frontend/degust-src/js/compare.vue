@@ -215,6 +215,7 @@
                        :fdr-col='fdr_column'
                        :colour='plot_colouring'
                        :info-cols='info_columns'
+                       :highlight='genes_highlight'
                        @brush='set_genes_selected'
                        >
               </ma-plot>
@@ -225,6 +226,7 @@
                        :fdr-col='fdr_column'
                        :colour='plot_colouring'
                        :info-cols='info_columns'
+                       :highlight='genes_highlight'
                        @brush='set_genes_selected'
                        >
               </volcano-plot>
@@ -247,7 +249,9 @@
       <div class='row'>
         <h2>Genes</h2>
         <gene-table :gene-data='gene_data' :link-url='settings.link_url'
-                    :rows='genes_selected' :show-counts='showCounts'>
+                    :rows='genes_selected' :show-counts='showCounts'
+                    @mouseover='genes_highlight=[$event]' @mouseout='genes_highlight=[]'
+                    >
         </gene-table>
       </div>
 

@@ -29,6 +29,7 @@
                       :data='data'
                       :x-column='xColumn' :y-column='yColumn'
                       :colour='colour'
+                      :highlight='highlight'
                       :brush-enable='true' :canvas='true'
                       @mouseover='show_info'
                       @mouseout='hide_info'
@@ -68,6 +69,7 @@ module.exports =
         colour: null
         infoCols: null
         fdrCol: null
+        highlight: null
     data: () ->
         hover: []
         tooltipLoc: [0,0]

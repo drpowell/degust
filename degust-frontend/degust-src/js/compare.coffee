@@ -675,6 +675,7 @@ module.exports =
         gene_data: new GeneData([],[])
         plot_colouring: (d) => blue_to_brown(d[this.fdr_column.idx])
         genes_selected: []
+        genes_highlight: []
 
     computed:
         code: () -> get_url_vars()["code"]

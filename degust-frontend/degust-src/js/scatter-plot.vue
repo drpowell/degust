@@ -413,6 +413,9 @@ module.exports =
         data: null
         xColumn: null
         yColumn: null
+        highlight:
+            type: Array
+            default: () -> []
     computed:
         needsRedraw: () ->
             # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
@@ -422,7 +425,13 @@ module.exports =
             this.colour
             Date.now()
     watch:
-        needsRedraw: () -> this.redraw()
+        needsRedraw: () ->
+            this.redraw()
+        highlight: (v) ->
+            if v.length>0
+                this.me.highlight(v)
+            else
+                this.me.unhighlight()
 
     methods:
         redraw: () ->
