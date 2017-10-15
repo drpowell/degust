@@ -198,6 +198,7 @@ class ScatterPlot
             .attr("y", -6)
             .attr("fill", "black")
             .style("text-anchor", "end")
+            .attr('class', 'axis-label')
             .text(@_chooseOne(@xColumn.name, @opts.xLabel))
 
         @svg.append("g")
@@ -211,6 +212,7 @@ class ScatterPlot
             .attr("fill", "black")
             .attr("dy", ".71em")
             .style("text-anchor", "end")
+            .attr('class', 'axis-label')
             .text(@_chooseOne(@yColumn.name, @opts.yLabel))
 
 
@@ -408,12 +410,17 @@ module.exports =
         filter:
             type: Function
             default: () -> true
+        text:
+            type: Function
+            default: null
         alpha: () -> 0.7
         size: () -> 3
         brushEnable: false
         animate: false             # Attempt to transition dots around.  Only works for canvas
         canvas: true               # Draw using canvas (or svg)
-        data: null
+        data:
+            type: Array
+            required: true
         xColumn: null
         yColumn: null
         highlight:
@@ -460,6 +467,7 @@ module.exports =
                 brush_enable: this.brushEnable
                 animate: this.animate
                 canvas: this.canvas
+                text: this.text
                 padding: 30
             )
             this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', Object.freeze(d), loc))

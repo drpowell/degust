@@ -622,9 +622,10 @@ sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 about = require('./about.vue').default
 Modal = require('modal-vue').default
+geneTable = require('./gene-table.vue').default
 maPlot = require('./ma-plot.vue').default
 volcanoPlot = require('./volcano-plot.vue').default
-geneTable = require('./gene-table.vue').default
+mdsPlot = require('./mds-plot.vue').default
 
 require('./backend.coffee')
 
@@ -635,9 +636,10 @@ module.exports =
         conditionsSelector: conditions
         about: about
         Modal: Modal
+        geneTable: geneTable
         maPlot: maPlot
         volcanoPlot: volcanoPlot
-        geneTable: geneTable
+        mdsPlot: mdsPlot
     data: () ->
         settings: {}
         full_settings: {}
@@ -651,21 +653,21 @@ module.exports =
         ma_plot_fc_col_i: null
         fcStepValues:
             Number(x.toFixed(2)) for x in [0..5] by 0.01
-        numGenesThreshold: 0
+        numGenesThreshold: 100
         skipGenesThreshold: 0
-        pcaDimension: 1
+        mdsDimension: 1
         maxGenes: 0
         mds_2d3d: '2d'
         r_code: ''
         show_about: false
         dge_method: null
         sel_conditions: []
-        #current_plot: null         # Not included as we don't want it reactive.  FIXME when plots are all components
         cur_plot: 'ma'
         gene_data: new GeneData([],[])
-        plot_colouring: (d) => blue_to_brown(d[this.fdr_column.idx])
         genes_selected: []
         genes_highlight: []
+        show_heatmap: true
+        #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:
         code: () -> get_url_vars()["code"]
@@ -693,6 +695,8 @@ module.exports =
             this.gene_data.columns_by_type(['fc','primary'])
         info_columns: () ->
             this.gene_data.columns_by_type(['info'])
+        count_columns: () ->
+            this.gene_data.columns_by_type('count')
         filter_changed: () ->
             this.fdrThreshold
             this.fcThreshold
@@ -705,7 +709,7 @@ module.exports =
         fcThreshold: () -> this.redraw()
         numGenesThreshold: () -> this.redraw()
         skipGenesThreshold: () -> this.redraw()
-        pcaDimension: () -> this.redraw()
+        mdsDimension: () -> this.redraw()
         mds_2d3d: () -> this.redraw()
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
@@ -759,10 +763,12 @@ module.exports =
 
         process_dge_data: (data, cols) ->
             this.gene_data = Object.freeze(new GeneData(data, cols))
+            this.maxGenes = this.gene_data.get_data().length
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1
             this.genes_selected = this.gene_data.get_data()
             this.genes_highlight = []
+            this.colour_by_condition = if this.fc_columns.length<=10 then d3.scale.category10() else d3.scale.category20()
 
         # Selected samples have changed, request a new dge
         change_samples: (cur) ->
@@ -789,7 +795,12 @@ module.exports =
             )
         close_r_code: () -> this.r_code = ''
 
-        fmtPCAText: (v) -> v+" vs "+(v+1)
+        plot_colouring: (d) ->
+            blue_to_brown(d[this.fdr_column.idx])
+        condition_colouring: (c) ->
+            this.colour_by_condition(c)
+        fmtPCAText: (v) ->
+            v+" vs "+(v+1)
         fdrValidator: (v) ->
             n = Number(v)
             !(isNaN(n) || n<0 || n>1)

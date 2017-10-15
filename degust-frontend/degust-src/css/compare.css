@@ -40,8 +40,6 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
 
 .error-msg, .error-input { font-size: 11px; }
 
-.pca-opts { border-top: solid 1px black; margin-top: 5px}
-.pca-opts .pca-title { font-size: 10pt; font-weight: bold; margin-bottom: 3px; }
 
 .warning { background-color: red; }
 
@@ -80,29 +78,6 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
     stroke-width:2;
 }
 
-
-/* PCA-plot / MDS-plot ***********************************************************/
-
-#dge-pca .label { font-size: 100%; }
-#dge-pca .title { font-size: 70%; font-weight: bold; }
-
-#dge-pca .scatter .axis line {
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.bar-chart .bar:hover { fill: brown; }
-
-
-.bar-chart .axis path, .bar-chart .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-#dge-pca .bar-chart .axis { font: 10px sans-serif; }
-#dge-pca .bar-chart { position: absolute; bottom: 0; left: 510px; }
-#dge-pca .bar-chart .x.axis path { display: none; }
 
 
 /* Boxplot (also see d3.boxplot.css) *****************************************************/

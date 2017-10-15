@@ -3,6 +3,9 @@
     a.sm-link { font-size: 10px;}
     .r-code { font-size: 11px; max-height: 60%;}
 
+    .pca-opts { border-top: solid 1px black; margin-top: 5px}
+    .pca-opts .pca-title { font-size: 10pt; font-weight: bold; margin-bottom: 3px; }
+
 </style>
 
 <template>
@@ -109,7 +112,7 @@
               <option value='cpm'>As counts-per-million</option>
             </select>
           </div>
-          <div class='pca-opts'>
+          <div class='pca-opts' v-show="cur_plot=='mds'">
             <div class='pca-title'>MDS options</div>
             <div title='Number of genes to use for the MDS plot' data-placement='left' class='pca-num-genes-opt'>
               <label>Num genes</label>
@@ -133,7 +136,7 @@
             <div title='MDS dimensions to plot' data-placement='left' class='pca-dims-opt'>
               <label>Dimensions</label>
               <slider-text class='slider-control'
-                          v-model='pcaDimension'
+                          v-model='mdsDimension'
                           :step-values='[1,2,3,4,5,6,7,8,9,10]'
                           :validator="intValidator"
                           :fmt='fmtPCAText'
@@ -181,7 +184,11 @@
         </div>
 
         <div class='text-right'>
-          <a class='sm-link' href='#'>Show heatmap</a>
+          <a class='sm-link' @click='show_heatmap=!show_heatmap'>
+              <span v-if='show_heatmap'>Hide</span>
+              <span v-else>Show</span>
+              heatmap
+          </a>
         </div>
       </div>
 
@@ -234,6 +241,18 @@
                        @brush='set_genes_selected'
                        >
               </volcano-plot>
+              <mds-plot v-if='cur_plot=="mds"'
+                       :gene-data='gene_data'
+                       :columns='count_columns'
+                       :filter='expr_filter'
+                       :filter-changed='filter_changed'
+                       :condition-colouring='condition_colouring'
+                       :num-genes='numGenesThreshold'
+                       :skip-genes='skipGenesThreshold'
+                       :dimension='mdsDimension'
+                       @top-genes='set_genes_selected'
+                       >
+              </mds-plot>
           </div>
         </div><!-- expression -->
       </div><!-- row -->
@@ -245,7 +264,7 @@
           <div id="dge-volcano" class="dge-ma"></div>
       </div>
 
-      <div class='row'>
+      <div class='row' v-if='show_heatmap'>
         <div id="heatmap-info"></div>
         <div id='heatmap'></div>
       </div>

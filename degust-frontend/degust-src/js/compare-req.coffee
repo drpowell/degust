@@ -2,7 +2,6 @@
 require('./common-req.coffee')
 
 require("./lib/bootstrap-tour.js")
-require("./lib/numeric-1.2.6.js")
 require("./d3-req.coffee")
 
 # Ours
