@@ -45,6 +45,7 @@
         <slick-table id="grid" ref='slickGrid'
                      :rows='tableRows'
                      :columns='gene_table_columns'
+                     :sorter='sorter'
                      @info='set_table_info'
                      @dblclick='dblclick'
                      @mouseover='mouseover'
@@ -75,25 +76,7 @@ guess_link = (info) ->
     return null
 
 
-###
-    comparer = (x,y) -> (if x == y then 0 else (if x > y then 1 else -1))
-
-    do_sort = (args) ->
-        column = g_data.column_by_idx(args.sortCol.field)
-        gene_table.sort((r1,r2) ->
-            r = 0
-            x=r1[column.idx]; y=r2[column.idx]
-            if column.type in ['fc_calc']
-                if sortAbsLogFC
-                then r = comparer(Math.abs(x), Math.abs(y))
-                else r = comparer(x, y)
-            else if column.type in ['fdr']
-                r = comparer(x, y)
-            else
-                r = comparer(x,y)
-            r * (if args.sortAsc then 1 else -1)
-        )
-###
+comparer_num = (x,y) -> (if x == y then 0 else (if x > y then 1 else -1))
 
 module.exports =
     name: 'gene-table'
@@ -201,5 +184,22 @@ module.exports =
             this.$emit('mouseover',item)
         mouseout: () ->
             this.$emit('mouseout')
+
+        # called for sorting columns from slickgrid
+        sorter: (args) ->
+            column = this.geneData.column_by_idx(args.sortCol.field)
+            this.$refs.slickGrid.sort((r1,r2) ->
+                r = 0
+                x=r1[column.idx]; y=r2[column.idx]
+                if column.type in ['fc_calc']
+                    if false #sortAbsLogFC
+                    then r = comparer_num(Math.abs(x), Math.abs(y))
+                    else r = comparer_num(x, y)
+                else if column.type in ['fdr']
+                    r = comparer_num(x, y)
+                else
+                    r = comparer_num(x,y)
+                r * (if args.sortAsc then 1 else -1)
+            )
 
 </script>

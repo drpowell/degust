@@ -27,6 +27,7 @@ module.exports =
         columns:
             default: []
             required: true
+        sorter: null
     mounted: () ->
         grid_options =
             enableCellNavigation: true
@@ -49,7 +50,8 @@ module.exports =
           @grid.render()
         )
 
-        @grid.onSort.subscribe( (e,args) => @opts.sorter(args) )
+        if this.sorter?
+            @grid.onSort.subscribe( (e,args) => this.sorter(args) )
         @grid.onViewportChanged.subscribe( (e,args) => @_update_info() )
 
         #@grid.onHeaderMouseEnter.subscribe((e,args) => console.log("enter",e,args))
@@ -71,9 +73,11 @@ module.exports =
         rows: () -> this.set_data_now(false)
         columns: () -> this.set_data_now(true)
     methods:
-        resort: () -> @dataView.reSort()
+        resort: () ->
+            @dataView.reSort()
 
-        sort: (sorter) -> @dataView.sort(sorter)
+        sort: (sorter) ->
+            @dataView.sort(sorter)
 
         get_data: () ->
             @dataView.getItems()
@@ -86,14 +90,15 @@ module.exports =
 
         set_data_now: (new_columns) ->
             console.log "set_data_now new_columns=",new_columns
+            rows = this.rows.slice()      # Copy the array of rows - we'll need to sort it
             @dataView.beginUpdate()
             @grid.setColumns([]) if new_columns
-            @dataView.setItems(this.rows)
+            @dataView.setItems(rows)
             @dataView.reSort()
             @dataView.endUpdate()
             if new_columns
                 @grid.setColumns(this.columns)
-                #FIXME $("[title]",@opts.elem).popover({trigger: 'hover',placement: 'top',container: 'body',html:true})
+                $("[title]",this.$el).popover({trigger: 'hover',placement: 'top',container: 'body',html:true})
 
         # Refresh the view.  Call this when the filter changes
         refresh: () ->

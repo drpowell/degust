@@ -238,16 +238,6 @@ init_gene_table_menu = () ->
     )
 
 init_charts = () ->
-    # gene_table = new GeneTable(
-    #     elem: '#grid'
-    #     elem_info: '#grid-info'
-    #     sorter: do_sort
-    #     mouseover: gene_table_mouseover
-    #     mouseout: gene_table_mouseout
-    #     dblclick: gene_table_dblclick
-    #     filter: gene_table_filter
-    #     )
-    #
     # init_gene_table_menu()
 
     parcoords = new ParCoords(
