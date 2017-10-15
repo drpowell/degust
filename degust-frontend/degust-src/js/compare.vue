@@ -194,32 +194,36 @@
         <div class='col-xs-6' id='expression'>
           <div v-show='num_loading>0' class='loading'><img :src='asset_base + "images/ajax-loader.gif"'></div>
           <ul class="nav nav-tabs">
-            <li>
-                <a href="#">Parallel Coordinates</a>
+            <li :class='{active: cur_plot=="parallel-coord"}'>
+                <a @click='cur_plot="parallel-coord"'>Parallel Coordinates</a>
             </li>
-            <li :class='{active: cur_plot=="ma-plot"}'>
-                <a @click='cur_plot="ma-plot"'>MA plot</a>
+            <li :class='{active: cur_plot=="ma"}'>
+                <a @click='cur_plot="ma"'>MA plot</a>
             </li>
-            <li>
-                <a href="#">MDS plot</a>
+            <li :class='{active: cur_plot=="mds"}'>
+                <a @click='cur_plot="mds"'>MDS plot</a>
             </li>
-            <li :class='{active: cur_plot=="volcano-plot"}'>
-                <a @click='cur_plot="volcano-plot"'>Volcano</a>
+            <li :class='{active: cur_plot=="volcano"}'>
+                <a @click='cur_plot="volcano"'>Volcano</a>
             </li>
           </ul>
           <div v-bind:style="{ opacity: num_loading>0 ? 0.4 : 1 }">
-              <ma-plot v-if='cur_plot=="ma-plot"'
+              <ma-plot v-if='cur_plot=="ma"'
                        :data='expr_data'
                        :logfc-col='ma_plot_fc_col'
                        :avg-col='avg_column'
-                       :colour='plot_colouring'
-                       >
-              </ma-plot>
-              <volcano-plot v-if='cur_plot=="volcano-plot"'
-                       :data='expr_data'
-                       :logfc-col='ma_plot_fc_col'
                        :fdr-col='fdr_column'
                        :colour='plot_colouring'
+                       :info-cols='info_columns'
+                       >
+              </ma-plot>
+              <volcano-plot v-if='cur_plot=="volcano"'
+                       :data='expr_data'
+                       :logfc-col='ma_plot_fc_col'
+                       :avg-col='avg_column'
+                       :fdr-col='fdr_column'
+                       :colour='plot_colouring'
+                       :info-cols='info_columns'
                        >
               </volcano-plot>
           </div>

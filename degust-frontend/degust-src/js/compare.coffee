@@ -787,7 +787,7 @@ module.exports =
         dge_method: null
         sel_conditions: []
         #current_plot: null         # Not included as we don't want it reactive.  FIXME when plots are all components
-        cur_plot: 'ma-plot'
+        cur_plot: 'ma'
         gene_data: new GeneData([],[])
         plot_colouring: (d) => blue_to_brown(d[this.fdr_column.idx])
 
@@ -796,8 +796,8 @@ module.exports =
         code: () -> get_url_vars()["code"]
         asset_base: () -> this.settings?.asset_base || ''
         home_link: () -> this.settings?.home_link || '/'
-        fdrWarning: () -> this.current_plot == pca_plot && this.fdrThreshold<1
-        fcWarning: () -> this.current_plot == pca_plot && this.fcThreshold>0
+        fdrWarning: () -> this.cur_plot == 'mds' && this.fdrThreshold<1
+        fcWarning: () -> this.cur_plot == 'mds' && this.fcThreshold>0
         can_configure: () ->
             !this.settings.config_locked || this.full_settings.is_owner
         config_url: () -> "config.html?code=#{this.code}"
@@ -814,6 +814,8 @@ module.exports =
             this.fc_columns[this.ma_plot_fc_col_i]
         fc_columns: () ->
             this.gene_data.columns_by_type(['fc','primary'])
+        info_columns: () ->
+            this.gene_data.columns_by_type(['info'])
     watch:
         settings: () ->
             this.dge_method = this.settings.dge_method

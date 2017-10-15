@@ -24,6 +24,11 @@
   stroke: #fff;
 }
 
+.scatter-outer >>> .scatter .axis text {
+    font-family: sans-serif;
+    font-size: 9px;
+}
+
 </style>
 
 <template>
@@ -84,7 +89,6 @@ class ScatterPlot
     resize: () ->
         @width = @opts.width || @elem.node().clientWidth
         @height = @opts.height || @elem.node().clientHeight
-        console.log "scatter",@width,@height,@elem
         @svg.attr("width", @width)
                 .attr("height", @height)
         if (@gDot != @svg)
@@ -394,8 +398,10 @@ module.exports =
     props:
         name: "scatter"         # Used for saving filename
         padding: 30
-        xaxis_loc: 'zero'       # 'zero' or 'bottom'
-        yaxis_loc: 'left'       # 'zero' or 'left'
+        xaxisLoc:
+            default: 'zero'       # 'zero' or 'bottom'
+        yaxisLoc:
+            default: 'left'       # 'zero' or 'left'
         colour:
             type: Function
             default: () -> 'blue'
@@ -431,8 +437,8 @@ module.exports =
                 elem: this.$refs.outer
                 name: this.name
                 padding: this.padding
-                xaxis_loc: this.xaxis_loc
-                yaxis_loc: this.yaxis_loc
+                xaxis_loc: this.xaxisLoc
+                yaxis_loc: this.yaxisLoc
                 colouring: this.colouring
                 alpha: this.alpha
                 size: this.size
@@ -440,10 +446,11 @@ module.exports =
                 brush_enable: this.brushEnable
                 animate: this.animate
                 canvas: this.canvas
-                #width: 500
-                #height: 500
                 padding: 30
             )
+            this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', d, loc))
+            this.me.on('mouseout.tooltip', () => this.$emit('mouseout'))
+
             this.redraw()
         )
 </script>
