@@ -75,7 +75,7 @@ module.exports =
             this.editing = false
     computed:
         conditions: () ->
-            this.settings.replicates.map((c,i) -> {name:c[0]})
+            this.settings.replicates.map((c) -> {name:c[0]}).filter((c) => !(c.name in this.hidden_factors))
         hidden_factors: () ->
             this.settings.hidden_factor
     methods:
