@@ -56,7 +56,6 @@ css = {axis: 'axis', scatter: 'scatter'}
 class ScatterPlot
     constructor: (@opts={}) ->
         @opts.name ?= "scatter"         # Used for saving filename
-        @opts.padding ?= 30
         @opts.xaxis_loc ?= 'zero'       # 'zero' or 'bottom'
         @opts.yaxis_loc ?= 'left'       # 'zero' or 'left'
         @opts.colouring ?= () -> 'blue'
@@ -96,7 +95,6 @@ class ScatterPlot
                      .attr("height", @height)
 
         @redraw()
-
 
     init_canvas: () ->
         @_draw_dots = @_draw_dots_canvas
@@ -147,10 +145,10 @@ class ScatterPlot
 
         @xScale = xScale = d3.scale.linear()
                      .domain(d3.extent(@data, (d) => x_val(d)).map((x) => x))
-                     .range([@opts.padding, @width-@opts.padding])
+                     .range([@opts.margin_l, @width-@opts.margin_l-@opts.margin_r])
         @yScale = yScale = d3.scale.linear()
                      .domain(d3.extent(@data, (d) => y_val(d)).map((x) => x))
-                     .range([@height-@opts.padding, @opts.padding])
+                     .range([@height-@opts.margin_t-@opts.margin_b, @opts.margin_b])
 
         xAxis = d3.svg.axis()
                   .scale(xScale)
@@ -189,31 +187,42 @@ class ScatterPlot
                     xScale.domain()[0]
             else xScale.domain()[0]
 
-        @svg.append("g")
+        xlbl = @svg.append("g")
             .attr("class", css.axis)
             .attr("transform", "translate(0,#{yScale(xaxis_loc)})")
             .call(xAxis)
            .append("text")
-            .attr("x", xScale.range()[1])
-            .attr("y", -6)
             .attr("fill", "black")
-            .style("text-anchor", "end")
             .attr('class', 'axis-label')
             .text(@_chooseOne(@xColumn.name, @opts.xLabel))
+        if (@opts.axis_label_inside)
+            xlbl.attr("x", xScale.range()[1])
+                .attr("y", -6)
+                .style("text-anchor", "end")
+        else
+            xlbl.attr("x", d3.mean(xScale.range()))
+                .attr("y", @opts.margin_b)
+                .style("text-anchor", "middle")
 
-        @svg.append("g")
+        ylbl = @svg.append("g")
             .attr("class", css.axis)
             .attr("transform", "translate(#{xScale(yaxis_loc)},0)")
             .call(yAxis)
            .append("text")
             .attr("transform", "rotate(-90)")
-            .attr("x", -5)
-            .attr("y", 5)
             .attr("fill", "black")
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
             .attr('class', 'axis-label')
-            .text(@_chooseOne(@yColumn.name, @opts.yLabel))
+            .attr("dy", ".71em")
+        if (@opts.axis_label_inside)
+            ylbl.attr("x", -5)
+                .attr("y", 5)
+                .style("text-anchor", "end")
+                .text(@_chooseOne(@yColumn.name, @opts.yLabel))
+        else
+            ylbl.attr("x", -d3.mean(yScale.range()))
+                .attr("y", -@opts.margin_l)
+                .style("text-anchor", "middle")
+                .text(@_chooseOne(@yColumn.name, @opts.yLabel))
 
 
     _make_menu: (el) ->
@@ -399,7 +408,16 @@ class ScatterPlot
 module.exports =
     props:
         name: "scatter"         # Used for saving filename
-        padding: 30
+        marginL:
+            default: 30
+        marginR:
+            default: 30
+        marginT:
+            default: 30
+        marginB:
+            default: 30
+        axisLabelInside:
+            default: true
         xaxisLoc:
             default: 'zero'       # 'zero' or 'bottom'
         yaxisLoc:
@@ -456,7 +474,6 @@ module.exports =
         this.me = new ScatterPlot(
             elem: this.$refs.outer
             name: this.name
-            padding: this.padding
             xaxis_loc: this.xaxisLoc
             yaxis_loc: this.yaxisLoc
             colouring: this.colouring
@@ -467,7 +484,11 @@ module.exports =
             animate: this.animate
             canvas: this.canvas
             text: this.text
-            padding: 30
+            margin_l: this.marginL
+            margin_r: this.marginR
+            margin_b: this.marginB
+            margin_t: this.marginT
+            axis_label_inside: this.axisLabelInside
         )
         this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', Object.freeze(d), loc))
         this.me.on('mouseout.tooltip', () => this.$emit('mouseout'))

@@ -11,8 +11,18 @@
     font-weight: bold;
 }
 
-.bar-graph >>> .bar:hover { fill: brown; }
 
+.bar-graph >>> .title {
+    font-size: 70%;
+    font-weight: bold;
+}
+
+.bar-graph >>> .label {
+    font-size: 70%;
+    font-weight: bold;
+}
+
+.bar-graph >>> .bar:hover { fill: brown; }
 
 .bar-graph >>> .axis path, .bar-graph >>> .axis line {
   fill: none;
@@ -36,7 +46,13 @@
                       :text='text'
                       xaxis-loc='bottom' yaxis-loc='left'
                       :animate='true'
-                      :canvas='false'>
+                      :canvas='false'
+                      :margin-t='20'
+                      :margin-r='180'
+                      :margin-b='40'
+                      :margin-l='60'
+                      :axis-label-inside='false'
+                      >
         </scatter-plot>
         <bar-graph class='bar-graph'
                   title="% variance by MDS dimension"
