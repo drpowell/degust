@@ -11,18 +11,19 @@
     font-weight: bold;
 }
 
-.bar-chart >>> .bar:hover { fill: brown; }
+.bar-graph >>> .bar:hover { fill: brown; }
 
 
-.bar-chart >>> .axis path, .bar-chart >>> .axis line {
+.bar-graph >>> .axis path, .bar-graph >>> .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
 
-.bar-chart >>> .axis { font: 10px sans-serif; }
-.bar-chart { position: absolute; bottom: 0; left: 510px; }
-.bar-chart >>> .x.axis path { display: none; }
+.bar-graph >>> .axis { font: 10px sans-serif; }
+.bar-graph >>> .x.axis path { display: none; }
+
+.bar-graph { position: absolute; bottom: 0; left: 510px; }
 
 </style>
 
@@ -37,8 +38,14 @@
                       :animate='true'
                       :canvas='false'>
         </scatter-plot>
-        <div class='bar-chart' ref='barchart'>
-        </div>
+        <bar-graph class='bar-graph'
+                  title="% variance by MDS dimension"
+                  x-label="Dimension"
+                  y-label="% variance"
+                  :data='barGraphData'
+                  @click='set_dimension'
+                  >
+        </bar-graph>
     </div>
 </template>
 
@@ -46,6 +53,7 @@
 
 require("./lib/numeric-1.2.6.js")
 scatter = require('./scatter-plot.vue').default
+barGraph = require('./bar-graph.vue').default
 
 class PCA
     @pca: (matrix) ->
@@ -72,6 +80,7 @@ class PCA
 module.exports =
     components:
         scatterPlot: scatter
+        barGraph: barGraph
     props:
         geneData: null
         columns: null
@@ -85,6 +94,7 @@ module.exports =
         components: []
         xColumn: null
         yColumn: null
+        barGraphData: []
     computed:
         needsRedraw: () ->
             this.filterChanged
@@ -99,16 +109,6 @@ module.exports =
             this.redraw()
 
     mounted: () ->
-        div_bar = this.$refs.barchart
-        #@scatter = new ScatterPlot({elem:@div2d.node(), colour: @opts.colour})
-        @barGraph = new BarGraph(
-                           elem: div_bar
-                           title: "% variance by MDS dimension"
-                           xlabel: "Dimension"
-                           ylabel: "% variance"
-                           click: (d) => if @opts.sel_dimension?
-                                             @opts.sel_dimension(d.lbl)
-                        )
         this.update_components()
     methods:
         # Note, this is naughty - it writes to the 'data' array a "_variance" column
@@ -156,11 +156,15 @@ module.exports =
             #@scatter_draw(plot_2d3d, comp, @columns, dims)
 
             tot_eigen = d3.sum(pca_results.eigenvalues)
-            @barGraph.draw(comp[0..9].map((v,i) ->
-                #range = d3.max(v) - d3.min(v)
-                range = pca_results.eigenvalues[i]/tot_eigen * 100
-                {lbl: "#{i+1}", val: range}
-            ))
+            this.barGraphData = Object.freeze(
+                comp[0..9].map((v,i) ->
+                    range = pca_results.eigenvalues[i]/tot_eigen * 100
+                    {lbl: "#{i+1}", val: range}
+                ))
+
+        # Called from bargraph.  Pass it to the parent to set the prop
+        set_dimension: (d) ->
+            this.$emit("dimension",+d.lbl)
 
         # Colour the samples by the parent condition
         colour: (d) ->

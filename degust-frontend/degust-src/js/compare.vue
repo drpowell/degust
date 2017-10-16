@@ -251,6 +251,7 @@
                        :skip-genes='skipGenesThreshold'
                        :dimension='mdsDimension'
                        @top-genes='set_genes_selected'
+                       @dimension='v => mdsDimension = v'
                        >
               </mds-plot>
           </div>
