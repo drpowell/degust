@@ -46,7 +46,7 @@
               <li><a href="#" class='expression-boxplot'>Expression box-whisker</a></li>
             </ul>
           </li>
-          <li><a href="#about-modal" @click='show_about=true'>About</a></li>
+          <li><a @click='show_about=true'>About</a></li>
         </ul>
       </div>
     </div>

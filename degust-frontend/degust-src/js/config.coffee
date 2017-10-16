@@ -98,17 +98,22 @@ dge_methods = [{value: 'voom', label: 'Voom/Limma'},
 
 Multiselect = require('vue-multiselect').default
 Modal = require('modal-vue').default
+about = require('./about.vue').default
+slickTable = require('./slick-table.vue').default
 
 module.exports =
     components:
         Multiselect: Multiselect
         Modal: Modal
+        about: about
+        slickTable: slickTable
     data: ->
         settings:
             info_columns: []
             fc_columns: []
         csv_data: ""
         asRows: []
+        columns_info: []
         orig_settings:
             is_owner: false
         advanced: false
@@ -117,6 +122,7 @@ module.exports =
             msgs: ""
             msgs_class: ""
         dge_methods: dge_methods
+        show_about: false
     computed:
         code: () ->
             get_url_vars()["code"]
@@ -125,20 +131,41 @@ module.exports =
         can_lock: () ->
             this.orig_settings.is_owner
         grid_watch: () ->
+            this.settings.csv_format
             this.csv_data
-            this.columns_info
             Date.now()
-        columns_info: () ->
+        table_columns: () ->
+            this.columns_info.map((key,i) ->
+                id: key
+                name: key
+                field: i
+                sortable: false
+                )
+    watch:
+        'settings.name': () -> document.title = this.settings.name
+        csv_data: () ->
+            # Guess the format, if we haven't set a name yet
+            if this.name==""
+                this.csv_format = this.csv_data.split("\t").length<10
+
+        grid_watch: () ->
+            this.parse_csv()
+            #this.grid.updateRowCount()
+            #this.grid.render()
+    methods:
+        parse_csv: () ->
             #console.log "Parsing!"
             asRows = null
             if this.settings.csv_format
                 asRows = d3.csv.parseRows(this.csv_data)
             else
                 asRows = d3.tsv.parseRows(this.csv_data)
-            [column_keys,this.asRows...] = asRows
+            column_keys = asRows.shift()
             column_keys ?= []
-            column_keys
-    methods:
+            this.columns_info = column_keys
+            asRows.forEach((r,i) -> r.id = i)
+            this.asRows = Object.freeze(asRows)
+
         closeModal: () ->
             if this.modal.reload_on_close
                 window.location = window.location
@@ -226,13 +253,6 @@ module.exports =
             rep.name = n
         script: (typ) ->
             "#{this.code}/#{typ}"
-        setup_grid: () ->
-            options =
-                enableCellNavigation: false
-                enableColumnReorder: false
-                multiColumnSort: false
-                forceFitColumns: true
-            this.grid = new Slick.Grid("#grid", [], [], options)
 
         get_csv_data: () ->
             d3.text(this.script("partial_csv"), "text/csv", (err,dat) =>
@@ -255,26 +275,6 @@ module.exports =
                         $('#right-navbar-collapse').append(this.orig_settings['extra_menu_html'])
                 )
 
-    watch:
-        'settings.name': () -> document.title = this.settings.name
-        csv_data: () ->
-            # Guess the format, if we haven't set a name yet
-            if this.name==""
-                this.csv_format = this.csv_data.split("\t").length<10
-
-        grid_watch: () ->
-            columns = this.columns_info.map((key,i) ->
-                id: key
-                name: key
-                field: i
-                sortable: false
-                )
-            this.grid.setColumns(columns)
-            this.grid.setData(this.asRows)
-            this.grid.updateRowCount()
-            this.grid.render()
-
     mounted: ->
-        this.setup_grid()
         this.get_settings()
         this.get_csv_data()

@@ -2,12 +2,6 @@
 <style>
     .options { border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 10px 3px; }
 
-    #grid { height: 300px; font-size: 8pt; }
-    #grid-info { font-size: 9pt; }
-    #grid .slick-row { font-size: 8pt; }
-    #grid .slick-row:hover { font-weight: normal }
-    #grid { z-index: 0; }
-
     .conditions { border: 1px solid #aaa; border-radius: 5px; padding: 0 3px; }
 
     .view { float: right; }
@@ -32,6 +26,13 @@
     .fade-enter-active, .fade-leave-active { transition: opacity .5s }
     .fade-enter, .fade-leave-to  { opacity: 0  }
 
+    #grid { height: 300px; font-size: 8pt; }
+
+    #grid >>> .slick-row { font-size: 8pt; }
+    #grid >>> .slick-row:hover {
+      font-weight: bold;
+      color: #069;
+    }
 </style>
 
 
@@ -47,7 +48,7 @@
             <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
               <li><a class="log-link" href="#">Logs</a></li>
               <li><a class="view" v-bind:href="view_url">View</a></li>
-              <li><a href="#about-modal" data-toggle="modal">About</a></li>
+              <li><a @click='show_about=true'>About</a></li>
             </ul>
           </div>
         </div>
@@ -259,7 +260,11 @@
           </div> <!-- row -->
 
           <div class="row">Number of columns = {{columns_info.length}}</div>
-          <div id="grid" class="row"></div>
+          <slick-table id='grid'
+                       :rows='asRows'
+                       :columns='table_columns'
+                       >
+          </slick-table>
         </div> <!-- container -->
 
         <modal :showModal="modal.show" :closeAction="closeModal">
@@ -275,8 +280,8 @@
           </div>
         </modal>
 
-        <!-- Modal -->
-        <div id="about-modal"></div>
+        <!-- About box Modal -->
+        <about :show='show_about' @close='show_about=false'></about>
     </div>
 </template>
 <script lang='coffee' src="./config.coffee"></script>
