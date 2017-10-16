@@ -452,28 +452,26 @@ module.exports =
             this.me.reFilter()
 
     mounted: () ->
-        this.$nextTick(() ->
-            #console.log "scatter mounted",this.$refs.outer
-            this.me = new ScatterPlot(
-                elem: this.$refs.outer
-                name: this.name
-                padding: this.padding
-                xaxis_loc: this.xaxisLoc
-                yaxis_loc: this.yaxisLoc
-                colouring: this.colouring
-                alpha: this.alpha
-                size: this.size
-                filter: this.filter
-                brush_enable: this.brushEnable
-                animate: this.animate
-                canvas: this.canvas
-                text: this.text
-                padding: 30
-            )
-            this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', Object.freeze(d), loc))
-            this.me.on('mouseout.tooltip', () => this.$emit('mouseout'))
-            this.me.on('brush', (d) => this.$emit('brush', Object.freeze(d)))
-
-            this.update()
+        #console.log "scatter mounted",this.$refs.outer
+        this.me = new ScatterPlot(
+            elem: this.$refs.outer
+            name: this.name
+            padding: this.padding
+            xaxis_loc: this.xaxisLoc
+            yaxis_loc: this.yaxisLoc
+            colouring: this.colouring
+            alpha: this.alpha
+            size: this.size
+            filter: this.filter
+            brush_enable: this.brushEnable
+            animate: this.animate
+            canvas: this.canvas
+            text: this.text
+            padding: 30
         )
+        this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', Object.freeze(d), loc))
+        this.me.on('mouseout.tooltip', () => this.$emit('mouseout'))
+        this.me.on('brush', (d) => this.$emit('brush', Object.freeze(d)))
+
+        this.update()
 </script>

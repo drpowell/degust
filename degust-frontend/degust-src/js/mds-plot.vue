@@ -99,17 +99,17 @@ module.exports =
             this.redraw()
 
     mounted: () ->
-            div_bar = this.$refs.barchart
-            #@scatter = new ScatterPlot({elem:@div2d.node(), colour: @opts.colour})
-            @barGraph = new BarGraph(
-                               elem: div_bar
-                               title: "% variance by MDS dimension"
-                               xlabel: "Dimension"
-                               ylabel: "% variance"
-                               click: (d) => if @opts.sel_dimension?
-                                                 @opts.sel_dimension(d.lbl)
-                            )
-            this.update_components()
+        div_bar = this.$refs.barchart
+        #@scatter = new ScatterPlot({elem:@div2d.node(), colour: @opts.colour})
+        @barGraph = new BarGraph(
+                           elem: div_bar
+                           title: "% variance by MDS dimension"
+                           xlabel: "Dimension"
+                           ylabel: "% variance"
+                           click: (d) => if @opts.sel_dimension?
+                                             @opts.sel_dimension(d.lbl)
+                        )
+        this.update_components()
     methods:
         # Note, this is naughty - it writes to the 'data' array a "_variance" column
         # and several "_transformed_" columns.
