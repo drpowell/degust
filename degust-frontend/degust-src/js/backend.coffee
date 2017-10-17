@@ -168,8 +168,8 @@ class WithBackendAnalysis
             )
         )
 
-# FIXME
-window.WithoutBackend = WithoutBackend
-window.BackendCommon = BackendCommon
-window.WithBackendAnalysis = WithBackendAnalysis
-window.WithBackendNoAnalysis = WithBackendNoAnalysis
+module.exports =
+    WithoutBackend: WithoutBackend
+    BackendCommon: BackendCommon
+    WithBackendAnalysis: WithBackendAnalysis
+    WithBackendNoAnalysis: WithBackendNoAnalysis

@@ -630,7 +630,7 @@ qcPlots = require('./qc-plots.vue').default
 geneStripchart = require('./gene-stripchart.vue').default
 parallelCoord = require('./parcoords.vue').default
 
-require('./backend.coffee')
+backends = require('./backend.coffee')
 
 module.exports =
     name: 'compare'
@@ -734,7 +734,7 @@ module.exports =
                 window.my_code = this.code
                 $.ajax({
                     type: "GET",
-                    url: BackendCommon.script("settings"),
+                    url: backends.BackendCommon.script("settings"),
                     dataType: 'json'
                 }).done((json) =>
                     window.full_settings = json
@@ -759,12 +759,12 @@ module.exports =
             this.ev_backend.$on("dge_data", (data,cols) => this.process_dge_data(data,cols))
 
             if !use_backend
-                this.backend = new WithoutBackend(this.settings, this.ev_backend)
+                this.backend = new backends.WithoutBackend(this.settings, this.ev_backend)
             else
                 if this.settings.analyze_server_side
-                    this.backend = new WithBackendAnalysis(this.settings, this.ev_backend)
+                    this.backend = new backends.WithBackendAnalysis(this.settings, this.ev_backend)
                 else
-                    this.backend = new WithBackendNoAnalysis(this.settings, this.ev_backend)
+                    this.backend = new backends.WithBackendNoAnalysis(this.settings, this.ev_backend)
             init_page()  # TODO - move this
             this.request_data()
 
