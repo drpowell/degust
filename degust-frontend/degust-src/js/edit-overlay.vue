@@ -37,12 +37,12 @@
     <div>
         <div :class="{'edit-elem': enabled}" ref='editElem'>
             <slot>Editable component</slot>
-            <div class="edit-btns" v-if='enabled'>
+            <div class="edit-btns" v-if='enabled && showButtons'>
                 <button class='btn btn-default btn-sm' @click='cancel'>Cancel</button>
                 <button class='btn btn-primary btn-sm' @click='apply'>Apply</button>
             </div>
         </div>
-        <div class="edit-overlay" v-if='enabled'></div>
+        <div class="edit-overlay" v-if='enabled' @click='$emit("bg-click")'></div>
         <div class="edit-backdrop" v-if='enabled' :style='backdropStyle'></div>
     </div>
 </template>
@@ -52,6 +52,8 @@ module.exports =
     props:
         enabled:
             required: true
+        showButtons:
+            default: true
     data: () ->
         backdropStyle:
             top: 0
@@ -60,6 +62,14 @@ module.exports =
             height: 0
     watch:
         enabled: () ->
+            this.placeBackdrop()
+    mounted: () ->
+        this.placeBackdrop()
+        
+    methods:
+        cancel: () -> this.$emit('cancel')
+        apply: () -> this.$emit('apply')
+        placeBackdrop: () ->
             if this.enabled
                 this.$nextTick( () =>
                     this.backdropStyle =
@@ -68,8 +78,5 @@ module.exports =
                         width:  this.$refs.editElem.offsetWidth+20
                         height: this.$refs.editElem.offsetHeight+20
                 )
-    methods:
-        cancel: () -> this.$emit('cancel')
-        apply: () -> this.$emit('apply')
 
 </script>

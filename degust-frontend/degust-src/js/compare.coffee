@@ -626,6 +626,7 @@ geneTable = require('./gene-table.vue').default
 maPlot = require('./ma-plot.vue').default
 volcanoPlot = require('./volcano-plot.vue').default
 mdsPlot = require('./mds-plot.vue').default
+pvalueHistogram = require('./pvalue-histogram.vue').default
 
 require('./backend.coffee')
 
@@ -640,6 +641,7 @@ module.exports =
         maPlot: maPlot
         volcanoPlot: volcanoPlot
         mdsPlot: mdsPlot
+        pvalueHistogram: pvalueHistogram
     data: () ->
         settings: {}
         full_settings: {}
@@ -667,6 +669,7 @@ module.exports =
         genes_selected: []
         genes_highlight: []
         show_heatmap: true
+        show_qc: ''
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:

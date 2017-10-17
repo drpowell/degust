@@ -136,6 +136,8 @@ module.exports =
             default: false
         xOrdinal:
             default: true
+        xDomain:
+            default: null
         data:
             required: true
             type: Array
@@ -157,6 +159,8 @@ module.exports =
             fill: this.fill
             rotate_labels: this.rotateLabels
             xordinal: this.xOrdinal
+            xdomain: this.xDomain
             click: (d) => this.$emit('click',d)
         )
+        this.bargraph.draw(this.data)
 </script>
