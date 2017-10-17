@@ -32,6 +32,13 @@
             <expression-boxplot v-if='showQc=="expression-boxplot"'
                                 :gene-data='geneData'
                                 :colour='colour'
+                                :is-rle='false'
+                                >
+            </expression-boxplot>
+            <expression-boxplot v-if='showQc=="rle-boxplot"'
+                                :gene-data='geneData'
+                                :colour='colour'
+                                :is-rle='true'
                                 >
             </expression-boxplot>
         </div>

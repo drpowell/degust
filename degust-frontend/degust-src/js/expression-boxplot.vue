@@ -40,21 +40,46 @@ module.exports =
         colour:
             type: Function
             default: d3.scale.category10()
+        isRle:
+            type: Boolean
+            default: false
     computed:
+        columns: () ->
+            this.geneData.columns_by_type('count')
+
+        # Actually log-cpm
         cpm: () ->
             data = this.geneData
-            cols = data.columns_by_type('count')
+            cols = this.columns
+            # TODO use normalise function
             cpm = cols.map((c,i) ->
                     norm_factor = data.get_total(c) / 1000000.0
                     vals = data.get_data().map((r) -> Math.log(0.5 + r[c.idx]/norm_factor)/Math.log(2))
-                    {vals: vals, name:c.name, parent:c.parent, pos:i}
+                    {vals: vals, name:c.name, parent:c.parent}
             )
             cpm
+
+        rle: () ->
+            cpm = this.cpm
+            medians = cpm[0].vals.map((_v,i) -> d3.median(cpm.map((c) -> c.vals[i])))
+            rle = cpm.map((c) ->
+                {name: c.name, parent:c.parent, vals: c.vals.map((v,i) -> v - medians[i])}
+            )
+            rle
+
     mounted: () ->
-        cpm = this.cpm
+        if this.isRle
+            data_per_sample = this.rle
+            title = "Relative Log Expression"
+            yLabel = ""
+        else
+            data_per_sample = this.cpm
+            title = "Log CPM by library"
+            yLabel = "log(cpm)"
+
         margin = {top: 40, right: 50, bottom: 200, left: 50}
         width_box = 40
-        width = width_box * cpm.length + margin.left + margin.right
+        width = width_box * data_per_sample.length + margin.left + margin.right
         box_height = 400
         height = box_height + margin.top + margin.bottom
 
@@ -65,7 +90,7 @@ module.exports =
                   .show_values(false)
                   .fill((c) => this.colour(c.parent))
 
-        extent = d3.extent([].concat.apply([], cpm.map((r) -> d3.extent(r.vals))))
+        extent = d3.extent([].concat.apply([], data_per_sample.map((r) -> d3.extent(r.vals))))
         chart.domain(extent)
 
         svg = d3.select(this.$el)
@@ -77,15 +102,15 @@ module.exports =
              .attr("x", width/2)
              .attr("y", 15)
              .style("text-anchor", "middle")
-             .text("Log CPM by library")
+             .text(title)
 
         # the x-axis
         x = d3.scale.ordinal()
-               .domain( cpm.map((c) -> c.name) )
-               .rangeRoundBands([0 , width_box * (cpm.length-1)], 0.7, 0.3)
+               .domain( data_per_sample.map((c) -> c.name) )
+               .rangeRoundBands([0 , width_box * (data_per_sample.length-1)], 0.7, 0.3)
 
         svg.selectAll("g.boxplot")
-          .data(cpm)
+          .data(data_per_sample)
          .enter().append("g")
           .attr("class","boxplot")
           .attr("transform", (d) -> "translate(" + (margin.left + x(d.name)) + "," + margin.top + ")")
@@ -114,7 +139,7 @@ module.exports =
               .attr("dy", ".71em")
               .style("text-anchor", "end")
               .style("font-size", "16px")
-              .text("log(cpm)")
+              .text(yLabel)
 
         # draw x axis
         svg.append("g")
@@ -124,6 +149,20 @@ module.exports =
         svg.selectAll(".x.axis .tick text")
               .attr("transform", "rotate(-90) translate(-10,-15)")
               .style("text-anchor", "end")
+
+        if this.isRle
+            svg.append('g')
+               .attr("transform", "translate("+(margin.left-20)+",0)")
+               .append('line')
+                 .attr(
+                    x1: 0
+                    y1: y(0)
+                    x2: width-margin.left-margin.right
+                    y2: y(0)
+                    stroke: '#000'
+                    opacity: 0.5
+                  )
+
 #
 #     get_svg = () ->
 #         new_svg = d3.select(svg.node().cloneNode(true))

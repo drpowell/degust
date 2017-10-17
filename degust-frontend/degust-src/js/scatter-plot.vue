@@ -153,6 +153,7 @@ class ScatterPlot
         xAxis = d3.svg.axis()
                   .scale(xScale)
                   .orient("bottom")
+                  .ticks(5)
         yAxis = d3.svg.axis()
                   .scale(yScale)
                   .orient("left")

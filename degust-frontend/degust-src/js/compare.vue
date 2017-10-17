@@ -43,7 +43,8 @@
             <ul class="dropdown-menu">
               <li><a @click='show_qc="pvalue"'>P-value histogram</a></li>
               <li><a @click='show_qc="library-size"'>Library size</a></li>
-              <li><a @click='show_qc="expression-boxplot"'>Expression box-whisker</a></li>
+              <li><a @click='show_qc="expression-boxplot"'>Expression box-plot</a></li>
+              <li><a @click='show_qc="rle-boxplot"'>RLE box-plot</a></li>
             </ul>
           </li>
           <li><a @click='show_about=true'>About</a></li>
