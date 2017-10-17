@@ -42,8 +42,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QC <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a @click='show_qc="pvalue"'>P-value histogram</a></li>
-              <li><a href="#" class='bargraph-libsize'>Library size</a></li>
-              <li><a href="#" class='expression-boxplot'>Expression box-whisker</a></li>
+              <li><a @click='show_qc="library-size"'>Library size</a></li>
+              <li><a @click='show_qc="expression-boxplot"'>Expression box-whisker</a></li>
             </ul>
           </li>
           <li><a @click='show_about=true'>About</a></li>
@@ -286,10 +286,11 @@
     <!-- About box Modal -->
     <about :show='show_about' @close='show_about=false'></about>
 
-    <pvalue-histogram v-if='show_qc=="pvalue"'
-                      :gene-data='gene_data'
-                      @close='show_qc=""'>
-    </pvalue-histogram>
+    <qc-plots :show-qc='show_qc'
+              :gene-data='gene_data'
+              :colour='condition_colouring'
+              @close='show_qc=""'>
+    </qc-plots>
 
     <!-- Error box Modal -->
     <div id='error-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>

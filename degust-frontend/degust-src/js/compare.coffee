@@ -626,7 +626,7 @@ geneTable = require('./gene-table.vue').default
 maPlot = require('./ma-plot.vue').default
 volcanoPlot = require('./volcano-plot.vue').default
 mdsPlot = require('./mds-plot.vue').default
-pvalueHistogram = require('./pvalue-histogram.vue').default
+qcPlots = require('./qc-plots.vue').default
 
 require('./backend.coffee')
 
@@ -641,7 +641,7 @@ module.exports =
         maPlot: maPlot
         volcanoPlot: volcanoPlot
         mdsPlot: mdsPlot
-        pvalueHistogram: pvalueHistogram
+        qcPlots: qcPlots
     data: () ->
         settings: {}
         full_settings: {}

@@ -19,6 +19,7 @@ class BarGraph
         @opts.ylabel ||= ''
         @opts.xlabel ||= ''
         @opts.title ||= ''
+        @opts.title_y ?= -10
         @opts.fill ||= () -> 'steelblue'
         @opts.rotate_labels ||= false
         @opts.xordinal = true if !@opts.xordinal?
@@ -66,7 +67,7 @@ class BarGraph
         @svg.append("text")
              .attr('class', 'title')
              .attr("x", @width/2)
-             .attr("y", -10)
+             .attr("y", @opts.title_y)
              .style("text-anchor", "middle")
              .text(@opts.title)
 
@@ -129,6 +130,7 @@ module.exports =
             default: ''
         title:
             default: ''
+        titleY: null
         fill:
             type: Function
             default: () -> 'steelblue'
@@ -155,6 +157,7 @@ module.exports =
             margin_b: this.marginB
             ylabel: this.yLabel
             xlabel: this.xLabel
+            title_y: this.titleY
             title: this.title
             fill: this.fill
             rotate_labels: this.rotateLabels

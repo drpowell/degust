@@ -12,7 +12,6 @@ require('./scatter3d.coffee')
 require('./kegg.coffee')
 require("./tour.coffee")
 require('./normalize.coffee')
-require('./qc.coffee')
 require('./gene-expression.coffee')
 
 # Ours

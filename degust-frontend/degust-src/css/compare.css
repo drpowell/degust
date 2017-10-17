@@ -79,15 +79,6 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
 }
 
 
-
-/* Boxplot (also see d3.boxplot.css) *****************************************************/
-
-.expression-boxplot .axis path, .expression-boxplot .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
 /* Gene expression strip chart ***********************************************************************/
 
 .strip-chart .axis path, .strip-chart .axis line {
