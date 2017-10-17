@@ -628,6 +628,7 @@ volcanoPlot = require('./volcano-plot.vue').default
 mdsPlot = require('./mds-plot.vue').default
 qcPlots = require('./qc-plots.vue').default
 geneStripchart = require('./gene-stripchart.vue').default
+parallelCoord = require('./parcoords.vue').default
 
 require('./backend.coffee')
 
@@ -644,6 +645,7 @@ module.exports =
         mdsPlot: mdsPlot
         qcPlots: qcPlots
         geneStripchart: geneStripchart
+        parallelCoord: parallelCoord
     data: () ->
         settings: {}
         full_settings: {}
@@ -700,6 +702,8 @@ module.exports =
             this.fc_columns[this.ma_plot_fc_col_i]
         fc_columns: () ->
             this.gene_data.columns_by_type(['fc','primary'])
+        fc_calc_columns: () ->
+            this.gene_data.columns_by_type(['fc_calc'])
         info_columns: () ->
             this.gene_data.columns_by_type(['info'])
         count_columns: () ->
@@ -788,7 +792,7 @@ module.exports =
             h_runfilters = window.setTimeout(redraw_plot, 10)
 
         set_genes_selected: (d) ->
-            this.genes_selected = d
+            this.genes_selected = Object.freeze(d)
 
         # Update the URL with the current page state
         update_url_link: () ->

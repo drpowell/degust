@@ -224,6 +224,16 @@
             </li>
           </ul>
           <div v-bind:style="{ opacity: num_loading>0 ? 0.4 : 1 }">
+              <parallel-coord v-if='cur_plot=="parallel-coord"'
+                       :data='gene_data_rows'
+                       :dimensions='fc_calc_columns'
+                       :filter='expr_filter'
+                       :filter-changed='filter_changed'
+                       :colour='plot_colouring'
+                       :highlight='genes_highlight'
+                       @brush='set_genes_selected'
+                       >
+              </parallel-coord>
               <ma-plot v-if='cur_plot=="ma"'
                        :data='gene_data_rows'
                        :filter='expr_filter'
@@ -285,7 +295,7 @@
         <h2>Genes</h2>
         <gene-table :gene-data='gene_data' :link-url='settings.link_url'
                     :rows='genes_selected' :show-counts='showCounts'
-                    @mouseover='genes_hover=genes_highlight=[$event]' @mouseout='genes_highlight=[]'
+                    @mouseover='genes_hover=genes_highlight=Object.freeze([$event])' @mouseout='genes_highlight=[]'
                     >
         </gene-table>
       </div>

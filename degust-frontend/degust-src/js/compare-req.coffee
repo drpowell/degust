@@ -6,7 +6,6 @@ require("./d3-req.coffee")
 
 # Ours
 require('./print.coffee')
-require('./parcoords.coffee')
 require('./heatmap.coffee')
 require('./scatter3d.coffee')
 require('./kegg.coffee')

@@ -48,7 +48,7 @@
                       :animate='true'
                       :canvas='false'
                       :margin-t='20'
-                      :margin-r='180'
+                      :margin-r='150'
                       :margin-b='40'
                       :margin-l='60'
                       :axis-label-inside='false'

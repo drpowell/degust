@@ -18,6 +18,8 @@
 
 <script lang='coffee'>
 
+require("./lib/d3.boxplot.js")
+
 iqr = (k) ->
     (d,i) ->
         q1 = d.quartiles[0]
