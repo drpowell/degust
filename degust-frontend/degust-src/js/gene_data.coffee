@@ -113,7 +113,8 @@ class GeneData
 
     # Returns a list of column definitions
     columns_by_type: (types) ->
-        return @columns_by_type_cache[types] if @columns_by_type_cache[types]
+        #FIXME - caching here fails if this is frozen
+        #return @columns_by_type_cache[types] if @columns_by_type_cache[types]
         types=[types] if !(types instanceof Array)
         res = []
         for col in @columns

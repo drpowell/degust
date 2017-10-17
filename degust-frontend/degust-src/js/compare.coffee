@@ -606,6 +606,7 @@ module.exports =
         genes_highlight: []             # Gene hover from 'mouseover' of table
         genes_hover: []                 # Genes hover from 'mouseover' of plot
         show_heatmap: true
+        heatmap_show_replicates: false
         show_qc: ''
         #colour_by_condition: null  # Don't want to track changes to this!
 
@@ -644,7 +645,7 @@ module.exports =
             this.fcThreshold
             Date.now()
         heatmap_dimensions: () ->
-            if (false) #!heatmap.show_replicates)
+            if (!this.heatmap_show_replicates)
                 heatmap_dims = this.gene_data.columns_by_type('fc_calc_avg')
             else
                 count_cols = this.fc_calc_columns.map((c) => this.gene_data.assoc_column_by_type('count',c.name))

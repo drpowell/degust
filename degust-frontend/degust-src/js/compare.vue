@@ -283,7 +283,9 @@
                  :genes-show='genes_selected'
                  :dimensions='heatmap_dimensions'
                  :highlight='genes_hover'
+                 :show-replicates='heatmap_show_replicates'
                  @hide='show_heatmap=false'
+                 @show-replicates='v => heatmap_show_replicates=v'
                  @mouseover='genes_hover=genes_highlight=Object.freeze([$event])' @mouseout='genes_highlight=[]'
                  >
         </heatmap>

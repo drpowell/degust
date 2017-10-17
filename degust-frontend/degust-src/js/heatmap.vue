@@ -149,14 +149,13 @@ class Heatmap
 
         @legend = @svg.append('g').attr('class',"legend")
 
-        @dispatch = d3.dispatch("mouseover","mouseout","need_update","hide");
+        @dispatch = d3.dispatch("mouseover","mouseout","show_replicates","hide")
 
         @get_color_scale = @_color_red_blue;
 
         # Create a single wrapper for later use
         @worker = new WorkerWrapper(calc_order, (d) => @_worker_callback(d))
         @_enabled = true
-        @show_replicates = false
         @columns_changed = false
         @_make_menu(@opts.elem)
 
@@ -206,10 +205,9 @@ class Heatmap
                 title: 'Hide heatmap'
                 action: () => @dispatch.hide()
             ,
-                title: () => (if @show_replicates then "Hide" else "Show")+" replicates"
-                action: () =>
-                    @show_replicates = !@show_replicates
-                    @dispatch.need_update()
+                # TODO these options should come from the parent
+                title: () => (if @opts.show_replicates then "Hide" else "Show")+" replicates"
+                action: () => @dispatch.show_replicates(!@opts.show_replicates)
             ,
                 divider: true
             ,
@@ -513,6 +511,9 @@ module.exports =
         dimensions:
             required: true
         highlight: null
+        showReplicates:
+            type: Boolean
+            default: false
     computed:
         needsUpdate: () ->
             # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
@@ -532,13 +533,18 @@ module.exports =
             else
                 this.heatmap.unhighlight()
 
+        showReplicates: (v) ->
+            this.heatmap.opts.show_replicates = v
+
     mounted: () ->
         this.heatmap = new Heatmap(
             elem: this.$el
+            show_replicates: this.showReplicates
         )
         this.heatmap.on("mouseover", (d) => this.$emit("mouseover", Object.freeze(d)))
         this.heatmap.on("mouseout", ()  => this.$emit("mouseout"))
         this.heatmap.on("hide", () => this.$emit('hide'))
+        this.heatmap.on("show_replicates", (v) => this.$emit('show-replicates',v))
         this.update_all()
 
     methods:
@@ -546,6 +552,7 @@ module.exports =
             this.heatmap.schedule_update(this.genesShow)
 
         update_all: () ->
+            console.log "update_all",this.dimensions
             if this.dimensions.length>0
                 this.heatmap.update_columns(this.geneData, this.dimensions, true)
 </script>
