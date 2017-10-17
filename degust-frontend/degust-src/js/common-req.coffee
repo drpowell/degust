@@ -9,7 +9,6 @@ require('./lib/bootstrap-3.0.0.js')
 # Ours
 require('./version.coffee')
 require('./util.coffee')
-require('./gene_data.coffee')
 
 # Display a popup warning, or fill in a warning box if using IE
 add_browser_warning = () ->

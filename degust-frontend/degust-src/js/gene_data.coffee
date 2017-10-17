@@ -148,5 +148,5 @@ class GeneData
 
     get_data: () -> @data
 
-
-window.GeneData = GeneData
+module.exports =
+    GeneData: GeneData

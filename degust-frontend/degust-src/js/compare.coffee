@@ -558,6 +558,7 @@ geneStripchart = require('./gene-stripchart.vue').default
 parallelCoord = require('./parcoords.vue').default
 heatmap = require('./heatmap.vue').default
 { Normalize } = require('./normalize.coffee')
+{ GeneData } = require('./gene_data.coffee')
 
 backends = require('./backend.coffee')
 
