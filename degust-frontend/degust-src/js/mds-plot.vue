@@ -155,6 +155,7 @@ module.exports =
             top_genes = top_genes[this.skipGenes ... (this.skipGenes + this.numGenes)]
 
             this.$emit('top-genes',top_genes)
+            return if top_genes.length==0
 
             # Get the transformed counts
             transformed = top_genes.map((row) => @norm_cols.map((col) -> row[col.idx]))

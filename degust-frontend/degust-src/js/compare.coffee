@@ -309,51 +309,6 @@ expr_filter = (row) ->
 
     true
 
-# Format data as ODF as used by GenePattern
-# http://software.broadinstitute.org/cancer/software/genepattern/file-formats-guide#ODF
-odf_fmt = (cols,rows) ->
-    hdr = ["ODF 1.0",
-           "HeaderLines=4",
-           "Model= Dataset",
-           "DataLines="+rows.length,
-           "COLUMN_TYPES: "+cols.map((c)->if c.type=='info' then "String" else "double").join("\t"),
-           "COLUMN_NAMES: "+cols.map((c)->c.name).join("\t"),
-    ].concat(rows.map((r) -> r.join("\t"))).join("\n")
-
-do_download = (fmt) ->
-    items = gene_table.get_data()
-    return if items.length==0
-    cols = g_data.columns_by_type(['info','fc_calc','count','fdr','avg','p'])
-    count_cols = g_data.columns_by_type('count')
-    keys = cols.map((c) -> c.name).concat(count_cols.map((c) -> c.name+" CPM"))
-    rows = items.map( (r) ->
-        cpms = count_cols.map((c) -> (r[c.idx]/(g_data.get_total(c)/1000000.0)).toFixed(3))
-        cols.map( (c) -> r[c.idx] ).concat(cpms)
-    )
-    mimetype = 'text/csv'
-    switch fmt
-        when 'csv' then filename='degust.csv'; result=d3.csv.format([keys].concat(rows))
-        when 'tsv' then filename='degust.tsv'; result=d3.tsv.format([keys].concat(rows))
-        when 'odf'
-            mimetype = 'text/plain'
-            filename='degust.odf'
-            cols_all = cols.concat(count_cols.map((c) -> {type:'cpm', name: c.name+" CPM"}))
-            result=odf_fmt(cols_all, rows)
-
-    # In future, look at this library : https://github.com/eligrey/FileSaver.js
-    link = document.createElement("a")
-    link.setAttribute("href", window.URL.createObjectURL(new Blob([result], {type: mimetype})))
-    link.setAttribute("download", filename)
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-
-
-init_download_link = () ->
-    $('a#csv-download').on('click', (e) -> e.preventDefault(); do_download('csv'))
-    $('a.download-csv').on('click', (e) -> e.preventDefault(); do_download('csv'))
-    $('a.download-tsv').on('click', (e) -> e.preventDefault(); do_download('tsv'))
-    $('a.download-odf').on('click', (e) -> e.preventDefault(); do_download('odf'))
 
 init_genesets = () ->
     $('.geneset-save').on('click', () ->
@@ -537,9 +492,6 @@ init_page = () ->
             $('#right-navbar-collapse').append(full_settings['extra_menu_html'])
 
     $("select#kegg").change(kegg_selected)
-
-    #init_charts()
-    init_download_link()
 
     #$(window).bind( 'hashchange', update_from_link )
     $(window).bind('resize', () -> heatmap.resize())

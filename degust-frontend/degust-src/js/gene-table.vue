@@ -14,6 +14,9 @@
 .tab-search { font-size: 9pt; float: right; margin-top: -10px; }
 .tab-search .active { background-color: gold; }
 
+div.csv-download-div { float: right; margin: -7px 30px 0 0; }
+.csv-download-div a { font-size: 9pt; }
+
 </style>
 
 <template>
@@ -24,16 +27,16 @@
             <input type="text" v-model='searchStr' :class='{active: searchStr!=""}' @keyup.esc='searchStr=""'>
             <span class='glyphicon glyphicon-cog gene-table-settings'></span>
           </div>
-          <div id='csv-download-div'>
-            <a id='csv-download' href='#'>Download CSV</a>
+          <div class='csv-download-div'>
+            <a @click='do_download("csv")'>Download CSV</a>
             <span class="dropdown">
                 <button class="btn-link dropdown-toggle" type="button" id="dropDownload" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   <span class="caret"></span>
                 </button>
               <ul class="dropdown-menu download" aria-labelledby="dropDownload">
-                <li><a href="#" class='download-csv'>Download as CSV</a></li>
-                <li><a href="#" class='download-tsv'>Download as TSV</a></li>
-                <li><a href="#" class='download-odf'>Download as ODF</a></li>
+                <li><a @click='do_download("csv")'>Download as CSV</a></li>
+                <li><a @click='do_download("tsv")'>Download as TSV</a></li>
+                <li><a @click='do_download("odf")'>Download as ODF</a></li>
               </ul>
             </span>
           </div>
@@ -77,6 +80,46 @@ guess_link = (info) ->
 
 
 comparer_num = (x,y) -> (if x == y then 0 else (if x > y then 1 else -1))
+
+# Format data as ODF as used by GenePattern
+# http://software.broadinstitute.org/cancer/software/genepattern/file-formats-guide#ODF
+odf_fmt = (cols,rows) ->
+    hdr = ["ODF 1.0",
+           "HeaderLines=4",
+           "Model= Dataset",
+           "DataLines="+rows.length,
+           "COLUMN_TYPES: "+cols.map((c)->if c.type=='info' then "String" else "double").join("\t"),
+           "COLUMN_NAMES: "+cols.map((c)->c.name).join("\t"),
+    ].concat(rows.map((r) -> r.join("\t"))).join("\n")
+
+do_download = (gene_data, gene_table, fmt) ->
+    items = gene_table
+    return if items.length==0
+    cols = gene_data.columns_by_type(['info','fc_calc','count','fdr','avg','p'])
+    count_cols = gene_data.columns_by_type('count')
+    keys = cols.map((c) -> c.name).concat(count_cols.map((c) -> c.name+" CPM"))
+    rows = items.map( (r) ->  #FIXME re-use Normalize
+        cpms = count_cols.map((c) -> (r[c.idx]/(gene_data.get_total(c)/1000000.0)).toFixed(3))
+        cols.map( (c) -> r[c.idx] ).concat(cpms)
+    )
+    mimetype = 'text/csv'
+    switch fmt
+        when 'csv' then filename='degust.csv'; result=d3.csv.format([keys].concat(rows))
+        when 'tsv' then filename='degust.tsv'; result=d3.tsv.format([keys].concat(rows))
+        when 'odf'
+            mimetype = 'text/plain'
+            filename='degust.odf'
+            cols_all = cols.concat(count_cols.map((c) -> {type:'cpm', name: c.name+" CPM"}))
+            result=odf_fmt(cols_all, rows)
+
+    # In future, look at this library : https://github.com/eligrey/FileSaver.js
+    link = document.createElement("a")
+    link.setAttribute("href", window.URL.createObjectURL(new Blob([result], {type: mimetype})))
+    link.setAttribute("download", filename)
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+
 
 module.exports =
     name: 'gene-table'
@@ -145,6 +188,9 @@ module.exports =
                     false
                 )
     methods:
+        do_download: (typ) ->
+            do_download(this.geneData, this.tableRows, typ)
+
         set_table_info: (info) ->
             this.table_info = info
 
