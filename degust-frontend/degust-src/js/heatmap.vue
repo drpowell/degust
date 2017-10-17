@@ -1,7 +1,49 @@
+<style scoped>
+
+#heatmap-info { font-size: 9pt; height: 2em; }
+#heatmap-info .lbl { margin-left: 20px; font-weight: bold; display: inline-block;}
+
+.heatmap >>> .extent {
+  fill: #990;
+  fill-opacity: .2;
+  stroke: #000;
+}
+
+.heatmap >>> .info {
+  font-size: 10px;
+}
+
+.heatmap >>> .legend {
+  font-size: 10px;
+}
+
+.heatmap >>> .legend path {
+  display: none;
+}
+
+.heatmap >>> .legend line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.heatmap >>> #arrow, .heatmap >>> .arrow {
+    stroke-width:2;
+}
+</style>
+
+<template>
+    <div class='heatmap' v-once>
+    </div>
+</template>
+
+<script lang='coffee'>
+
 viridis = require('./lib/scale-color-perceptual/hex/viridis.json')
 inferno = require('./lib/scale-color-perceptual/hex/inferno.json')
 magma   = require('./lib/scale-color-perceptual/hex/magma.json')
 plasma  = require('./lib/scale-color-perceptual/hex/plasma.json')
+
+{ calc_extent } = require('./normalize.coffee')
 
 # Calculate an ordering for the genes.
 # This uses a greedy N^2 algorithm to find the next closest data point on each iteration.
@@ -93,9 +135,6 @@ class Heatmap
 
         @opts.width = d3.select(@opts.elem).node().clientWidth - 20;
 
-        if (@opts.show_elem?)
-            $(@opts.show_elem).click((e) => e.preventDefault(); @enabled(true); @dispatch.need_update())
-
         @svg = d3.select(@opts.elem).append('svg')
         @svg.append('g').attr("class", "labels")
         @svg.append('g').attr("class", "genes").attr("transform", "translate(#{@opts.label_width},0)")
@@ -110,7 +149,7 @@ class Heatmap
 
         @legend = @svg.append('g').attr('class',"legend")
 
-        @dispatch = d3.dispatch("mouseover","mouseout","need_update");
+        @dispatch = d3.dispatch("mouseover","mouseout","need_update","hide");
 
         @get_color_scale = @_color_red_blue;
 
@@ -165,7 +204,7 @@ class Heatmap
         print_menu = (new Print((() => @_get_svg()), "heatmap")).menu()
         menu = [
                 title: 'Hide heatmap'
-                action: () => @enabled(false)
+                action: () => @dispatch.hide()
             ,
                 title: () => (if @show_replicates then "Hide" else "Show")+" replicates"
                 action: () =>
@@ -211,7 +250,7 @@ class Heatmap
         d3.select(el).on('contextmenu', d3.contextMenu(menu.concat(print_menu))) # attach menu to element
 
     _color_red_blue : () ->
-        return d3.scale.linear()
+        d3.scale.linear()
                  .domain([-@max, 0, @max])
                  .range(["blue", "white", "red"]);
 
@@ -262,6 +301,7 @@ class Heatmap
         axis = d3.svg.axis()
                   .scale(sc)
                   .orient("bottom")
+                  .ticks(7)
                   .tickSize(5)
         # Draw the ticks and rotate labels by 90%
         g.append('g')
@@ -326,12 +366,12 @@ class Heatmap
         @data_object.get_data().forEach((r) =>
             @data_all[r.id] = if centre then @_centre(r) else r
         )
-        extent = ParCoords.calc_extent(d3.values(@data_all), @columns)
+        extent = calc_extent(d3.values(@data_all), @columns)
         @max = d3.max(extent.map(Math.abs))
         @_draw_columns()
         @schedule_update(@data_object.get_data())
 
-    # Given the row, copy over @columns, but centered 
+    # Given the row, copy over @columns, but centered
     _centre: (row) ->
         m = d3.mean(@columns.map((c) -> row[c.idx]))
         res = {}
@@ -464,5 +504,48 @@ class Heatmap
         gBrush.selectAll("rect")
               .attr("height", 100*@opts.h_pad + @opts.h * @columns.length);
 
+module.exports =
+    props:
+        geneData:
+            required: true
+        genesShow:
+            required: true
+        dimensions:
+            required: true
+        highlight: null
+    computed:
+        needsUpdate: () ->
+            # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
+            this.geneData
+            this.dimensions
+            Date.now()
+    watch:
+        needsUpdate: () ->
+            this.update_all()
 
-window.Heatmap = Heatmap
+        genesShow: () ->
+            this.reFilter()
+
+        highlight: (d) ->
+            if d.length>0
+                this.heatmap.highlight(d)
+            else
+                this.heatmap.unhighlight()
+
+    mounted: () ->
+        this.heatmap = new Heatmap(
+            elem: this.$el
+        )
+        this.heatmap.on("mouseover", (d) => this.$emit("mouseover", Object.freeze(d)))
+        this.heatmap.on("mouseout", ()  => this.$emit("mouseout"))
+        this.heatmap.on("hide", () => this.$emit('hide'))
+        this.update_all()
+
+    methods:
+        reFilter: () ->
+            this.heatmap.schedule_update(this.genesShow)
+
+        update_all: () ->
+            if this.dimensions.length>0
+                this.heatmap.update_columns(this.geneData, this.dimensions, true)
+</script>

@@ -15,8 +15,6 @@
 div#csv-download-div { float: right; margin: -7px 30px 0 0; }
 a#csv-download { font-size: 9pt; }
 
-.hide { display: none !important; }
-
 div.right { float: right; }
 div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 0 3px; margin-top: 15px}
 .filter label, .filter input { display: inline-block; font-size: 8pt; }
@@ -44,37 +42,6 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
 /* Tour ***********************************************************************/
 .popover.wide { max-width: 460px; }
 
-/* Heatmap ***********************************************************************/
-
-#heatmap-info { font-size: 9pt; height: 2em; }
-#heatmap-info .lbl { margin-left: 20px; font-weight: bold; display: inline-block;}
-
-#heatmap .extent {
-  fill: #990;
-  fill-opacity: .2;
-  stroke: #000;
-}
-
-#heatmap .info {
-  font-size: 10px;
-}
-
-#heatmap .legend {
-  font-size: 10px;
-}
-
-#heatmap .legend path {
-  display: none;
-}
-
-#heatmap .legend line {
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-#heatmap #arrow, #heatmap .arrow {
-    stroke-width:2;
-}
 
 
 /* Print overlay ***********************************************************************/

@@ -192,11 +192,9 @@
           <a class='sm-link' @click='update_url_link'>Update Link</a>
         </div>
 
-        <div class='text-right'>
-          <a class='sm-link' @click='show_heatmap=!show_heatmap'>
-              <span v-if='show_heatmap'>Hide</span>
-              <span v-else>Show</span>
-              heatmap
+        <div class='text-right' v-if='!show_heatmap'>
+          <a class='sm-link' @click='show_heatmap=true'>
+              Show heatmap
           </a>
         </div>
       </div>
@@ -279,16 +277,16 @@
         </div><!-- expression -->
       </div><!-- row -->
 
-      <div class='row hide'>
-          <div id="dge-pc" class="parcoords"></div>
-          <div id="dge-ma" class="dge-ma"></div>
-          <div id="dge-pca"></div>
-          <div id="dge-volcano" class="dge-ma"></div>
-      </div>
-
       <div class='row' v-if='show_heatmap'>
         <div id="heatmap-info"></div>
-        <div id='heatmap'></div>
+        <heatmap :gene-data='gene_data'
+                 :genes-show='genes_selected'
+                 :dimensions='heatmap_dimensions'
+                 :highlight='genes_hover'
+                 @hide='show_heatmap=false'
+                 @mouseover='genes_hover=genes_highlight=Object.freeze([$event])' @mouseout='genes_highlight=[]'
+                 >
+        </heatmap>
       </div>
 
       <div class='row'>

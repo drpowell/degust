@@ -12,17 +12,7 @@
 <script lang='coffee'>
 
 require("./lib/d3.parcoords.js")
-
-# Static method 'calc_extent'
-calc_extent = (data, dims) ->
-    # Calculate min/max for all dimensions - Want common scale across dimensions
-    extents = []
-    dims.forEach (k) ->
-        extents.push(d3.extent(data, (v) -> +v[k.idx]))
-    extent = d3.extent(d3.merge(extents))
-    # Just a bit larger than the extent (so can be brushed over)
-    return extent.map((v) -> v*1.05)
-
+{ calc_extent } = require("./normalize.coffee")
 
 module.exports =
     name: 'parallel-coord'

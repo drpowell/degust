@@ -68,6 +68,7 @@
 <script lang='coffee'>
 
 require("./lib/numeric-1.2.6.js")
+{ Normalize } = require('./normalize.coffee')
 scatter = require('./scatter-plot.vue').default
 barGraph = require('./bar-graph.vue').default
 

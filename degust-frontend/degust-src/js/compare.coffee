@@ -148,72 +148,6 @@ set_state = (state, force_update) ->
         activate_options()
 
 
-activate_options = () ->
-    $('#select-options').addClass('active')
-    $('#select-single-gene-expr').removeClass('active')
-    $('.options').show()
-    $('.single-gene-expr').hide()
-
-activate_single_gene_expr = () ->
-    $('#select-single-gene-expr').addClass('active')
-    $('#select-options').removeClass('active')
-    $('.options').hide()
-    $('.single-gene-expr').show()
-
-activate_parcoords = () ->
-    may_set_plot_var('parcoords')
-    g_vue_obj.current_plot = parcoords
-    $('#dge-ma,#dge-pca,#dge-volcano').hide()
-    $('#dge-pc').show()
-    $('#select-pc').addClass('active')
-    $('#select-ma,#select-pca,#select-volcano').removeClass('active')
-    #$('.ma-fc-col-opt').hide()
-    $('.pca-opts').hide()
-    heatmap.enabled(true)
-    update_data()
-
-activate_ma_plot = () ->
-    may_set_plot_var('ma')
-    g_vue_obj.current_plot = ma_plot
-    $('#dge-pc,#dge-pca,#dge-volcano').hide()
-    $('#dge-ma').show()
-    $('#select-ma').addClass('active')
-    $('#select-pc,#select-pca,#select-volcano').removeClass('active')
-    #$('.ma-fc-col-opt').show()
-    $('.pca-opts').hide()
-    heatmap.enabled(true)
-    update_data()
-
-activate_volcano = () ->
-    may_set_plot_var('volcano')
-    g_vue_obj.current_plot = volcano_plot
-    $('#dge-pc,#dge-pca,#dge-ma').hide()
-    $('#dge-volcano').show()
-    $('#select-volcano').addClass('active')
-    $('#select-pc,#select-pca,#select-ma').removeClass('active')
-    #$('.ma-fc-col-opt').show()
-    $('.pca-opts').hide()
-    heatmap.enabled(true)
-    update_data()
-
-activate_pca_plot = () ->
-    may_set_plot_var('mds')
-    g_vue_obj.current_plot = pca_plot
-    $('#dge-pc,#dge-ma,#dge-volcano').hide()
-    $('#dge-pca').show()
-    $('#select-pca').addClass('active')
-    $('#select-pc,#select-ma,#select-volcano').removeClass('active')
-    #$('.ma-fc-col-opt').hide()
-    heatmap.enabled(false)
-    $('.pca-opts').show()
-    g_vue_obj.numGenesThreshold = 100
-    g_vue_obj.skipGenesThreshold = 0
-    g_vue_obj.maxGenes = g_data.get_data().length
-    g_vue_obj.pcaDimension = 1
-    g_vue_obj.fdrThreshold = 1
-    g_vue_obj.fcThreshold = 0
-    update_data()
-
 calc_max_parcoords_width = () ->
     w = $('.container').width()
     w -= $('.conditions').outerWidth(true) if $('.conditions').is(':visible')
@@ -579,7 +513,7 @@ update_data = () ->
             centre=true
         else
             count_cols = dims.map((c) -> g_data.assoc_column_by_type('count',c.name))
-            count_cols =[].concat.apply([], count_cols)
+            count_cols = [].concat.apply([], count_cols)
             heatmap_dims = Normalize.normalize(g_data, count_cols)
             centre=true
         heatmap.update_columns(g_data, heatmap_dims, centre)
@@ -604,13 +538,6 @@ init_page = () ->
 
     $("select#kegg").change(kegg_selected)
 
-    $('#select-options a').click((e) ->  e.preventDefault(); activate_options())
-    $('#select-single-gene-expr a').click((e) -> e.preventDefault(); activate_single_gene_expr())
-
-    $('a.p-value-histogram').click((e) -> e.preventDefault(); QC.pvalue_histogram(g_data))
-    $('a.bargraph-libsize').click((e) -> e.preventDefault(); QC.library_size_bargraph(g_data, g_colour_by_parent))
-    $('a.expression-boxplot').click((e) -> e.preventDefault(); QC.expression_boxplot(g_data, g_colour_by_parent))
-
     #init_charts()
     init_download_link()
 
@@ -629,6 +556,8 @@ mdsPlot = require('./mds-plot.vue').default
 qcPlots = require('./qc-plots.vue').default
 geneStripchart = require('./gene-stripchart.vue').default
 parallelCoord = require('./parcoords.vue').default
+heatmap = require('./heatmap.vue').default
+{ Normalize } = require('./normalize.coffee')
 
 backends = require('./backend.coffee')
 
@@ -646,6 +575,7 @@ module.exports =
         qcPlots: qcPlots
         geneStripchart: geneStripchart
         parallelCoord: parallelCoord
+        heatmap: heatmap
     data: () ->
         settings: {}
         full_settings: {}
@@ -688,7 +618,7 @@ module.exports =
             !this.settings.config_locked || this.full_settings.is_owner
         config_url: () -> "config.html?code=#{this.code}"
         gene_data_rows: () ->
-            this.gene_data.get_data()
+            Object.freeze(this.gene_data.get_data())
         expr_data: () ->
             console.log "computing expr_data.  orig length=", this.gene_data.get_data().length
             Object.freeze(this.gene_data.get_data().filter((v) => this.expr_filter(v)))
@@ -712,6 +642,15 @@ module.exports =
             this.fdrThreshold
             this.fcThreshold
             Date.now()
+        heatmap_dimensions: () ->
+            if (false) #!heatmap.show_replicates)
+                heatmap_dims = this.gene_data.columns_by_type('fc_calc_avg')
+            else
+                count_cols = this.fc_calc_columns.map((c) => this.gene_data.assoc_column_by_type('count',c.name))
+                count_cols = [].concat.apply([], count_cols)
+                heatmap_dims = Normalize.normalize(this.gene_data, count_cols)
+            heatmap_dims
+
     watch:
         settings: () ->
             this.dge_method = this.settings.dge_method
