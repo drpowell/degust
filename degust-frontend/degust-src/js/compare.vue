@@ -58,14 +58,22 @@
     <div class='container'>
       <div class='right'>
         <ul class="nav nav-tabs">
-          <li id='select-options'><a href="#">Options</a></li>
-          <li id='select-single-gene-expr'><a href="#">Gene</a></li>
+          <li :class='{active: cur_opts=="options"}'>
+              <a @click='cur_opts="options"'>Options</a>
+          </li>
+          <li :class='{active: cur_opts=="gene"}'>
+              <a @click='cur_opts="gene"'>Gene</a>
+          </li>
         </ul>
 
-        <div class='single-gene-expr'>
-        </div>
+        <gene-stripchart v-if='cur_opts=="gene"'
+                         :gene-data='gene_data'
+                         :colour='condition_colouring'
+                         :selected='genes_hover'
+                         >
+        </gene-stripchart>
 
-        <div class='filter options'>
+        <div class='filter options' v-if='cur_opts=="options"'>
           <h4>Options</h4>
           <div title='Filter genes by False Discovery Rate' data-placement='left'>
             <label>FDR cut-off</label>
@@ -226,6 +234,7 @@
                        :info-cols='info_columns'
                        :highlight='genes_highlight'
                        @brush='set_genes_selected'
+                       @hover-start='v => genes_hover=v'
                        >
               </ma-plot>
               <volcano-plot v-if='cur_plot=="volcano"'
@@ -239,6 +248,7 @@
                        :info-cols='info_columns'
                        :highlight='genes_highlight'
                        @brush='set_genes_selected'
+                       @hover-start='v => genes_hover=v'
                        >
               </volcano-plot>
               <mds-plot v-if='cur_plot=="mds"'
@@ -274,7 +284,7 @@
         <h2>Genes</h2>
         <gene-table :gene-data='gene_data' :link-url='settings.link_url'
                     :rows='genes_selected' :show-counts='showCounts'
-                    @mouseover='genes_highlight=[$event]' @mouseout='genes_highlight=[]'
+                    @mouseover='genes_hover=genes_highlight=[$event]' @mouseout='genes_highlight=[]'
                     >
         </gene-table>
       </div>

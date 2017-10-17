@@ -79,35 +79,6 @@ div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; backgro
 }
 
 
-/* Gene expression strip chart ***********************************************************************/
-
-.strip-chart .axis path, .strip-chart .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.strip-chart .axis { font: 10px sans-serif; }
-
-.single-gene-expr { display: none; }   /* Hide this on startup */
-
-.single-gene-expr div.tooltip {
-  position: absolute;
-  text-align: center;
-  padding: 2px;
-  font: 12px sans-serif;
-  background: #333;
-  color: #fff;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
-}
-.single-gene-expr div.tooltip table {
-  font: 12px sans-serif;
-  color: #fff;
-}
-
-
 /* Print overlay ***********************************************************************/
 .print-popup {
         position: absolute;

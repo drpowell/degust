@@ -627,6 +627,7 @@ maPlot = require('./ma-plot.vue').default
 volcanoPlot = require('./volcano-plot.vue').default
 mdsPlot = require('./mds-plot.vue').default
 qcPlots = require('./qc-plots.vue').default
+geneStripchart = require('./gene-stripchart.vue').default
 
 require('./backend.coffee')
 
@@ -642,6 +643,7 @@ module.exports =
         volcanoPlot: volcanoPlot
         mdsPlot: mdsPlot
         qcPlots: qcPlots
+        geneStripchart: geneStripchart
     data: () ->
         settings: {}
         full_settings: {}
@@ -665,9 +667,11 @@ module.exports =
         dge_method: null
         sel_conditions: []
         cur_plot: 'ma'
+        cur_opts: 'options'
         gene_data: new GeneData([],[])
-        genes_selected: []
-        genes_highlight: []
+        genes_selected: []              # Selected by "brushing" on one of the plots
+        genes_highlight: []             # Gene hover from 'mouseover' of table
+        genes_hover: []                 # Genes hover from 'mouseover' of plot
         show_heatmap: true
         show_qc: ''
         #colour_by_condition: null  # Don't want to track changes to this!

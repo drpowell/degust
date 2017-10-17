@@ -1,4 +1,39 @@
-class GeneExpression
+<style scoped>
+
+.single-gene-expr >>> .strip-chart .axis path, .single-gene-expr >>> .strip-chart .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.single-gene-expr >>> .strip-chart .axis { font: 10px sans-serif; }
+
+.single-gene-expr >>> div.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: #333;
+  color: #fff;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+.single-gene-expr >>> div.tooltip table {
+  font: 12px sans-serif;
+  color: #fff;
+}
+
+</style>
+
+<template>
+    <div class='single-gene-expr' v-once>
+    </div>
+</template>
+
+<script lang='coffee'>
+
+class GeneStripchart
     constructor: (@opts) ->
         @width = @opts.width || d3.select(@opts.elem).node().clientWidth
         @height = 300
@@ -50,7 +85,7 @@ class GeneExpression
     _make_menu: (el) ->
         print_menu = (new Print((() => @_get_svg()), "Gene expression")).menu()
         menu = [
-                title: () => (if @show_cpm then "Plot counts" else "Plot CPM")
+                title: () => (if @show_cpm then "Plot as Counts" else "Plot as CPM")
                 action: () =>
                     @show_cpm = !@show_cpm
                     @update()
@@ -144,7 +179,26 @@ class GeneExpression
                 .style("left", (loc[0] - 60) + "px")
                 .style("top",  (loc[1] + 15) + "px")
 
+module.exports =
+    name: 'gene-stripchart'
+    props:
+        selected:
+            type: Array
+            required: true
+        geneData:
+            required: true
+        colour:
+            type: Function
+            default: d3.scale.category10()
+    watch:
+        selected: () ->
+            if this.selected.length>0
+                this.me.select(this.geneData, this.selected)
 
-
-
-window.GeneExpression = GeneExpression
+    mounted: () ->
+        this.me = new GeneStripchart(
+            elem: this.$el
+            width: 233
+            colour: this.colour
+        )
+</script>

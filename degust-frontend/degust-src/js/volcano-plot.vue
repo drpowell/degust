@@ -103,7 +103,9 @@ module.exports =
         show_info: (d,loc) ->
             this.hover=d
             this.tooltipLoc = loc
+            this.$emit('hover-start',d,loc)
         hide_info: () ->
             this.hover=[]
+            this.$emit('hover-end')
 
 </script>
