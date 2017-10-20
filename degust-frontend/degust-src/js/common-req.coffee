@@ -10,6 +10,11 @@ require('./lib/bootstrap-3.0.0.js')
 require('./version.coffee')
 require('./util.coffee')
 
+# Google Analytics
+# Please keep, we just this for user numbers for funding degust development
+require('./analytics.js')
+
+
 # Display a popup warning, or fill in a warning box if using IE
 add_browser_warning = () ->
 	if window.navigator.userAgent.indexOf("MSIE ")>=0
