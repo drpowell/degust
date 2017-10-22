@@ -1,5 +1,5 @@
 // Google Analytics
-// Please keep, we just this for user numbers for funding degust development
+// Please keep, we need this for user numbers for funding degust development
 
 window._gaq = window._gaq || [];
 window._gaq.push(['drp._setAccount', 'UA-45207067-1']);

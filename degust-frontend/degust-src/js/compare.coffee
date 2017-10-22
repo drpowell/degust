@@ -324,10 +324,6 @@ init_genesets = () ->
                 )
     );
 
-redraw_plot = () ->
-    if g_vue_obj.current_plot?
-        g_vue_obj.current_plot.brush()
-
 calc_kegg_colours = () ->
     ec_dirs = {}
     ec_col = g_data.column_by_type('ec')
@@ -609,12 +605,10 @@ module.exports =
         settings: () ->
             this.dge_method = this.settings.dge_method
             this.sel_conditions = this.settings.init_select || []
-        fdrThreshold: () -> this.redraw()
-        fcThreshold: () -> this.redraw()
-        numGenesThreshold: () -> this.redraw()
-        skipGenesThreshold: () -> this.redraw()
-        mdsDimension: () -> this.redraw()
-        mds_2d3d: () -> this.redraw()
+        cur_plot: () ->
+            # On plot change, reset brushes
+            this.genes_highlight = []
+            this.genes_selected = this.gene_data.get_data()
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
@@ -679,10 +673,6 @@ module.exports =
             this.dge_method = cur.dge_method
             this.sel_conditions = cur.sel_conditions
             this.request_data()
-
-        redraw: () ->
-            window.clearTimeout(h_runfilters)
-            h_runfilters = window.setTimeout(redraw_plot, 10)
 
         set_genes_selected: (d) ->
             this.genes_selected = Vue.noTrack(d)
