@@ -577,12 +577,16 @@ module.exports =
         fdr_column: () ->
             this.gene_data.columns_by_type('fdr')[0]
         fc_relative: () ->
-            this.fc_columns[this.fc_relative_i]
+            if this.fc_relative_i>=0
+                this.fc_columns[this.fc_relative_i]
+            else
+                'avg'
         ma_plot_fc_col: () ->
-            this.fc_columns[this.ma_plot_fc_col_i]
+            this.fc_calc_columns[this.ma_plot_fc_col_i]
         fc_columns: () ->
             this.gene_data.columns_by_type(['fc','primary'])
         fc_calc_columns: () ->
+            this.fc_relative     # Listed so to create a dependency.
             this.gene_data.columns_by_type(['fc_calc'])
         info_columns: () ->
             this.gene_data.columns_by_type(['info'])
@@ -612,6 +616,8 @@ module.exports =
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
+        fc_relative: () ->
+            this.gene_data.set_relative(this.fc_relative)
     methods:
         init: () ->
             if !this.code?

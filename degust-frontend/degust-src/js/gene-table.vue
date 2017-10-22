@@ -136,6 +136,8 @@ module.exports =
             required: true
         showCounts:
             default: false
+        fcColumns:
+            required: true
     data: () ->
         searchStr: ""
         table_info:
@@ -149,7 +151,7 @@ module.exports =
     computed:
         gene_table_columns: () ->
             column_keys = this.geneData.columns_by_type(['info','fdr','p'])
-            column_keys = column_keys.concat(this.geneData.columns_by_type('fc_calc'))
+            column_keys = column_keys.concat(this.fcColumns)
             me = this
             columns = column_keys.map((col) ->
                 hsh =

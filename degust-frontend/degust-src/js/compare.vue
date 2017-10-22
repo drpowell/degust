@@ -107,10 +107,10 @@
                 <option value='-1'>Average</option>
             </select>
           </div>
-          <div title='FC for the MA-plot' data-placement='left'>
-            <label for='ma-fc-col'>MA-Plot FC</label>
+          <div title='FC for the MA-plot' data-placement='left' v-if='cur_plot=="ma" || cur_plot=="volcano"'>
+            <label for='ma-fc-col'>Plot FC</label>
             <select id='ma-fc-col' v-model='ma_plot_fc_col_i'>
-                <option v-for='(col,i) in fc_columns' :value='i'>{{col.name}}</option>
+                <option v-for='(col,i) in fc_calc_columns' :value='i'>{{col.name}}</option>
             </select>
           </div>
           <div title='Show raw counts (or counts-per-million) in the table' data-placement='left' class='show-counts-opt'>
@@ -294,6 +294,7 @@
       <div class='row'>
         <h2>Genes</h2>
         <gene-table :gene-data='gene_data' :link-url='settings.link_url'
+                    :fc-columns='fc_calc_columns'
                     :rows='genes_selected' :show-counts='showCounts'
                     @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
                     >

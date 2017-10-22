@@ -25,6 +25,10 @@ module.exports =
         dimensions: null
         highlight: null
     watch:
+        dimensions: () ->
+            this.update_data()
+        data: () ->
+            this.update_data()
         filterChanged: () ->
             @parcoords.brush()
 

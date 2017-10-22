@@ -89,7 +89,7 @@ module.exports =
                 scheduler.schedule('gene_table', () => @set_data_now(data))
 
         set_data_now: (new_columns) ->
-            console.log "set_data_now new_columns=",new_columns
+            console.log "slick-table : set_data_now new_columns=",new_columns
             rows = this.rows.slice()      # Copy the array of rows - we'll need to sort it
             @dataView.beginUpdate()
             @grid.setColumns([]) if new_columns
