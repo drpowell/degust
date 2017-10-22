@@ -137,7 +137,9 @@ class Heatmap
 
         @svg = d3.select(@opts.elem).append('svg')
         @svg.append('g').attr("class", "labels")
-        @svg.append('g').attr("class", "genes").attr("transform", "translate(#{@opts.label_width},0)")
+        g = @svg.append('g').attr("transform", "translate(#{@opts.label_width},0)")
+        g.append('g').attr("class", "genes")
+        g.append('g').attr("class", "highlight")
         @svg.attr("width", "100%").attr("height", 100)
 
         @mk_highlight()
@@ -461,7 +463,7 @@ class Heatmap
             @unhighlight()
             return
 
-        highlight = @svg.select(".genes").selectAll(".highlight").data(pos)
+        highlight = @svg.select(".highlight").selectAll(".highlight").data(pos)
         highlight.exit().remove()
         highlight.enter()
                 .append("line")
