@@ -357,7 +357,7 @@ class Heatmap
     # update_columns(data, columns,extent)
     #   columns - The DGE condition columns
     #   extent - the total range of all columns
-    update_columns: (@data_object, @columns, centre) ->
+    update_columns: (@data_object, to_show, @columns, centre) ->
         @height = @opts.legend_height + @opts.h_pad + (@opts.h * @columns.length);
         @svg.attr("width", @opts.width)
             .attr("height", @height)
@@ -369,7 +369,7 @@ class Heatmap
         extent = calc_extent(d3.values(@data_all), @columns)
         @max = d3.max(extent.map(Math.abs))
         @_draw_columns()
-        @schedule_update(@data_object.get_data())
+        @schedule_update(to_show)
 
     # Given the row, copy over @columns, but centered
     _centre: (row) ->
@@ -554,7 +554,6 @@ module.exports =
             this.heatmap.schedule_update(this.genesShow)
 
         update_all: () ->
-            console.log "update_all",this.dimensions
             if this.dimensions.length>0
-                this.heatmap.update_columns(this.geneData, this.dimensions, true)
+                this.heatmap.update_columns(this.geneData, this.genesShow, this.dimensions, true)
 </script>
