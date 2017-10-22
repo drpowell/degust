@@ -541,7 +541,7 @@ module.exports =
             elem: this.$el
             show_replicates: this.showReplicates
         )
-        this.heatmap.on("mouseover", (d) => this.$emit("mouseover", Object.freeze(d)))
+        this.heatmap.on("mouseover", (d) => this.$emit("mouseover", d))
         this.heatmap.on("mouseout", ()  => this.$emit("mouseout"))
         this.heatmap.on("hide", () => this.$emit('hide'))
         this.heatmap.on("show_replicates", (v) => this.$emit('show-replicates',v))

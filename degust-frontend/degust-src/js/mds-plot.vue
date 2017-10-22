@@ -174,7 +174,7 @@ module.exports =
             #@scatter_draw(plot_2d3d, comp, @columns, dims)
 
             tot_eigen = d3.sum(pca_results.eigenvalues)
-            this.barGraphData = Object.freeze(
+            this.barGraphData = Vue.noTrack(
                 comp[0..9].map((v,i) ->
                     range = pca_results.eigenvalues[i]/tot_eigen * 100
                     {lbl: "#{i+1}", val: range}

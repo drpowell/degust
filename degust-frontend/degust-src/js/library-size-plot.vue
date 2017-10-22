@@ -51,7 +51,7 @@ module.exports =
         lib_sizes: () ->
             this.columns.map((c) => {lbl: c.name, val: this.geneData.get_total(c), parent: c.parent})
         barGraphData: () ->
-            Object.freeze(this.lib_sizes)
+            Vue.noTrack(this.lib_sizes)
     methods:
         colourSample: (c) ->
             this.colour(c.parent)

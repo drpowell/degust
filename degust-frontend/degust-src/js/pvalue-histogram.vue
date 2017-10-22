@@ -46,10 +46,10 @@ module.exports =
                 res = this.geneData.columns_by_type('fdr')[0]
             res
         pvals: () ->
-            Object.freeze(this.geneData.get_data().map((r) => r[this.pval_col.idx]))
+            Vue.noTrack(this.geneData.get_data().map((r) => r[this.pval_col.idx]))
         bins: () ->
-            Object.freeze(d3.layout.histogram().bins(50)(this.pvals))
+            Vue.noTrack(d3.layout.histogram().bins(50)(this.pvals))
         barGraphData: () ->
-            Object.freeze(this.bins.map((b) -> {lbl: b.x, val: b.y, width: b.dx}))
+            Vue.noTrack(this.bins.map((b) -> {lbl: b.x, val: b.y, width: b.dx}))
 
 </script>

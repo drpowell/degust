@@ -41,7 +41,7 @@ module.exports =
             .brushable() # enable brushing
             .mode('queue')
         @parcoords.setFilter(this.filter)
-        @parcoords.on('brush', (d) => this.$emit('brush', Object.freeze(d)))
+        @parcoords.on('brush', (d) => this.$emit('brush', d))
         @parcoords.on('render', () => this.$emit('render'))
         this.update_data()
 

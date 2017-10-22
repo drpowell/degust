@@ -59,7 +59,7 @@ module.exports =
                     vals = data.get_data().map((r) -> Math.log(0.5 + r[c.idx]/norm_factor)/Math.log(2))
                     {vals: vals, name:c.name, parent:c.parent}
             )
-            cpm
+            Vue.noTrack(cpm)
 
         rle: () ->
             cpm = this.cpm
@@ -67,7 +67,7 @@ module.exports =
             rle = cpm.map((c) ->
                 {name: c.name, parent:c.parent, vals: c.vals.map((v,i) -> v - medians[i])}
             )
-            rle
+            Vue.noTrack(rle)
 
     mounted: () ->
         if this.isRle

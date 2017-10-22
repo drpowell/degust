@@ -286,7 +286,7 @@
                  :show-replicates='heatmap_show_replicates'
                  @hide='show_heatmap=false'
                  @show-replicates='v => heatmap_show_replicates=v'
-                 @mouseover='genes_hover=genes_highlight=Object.freeze([$event])' @mouseout='genes_highlight=[]'
+                 @mouseover='heatmap_hover' @mouseout='heatmap_nohover'
                  >
         </heatmap>
       </div>
@@ -295,7 +295,7 @@
         <h2>Genes</h2>
         <gene-table :gene-data='gene_data' :link-url='settings.link_url'
                     :rows='genes_selected' :show-counts='showCounts'
-                    @mouseover='genes_hover=genes_highlight=Object.freeze([$event])' @mouseout='genes_highlight=[]'
+                    @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
                     >
         </gene-table>
       </div>

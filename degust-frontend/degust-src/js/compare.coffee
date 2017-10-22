@@ -572,10 +572,10 @@ module.exports =
             !this.settings.config_locked || this.full_settings.is_owner
         config_url: () -> "config.html?code=#{this.code}"
         gene_data_rows: () ->
-            Object.freeze(this.gene_data.get_data())
+            this.gene_data.get_data()
         expr_data: () ->
             console.log "computing expr_data.  orig length=", this.gene_data.get_data().length
-            Object.freeze(this.gene_data.get_data().filter((v) => this.expr_filter(v)))
+            Vue.noTrack(this.gene_data.get_data().filter((v) => this.expr_filter(v)))
         avg_column: () ->
             this.gene_data.columns_by_type('avg')[0]
         fdr_column: () ->
@@ -666,11 +666,11 @@ module.exports =
             this.backend.request_data(this.dge_method, this.sel_conditions)
 
         process_dge_data: (data, cols) ->
-            this.gene_data = Object.freeze(new GeneData(data, cols))
+            this.gene_data = new GeneData(data, cols)
             this.maxGenes = this.gene_data.get_data().length
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1
-            this.genes_selected = Object.freeze(this.gene_data.get_data())
+            this.genes_selected = this.gene_data.get_data()
             this.genes_highlight = []
             this.colour_by_condition = if this.fc_columns.length<=10 then d3.scale.category10() else d3.scale.category20()
 
@@ -685,7 +685,17 @@ module.exports =
             h_runfilters = window.setTimeout(redraw_plot, 10)
 
         set_genes_selected: (d) ->
-            this.genes_selected = Object.freeze(d)
+            this.genes_selected = Vue.noTrack(d)
+
+        heatmap_hover: (d) ->
+            this.genes_hover = this.genes_highlight = Vue.noTrack([d])
+        heatmap_nohover: () ->
+            this.genes_highlight=[]
+        gene_table_hover: (d) ->
+            this.genes_hover = this.genes_highlight = Vue.noTrack([d])
+        gene_table_nohover: () ->
+            this.genes_highlight=[]
+
 
         # Update the URL with the current page state
         update_url_link: () ->

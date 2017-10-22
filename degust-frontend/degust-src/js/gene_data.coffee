@@ -17,6 +17,9 @@ class GeneData
         @set_relative( 'avg' )
         @_store_fc_avg()
         #log_debug 'data',@data
+        # Mark it as not-extendible so Vue won't track it
+        Object.preventExtensions(@data)
+        Object.preventExtensions(this)
 
     set_relative: (relative) ->
         if relative != @relative
@@ -113,7 +116,7 @@ class GeneData
 
     # Returns a list of column definitions
     columns_by_type: (types) ->
-        #FIXME - caching here fails if this is frozen
+        #FIXME - caching here fails, not sure why
         #return @columns_by_type_cache[types] if @columns_by_type_cache[types]
         types=[types] if !(types instanceof Array)
         res = []

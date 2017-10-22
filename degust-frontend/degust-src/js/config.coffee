@@ -164,7 +164,7 @@ module.exports =
             column_keys ?= []
             this.columns_info = column_keys
             asRows.forEach((r,i) -> r.id = i)
-            this.asRows = Object.freeze(asRows)
+            this.asRows = Vue.noTrack(asRows)
 
         closeModal: () ->
             if this.modal.reload_on_close

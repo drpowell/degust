@@ -491,9 +491,9 @@ module.exports =
             margin_t: this.marginT
             axis_label_inside: this.axisLabelInside
         )
-        this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', Object.freeze(d), loc))
+        this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', d, loc))
         this.me.on('mouseout.tooltip', () => this.$emit('mouseout'))
-        this.me.on('brush', (d) => this.$emit('brush', Object.freeze(d)))
+        this.me.on('brush', (d) => this.$emit('brush', d))
 
         this.update()
 </script>
