@@ -490,7 +490,6 @@ init_page = () ->
     $("select#kegg").change(kegg_selected)
 
     #$(window).bind( 'hashchange', update_from_link )
-    $(window).bind('resize', () -> heatmap.resize())
 
 
 sliderText = require('./slider.vue').default
@@ -741,4 +740,5 @@ module.exports =
 
     mounted: () ->
         g_vue_obj = this
+        $(window).bind('resize', () => this.$emit('resize'))    # TODO : ideally just this component, not window
         this.init()

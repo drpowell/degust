@@ -6,6 +6,8 @@
     .pca-opts { border-top: solid 1px black; margin-top: 5px}
     .pca-opts .pca-title { font-size: 10pt; font-weight: bold; margin-bottom: 3px; }
 
+    .heatmap-info { font-size: 9pt; height: 2em; }
+    .heatmap-info .lbl { margin-left: 20px; font-weight: bold; display: inline-block;}
 </style>
 
 <template>
@@ -278,7 +280,11 @@
       </div><!-- row -->
 
       <div class='row' v-if='show_heatmap'>
-        <div id="heatmap-info"></div>
+        <div class="heatmap-info">
+            <span v-for='col in info_columns' v-if='genes_highlight.length>0'>
+                <span class='lbl'>{{col.name}}: </span><span>{{genes_highlight[0][col.idx]}}</span>
+            </span>
+        </div>
         <heatmap :gene-data='gene_data'
                  :genes-show='genes_selected'
                  :dimensions='heatmap_dimensions'

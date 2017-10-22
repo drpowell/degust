@@ -1,8 +1,5 @@
 <style scoped>
 
-#heatmap-info { font-size: 9pt; height: 2em; }
-#heatmap-info .lbl { margin-left: 20px; font-weight: bold; display: inline-block;}
-
 .heatmap >>> .extent {
   fill: #990;
   fill-opacity: .2;
@@ -548,6 +545,7 @@ module.exports =
         this.heatmap.on("hide", () => this.$emit('hide'))
         this.heatmap.on("show_replicates", (v) => this.$emit('show-replicates',v))
         this.update_all()
+        this.$parent.$on('resize', () => this.heatmap.resize())
 
     methods:
         reFilter: () ->
