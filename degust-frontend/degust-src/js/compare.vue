@@ -210,8 +210,8 @@
         <div class='col-xs-6' id='expression'>
           <div v-show='num_loading>0' class='loading'><img :src='asset_base + "images/ajax-loader.gif"'></div>
           <ul class="nav nav-tabs">
-            <li :class='{active: cur_plot=="parallel-coord"}'>
-                <a @click='cur_plot="parallel-coord"'>Parallel Coordinates</a>
+            <li :class='{active: cur_plot=="parcoords"}'>
+                <a @click='cur_plot="parcoords"'>Parallel Coordinates</a>
             </li>
             <li :class='{active: cur_plot=="ma"}'>
                 <a @click='cur_plot="ma"'>MA plot</a>
@@ -224,7 +224,7 @@
             </li>
           </ul>
           <div v-bind:style="{ opacity: num_loading>0 ? 0.4 : 1 }">
-              <parallel-coord v-if='cur_plot=="parallel-coord"'
+              <parallel-coord v-if='cur_plot=="parcoords"'
                        :data='gene_data_rows'
                        :dimensions='fc_calc_columns'
                        :filter='expr_filter'

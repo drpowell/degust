@@ -546,7 +546,7 @@ module.exports =
         show_about: false
         dge_method: null
         sel_conditions: []
-        cur_plot: 'ma'
+        cur_plot: null
         cur_opts: 'options'
         gene_data: new GeneData([],[])
         genes_selected: []              # Selected by "brushing" on one of the plots
@@ -605,6 +605,8 @@ module.exports =
             heatmap_dims
 
     watch:
+        '$route': (n,o) ->
+            this.use_route(n.query)
         settings: () ->
             this.dge_method = this.settings.dge_method
             this.sel_conditions = this.settings.init_select || []
@@ -612,6 +614,7 @@ module.exports =
             # On plot change, reset brushes
             this.genes_highlight = []
             this.genes_selected = this.gene_data.get_data()
+            this.$router.push({name: 'home', query: { plot: this.cur_plot }})
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
@@ -672,6 +675,12 @@ module.exports =
             this.genes_selected = this.gene_data.get_data()
             this.genes_highlight = []
             this.colour_by_condition = if this.fc_columns.length<=10 then d3.scale.category10() else d3.scale.category20()
+            if (!this.cur_plot? || this.cur_plot in ["parcoords","ma"])
+                this.cur_plot = if this.fc_columns.length>2 then "parcoords" else "ma"
+
+
+        use_route: (query) ->
+            if query.plot? then this.cur_plot=query.plot
 
         # Selected samples have changed, request a new dge
         change_samples: (cur) ->
@@ -742,3 +751,4 @@ module.exports =
         g_vue_obj = this
         $(window).bind('resize', () => this.$emit('resize'))    # TODO : ideally just this component, not window
         this.init()
+        this.use_route(this.$route.query)
