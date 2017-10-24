@@ -585,6 +585,8 @@ module.exports =
             this.colour_by_condition = if this.fc_columns.length<=10 then d3.scale.category10() else d3.scale.category20()
             if (!this.cur_plot? || this.cur_plot in ["parcoords","ma"])
                 this.cur_plot = if this.fc_columns.length>2 then "parcoords" else "ma"
+            if this.fc_columns.length==2
+                this.heatmap_show_replicates = true
 
 
         # Selected samples have changed, request a new dge
@@ -615,6 +617,7 @@ module.exports =
             state.fcThreshold = this.fcThreshold
             #state.sortAbsLogFC = def(sortAbsLogFC, true)
             state.fc_relative_i = this.fc_relative_i
+            state.heatmap_show_replicates = this.heatmap_show_replicates
             if this.cur_plot=='mds'
                 state.numGenesThreshold = this.numGenesThreshold
                 state.skipGenesThreshold = this.skipGenesThreshold
@@ -637,6 +640,7 @@ module.exports =
                 this.fcThreshold = settings.fcThreshold
             #state.sortAbsLogFC = def(sortAbsLogFC, true)
             this.fc_relative_i = q.fc_relative_i if q.fc_relative_i
+            this.heatmap_show_replicates = q.heatmap_show_replicates if q.heatmap_show_replicates?
             this.numGenesThreshold = q.numGenesThreshold if q.numGenesThreshold?
             this.skipGenesThreshold = q.skipGenesThreshold if q.skipGenesThreshold?
             this.pcaDimension = q.pcaDimension if q.pcaDimension?
