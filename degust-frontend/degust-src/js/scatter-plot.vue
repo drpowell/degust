@@ -403,6 +403,8 @@ class ScatterPlot
         @dispatch.on(t, func)
 
     reFilter: () ->
+        if (!@data)
+            return
         @_draw_dots(@colouring || @opts.colouring)
         @_brushed_dots()
 

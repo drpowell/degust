@@ -85,24 +85,7 @@ split_params = (loc) ->
 window.get_url_vars = () ->
     split_params(window.location.search)
 
-window.get_hash_vars = () ->
-    split_params(window.location.hash)
-
-window.set_hash_var = (set) ->
-    p = get_hash_vars()
-    for k,v of set
-        if v?
-            p[k] = v
-        else
-            delete p[k]
-
-    loc = (for k,v of p
-               k + "=" + encodeURIComponent(v)).join("&")
-    if loc.length>0
-        window.location.hash = '?'+loc
-    else
-        window.location.hash = ''
-
+# FIXME : remove this
 window.setup_nav_bar = () ->
     $("a.log-link").click(() -> $('.log-list').toggle())
 

@@ -63,91 +63,6 @@ gene_table_mouseout = () ->
     kegg.unhighlight()
     heatmap.unhighlight()
 
-
-get_default_plot_typ = () ->
-    if g_data.columns_by_type(['fc','primary']).length>2
-        'parcoords'
-    else
-        'ma'
-
-may_set_plot_var = (typ) ->
-    if typ == get_default_plot_typ()
-        set_hash_var({plot: null})
-    else
-        set_hash_var({plot: typ})
-
-update_from_link = (force_update) ->
-    set_state(get_hash_vars(), force_update)
-
-
-set_plot = (typ, force_update) ->
-    switch typ
-        when 'mds'       then plot=pca_plot; activate=activate_pca_plot
-        when 'ma'        then plot=ma_plot; activate=activate_ma_plot
-        when 'parcoords' then plot=parcoords; activate=activate_parcoords
-        when 'volcano'   then plot=volcano_plot; activate=activate_volcano
-    if (g_vue_obj.current_plot != plot || force_update)
-        activate()
-
-get_state = () ->
-    plot =
-        if $('#select-pc').hasClass('active')
-            'parcoords'
-        else if $('#select-ma').hasClass('active')
-            'ma'
-        else if $('#select-pca').hasClass('active')
-            'mds'
-    state = {}
-    state.plot = plot
-    def = (val, def) -> if val==def then null else val
-    state.show_counts = def(g_vue_obj.show_counts,'no')
-    state.fdrThreshold = def(g_vue_obj.fdrThreshold,1)
-    state.fcThreshold = def(g_vue_obj.fcThreshold,0)
-    state.sortAbsLogFC = def(sortAbsLogFC, true)
-    fc_rel = $('select#fc-relative option:selected').val()
-    state.fc_relative = def(+fc_rel, 0)
-    if plot=='mds'
-        state.numGenesThreshold = g_vue_obj.numGenesThreshold
-        state.skipGenesThreshold = g_vue_obj.skipGenesThreshold
-        state.pcaDimension = g_vue_obj.pcaDimension
-    # if plot=='ma'
-    #     ex = ma_plot.brush_extent()
-    state.searchStr = def(searchStr,"")
-
-    state.single_gene_expr = def($('#select-single-gene-expr').hasClass('active'), false)
-
-    return state
-
-set_state = (state, force_update) ->
-    if state.plot?
-        set_plot(state.plot, force_update)
-    else
-        set_plot(get_default_plot_typ(), force_update)
-
-    # if state.plot=='ma' && state.ma_brush?
-    #     ma_plot.brush_extent(state.ma_brush)
-
-    g_vue_obj.fdrThreshold = state.fdrThreshold if state.fdrThreshold?
-    g_vue_obj.fcThreshold  = state.fcThreshold  if state.fcThreshold?
-
-    if state.show_counts?
-        g_vue_obj.show_counts = state.show_counts
-        gene_table.refresh()
-
-
-    g_vue_obj.numGenesThreshold = +state.numGenesThreshold if state.numGenesThreshold?
-    g_vue_obj.skipGenesThreshold = +state.skipGenesThreshold if state.skipGenesThreshold?
-    g_vue_obj.pcaDimension = +state.pcaDimension if state.pcaDimension?
-
-    update_search_str(state.searchStr, true) if (state.searchStr?)
-    sortAbsLogFC = (!state.sortAbsLogFC? || state.sortAbsLogFC!='false')
-
-    if state.single_gene_expr
-        activate_single_gene_expr()
-    else
-        activate_options()
-
-
 calc_max_parcoords_width = () ->
     w = $('.container').width()
     w -= $('.conditions').outerWidth(true) if $('.conditions').is(':visible')
@@ -476,13 +391,6 @@ init_page = () ->
     setup_nav_bar()
     $('[title]').tooltip()
 
-    title = settings.name || "Unnamed"
-    $(".exp-name").text(title)
-    document.title = title
-
-    g_vue_obj.fdrThreshold = settings['fdrThreshold'] if settings['fdrThreshold']?
-    g_vue_obj.fcThreshold  = settings['fcThreshold']  if settings['fcThreshold']?
-
     if full_settings?
         if full_settings['extra_menu_html']
             $('#right-navbar-collapse').append(full_settings['extra_menu_html'])
@@ -563,6 +471,7 @@ module.exports =
         home_link: () -> this.settings?.home_link || '/'
         fdrWarning: () -> this.cur_plot == 'mds' && this.fdrThreshold<1
         fcWarning: () -> this.cur_plot == 'mds' && this.fcThreshold>0
+        experimentName: () -> this.name || "Unnamed"
         can_configure: () ->
             !this.settings.config_locked || this.full_settings.is_owner
         config_url: () -> "config.html?code=#{this.code}"
@@ -606,15 +515,14 @@ module.exports =
 
     watch:
         '$route': (n,o) ->
-            this.use_route(n.query)
+            this.parse_url_params(n.query)
         settings: () ->
             this.dge_method = this.settings.dge_method
-            this.sel_conditions = this.settings.init_select || []
+            this.sel_conditions = this.$route.query.sel_conditions || this.settings.init_select || []
         cur_plot: () ->
             # On plot change, reset brushes
             this.genes_highlight = []
             this.genes_selected = this.gene_data.get_data()
-            this.$router.push({name: 'home', query: { plot: this.cur_plot }})
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
@@ -672,15 +580,12 @@ module.exports =
             this.maxGenes = this.gene_data.get_data().length
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1
-            this.genes_selected = this.gene_data.get_data()
+            this.set_genes_selected(this.gene_data.get_data())
             this.genes_highlight = []
             this.colour_by_condition = if this.fc_columns.length<=10 then d3.scale.category10() else d3.scale.category20()
             if (!this.cur_plot? || this.cur_plot in ["parcoords","ma"])
                 this.cur_plot = if this.fc_columns.length>2 then "parcoords" else "ma"
 
-
-        use_route: (query) ->
-            if query.plot? then this.cur_plot=query.plot
 
         # Selected samples have changed, request a new dge
         change_samples: (cur) ->
@@ -700,10 +605,43 @@ module.exports =
         gene_table_nohover: () ->
             this.genes_highlight=[]
 
-
         # Update the URL with the current page state
         update_url_link: () ->
-            set_hash_var(get_state())
+            state = {}
+            state.sel_conditions = this.sel_conditions
+            state.plot = this.cur_plot
+            state.show_counts = this.showCounts
+            state.fdrThreshold = this.fdrThreshold
+            state.fcThreshold = this.fcThreshold
+            #state.sortAbsLogFC = def(sortAbsLogFC, true)
+            state.fc_relative_i = this.fc_relative_i
+            if this.cur_plot=='mds'
+                state.numGenesThreshold = this.numGenesThreshold
+                state.skipGenesThreshold = this.skipGenesThreshold
+                state.pcaDimension = this.pcaDimension
+            #state.searchStr = this.searchStr
+            if this.cur_opts=='gene'
+                state.single_gene_expr = true
+            this.$router.push({name: 'home', query: state})
+
+        parse_url_params: (q) ->
+            this.cur_plot = q.plot if q.plot?
+            this.showCounts = q.show_counts if q.show_counts?
+            if q.fdrThreshold?
+                this.fdrThreshold = q.fdrThreshold
+            else if settings.fdrThreshold?
+                this.fdrThreshold = settings.fdrThreshold
+            if q.fcThreshold?
+                this.fcThreshold = q.fcThreshold
+            else if settings.fcThreshold?
+                this.fcThreshold = settings.fcThreshold
+            #state.sortAbsLogFC = def(sortAbsLogFC, true)
+            this.fc_relative_i = q.fc_relative_i if q.fc_relative_i
+            this.numGenesThreshold = q.numGenesThreshold if q.numGenesThreshold?
+            this.skipGenesThreshold = q.skipGenesThreshold if q.skipGenesThreshold?
+            this.pcaDimension = q.pcaDimension if q.pcaDimension?
+            #this.searchStr = q.searchStr if q.searchStr?
+            this.cur_opts='gene' if q.single_gene_expr
 
         # Request and display r-code for current selection
         show_r_code: () ->
@@ -749,6 +687,7 @@ module.exports =
 
     mounted: () ->
         g_vue_obj = this
+        document.title = this.experimentName
         $(window).bind('resize', () => this.$emit('resize'))    # TODO : ideally just this component, not window
         this.init()
-        this.use_route(this.$route.query)
+        this.parse_url_params(this.$route.query)

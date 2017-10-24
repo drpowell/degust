@@ -33,7 +33,7 @@
           </button>
 
           <a class="navbar-brand" :href="home_link">Degust : </a>
-          <span class="navbar-brand exp-name"></span>
+          <span class="navbar-brand">{{experimentName}}</span>
         </div>
 
         <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">

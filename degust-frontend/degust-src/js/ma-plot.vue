@@ -58,6 +58,7 @@
 scatter = require('./scatter-plot.vue').default
 
 module.exports =
+    name: "ma-plot"
     components:
         scatterPlot: scatter
     props:

@@ -61,6 +61,7 @@
 scatter = require('./scatter-plot.vue').default
 
 module.exports =
+    name: "volcano-plot"
     components:
         scatterPlot: scatter
     props:

@@ -69,9 +69,17 @@ module.exports =
         @grid.onDblClick.subscribe( (e,args) =>
             this.$emit('dblclick', @grid.getDataItem(args.row))
         )
+    computed:
+        # Want to watch rows & cols and issue one update when both change
+        rowsAndCols: () ->
+            {rows: this.rows, cols: this.columns}
     watch:
-        rows: () -> this.set_data_now(false)
-        columns: () -> this.set_data_now(true)
+        rowsAndCols: (n,o) ->
+            if n.cols != o.cols
+                this.set_data(true)
+            else
+                this.set_data(false)
+
     methods:
         resort: () ->
             @dataView.reSort()
@@ -82,11 +90,11 @@ module.exports =
         get_data: () ->
             @dataView.getItems()
 
-        set_data: (data, columns) ->
-            if columns
-                scheduler.schedule_now('gene_table', () => @set_data_now(data, columns))
+        set_data: (new_columns) ->
+            if new_columns
+                scheduler.schedule_now('gene_table', () => @set_data_now(new_columns))
             else
-                scheduler.schedule('gene_table', () => @set_data_now(data))
+                scheduler.schedule('gene_table', () => @set_data_now(new_columns))
 
         set_data_now: (new_columns) ->
             console.log "slick-table : set_data_now new_columns=",new_columns
