@@ -640,7 +640,7 @@ module.exports =
                 this.fcThreshold = settings.fcThreshold
             #state.sortAbsLogFC = def(sortAbsLogFC, true)
             this.fc_relative_i = q.fc_relative_i if q.fc_relative_i
-            this.heatmap_show_replicates = q.heatmap_show_replicates if q.heatmap_show_replicates?
+            this.heatmap_show_replicates = q.heatmap_show_replicates=='true' if q.heatmap_show_replicates?
             this.numGenesThreshold = q.numGenesThreshold if q.numGenesThreshold?
             this.skipGenesThreshold = q.skipGenesThreshold if q.skipGenesThreshold?
             this.pcaDimension = q.pcaDimension if q.pcaDimension?
@@ -692,6 +692,8 @@ module.exports =
     mounted: () ->
         g_vue_obj = this
         document.title = this.experimentName
-        $(window).bind('resize', () => this.$emit('resize'))    # TODO : ideally just this component, not window
         this.init()
         this.parse_url_params(this.$route.query)
+
+        # TODO : ideally just this component, not window.  But, need ResizeObserver to do this nicely
+        window.addEventListener('resize', () => this.$emit('resize'))

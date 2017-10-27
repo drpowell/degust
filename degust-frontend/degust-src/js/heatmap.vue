@@ -263,8 +263,9 @@ class Heatmap
              .range(scale);
 
     _redraw_all : () ->
-        @_draw_columns();
-        @_render_heatmap();
+        @_draw_columns()
+        if !@_is_thinking
+            @_render_heatmap()
 
 
     _make_legend: () ->
@@ -501,7 +502,10 @@ class Heatmap
         gBrush.selectAll("rect")
               .attr("height", 100*@opts.h_pad + @opts.h * @columns.length);
 
+resize = require('./resize-mixin.coffee')
+
 module.exports =
+    mixins: [resize]
     props:
         geneData:
             required: true
@@ -545,9 +549,11 @@ module.exports =
         this.heatmap.on("hide", () => this.$emit('hide'))
         this.heatmap.on("show_replicates", (v) => this.$emit('show-replicates',v))
         this.update_all()
-        this.$parent.$on('resize', () => this.heatmap.resize())
 
     methods:
+        resize: () ->
+            this.heatmap.resize()
+
         reFilter: () ->
             this.heatmap.schedule_update(this.genesShow)
 
