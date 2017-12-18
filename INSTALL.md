@@ -59,8 +59,10 @@ repository, run:
 Once the build process has completed, you will have a docker image tagged as "degust" on your system.
 To run this container, run:
 
-    docker run -p 80:3000 degust
+    docker run -p 8001:3000 --volume /tmp/degust:/opt/degust/uploads degust 
 
-This will start degust in the docker container, and allow access to the container via port 80 on your machine.
-To access the website, go to `http://localhost/` on your web browser. You can change `80` to any port you wish 
-to have degust listening on.
+This will start Degust in the Docker container, and allow access to the container via port 8001 on your machine.
+The container directory `/opt/degust/uploads` is mapped to `/tmp/degust` on the host.
+To access the website, go to `http://localhost:8001/` on your web browser. 
+You can change `8001` to any port you wish  to have Degust listening on 
+(eg, `-p 80:3000` for a public production service).
