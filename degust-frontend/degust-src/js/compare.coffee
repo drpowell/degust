@@ -517,7 +517,7 @@ module.exports =
         '$route': (n,o) ->
             this.parse_url_params(n.query)
         settings: () ->
-            this.dge_method = this.settings.dge_method
+            this.dge_method = this.settings.dge_method || 'voom'
             this.sel_conditions = this.$route.query.sel_conditions || this.settings.init_select || []
         cur_plot: () ->
             # On plot change, reset brushes
@@ -568,7 +568,7 @@ module.exports =
                 else
                     this.backend = new backends.WithBackendNoAnalysis(this.code, this.settings, this.ev_backend)
                 # If we're not configured, redirect to the config page
-                if !this.backend.is_configured
+                if !this.backend.is_configured()
                     window.location = this.config_url
 
             init_page()  # TODO - move this

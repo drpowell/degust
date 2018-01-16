@@ -63,7 +63,7 @@ module.exports =
             required: true
     data: () ->
         cur:
-            dge_method: this.dge_method || 'voom'
+            dge_method: this.dge_method
             sel_conditions: this.sel_conditions
         editing: false
     watch:

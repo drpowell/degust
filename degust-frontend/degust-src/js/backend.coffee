@@ -33,7 +33,7 @@ class BackendCommon
     @script: (code,typ,params) ->
         "#{code}/#{typ}" + if params then "?#{params}" else ""
 
-    constructor: (@settings, @is_configured) ->
+    constructor: (@settings) ->
         # Pass
 
     request_kegg_data: (callback) ->
@@ -45,10 +45,13 @@ class BackendCommon
 
 class WithBackendNoAnalysis
     constructor: (@code, @settings, @events) ->
-        @backend = new BackendCommon(@settings, @settings.fc_columns.length > 0)
+        @common = new BackendCommon(@settings)
+
+    is_configured: () ->
+        @settings.fc_columns.length > 0
 
     request_kegg_data: (callback) ->
-        @backend.request_kegg_data(callback)
+        @common.request_kegg_data(callback)
 
     request_data: () ->
         req = BackendCommon.script(this.code, "csv")
@@ -84,10 +87,13 @@ class WithBackendNoAnalysis
 
 class WithBackendAnalysis
     constructor: (@code, @settings, @events) ->
-        @backend = new BackendCommon(@settings, @settings.replicates.length > 0)
+        @common = new BackendCommon(@settings)
+
+    is_configured: () ->
+        @settings.replicates.length > 0
 
     request_kegg_data: (callback) ->
-        @backend.request_kegg_data(callback)
+        @common.request_kegg_data(callback)
 
     request_data: (method,columns) ->
         @_request_dge_data(method,columns)
