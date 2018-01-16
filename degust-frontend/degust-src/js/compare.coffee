@@ -534,10 +534,9 @@ module.exports =
                 this.load_success=true
                 this.$nextTick(() -> this.initBackend(false))
             else
-                window.my_code = this.code
                 $.ajax({
                     type: "GET",
-                    url: backends.BackendCommon.script("settings"),
+                    url: backends.BackendCommon.script(this.code,"settings"),
                     dataType: 'json'
                 }).done((json) =>
                     window.full_settings = json
@@ -565,9 +564,13 @@ module.exports =
                 this.backend = new backends.WithoutBackend(this.settings, this.ev_backend)
             else
                 if this.settings.analyze_server_side
-                    this.backend = new backends.WithBackendAnalysis(this.settings, this.ev_backend)
+                    this.backend = new backends.WithBackendAnalysis(this.code, this.settings, this.ev_backend)
                 else
-                    this.backend = new backends.WithBackendNoAnalysis(this.settings, this.ev_backend)
+                    this.backend = new backends.WithBackendNoAnalysis(this.code, this.settings, this.ev_backend)
+                # If we're not configured, redirect to the config page
+                if !this.backend.is_configured
+                    window.location = this.config_url
+
             init_page()  # TODO - move this
             this.request_data()
 

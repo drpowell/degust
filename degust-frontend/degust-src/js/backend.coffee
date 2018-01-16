@@ -30,30 +30,28 @@ class WithoutBackend
 
 # BackendCommon - used by both WithBackendNoAnalysis and WithBackendAnalysis
 class BackendCommon
-    @script: (typ,params) ->
-        "#{window.my_code}/#{typ}" + if params then "?#{params}" else ""
+    @script: (code,typ,params) ->
+        "#{code}/#{typ}" + if params then "?#{params}" else ""
 
-    constructor: (@settings, configured) ->
-        # Ensure we have been configured!
-        if !configured
-            window.location = BackendCommon.config_url()
+    constructor: (@settings, @is_configured) ->
+        # Pass
 
     request_kegg_data: (callback) ->
-        d3.tsv(BackendCommon.script('kegg_titles'), (err,ec_data) ->
+        d3.tsv(BackendCommon.script(this.code, 'kegg_titles'), (err,ec_data) ->
             log_info("Downloaded kegg : rows=#{ec_data.length}")
             log_debug("Downloaded kegg : rows=#{ec_data.length}",ec_data,err)
             callback(ec_data)
         )
 
 class WithBackendNoAnalysis
-    constructor: (@settings, @events) ->
+    constructor: (@code, @settings, @events) ->
         @backend = new BackendCommon(@settings, @settings.fc_columns.length > 0)
 
     request_kegg_data: (callback) ->
         @backend.request_kegg_data(callback)
 
     request_data: () ->
-        req = BackendCommon.script("csv")
+        req = BackendCommon.script(this.code, "csv")
         @events.$emit("start_loading")
         d3.text(req, (err, dat) =>
             log_info("Downloaded DGE CSV: len=#{dat.length}")
@@ -85,7 +83,7 @@ class WithBackendNoAnalysis
         )
 
 class WithBackendAnalysis
-    constructor: (@settings, @events) ->
+    constructor: (@code, @settings, @events) ->
         @backend = new BackendCommon(@settings, @settings.replicates.length > 0)
 
     request_kegg_data: (callback) ->
@@ -110,7 +108,7 @@ class WithBackendAnalysis
         return if columns.length <= 1
 
         # load csv file and create the chart
-        req = BackendCommon.script("dge","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
+        req = BackendCommon.script(this.code, "dge","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
         @events.$emit("start_loading")
         d3.json(req, (err, json) =>
             @events.$emit("done_loading")
@@ -161,7 +159,7 @@ class WithBackendAnalysis
 
     request_r_code: (method,columns) ->
         new Promise((resolve) ->
-            req = BackendCommon.script("dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
+            req = BackendCommon.script(this.code, "dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
             d3.text(req, (err,data) ->
                 log_debug("Downloaded R Code : len=#{data.length}",data,err)
                 resolve(data)
