@@ -145,8 +145,8 @@ module.exports =
         'settings.name': () -> document.title = this.settings.name
         csv_data: () ->
             # Guess the format, if we haven't set a name yet
-            if this.name==""
-                this.csv_format = this.csv_data.split("\t").length<10
+            if !this.settings.name? || this.settings.name==''
+                this.settings.csv_format = this.csv_data.split("\t").length<10
 
         grid_watch: () ->
             this.parse_csv()
