@@ -6,7 +6,7 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
     && apt-get install -y nodejs
 
 # Install R
-RUN apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
 RUN echo 'deb http://cran.rstudio.org/bin/linux/debian jessie-cran34/'
 RUN apt-get update && apt-get install -y r-base
 
