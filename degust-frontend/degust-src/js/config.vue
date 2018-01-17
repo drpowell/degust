@@ -135,7 +135,7 @@
 
                   <div>
                       <transition-group name="flip-list" tag="div">
-                          <div v-for='(rep,idx) in settings.replicates' :key='rep.name'
+                          <div v-for='(rep,idx) in settings.replicates' :key='rep.id'
                                class="form-group condition">
                             <div class="controls col-sm-3">
                                 <div class='condition-up-down'>

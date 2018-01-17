@@ -47,6 +47,7 @@ from_server_model = (mdl) ->
     new_reps = []
     for r in res.replicates
         new_reps.push(
+            id: Math.random()   # Only used for list ordering, not really important
             name: r[0]
             cols: r[1]
             init: r[0] in res.init_select
@@ -237,7 +238,7 @@ module.exports =
             res
 
         add_replicate: () ->
-            r = {name:"",cols:[],init:false,factor:false}
+            r = {id:Math.random(),name:"",cols:[],init:false,factor:false}
             this.settings.replicates.push(r)
             if this.settings.replicates.length<=2
                 r.init=true
