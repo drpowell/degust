@@ -106,17 +106,18 @@ class GeneStripchart
             val = if @show_cpm then row[c.idx]/norm_factor else row[c.idx]
             {lbl: c.name, parent: c.parent, val: val}
         )
-        info_cols = @data.columns_by_type('info')
 
         @x.domain(vals.map((d) -> d.parent ))
         @y.domain([0, d3.max(vals, (d) -> d.val)])
 
-        @svg.append("text")
-             .attr('class', 'title')
-             .attr("x", @plot_width/2)
-             .attr("y", -(@margin_t/2))
-             .style("text-anchor", "middle")
-             .text(row[info_cols[0].idx])
+        info_cols = @data.columns_by_type('info')
+        if info_cols.length>0
+            @svg.append("text")
+                 .attr('class', 'title')
+                 .attr("x", @plot_width/2)
+                 .attr("y", -(@margin_t/2))
+                 .style("text-anchor", "middle")
+                 .text(row[info_cols[0].idx])
 
         @svg.append("g")
              .attr("class", "x axis")
