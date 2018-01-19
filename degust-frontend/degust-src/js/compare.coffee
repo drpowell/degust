@@ -471,7 +471,7 @@ module.exports =
         home_link: () -> this.settings?.home_link || '/'
         fdrWarning: () -> this.cur_plot == 'mds' && this.fdrThreshold<1
         fcWarning: () -> this.cur_plot == 'mds' && this.fcThreshold>0
-        experimentName: () -> this.name || "Unnamed"
+        experimentName: () -> this.settings?.name || "Unnamed"
         can_configure: () ->
             !this.settings.config_locked || this.full_settings.is_owner
         config_url: () -> "config.html?code=#{this.code}"
@@ -528,6 +528,9 @@ module.exports =
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
         fc_relative: () ->
             this.gene_data.set_relative(this.fc_relative)
+        experimentName: () ->
+            document.title = this.experimentName
+
     methods:
         init: () ->
             if !this.code?
@@ -694,7 +697,6 @@ module.exports =
 
     mounted: () ->
         g_vue_obj = this
-        document.title = this.experimentName
         this.init()
         this.parse_url_params(this.$route.query)
 
