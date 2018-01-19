@@ -164,7 +164,7 @@ class WithBackendAnalysis
         )
 
     request_r_code: (method,columns) ->
-        new Promise((resolve) ->
+        new Promise((resolve) =>
             req = BackendCommon.script(this.code, "dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
             d3.text(req, (err,data) ->
                 log_debug("Downloaded R Code : len=#{data.length}",data,err)
