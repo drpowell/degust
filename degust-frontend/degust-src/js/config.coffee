@@ -34,8 +34,8 @@ $(document).ready(() -> setup_nav_bar() )
 $(document).ready(() -> $('[title]').tooltip())
 
 
-flds_optional = ["ec_column","link_column","link_url","min_counts","min_cpm","min_cpm_samples",
-                 "fdr_column","avg_column"]
+flds_optional = ["ec_column","link_column","link_url","min_counts","min_cpm",
+                 "min_cpm_samples","fdr_column","avg_column"]
 from_server_model = (mdl) ->
     res = $.extend(true, {}, mdl)
 
@@ -115,6 +115,7 @@ module.exports =
         csv_data: ""
         asRows: []
         columns_info: []
+        table_columns: []
         orig_settings:
             is_owner: false
         advanced: false
@@ -133,15 +134,10 @@ module.exports =
             this.orig_settings.is_owner
         grid_watch: () ->
             this.settings.csv_format
+            this.settings.max_quant
             this.csv_data
             Date.now()
-        table_columns: () ->
-            this.columns_info.map((key,i) ->
-                id: key
-                name: key
-                field: i
-                sortable: false
-                )
+        
     watch:
         'settings.name': () -> document.title = this.settings.name
         csv_data: () ->
@@ -154,6 +150,7 @@ module.exports =
             #this.grid.updateRowCount()
             #this.grid.render()
     methods:
+        #Refactored to accept MaxQuant tsv and make the preview table
         parse_csv: () ->
             #console.log "Parsing!"
             asRows = null
@@ -163,7 +160,18 @@ module.exports =
                 asRows = d3.tsv.parseRows(this.csv_data)
             column_keys = asRows.shift()
             column_keys ?= []
-            this.columns_info = column_keys
+
+            this.table_columns = column_keys.map((key,i) ->
+                id: key
+                name: key
+                field: i
+                sortable: false
+                )
+            #Filter columns to only the ones we want
+            if this.settings.max_quant == true
+                this.table_columns = this.table_columns.filter( (obj) ->
+                    obj.name.match("Protein\x20ID|^LFQ.*|Potential\x20contaminant|Reverse|Peptide\x20counts\x20\\(razor\\+unique\\)"))
+            this.columns_info = this.table_columns.map( (obj) -> obj.name )
             asRows.forEach((r,i) -> r.id = i)
             this.asRows = Vue.noTrack(asRows)
 

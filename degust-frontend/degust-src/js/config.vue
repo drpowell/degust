@@ -78,13 +78,22 @@
 
               <div class="form-group">
                 <label class="control-label col-sm-3">Format type</label>
+
                 <div class="controls col-sm-6">
                   <label class="radio">
                     <input v-model='settings.csv_format' v-bind:value=true type="radio">Comma separated (CSV)
                   </label>
+
                   <label class="radio">
                     <input v-model='settings.csv_format' v-bind:value=false type="radio">TAB separated (TSV)
                   </label>
+
+                  <p></p><p></p>
+
+                  <label class="checkbox">
+                    <input v-model='settings.max_quant' v-bind:value=false type="checkbox">MaxQuant Output
+                  </label>
+
                 </div>
               </div>
 
