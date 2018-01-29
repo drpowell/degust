@@ -83,6 +83,10 @@ class DegustController < ApplicationController
                   make_code = lambda {|tempfile| DegustLogic.get_r_code(de_setting, params, tempfile)}
                   DegustLogic.run_r_code(make_code)
                end
+        # Don't cache output with error
+        if json.key?(:error)
+            cache.delete(cacheKey)
+        end
         render json: json
     end
 
