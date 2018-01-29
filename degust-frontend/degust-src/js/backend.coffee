@@ -1,4 +1,4 @@
-class WithoutBackend
+class BackendNone
     constructor: (@settings, @events) ->
 
     request_data: () ->
@@ -43,7 +43,7 @@ class BackendCommon
             callback(ec_data)
         )
 
-class WithBackendNoAnalysis
+class BackendPreAnalysed
     constructor: (@code, @settings, @events) ->
         @common = new BackendCommon(@settings)
 
@@ -86,7 +86,7 @@ class WithBackendNoAnalysis
             @events.$emit("dge_data", data, data_cols)
         )
 
-class WithBackendAnalysis
+class BackendRNACounts
     constructor: (@code, @settings, @events) ->
         @common = new BackendCommon(@settings)
         console.log("wow")
@@ -175,7 +175,7 @@ class WithBackendAnalysis
         )
 
 module.exports =
-    WithoutBackend: WithoutBackend
+    BackendNone: BackendNone
     BackendCommon: BackendCommon
-    WithBackendAnalysis: WithBackendAnalysis
-    WithBackendNoAnalysis: WithBackendNoAnalysis
+    BackendRNACounts: BackendRNACounts
+    BackendPreAnalysed: BackendPreAnalysed

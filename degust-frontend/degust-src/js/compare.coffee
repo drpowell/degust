@@ -564,12 +564,12 @@ module.exports =
             this.ev_backend.$on("dge_data", (data,cols) => this.process_dge_data(data,cols))
 
             if !use_backend
-                this.backend = new backends.WithoutBackend(this.settings, this.ev_backend)
+                this.backend = new backends.BackendNone(this.settings, this.ev_backend)
             else
                 if this.settings.analyze_server_side
-                    this.backend = new backends.WithBackendAnalysis(this.code, this.settings, this.ev_backend)
+                    this.backend = new backends.BackendRNACounts(this.code, this.settings, this.ev_backend)
                 else
-                    this.backend = new backends.WithBackendNoAnalysis(this.code, this.settings, this.ev_backend)
+                    this.backend = new backends.BackendPreAnalysed(this.code, this.settings, this.ev_backend)
                 # If we're not configured, redirect to the config page
                 if !this.backend.is_configured()
                     window.location = this.config_url
