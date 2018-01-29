@@ -1,0 +1,44 @@
+library(limma)
+library(edgeR)
+library(jsonlite)
+library(dplyr)
+library(DEP)
+
+# NOT WORKING YET
+
+#From _common
+count_cols <- <%== @columns %>
+x<-read.delim('<%== @counts_file %>',skip=<%= @counts_skip %>, sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
+x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v)) # Force numeric count columns
+
+#Pre-process here
+data <- x %>%
+	filter(Reverse!="+", Only.identified.by.site!="+", Razor...unique.peptides>=2).
+data_filter<-filter_missval(data_se,thr = 2)
+data_norm<-normalize_vsn(data_filter)
+data_imp_man<-impute(data_filter,fun="man",shift=1.8,scale=0.3)
+imputed_matrix<-assay(data_imp_man)
+
+counts <- imputed_matrix[, count_cols]
+design <- <%== @design %>
+
+cont.matrix <- <%== @cont_matrix %>
+
+fit <- lmFit(y,design)
+fit2 <- contrasts.fit(fit, cont.matrix)
+fit2 <- eBayes(fit2)
+
+out <- topTable(fit2, n=Inf, sort.by='none')
+
+out2 <- cbind(fit2$coef,
+			  out[, c('P.Value','adj.P.Val','AveExpr')],
+			  x[, c(<%== @export_cols %>)] )
+
+write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+
+cat(
+   toJSON(list(rank=fit2$rank, df_prior=fit2$df.prior,
+			   design=data.frame(fit2$design), contrasts=data.frame(fit2$contrasts),
+			   cov_coefficients=data.frame(fit2$cov.coefficients))),
+   file="<%== @output_dir %>/extra.json"
+)

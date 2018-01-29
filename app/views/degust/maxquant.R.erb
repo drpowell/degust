@@ -1,29 +1,25 @@
 library(limma)
 library(edgeR)
 library(jsonlite)
-library(dplyr)
-library(DEP)
 
 #From _common
 count_cols <- <%== @columns %>
 x<-read.delim('<%== @counts_file %>',skip=<%= @counts_skip %>, sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
 x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v)) # Force numeric count columns
+counts <- x[, count_cols]
 
 #Pre-process here
-data <- x %>%
-	filter(Reverse!="+", Only.identified.by.site!="+", Razor...unique.peptides>=2).
-data_filter<-filter_missval(data_se,thr = 2)
-data_norm<-normalize_vsn(data_filter)
-data_imp_man<-impute(data_filter,fun="man",shift=1.8,scale=0.3)
-imputed_matrix<-assay(data_imp_man)
+#data <- x %>%
+#	filter(Reverse!="+", Only.identified.by.site!="+", Razor...unique.peptides>=2).
+#data_filter<-filter_missval(data_se,thr = 2)
 
-counts <- imputed_matrix[, count_cols]
+keepMin <- apply(counts, 1, max) >= <%= @min_counts %>
+x <- x[keepMin,]
+y <- counts[keepMin,]
+
+logged <- log2(counts+0.5)
+
 design <- <%== @design %>
-
-#From voom
-nf <- calcNormFactors(counts)
-y<-voom(counts, design, plot=FALSE,lib.size=colSums(counts)*nf)
-
 cont.matrix <- <%== @cont_matrix %>
 
 fit <- lmFit(y,design)
