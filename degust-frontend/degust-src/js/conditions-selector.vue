@@ -37,6 +37,7 @@
             <option value='edgeR-quasi'>edgeR quasi-likelihood</option>
             <option value='edgeR'>edgeR</option>
             <option value='voom-weights'>Voom (samp weights)</option>
+            <option value='max-quant-voom'>Max-Quant-Voom/Limma</option>
           </select>
           <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
             Sample weights

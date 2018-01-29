@@ -152,7 +152,7 @@ module.exports =
     methods:
         #Refactored to accept MaxQuant tsv and make the preview table
         parse_csv: () ->
-            #console.log "Parsing!"
+            #console.log "Parsing!" that
             asRows = null
             if this.settings.csv_format
                 asRows = d3.csv.parseRows(this.csv_data)

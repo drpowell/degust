@@ -55,6 +55,7 @@ class WithBackendNoAnalysis
 
     request_data: () ->
         req = BackendCommon.script(this.code, "csv")
+        console.log(this.code)
         @events.$emit("start_loading")
         d3.text(req, (err, dat) =>
             log_info("Downloaded DGE CSV: len=#{dat.length}")
@@ -88,6 +89,7 @@ class WithBackendNoAnalysis
 class WithBackendAnalysis
     constructor: (@code, @settings, @events) ->
         @common = new BackendCommon(@settings)
+        console.log("wow")
 
     is_configured: () ->
         @settings.replicates.length > 0
