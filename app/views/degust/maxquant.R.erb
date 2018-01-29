@@ -15,9 +15,7 @@ counts <- x[, count_cols]
 
 keepMin <- apply(counts, 1, max) >= <%= @min_counts %>
 x <- x[keepMin,]
-y <- counts[keepMin,]
-
-logged <- log2(counts+0.5)
+y <- log2(counts[keepMin,]+0.5)
 
 design <- <%== @design %>
 cont.matrix <- <%== @cont_matrix %>
