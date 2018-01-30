@@ -1,5 +1,4 @@
 
-* Guess columns in csv file
 * Don't show "counts", show "intensity" labels?
     * Gene stripchart
     * "show counts" options

@@ -216,6 +216,12 @@ module.exports =
                 this.table_columns = this.table_columns.filter( (obj) ->
                     obj.name.match("Protein ID|^LFQ.*|Potential contaminant|Reverse|Peptide counts \\(razor\\+unique\\)"))
             this.columns_info = this.table_columns.map( (obj) -> obj.name )
+
+            # No config has been saved yet, so let's guess any useful columns
+            if !this.settings.name?
+                if this.is_maxquant
+                    this.settings.info_columns = this.columns_info.filter((c) -> ['Protein IDs','Peptide counts (razor+unique)'].includes(c))
+
             asRows.forEach((r,i) -> r.id = i)
             this.asRows = Vue.noTrack(asRows)
 
