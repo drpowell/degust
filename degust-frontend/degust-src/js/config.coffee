@@ -42,8 +42,8 @@ input_type_option_row = (val) ->
     else
         ''
 
-flds_optional = ["ec_column","link_column","link_url","min_counts","min_cpm",
-                 "min_cpm_samples","fdr_column","avg_column"]
+flds_optional = ["ec_column","link_column","link_url","min_counts", "min_columns", "min_cpm",
+                 "min_intensity", "min_intensity_samples", "min_cpm_samples","fdr_column","avg_column"]
 from_server_model = (mdl) ->
     res = $.extend(true, {}, mdl)
 
@@ -140,6 +140,7 @@ module.exports =
         settings:
             info_columns: []
             fc_columns: []
+            input_type: null
         csv_data: ""
         asRows: []
         columns_info: []
