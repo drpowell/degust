@@ -4,17 +4,17 @@ library(jsonlite)
 
 #From _common
 count_cols <- <%== @columns %>
-x<-read.delim('<%== @counts_file %>',skip=<%= @counts_skip %>, sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
-x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v)) # Force numeric count columns
-counts <- x[, count_cols]
+input<-read.delim('<%== @counts_file %>',skip=<%= @counts_skip %>, sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
+input[,count_cols] <- apply(input[,count_cols], 2, function(v) as.numeric(v)) # Force numeric count columns
+counts <- input[, count_cols]
 
 #Pre-process here
-#data <- x %>%
+#data <- input %>%
 #	filter(Reverse!="+", Only.identified.by.site!="+", Razor...unique.peptides>=2).
 #data_filter<-filter_missval(data_se,thr = 2)
 
 keepMin <- apply(counts, 1, max) >= <%= @min_counts %>
-x <- x[keepMin,]
+input <- input[keepMin,]
 y <- log2(counts[keepMin,]+0.5)
 
 design <- <%== @design %>
@@ -28,7 +28,7 @@ out <- topTable(fit2, n=Inf, sort.by='none')
 
 out2 <- cbind(fit2$coef,
 			  out[, c('P.Value','adj.P.Val','AveExpr')],
-			  x[, c(<%== @export_cols %>)] )
+			  input[, c(<%== @export_cols %>)] )
 
 write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
 
