@@ -20,6 +20,7 @@
 
     .multiselect__option {padding: 5px; font-size: 12px; min-height: auto;}
     .multiselect__content-wrapper { border: thin solid black;}
+    .multiselect--active {  z-index: 3; }  /* Make it above the slickgrid elements */
 
     .rep_used { padding: 0 3px; background-color: #ddd; border-radius: 3px; margin-left: 10px; float: right;}
 
