@@ -63,7 +63,10 @@
       <div class='row'>
         <conditions-selector v-show='settings.analyze_server_side'
                             :settings='settings'
-                            :dge_method='dge_method' :sel_conditions='sel_conditions' @apply='change_samples'>
+                            :dge_method='dge_method'
+                            :sel_conditions='sel_conditions'
+                            :dge_methods='dge_methods'
+                            @apply='change_samples'>
         </conditions-selector>
 
         <div class='col-xs-7' id='expression'>

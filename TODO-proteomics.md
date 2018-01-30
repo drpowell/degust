@@ -5,7 +5,6 @@
     * Gene stripchart
     * "show counts" options
 * Check how MDS is calculated - should use log intensity?
-* Don't show "limma/edgeR" etc. for MaxQuant
 * Don't show low "counts" filtering on config page
 * Don't show counts specific options in "extra" on config page
 * QC plots - which ones makes sense?

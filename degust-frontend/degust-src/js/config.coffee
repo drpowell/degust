@@ -1,5 +1,6 @@
 
 
+# TODO - re-enable warnings
 warnings = () ->
     # Check fdr-column
     el = $('#fdr-column').siblings('.text-error')
@@ -61,6 +62,17 @@ from_server_model = (mdl) ->
         then res.dge_method=res.dge_method[0]
         else delete res.dge_method
 
+    # Deal with old "analyze_server_side" option
+    if res.analyze_server_side? && !res.input_type?
+        res.input_type = if res.analyze_server_side then 'counts' else 'preanalysed'
+
+    # Convert "input_type" setting to row from options
+    if res.input_type?
+        res.input_type = input_type_options.filter((r) -> r.key == res.input_type)
+        if res.input_type.length>0
+        then res.input_type=res.input_type[0]
+        else delete res.input_type
+
     console.log("server model",mdl,res)
     res
 
@@ -88,6 +100,10 @@ to_server_model = (mdl) ->
         res.dge_method = res.dge_method.value
     if !res.dge_method?
         delete res.dge_method
+    if res.input_type?
+        res.input_type = res.input_type.key
+    if !res.input_type?
+        delete res.input_type
 
     res
 
@@ -96,6 +112,11 @@ dge_methods = [{value: 'voom', label: 'Voom/Limma'},
                {value: 'edgeR', label: 'edgeR'},
                {value: 'voom-weights', label: 'Voom (sample weights)'}
               ]
+
+input_type_options = [{key: 'counts', label: 'RNA-seq counts'},
+                      {key: 'maxquant', label: 'MaxQuant output'},
+                      {key: 'preanalysed', label: 'Pre-analysed logFC'},
+                     ]
 
 Multiselect = require('vue-multiselect').default
 Modal = require('modal-vue').default
@@ -125,6 +146,7 @@ module.exports =
             msgs_class: ""
         dge_methods: dge_methods
         show_about: false
+        input_type_options: input_type_options
     computed:
         code: () ->
             get_url_vars()["code"]
@@ -134,10 +156,16 @@ module.exports =
             this.orig_settings.is_owner
         grid_watch: () ->
             this.settings.csv_format
-            this.settings.max_quant
+            this.settings.input_type
             this.csv_data
             Date.now()
-        
+        is_pre_analysed: () ->
+            this.settings.input_type?.key == 'preanalysed'
+        is_rnaseq_counts: () ->
+            this.settings.input_type?.key == 'counts'
+        is_maxquant: () ->
+            this.settings.input_type?.key == 'maxquant'
+
     watch:
         'settings.name': () -> document.title = this.settings.name
         csv_data: () ->
@@ -150,6 +178,7 @@ module.exports =
             #this.grid.updateRowCount()
             #this.grid.render()
     methods:
+
         #Refactored to accept MaxQuant tsv and make the preview table
         parse_csv: () ->
             #console.log "Parsing!" that
@@ -168,7 +197,7 @@ module.exports =
                 sortable: false
                 )
             #Filter columns to only the ones we want
-            if this.settings.max_quant == true
+            if this.is_maxquant
                 this.table_columns = this.table_columns.filter( (obj) ->
                     obj.name.match("Protein\x20ID|^LFQ.*|Potential\x20contaminant|Reverse|Peptide\x20counts\x20\\(razor\\+unique\\)"))
             this.columns_info = this.table_columns.map( (obj) -> obj.name )

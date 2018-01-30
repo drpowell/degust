@@ -453,6 +453,7 @@ module.exports =
         r_code: ''
         show_about: false
         dge_method: null
+        dge_methods: []
         sel_conditions: []
         cur_plot: null
         cur_opts: 'options'
@@ -517,7 +518,7 @@ module.exports =
         '$route': (n,o) ->
             this.parse_url_params(n.query)
         settings: () ->
-            this.dge_method = this.settings.dge_method || 'voom'
+            this.dge_method = this.settings.dge_method || ''
             this.sel_conditions = this.$route.query.sel_conditions || this.settings.init_select || []
         cur_plot: () ->
             # On plot change, reset brushes
@@ -546,6 +547,11 @@ module.exports =
                     window.settings = json.settings
                     this.full_settings = json
                     this.settings = json.settings
+
+                    # Deal with old "analyze_server_side" option
+                    if this.settings.analyze_server_side? && !this.settings.input_type?
+                        this.settings.input_type = if this.settings.analyze_server_side then 'counts' else 'preanalysed'
+
                     this.load_success=true
                     this.$nextTick(() -> this.initBackend(true))
                  ).fail((x) =>
@@ -566,13 +572,25 @@ module.exports =
             if !use_backend
                 this.backend = new backends.BackendNone(this.settings, this.ev_backend)
             else
-                if this.settings.analyze_server_side
-                    this.backend = new backends.BackendRNACounts(this.code, this.settings, this.ev_backend)
-                else
-                    this.backend = new backends.BackendPreAnalysed(this.code, this.settings, this.ev_backend)
+                switch this.settings.input_type
+                    when 'counts'
+                        this.backend = new backends.BackendRNACounts(this.code, this.settings, this.ev_backend)
+                    when 'maxquant'
+                        this.backend = new backends.BackendMaxQuant(this.code, this.settings, this.ev_backend)
+                    when 'preanalysed'
+                        this.backend = new backends.BackendPreAnalysed(this.code, this.settings, this.ev_backend)
+                    else
+                        log_error("Unknown input_type : ",this.settings.input_type)
+
                 # If we're not configured, redirect to the config page
                 if !this.backend.is_configured()
                     window.location = this.config_url
+                this.dge_methods = this.backend.dge_methods()
+
+                # If there is no default dge_method set, then use first thing in the list
+                if this.dge_methods.length>0 && !this.settings.dge_method?
+                    console.log this.dge_methods
+                    this.dge_method = this.dge_methods[0][0]
 
             init_page()  # TODO - move this
             this.request_data()
