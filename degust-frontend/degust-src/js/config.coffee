@@ -35,6 +35,13 @@ $(document).ready(() -> setup_nav_bar() )
 $(document).ready(() -> $('[title]').tooltip())
 
 
+input_type_option_row = (val) ->
+    res = input_type_options.filter((r) -> r.key == val)
+    if res.length>0
+        res[0]
+    else
+        ''
+
 flds_optional = ["ec_column","link_column","link_url","min_counts","min_cpm",
                  "min_cpm_samples","fdr_column","avg_column"]
 from_server_model = (mdl) ->
@@ -68,10 +75,9 @@ from_server_model = (mdl) ->
 
     # Convert "input_type" setting to row from options
     if res.input_type?
-        res.input_type = input_type_options.filter((r) -> r.key == res.input_type)
-        if res.input_type.length>0
-        then res.input_type=res.input_type[0]
-        else delete res.input_type
+        res.input_type = input_type_option_row(res.input_type)
+        if res.input_type==''
+            delete res.input_type
 
     console.log("server model",mdl,res)
     res
@@ -106,6 +112,7 @@ to_server_model = (mdl) ->
         delete res.input_type
 
     res
+
 
 dge_methods = [{value: 'voom', label: 'Voom/Limma'},
                {value: 'edgeR-quasi', label: 'edgeR quasi-likelihood'},
@@ -170,9 +177,8 @@ module.exports =
         'settings.name': () -> document.title = this.settings.name
         csv_data: () ->
             # Guess the format, if we haven't set a name yet
-            if !this.settings.name? || this.settings.name==''
+            if !this.settings.name?
                 this.settings.csv_format = this.csv_data.split("\t").length<10
-
         grid_watch: () ->
             this.parse_csv()
             #this.grid.updateRowCount()
@@ -190,6 +196,15 @@ module.exports =
             column_keys = asRows.shift()
             column_keys ?= []
 
+            # No config has been saved yet, so let's guess!
+            if !this.settings.name?
+                if column_keys.includes('Peptide counts (razor+unique)')
+                    this.settings.input_type = input_type_option_row('maxquant')
+                else if column_keys.includes('FDR') || column_keys.includes('adj.P.Val')
+                    this.settings.input_type = input_type_option_row('preanalysed')
+                else
+                    this.settings.input_type = input_type_option_row('counts')
+
             this.table_columns = column_keys.map((key,i) ->
                 id: key
                 name: key
@@ -199,7 +214,7 @@ module.exports =
             #Filter columns to only the ones we want
             if this.is_maxquant
                 this.table_columns = this.table_columns.filter( (obj) ->
-                    obj.name.match("Protein\x20ID|^LFQ.*|Potential\x20contaminant|Reverse|Peptide\x20counts\x20\\(razor\\+unique\\)"))
+                    obj.name.match("Protein ID|^LFQ.*|Potential contaminant|Reverse|Peptide counts \\(razor\\+unique\\)"))
             this.columns_info = this.table_columns.map( (obj) -> obj.name )
             asRows.forEach((r,i) -> r.id = i)
             this.asRows = Vue.noTrack(asRows)

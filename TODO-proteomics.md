@@ -1,5 +1,4 @@
 
-* Guess it is a maxquant file?
 * Guess columns in csv file
 * Don't show "counts", show "intensity" labels?
     * Gene stripchart
