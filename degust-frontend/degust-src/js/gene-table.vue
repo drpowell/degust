@@ -65,16 +65,29 @@ slickTable = require('./slick-table.vue').default
 # TODO : restore page from link info
 
 # Rules for guess best info link based on some ID
-guess_link_info =
+guess_link_info_allelse =
     [{re: /^ENS/, link: 'http://ensembl.org/Multi/Search/Results?q=%s;site=ensembl'},
      {re: /^CG/, link: 'http://flybase.org/cgi-bin/uniq.html?species=Dmel&cs=yes&db=fbgn&caller=genejump&context=%s'},
      {re: /^/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
     ]
 
+guess_link_info_maxquant =
+    [{re: /^ENS/, link: 'http://ensembl.org/Multi/Search/Results?q=%s;site=ensembl'},
+     {re: /^CG/, link: 'http://flybase.org/cgi-bin/uniq.html?species=Dmel&cs=yes&db=fbgn&caller=genejump&context=%s'},
+     {re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'},
+     {re: /^/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
+    ]
+
 # Guess the link using the guess_link_info table
 guess_link = (info) ->
+    if this.settings.input_type == "maxquant"
+        link_info_use = guess_link_info_maxquant
+    else
+        link_info_use = guess_link_info_allelse
+    console.log(link_info_use)
+
     return if !info?
-    for o in guess_link_info
+    for o in link_info_use
         return o.link if info.match(o.re)
     return null
 
