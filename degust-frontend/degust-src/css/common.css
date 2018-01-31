@@ -7,7 +7,7 @@ div#beta { position: relative; height: 0}
 .supported-by a { display: block; }
 
 div#forkme { position: relative; height: 0 }
-#forkme img { position: absolute; top: -48px; right: -60px; border 0; }
+#forkme img { position: absolute; top: -48px; right: -60px; border: 0; }
 
 /* Override bootstrap popover z-index to ensure it is on top of the navbar */
 .popover { z-index: 1090; }
