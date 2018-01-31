@@ -136,6 +136,8 @@ module.exports =
             required: true
         showCounts:
             default: false
+        showIntensity:
+            default: false
         fcColumns:
             required: true
     data: () ->
@@ -147,6 +149,8 @@ module.exports =
     watch:
         # Not detected automatically in the gene_table_columns cause only used in a callback
         showCounts: () ->
+            this.$refs.slickGrid.invalidate()
+        showIntensity: () ->
             this.$refs.slickGrid.invalidate()
     computed:
         gene_table_columns: () ->
@@ -209,6 +213,20 @@ module.exports =
                 vals = count_columns.map((c) =>
                     tot = this.geneData.get_total(c)
                     val = (1000000 * row[c.idx]/tot).toFixed(1)
+                    "<span>#{val}</span>"
+                )
+                countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
+            "<div class='#{colour}'>#{n.toFixed(2)}#{countStr}</div>"
+
+            if this.showIntensity=='yes'
+                count_columns = this.geneData.assoc_column_by_type('count',column.name)
+                vals = count_columns.map((c,i) -> "<span>#{row[c.idx]}</span>")
+                countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
+            else if this.showIntensity=='log2'
+                count_columns = this.geneData.assoc_column_by_type('count',column.name)
+                vals = count_columns.map((c) =>
+                    tot = this.geneData.get_total(c)
+                    val = ((Math.log(row[c.idx])) * Math.LOG2E).toFixed(1)
                     "<span>#{val}</span>"
                 )
                 countStr = "<span class='counts'>(#{vals.join(" ")})</span>"

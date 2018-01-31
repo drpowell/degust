@@ -269,7 +269,7 @@ module.exports =
             )
         revert: () ->
             this.settings = from_server_model(this.orig_settings.settings)
-        check_errs: () ->
+        check_errs: () -> #TODO: Add error checking for other user inputs
             errs = this.check_conditon_names()
             if !(valid_int(this.settings.min_counts))
                 errs.push("Invalid min read count value")

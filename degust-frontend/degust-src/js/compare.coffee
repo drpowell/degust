@@ -439,6 +439,7 @@ module.exports =
         load_success: false
         num_loading: 0
         showCounts: 'no'
+        showIntensity: 'no'
         fdrThreshold: 1
         fcThreshold: 0
         fc_relative_i: null
@@ -514,6 +515,14 @@ module.exports =
                 heatmap_dims = Normalize.normalize(this.gene_data, count_cols)
             heatmap_dims
 
+        #Added to show/hide counts/intensity
+        is_pre_analysed: () ->
+            this.settings.input_type == 'preanalysed'
+        is_rnaseq_counts: () ->
+            this.settings.input_type == 'counts'
+        is_maxquant: () ->
+            this.settings.input_type == 'maxquant'
+
     watch:
         '$route': (n,o) ->
             this.parse_url_params(n.query)
@@ -548,6 +557,7 @@ module.exports =
                     this.full_settings = json
                     this.settings = json.settings
 
+
                     # Deal with old "analyze_server_side" option
                     if this.settings.analyze_server_side? && !this.settings.input_type?
                         this.settings.input_type = if this.settings.analyze_server_side then 'counts' else 'preanalysed'
@@ -568,7 +578,6 @@ module.exports =
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
             this.ev_backend.$on("done_loading", () => this.num_loading-=1)
             this.ev_backend.$on("dge_data", (data,cols) => this.process_dge_data(data,cols))
-
             if !use_backend
                 this.backend = new backends.BackendNone(this.settings, this.ev_backend)
             else
@@ -637,6 +646,7 @@ module.exports =
             state.sel_conditions = this.sel_conditions
             state.plot = this.cur_plot
             state.show_counts = this.showCounts
+            state.show_intensity = this.showIntensity
             state.fdrThreshold = this.fdrThreshold
             state.fcThreshold = this.fcThreshold
             #state.sortAbsLogFC = def(sortAbsLogFC, true)
@@ -654,6 +664,7 @@ module.exports =
         parse_url_params: (q) ->
             this.cur_plot = q.plot if q.plot?
             this.showCounts = q.show_counts if q.show_counts?
+            this.showIntensity = q.show_intensity if q.show_intensity?
             if q.fdrThreshold?
                 this.fdrThreshold = q.fdrThreshold
             else if settings.fdrThreshold?
