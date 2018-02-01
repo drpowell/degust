@@ -80,11 +80,10 @@ guess_link_info_maxquant =
 
 # Guess the link using the guess_link_info table
 guess_link = (info) ->
-    if this.settings.input_type == "maxquant"
+    if settings.input_type == "maxquant"
         link_info_use = guess_link_info_maxquant
     else
         link_info_use = guess_link_info_allelse
-    console.log(link_info_use)
 
     return if !info?
     for o in link_info_use
