@@ -43,7 +43,7 @@ input_type_option_row = (val) ->
         ''
 
 flds_optional = ["ec_column","link_column","link_url","min_counts", "min_columns", "min_cpm",
-                 "min_intensity", "min_intensity_samples", "min_cpm_samples","fdr_column","avg_column"]
+                 "min_cpm_samples","fdr_column","avg_column"]
 from_server_model = (mdl) ->
     res = $.extend(true, {}, mdl)
 

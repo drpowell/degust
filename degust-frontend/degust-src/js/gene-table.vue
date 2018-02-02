@@ -65,27 +65,21 @@ slickTable = require('./slick-table.vue').default
 # TODO : restore page from link info
 
 # Rules for guess best info link based on some ID
-guess_link_info_allelse =
+guess_link_info =
     [{re: /^ENS/, link: 'http://ensembl.org/Multi/Search/Results?q=%s;site=ensembl'},
      {re: /^CG/, link: 'http://flybase.org/cgi-bin/uniq.html?species=Dmel&cs=yes&db=fbgn&caller=genejump&context=%s'},
      {re: /^/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
     ]
 
-guess_link_info_maxquant =
-    [{re: /^ENS/, link: 'http://ensembl.org/Multi/Search/Results?q=%s;site=ensembl'},
-     {re: /^CG/, link: 'http://flybase.org/cgi-bin/uniq.html?species=Dmel&cs=yes&db=fbgn&caller=genejump&context=%s'},
-     {re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'},
-     {re: /^/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
-    ]
+guess_link_info_uniprot =
+    {re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'}
+    
 
 # Guess the link using the guess_link_info table
-guess_link = (info) ->
-    if settings.input_type == "maxquant"
-        link_info_use = guess_link_info_maxquant
-    else
-        link_info_use = guess_link_info_allelse
-
+guess_link = (useUniprot, info) ->
     return if !info?
+    if useUniprot
+        return guess_link_info_maxquant.link if info.match(guess_link_info_maxquant.re)
     for o in link_info_use
         return o.link if info.match(o.re)
     return null
@@ -152,6 +146,8 @@ module.exports =
             default: false
         fcColumns:
             required: true
+        useUniprot:
+            default: false
     data: () ->
         searchStr: ""
         table_info:
@@ -252,7 +248,7 @@ module.exports =
                 cols = this.geneData.columns_by_type(['info'])
             if cols.length>0
                 info = item[cols[0].idx]
-                link = if this.linkUrl? then this.linkUrl else guess_link(info)
+                link = if this.linkUrl? then this.linkUrl else guess_link(this.useUniprot, info)
                 log_debug("Dbl click.  Using info/link",info,link)
                 if link?
                     link = link.replace(/%s/, info)

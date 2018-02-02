@@ -134,11 +134,11 @@
                 <div class="form-group">
                   <label class="control-label col-sm-3" for="name">Min gene Intensity</label>
                   <div class="controls col-sm-1">
-                    <input v-model.number='settings.min_intensity' class="form-control" type="text" name="min-intensity" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
+                    <input v-model.number='settings.min_counts' class="form-control" type="text" name="min-intensity" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
                   </div>
                   <label class="control-label col-sm-2" for="name">in at least samples</label>
                   <div class="controls col-sm-1">
-                    <input v-model.number='settings.min_intensity_samples' class="form-control" type="text" name="min-intensity-samples" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
+                    <input v-model.number='settings.min_cpm_samples' class="form-control" type="text" name="min-intensity-samples" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
                   </div>
                 </div>
               </div>
