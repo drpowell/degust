@@ -542,8 +542,6 @@ module.exports =
                     url: backends.BackendCommon.script(this.code,"settings"),
                     dataType: 'json'
                 }).done((json) =>
-                    window.full_settings = json
-                    window.settings = json.settings
                     this.full_settings = json
                     this.settings = json.settings
                     this.load_success=true
