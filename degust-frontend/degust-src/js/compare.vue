@@ -131,6 +131,7 @@
                        :num-genes='numGenesThreshold'
                        :skip-genes='skipGenesThreshold'
                        :dimension='mdsDimension'
+                       :plot2d3d='mds_2d3d'
                        @top-genes='set_genes_selected'
                        @dimension='v => mdsDimension = v'
                        >
