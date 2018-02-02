@@ -68,6 +68,7 @@ calc_max_parcoords_width = () ->
     w -= $('.conditions').outerWidth(true) if $('.conditions').is(':visible')
     w -= $('div.filter').outerWidth(true) if $('div.filter').is(':visible')
 
+# TODO - remove once table sorting fixed
 init_gene_table_menu = () ->
     menu = [
             title: () -> "<input type='checkbox' style='margin-right:10px;' #{if sortAbsLogFC then "checked" else ""}/><label>Sorting by ABSOLUTE logFC</label>"
@@ -84,124 +85,6 @@ init_gene_table_menu = () ->
         # Move the popup to the left
         opts = {onPostOpen: (m) -> console.log("move!"); m.style('left', (d3.event.pageX - 250) + 'px')}
         d3.contextMenu(menu,opts)()
-    )
-
-init_charts = () ->
-    # init_gene_table_menu()
-
-    parcoords = new ParCoords(
-        elem: '#dge-pc'
-        width: calc_max_parcoords_width()
-        filter: expr_filter
-        )
-
-    ma_plot = new MAPlot(
-        elem: '#dge-ma'
-        filter: expr_filter
-        xaxis_loc: 'zero'
-        brush_enable: true
-        canvas: true
-        height: 300
-        width: 600
-        )
-    ma_plot.on("mouseover.main", (rows) -> heatmap.highlight(rows); gene_expr.select(g_data, rows))
-    ma_plot.on("mouseout.main", () -> heatmap.unhighlight())
-
-    volcano_plot = new VolcanoPlot(
-        elem: '#dge-volcano'
-        filter: expr_filter
-        yaxis_loc: 'zero'
-        brush_enable: true
-        canvas: true
-        height: 300
-        width: 600
-        )
-    volcano_plot.on("mouseover.main", (rows) -> heatmap.highlight(rows); gene_expr.select(g_data, rows))
-    volcano_plot.on("mouseout.main", () -> heatmap.unhighlight())
-
-    pca_plot = new GenePCA(
-        elem: '#dge-pca'
-        filter: expr_filter
-        colour: g_colour_by_parent
-        sel_dimension: (d) => g_vue_obj.pcaDimension = +d
-        params: () ->
-            skip: +g_vue_obj.skipGenesThreshold
-            num: +g_vue_obj.numGenesThreshold
-            dims: [+g_vue_obj.pcaDimension, +g_vue_obj.pcaDimension+1, +g_vue_obj.pcaDimension+2]
-            plot_2d3d: g_vue_obj.mds_2d3d
-        )
-    pca_plot.on("top_genes", (top) =>
-        gene_table.set_data(top)
-        heatmap.schedule_update(top)
-    )
-
-    kegg = new Kegg(
-        elem: 'div#kegg-image'
-        mouseover: kegg_mouseover
-        mouseout: () -> g_vue_obj.current_plot.unhighlight()
-        )
-
-    # update grid on brush
-    parcoords.on("brush", (d) ->
-        gene_table.set_data(d)
-        heatmap.schedule_update(d)
-    )
-    ma_plot.on("brush", (d) ->
-        gene_table.set_data(d)
-        heatmap.schedule_update(d)
-    )
-    volcano_plot.on("brush", (d) ->
-        gene_table.set_data(d)
-        heatmap.schedule_update(d)
-    )
-
-    # Used to reorder the heatmap columns by the parcoords order
-    order_columns_by_parent = (columns, parent) ->
-        pos = {}
-        for i in [0...parent.length]
-            pos[parent[i]] = i
-        new_cols = columns.slice()
-        new_cols.sort((a,b) ->
-            if pos[a.parent]==pos[b.parent]
-                0
-            else if pos[a.parent] < pos[b.parent]
-                -1
-            else
-                1
-        )
-        new_cols
-
-    parcoords.on("render", () ->
-        return if !heatmap.columns
-        dim_names = parcoords.dimension_names()
-        names = parcoords.dimensions().map((c) -> dim_names[c])
-        new_cols = order_columns_by_parent(heatmap.columns, names)
-        heatmap.reorder_columns(new_cols)
-    )
-
-    #Heatmap
-    heatmap = new Heatmap(
-        elem: '#heatmap'
-        show_elem: '.show-heatmap'
-    )
-    heatmap.on("mouseover", (d) ->
-        g_vue_obj.current_plot.highlight([d])
-        msg = ""
-        for col in g_data.columns_by_type(['info'])
-          msg += "<span class='lbl'>#{col.name}: </span><span>#{d[col.idx]}</span>"
-        $('#heatmap-info').html(msg)
-        gene_expr.select(g_data, [d])
-    )
-    heatmap.on("mouseout", (d) ->
-        g_vue_obj.current_plot.unhighlight()
-        $('#heatmap-info').html("")
-    )
-    heatmap.on("need_update", () -> update_data())
-
-    gene_expr = new GeneExpression(
-        elem: '.single-gene-expr'
-        width: 233
-        colour: g_colour_by_parent
     )
 
 # Filter to decide which rows to plot on the parallel coordinates widget
