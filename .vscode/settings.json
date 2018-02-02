@@ -1,0 +1,12 @@
+{
+    "todohighlight.exclude": [
+        "**/degust-src/js/lib/**",
+        "**/degust-dist/**",
+        "**/node_modules/**"
+    ],
+    "todohighlight.include": [
+        "**/*.coffee",
+        "**/*.vue",
+    ],
+    "files.trimTrailingWhitespace": true,
+}
