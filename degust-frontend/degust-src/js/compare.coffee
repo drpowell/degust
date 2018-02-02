@@ -387,19 +387,6 @@ update_data = () ->
     # Ensure the brush callbacks are called (updates heatmap & table)
     g_vue_obj.current_plot.brush()
 
-init_page = () ->
-    setup_nav_bar()
-    $('[title]').tooltip()
-
-    if full_settings?
-        if full_settings['extra_menu_html']
-            $('#right-navbar-collapse').append(full_settings['extra_menu_html'])
-
-    $("select#kegg").change(kegg_selected)
-
-    #$(window).bind( 'hashchange', update_from_link )
-
-
 sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 about = require('./about.vue').default
@@ -434,7 +421,8 @@ module.exports =
         heatmap: heatmap
     data: () ->
         settings: {}
-        full_settings: {}
+        full_settings:
+            extra_menu_html: ''
         load_failed: false
         load_success: false
         num_loading: 0
@@ -555,6 +543,12 @@ module.exports =
                         $('.error-msg').append(pre)
                     )
                 )
+
+        init_page: () ->
+            setup_nav_bar()      #FIXME
+            $('[title]').tooltip()
+            $("select#kegg").change(kegg_selected) #FIXME
+
         initBackend: (use_backend) ->
             this.ev_backend = new Vue()
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
@@ -572,7 +566,7 @@ module.exports =
                 if !this.backend.is_configured()
                     window.location = this.config_url
 
-            init_page()  # TODO - move this
+            this.init_page()
             this.request_data()
 
         # Send a request to the backend.  First request, or when selected samples has changed
