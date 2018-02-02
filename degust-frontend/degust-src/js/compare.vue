@@ -153,6 +153,7 @@
           <gene-stripchart v-if='cur_opts=="gene"'
                            :gene-data='gene_data'
                            :colour='condition_colouring'
+                           :useIntensity='is_maxquant'
                            :selected='genes_hover'
                            >
           </gene-stripchart>
