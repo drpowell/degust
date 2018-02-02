@@ -86,11 +86,8 @@ class GeneStripchart
 
     _make_menu: (el) ->
         print_menu = (new Print((() => @_get_svg()), "Gene expression")).menu()
-        menu_text = if @useIntensity 
-                        if !@show_log2Intensity then "Plot as log2 Intensity" else "Plot as Intensity"
-                    else if !@show_cpm then "Plot as CPM" else "Plot as Counts"
         menu = [
-                title: () => (menu_text)
+                title: () => @set_text("Plot as ")
                 action: () =>
                     if @useIntensity
                         @show_log2Intensity = !@show_log2Intensity
@@ -111,10 +108,12 @@ class GeneStripchart
         vals = cols.map((c) =>
             norm_factor = @data.get_total(c) / 1000000.0
             # {lbl: c.name, parent: c.parent, val: Math.log(0.5 + row[c.idx]/norm_factor)/Math.log(2)}
-            val = if @show_cpm then row[c.idx]/norm_factor else row[c.idx]
+            
             # Shouldn't be able to set both @show_cpm AND @show_log2Intensity to be true at the same time.
-            val = if @show_log2Intensity then Math.log(row[c.idx]) * Math.LOG2E else row[c.idx]
-
+            if !@useIntensity 
+                val = if @show_cpm then row[c.idx]/norm_factor else row[c.idx]
+            else 
+                val = if @show_log2Intensity then Math.log(row[c.idx]) * Math.LOG2E else row[c.idx]
             {lbl: c.name, parent: c.parent, val: val}
         )
 
@@ -139,10 +138,6 @@ class GeneStripchart
               .attr("transform", "rotate(-90) translate(-10,-15)")
               .style("text-anchor", "end")
 
-        unit_text = if @useIntensity
-                        if @show_log2Intensity then "Log2" else "Intensity"
-                    else if @show_cpm then "CPM" else "Counts"
-
         @svg.append("g")
              .attr("class", "y axis")
              .call(@yAxis)
@@ -152,7 +147,7 @@ class GeneStripchart
              .attr("x", 0)
              .attr("y", 10)
              .style("text-anchor", "end")
-             .text(unit_text)
+             .text(@set_text(""))
 
         pts = @svg.selectAll(".pts")
             .data(vals)
@@ -168,6 +163,13 @@ class GeneStripchart
 
     jitter: (d) ->
         @jitter_cache[d.lbl] ?= Math.random()*8 - 4
+
+    set_text: (prefix) ->
+        txt = if @useIntensity
+            if @show_log2Intensity then "Log2" else "Intensity"
+        else 
+            if @show_cpm then "CPM" else "Counts"
+        return prefix + txt
 
     _hide_tooltip: () ->
         @tooltip.style("opacity", 0)
