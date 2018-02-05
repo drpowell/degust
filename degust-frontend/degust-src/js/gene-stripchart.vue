@@ -9,7 +9,7 @@
 .single-gene-expr >>> .strip-chart .axis { font: 10px sans-serif; }
 
 .single-gene-expr >>> div.tooltip {
-  position: absolute;
+  position: fixed;
   text-align: center;
   padding: 2px;
   font: 12px sans-serif;
@@ -91,7 +91,7 @@ class GeneStripchart
                 action: () =>
                     if @useIntensity
                         @show_log2Intensity = !@show_log2Intensity
-                    else 
+                    else
                         @show_cpm = !@show_cpm
                     @update()
         ]
@@ -110,7 +110,7 @@ class GeneStripchart
             # {lbl: c.name, parent: c.parent, val: Math.log(0.5 + row[c.idx]/norm_factor)/Math.log(2)}
             
             # Shouldn't be able to set both @show_cpm AND @show_log2Intensity to be true at the same time.
-            if !@useIntensity 
+            if !@useIntensity
                 val = if @show_cpm then row[c.idx]/norm_factor else row[c.idx]
             else 
                 val = if @show_log2Intensity then Math.log(row[c.idx]) * Math.LOG2E else row[c.idx]
@@ -165,10 +165,13 @@ class GeneStripchart
         @jitter_cache[d.lbl] ?= Math.random()*8 - 4
 
     set_text: (prefix) ->
+    # Prefix is set to non-empty string when we need it for a menu (Can be used as Falsy, otherwise we can use prefix.length > 0).
+    # We use it negate the menu text so that it shows the correct option. Alternatively we can use !(A ^ !B) in this case.
+    # i.e. displays "Show in CPM when in counts mode and vice versa"
         txt = if @useIntensity
-            if @show_log2Intensity then "Log2" else "Intensity"
+            if @show_log2Intensity == !prefix then "Log2" else "Intensity"
         else 
-            if @show_cpm then "CPM" else "Counts"
+            if @show_cpm == !prefix then "CPM" else "Counts"
         return prefix + txt
 
     _hide_tooltip: () ->
