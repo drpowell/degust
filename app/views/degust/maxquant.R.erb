@@ -11,13 +11,30 @@ rzr_uniq <- lapply(lapply(mapply(rzr_col, FUN = strsplit, ";"), FUN = as.numeric
 
 data <- data[data$Reverse != "+" & data$`Only identified by site` != "+" & rzr_uniq > 1,]
 data[,count_cols] <- apply(data[,count_cols], 2, function(v) as.numeric(v)) # Force numeric count columns
-counts <- data[, count_cols]
+
+counts <- as.matrix(data[, count_cols])
+#Remove rows with >= 20% missing values (Missing mean NA, not 0)
+data <- data[rowMeans(counts == 0) >= 0.2,]
+counts <- counts[rowMeans(counts == 0) >= 0.2,]
+#Variance Stabilise
+
+#Impute here.
+lowpt <- median(as.matrix(counts)) - (sd(as.matrix(counts)) * 1.5)
+highpt <- median(as.matrix(counts)) - (sd(as.matrix(counts)) * 2.1)
+mid_vals <- counts[counts < highpt & lowpt < counts]
+#Select values at random which are <= 1.8 SD from the median and fill them into NA's?
+counts[is.na(counts)] <- mid_vals[floor(runif(n=sum(is.na(counts)), min = 0, max = length(mid_vals)))]
+#Select values at random from normal distribution which take values from 1.5-2.1SD from median.
+#How do we produce a normal distribution that can select from it?
+
+#Assay call
 
 #Pre-process here
 #data <- x %>%
 #	filter(Reverse!="+", Only.identified.by.site!="+", Razor...unique.peptides>=2).
 #data_filter<-filter_missval(data_se,thr = 2)
 
+#Filters low intensity/counts (not missing values) Probably redundant as missing values are 0's 
 keepMin <- apply(counts, 1, max) >= <%= @min_counts %>
 data <- data[keepMin,]
 y <- log2(counts[keepMin,]+0.5)
