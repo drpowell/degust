@@ -79,7 +79,7 @@ guess_link_info_uniprot =
 guess_link = (useUniprot, info) ->
     return if !info?
     if useUniprot
-        return guess_link_info_maxquant.link if info.match(guess_link_info_maxquant.re)
+        return guess_link_info_uniprot.link if info.match(guess_link_info_uniprot.re)
     for o in link_info_use
         return o.link if info.match(o.re)
     return null
