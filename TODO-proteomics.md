@@ -1,5 +1,5 @@
-* Don't show "counts", show "intensity" labels?
-    * "show counts" options
+# TODO
+
 * Check how MDS is calculated - should use log intensity?
     * Currently uses
 * Don't show low "counts" filtering on config page
