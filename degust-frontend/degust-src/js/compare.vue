@@ -50,6 +50,7 @@
             </ul>
           </li>
           <li><a @click='show_about=true'>About</a></li>
+          <ul class="nav navbar-nav navbar-right navbar-collapse collapse"  v-html='full_settings.extra_menu_html' v-if='full_settings.extra_menu_html'></ul>
         </ul>
       </div>
     </div>
@@ -133,6 +134,7 @@
                        :num-genes='numGenesThreshold'
                        :skip-genes='skipGenesThreshold'
                        :dimension='mdsDimension'
+                       :plot2d3d='mds_2d3d'
                        @top-genes='set_genes_selected'
                        @dimension='v => mdsDimension = v'
                        >
