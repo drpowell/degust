@@ -55,7 +55,6 @@ class BackendPreAnalysed
 
     request_data: () ->
         req = BackendCommon.script(this.code, "csv")
-        console.log(this.code)
         @events.$emit("start_loading")
         d3.text(req, (err, dat) =>
             log_info("Downloaded DGE CSV: len=#{dat.length}")
@@ -91,12 +90,20 @@ class BackendRNACounts
         @common = new BackendCommon(@settings)
 
     dge_methods: () ->
-        [
-            ['voom', 'Voom/Limma'],
-            ['edgeR-quasi', 'edgeR quasi-likelihood'],
-            ['edgeR', 'edgeR'],
-            ['voom-weights', 'Voom (samp weights)'],
-        ]
+        res = []
+        if @have_replicates()
+            res.push(
+                ['voom', 'Voom/Limma'],
+                ['edgeR-quasi', 'edgeR quasi-likelihood'],
+                ['edgeR', 'edgeR'],
+                ['voom-weights', 'Voom (samp weights)']
+            )
+        res.push(['logFC-only', 'LogFC only (no P-values)'])
+        res
+
+    # Do we have more than 1 replicate in *any* of our conditions
+    have_replicates: () ->
+        @settings.replicates.map(([name,reps]) -> reps.length).some((x) -> x>1)
 
     is_configured: () ->
         @settings.replicates.length > 0
