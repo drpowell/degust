@@ -1,3 +1,4 @@
+
   * Fix "save to svg" order rendering
   * Add sorting to "your data" table
   * Make gene table able to sort by logFC or abs(logFC)
@@ -5,6 +6,7 @@
   * Make config page conditions able to be reordered by up/down arrows
   * Add edgeR quasi-likelihood test : https://www.bioconductor.org/packages/devel/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf
   * Changing to the MDS tab now sets FDR and FC filters off
+  * Add analyis mode "logFC only"  useful when there are no replicates.  Effectively sets p-value to 1
 
 v3.1.0
   * Add printing of MA-Plot

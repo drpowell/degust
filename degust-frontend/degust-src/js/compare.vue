@@ -1,4 +1,7 @@
 <style>
+    #expression { position: relative; }
+    .loading { position: absolute; top: 100px; left: 250px; }
+
     .slider-control { display: inline-block; }
     a.sm-link { font-size: 10px;}
     .r-code { font-size: 11px; max-height: 60%;}

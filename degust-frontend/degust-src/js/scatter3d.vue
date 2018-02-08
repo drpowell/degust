@@ -1,8 +1,20 @@
 <style scoped>
+
+.loading-library {
+    height: 400px;
+}
+.loading-library img {
+    margin: auto;
+    display: block
+}
+
 </style>
 
 <template>
     <div class='scatter-outer' ref='outer'>
+        <div class='loading-library' v-if='loading'>
+            <img :src='$global.asset_base + "images/ajax-loader.gif"' />
+        </div>
     </div>
 </template>
 
@@ -54,7 +66,7 @@ class Scatter3d
 
         @onResize(el,  () =>
           w = @w = el.clientWidth
-          h = @h = w #el.clientHeight
+          h = @h = el.clientHeight
           @renderer.setSize(w,h)
           @renderer.setViewport(0, 0, w, h)
           @camera.aspect = w / h
@@ -384,6 +396,8 @@ module.exports =
         xColumn: null
         yColumn: null
         zColumn: null
+    data: () ->
+        loading: true
 
     computed:
         needsUpdate: () ->
@@ -404,6 +418,7 @@ module.exports =
                 this.me.update_data(this.data, [this.xColumn,this.yColumn,this.zColumn])
     mounted: () ->
         DynamicJS.load("./three.js", () =>
+            this.loading = false
             this.me = new Scatter3d(
                 elem: this.$refs.outer
                 tot_height: 400
