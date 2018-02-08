@@ -1,8 +1,15 @@
 
 * 3d MDS to component
+* Fix 3d MDS while loading THREE
 * Fix table sorting by abs/non-abs FC
+    * option on table header
 * Check render-order is so p-value on top in ma-plot, parcoords, heatmap
+* Show PCA dimension loading in MDS
+    * On table cog, allow selection of columns to display.  Including variance column
+* MDS option for consitent axis range
 
+* Add popup warnings - eg. MDS with filters on
+* Add popup of "changes" using cookie/localstorage since last used
 * Fix Kegg?
 
 * Advanced Option to only used selected conditions
@@ -16,7 +23,6 @@
 * Check RLE plot is correct
 * Check HTML elems in condition names
 
-* Show PCA dimension loading in MDS
 * Counts with hidden factors removed
 * Optional columns in Table.  Variance, Confidence intervals
 * UI for "extras" from DGE.  Including voom-weights

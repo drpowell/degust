@@ -1,0 +1,23 @@
+<%= render "degust/common.R.erb" %>
+
+nf <- calcNormFactors(counts)
+
+y <- cpm(counts, normalized.lib.sizes=T, lib.size=colSums(counts)*nf, log=T)
+
+cont.matrix <- <%== @cont_matrix %>
+
+fit <- lmFit(y,design)
+fit2 <- contrasts.fit(fit, cont.matrix)
+
+out2 <- cbind(fit2$coef,
+              P.value=c(1), adj.P.Val=c(1), AveExpr=fit2$Amean,
+			  x[, c(<%== @export_cols %>)] )
+
+write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+
+cat(
+   toJSON(list(rank=fit2$rank, df_prior=fit2$df.prior,
+			   design=data.frame(fit2$design), contrasts=data.frame(fit2$contrasts),
+			   cov_coefficients=data.frame(fit2$cov.coefficients))),
+   file="<%== @output_dir %>/extra.json"
+)

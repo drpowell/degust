@@ -24,6 +24,7 @@ class DegustLogic
                  when 'edgeR-quasi' then 'edgeR-quasi'
                  when 'voom-weights' then 'voom-weights'
                  when 'maxquant' then 'maxquant'
+                 when 'logFC-only' then 'logFC-only'
                  end
 
         return nil if method.nil?
