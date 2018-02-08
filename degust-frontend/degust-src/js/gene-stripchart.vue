@@ -9,7 +9,7 @@
 .single-gene-expr >>> .strip-chart .axis { font: 10px sans-serif; }
 
 .single-gene-expr >>> div.tooltip {
-  position: absolute;
+  position: fixed;
   text-align: center;
   padding: 2px;
   font: 12px sans-serif;
@@ -72,6 +72,8 @@ class GeneStripchart
 
         @jitter_cache = {}
         @show_cpm = false
+        @show_log2Intensity = false
+        @useIntensity = @opts.useIntensity
         @_make_menu(@opts.elem)
 
     # Return a copy of the SVG with styles attached from the stylesheet
@@ -85,9 +87,12 @@ class GeneStripchart
     _make_menu: (el) ->
         print_menu = (new Print((() => @_get_svg()), "Gene expression")).menu()
         menu = [
-                title: () => (if @show_cpm then "Plot as Counts" else "Plot as CPM")
+                title: () => @set_text("Plot as ")
                 action: () =>
-                    @show_cpm = !@show_cpm
+                    if @useIntensity
+                        @show_log2Intensity = !@show_log2Intensity
+                    else
+                        @show_cpm = !@show_cpm
                     @update()
         ]
         d3.select(el).on('contextmenu', d3.contextMenu(menu.concat(print_menu))) # attach menu to element
@@ -103,7 +108,12 @@ class GeneStripchart
         vals = cols.map((c) =>
             norm_factor = @data.get_total(c) / 1000000.0
             # {lbl: c.name, parent: c.parent, val: Math.log(0.5 + row[c.idx]/norm_factor)/Math.log(2)}
-            val = if @show_cpm then row[c.idx]/norm_factor else row[c.idx]
+            
+            # Shouldn't be able to set both @show_cpm AND @show_log2Intensity to be true at the same time.
+            if !@useIntensity
+                val = if @show_cpm then row[c.idx]/norm_factor else row[c.idx]
+            else 
+                val = if @show_log2Intensity then Math.log(row[c.idx]) * Math.LOG2E else row[c.idx]
             {lbl: c.name, parent: c.parent, val: val}
         )
 
@@ -137,7 +147,7 @@ class GeneStripchart
              .attr("x", 0)
              .attr("y", 10)
              .style("text-anchor", "end")
-             .text(if @show_cpm then "CPM" else "Counts")
+             .text(@set_text(""))
 
         pts = @svg.selectAll(".pts")
             .data(vals)
@@ -154,6 +164,16 @@ class GeneStripchart
     jitter: (d) ->
         @jitter_cache[d.lbl] ?= Math.random()*8 - 4
 
+    set_text: (prefix) ->
+    # Prefix is set to non-empty string when we need it for a menu (Can be used as Falsy, otherwise we can use prefix.length > 0).
+    # We use it negate the menu text so that it shows the correct option. Alternatively we can use !(A ^ !B) in this case.
+    # i.e. displays "Show in CPM when in counts mode and vice versa"
+        txt = if @useIntensity
+            if @show_log2Intensity == !prefix then "Log2" else "Intensity"
+        else 
+            if @show_cpm == !prefix then "CPM" else "Counts"
+        return prefix + txt
+
     _hide_tooltip: () ->
         @tooltip.style("opacity", 0)
 
@@ -164,10 +184,12 @@ class GeneStripchart
 
         loc = [d3.event.pageX, d3.event.pageY]
 
-        if @show_cpm
+        if @show_cpm or @show_log2Intensity
             fmt = (val) -> val.toFixed(2)
         else
             fmt = (val) -> val
+
+
         #fmt2 = (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)
 
         @tooltip.transition().duration(200)
@@ -191,6 +213,8 @@ module.exports =
         colour:
             type: Function
             default: d3.scale.category10()
+        useIntensity:
+            default: false
     watch:
         selected: () ->
             if this.selected.length>0
@@ -201,5 +225,6 @@ module.exports =
             elem: this.$el
             width: 233
             colour: this.colour
+            useIntensity: this.useIntensity
         )
 </script>

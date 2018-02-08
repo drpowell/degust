@@ -153,6 +153,7 @@
           <gene-stripchart v-if='cur_opts=="gene"'
                            :gene-data='gene_data'
                            :colour='condition_colouring'
+                           :useIntensity='is_maxquant'
                            :selected='genes_hover'
                            >
           </gene-stripchart>
@@ -196,13 +197,25 @@
                   <option v-for='(col,i) in fc_calc_columns' :value='i'>{{col.name}}</option>
               </select>
             </div>
-            <div title='Show raw counts (or counts-per-million) in the table' data-placement='left' class='show-counts-opt'>
-              <label for='show-counts'>Show Counts</label>
-              <select v-model="showCounts">
-                <option value='no'>No</option>
-                <option value='yes'>Yes</option>
-                <option value='cpm'>As counts-per-million</option>
+            <div v-show='is_rnaseq_counts'>
+              <div title='Show raw counts (or counts-per-million) in the table' data-placement='left' class='show-counts-opt'>
+                <label for='show-counts'>Show Counts</label>
+                <select v-model="showCounts">
+                  <option value='no'>No</option>
+                  <option value='yes'>Yes</option>
+                  <option value='cpm'>As counts-per-million</option>
               </select>
+              </div>
+            </div>
+            <div v-show='is_maxquant'>
+              <div title='Show raw intensity in the table' data-placement='left' class='show-intensity-opt'>
+                <label for='show-intensity'>Show Intensity</label>
+                <select v-model="showIntensity">
+                  <option value='no'>No</option>
+                  <option value='yes'>Yes</option>
+                  <option value='log2'>As Log2 Intensity</option>
+              </select>
+              </div>
             </div>
             <div class='pca-opts' v-show="cur_plot=='mds'">
               <div class='pca-title'>MDS options</div>
@@ -306,7 +319,8 @@
         <h2>Genes</h2>
         <gene-table :gene-data='gene_data' :link-url='settings.link_url'
                     :fc-columns='fc_calc_columns'
-                    :rows='genes_selected' :show-counts='showCounts'
+                    :rows='genes_selected' :show-counts='showCounts' :show-intensity='showIntensity'
+                    :useUniprot='is_maxquant'
                     @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
                     >
         </gene-table>

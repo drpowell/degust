@@ -123,7 +123,27 @@
                     <input v-model.number='settings.min_cpm_samples' class="form-control" type="text" name="min-cpm" placeholder="0" title="Optional: A gene must have at a CPM of at least this, in at least the number of specified samples" data-placement='right' />
                   </div>
                 </div>
-            </div>
+              </div>
+
+              <div v-show='is_maxquant'>
+                <div class="form-group">
+                  <label class="control-label col-sm-3" for="name">Min present columns</label>
+                  <div class="controls col-sm-1">
+                    <input v-model.number='settings.min_columns' class="form-control" type="text" name="min-columnns" placeholder="0" title="Optional: Minumum percent of columns with values present to keep the protein" data-placement='right' />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-3" for="name">Min gene Intensity</label>
+                  <div class="controls col-sm-1">
+                    <input v-model.number='settings.min_counts' class="form-control" type="text" name="min-intensity" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
+                  </div>
+                  <label class="control-label col-sm-2" for="name">in at least samples</label>
+                  <div class="controls col-sm-1">
+                    <input v-model.number='settings.min_cpm_samples' class="form-control" type="text" name="min-intensity-samples" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
+                  </div>
+                </div>
+              </div>
+
             <div v-show='is_rnaseq_counts || is_maxquant'>
                 <div class="condition-group conditions">
                   <div class="form-group">

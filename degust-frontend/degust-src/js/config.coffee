@@ -42,7 +42,7 @@ input_type_option_row = (val) ->
     else
         ''
 
-flds_optional = ["ec_column","link_column","link_url","min_counts","min_cpm",
+flds_optional = ["ec_column","link_column","link_url","min_counts", "min_columns", "min_cpm",
                  "min_cpm_samples","fdr_column","avg_column"]
 from_server_model = (mdl) ->
     res = $.extend(true, {}, mdl)
@@ -140,6 +140,7 @@ module.exports =
         settings:
             info_columns: []
             fc_columns: []
+            input_type: null
         csv_data: ""
         asRows: []
         columns_info: []
@@ -268,7 +269,7 @@ module.exports =
             )
         revert: () ->
             this.settings = from_server_model(this.orig_settings.settings)
-        check_errs: () ->
+        check_errs: () -> #TODO: Add error checking for other user inputs
             errs = this.check_conditon_names()
             if !(valid_int(this.settings.min_counts))
                 errs.push("Invalid min read count value")
