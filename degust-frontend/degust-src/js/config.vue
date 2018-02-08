@@ -282,8 +282,8 @@
               </div>
           </div>
           <div slot="footer">
-            <button @click='closeModal' class="btn btn-primary">Close</button>
-            <a v-if="modal.view" v-bind:href="view_url" class="view btn btn-default">View</a>
+            <button @click='closeModal' class="btn btn-default">Close</button>
+            <a v-if="modal.view" v-bind:href="view_url" class="view btn btn-primary">View</a>
           </div>
         </modal>
 
