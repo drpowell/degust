@@ -1,3 +1,14 @@
+<style scoped>
+</style>
+
+<template>
+    <div class='scatter-outer' ref='outer'>
+    </div>
+</template>
+
+<script lang='coffee'>
+
+
 class Scatter3d
     constructor: (@opts) ->
         @el = el = @opts.elem
@@ -58,26 +69,25 @@ class Scatter3d
 
         @animate()
 
-    update_data: (data, labels, dims) ->
+    update_data: (data, dims) ->
         [dim1,dim2,dim3] = dims
         # if (data instanceof DataFrame)
         #     data = data.get_data()
 
-        #@columns = {x: xCol, y: yCol, z:zCol}
-        @columns = {x: {name: "Dimension #{dim1}"}, y: {name: "Dimension #{dim2}"}, z: {name: "Dimension #{dim3}"}}
+        @columns = {x: {name: dim1.name}, y: {name: dim2.name}, z: {name: dim3.name}}
 
-        xExent = d3.extent(data[dim1-1])
-        yExent = d3.extent(data[dim2-1])
-        zExent = d3.extent(data[dim3-1])
+        xExtent = d3.extent(data.map((d) -> dim1.get(d)))
+        yExtent = d3.extent(data.map((d) -> dim2.get(d)))
+        zExtent = d3.extent(data.map((d) -> dim3.get(d)))
 
         # Force equal extent on all dimensions.  Possibly make this an option in future
-        xExent = yExent = zExent = d3.extent(xExent.concat(yExent,zExent))
+        xExtent = yExtent = zExtent = d3.extent(xExtent.concat(yExtent,zExtent))
 
-        @xScale.domain(xExent).nice()
+        @xScale.domain(xExtent).nice()
                    .range([-50,50])
-        @yScale.domain(yExent).nice()
+        @yScale.domain(yExtent).nice()
                    .range([-50,50])
-        @zScale.domain(zExent).nice()
+        @zScale.domain(zExtent).nice()
                    .range([-50,50])
 
         # Delete any existing points
@@ -86,12 +96,12 @@ class Scatter3d
 
         sphereGeo = new THREE.SphereGeometry( 2, 16, 16 )
         for i in [0...data.length]
-            sphereMat = new THREE.MeshLambertMaterial( {color : @colour(labels[i].parent) })
+            sphereMat = new THREE.MeshLambertMaterial( {color : @colour(data[i].sample.parent) })
             sphere = new THREE.Mesh(sphereGeo, sphereMat)
-            sphere.position.x = @xScale(data[dim1-1][i])
-            sphere.position.y = @yScale(data[dim2-1][i])
-            sphere.position.z = @zScale(data[dim3-1][i])
-            sphere.userData = {datapoint: i}
+            sphere.position.x = @xScale(dim1.get(data[i]))
+            sphere.position.y = @yScale(dim2.get(data[i]))
+            sphere.position.z = @zScale(dim3.get(data[i]))
+            sphere.userData = {datapoint: data[i]}
 
             @scatterPlot.add( sphere )
 
@@ -364,4 +374,41 @@ class Scatter3d
         requestAnimationFrame( () => @animate() )
         @renderer.render(@scene, @camera)
         #stats.update()
-window.Scatter3d = Scatter3d
+
+module.exports =
+    name: "scatter3d"
+    props:
+        data:
+            type: Array
+            required: true
+        xColumn: null
+        yColumn: null
+        zColumn: null
+
+    computed:
+        needsUpdate: () ->
+            # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
+            this.data
+            this.xColumn
+            this.yColumn
+            this.colour
+            Date.now()
+    watch:
+        needsUpdate: () ->
+            this.update()
+
+    methods:
+        update: () ->
+            console.log "scatter3d redraw()",this
+            if this.data? && this.xColumn? && this.yColumn? && this.zColumn?
+                this.me.update_data(this.data, [this.xColumn,this.yColumn,this.zColumn])
+    mounted: () ->
+        DynamicJS.load("./three.js", () =>
+            this.me = new Scatter3d(
+                elem: this.$refs.outer
+                tot_height: 400
+            )
+            this.update()
+        )
+
+</script>

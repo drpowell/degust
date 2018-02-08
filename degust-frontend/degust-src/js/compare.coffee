@@ -68,6 +68,7 @@ calc_max_parcoords_width = () ->
     w -= $('.conditions').outerWidth(true) if $('.conditions').is(':visible')
     w -= $('div.filter').outerWidth(true) if $('div.filter').is(':visible')
 
+# TODO - remove once table sorting fixed
 init_gene_table_menu = () ->
     menu = [
             title: () -> "<input type='checkbox' style='margin-right:10px;' #{if sortAbsLogFC then "checked" else ""}/><label>Sorting by ABSOLUTE logFC</label>"
@@ -84,124 +85,6 @@ init_gene_table_menu = () ->
         # Move the popup to the left
         opts = {onPostOpen: (m) -> console.log("move!"); m.style('left', (d3.event.pageX - 250) + 'px')}
         d3.contextMenu(menu,opts)()
-    )
-
-init_charts = () ->
-    # init_gene_table_menu()
-
-    parcoords = new ParCoords(
-        elem: '#dge-pc'
-        width: calc_max_parcoords_width()
-        filter: expr_filter
-        )
-
-    ma_plot = new MAPlot(
-        elem: '#dge-ma'
-        filter: expr_filter
-        xaxis_loc: 'zero'
-        brush_enable: true
-        canvas: true
-        height: 300
-        width: 600
-        )
-    ma_plot.on("mouseover.main", (rows) -> heatmap.highlight(rows); gene_expr.select(g_data, rows))
-    ma_plot.on("mouseout.main", () -> heatmap.unhighlight())
-
-    volcano_plot = new VolcanoPlot(
-        elem: '#dge-volcano'
-        filter: expr_filter
-        yaxis_loc: 'zero'
-        brush_enable: true
-        canvas: true
-        height: 300
-        width: 600
-        )
-    volcano_plot.on("mouseover.main", (rows) -> heatmap.highlight(rows); gene_expr.select(g_data, rows))
-    volcano_plot.on("mouseout.main", () -> heatmap.unhighlight())
-
-    pca_plot = new GenePCA(
-        elem: '#dge-pca'
-        filter: expr_filter
-        colour: g_colour_by_parent
-        sel_dimension: (d) => g_vue_obj.pcaDimension = +d
-        params: () ->
-            skip: +g_vue_obj.skipGenesThreshold
-            num: +g_vue_obj.numGenesThreshold
-            dims: [+g_vue_obj.pcaDimension, +g_vue_obj.pcaDimension+1, +g_vue_obj.pcaDimension+2]
-            plot_2d3d: g_vue_obj.mds_2d3d
-        )
-    pca_plot.on("top_genes", (top) =>
-        gene_table.set_data(top)
-        heatmap.schedule_update(top)
-    )
-
-    kegg = new Kegg(
-        elem: 'div#kegg-image'
-        mouseover: kegg_mouseover
-        mouseout: () -> g_vue_obj.current_plot.unhighlight()
-        )
-
-    # update grid on brush
-    parcoords.on("brush", (d) ->
-        gene_table.set_data(d)
-        heatmap.schedule_update(d)
-    )
-    ma_plot.on("brush", (d) ->
-        gene_table.set_data(d)
-        heatmap.schedule_update(d)
-    )
-    volcano_plot.on("brush", (d) ->
-        gene_table.set_data(d)
-        heatmap.schedule_update(d)
-    )
-
-    # Used to reorder the heatmap columns by the parcoords order
-    order_columns_by_parent = (columns, parent) ->
-        pos = {}
-        for i in [0...parent.length]
-            pos[parent[i]] = i
-        new_cols = columns.slice()
-        new_cols.sort((a,b) ->
-            if pos[a.parent]==pos[b.parent]
-                0
-            else if pos[a.parent] < pos[b.parent]
-                -1
-            else
-                1
-        )
-        new_cols
-
-    parcoords.on("render", () ->
-        return if !heatmap.columns
-        dim_names = parcoords.dimension_names()
-        names = parcoords.dimensions().map((c) -> dim_names[c])
-        new_cols = order_columns_by_parent(heatmap.columns, names)
-        heatmap.reorder_columns(new_cols)
-    )
-
-    #Heatmap
-    heatmap = new Heatmap(
-        elem: '#heatmap'
-        show_elem: '.show-heatmap'
-    )
-    heatmap.on("mouseover", (d) ->
-        g_vue_obj.current_plot.highlight([d])
-        msg = ""
-        for col in g_data.columns_by_type(['info'])
-          msg += "<span class='lbl'>#{col.name}: </span><span>#{d[col.idx]}</span>"
-        $('#heatmap-info').html(msg)
-        gene_expr.select(g_data, [d])
-    )
-    heatmap.on("mouseout", (d) ->
-        g_vue_obj.current_plot.unhighlight()
-        $('#heatmap-info').html("")
-    )
-    heatmap.on("need_update", () -> update_data())
-
-    gene_expr = new GeneExpression(
-        elem: '.single-gene-expr'
-        width: 233
-        colour: g_colour_by_parent
     )
 
 # Filter to decide which rows to plot on the parallel coordinates widget
@@ -427,6 +310,7 @@ module.exports =
         load_success: false
         num_loading: 0
         showCounts: 'no'
+        showIntensity: 'no'
         fdrThreshold: 1
         fcThreshold: 0
         fc_relative_i: null
@@ -441,6 +325,7 @@ module.exports =
         r_code: ''
         show_about: false
         dge_method: null
+        dge_methods: []
         sel_conditions: []
         cur_plot: null
         cur_opts: 'options'
@@ -501,11 +386,19 @@ module.exports =
                 heatmap_dims = Normalize.normalize(this.gene_data, count_cols)
             heatmap_dims
 
+        #Added to show/hide counts/intensity
+        is_pre_analysed: () ->
+            this.settings.input_type == 'preanalysed'
+        is_rnaseq_counts: () ->
+            this.settings.input_type == 'counts'
+        is_maxquant: () ->
+            this.settings.input_type == 'maxquant'
+
     watch:
         '$route': (n,o) ->
             this.parse_url_params(n.query)
         settings: () ->
-            this.dge_method = this.settings.dge_method || 'voom'
+            this.dge_method = this.settings.dge_method || ''
             this.sel_conditions = this.$route.query.sel_conditions || this.settings.init_select || []
         cur_plot: () ->
             # On plot change, reset brushes
@@ -532,6 +425,12 @@ module.exports =
                 }).done((json) =>
                     this.full_settings = json
                     this.settings = json.settings
+
+
+                    # Deal with old "analyze_server_side" option
+                    if this.settings.analyze_server_side? && !this.settings.input_type?
+                        this.settings.input_type = if this.settings.analyze_server_side then 'counts' else 'preanalysed'
+
                     this.load_success=true
                     this.$nextTick(() -> this.initBackend(true))
                  ).fail((x) =>
@@ -554,17 +453,28 @@ module.exports =
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
             this.ev_backend.$on("done_loading", () => this.num_loading-=1)
             this.ev_backend.$on("dge_data", (data,cols) => this.process_dge_data(data,cols))
-
             if !use_backend
-                this.backend = new backends.WithoutBackend(this.settings, this.ev_backend)
+                this.backend = new backends.BackendNone(this.settings, this.ev_backend)
             else
-                if this.settings.analyze_server_side
-                    this.backend = new backends.WithBackendAnalysis(this.code, this.settings, this.ev_backend)
-                else
-                    this.backend = new backends.WithBackendNoAnalysis(this.code, this.settings, this.ev_backend)
+                switch this.settings.input_type
+                    when 'counts'
+                        this.backend = new backends.BackendRNACounts(this.code, this.settings, this.ev_backend)
+                    when 'maxquant'
+                        this.backend = new backends.BackendMaxQuant(this.code, this.settings, this.ev_backend)
+                    when 'preanalysed'
+                        this.backend = new backends.BackendPreAnalysed(this.code, this.settings, this.ev_backend)
+                    else
+                        log_error("Unknown input_type : ",this.settings.input_type)
+
                 # If we're not configured, redirect to the config page
                 if !this.backend.is_configured()
                     window.location = this.config_url
+                this.dge_methods = this.backend.dge_methods()
+
+                # If there is no default dge_method set, then use first thing in the list
+                if this.dge_methods.length>0 && !this.settings.dge_method?
+                    console.log this.dge_methods
+                    this.dge_method = this.dge_methods[0][0]
 
             this.init_page()
             this.request_data()
@@ -611,6 +521,7 @@ module.exports =
             state.sel_conditions = this.sel_conditions
             state.plot = this.cur_plot
             state.show_counts = this.showCounts
+            state.show_intensity = this.showIntensity
             state.fdrThreshold = this.fdrThreshold
             state.fcThreshold = this.fcThreshold
             #state.sortAbsLogFC = def(sortAbsLogFC, true)
@@ -628,6 +539,7 @@ module.exports =
         parse_url_params: (q) ->
             this.cur_plot = q.plot if q.plot?
             this.showCounts = q.show_counts if q.show_counts?
+            this.showIntensity = q.show_intensity if q.show_intensity?
             if q.fdrThreshold?
                 this.fdrThreshold = q.fdrThreshold
             else if settings.fdrThreshold?

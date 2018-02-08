@@ -39,7 +39,7 @@
 
 <template>
     <div>
-        <scatter-plot class='mds-plot' ref='scatter'
+        <scatter-plot v-if='plot2d3d=="2d"' class='mds-plot' ref='scatter'
                       :data='components'
                       :x-column='xColumn' :y-column='yColumn'
                       :colour='colour'
@@ -54,6 +54,11 @@
                       :axis-label-inside='false'
                       >
         </scatter-plot>
+        <scatter3d v-if='plot2d3d=="3d"'
+                    :data='components'
+                    :x-column='xColumn' :y-column='yColumn' :z-column='zColumn'
+                    >
+        </scatter3d>
         <bar-graph class='bar-graph'
                   title="% variance by MDS dimension"
                   x-label="Dimension"
@@ -70,6 +75,7 @@
 require("./lib/numeric-1.2.6.js")
 { Normalize } = require('./normalize.coffee')
 scatter = require('./scatter-plot.vue').default
+scatter3d = require('./scatter3d.vue').default
 barGraph = require('./bar-graph.vue').default
 
 class PCA
@@ -97,6 +103,7 @@ class PCA
 module.exports =
     components:
         scatterPlot: scatter
+        scatter3d: scatter3d
         barGraph: barGraph
     props:
         geneData: null
@@ -107,10 +114,12 @@ module.exports =
         numGenes: null
         skipGenes: null
         dimension: null
+        plot2d3d: null
     data: () ->
         components: []
         xColumn: null
         yColumn: null
+        zColumn: null
         barGraphData: []
     computed:
         needsRedraw: () ->
@@ -127,6 +136,7 @@ module.exports =
 
     mounted: () ->
         this.update_components()
+
     methods:
         # Note, this is naughty - it writes to the 'data' array a "_variance" column
         # and several "_transformed_" columns.
@@ -170,8 +180,7 @@ module.exports =
             this.components = comp
             this.xColumn = {name: "MDS Dimension #{this.dimension}", get: (d) => d.pts[this.dimension-1] }
             this.yColumn = {name: "MDS Dimension #{this.dimension+1}", get: (d) => d.pts[this.dimension] }
-
-            #@scatter_draw(plot_2d3d, comp, @columns, dims)
+            this.zColumn = {name: "MDS Dimension #{this.dimension+2}", get: (d) => d.pts[this.dimension+1] }
 
             tot_eigen = d3.sum(pca_results.eigenvalues)
             this.barGraphData = Vue.noTrack(
@@ -187,22 +196,9 @@ module.exports =
         # Colour the samples by the parent condition
         colour: (d) ->
             this.conditionColouring(d.sample.parent)
+
         text: (d) ->
             d.sample.name
-
-        scatter_draw: (plot_2d3d, comp, cols, dims) ->
-            if plot_2d3d=='2d'
-                @div2d.style("display","block")
-                @div3d.style("display","none")
-                @scatter.draw(comp,cols,dims)
-            else
-                @div2d.style("display","none")
-                @div3d.style("display","block")
-                DynamicJS.load("./three.js", () =>
-                    if (!@scatter3d)
-                        @scatter3d = new Scatter3d({elem: @div3d.node(), tot_height: 400})
-                    @scatter3d.update_data(comp, cols, dims)
-                )
 
         brush: () ->
             @redraw()
