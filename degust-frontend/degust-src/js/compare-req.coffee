@@ -23,10 +23,21 @@ router = new VueRouter(
     ]
 )
 
+
+# global state.  Use sparingly!
+shared = new Vue(
+    data: () ->
+        asset_base: ''
+)
+
+
 # Create a plugin to stop objects being observed
 Vue.use(
     install: (Vue) ->
         Vue.noTrack = (o) -> Object.preventExtensions(o)
+        Object.defineProperty(Vue.prototype, '$global',
+            get: () -> shared
+        )
 )
 
 new Vue(

@@ -71,7 +71,7 @@
         </conditions-selector>
 
         <div class='col-xs-7' id='expression'>
-          <div v-show='num_loading>0' class='loading'><img :src='asset_base + "images/ajax-loader.gif"'></div>
+          <div v-show='num_loading>0' class='loading'><img :src='$global.asset_base + "images/ajax-loader.gif"'></div>
           <ul class="nav nav-tabs">
             <li :class='{active: cur_plot=="parcoords"}'>
                 <a @click='cur_plot="parcoords"'>Parallel Coordinates</a>

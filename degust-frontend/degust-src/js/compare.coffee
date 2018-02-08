@@ -340,7 +340,6 @@ module.exports =
 
     computed:
         code: () -> get_url_vars()["code"]
-        asset_base: () -> this.settings?.asset_base || ''
         home_link: () -> this.settings?.home_link || '/'
         fdrWarning: () -> this.cur_plot == 'mds' && this.fdrThreshold<1
         fcWarning: () -> this.cur_plot == 'mds' && this.fcThreshold>0
@@ -400,6 +399,8 @@ module.exports =
         settings: () ->
             this.dge_method = this.settings.dge_method || ''
             this.sel_conditions = this.$route.query.sel_conditions || this.settings.init_select || []
+            this.$global.asset_base = this.settings?.asset_base || ''
+
         cur_plot: () ->
             # On plot change, reset brushes
             this.genes_highlight = []
