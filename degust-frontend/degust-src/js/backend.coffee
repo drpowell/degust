@@ -1,4 +1,4 @@
-class WithoutBackend
+class BackendNone
     constructor: (@settings, @events) ->
 
     request_data: () ->
@@ -43,7 +43,7 @@ class BackendCommon
             callback(ec_data)
         )
 
-class WithBackendNoAnalysis
+class BackendPreAnalysed
     constructor: (@code, @settings, @events) ->
         @common = new BackendCommon(@settings)
 
@@ -55,6 +55,7 @@ class WithBackendNoAnalysis
 
     request_data: () ->
         req = BackendCommon.script(this.code, "csv")
+        console.log(this.code)
         @events.$emit("start_loading")
         d3.text(req, (err, dat) =>
             log_info("Downloaded DGE CSV: len=#{dat.length}")
@@ -85,9 +86,17 @@ class WithBackendNoAnalysis
             @events.$emit("dge_data", data, data_cols)
         )
 
-class WithBackendAnalysis
+class BackendRNACounts
     constructor: (@code, @settings, @events) ->
         @common = new BackendCommon(@settings)
+
+    dge_methods: () ->
+        [
+            ['voom', 'Voom/Limma'],
+            ['edgeR-quasi', 'edgeR quasi-likelihood'],
+            ['edgeR', 'edgeR'],
+            ['voom-weights', 'Voom (samp weights)'],
+        ]
 
     is_configured: () ->
         @settings.replicates.length > 0
@@ -172,8 +181,88 @@ class WithBackendAnalysis
             )
         )
 
+class BackendMaxQuant
+    constructor: (@code, @settings, @events) ->
+        @common = new BackendCommon(@settings)
+
+    is_configured: () ->
+        @settings.replicates.length > 0
+
+    dge_methods: () ->
+        [ ['maxquant', 'MaxQuant with Limma']
+        ]
+
+    request_kegg_data: (callback) ->
+        console.log "not supported"
+
+    request_data: (method,columns) ->
+        @_request_dge_data(method,columns)
+
+    _request_dge_data: (method,columns) ->
+        console.log "request_dge_data",method,columns
+        return if columns.length <= 1
+
+        # load csv file and create the chart
+        req = BackendCommon.script(this.code, "dge","method=maxquant&fields=#{encodeURIComponent(JSON.stringify columns)}")
+        @events.$emit("start_loading")
+        d3.json(req, (err, json) =>
+            @events.$emit("done_loading")
+
+            if err
+                log_error(err)
+                return
+
+            if (json.error?)    # FIXME
+                log_error("Error doing DGE",json.error)
+                $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
+                $('div#error-modal .modal-body pre.error-input').text(json.error.input)
+                $('div#error-modal').modal()
+                return
+
+            data = d3.csv.parse(json.csv);
+            log_info("Downloaded DGE counts : rows=#{data.length}")
+            log_debug("Downloaded DGE counts : rows=#{data.length}",data,err)
+            log_info("Extra info : ",json.extra)
+
+
+            data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
+            pri=true
+            columns.forEach((n) ->
+                typ = if pri then 'primary' else 'fc'
+                data_cols.push({idx: n, type: typ, name: n})
+                pri=false
+            )
+            data_cols.push({idx: 'adj.P.Val', name: 'FDR', type: 'fdr'})
+            data_cols.push({idx: 'AveExpr', name: 'AveExpr', type: 'avg'})
+            if data[0]["P.Value"]?
+                data_cols.push({idx: 'P.Value', name: 'P value', type: 'p'})
+
+            if @settings.ec_column?
+                data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
+            if @settings.link_column?
+                data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
+            @settings.replicates.forEach(([name,reps]) ->
+                reps.forEach((rep) ->
+                    data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
+                )
+            )
+
+            @events.$emit("dge_data", data, data_cols)
+        )
+
+    request_r_code: (method,columns) ->
+        new Promise((resolve) =>
+            req = BackendCommon.script(this.code, "dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
+            d3.text(req, (err,data) ->
+                log_debug("Downloaded R Code : len=#{data.length}",data,err)
+                resolve(data)
+            )
+        )
+
+
 module.exports =
-    WithoutBackend: WithoutBackend
+    BackendNone: BackendNone
     BackendCommon: BackendCommon
-    WithBackendAnalysis: WithBackendAnalysis
-    WithBackendNoAnalysis: WithBackendNoAnalysis
+    BackendRNACounts: BackendRNACounts
+    BackendPreAnalysed: BackendPreAnalysed
+    BackendMaxQuant: BackendMaxQuant

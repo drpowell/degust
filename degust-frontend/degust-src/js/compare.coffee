@@ -310,6 +310,7 @@ module.exports =
         load_success: false
         num_loading: 0
         showCounts: 'no'
+        showIntensity: 'no'
         fdrThreshold: 1
         fcThreshold: 0
         fc_relative_i: null
@@ -324,6 +325,7 @@ module.exports =
         r_code: ''
         show_about: false
         dge_method: null
+        dge_methods: []
         sel_conditions: []
         cur_plot: null
         cur_opts: 'options'
@@ -384,11 +386,19 @@ module.exports =
                 heatmap_dims = Normalize.normalize(this.gene_data, count_cols)
             heatmap_dims
 
+        #Added to show/hide counts/intensity
+        is_pre_analysed: () ->
+            this.settings.input_type == 'preanalysed'
+        is_rnaseq_counts: () ->
+            this.settings.input_type == 'counts'
+        is_maxquant: () ->
+            this.settings.input_type == 'maxquant'
+
     watch:
         '$route': (n,o) ->
             this.parse_url_params(n.query)
         settings: () ->
-            this.dge_method = this.settings.dge_method || 'voom'
+            this.dge_method = this.settings.dge_method || ''
             this.sel_conditions = this.$route.query.sel_conditions || this.settings.init_select || []
         cur_plot: () ->
             # On plot change, reset brushes
@@ -415,6 +425,12 @@ module.exports =
                 }).done((json) =>
                     this.full_settings = json
                     this.settings = json.settings
+
+
+                    # Deal with old "analyze_server_side" option
+                    if this.settings.analyze_server_side? && !this.settings.input_type?
+                        this.settings.input_type = if this.settings.analyze_server_side then 'counts' else 'preanalysed'
+
                     this.load_success=true
                     this.$nextTick(() -> this.initBackend(true))
                  ).fail((x) =>
@@ -437,17 +453,28 @@ module.exports =
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
             this.ev_backend.$on("done_loading", () => this.num_loading-=1)
             this.ev_backend.$on("dge_data", (data,cols) => this.process_dge_data(data,cols))
-
             if !use_backend
-                this.backend = new backends.WithoutBackend(this.settings, this.ev_backend)
+                this.backend = new backends.BackendNone(this.settings, this.ev_backend)
             else
-                if this.settings.analyze_server_side
-                    this.backend = new backends.WithBackendAnalysis(this.code, this.settings, this.ev_backend)
-                else
-                    this.backend = new backends.WithBackendNoAnalysis(this.code, this.settings, this.ev_backend)
+                switch this.settings.input_type
+                    when 'counts'
+                        this.backend = new backends.BackendRNACounts(this.code, this.settings, this.ev_backend)
+                    when 'maxquant'
+                        this.backend = new backends.BackendMaxQuant(this.code, this.settings, this.ev_backend)
+                    when 'preanalysed'
+                        this.backend = new backends.BackendPreAnalysed(this.code, this.settings, this.ev_backend)
+                    else
+                        log_error("Unknown input_type : ",this.settings.input_type)
+
                 # If we're not configured, redirect to the config page
                 if !this.backend.is_configured()
                     window.location = this.config_url
+                this.dge_methods = this.backend.dge_methods()
+
+                # If there is no default dge_method set, then use first thing in the list
+                if this.dge_methods.length>0 && !this.settings.dge_method?
+                    console.log this.dge_methods
+                    this.dge_method = this.dge_methods[0][0]
 
             this.init_page()
             this.request_data()
@@ -494,6 +521,7 @@ module.exports =
             state.sel_conditions = this.sel_conditions
             state.plot = this.cur_plot
             state.show_counts = this.showCounts
+            state.show_intensity = this.showIntensity
             state.fdrThreshold = this.fdrThreshold
             state.fcThreshold = this.fcThreshold
             #state.sortAbsLogFC = def(sortAbsLogFC, true)
@@ -511,6 +539,7 @@ module.exports =
         parse_url_params: (q) ->
             this.cur_plot = q.plot if q.plot?
             this.showCounts = q.show_counts if q.show_counts?
+            this.showIntensity = q.show_intensity if q.show_intensity?
             if q.fdrThreshold?
                 this.fdrThreshold = q.fdrThreshold
             else if settings.fdrThreshold?

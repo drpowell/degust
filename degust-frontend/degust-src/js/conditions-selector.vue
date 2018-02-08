@@ -31,13 +31,12 @@
               <h4>Hidden Factors</h4>
               <div v-for='name in hidden_factors'><label>{{name}}</label></div>
           </div>
-          <label>Method</label>
-          <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
-            <option value='voom'>Voom/Limma</option>
-            <option value='edgeR-quasi'>edgeR quasi-likelihood</option>
-            <option value='edgeR'>edgeR</option>
-            <option value='voom-weights'>Voom (samp weights)</option>
-          </select>
+          <div v-show='dge_methods.length>0'>
+              <label>Method</label>
+              <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
+                  <option v-for='method in dge_methods' :value='method[0]'>{{method[1]}}</option>
+              </select>
+          </div>
           <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
             Sample weights
           </a>
@@ -55,6 +54,8 @@ module.exports =
     components:
         editOverlay: editOverlay
     props:
+        dge_methods:
+            required: true
         dge_method:
             required: true
         sel_conditions:

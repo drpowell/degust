@@ -78,11 +78,21 @@
               </div>
 
               <div class="form-group">
+                  <label class="control-label col-sm-3">Input type</label>
+                  <div class="controls col-sm-6">
+                      <multiselect v-model="settings.input_type" :options='input_type_options' track-by='key' label='label' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
+
+                  </div>
+              </div>
+
+              <div class="form-group">
                 <label class="control-label col-sm-3">Format type</label>
+
                 <div class="controls col-sm-6">
                   <label class="radio">
                     <input v-model='settings.csv_format' v-bind:value=true type="radio">Comma separated (CSV)
                   </label>
+
                   <label class="radio">
                     <input v-model='settings.csv_format' v-bind:value=false type="radio">TAB separated (TSV)
                   </label>
@@ -96,14 +106,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="control-label col-sm-3" for="analyze-server-side">Analyze server side</label>
-                <div class="controls col-sm-1">
-                  <input v-model='settings.analyze_server_side'  class="form-control" type="checkbox" />
-                </div>
-              </div>
-
-              <div v-show='settings.analyze_server_side'>
+              <div v-show='is_rnaseq_counts'>
                 <div class="form-group">
                   <label class="control-label col-sm-3" for="name">Min gene read count</label>
                   <div class="controls col-sm-1">
@@ -120,14 +123,28 @@
                     <input v-model.number='settings.min_cpm_samples' class="form-control" type="text" name="min-cpm" placeholder="0" title="Optional: A gene must have at a CPM of at least this, in at least the number of specified samples" data-placement='right' />
                   </div>
                 </div>
+              </div>
 
+              <div v-show='is_maxquant'>
                 <div class="form-group">
-                  <label class="control-label col-sm-3" for="config-locked">Config locked</label>
+                  <label class="control-label col-sm-3" for="name">Min present columns</label>
                   <div class="controls col-sm-1">
-                    <input v-model='settings.config_locked' v-bind:disabled="!can_lock" class="form-control" type="checkbox" title="Lock the configuration page so only you can change it (you must be logged in)" data-placement='right' />
+                    <input v-model.number='settings.min_columns' class="form-control" type="text" name="min-columnns" placeholder="0" title="Optional: Minumum percent of columns with values present to keep the protein" data-placement='right' />
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-3" for="name">Min gene Intensity</label>
+                  <div class="controls col-sm-1">
+                    <input v-model.number='settings.min_counts' class="form-control" type="text" name="min-intensity" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
+                  </div>
+                  <label class="control-label col-sm-2" for="name">in at least samples</label>
+                  <div class="controls col-sm-1">
+                    <input v-model.number='settings.min_cpm_samples' class="form-control" type="text" name="min-intensity-samples" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
+                  </div>
+                </div>
+              </div>
 
+            <div v-show='is_rnaseq_counts || is_maxquant'>
                 <div class="condition-group conditions">
                   <div class="form-group">
                     <span class="control-label col-sm-3">Condition name</span>
@@ -183,7 +200,7 @@
                 </div>
               </div>
 
-              <div v-show='!settings.analyze_server_side'>
+              <div v-show='is_pre_analysed'>
                 <div class="form-group">
                   <label class="control-label col-sm-3" for="primary">Primary condition</label>
                   <div class="controls col-sm-3">
@@ -219,6 +236,13 @@
               <transition name="fade">
                   <div v-show='advanced'>
                       <div class="form-group">
+                        <label class="control-label col-sm-3" for="config-locked">Config locked</label>
+                        <div class="controls col-sm-1">
+                          <input v-model='settings.config_locked' v-bind:disabled="!can_lock" class="form-control" type="checkbox" title="Lock the configuration page so only you can change it (you must be logged in)" data-placement='right' />
+                        </div>
+                      </div>
+
+                      <div class="form-group">
                         <label class="control-label col-sm-3">EC Number column</label>
                         <div class="controls col-sm-3">
                           <multiselect v-model="settings.ec_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Optional ---"></multiselect>
@@ -237,12 +261,11 @@
                         </div>
                       </div>
 
-                      <div v-if='settings.analyze_server_side'>
+                      <div v-if='!is_pre_analysed'>
                           <div class="form-group">
                             <label class="control-label col-sm-3">Default analysis</label>
                             <div class="controls col-sm-3">
                                 <multiselect v-model="settings.dge_method" :options="dge_methods" track-by='value' label='label' :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Optional ---"></multiselect>
-                                </select>
                             </div>
                           </div>
                           <div class="form-group">

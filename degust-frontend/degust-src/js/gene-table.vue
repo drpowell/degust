@@ -71,10 +71,16 @@ guess_link_info =
      {re: /^/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
     ]
 
+guess_link_info_uniprot =
+    {re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'}
+    
+
 # Guess the link using the guess_link_info table
-guess_link = (info) ->
+guess_link = (useUniprot, info) ->
     return if !info?
-    for o in guess_link_info
+    if useUniprot
+        return guess_link_info_maxquant.link if info.match(guess_link_info_maxquant.re)
+    for o in link_info_use
         return o.link if info.match(o.re)
     return null
 
@@ -136,8 +142,12 @@ module.exports =
             required: true
         showCounts:
             default: false
+        showIntensity:
+            default: false
         fcColumns:
             required: true
+        useUniprot:
+            default: false
     data: () ->
         searchStr: ""
         table_info:
@@ -147,6 +157,8 @@ module.exports =
     watch:
         # Not detected automatically in the gene_table_columns cause only used in a callback
         showCounts: () ->
+            this.$refs.slickGrid.invalidate()
+        showIntensity: () ->
             this.$refs.slickGrid.invalidate()
     computed:
         gene_table_columns: () ->
@@ -214,6 +226,20 @@ module.exports =
                 countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
             "<div class='#{colour}'>#{n.toFixed(2)}#{countStr}</div>"
 
+            if this.showIntensity=='yes'
+                count_columns = this.geneData.assoc_column_by_type('count',column.name)
+                vals = count_columns.map((c,i) -> "<span>#{row[c.idx]}</span>")
+                countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
+            else if this.showIntensity=='log2'
+                count_columns = this.geneData.assoc_column_by_type('count',column.name)
+                vals = count_columns.map((c) =>
+                    tot = this.geneData.get_total(c)
+                    val = ((Math.log(row[c.idx])) * Math.LOG2E).toFixed(1)
+                    "<span>#{val}</span>"
+                )
+                countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
+            "<div class='#{colour}'>#{n.toFixed(2)}#{countStr}</div>"
+
         # Open a page for the given gene.  Use either the defined link or guess one.
         # The "ID" column can be specified as 'link' otherwise the first 'info' column is used
         dblclick: (item) ->
@@ -222,7 +248,7 @@ module.exports =
                 cols = this.geneData.columns_by_type(['info'])
             if cols.length>0
                 info = item[cols[0].idx]
-                link = if this.linkUrl? then this.linkUrl else guess_link(info)
+                link = if this.linkUrl? then this.linkUrl else guess_link(this.useUniprot, info)
                 log_debug("Dbl click.  Using info/link",info,link)
                 if link?
                     link = link.replace(/%s/, info)

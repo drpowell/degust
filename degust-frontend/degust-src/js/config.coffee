@@ -1,5 +1,6 @@
 
 
+# TODO - re-enable warnings
 warnings = () ->
     # Check fdr-column
     el = $('#fdr-column').siblings('.text-error')
@@ -34,8 +35,15 @@ $(document).ready(() -> setup_nav_bar() )
 $(document).ready(() -> $('[title]').tooltip())
 
 
-flds_optional = ["ec_column","link_column","link_url","min_counts","min_cpm","min_cpm_samples",
-                 "fdr_column","avg_column"]
+input_type_option_row = (val) ->
+    res = input_type_options.filter((r) -> r.key == val)
+    if res.length>0
+        res[0]
+    else
+        ''
+
+flds_optional = ["ec_column","link_column","link_url","min_counts", "min_columns", "min_cpm",
+                 "min_cpm_samples","fdr_column","avg_column"]
 from_server_model = (mdl) ->
     res = $.extend(true, {}, mdl)
 
@@ -60,6 +68,16 @@ from_server_model = (mdl) ->
         if res.dge_method.length>0
         then res.dge_method=res.dge_method[0]
         else delete res.dge_method
+
+    # Deal with old "analyze_server_side" option
+    if res.analyze_server_side? && !res.input_type?
+        res.input_type = if res.analyze_server_side then 'counts' else 'preanalysed'
+
+    # Convert "input_type" setting to row from options
+    if res.input_type?
+        res.input_type = input_type_option_row(res.input_type)
+        if res.input_type==''
+            delete res.input_type
 
     console.log("server model",mdl,res)
     res
@@ -88,14 +106,24 @@ to_server_model = (mdl) ->
         res.dge_method = res.dge_method.value
     if !res.dge_method?
         delete res.dge_method
+    if res.input_type?
+        res.input_type = res.input_type.key
+    if !res.input_type?
+        delete res.input_type
 
     res
+
 
 dge_methods = [{value: 'voom', label: 'Voom/Limma'},
                {value: 'edgeR-quasi', label: 'edgeR quasi-likelihood'},
                {value: 'edgeR', label: 'edgeR'},
                {value: 'voom-weights', label: 'Voom (sample weights)'}
               ]
+
+input_type_options = [{key: 'counts', label: 'RNA-seq counts'},
+                      {key: 'maxquant', label: 'MaxQuant output'},
+                      {key: 'preanalysed', label: 'Pre-analysed logFC'},
+                     ]
 
 Multiselect = require('vue-multiselect').default
 Modal = require('modal-vue').default
@@ -112,9 +140,11 @@ module.exports =
         settings:
             info_columns: []
             fc_columns: []
+            input_type: null
         csv_data: ""
         asRows: []
         columns_info: []
+        table_columns: []
         orig_settings:
             is_owner: false
         advanced: false
@@ -124,6 +154,7 @@ module.exports =
             msgs_class: ""
         dge_methods: dge_methods
         show_about: false
+        input_type_options: input_type_options
     computed:
         code: () ->
             get_url_vars()["code"]
@@ -133,29 +164,31 @@ module.exports =
             this.orig_settings.is_owner
         grid_watch: () ->
             this.settings.csv_format
+            this.settings.input_type
             this.csv_data
             Date.now()
-        table_columns: () ->
-            this.columns_info.map((key,i) ->
-                id: key
-                name: key
-                field: i
-                sortable: false
-                )
+        is_pre_analysed: () ->
+            this.settings.input_type?.key == 'preanalysed'
+        is_rnaseq_counts: () ->
+            this.settings.input_type?.key == 'counts'
+        is_maxquant: () ->
+            this.settings.input_type?.key == 'maxquant'
+
     watch:
         'settings.name': () -> document.title = this.settings.name
         csv_data: () ->
             # Guess the format, if we haven't set a name yet
-            if !this.settings.name? || this.settings.name==''
+            if !this.settings.name?
                 this.settings.csv_format = this.csv_data.split("\t").length<10
-
         grid_watch: () ->
             this.parse_csv()
             #this.grid.updateRowCount()
             #this.grid.render()
     methods:
+
+        #Refactored to accept MaxQuant tsv and make the preview table
         parse_csv: () ->
-            #console.log "Parsing!"
+            #console.log "Parsing!" that
             asRows = null
             if this.settings.csv_format
                 asRows = d3.csv.parseRows(this.csv_data)
@@ -163,7 +196,33 @@ module.exports =
                 asRows = d3.tsv.parseRows(this.csv_data)
             column_keys = asRows.shift()
             column_keys ?= []
-            this.columns_info = column_keys
+
+            # No config has been saved yet, so let's guess!
+            if !this.settings.name?
+                if column_keys.includes('Peptide counts (razor+unique)')
+                    this.settings.input_type = input_type_option_row('maxquant')
+                else if column_keys.includes('FDR') || column_keys.includes('adj.P.Val')
+                    this.settings.input_type = input_type_option_row('preanalysed')
+                else
+                    this.settings.input_type = input_type_option_row('counts')
+
+            this.table_columns = column_keys.map((key,i) ->
+                id: key
+                name: key
+                field: i
+                sortable: false
+                )
+            #Filter columns to only the ones we want
+            if this.is_maxquant
+                this.table_columns = this.table_columns.filter( (obj) ->
+                    obj.name.match("Protein ID|^LFQ.*|Potential contaminant|Reverse|Peptide counts \\(razor\\+unique\\)"))
+            this.columns_info = this.table_columns.map( (obj) -> obj.name )
+
+            # No config has been saved yet, so let's guess any useful columns
+            if !this.settings.name?
+                if this.is_maxquant
+                    this.settings.info_columns = this.columns_info.filter((c) -> ['Protein IDs','Peptide counts (razor+unique)'].includes(c))
+
             asRows.forEach((r,i) -> r.id = i)
             this.asRows = Vue.noTrack(asRows)
 
@@ -210,7 +269,7 @@ module.exports =
             )
         revert: () ->
             this.settings = from_server_model(this.orig_settings.settings)
-        check_errs: () ->
+        check_errs: () -> #TODO: Add error checking for other user inputs
             errs = this.check_conditon_names()
             if !(valid_int(this.settings.min_counts))
                 errs.push("Invalid min read count value")
