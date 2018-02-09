@@ -25,7 +25,10 @@ class Scatter3d
     constructor: (@opts) ->
         @el = el = @opts.elem
 
-        renderer = @renderer = new THREE.WebGLRenderer({ antialias: true })
+        renderer = @renderer = new THREE.WebGLRenderer(
+            antialias: true
+            preserveDrawingBuffer: true         # Needed for printing.  Might be slower on some graphics cards
+        )
 
         w = @w = @opts.tot_width || el.clientWidth
         h = @h = @opts.tot_height || w #el.clientHeight
@@ -132,9 +135,12 @@ class Scatter3d
             callback()
       ), 500)
 
-
     _make_menu: (el) ->
-        print_menu = (new Print(@svg, "scatter3d")).menu()
+        print_menu = [{  title: 'Save as PNG', action: () =>
+            dataUrl = @renderer.domElement.toDataURL("image/png")
+            Print.save_data_url("mds3d",dataUrl)
+        }]
+
         menu = [ {  divider: true },
                 {
                     title: 'Reset view',
