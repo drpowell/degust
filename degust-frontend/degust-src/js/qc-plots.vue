@@ -41,6 +41,11 @@
                                 :is-rle='true'
                                 >
             </expression-boxplot>
+            <cv-histogram v-if='showQc=="cv-plot"'
+                          :gene-data='geneData'
+                          :colour='colour'
+                          >
+            </cv-histogram>
         </div>
         </edit-overlay>
     </div>
@@ -52,6 +57,8 @@ editOverlay = require('./edit-overlay.vue').default
 pvalueHistogram = require('./pvalue-histogram.vue').default
 librarySizePlot = require('./library-size-plot.vue').default
 expressionBoxplot = require('./expression-boxplot.vue').default
+cvHistogram = require('./cv-plot.vue').default
+
 
 module.exports =
     name: 'qc'
@@ -59,6 +66,8 @@ module.exports =
         editOverlay: editOverlay
         pvalueHistogram: pvalueHistogram
         expressionBoxplot: expressionBoxplot
+        librarySizePlot: librarySizePlot
+        cvHistogram: cvHistogram
     props:
         showQc: null
         geneData: null
