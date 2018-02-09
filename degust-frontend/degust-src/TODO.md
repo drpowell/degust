@@ -1,12 +1,16 @@
 
-* 3d MDS to component
-* Fix 3d MDS while loading THREE
 * Fix table sorting by abs/non-abs FC
     * option on table header
 * Check render-order is so p-value on top in ma-plot, parcoords, heatmap
 * Show PCA dimension loading in MDS
     * On table cog, allow selection of columns to display.  Including variance column
-* MDS option for consitent axis range
+* MDS
+    * 2d+3d option for consitent axis range
+    * 3d text always on, or on hover
+    * use counts with factor removed
+
+
+
 
 * Add popup warnings - eg. MDS with filters on
 * Add popup of "changes" using cookie/localstorage since last used

@@ -142,7 +142,6 @@ module.exports =
         # and several "_transformed_" columns.
         # Also, compute the per-column (library) size for later normalization
         update_components: () ->
-            console.log "update_components"
             # Compute the library size for each column (for normalising in _compute_variance)
             @norm_cols = Normalize.normalize(this.geneData, this.columns)
             @variances = {}

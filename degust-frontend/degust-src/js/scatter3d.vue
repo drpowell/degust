@@ -116,6 +116,9 @@ class Scatter3d
             sphere.userData = {datapoint: data[i]}
 
             @scatterPlot.add( sphere )
+            @addText(@scatterPlot, data[i].sample.name, 50,
+                     sphere.position.x, sphere.position.y, sphere.position.z,
+                     @colour(data[i].sample.parent), -20)
 
         @setup_axis()
 
@@ -157,16 +160,18 @@ class Scatter3d
         d3.select(el).on('contextmenu', d3.contextMenu(print_menu.concat(menu))) # attach menu to element
 
     # helper function to add text to object
-    addText: (object, string, scale, x, y, z, color) ->
+    # object -> to attach to, string -> to print, scale -> size to plot, x/y/z -> loc in space,
+    # color -> hex string or color object, dy -> translate text on screen
+    addText: (object, string, scale, x, y, z, color, dy=0) ->
         canvas = document.createElement('canvas')
         size = 256
         canvas.width = size
         canvas.height = size
         context = canvas.getContext('2d')
-        context.fillStyle = "#" + color.getHexString()
+        context.fillStyle = if color instanceof THREE.Color then "#" + color.getHexString() else color
         context.textAlign = 'center'
         context.font = '24px Arial'
-        context.fillText(string, size / 2, size / 2)
+        context.fillText(string, size / 2, size / 2 + dy)
         amap = new THREE.Texture(canvas)
         amap.needsUpdate = true
         mat = new THREE.SpriteMaterial({
@@ -364,7 +369,7 @@ class Scatter3d
         intersects = @raycaster.intersectObject( @scatterPlot, true )
         for o in intersects
             if (o.object.userData.datapoint)
-                console.log("HOVER : ",o.object.userData )
+                console.log("HOVER : ", o.object.userData)
                 #o.object.material.emissive.setHex( 0xffff0 )
 
     on_mouse_wheel: (event) ->
@@ -413,7 +418,6 @@ module.exports =
 
     methods:
         update: () ->
-            console.log "scatter3d redraw()",this
             if this.data? && this.xColumn? && this.yColumn? && this.zColumn?
                 this.me.update_data(this.data, [this.xColumn,this.yColumn,this.zColumn])
     mounted: () ->
