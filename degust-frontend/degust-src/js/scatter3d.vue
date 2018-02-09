@@ -25,8 +25,6 @@ class Scatter3d
     constructor: (@opts) ->
         @el = el = @opts.elem
 
-        @colour = @opts.colour || d3.scale.category10()
-
         renderer = @renderer = new THREE.WebGLRenderer({ antialias: true })
 
         w = @w = @opts.tot_width || el.clientWidth
@@ -81,7 +79,7 @@ class Scatter3d
 
         @animate()
 
-    update_data: (data, dims) ->
+    update_data: (data, dims, colour) ->
         [dim1,dim2,dim3] = dims
         # if (data instanceof DataFrame)
         #     data = data.get_data()
@@ -108,7 +106,7 @@ class Scatter3d
 
         sphereGeo = new THREE.SphereGeometry( 2, 16, 16 )
         for i in [0...data.length]
-            sphereMat = new THREE.MeshLambertMaterial( {color : @colour(data[i].sample.parent) })
+            sphereMat = new THREE.MeshLambertMaterial( {color : colour(data[i]) })
             sphere = new THREE.Mesh(sphereGeo, sphereMat)
             sphere.position.x = @xScale(dim1.get(data[i]))
             sphere.position.y = @yScale(dim2.get(data[i]))
@@ -118,7 +116,7 @@ class Scatter3d
             @scatterPlot.add( sphere )
             @addText(@scatterPlot, data[i].sample.name, 50,
                      sphere.position.x, sphere.position.y, sphere.position.z,
-                     @colour(data[i].sample.parent), -20)
+                     colour(data[i]), -20)
 
         @setup_axis()
 
@@ -401,6 +399,7 @@ module.exports =
         xColumn: null
         yColumn: null
         zColumn: null
+        colour: null
     data: () ->
         loading: true
 
@@ -419,7 +418,7 @@ module.exports =
     methods:
         update: () ->
             if this.data? && this.xColumn? && this.yColumn? && this.zColumn?
-                this.me.update_data(this.data, [this.xColumn,this.yColumn,this.zColumn])
+                this.me.update_data(this.data, [this.xColumn,this.yColumn,this.zColumn], this.colour)
     mounted: () ->
         DynamicJS.load("./three.js", () =>
             this.loading = false

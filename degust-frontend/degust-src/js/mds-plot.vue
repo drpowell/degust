@@ -57,6 +57,7 @@
         <scatter3d v-if='plot2d3d=="3d"'
                     :data='components'
                     :x-column='xColumn' :y-column='yColumn' :z-column='zColumn'
+                    :colour='colour'
                     >
         </scatter3d>
         <bar-graph class='bar-graph'

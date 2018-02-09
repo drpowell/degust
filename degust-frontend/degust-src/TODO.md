@@ -8,6 +8,7 @@
     * 2d+3d option for consitent axis range
     * 3d text always on, or on hover
     * use counts with factor removed
+    * print 3d MDS
 
 
 
