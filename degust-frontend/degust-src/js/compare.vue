@@ -65,7 +65,7 @@
     <div class='container'>
 
       <div class='row'>
-        <conditions-selector v-show='settings.analyze_server_side'
+        <conditions-selector v-show='!settings.is_pre_analysed'
                             :settings='settings'
                             :dge_method='dge_method'
                             :sel_conditions='sel_conditions'
@@ -285,7 +285,7 @@
             </div>
           </div>
 
-          <div class='text-right' v-show='settings.analyze_server_side'>
+          <div class='text-right' v-show='!is_pre_analysed'>
             <a class='sm-link' @click='show_r_code'>Show R code</a>
           </div>
 
