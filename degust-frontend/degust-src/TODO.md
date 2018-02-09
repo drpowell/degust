@@ -6,10 +6,8 @@
     * On table cog, allow selection of columns to display.  Including variance column
 * MDS
     * 2d+3d option for consitent axis range
-    * 3d text always on, or on hover
     * use counts with factor removed
-    * print 3d MDS
-
+    * "A MDS page"
 
 
 
@@ -23,7 +21,6 @@
 * Efficiency testing.  De-bounce some calls?
 * Remove the call to custom Schedule.xxx
 * Resize.  Work on low res?
-* Check Printing
 * Check standalone with degust.py
 * Check RLE plot is correct
 * Check HTML elems in condition names
