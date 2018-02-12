@@ -19,18 +19,18 @@
                 :margin-r='50'
                 :margin-l='80'
                 :margin-b='50'
-                title="Coefficient of Variation Histogram"
+                :title=graph.p_label
                 :title-y='-20'
-                x-label=""
-                y-label="number"
-                :x-domain='[0,150]'
+                x-label="Variation"
+                y-label="Frequency"
+                :x-domain='[0,165]'
                 :x-ordinal='false'
-                :data=graph
+                :data=graph.val
                 >
         </bar-graph>
         <p></p>
     </div>
-    </div>
+</div>
 </template>
 
 <script lang='coffee'>
@@ -42,8 +42,6 @@ module.exports =
         barGraph: barGraph
     props:
         geneData: null
-    data: () ->
-       arrray: ["wow", "oh"]
     computed:
         columns: () ->
             this.geneData.columns_by_type('count')
@@ -56,7 +54,7 @@ module.exports =
                             names = data.assoc_column_by_type("count", parent).map((i) -> i.idx)
                             names.map((el) -> rw[el])
                             )
-                    res = row.map((rw) -> 
+                    result = row.map((rw) -> 
                             rw.filter((e) -> e != 0)
                             mean = d3.mean(rw)
                             seriesSum = d3.sum(rw.map((el) -> el - mean).map((e) -> e ** 2))
@@ -64,12 +62,18 @@ module.exports =
                             coeff = (sd/mean) * 100
                             )
             )
+            val = parents.map((parent, i) -> {p_label: parent, val: res[i]})
             Vue.noTrack(res)
+            Vue.noTrack(val)
         bins: () ->
             bin = []
             for value in this.cv
-                bin.push(Vue.noTrack(d3.layout.histogram().bins(50)(value)))
-            return bin
+                bin.push( {p_label: value.p_label, val: Vue.noTrack(d3.layout.histogram().bins(50)(value.val))} )
+            Vue.noTrack(bin)
         barGraphData: () ->
-            Vue.noTrack(this.bins.map((g) -> g.map((b) -> {lbl: b.x, val: b.y, width: b.dx})))
+            res = []
+            for value in this.bins
+                res.push( {p_label: "CV Histogram of " + value.p_label, val: value.val.map((bin) -> {lbl: bin.x, val: bin.y, width: bin.dx} ) } )
+            #res = this.bins.map((g) -> g.map((b) -> {lbl: b.x, val: b.y, width: b.dx}))
+            Vue.noTrack(res)
 </script>
