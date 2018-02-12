@@ -326,6 +326,7 @@ module.exports =
         show_about: false
         dge_method: null
         dge_methods: []
+        qc_plots: []
         sel_conditions: []
         cur_plot: null
         cur_opts: 'options'
@@ -470,6 +471,8 @@ module.exports =
                 if !this.backend.is_configured()
                     window.location = this.config_url
                 this.dge_methods = this.backend.dge_methods()
+                this.qc_plots = this.backend.qc_plots()
+                
 
                 # If there is no default dge_method set, then use first thing in the list
                 if this.dge_methods.length>0 && !this.settings.dge_method?

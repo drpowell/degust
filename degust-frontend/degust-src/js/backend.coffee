@@ -98,6 +98,17 @@ class BackendRNACounts
             ['voom-weights', 'Voom (samp weights)'],
         ]
 
+    #Consider refactoring dge_methods to be an array of objects instead of array of arrays to match,
+    #Or just change this to match dge_methods
+    #May want to have single combined list of dge_methods and qc plots
+    qc_plots: () ->
+        [
+            ['pvalue',             'p-Value Histogram'],
+            ['library-size-plot',  'Library Size'],     
+            ['expression-boxplot', 'Expression Boxplot'],
+            ['rle-boxplot',        'RLE Boxplot']
+        ]
+
     is_configured: () ->
         @settings.replicates.length > 0
 
@@ -190,6 +201,13 @@ class BackendMaxQuant
 
     dge_methods: () ->
         [ ['maxquant', 'MaxQuant with Limma']
+        ]
+
+    qc_plots: () ->
+        [
+            ['pvalue',                'p-value Histogram'],
+            ['expression-boxplot',    'Intensity Boxplot'],
+            ['cv-plot',               'CV-Hisogram']
         ]
 
     request_kegg_data: (callback) ->

@@ -42,13 +42,9 @@
           <li><a class="config" :href="config_url" v-show='can_configure'>Configure</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QC <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a @click='show_qc="pvalue"'>P-value histogram</a></li>
-              <li><a @click='show_qc="library-size"'>Library size</a></li>
-              <li><a @click='show_qc="expression-boxplot"'>Expression box-plot</a></li>
-              <li><a @click='show_qc="rle-boxplot"'>RLE box-plot</a></li>
-              <li><a @click='show_qc="cv-plot"'>CV-plot</a></li>
-            </ul>
+              <ul class="dropdown-menu">
+                <li v-for="plot of qc_plots"><a @click='show_qc=plot[0]'>{{ plot[1] }}</a></li>
+              </ul>
           </li>
           <li><a @click='show_about=true'>About</a></li>
           <ul class="nav navbar-nav navbar-right navbar-collapse collapse"  v-html='full_settings.extra_menu_html' v-if='full_settings.extra_menu_html'></ul>
