@@ -46,6 +46,11 @@
                           :colour='colour'
                           >
             </cv-histogram>
+            <quant-histogram v-if='showQc=="quant-plot"'
+                          :gene-data='geneData'
+                          :colour='colour'
+                          >
+            </quant-histogram>
         </div>
         </edit-overlay>
     </div>
@@ -58,6 +63,7 @@ pvalueHistogram = require('./pvalue-histogram.vue').default
 librarySizePlot = require('./library-size-plot.vue').default
 expressionBoxplot = require('./expression-boxplot.vue').default
 cvHistogram = require('./cv-plot.vue').default
+quantHistogram = require('./quantified-histogram.vue').default
 
 
 module.exports =
@@ -68,6 +74,7 @@ module.exports =
         expressionBoxplot: expressionBoxplot
         librarySizePlot: librarySizePlot
         cvHistogram: cvHistogram
+        quantHistogram: quantHistogram
     props:
         showQc: null
         geneData: null

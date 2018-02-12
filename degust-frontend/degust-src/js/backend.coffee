@@ -207,7 +207,8 @@ class BackendMaxQuant
         [
             ['pvalue',                'p-value Histogram'],
             ['expression-boxplot',    'Intensity Boxplot'],
-            ['cv-plot',               'CV-Hisogram']
+            ['cv-plot',               'CV-Hisogram'],
+            ['quant-plot',            'Quantified Histogram']
         ]
 
     request_kegg_data: (callback) ->
