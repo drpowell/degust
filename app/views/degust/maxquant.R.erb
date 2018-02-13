@@ -52,7 +52,7 @@ for (a in seq_len(nrow(stat_tb))) {
         mean = stat_tb$median[a] - shift * stat_tb$sd[a],
         sd = stat_tb$sd[a] * scale)
     }
-
+colnames(counts) <- paste(colnames(counts), "imputed")
 #Assay call
 
 #Pre-process here
@@ -76,7 +76,8 @@ out <- topTable(fit2, n=Inf, sort.by='none')
 
 out2 <- cbind(fit2$coef,
 			  out[, c('P.Value','adj.P.Val','AveExpr')],
-			  data[, c(<%== @export_cols %>)] )
+			  data[, c(<%== @export_cols %>)],
+              counts)
 
 write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
 
