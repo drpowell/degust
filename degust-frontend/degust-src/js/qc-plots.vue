@@ -51,6 +51,11 @@
                           :colour='colour'
                           >
             </quant-histogram>
+            <intensity-histogram v-if='showQc=="intensity-plot"'
+                          :gene-data='geneData'
+                          :colour='colour'
+                          >
+            </intensity-histogram>
         </div>
         </edit-overlay>
     </div>
@@ -64,6 +69,7 @@ librarySizePlot = require('./library-size-plot.vue').default
 expressionBoxplot = require('./expression-boxplot.vue').default
 cvHistogram = require('./cv-plot.vue').default
 quantHistogram = require('./quantified-histogram.vue').default
+intensityHistogram = require('./intensity-plot.vue').default
 
 
 module.exports =
@@ -75,6 +81,7 @@ module.exports =
         librarySizePlot: librarySizePlot
         cvHistogram: cvHistogram
         quantHistogram: quantHistogram
+        intensityHistogram: intensityHistogram
     props:
         showQc: null
         geneData: null
