@@ -25,7 +25,7 @@
                 x-label="Log2 Intensity"
                 y-label="Total"
                 :rotate-labels='true'
-                :x-domain='[0,35]' 
+                :x-domain='[0,35]'
                 :x-ordinal='false'
                 :fill='colourSample'
                 :data='graph.data'
@@ -74,7 +74,7 @@ module.exports =
             data = this.gather_intensity
             count_bins = d3.layout.histogram().bins(30)(data.count).map((el) -> {lbl: el.x, val: el.y, width: el.dx,  group: "count"})
             imputed_bins = d3.layout.histogram().bins(30)(data.imputed).map((el) -> {lbl: el.x, val: el.y, width: el.dx, group: "imputed"})
-            res = [{data:count_bins, title:"Density of Imputed Intensities" + " Raw"}, {data:imputed_bins, title:"Density of Imputed Intensities" + " Imputed"}]
+            res = [{data:count_bins, title:"Density of Log2 Intensities" + " Raw"}, {data:imputed_bins, title:"Density of Imputed Intensities" + " Raw & Imputed"}]
 
         barGraphData: () ->
             Vue.noTrack(this.bin_intensity)

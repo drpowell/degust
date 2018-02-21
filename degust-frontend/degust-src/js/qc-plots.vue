@@ -56,6 +56,10 @@
                           :colour='colour'
                           >
             </intensity-histogram>
+            <imputed-heatmap v-if='showQc=="imputed-heatmap"'
+                          :gene-data='geneData'
+                          >
+            </imputed-heatmap>
         </div>
         </edit-overlay>
     </div>
@@ -70,6 +74,7 @@ expressionBoxplot = require('./expression-boxplot.vue').default
 cvHistogram = require('./cv-plot.vue').default
 quantHistogram = require('./quantified-histogram.vue').default
 intensityHistogram = require('./intensity-plot.vue').default
+imputedHeatmap = require('./imputed-heatmap.vue').default
 
 
 module.exports =
@@ -82,6 +87,7 @@ module.exports =
         cvHistogram: cvHistogram
         quantHistogram: quantHistogram
         intensityHistogram: intensityHistogram
+        imputedHeatmap: imputedHeatmap
     props:
         showQc: null
         geneData: null

@@ -73,14 +73,14 @@ guess_link_info =
 
 guess_link_info_uniprot =
     {re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'}
-    
+
 
 # Guess the link using the guess_link_info table
 guess_link = (useUniprot, info) ->
     return if !info?
     if useUniprot
         return guess_link_info_uniprot.link if info.match(guess_link_info_uniprot.re)
-    for o in link_info_use
+    for o in guess_link_info
         return o.link if info.match(o.re)
     return null
 

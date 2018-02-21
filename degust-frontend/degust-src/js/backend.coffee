@@ -104,7 +104,7 @@ class BackendRNACounts
     qc_plots: () ->
         [
             ['pvalue',             'p-Value Histogram'],
-            ['library-size-plot',  'Library Size'],     
+            ['library-size-plot',  'Library Size'],
             ['expression-boxplot', 'Expression Boxplot'],
             ['rle-boxplot',        'RLE Boxplot']
         ]
@@ -209,7 +209,8 @@ class BackendMaxQuant
             ['expression-boxplot',    'Intensity Boxplot'],
             ['cv-plot',               'CV-Hisogram'],
             ['quant-plot',            'Quantified Histogram']
-            ['intensity-plot',   'Intensity Histogram']
+            ['intensity-plot',        'Intensity Histogram']
+            ['imputed-heatmap',       'Imputed Value Heatmap']
         ]
 
     request_kegg_data: (callback) ->
@@ -261,12 +262,12 @@ class BackendMaxQuant
                 data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
             if @settings.link_column?
                 data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
-            @settings.replicates.forEach(([name,reps]) -> 
+            @settings.replicates.forEach(([name,reps]) ->
                 reps.forEach((rep) ->
                     data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
                 )
             )
-            @settings.replicates.forEach(([name,reps]) -> 
+            @settings.replicates.forEach(([name,reps]) ->
                 reps.forEach((rep) ->
                     data_cols.push({idx: rep + " imputed", name: rep + " imputed", type: 'imputed', parent: name})
                 )
