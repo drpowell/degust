@@ -196,13 +196,15 @@ module.exports =
             if this.searchStr==''
                 this.rows
             else
-                searchStr=this.searchStr
+                searchStr=this.searchStr.toLowerCase().split(/,/).map((el) -> el.trim())
                 cols=this.geneData.columns_by_type('info')
                 this.rows.filter((item) ->
                     for col in cols
                         str = item[col.idx]
-                        return true if str? && typeof str == 'string' &&
-                                       str.toLowerCase().indexOf(searchStr)>=0
+                        return true if str? &&
+                            typeof str == 'string' &&
+                            searchStr.map((el) -> str.toLowerCase().indexOf(el)>=0).reduce((a,b) -> a || b)
+                                       #str.indexOf(searchStr)>=0
                     false
                 )
     methods:
