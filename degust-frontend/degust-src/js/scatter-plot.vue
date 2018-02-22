@@ -236,24 +236,39 @@ class ScatterPlot
 
     _svg_for_print: () ->
         if (!@opts.canvas)
-            return @svg.node()
+            # Copy the svg for printing, and copy the styles into it
+            print_svg = d3.select(@svg.node().cloneNode(true))
+            Print.copy_svg_style_deep(@svg, print_svg)
+            return print_svg
+
+        # It's on a canvas, reprint it to svg first
         holder = document.createElement('div')
         holder.setAttribute('id','scatter-print-holder')
-        document.body.appendChild(holder)
+        @elem.node().appendChild(holder)      # Need to add to here so we get "deep" css scoping of the dynamic element
         sub = new ScatterPlot(
                 elem: '#scatter-print-holder'
-                filter: @opts.filter
                 canvas: false
-                height: 300
-                width: 600
-                xaxis_loc: @opts.xaxis_loc
-                yaxis_loc: @opts.yaxis_loc
-                )
+                name: "print"
+                brush_enable: false
+                animate: false
+                xaxis_loc: this.opts.xaxisLoc
+                yaxis_loc: this.opts.yaxisLoc
+                colouring: this.opts.colouring
+                alpha: this.opts.alpha
+                size: this.opts.size
+                filter: this.opts.filter
+                text: this.opts.text
+                margin_l: this.opts.margin_l
+                margin_r: this.opts.margin_r
+                margin_b: this.opts.margin_b
+                margin_t: this.opts.margin_t
+                axis_label_inside: this.opts.axisLabelInside
+        )
         sub.update_data(@data, @xColumn, @yColumn, @colouring)
         svg = d3.select(sub.svg.node().cloneNode(true))
         svg.attr('class','')
         Print.copy_svg_style_deep(sub.svg, svg)
-        document.body.removeChild(holder)
+        @elem.node().removeChild(holder)
         {svg: svg.node(), width: @width, height: @height}
 
     _chooseOne: (v1,v2) ->

@@ -99,13 +99,15 @@ class Print
         img.onload = () =>
             ctx.drawImage( img, 0, 0, img.width, img.height )
             imgsrc = canvas.toDataURL("image/png")
+            Print.save_data_url(name, imgsrc)
 
-            downloadLink = document.createElement("a")
-            downloadLink.download = name + ".png"
-            downloadLink.href = imgsrc
-            document.body.appendChild(downloadLink)
-            downloadLink.click()
-            document.body.removeChild(downloadLink)
+    @save_data_url: (name, imgsrc) ->
+        downloadLink = document.createElement("a")
+        downloadLink.download = name + ".png"
+        downloadLink.href = imgsrc
+        document.body.appendChild(downloadLink)
+        downloadLink.click()
+        document.body.removeChild(downloadLink)
 
     # Recursively call copy_style
     @copy_svg_style_deep: (src,dest) ->

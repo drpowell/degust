@@ -59,6 +59,7 @@ module.exports =
         editOverlay: editOverlay
         pvalueHistogram: pvalueHistogram
         expressionBoxplot: expressionBoxplot
+        librarySizePlot: librarySizePlot
     props:
         showQc: null
         geneData: null

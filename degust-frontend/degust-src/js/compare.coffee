@@ -340,7 +340,6 @@ module.exports =
 
     computed:
         code: () -> get_url_vars()["code"]
-        asset_base: () -> this.settings?.asset_base || ''
         home_link: () -> this.settings?.home_link || '/'
         fdrWarning: () -> this.cur_plot == 'mds' && this.fdrThreshold<1
         fcWarning: () -> this.cur_plot == 'mds' && this.fcThreshold>0
@@ -372,7 +371,8 @@ module.exports =
         info_columns: () ->
             this.gene_data.columns_by_type(['info'])
         count_columns: () ->
-            this.gene_data.columns_by_type('count')
+            fc_names = this.fc_calc_columns.map((c) -> c.name)
+            this.gene_data.columns_by_type('count').filter((c) -> fc_names.indexOf(c.parent)>=0)
         filter_changed: () ->
             this.fdrThreshold
             this.fcThreshold
@@ -400,6 +400,8 @@ module.exports =
         settings: () ->
             this.dge_method = this.settings.dge_method || ''
             this.sel_conditions = this.$route.query.sel_conditions || this.settings.init_select || []
+            this.$global.asset_base = this.settings?.asset_base || ''
+
         cur_plot: () ->
             # On plot change, reset brushes
             this.genes_highlight = []
@@ -473,7 +475,6 @@ module.exports =
 
                 # If there is no default dge_method set, then use first thing in the list
                 if this.dge_methods.length>0 && !this.settings.dge_method?
-                    console.log this.dge_methods
                     this.dge_method = this.dge_methods[0][0]
 
             this.init_page()

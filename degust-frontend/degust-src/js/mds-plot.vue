@@ -57,6 +57,7 @@
         <scatter3d v-if='plot2d3d=="3d"'
                     :data='components'
                     :x-column='xColumn' :y-column='yColumn' :z-column='zColumn'
+                    :colour='colour'
                     >
         </scatter3d>
         <bar-graph class='bar-graph'
@@ -142,7 +143,6 @@ module.exports =
         # and several "_transformed_" columns.
         # Also, compute the per-column (library) size for later normalization
         update_components: () ->
-            console.log "update_components"
             # Compute the library size for each column (for normalising in _compute_variance)
             @norm_cols = Normalize.normalize(this.geneData, this.columns)
             @variances = {}

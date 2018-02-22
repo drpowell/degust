@@ -1,4 +1,7 @@
 <style>
+    #expression { position: relative; }
+    .loading { position: absolute; top: 100px; left: 250px; }
+
     .slider-control { display: inline-block; }
     a.sm-link { font-size: 10px;}
     .r-code { font-size: 11px; max-height: 60%;}
@@ -62,7 +65,7 @@
     <div class='container'>
 
       <div class='row'>
-        <conditions-selector v-show='settings.analyze_server_side'
+        <conditions-selector v-show='!settings.is_pre_analysed'
                             :settings='settings'
                             :dge_method='dge_method'
                             :sel_conditions='sel_conditions'
@@ -71,7 +74,7 @@
         </conditions-selector>
 
         <div class='col-xs-7' id='expression'>
-          <div v-show='num_loading>0' class='loading'><img :src='asset_base + "images/ajax-loader.gif"'></div>
+          <div v-show='num_loading>0' class='loading'><img :src='$global.asset_base + "images/ajax-loader.gif"'></div>
           <ul class="nav nav-tabs">
             <li :class='{active: cur_plot=="parcoords"}'>
                 <a @click='cur_plot="parcoords"'>Parallel Coordinates</a>
@@ -282,7 +285,7 @@
             </div>
           </div>
 
-          <div class='text-right' v-show='settings.analyze_server_side'>
+          <div class='text-right' v-show='!is_pre_analysed'>
             <a class='sm-link' @click='show_r_code'>Show R code</a>
           </div>
 

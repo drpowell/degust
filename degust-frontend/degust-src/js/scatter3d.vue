@@ -1,8 +1,20 @@
 <style scoped>
+
+.loading-library {
+    height: 400px;
+}
+.loading-library img {
+    margin: auto;
+    display: block
+}
+
 </style>
 
 <template>
     <div class='scatter-outer' ref='outer'>
+        <div class='loading-library' v-if='loading'>
+            <img :src='$global.asset_base + "images/ajax-loader.gif"' />
+        </div>
     </div>
 </template>
 
@@ -13,9 +25,10 @@ class Scatter3d
     constructor: (@opts) ->
         @el = el = @opts.elem
 
-        @colour = @opts.colour || d3.scale.category10()
-
-        renderer = @renderer = new THREE.WebGLRenderer({ antialias: true })
+        renderer = @renderer = new THREE.WebGLRenderer(
+            antialias: true
+            preserveDrawingBuffer: true         # Needed for printing.  Might be slower on some graphics cards
+        )
 
         w = @w = @opts.tot_width || el.clientWidth
         h = @h = @opts.tot_height || w #el.clientHeight
@@ -54,7 +67,7 @@ class Scatter3d
 
         @onResize(el,  () =>
           w = @w = el.clientWidth
-          h = @h = w #el.clientHeight
+          h = @h = el.clientHeight
           @renderer.setSize(w,h)
           @renderer.setViewport(0, 0, w, h)
           @camera.aspect = w / h
@@ -69,7 +82,7 @@ class Scatter3d
 
         @animate()
 
-    update_data: (data, dims) ->
+    update_data: (data, dims, colour) ->
         [dim1,dim2,dim3] = dims
         # if (data instanceof DataFrame)
         #     data = data.get_data()
@@ -96,7 +109,7 @@ class Scatter3d
 
         sphereGeo = new THREE.SphereGeometry( 2, 16, 16 )
         for i in [0...data.length]
-            sphereMat = new THREE.MeshLambertMaterial( {color : @colour(data[i].sample.parent) })
+            sphereMat = new THREE.MeshLambertMaterial( {color : colour(data[i]) })
             sphere = new THREE.Mesh(sphereGeo, sphereMat)
             sphere.position.x = @xScale(dim1.get(data[i]))
             sphere.position.y = @yScale(dim2.get(data[i]))
@@ -104,6 +117,9 @@ class Scatter3d
             sphere.userData = {datapoint: data[i]}
 
             @scatterPlot.add( sphere )
+            @addText(@scatterPlot, data[i].sample.name, 50,
+                     sphere.position.x, sphere.position.y, sphere.position.z,
+                     colour(data[i]), -20)
 
         @setup_axis()
 
@@ -119,9 +135,12 @@ class Scatter3d
             callback()
       ), 500)
 
-
     _make_menu: (el) ->
-        print_menu = (new Print(@svg, "scatter3d")).menu()
+        print_menu = [{  title: 'Save as PNG', action: () =>
+            dataUrl = @renderer.domElement.toDataURL("image/png")
+            Print.save_data_url("mds3d",dataUrl)
+        }]
+
         menu = [ {  divider: true },
                 {
                     title: 'Reset view',
@@ -145,16 +164,18 @@ class Scatter3d
         d3.select(el).on('contextmenu', d3.contextMenu(print_menu.concat(menu))) # attach menu to element
 
     # helper function to add text to object
-    addText: (object, string, scale, x, y, z, color) ->
+    # object -> to attach to, string -> to print, scale -> size to plot, x/y/z -> loc in space,
+    # color -> hex string or color object, dy -> translate text on screen
+    addText: (object, string, scale, x, y, z, color, dy=0) ->
         canvas = document.createElement('canvas')
         size = 256
         canvas.width = size
         canvas.height = size
         context = canvas.getContext('2d')
-        context.fillStyle = "#" + color.getHexString()
+        context.fillStyle = if color instanceof THREE.Color then "#" + color.getHexString() else color
         context.textAlign = 'center'
         context.font = '24px Arial'
-        context.fillText(string, size / 2, size / 2)
+        context.fillText(string, size / 2, size / 2 + dy)
         amap = new THREE.Texture(canvas)
         amap.needsUpdate = true
         mat = new THREE.SpriteMaterial({
@@ -352,7 +373,7 @@ class Scatter3d
         intersects = @raycaster.intersectObject( @scatterPlot, true )
         for o in intersects
             if (o.object.userData.datapoint)
-                console.log("HOVER : ",o.object.userData )
+                console.log("HOVER : ", o.object.userData)
                 #o.object.material.emissive.setHex( 0xffff0 )
 
     on_mouse_wheel: (event) ->
@@ -384,6 +405,9 @@ module.exports =
         xColumn: null
         yColumn: null
         zColumn: null
+        colour: null
+    data: () ->
+        loading: true
 
     computed:
         needsUpdate: () ->
@@ -399,11 +423,11 @@ module.exports =
 
     methods:
         update: () ->
-            console.log "scatter3d redraw()",this
             if this.data? && this.xColumn? && this.yColumn? && this.zColumn?
-                this.me.update_data(this.data, [this.xColumn,this.yColumn,this.zColumn])
+                this.me.update_data(this.data, [this.xColumn,this.yColumn,this.zColumn], this.colour)
     mounted: () ->
         DynamicJS.load("./three.js", () =>
+            this.loading = false
             this.me = new Scatter3d(
                 elem: this.$refs.outer
                 tot_height: 400
