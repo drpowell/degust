@@ -25,7 +25,17 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
           <div class="tab-search">
             Search:
             <input type="text" v-model='searchStr' :class='{active: searchStr!=""}' @keyup.esc='searchStr=""'>
-            <span class='glyphicon glyphicon-cog gene-table-settings'></span>
+            <span class='glyphicon glyphicon-cog' @click='showPopup'></span>
+            <popup-menu ref='menu'>
+                <vue-menu-item>
+                    <div slot="body" @mousedown.stop>
+                        <label>
+                            <input type='checkbox' v-model='sortAbsLogFC'/>
+                            Sorting by ABSOLUTE logFC
+                        </label>
+                    </div>
+                </vue-menu-item>
+            </popup-menu>
           </div>
           <div class='csv-download-div'>
             <a @click='do_download("csv")'>Download CSV</a>
@@ -61,6 +71,8 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
 <script lang='coffee'>
 
 slickTable = require('./slick-table.vue').default
+popupMenu = require('./popup-menu.vue').default
+{ Menu, Menuitem } = require('@hscmap/vue-menu')
 
 # TODO : restore page from link info
 
@@ -73,7 +85,7 @@ guess_link_info =
 
 guess_link_info_uniprot =
     {re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'}
-    
+
 
 # Guess the link using the guess_link_info table
 guess_link = (useUniprot, info) ->
@@ -131,6 +143,9 @@ module.exports =
     name: 'gene-table'
     components:
         slickTable: slickTable
+        popupMenu: popupMenu
+        VueMenu: Menu
+        VueMenuItem: Menuitem
     props:
         linkUrl:
             default: null
@@ -150,6 +165,7 @@ module.exports =
             default: false
     data: () ->
         searchStr: ""
+        sortAbsLogFC: true
         table_info:
             top: 0
             btm: 0
@@ -160,6 +176,8 @@ module.exports =
             this.$refs.slickGrid.invalidate()
         showIntensity: () ->
             this.$refs.slickGrid.invalidate()
+        sortAbsLogFC: () ->
+            this.$refs.slickGrid.resort()
     computed:
         gene_table_columns: () ->
             column_keys = this.geneData.columns_by_type(['info','fdr','p'])
@@ -202,6 +220,9 @@ module.exports =
                     false
                 )
     methods:
+        showPopup: (ev) ->
+            this.$refs.menu.show(ev)
+
         do_download: (typ) ->
             do_download(this.geneData, this.tableRows, typ)
 
@@ -262,11 +283,11 @@ module.exports =
         # called for sorting columns from slickgrid
         sorter: (args) ->
             column = this.geneData.column_by_idx(args.sortCol.field)
-            this.$refs.slickGrid.sort((r1,r2) ->
+            this.$refs.slickGrid.sort((r1,r2) =>
                 r = 0
                 x=r1[column.idx]; y=r2[column.idx]
                 if column.type in ['fc_calc']
-                    if false #sortAbsLogFC
+                    if this.sortAbsLogFC
                     then r = comparer_num(Math.abs(x), Math.abs(y))
                     else r = comparer_num(x, y)
                 else if column.type in ['fdr']

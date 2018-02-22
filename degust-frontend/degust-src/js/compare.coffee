@@ -68,25 +68,6 @@ calc_max_parcoords_width = () ->
     w -= $('.conditions').outerWidth(true) if $('.conditions').is(':visible')
     w -= $('div.filter').outerWidth(true) if $('div.filter').is(':visible')
 
-# TODO - remove once table sorting fixed
-init_gene_table_menu = () ->
-    menu = [
-            title: () -> "<input type='checkbox' style='margin-right:10px;' #{if sortAbsLogFC then "checked" else ""}/><label>Sorting by ABSOLUTE logFC</label>"
-            action: () =>
-                sortAbsLogFC = !sortAbsLogFC
-                gene_table.resort()
-    ]
-    # Popup on right-click
-    d3.select('#grid').on('contextmenu', d3.contextMenu(menu))
-
-    # Also, Click on settings icon to popup menu
-    d3.select('.gene-table-settings').on('click', (e) ->
-        d3.event.preventDefault()
-        # Move the popup to the left
-        opts = {onPostOpen: (m) -> console.log("move!"); m.style('left', (d3.event.pageX - 250) + 'px')}
-        d3.contextMenu(menu,opts)()
-    )
-
 # Filter to decide which rows to plot on the parallel coordinates widget
 expr_filter = (row) ->
     if g_vue_obj.fcThreshold>0
