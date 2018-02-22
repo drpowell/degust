@@ -278,6 +278,7 @@ class ScatterPlot
     _mouse_move: () ->
         loc = d3.mouse(@gDot.node())             # Location in element
         loc_doc = d3.mouse(document.body)       # Location in the page
+        @dispatch.mouseout()                    # Hide any tool tip since we're delaying lookup
         scheduler.schedule('scatterplot.tooltip', (() => @_handle_mouseover(loc, loc_doc)), 20)
 
     # Event handler for mouse-out.
