@@ -41,6 +41,25 @@
                                 :is-rle='true'
                                 >
             </expression-boxplot>
+            <cv-histogram v-if='showQc=="cv-plot"'
+                          :gene-data='geneData'
+                          :colour='colour'
+                          >
+            </cv-histogram>
+            <quant-histogram v-if='showQc=="quant-plot"'
+                          :gene-data='geneData'
+                          :colour='colour'
+                          >
+            </quant-histogram>
+            <intensity-histogram v-if='showQc=="intensity-plot"'
+                          :gene-data='geneData'
+                          :colour='colour'
+                          >
+            </intensity-histogram>
+            <imputed-heatmap v-if='showQc=="imputed-heatmap"'
+                          :gene-data='geneData'
+                          >
+            </imputed-heatmap>
         </div>
         </edit-overlay>
     </div>
@@ -52,6 +71,11 @@ editOverlay = require('./edit-overlay.vue').default
 pvalueHistogram = require('./pvalue-histogram.vue').default
 librarySizePlot = require('./library-size-plot.vue').default
 expressionBoxplot = require('./expression-boxplot.vue').default
+cvHistogram = require('./cv-plot.vue').default
+quantHistogram = require('./quantified-histogram.vue').default
+intensityHistogram = require('./intensity-plot.vue').default
+imputedHeatmap = require('./imputed-heatmap.vue').default
+
 
 module.exports =
     name: 'qc'
@@ -60,6 +84,10 @@ module.exports =
         pvalueHistogram: pvalueHistogram
         expressionBoxplot: expressionBoxplot
         librarySizePlot: librarySizePlot
+        cvHistogram: cvHistogram
+        quantHistogram: quantHistogram
+        intensityHistogram: intensityHistogram
+        imputedHeatmap: imputedHeatmap
     props:
         showQc: null
         geneData: null

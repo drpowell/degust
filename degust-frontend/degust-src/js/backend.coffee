@@ -105,6 +105,17 @@ class BackendRNACounts
     have_replicates: () ->
         @settings.replicates.map(([name,reps]) -> reps.length).some((x) -> x>1)
 
+    #Consider refactoring dge_methods to be an array of objects instead of array of arrays to match,
+    #Or just change this to match dge_methods
+    #May want to have single combined list of dge_methods and qc plots
+    qc_plots: () ->
+        [
+            ['pvalue',             'p-Value Histogram'],
+            ['library-size-plot',  'Library Size'],
+            ['expression-boxplot', 'Expression Boxplot'],
+            ['rle-boxplot',        'RLE Boxplot']
+        ]
+
     is_configured: () ->
         @settings.replicates.length > 0
 
@@ -199,6 +210,16 @@ class BackendMaxQuant
         [ ['maxquant', 'MaxQuant with Limma']
         ]
 
+    qc_plots: () ->
+        [
+            ['pvalue',                'p-value Histogram'],
+            ['expression-boxplot',    'Intensity Boxplot'],
+            ['cv-plot',               'CV-Hisogram'],
+            ['quant-plot',            'Quantified Histogram']
+            ['intensity-plot',        'Intensity Histogram']
+            ['imputed-heatmap',       'Imputed Value Heatmap']
+        ]
+
     request_kegg_data: (callback) ->
         console.log "not supported"
 
@@ -251,6 +272,11 @@ class BackendMaxQuant
             @settings.replicates.forEach(([name,reps]) ->
                 reps.forEach((rep) ->
                     data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
+                )
+            )
+            @settings.replicates.forEach(([name,reps]) ->
+                reps.forEach((rep) ->
+                    data_cols.push({idx: rep + " imputed", name: rep + " imputed", type: 'imputed', parent: name})
                 )
             )
 

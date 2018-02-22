@@ -1,31 +1,50 @@
+
 # Install
+
 Degust can be installed natively or using Docker.
 
-## Native
+## Native Installation
 
 ### Install Ruby using rbenv (optional)
 
 As the install user:
-  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 
 Add to .bashrc
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-  export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 Install ruby-build
-  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 Install ruby 2.4.0
-  rbenv install 2.4.0
 
-And use it
-  rbenv global 2.4.0
+    rbenv install 2.4.0
+
+And run it
+
+    rbenv global 2.4.0
 
 Install bundler
-  gem install bundler
 
-### Install Degust
+    gem install bundler
+
+### External Dependencies
+
+Install R
+
+    https://www.r-project.org/
+
+Install R package dependencies
+
+    Rscript -e "install.packages(c('seriation', 'jsonlite'), repos='http://cran.rstudio.org')"
+    Rscript -e "source('http://bioconductor.org/biocLite.R'); biocLite('limma'); biocLite('edgeR')"
+
+### Installing Degust
 
 Ensure rails 4.2 is installed.  Install the necessary gems:
 
@@ -35,6 +54,10 @@ Build the js frontend
 
     rake degust:deps
     rake degust:build
+
+Make various temporary directories
+
+    mkdir -p uploads log tmp/pids tmp/cache tmp/sockets tmp/R-cache
 
 For production build (minifies js, and no source-maps)
 
@@ -62,5 +85,5 @@ To run this container, run:
     docker run -p 80:3000 degust
 
 This will start degust in the docker container, and allow access to the container via port 80 on your machine.
-To access the website, go to `http://localhost/` on your web browser. You can change `80` to any port you wish 
+To access the website, go to `http://localhost/` on your web browser. You can change `80` to any port you wish
 to have degust listening on.
