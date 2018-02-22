@@ -476,6 +476,7 @@ class Heatmap
                 .attr("y1", @opts.h*@columns.length+20)
                 .attr("y2", @opts.h*@columns.length)
         highlight.transition()
+                .duration(50)
                 .attr("x1", (d) => Math.round((d+0.5)*@cell_w))
                 .attr("y1", @opts.h*@columns.length+20)
                 .attr("x2": (d) => Math.round((d+0.5)*@cell_w))
