@@ -66,22 +66,26 @@ slickTable = require('./slick-table.vue').default
 
 # Rules for guess best info link based on some ID
 guess_link_info =
-    [{re: /^ENS/, link: 'http://ensembl.org/Multi/Search/Results?q=%s;site=ensembl'},
-     {re: /^CG/, link: 'http://flybase.org/cgi-bin/uniq.html?species=Dmel&cs=yes&db=fbgn&caller=genejump&context=%s'},
-     {re: /^/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
+    [{re: /^ENS.*/, link: 'http://ensembl.org/Multi/Search/Results?q=%s;site=ensembl'},
+     {re: /^CG.*/, link: 'http://flybase.org/cgi-bin/uniq.html?species=Dmel&cs=yes&db=fbgn&caller=genejump&context=%s'},
+     {re: /^.*/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
     ]
 
-guess_link_info_uniprot =
-    {re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'}
+guess_link_info_prot =
+    [{re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'}
+     {re: /([A-Z][A-Z0-9]{2,11})[_]([a-z|A-Z]*[0-9]{3,})/, link: 'http://www.ncbi.nlm.nih.gov/protein/?&term=%s'},
+    ]
 
 
 # Guess the link using the guess_link_info table
-guess_link = (useUniprot, info) ->
+# Return object of {match:"string", link:"link"}
+guess_link = (useProt, info) ->
     return if !info?
-    if useUniprot
-        return guess_link_info_uniprot.link if info.match(guess_link_info_uniprot.re)
+    if useProt
+        for o in guess_link_info_prot
+            return {match: info.match(o.re), link: o.link} if info.match(o.re)
     for o in guess_link_info
-        return o.link if info.match(o.re)
+        return {match: info.match(o.re), link: o.link} if info.match(o.re)
     return null
 
 
@@ -146,7 +150,7 @@ module.exports =
             default: false
         fcColumns:
             required: true
-        useUniprot:
+        useProt:
             default: false
     data: () ->
         searchStr: ""
@@ -248,10 +252,10 @@ module.exports =
                 cols = this.geneData.columns_by_type(['info'])
             if cols.length>0
                 info = item[cols[0].idx]
-                link = if this.linkUrl? then this.linkUrl else guess_link(this.useUniprot, info)
+                link = if this.linkUrl? then this.linkUrl else guess_link(this.useProt, info)
                 log_debug("Dbl click.  Using info/link",info,link)
                 if link?
-                    link = link.replace(/%s/, info)
+                    link = link.link.replace(/%s/, link.match[0])
                     window.open(link)
                     window.focus()
         mouseover: (item) ->

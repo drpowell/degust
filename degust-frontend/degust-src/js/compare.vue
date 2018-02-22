@@ -319,7 +319,7 @@
         <gene-table :gene-data='gene_data' :link-url='settings.link_url'
                     :fc-columns='fc_calc_columns'
                     :rows='genes_selected' :show-counts='showCounts' :show-intensity='showIntensity'
-                    :useUniprot='is_maxquant'
+                    :useProt='is_maxquant'
                     @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
                     >
         </gene-table>
