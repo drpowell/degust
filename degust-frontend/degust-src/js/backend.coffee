@@ -111,7 +111,7 @@ class BackendRNACounts
     qc_plots: () ->
         [
             ['pvalue',             'p-Value Histogram'],
-            ['library-size-plot',  'Library Size'],
+            ['library-size',       'Library Size'],
             ['expression-boxplot', 'Expression Boxplot'],
             ['rle-boxplot',        'RLE Boxplot']
         ]
