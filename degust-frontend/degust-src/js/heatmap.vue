@@ -130,6 +130,9 @@ class Heatmap
         @opts.label_width ?= 120
         @opts.legend_height ?= 50
         @opts.geneOrder ?= true
+        @opts.enablecontextmenu ?= true
+        @opts.showlegend ?= true
+        @opts.twocolor ?= false
 
         @opts.width ?= d3.select(@opts.elem).node().clientWidth - 20;
 
@@ -151,13 +154,17 @@ class Heatmap
 
         @dispatch = d3.dispatch("mouseover","mouseout","show_replicates","hide")
 
-        @get_color_scale = @_color_red_blue;
+        if @opts.twocolor
+            @get_color_scale = @_color_two
+        else
+            @get_color_scale = @_color_red_blue;
 
         # Create a single wrapper for later use
         @worker = new WorkerWrapper(calc_order, (d) => @_worker_callback(d))
         @_enabled = true
         @columns_changed = false
-        @_make_menu(@opts.elem)
+        if @opts.enablecontextmenu
+            @_make_menu(@opts.elem)
 
     mk_highlight: () ->
         @svg.append("defs")
@@ -247,6 +254,11 @@ class Heatmap
         ]
         d3.select(el).on('contextmenu', d3.contextMenu(menu.concat(print_menu))) # attach menu to element
 
+    _color_two : () ->
+        d3.scale.ordinal()
+                 .domain([0, 1])
+                 .range(["#cddded", "#de0065"]);
+
     _color_red_blue : () ->
         d3.scale.linear()
                  .domain([-@max, 0, @max])
@@ -274,10 +286,10 @@ class Heatmap
         @legend.selectAll("*").remove()
 
         @legend.append('text')
-               .attr("x", -10)
-               .attr("y", 20)
-               .attr("text-anchor", "end")
-               .text("Heatmap log-fold-change ")
+            .attr("x", -10)
+            .attr("y", 20)
+            .attr("text-anchor", "end")
+            .text("Heatmap log-fold-change ")
 
         width = 100
         @legend.attr("transform", "translate(#{@opts.width-width-20}, #{@height - @opts.legend_height})")
@@ -289,24 +301,24 @@ class Heatmap
         g = @legend.append('g')
 
         rects = g.selectAll('rect')
-                       .data(vals)
+                    .data(vals)
         rects.enter().append("rect")
-                     .attr("x", (v) -> v*1.0*width/steps)
-                     .attr("height", 20)
-                     .attr("width", 1.0*width/steps)
-                     .style("fill", (v) => @colorScale(stepToVal(v)))
+                    .attr("x", (v) -> v*1.0*width/steps)
+                    .attr("height", 20)
+                    .attr("width", 1.0*width/steps)
+                    .style("fill", (v) => @colorScale(stepToVal(v)))
 
         sc = d3.scale.linear().domain([-@max,@max]).range([0,width])
         axis = d3.svg.axis()
-                  .scale(sc)
-                  .orient("bottom")
-                  .ticks(7)
-                  .tickSize(5)
+                .scale(sc)
+                .orient("bottom")
+                .ticks(7)
+                .tickSize(5)
         # Draw the ticks and rotate labels by 90%
         g.append('g')
-         .attr('transform', "translate(0, 20)")
-         .call(axis)
-          .selectAll("text")
+        .attr('transform', "translate(0, 20)")
+        .call(axis)
+        .selectAll("text")
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
             .attr("dy", "-0.4em")
@@ -401,7 +413,11 @@ class Heatmap
             .transition()
             .attr('x', @opts.label_width)
             .attr('y', (d,i) => i * @opts.h + @opts.h/2)
-        @_make_legend()
+        if @opts.showlegend
+            @_make_legend()
+        else
+            @colorScale = @get_color_scale()
+
         @columns_changed = false
 
     _render_heatmap: () ->
@@ -528,6 +544,12 @@ module.exports =
             default: null
         width:
             default: null
+        showlegend:
+            default: true
+        enablecontextmenu:
+            default: true
+        twocolor:
+            default: false
     computed:
         needsUpdate: () ->
             # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
@@ -556,6 +578,9 @@ module.exports =
             show_replicates: this.showReplicates
             geneOrder: this.geneOrder
             width: this.width
+            enablecontextmenu: this.enablecontextmenu
+            showlegend: this.showlegend
+            twocolor: this.twocolor
         )
         this.heatmap.on("mouseover", (d) => this.$emit("mouseover", d))
         this.heatmap.on("mouseout", ()  => this.$emit("mouseout"))

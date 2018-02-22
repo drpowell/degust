@@ -19,6 +19,9 @@
             @show-replicates='v => heatmap_show_replicates=v'
             :geneOrder='false'
             :width=900
+            :showlegend='false'
+            :enablecontextmenu='false'
+            :twocolor='true'
             >
 
     </heatmap>
@@ -66,7 +69,7 @@ module.exports =
                         sum += 1
                         rw[el] = 1
                     else
-                        rw[el] = -1
+                        rw[el] = 0
                 )
                 rem.push(sum)
             )
