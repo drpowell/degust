@@ -128,9 +128,10 @@ class Heatmap
         @opts.h_pad ?= 20
         @opts.h ?= 20
         @opts.label_width ?= 120
-        @opts.legend_height ?= 50;
+        @opts.legend_height ?= 50
+        @opts.geneOrder ?= true
 
-        @opts.width = d3.select(@opts.elem).node().clientWidth - 20;
+        @opts.width ?= d3.select(@opts.elem).node().clientWidth - 20;
 
         @svg = d3.select(@opts.elem).append('svg')
         @svg.append('g').attr("class", "labels")
@@ -332,7 +333,12 @@ class Heatmap
     # Calculate the order of genes for the heatmap.  This uses the 'calc_order' function
     # from above, wrapped in a web-worker
     _calc_order: () ->
-        @worker.start([@data, @columns.map((c) -> {idx: c.idx})])
+        if @opts.geneOrder
+            @worker.start([@data, @columns.map((c) -> {idx: c.idx})])
+        else
+            @order = @data.map((el) -> el.id)
+            @_render_heatmap()
+            @_show_calc_info()
 
     _thinking: (bool) ->
         @_is_thinking = bool
@@ -470,6 +476,7 @@ class Heatmap
                 .attr("y1", @opts.h*@columns.length+20)
                 .attr("y2", @opts.h*@columns.length)
         highlight.transition()
+                .duration(50)
                 .attr("x1", (d) => Math.round((d+0.5)*@cell_w))
                 .attr("y1", @opts.h*@columns.length+20)
                 .attr("x2": (d) => Math.round((d+0.5)*@cell_w))
@@ -517,6 +524,10 @@ module.exports =
         showReplicates:
             type: Boolean
             default: false
+        geneOrder:
+            default: null
+        width:
+            default: null
     computed:
         needsUpdate: () ->
             # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
@@ -543,6 +554,8 @@ module.exports =
         this.heatmap = new Heatmap(
             elem: this.$el
             show_replicates: this.showReplicates
+            geneOrder: this.geneOrder
+            width: this.width
         )
         this.heatmap.on("mouseover", (d) => this.$emit("mouseover", d))
         this.heatmap.on("mouseout", ()  => this.$emit("mouseout"))

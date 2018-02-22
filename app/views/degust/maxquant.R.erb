@@ -19,14 +19,40 @@ counts <- counts[rowMeans(counts == 0) <= 0.2,]
 #Variance Stabilise
 
 #Impute here.
-lowpt <- median(as.matrix(counts)) - (sd(as.matrix(counts)) * 1.5)
-highpt <- median(as.matrix(counts)) - (sd(as.matrix(counts)) * 2.1)
-mid_vals <- counts[counts < highpt & lowpt < counts]
+#lowpt <- median(as.matrix(counts)) - (sd(as.matrix(counts)) * 1.5)
+#highpt <- median(as.matrix(counts)) - (sd(as.matrix(counts)) * 2.1)
+#mid_vals <- counts[counts < highpt & lowpt < counts]
 #Select values at random which are <= 1.8 SD from the median and fill them into NA's?
-counts[is.na(counts)] <- mid_vals[floor(runif(n=sum(is.na(counts)), min = 0, max = length(mid_vals)))]
+#counts[is.na(counts)] <- mid_vals[floor(runif(n=sum(is.na(counts)), min = 0, max = length(mid_vals)))]
 #Select values at random from normal distribution which take values from 1.5-2.1SD from median.
 #How do we produce a normal distribution that can select from it?
 
+#Instead of that, we follow what DEP does
+
+#We set 0 to NA so we can easily replace them
+counts[counts == 0] <- NA
+
+#log2 counts
+counts <-  log2(counts)
+
+stat_tb <- data.frame(matrix(nrow = ncol(counts), ncol=4))
+for(i in seq_len(ncol(counts))){
+    stat_tb[i,] <- c(colnames(counts)[i], median(counts[,i], na.rm = T), sd(counts[,i], na.rm = T), sum(is.na(counts[,i])))
+}
+stat_tb[,2:4] <- apply(X = stat_tb[,2:4], FUN=as.numeric, MARGIN = 2)
+colnames(stat_tb) <- c("samples", "median", "sd", "missing")
+
+#SHIFT & SCALE
+shift = 1.8
+scale = 0.3
+
+for (a in seq_len(nrow(stat_tb))) {
+    counts[is.na(counts[, stat_tb$samples[a]]), stat_tb$samples[a]] <- rnorm(
+        n = stat_tb$missing[a],
+        mean = stat_tb$median[a] - shift * stat_tb$sd[a],
+        sd = stat_tb$sd[a] * scale)
+    }
+colnames(counts) <- paste(colnames(counts), "imputed")
 #Assay call
 
 #Pre-process here
@@ -50,7 +76,8 @@ out <- topTable(fit2, n=Inf, sort.by='none')
 
 out2 <- cbind(fit2$coef,
 			  out[, c('P.Value','adj.P.Val','AveExpr')],
-			  data[, c(<%== @export_cols %>)] )
+			  data[, c(<%== @export_cols %>)],
+              counts)
 
 write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
 

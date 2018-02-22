@@ -1,6 +1,4 @@
 
-* Fix table sorting by abs/non-abs FC
-    * option on table header
 * Check render-order is so p-value on top in ma-plot, parcoords, heatmap
 * Show PCA dimension loading in MDS
     * On table cog, allow selection of columns to display.  Including variance column

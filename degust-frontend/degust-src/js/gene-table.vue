@@ -25,7 +25,17 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
           <div class="tab-search">
             Search:
             <input type="text" v-model='searchStr' :class='{active: searchStr!=""}' @keyup.esc='searchStr=""'>
-            <span class='glyphicon glyphicon-cog gene-table-settings'></span>
+            <span class='glyphicon glyphicon-cog' @click='showPopup'></span>
+            <popup-menu ref='menu'>
+                <vue-menu-item>
+                    <div slot="body" @mousedown.stop>
+                        <label>
+                            <input type='checkbox' v-model='sortAbsLogFC'/>
+                            Sorting by ABSOLUTE logFC
+                        </label>
+                    </div>
+                </vue-menu-item>
+            </popup-menu>
           </div>
           <div class='csv-download-div'>
             <a @click='do_download("csv")'>Download CSV</a>
@@ -61,27 +71,33 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
 <script lang='coffee'>
 
 slickTable = require('./slick-table.vue').default
+popupMenu = require('./popup-menu.vue').default
+{ Menu, Menuitem } = require('@hscmap/vue-menu')
 
 # TODO : restore page from link info
 
 # Rules for guess best info link based on some ID
 guess_link_info =
-    [{re: /^ENS/, link: 'http://ensembl.org/Multi/Search/Results?q=%s;site=ensembl'},
-     {re: /^CG/, link: 'http://flybase.org/cgi-bin/uniq.html?species=Dmel&cs=yes&db=fbgn&caller=genejump&context=%s'},
-     {re: /^/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
+    [{re: /^ENS.*/, link: 'http://ensembl.org/Multi/Search/Results?q=%s;site=ensembl'},
+     {re: /^CG.*/, link: 'http://flybase.org/cgi-bin/uniq.html?species=Dmel&cs=yes&db=fbgn&caller=genejump&context=%s'},
+     {re: /^.*/, link: 'http://www.ncbi.nlm.nih.gov/gene/?&term=%s'},
     ]
 
-guess_link_info_uniprot =
-    {re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'}
-    
+guess_link_info_prot =
+    [{re: /^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/, link: 'https://www.uniprot.org/uniprot/%s'}
+     {re: /([A-Z][A-Z0-9]{2,11})[_]([a-z|A-Z]*[0-9]{3,})/, link: 'http://www.ncbi.nlm.nih.gov/protein/?&term=%s'},
+    ]
+
 
 # Guess the link using the guess_link_info table
-guess_link = (useUniprot, info) ->
+# Return object of {match:"string", link:"link"}
+guess_link = (useProt, info) ->
     return if !info?
-    if useUniprot
-        return guess_link_info_maxquant.link if info.match(guess_link_info_maxquant.re)
-    for o in link_info_use
-        return o.link if info.match(o.re)
+    if useProt
+        for o in guess_link_info_prot
+            return {match: info.match(o.re), link: o.link} if info.match(o.re)
+    for o in guess_link_info
+        return {match: info.match(o.re), link: o.link} if info.match(o.re)
     return null
 
 
@@ -131,6 +147,9 @@ module.exports =
     name: 'gene-table'
     components:
         slickTable: slickTable
+        popupMenu: popupMenu
+        VueMenu: Menu
+        VueMenuItem: Menuitem
     props:
         linkUrl:
             default: null
@@ -146,10 +165,11 @@ module.exports =
             default: false
         fcColumns:
             required: true
-        useUniprot:
+        useProt:
             default: false
     data: () ->
         searchStr: ""
+        sortAbsLogFC: true
         table_info:
             top: 0
             btm: 0
@@ -160,6 +180,8 @@ module.exports =
             this.$refs.slickGrid.invalidate()
         showIntensity: () ->
             this.$refs.slickGrid.invalidate()
+        sortAbsLogFC: () ->
+            this.$refs.slickGrid.resort()
     computed:
         gene_table_columns: () ->
             column_keys = this.geneData.columns_by_type(['info','fdr','p'])
@@ -192,16 +214,21 @@ module.exports =
             if this.searchStr==''
                 this.rows
             else
-                searchStr=this.searchStr
+                searchStr=this.searchStr.toLowerCase().split(/,/).map((el) -> el.trim())
                 cols=this.geneData.columns_by_type('info')
                 this.rows.filter((item) ->
                     for col in cols
                         str = item[col.idx]
-                        return true if str? && typeof str == 'string' &&
-                                       str.toLowerCase().indexOf(searchStr)>=0
+                        return true if str? &&
+                            typeof str == 'string' &&
+                            searchStr.map((el) -> str.toLowerCase().indexOf(el)>=0).reduce((a,b) -> a || b)
+                                       #str.indexOf(searchStr)>=0
                     false
                 )
     methods:
+        showPopup: (ev) ->
+            this.$refs.menu.show(ev)
+
         do_download: (typ) ->
             do_download(this.geneData, this.tableRows, typ)
 
@@ -248,10 +275,10 @@ module.exports =
                 cols = this.geneData.columns_by_type(['info'])
             if cols.length>0
                 info = item[cols[0].idx]
-                link = if this.linkUrl? then this.linkUrl else guess_link(this.useUniprot, info)
+                link = if this.linkUrl? then this.linkUrl else guess_link(this.useProt, info)
                 log_debug("Dbl click.  Using info/link",info,link)
                 if link?
-                    link = link.replace(/%s/, info)
+                    link = link.link.replace(/%s/, link.match[0])
                     window.open(link)
                     window.focus()
         mouseover: (item) ->
@@ -262,11 +289,11 @@ module.exports =
         # called for sorting columns from slickgrid
         sorter: (args) ->
             column = this.geneData.column_by_idx(args.sortCol.field)
-            this.$refs.slickGrid.sort((r1,r2) ->
+            this.$refs.slickGrid.sort((r1,r2) =>
                 r = 0
                 x=r1[column.idx]; y=r2[column.idx]
                 if column.type in ['fc_calc']
-                    if false #sortAbsLogFC
+                    if this.sortAbsLogFC
                     then r = comparer_num(Math.abs(x), Math.abs(y))
                     else r = comparer_num(x, y)
                 else if column.type in ['fdr']
