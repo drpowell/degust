@@ -170,7 +170,8 @@
                                              @input='selected_reps(rep)'
                                              :multiple="true" :close-on-select="false"
                                              :show-labels="false" :searchable="false"
-                                             placeholder="Pick some">
+                                             placeholder="Pick some"
+                                             tabindex=-1>
                                   <template slot="option" scope="props">
                                     <div>{{props.option}}
                                         <span class='rep_used' v-for='cond in conditions_for_rep(props.option)'>{{cond}}</span>
@@ -180,12 +181,12 @@
                               </div>
                               <div class="col-sm-4">
                                   <label class='init-select'>
-                                      <input v-model='rep.init' type="checkbox" />Initial select
+                                      <input v-model='rep.init' type="checkbox" tabindex=-1 />Initial select
                                   </label>
                                   <label class='hidden-factor'>
-                                      <input v-model='rep.factor' type="checkbox" />Hidden Factor
+                                      <input v-model='rep.factor' type="checkbox" tabindex=-1 />Hidden Factor
                                   </label>
-                                  <button v-on:click='del_replicate(idx)' type="button" class="del-condition">&times;</button>
+                                  <button v-on:click='del_replicate(idx)' type="button" class="del-condition" tabindex=-1>&times;</button>
                               </div>
                             </div>
                           </div>
