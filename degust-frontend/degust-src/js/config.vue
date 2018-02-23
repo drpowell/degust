@@ -171,7 +171,7 @@
                                              :multiple="true" :close-on-select="false"
                                              :show-labels="false" :searchable="false"
                                              placeholder="Pick some"
-                                             tabindex=-1>
+                                             :tabindex=-1>
                                   <template slot="option" scope="props">
                                     <div>{{props.option}}
                                         <span class='rep_used' v-for='cond in conditions_for_rep(props.option)'>{{cond}}</span>
