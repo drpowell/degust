@@ -145,6 +145,7 @@
               </div>
 
             <div v-show='is_rnaseq_counts || is_maxquant'>
+
                 <div class="condition-group conditions">
                   <div class="form-group">
                     <span class="control-label col-sm-3">Condition name</span>
@@ -194,12 +195,42 @@
                   </div>
                 </div> <!-- conditions -->
 
-                <div class="form-group">
-                  <div class="col-sm-3">
-                    <button v-on:click='add_replicate()' type="button" class="btn btn-primary" title="Add a new condition or treatment" data-placement='right'>Add condition</button>
+                <div class='pull-right'> <!-- Editing of contrasts -->
+                  <div>
+                    <b v-if='settings.contrasts.length>0'>Contrasts:</b>
+                    <button v-for='(contrast,idx) in settings.contrasts' class='btn btn-default'
+                            @click.prevent='edit_contrast(idx)'>
+                      {{contrast.name || 'Unnamed'}}
+                    </button>
+                    <button @click='add_contrast()' type="button" class="btn btn-primary" title="" data-placement='right'>
+                      Add contrast
+                    </button>
+                  </div>
+                  <div v-if='editing_contrast!=null'>
+                  <modal :showModal='true'>
+                    <div slot='body'>
+                      <contrasts :conditions='settings.replicates'
+                                :edit='editing_contrast'
+                                ref='contrast_editor'
+                                />
+                    </div>
+                    <div slot='footer'>
+                      <button class='btn btn-danger' @click='delete_contrast()'>Delete</button>
+                      <button class='btn btn-primary' @click='close_contrast()'>Close</button>
+                    </div>
+                  </modal>
                   </div>
                 </div>
-              </div>
+
+                <div class="form-group">
+                  <div class="col-sm-3">
+                    <button v-on:click='add_replicate()' type="button" class="btn btn-primary" title="Add a new condition or treatment" data-placement='right'>
+                      Add condition
+                    </button>
+                  </div>
+                </div>
+
+              </div> <!-- 'is_rnaseq_counts || is_maxquant' -->
 
               <div v-show='is_pre_analysed'>
                 <div class="form-group">
@@ -231,7 +262,7 @@
               </div>
 
               <button type='button' @click='advanced=!advanced'
-                      class='btn btn-default btn-sm pull-right' style='margin-top:-45px;'>
+                      class='btn btn-default btn-sm pull-right'>
                   Extra settings
               </button>
               <transition name="fade">
