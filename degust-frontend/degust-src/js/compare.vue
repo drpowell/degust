@@ -66,6 +66,7 @@
                             :settings='settings'
                             :dge_method='dge_method'
                             :sel_conditions='sel_conditions'
+                            :sel_contrast='sel_contrast'
                             :dge_methods='dge_methods'
                             @apply='change_samples'>
         </conditions-selector>

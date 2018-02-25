@@ -122,8 +122,8 @@ class BackendRNACounts
     request_kegg_data: (callback) ->
         @common.request_kegg_data(callback)
 
-    request_data: (method,columns) ->
-        @_request_dge_data(method,columns)
+    request_data: (method,columns,contrasts) ->
+        @_request_dge_data(method,columns,contrasts)
 
     _extra_info: (extra) ->
         html = ""
@@ -136,12 +136,19 @@ class BackendRNACounts
             $('.weights-toggle').hide()
         $('.weights').html(html)
 
-    _request_dge_data: (method,columns) ->
-        console.log "request_dge_data",method,columns
-        return if columns.length <= 1
+    _gen_request: (call, method, columns, contrast) ->
+        if contrast
+            req = BackendCommon.script(this.code, call,"method=#{method}&contrast=#{encodeURIComponent(JSON.stringify contrast)}")
+        else
+            req = BackendCommon.script(this.code, call,"method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
+
+
+    _request_dge_data: (method,columns,contrast) ->
+        console.log "request_dge_data",method,columns,contrast
+        return if columns.length <= 1 && !contrast
 
         # load csv file and create the chart
-        req = BackendCommon.script(this.code, "dge","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
+        req = @_gen_request('dge', method, columns,contrast)
         @events.$emit("start_loading")
         d3.json(req, (err, json) =>
             @events.$emit("done_loading")
@@ -172,6 +179,10 @@ class BackendRNACounts
                 data_cols.push({idx: n, type: typ, name: n})
                 pri=false
             )
+            if contrast
+                data_cols.push({idx: "primary", type:'primary', name: "primary"})
+                data_cols.push({idx: contrast.name, type:'fc', name: contrast.name})
+
             data_cols.push({idx: 'adj.P.Val', name: 'FDR', type: 'fdr'})
             data_cols.push({idx: 'AveExpr', name: 'AveExpr', type: 'avg'})
             if data[0]["P.Value"]?
@@ -190,9 +201,9 @@ class BackendRNACounts
             @events.$emit("dge_data", data, data_cols)
         )
 
-    request_r_code: (method,columns) ->
+    request_r_code: (method,columns,contrast) ->
         new Promise((resolve) =>
-            req = BackendCommon.script(this.code, "dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
+            req = @_gen_request('dge_r_code', method, columns,contrast)
             d3.text(req, (err,data) ->
                 log_debug("Downloaded R Code : len=#{data.length}",data,err)
                 resolve(data)

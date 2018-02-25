@@ -21,27 +21,33 @@
 <template>
     <edit-overlay class='col-xs-2' :enabled='editing' @cancel='cancel' @apply='apply'>
         <div class='conditions'>
-          <h3>Conditions</h3>
-          <div class='files'>
-              <label v-for='c in conditions'>
-                  <input type='checkbox' v-model='cur.sel_conditions' :value='c.name' @click='editing=true'> {{c.name}}
-             </label>
-          </div>
-          <div v-show='hidden_factors.length>0' class='hidden-factors'>
-              <h4>Hidden Factors</h4>
-              <div v-for='name in hidden_factors'><label>{{name}}</label></div>
-          </div>
-          <div v-show='dge_methods.length>0'>
-              <label>Method</label>
-              <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
-                  <option v-for='method in dge_methods' :value='method[0]'>{{method[1]}}</option>
-              </select>
-          </div>
-          <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
-            Sample weights
-          </a>
-          <div class='weights collapse'>
-          </div>
+            <h3>Conditions</h3>
+            <div class='files'>
+                <label v-for='c in conditions'>
+                    <input type='checkbox' v-model='cur.sel_conditions' :value='c.name' @click='click_condition()'> {{c.name}}
+                </label>
+                <div v-if='contrasts.length>0'>
+                    <b>Contrasts</b>
+                    <label v-for='(c,idx) in contrasts'>
+                        <input type='radio' v-model='cur.sel_contrast_idx' :value='idx' @click='click_contrast(idx)'> {{c.name}}
+                    </label>
+                </div>
+            </div>
+            <div v-show='hidden_factors.length>0' class='hidden-factors'>
+                <h4>Hidden Factors</h4>
+                <div v-for='name in hidden_factors'><label>{{name}}</label></div>
+            </div>
+            <div v-show='dge_methods.length>0'>
+                <label>Method</label>
+                <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
+                    <option v-for='method in dge_methods' :value='method[0]'>{{method[1]}}</option>
+                </select>
+            </div>
+            <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
+                Sample weights
+            </a>
+            <div class='weights collapse'>
+            </div>
         </div>
     </edit-overlay>
 </template>
@@ -60,12 +66,16 @@ module.exports =
             required: true
         sel_conditions:
             required: true
+        sel_contrast:
+            required: true
         settings:
             required: true
     data: () ->
         cur:
             dge_method: this.dge_method
             sel_conditions: this.sel_conditions
+            sel_contrast: this.sel_contrast
+            sel_contrast_idx: null
         editing: false
     watch:
         dge_method: (v) ->
@@ -74,18 +84,36 @@ module.exports =
         sel_conditions: (v,o) ->
             this.cur.sel_conditions=v
             this.editing = false
+        sel_contrast: (v,o) ->
+            this.cur.sel_contrast=v
+            this.cur.sel_contrast_idx = this.contrasts.findIndex((x) -> x==v)
+            this.editing = false
     computed:
         conditions: () ->
             this.settings.replicates.map((c) -> {name:c[0]}).filter((c) => !(c.name in this.hidden_factors))
         hidden_factors: () ->
             this.settings.hidden_factor
+        contrasts: () ->
+            this.settings.contrasts || []
     methods:
+        click_condition: () ->
+            this.editing=true
+            this.cur.sel_contrast_idx=null
+        click_contrast: (x) ->
+            this.editing=true
+            this.cur.sel_conditions=[]
         apply: () ->
             this.editing=false
+            idx = this.cur.sel_contrast_idx
+            if ((idx>=0) && (idx < this.contrasts.length))
+                this.cur.sel_contrast = this.contrasts[idx]
+            else
+                this.cur.sel_contrast = null
             this.$emit('apply', this.cur)
         cancel: () ->
             this.editing=false
             this.cur.dge_method = this.dge_method
             this.cur.sel_conditions = this.sel_conditions
+            this.cur.sel_contrast = this.sel_contrast
 
 </script>
