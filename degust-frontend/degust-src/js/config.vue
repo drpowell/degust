@@ -217,8 +217,8 @@
                                 />
                     </div>
                     <div slot='footer'>
-                      <button class='btn btn-danger' @click='delete_contrast()'>Delete</button>
-                      <button class='btn btn-primary' @click='close_contrast()'>Close</button>
+                      <button class='btn btn-danger' @click.prevent='delete_contrast()'>Delete</button>
+                      <button class='btn btn-primary' @click.prevent='close_contrast()'>Close</button>
                     </div>
                   </modal>
                   </div>
