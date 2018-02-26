@@ -14,14 +14,14 @@ div#forkme { position: relative; height: 0 }
 
 
 /*  ****************************************************/
-.warning-popover { 
-    position: relative; 
-    top: 70px; 
+.warning-popover {
+    position: relative;
+    top: 70px;
     z-index: 1100;
 }
 
-.warning-popover .browser-warning { 
-    position: absolute; 
+.warning-popover .browser-warning {
+    position: absolute;
     width: 700px;
     left: 50%;
     margin-left: -350px;
@@ -72,7 +72,7 @@ div#forkme { position: relative; height: 0 }
 
 .v-tooltip {
     display: block !important;
-    z-index: 10000;
+    z-index: 11000;
   }
 
   .v-tooltip .tooltip-inner {
