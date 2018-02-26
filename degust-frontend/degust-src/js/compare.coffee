@@ -305,6 +305,7 @@ module.exports =
         mdsDimension: 1
         maxGenes: 0
         mds_2d3d: '2d'
+        mdsDimensionScale: 'independent'
         r_code: ''
         show_about: false
         dge_method: null
@@ -312,7 +313,8 @@ module.exports =
         qc_plots: []
         showGeneList: false
         filter_gene_list: []
-        sel_conditions: []
+        sel_conditions: []             # Array of condition names currently selected to compare
+        sel_contrast: null             # Contrast if selected.  Hash with name, and columns
         cur_plot: null
         cur_opts: 'options'
         gene_data: new GeneData([],[])
@@ -438,7 +440,6 @@ module.exports =
 
         init_page: () ->
             setup_nav_bar()      #FIXME
-            $('[title]').tooltip()
             $("select#kegg").change(kegg_selected) #FIXME
 
         initBackend: (use_backend) ->
@@ -475,7 +476,7 @@ module.exports =
 
         # Send a request to the backend.  First request, or when selected samples has changed
         request_data: () ->
-            this.backend.request_data(this.dge_method, this.sel_conditions)
+            this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast)
 
         process_dge_data: (data, cols) ->
             this.gene_data = new GeneData(data, cols)
@@ -495,6 +496,7 @@ module.exports =
         change_samples: (cur) ->
             this.dge_method = cur.dge_method
             this.sel_conditions = cur.sel_conditions
+            this.sel_contrast = cur.sel_contrast
             this.request_data()
 
         set_genes_selected: (d) ->
@@ -553,7 +555,7 @@ module.exports =
 
         # Request and display r-code for current selection
         show_r_code: () ->
-            p = this.backend.request_r_code(this.dge_method, this.sel_conditions)
+            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast)
             p.then((d) =>
                 this.r_code = d
             )
@@ -607,6 +609,9 @@ module.exports =
                 return row[ec_col.idx] in kegg_filter
 
             true
+
+        tip: (txt) ->
+            {content:txt, placement:'left'}
 
     mounted: () ->
         g_vue_obj = this

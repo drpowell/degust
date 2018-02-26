@@ -82,7 +82,7 @@ class Scatter3d
 
         @animate()
 
-    update_data: (data, dims, colour) ->
+    update_data: (data, dims, colour, dimensionScale) ->
         [dim1,dim2,dim3] = dims
         # if (data instanceof DataFrame)
         #     data = data.get_data()
@@ -93,8 +93,10 @@ class Scatter3d
         yExtent = d3.extent(data.map((d) -> dim2.get(d)))
         zExtent = d3.extent(data.map((d) -> dim3.get(d)))
 
-        # Force equal extent on all dimensions.  Possibly make this an option in future
-        xExtent = yExtent = zExtent = d3.extent(xExtent.concat(yExtent,zExtent))
+        # Force equal extent on all dimensions?
+        if (dimensionScale == 'common')
+            xExtent = yExtent = zExtent = d3.extent(xExtent.concat(yExtent,zExtent))
+        console.log dimensionScale, xExtent,yExtent,zExtent
 
         @xScale.domain(xExtent).nice()
                    .range([-50,50])
@@ -405,6 +407,8 @@ module.exports =
         xColumn: null
         yColumn: null
         zColumn: null
+        dimensionScale:
+            default: 'independent' # Values are 'independent' or 'common'
         colour: null
     data: () ->
         loading: true
@@ -416,6 +420,7 @@ module.exports =
             this.xColumn
             this.yColumn
             this.colour
+            this.dimensionScale
             Date.now()
     watch:
         needsUpdate: () ->
@@ -424,7 +429,7 @@ module.exports =
     methods:
         update: () ->
             if this.data? && this.xColumn? && this.yColumn? && this.zColumn?
-                this.me.update_data(this.data, [this.xColumn,this.yColumn,this.zColumn], this.colour)
+                this.me.update_data(this.data, [this.xColumn,this.yColumn,this.zColumn], this.colour, this.dimensionScale)
     mounted: () ->
         DynamicJS.load("./three.js", () =>
             this.loading = false

@@ -4,6 +4,8 @@ v3.2.0
   * Changing to the MDS tab now sets FDR and FC filters off
   * Add analyis mode "logFC only"  useful when there are no replicates.  Effectively sets p-value to 1
   * Add labels and correct colours to 3d MDS, and printing
+  * Add abitrary contrasts comparison matrix.  Configure first, then view on main page.
+  * Add option for common or independent scaling of the MDS dimensions
 
 v3.1.1
   * Fix "save to svg" order rendering

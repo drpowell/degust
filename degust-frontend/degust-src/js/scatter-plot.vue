@@ -127,7 +127,7 @@ class ScatterPlot
             @gDot.on('mousemove', () => @_mouse_move())
             @gDot.on('mouseout',  () => @_mouse_out())
 
-    update_data: (@data, @xColumn, @yColumn, @colouring) ->
+    update_data: (@data, @xColumn, @yColumn, @colouring, @dimensionScale) ->
         # TODO
         # if (@data instanceof DataFrame)
         #     @data = @data.get_data()
@@ -143,11 +143,16 @@ class ScatterPlot
         @x_val = x_val = (d) => @xColumn.get(d)
         @y_val = y_val = (d) => @yColumn.get(d)
 
+        xdomain = d3.extent(@data, (d) => x_val(d)).map((x) => x)
+        ydomain = d3.extent(@data, (d) => y_val(d)).map((x) => x)
+        if (@dimensionScale == 'common')
+            xdomain = ydomain = d3.extent(xdomain.concat(ydomain))
+
         @xScale = xScale = d3.scale.linear()
-                     .domain(d3.extent(@data, (d) => x_val(d)).map((x) => x))
+                     .domain(xdomain)
                      .range([@opts.margin_l, @width-@opts.margin_l-@opts.margin_r])
         @yScale = yScale = d3.scale.linear()
-                     .domain(d3.extent(@data, (d) => y_val(d)).map((x) => x))
+                     .domain(ydomain)
                      .range([@height-@opts.margin_t-@opts.margin_b, @opts.margin_b])
 
         xAxis = d3.svg.axis()
@@ -459,6 +464,8 @@ module.exports =
             required: true
         xColumn: null
         yColumn: null
+        dimensionScale:
+            default: 'independent' # Values are 'independent' or 'common'
         highlight:
             type: Array
             default: () -> []
@@ -468,6 +475,7 @@ module.exports =
             this.data
             this.xColumn
             this.yColumn
+            this.dimensionScale
             this.colour
             Date.now()
     watch:
@@ -483,7 +491,7 @@ module.exports =
         update: () ->
             #console.log "scatter-plot redraw()",this
             if this.data? && this.xColumn? && this.yColumn?
-                this.me.update_data(this.data,this.xColumn,this.yColumn,this.colour)
+                this.me.update_data(this.data,this.xColumn,this.yColumn,this.colour,this.dimensionScale)
         reFilter: () ->
             this.me.reFilter()
 
