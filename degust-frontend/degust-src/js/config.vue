@@ -27,13 +27,15 @@
     .fade-enter-active, .fade-leave-active { transition: opacity .5s }
     .fade-enter, .fade-leave-to  { opacity: 0  }
 
+
     #grid { height: 300px; font-size: 8pt; }
 
-    #grid >>> .slick-row { font-size: 8pt; }
+    #grid .slick-row { font-size: 8pt; }
     #grid >>> .slick-row:hover {
       font-weight: bold;
       color: #069;
     }
+
 
     .flip-list-move {
         transition: transform 1s;
