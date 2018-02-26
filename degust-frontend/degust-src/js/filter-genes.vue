@@ -8,8 +8,8 @@
             <textarea style="width:100%;height:150px;resize:vertical;" v-model="filterGeneList" placeholder="Type or paste your delimited genes here"></textarea>
         </div>
         <div slot='footer'>
-            <button class='btn btn-primary' @click='clearList'>Clear List</button>
-            <button class='btn btn-primary' @click='closeButton'>Save & Close</button>
+            <button class='btn btn-primary' @click='clearList'>Clear</button>
+            <button class='btn btn-primary' @click='closeButton'>Apply</button>
         </div>
     </modal>
 </template>
