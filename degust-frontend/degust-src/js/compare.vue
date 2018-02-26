@@ -186,6 +186,11 @@
               </slider-text>
             </div>
 
+            <div title="Filter page to genes in this list" data-placement='left'>
+              <label>Create Filter</label>
+              <a @click='showGeneList=true'>{{(filter_gene_list.length == 0) ? "Create Filter" : "List Size: " + filter_gene_list.length }}</a>
+            </div>
+
             <div title='Show FC from selected condition' data-placement='left'>
               <label for='fc-relative'>FC relative to</label>
               <select id='fc-relative' v-model='fc_relative_i'>
@@ -334,6 +339,9 @@
 
     <!-- About box Modal -->
     <about :show='show_about' @close='show_about=false'></about>
+
+    <!-- Gene List box Modal -->
+    <filterGenes :show='showGeneList' @close='showGeneList=false' @filterList='filterList'></filterGenes>
 
     <qc-plots :show-qc='show_qc'
               :gene-data='gene_data'

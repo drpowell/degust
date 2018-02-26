@@ -254,6 +254,7 @@ update_data = () ->
 sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 about = require('./about.vue').default
+filterGenes = require('./filter-genes.vue').default
 Modal = require('modal-vue').default
 geneTable = require('./gene-table.vue').default
 maPlot = require('./ma-plot.vue').default
@@ -274,6 +275,7 @@ module.exports =
         sliderText: sliderText
         conditionsSelector: conditions
         about: about
+        filterGenes: filterGenes
         Modal: Modal
         geneTable: geneTable
         maPlot: maPlot
@@ -308,6 +310,8 @@ module.exports =
         dge_method: null
         dge_methods: []
         qc_plots: []
+        showGeneList: false
+        filter_gene_list: []
         sel_conditions: []
         cur_plot: null
         cur_opts: 'options'
@@ -358,6 +362,7 @@ module.exports =
         filter_changed: () ->
             this.fdrThreshold
             this.fcThreshold
+            this.filter_gene_list_cache
             Date.now()
         heatmap_dimensions: () ->
             if (!this.heatmap_show_replicates)
@@ -367,6 +372,10 @@ module.exports =
                 count_cols = [].concat.apply([], count_cols)
                 heatmap_dims = Normalize.normalize(this.gene_data, count_cols)
             heatmap_dims
+        filter_gene_list_cache: () ->
+            res = {}
+            this.filter_gene_list.forEach((val) -> res[val] = val)
+            res
 
         #Added to show/hide counts/intensity
         is_pre_analysed: () ->
@@ -455,7 +464,7 @@ module.exports =
                     window.location = this.config_url
                 this.dge_methods = this.backend.dge_methods()
                 this.qc_plots = this.backend.qc_plots()
-                
+
 
                 # If there is no default dge_method set, then use first thing in the list
                 if this.dge_methods.length>0 && !this.settings.dge_method?
@@ -563,14 +572,29 @@ module.exports =
              n = Number(v)
              !(isNaN(n) || n<0)
 
-        # Check if the passed row passes filters for : FDR, FC, Kegg
-        expr_filter: (row) ->
+        filterList: (value) ->
+            this.filter_gene_list = value
+            value
+
+        # Check if the passed row passes filters for : FDR, FC, Kegg, Filter List
+        expr_filter: (row)   ->
             #console.log "filter"
             if this.fcThreshold>0
                 # Filter using largest FC between any pair of samples
                 fc = this.gene_data.columns_by_type('fc').map((c) -> row[c.idx])
                 extent_fc = d3.extent(fc.concat([0]))
                 if Math.abs(extent_fc[0] - extent_fc[1]) < this.fcThreshold
+                    return false
+
+            # Filter by genes in filter_gene_list
+            if this.filter_gene_list.length > 0
+                info_cols = this.gene_data.columns_by_type('info').map((c) -> row[c.idx])
+                matching = info_cols.filter((col) =>
+                    debugger
+                    col.toLowerCase() of this.filter_gene_list_cache
+                )
+                debugger
+                if matching.length == 0
                     return false
 
             # Filter by FDR
