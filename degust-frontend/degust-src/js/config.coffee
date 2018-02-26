@@ -316,12 +316,18 @@ module.exports =
             this.settings.replicates.push(r)
             if this.settings.replicates.length<=2
                 r.init=true
+            this.settings.contrasts.forEach((c) -> c.column.push(0))
         del_replicate: (idx) ->
             this.settings.replicates.splice(idx, 1)
+            this.settings.contrasts.forEach((c) -> c.column.splice(idx, 1))
         move_replicate: (idx, dir) ->
             if idx+dir>=0 && idx+dir<this.settings.replicates.length
                 r = this.settings.replicates.splice(idx,1)
                 this.settings.replicates.splice(idx+dir, 0, r[0])
+                this.settings.contrasts.forEach((c) ->
+                    r = c.column.splice(idx, 1)
+                    c.column.splice(idx+dir, 0, r[0])
+                )
 
         add_contrast: () ->
             r = {name:''}
