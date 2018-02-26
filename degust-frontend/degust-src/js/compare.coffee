@@ -303,6 +303,7 @@ module.exports =
         mdsDimension: 1
         maxGenes: 0
         mds_2d3d: '2d'
+        mdsDimensionScale: 'independent'
         r_code: ''
         show_about: false
         dge_method: null

@@ -3,7 +3,6 @@
 * Show PCA dimension loading in MDS
     * On table cog, allow selection of columns to display.  Including variance column
 * MDS
-    * 2d+3d option for consitent axis range
     * use counts with factor removed
     * "A MDS page"
 
@@ -26,7 +25,6 @@
 * Counts with hidden factors removed
 * Optional columns in Table.  Variance, Confidence intervals
 * UI for "extras" from DGE.  Including voom-weights
-* Contrasts UI
 * Moderation changing for MDS & heatmap
 * Usage in jupyter
 * Usage in RStudio - htmlwidgets?

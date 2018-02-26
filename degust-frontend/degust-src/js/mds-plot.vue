@@ -42,6 +42,7 @@
         <scatter-plot v-if='plot2d3d=="2d"' class='mds-plot' ref='scatter'
                       :data='components'
                       :x-column='xColumn' :y-column='yColumn'
+                      :dimensionScale='dimensionScale'
                       :colour='colour'
                       :text='text'
                       xaxis-loc='bottom' yaxis-loc='left'
@@ -57,6 +58,7 @@
         <scatter3d v-if='plot2d3d=="3d"'
                     :data='components'
                     :x-column='xColumn' :y-column='yColumn' :z-column='zColumn'
+                    :dimensionScale='dimensionScale'
                     :colour='colour'
                     >
         </scatter3d>
@@ -116,6 +118,7 @@ module.exports =
         skipGenes: null
         dimension: null
         plot2d3d: null
+        dimensionScale: null
     data: () ->
         components: []
         xColumn: null

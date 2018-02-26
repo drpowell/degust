@@ -141,6 +141,7 @@
                        :num-genes='numGenesThreshold'
                        :skip-genes='skipGenesThreshold'
                        :dimension='mdsDimension'
+                       :dimensionScale='mdsDimensionScale'
                        :plot2d3d='mds_2d3d'
                        @top-genes='set_genes_selected'
                        @dimension='v => mdsDimension = v'
@@ -258,8 +259,16 @@
                             >
                 </slider-text>
               </div>
-              <div v-tooltip="tip('MDS in 2d or 3d')" class='mds-2d3d-opt'>
-                <label for='mds-2d3d'>MDS plot</label>
+              <div v-tooltip="tip('Plot the MDS dimensions to the same scale, or independently')">
+                <label>Dim scale</label>
+                <select v-model='mdsDimensionScale'>
+                  <option value='independent'>independent</option>
+                  <option value='common'>common</option>
+                </select>
+              </div>
+
+              <div v-tooltip="tip('MDS in 2d or 3d')">
+                <label>MDS plot</label>
                 <select v-model='mds_2d3d'>
                   <option value='2d'>2d</option>
                   <option value='3d'>3d</option>
