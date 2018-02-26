@@ -430,7 +430,6 @@ module.exports =
 
         init_page: () ->
             setup_nav_bar()      #FIXME
-            $('[title]').tooltip()
             $("select#kegg").change(kegg_selected) #FIXME
 
         initBackend: (use_backend) ->
@@ -585,6 +584,9 @@ module.exports =
                 return row[ec_col.idx] in kegg_filter
 
             true
+
+        tip: (txt) ->
+            {content:txt, placement:'left'}
 
     mounted: () ->
         g_vue_obj = this

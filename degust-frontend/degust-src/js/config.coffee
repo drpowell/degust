@@ -32,7 +32,6 @@ common_prefix = (lst) ->
     tem1
 
 $(document).ready(() -> setup_nav_bar() )
-$(document).ready(() -> $('[title]').tooltip())
 
 
 input_type_option_row = (val) ->
@@ -191,7 +190,6 @@ module.exports =
             #this.grid.updateRowCount()
             #this.grid.render()
     methods:
-        xxxx: () -> this.xxx=false
         #Refactored to accept MaxQuant tsv and make the preview table
         parse_csv: () ->
             #console.log "Parsing!" that
@@ -355,6 +353,9 @@ module.exports =
                     if this.orig_settings['extra_menu_html']
                         $('#right-navbar-collapse').append(this.orig_settings['extra_menu_html'])
                 )
+
+        tip: (txt) ->
+            {content:txt, placement:'right'}
 
     mounted: ->
         this.get_settings()
