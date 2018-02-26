@@ -169,7 +169,7 @@
 
           <div class='filter options' v-if='cur_opts=="options"'>
             <h4>Options</h4>
-            <div title='Filter genes by False Discovery Rate' data-placement='left'>
+            <div v-tooltip="tip('Filter genes by False Discovery Rate')">
               <label>FDR cut-off</label>
               <slider-text class='slider-control'
                           v-model='fdrThreshold'
@@ -181,7 +181,7 @@
               </slider-text>
             </div>
 
-            <div title='Filter genes by absolute log fold change between any pair of samples' data-placement='left'>
+            <div v-tooltip="tip('Filter genes by absolute log fold change between any pair of samples')">
               <label>abs logFC</label>
               <slider-text class='slider-control'
                           v-model='fcThreshold'
@@ -193,21 +193,21 @@
               </slider-text>
             </div>
 
-            <div title='Show FC from selected condition' data-placement='left'>
+            <div v-tooltip="tip('Show FC from selected condition')">
               <label for='fc-relative'>FC relative to</label>
               <select id='fc-relative' v-model='fc_relative_i'>
                   <option v-for='(col,i) in fc_columns' :value='i'>{{col.name}}</option>
                   <option value='-1'>Average</option>
               </select>
             </div>
-            <div title='FC for the MA-plot' data-placement='left' v-if='cur_plot=="ma" || cur_plot=="volcano"'>
+            <div v-tooltip="tip('FC for the MA-plot')" v-if='cur_plot=="ma" || cur_plot=="volcano"'>
               <label for='ma-fc-col'>Plot FC</label>
               <select id='ma-fc-col' v-model='ma_plot_fc_col_i'>
                   <option v-for='(col,i) in fc_calc_columns' :value='i'>{{col.name}}</option>
               </select>
             </div>
             <div v-show='is_rnaseq_counts'>
-              <div title='Show raw counts (or counts-per-million) in the table' data-placement='left' class='show-counts-opt'>
+              <div v-tooltip="tip('Show raw counts (or counts-per-million) in the table')" class='show-counts-opt'>
                 <label for='show-counts'>Show Counts</label>
                 <select v-model="showCounts">
                   <option value='no'>No</option>
@@ -217,7 +217,7 @@
               </div>
             </div>
             <div v-show='is_maxquant'>
-              <div title='Show raw intensity in the table' data-placement='left' class='show-intensity-opt'>
+              <div v-tooltip="tip('Show raw intensity in the table')" class='show-intensity-opt'>
                 <label for='show-intensity'>Show Intensity</label>
                 <select v-model="showIntensity">
                   <option value='no'>No</option>
@@ -228,7 +228,7 @@
             </div>
             <div class='pca-opts' v-show="cur_plot=='mds'">
               <div class='pca-title'>MDS options</div>
-              <div title='Number of genes to use for the MDS plot' data-placement='left' class='pca-num-genes-opt'>
+              <div v-tooltip="tip('Number of genes to use for the MDS plot')" class='pca-num-genes-opt'>
                 <label>Num genes</label>
                 <slider-text class='slider-control'
                             v-model='numGenesThreshold'
@@ -238,7 +238,7 @@
                             >
                 </slider-text>
               </div>
-              <div title='Number of genes to ignore for the MDS plot' data-placement='left' class='pca-skip-genes-opt'>
+              <div v-tooltip="tip('Number of genes to ignore for the MDS plot')" class='pca-skip-genes-opt'>
                 <label>Skip genes</label>
                 <slider-text class='slider-control'
                             v-model='skipGenesThreshold'
@@ -247,7 +247,7 @@
                             >
                 </slider-text>
               </div>
-              <div title='MDS dimensions to plot' data-placement='left' class='pca-dims-opt'>
+              <div v-tooltip="tip('MDS dimensions to plot')" class='pca-dims-opt'>
                 <label>Dimensions</label>
                 <slider-text class='slider-control'
                             v-model='mdsDimension'
@@ -258,7 +258,7 @@
                             >
                 </slider-text>
               </div>
-              <div title='MDS in 2d or 3d' data-placement='left' class='mds-2d3d-opt'>
+              <div v-tooltip="tip('MDS in 2d or 3d')" class='mds-2d3d-opt'>
                 <label for='mds-2d3d'>MDS plot</label>
                 <select v-model='mds_2d3d'>
                   <option value='2d'>2d</option>
