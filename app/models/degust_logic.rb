@@ -3,8 +3,19 @@ require 'open3'
 class DegustLogic
 
     def self.get_r_code(de_setting, query, output_dir, real=true)
-        fields = JSON.parse(query['fields'])
         settings = de_setting.settings_with_defaults
+
+        # FIXME - clean columsn from query!
+        if query['fields']
+            fields = JSON.parse(query['fields'])
+            cont_matrix = matToR(cont_matrix(settings, fields))
+        elsif query['contrast']
+            contrast = JSON.parse(query['contrast'])
+            cont_matrix = matToR(explicit_cont_matrix(settings, contrast["name"], contrast["column"]))
+        else
+            raise "Bad query"
+        end
+
         params = {
                 "sep_char" => settings['csv_format'] ? "," : "\t",
                 "counts_file" => real ? de_setting.user_file.location : de_setting.user_file.name,
@@ -14,7 +25,7 @@ class DegustLogic
                 "min_cpm" => force_num(settings['min_cpm']),
                 "min_cpm_samples" => force_num(settings['min_cpm_samples']),
                 "design" => matToR(design_matrix(settings)),
-                "cont_matrix" => matToR(cont_matrix(settings, fields)),
+                "cont_matrix" => cont_matrix,
                 "export_cols" => arrToR(export_cols(settings), true),
                 "output_dir" => output_dir,
             }
@@ -131,5 +142,12 @@ private
         end
         replicate_names = settings['replicates'].map {|r| r[0]}
         return {'mat'=>mat, 'col_names'=>col_names, 'row_names' => replicate_names}
+    end
+
+    # Alterative to "cont_matrix" above, but with explicit contrast
+    def self.explicit_cont_matrix(settings, name, column)
+        mat = [column]
+        replicate_names = settings['replicates'].map {|r| r[0]}
+        return {'mat'=>mat, 'col_names'=>[name], 'row_names' => replicate_names}
     end
 end

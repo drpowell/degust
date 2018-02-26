@@ -308,7 +308,8 @@ module.exports =
         dge_method: null
         dge_methods: []
         qc_plots: []
-        sel_conditions: []
+        sel_conditions: []             # Array of condition names currently selected to compare
+        sel_contrast: null             # Contrast if selected.  Hash with name, and columns
         cur_plot: null
         cur_opts: 'options'
         gene_data: new GeneData([],[])
@@ -455,7 +456,7 @@ module.exports =
                     window.location = this.config_url
                 this.dge_methods = this.backend.dge_methods()
                 this.qc_plots = this.backend.qc_plots()
-                
+
 
                 # If there is no default dge_method set, then use first thing in the list
                 if this.dge_methods.length>0 && !this.settings.dge_method?
@@ -466,7 +467,7 @@ module.exports =
 
         # Send a request to the backend.  First request, or when selected samples has changed
         request_data: () ->
-            this.backend.request_data(this.dge_method, this.sel_conditions)
+            this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast)
 
         process_dge_data: (data, cols) ->
             this.gene_data = new GeneData(data, cols)
@@ -486,6 +487,7 @@ module.exports =
         change_samples: (cur) ->
             this.dge_method = cur.dge_method
             this.sel_conditions = cur.sel_conditions
+            this.sel_contrast = cur.sel_contrast
             this.request_data()
 
         set_genes_selected: (d) ->
@@ -544,7 +546,7 @@ module.exports =
 
         # Request and display r-code for current selection
         show_r_code: () ->
-            p = this.backend.request_r_code(this.dge_method, this.sel_conditions)
+            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast)
             p.then((d) =>
                 this.r_code = d
             )
