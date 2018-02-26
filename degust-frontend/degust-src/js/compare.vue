@@ -1,4 +1,10 @@
 <style>
+    @media (min-width: 1400px) {
+      .container {
+        width: 1380px;
+      }
+    }
+
     #expression { position: relative; }
     .loading { position: absolute; top: 100px; left: 250px; }
 
