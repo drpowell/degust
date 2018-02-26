@@ -33,7 +33,7 @@
 .bar-graph >>> .axis { font: 10px sans-serif; }
 .bar-graph >>> .x.axis path { display: none; }
 
-.bar-graph { position: absolute; bottom: 0; left: 510px; }
+.bar-graph { position: absolute; bottom: 0; right: 0; }
 
 </style>
 
