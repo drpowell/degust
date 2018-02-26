@@ -27,13 +27,15 @@
     .fade-enter-active, .fade-leave-active { transition: opacity .5s }
     .fade-enter, .fade-leave-to  { opacity: 0  }
 
+
     #grid { height: 300px; font-size: 8pt; }
 
-    #grid >>> .slick-row { font-size: 8pt; }
+    #grid .slick-row { font-size: 8pt; }
     #grid >>> .slick-row:hover {
       font-weight: bold;
       color: #069;
     }
+
 
     .flip-list-move {
         transition: transform 1s;
@@ -173,7 +175,7 @@
                                              :show-labels="false" :searchable="false"
                                              placeholder="Pick some"
                                              :tabindex=-1>
-                                  <template slot="option" scope="props">
+                                  <template slot="option" slot-scope="props">
                                     <div>{{props.option}}
                                         <span class='rep_used' v-for='cond in conditions_for_rep(props.option)'>{{cond}}</span>
                                     </div>
@@ -215,8 +217,8 @@
                                 />
                     </div>
                     <div slot='footer'>
-                      <button class='btn btn-danger' @click='delete_contrast()'>Delete</button>
-                      <button class='btn btn-primary' @click='close_contrast()'>Close</button>
+                      <button class='btn btn-danger' @click.prevent='delete_contrast()'>Delete</button>
+                      <button class='btn btn-primary' @click.prevent='close_contrast()'>Close</button>
                     </div>
                   </modal>
                   </div>
