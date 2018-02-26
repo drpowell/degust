@@ -79,11 +79,11 @@ module.exports =
             this.contrast.column = Array(this.conditions.length).fill(0)
     methods:
         closeInteraction: () ->
-            if this.term1? && this.term2 && this.term3 && this.term4
+            if this.term1? && this.term2? && this.term3? && this.term4?
                 this.contrast.column[this.term1]=1
                 this.contrast.column[this.term2]=-1
-                this.contrast.column[this.term3]=1
-                this.contrast.column[this.term4]=-1
+                this.contrast.column[this.term3]=-1
+                this.contrast.column[this.term4]=1
                 if !this.contrast.name? || this.contrast.name==""
                     this.contrast.name = "Interaction"
             this.showInteraction=false

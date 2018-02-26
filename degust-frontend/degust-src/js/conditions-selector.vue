@@ -13,8 +13,14 @@
 }
 .hidden-factors h4 {font-size: 12px;}
 .hidden-factors label {font-size: 10px;}
+.hidden-factors td {
+    font-size: 12px;
+    border: 1px solid #aaa;
+    text-align: right;
+    padding: 1px;
+}
 
-.dge-method {font-size: 12px;}
+.dge-method {font-size: 12px; }
 
 </style>
 
@@ -24,18 +30,35 @@
             <h3>Conditions</h3>
             <div class='files'>
                 <label v-for='c in conditions'>
-                    <input type='checkbox' v-model='cur.sel_conditions' :value='c.name' @click='click_condition()'> {{c.name}}
+                    <input type='checkbox'
+                           v-model='cur.sel_conditions'
+                           :value='c.name'
+                           @click='click_condition()'>
+                           {{c.name}}
                 </label>
                 <div v-if='contrasts.length>0'>
                     <b>Contrasts</b>
                     <label v-for='(c,idx) in contrasts'>
-                        <input type='radio' v-model='cur.sel_contrast_idx' :value='idx' @click='click_contrast(idx)'> {{c.name}}
+                        <input type='radio'
+                               v-model='cur.sel_contrast_idx'
+                               :value='idx'
+                               @click='click_contrast(idx)'>
+                               {{c.name}}
                     </label>
                 </div>
             </div>
             <div v-show='hidden_factors.length>0' class='hidden-factors'>
                 <h4>Hidden Factors</h4>
                 <div v-for='name in hidden_factors'><label>{{name}}</label></div>
+            </div>
+            <div v-if='cur.sel_contrast' class='hidden-factors'>
+                <h4>Contrast</h4>
+                <table>
+                    <tr v-for='(val,idx) in cur.sel_contrast.column'>
+                        <td>{{settings.replicates[idx][0]}}:</td>
+                        <td>{{val}}</td>
+                    </tr>
+                </table>
             </div>
             <div v-show='dge_methods.length>0'>
                 <label>Method</label>
@@ -86,8 +109,10 @@ module.exports =
             this.editing = false
         sel_contrast: (v,o) ->
             this.cur.sel_contrast=v
-            this.cur.sel_contrast_idx = this.contrasts.findIndex((x) -> x==v)
+            this.update_sel_contrast_idx()
             this.editing = false
+        'cur.sel_contrast_idx': () ->
+            this.update_sel_contrast()
     computed:
         conditions: () ->
             this.settings.replicates.map((c) -> {name:c[0]}).filter((c) => !(c.name in this.hidden_factors))
@@ -96,6 +121,15 @@ module.exports =
         contrasts: () ->
             this.settings.contrasts || []
     methods:
+        update_sel_contrast_idx: () ->
+            this.cur.sel_contrast_idx = this.contrasts.findIndex((x) => x==this.cur.sel_contrast)
+        update_sel_contrast: () ->
+            idx = this.cur.sel_contrast_idx
+            if ((idx>=0) && (idx < this.contrasts.length))
+                this.cur.sel_contrast = this.contrasts[idx]
+            else
+                this.cur.sel_contrast = null
+
         click_condition: () ->
             this.editing=true
             this.cur.sel_contrast_idx=null
@@ -104,16 +138,13 @@ module.exports =
             this.cur.sel_conditions=[]
         apply: () ->
             this.editing=false
-            idx = this.cur.sel_contrast_idx
-            if ((idx>=0) && (idx < this.contrasts.length))
-                this.cur.sel_contrast = this.contrasts[idx]
-            else
-                this.cur.sel_contrast = null
             this.$emit('apply', this.cur)
         cancel: () ->
             this.editing=false
             this.cur.dge_method = this.dge_method
             this.cur.sel_conditions = this.sel_conditions
             this.cur.sel_contrast = this.sel_contrast
+            this.update_sel_contrast_idx()
+
 
 </script>

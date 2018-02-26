@@ -75,13 +75,13 @@
               <div class="form-group">
                 <label class="control-label col-sm-3" for="name">Name</label>
                 <div class="controls col-sm-4">
-                  <input v-model.trim='settings.name' class="form-control" type="text" name="name" placeholder="Unnamed" title="Optional: Give your experiment a name" data-placement='right' size='30' />
+                  <input v-model.trim='settings.name' class="form-control" type="text" name="name" placeholder="Unnamed" v-tooltip="tip('Optional: Give your experiment a name')" size='30' />
                 </div>
               </div>
 
               <div class="form-group">
                   <label class="control-label col-sm-3">Input type</label>
-                  <div class="controls col-sm-6">
+                  <div class="controls col-sm-6"  v-tooltip="tip('Data type of the CSV file')">
                       <multiselect v-model="settings.input_type" :options='input_type_options' track-by='key' label='label' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
 
                   </div>
@@ -103,7 +103,7 @@
 
               <div class="form-group">
                 <label class="control-label col-sm-3">Info columns</label>
-                <div class="controls col-sm-6">
+                <div class="controls col-sm-6"  v-tooltip="tip('Information columns to display in the gene table')">
                   <multiselect v-model="settings.info_columns" :options="columns_info" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="true" placeholder="Add column"/>
                 </div>
               </div>
@@ -112,17 +112,17 @@
                 <div class="form-group">
                   <label class="control-label col-sm-3" for="name">Min gene read count</label>
                   <div class="controls col-sm-1">
-                    <input v-model.number='settings.min_counts' class="form-control" type="text" name="min-counts" placeholder="0" title="Optional: Minimum read count required in at least one replicate or the gene is ignored" data-placement='right' />
+                    <input v-model.number='settings.min_counts' class="form-control" type="text" name="min-counts" placeholder="0" v-tooltip="tip('Optional: Minimum read count required in at least one replicate or the gene is ignored')" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-sm-3" for="name">Min gene CPM</label>
                   <div class="controls col-sm-1">
-                    <input v-model.number='settings.min_cpm' class="form-control" type="text" name="min-cpm" placeholder="0" title="Optional: A gene must have at a CPM of at least this, in at least the number of specified samples" data-placement='right' />
+                    <input v-model.number='settings.min_cpm' class="form-control" type="text" name="min-cpm" placeholder="0" v-tooltip="tip('Optional: A gene must have at a CPM of at least this, in at least the number of specified samples')" />
                   </div>
                   <label class="control-label col-sm-2" for="name">in at least samples</label>
                   <div class="controls col-sm-1">
-                    <input v-model.number='settings.min_cpm_samples' class="form-control" type="text" name="min-cpm" placeholder="0" title="Optional: A gene must have at a CPM of at least this, in at least the number of specified samples" data-placement='right' />
+                    <input v-model.number='settings.min_cpm_samples' class="form-control" type="text" name="min-cpm" placeholder="0" v-tooltip="tip('Optional: A gene must have at a CPM of at least this, in at least the number of specified samples')" />
                   </div>
                 </div>
               </div>
@@ -131,17 +131,17 @@
                 <div class="form-group">
                   <label class="control-label col-sm-3" for="name">Min present columns</label>
                   <div class="controls col-sm-1">
-                    <input v-model.number='settings.min_columns' class="form-control" type="text" name="min-columnns" placeholder="0" title="Optional: Minumum percent of columns with values present to keep the protein" data-placement='right' />
+                    <input v-model.number='settings.min_columns' class="form-control" type="text" name="min-columnns" placeholder="0" v-tooltip="tip('Optional: Minumum percent of columns with values present to keep the protein')" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-sm-3" for="name">Min gene Intensity</label>
                   <div class="controls col-sm-1">
-                    <input v-model.number='settings.min_counts' class="form-control" type="text" name="min-intensity" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
+                    <input v-model.number='settings.min_counts' class="form-control" type="text" name="min-intensity" placeholder="0" v-tooltip="tip('Optional: A protein must have at an intensity of at least this, in at least the number of specified samples')" />
                   </div>
                   <label class="control-label col-sm-2" for="name">in at least samples</label>
                   <div class="controls col-sm-1">
-                    <input v-model.number='settings.min_cpm_samples' class="form-control" type="text" name="min-intensity-samples" placeholder="0" title="Optional: A protein must have at an intensity of at least this, in at least the number of specified samples" data-placement='right' />
+                    <input v-model.number='settings.min_cpm_samples' class="form-control" type="text" name="min-intensity-samples" placeholder="0" v-tooltip="tip('Optional: A protein must have at an intensity of at least this, in at least the number of specified samples')" />
                   </div>
                 </div>
               </div>
@@ -204,7 +204,7 @@
                             @click.prevent='edit_contrast(idx)'>
                       {{contrast.name || 'Unnamed'}}
                     </button>
-                    <button @click='add_contrast()' type="button" class="btn btn-primary" title="" data-placement='right'>
+                    <button @click='add_contrast()' type="button" class="btn btn-primary" v-tooltip="tip('')">
                       Add contrast
                     </button>
                   </div>
@@ -226,7 +226,7 @@
 
                 <div class="form-group">
                   <div class="col-sm-3">
-                    <button v-on:click='add_replicate()' type="button" class="btn btn-primary" title="Add a new condition or treatment" data-placement='right'>
+                    <button v-on:click='add_replicate()' type="button" class="btn btn-primary" v-tooltip="tip('Add a new condition or treatment')">
                       Add condition
                     </button>
                   </div>
@@ -238,27 +238,27 @@
                 <div class="form-group">
                   <label class="control-label col-sm-3" for="primary">Primary condition</label>
                   <div class="controls col-sm-3">
-                    <input v-model='settings.primary_name' class="form-control" type="text" name="primary" placeholder="Primary" title="Name of the condition your fold-change data is relative to" data-placement='right' />
+                    <input v-model='settings.primary_name' class="form-control" type="text" name="primary" placeholder="Primary" v-tooltip="tip('Name of the condition your fold-change data is relative to')" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-sm-3">FDR column</label>
                   <div class="controls col-sm-3">
-                    <multiselect v-model="settings.fdr_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" title="Column containing the False-Discovery-Rate.  Sometimes called 'adj.P.Val'" data-placement='right'></multiselect>
+                    <multiselect v-model="settings.fdr_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" v-tooltip="tip('Column containing the False-Discovery-Rate.  Sometimes called adj.P.Val')"></multiselect>
                     <span class='text-error'></span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-sm-3">Average expression column</label>
                   <div class="controls col-sm-3">
-                    <multiselect v-model="settings.avg_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" title="Column containing the average (log) expression information.  Often called 'Amean' or 'AveExpr'" data-placement='right'></multiselect>
+                    <multiselect v-model="settings.avg_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" v-tooltip="tip('Column containing the average (log) expression information.  Often called Amean or AveExpr')"></multiselect>
                     <span class='text-error'></span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-sm-3">Fold-change columns</label>
                   <div class="controls col-sm-3">
-                    <multiselect v-model="settings.fc_columns" :options="columns_info" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="false" placeholder="Pick some" title="Columns containing the log fold-change data" data-placement='right'/>
+                    <multiselect v-model="settings.fc_columns" :options="columns_info" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="false" placeholder="Pick some" v-tooltip="tip('Columns containing the log fold-change data')"/>
                   </div>
                 </div>
               </div>
@@ -272,7 +272,7 @@
                       <div class="form-group">
                         <label class="control-label col-sm-3" for="config-locked">Config locked</label>
                         <div class="controls col-sm-1">
-                          <input v-model='settings.config_locked' v-bind:disabled="!can_lock" class="form-control" type="checkbox" title="Lock the configuration page so only you can change it (you must be logged in)" data-placement='right' />
+                          <input v-model='settings.config_locked' v-bind:disabled="!can_lock" class="form-control" type="checkbox" v-tooltip="tip('Lock the configuration page so only you can change it (you must be logged in)')" />
                         </div>
                       </div>
 
@@ -291,7 +291,7 @@
                       <div class="form-group">
                         <label class="control-label col-sm-3">Gene link URL</label>
                         <div class="controls col-sm-3">
-                          <input v-model='settings.link_url' class="form-control" type="text" size='50' placeholder="Leave blank to have Degust guess" title="Optional: External link for genes.  Any '%s' in the link will be replaced by the defined link column" data-placement='right' />
+                          <input v-model='settings.link_url' class="form-control" type="text" size='50' placeholder="Leave blank to have Degust guess" v-tooltip="tip('Optional: External link for genes.  Any %s in the link will be replaced by the defined link column')" />
                         </div>
                       </div>
 
@@ -305,7 +305,7 @@
                           <div class="form-group">
                             <label class="control-label col-sm-3">Default FDR</label>
                             <div class="controls col-sm-3">
-                                <input v-model.number='settings.fdrThreshold' class="form-control" type="text" placeholder="1" title="Optional: Default FDR threshold for display" data-placement='right' />
+                                <input v-model.number='settings.fdrThreshold' class="form-control" type="text" placeholder="1" v-tooltip="tip('Optional: Default FDR threshold for display')" />
                             </div>
                           </div>
                       </div>
@@ -316,7 +316,7 @@
                 <div class="col-sm-12">
                   <button v-on:click.prevent='save()' type="submit" class="btn btn-success">Save changes</button>
                   <button v-on:click.prevent='revert() 'type="button" class="btn btn-default">Revert</button>
-                  <a v-bind:href="view_url" class="btn btn-default" title="View main page.  Note unsaved configuration will be lost" data-placement='right'>View</a>
+                  <a v-bind:href="view_url" class="btn btn-default" v-tooltip="tip('View main page.  Note unsaved configuration will be lost')">View</a>
                 </div>
               </div>
             </form>

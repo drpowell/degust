@@ -5,7 +5,6 @@ class DegustLogic
     def self.get_r_code(de_setting, query, output_dir, real=true)
         settings = de_setting.settings_with_defaults
 
-        # FIXME - clean columsn from query!
         if query['fields']
             fields = JSON.parse(query['fields'])
             cont_matrix = matToR(cont_matrix(settings, fields))
@@ -135,6 +134,10 @@ private
         col_names = []
         pri = conds.shift
         conds.each do |cond|
+            if DeSetting::BAD_REGEX.match?(cond)
+                raise "Invalid character in condition"
+            end
+
             col = []
             col = settings['replicates'].map {|c| c[0]==pri ? -1 : c[0]==cond ? 1 : 0}
             mat.push(col)
@@ -146,6 +149,12 @@ private
 
     # Alterative to "cont_matrix" above, but with explicit contrast
     def self.explicit_cont_matrix(settings, name, column)
+        if DeSetting::BAD_REGEX.match?(name)
+            raise "Invalid character in name"
+        end
+        if column.any? {|x| DeSetting::BAD_REGEX.match?(x.to_s)}
+            raise "Invalid character in name"
+        end
         mat = [column]
         replicate_names = settings['replicates'].map {|r| r[0]}
         return {'mat'=>mat, 'col_names'=>[name], 'row_names' => replicate_names}

@@ -52,6 +52,8 @@ class DeSetting < ApplicationRecord
         is_owner(user) || !is_locked()
     end
 
+    BAD_REGEX = /[\\'"\n]/
+
 private
     def randomize_id
         begin
@@ -64,10 +66,8 @@ private
     end
 
 
-    @bad_regex = /[\\'"\n]/
-
     def self.check_array(arr)
-        arr.nil? || arr.all? {|x| !@bad_regex.match?(x)}
+        arr.nil? || arr.all? {|x| !BAD_REGEX.match?(x)}
     end
 
     # Check the passed settings (in json) are valid
@@ -78,7 +78,7 @@ private
             return false
         end
 
-        if (settings.key?('ec_column') && @bad_regex.match?(settings['ec_column']))
+        if (settings.key?('ec_column') && BAD_REGEX.match?(settings['ec_column']))
             return false
         end
 

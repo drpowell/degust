@@ -32,7 +32,6 @@ common_prefix = (lst) ->
     tem1
 
 $(document).ready(() -> setup_nav_bar() )
-$(document).ready(() -> $('[title]').tooltip())
 
 
 input_type_option_row = (val) ->
@@ -191,7 +190,6 @@ module.exports =
             #this.grid.updateRowCount()
             #this.grid.render()
     methods:
-        xxxx: () -> this.xxx=false
         #Refactored to accept MaxQuant tsv and make the preview table
         parse_csv: () ->
             #console.log "Parsing!" that
@@ -283,6 +281,10 @@ module.exports =
                 errs.push("Invalid CPM value")
             if !(valid_int(this.settings.min_cpm_samples))
                 errs.push("Invalid 'in at least samples'")
+            this.settings.contrasts.forEach((c) =>
+                if (c.column.length != this.settings.replicates.length)
+                    errs.push("Contrast '"+c.name+"' does not match number of samples")
+            )
             errs
         check_conditon_names: () ->
             invalid = []
@@ -291,6 +293,13 @@ module.exports =
                     invalid.push("ERROR : Cannot use condition name '#{rep.name}', it is already a column name")
                 if (rep.name=="")
                     invalid.push("Missing condition name")
+            this.settings.contrasts.forEach((c) =>
+                if (c.name in this.columns_info)
+                    invalid.push("ERROR : Cannot use contrast name '#{c.name}', it is already a column name")
+                if (c.name=="")
+                    invalid.push("Missing contrast name")
+            )
+
             invalid
 
         # Return the condition names for the given replicate name.  Used in displaying options
@@ -307,12 +316,18 @@ module.exports =
             this.settings.replicates.push(r)
             if this.settings.replicates.length<=2
                 r.init=true
+            this.settings.contrasts.forEach((c) -> c.column.push(0))
         del_replicate: (idx) ->
             this.settings.replicates.splice(idx, 1)
+            this.settings.contrasts.forEach((c) -> c.column.splice(idx, 1))
         move_replicate: (idx, dir) ->
             if idx+dir>=0 && idx+dir<this.settings.replicates.length
                 r = this.settings.replicates.splice(idx,1)
                 this.settings.replicates.splice(idx+dir, 0, r[0])
+                this.settings.contrasts.forEach((c) ->
+                    r = c.column.splice(idx, 1)
+                    c.column.splice(idx+dir, 0, r[0])
+                )
 
         add_contrast: () ->
             r = {name:''}
@@ -355,6 +370,9 @@ module.exports =
                     if this.orig_settings['extra_menu_html']
                         $('#right-navbar-collapse').append(this.orig_settings['extra_menu_html'])
                 )
+
+        tip: (txt) ->
+            {content:txt, placement:'right'}
 
     mounted: ->
         this.get_settings()
