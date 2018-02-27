@@ -232,12 +232,11 @@ module.exports =
 
         process_dge_data: (data, cols) ->
             this.gene_data = new GeneData(data, cols)
-            this.numGenesThreshold = this.gene_data.get_data().length
             this.maxGenes = this.gene_data.get_data().length
-            this.numGenesThreshold = this.maxGenes
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1
             this.set_genes_selected(this.gene_data.get_data())
+            this.genes_hover = [this.gene_data.get_data()[0]]
             this.genes_highlight = []
             this.colour_by_condition = if this.fc_columns.length<=10 then d3.scale.category10() else d3.scale.category20()
             if (!this.cur_plot? || this.cur_plot in ["parcoords","ma"])

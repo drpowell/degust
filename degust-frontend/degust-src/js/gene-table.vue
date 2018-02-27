@@ -29,10 +29,31 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
             <popup-menu ref='menu'>
                 <vue-menu-item>
                     <div slot="body" @mousedown.stop>
+                    <div class='text-left' slot="body" @mousedown.stop>
                         <label>
                             <input type='checkbox' v-model='sortAbsLogFC'/>
                             Sorting by ABSOLUTE logFC
+                            <input type='checkbox' v-model='sortAbsLogFC'/>
                         </label>
+                        <div>
+                        <label v-show="!useProt">
+                            Show Counts
+                            <select v-model="showCounts">
+                                <option selected value='no'>No</option>
+                                <option value='yes'>Yes</option>
+                                <option value='cpm'>As counts-per-million</option>
+                            </select>
+                        </label>
+                        <label v-show="useProt">
+                            Show Intensity
+                            <select v-model="showIntensity">
+                                <option selected value='no'>No</option>
+                                <option value='yes'>Yes</option>
+                                <option value='log2'>As Log2 Intensity</option>
+                            </select>
+                        </label>
+                        </div>
+                    </div>
                     </div>
                 </vue-menu-item>
             </popup-menu>

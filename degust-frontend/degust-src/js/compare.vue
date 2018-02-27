@@ -68,7 +68,9 @@
     <div class='container'>
 
       <div class='row'>
-        <conditions-selector v-show='!settings.is_pre_analysed'
+      <div class='col-xs-3'>
+        <div class='row'> <!-- Give Condition Selector its own row-->
+          <conditions-selector v-show='!settings.is_pre_analysed' style='width:100%;'
                             :settings='settings'
                             :dge_method='dge_method'
                             :sel_conditions='sel_conditions'
@@ -76,8 +78,121 @@
                             :dge_methods='dge_methods'
                             @apply='change_samples'>
         </conditions-selector>
+          </div>
+        <hr>
+        <div>
+        <div class='filter options'>
+            <h4>Options</h4>
+            <div v-tooltip="tip('Filter genes by False Discovery Rate')">
+              <label>FDR cut-off</label>
+              <slider-text class='slider-control'
+                          v-model='fdrThreshold'
+                          :step-values='[0, 1e-6, 1e-5, 1e-4, 0.001, .01, .02, .03, .04, .05, 0.1, 1]'
+                          :validator="fdrValidator"
+                          :dropdowns="[{label: '1', value: 1},{label: '0.05',value: 0.05},{label:'0.01',value:0.01},{label:'0.001',value:0.001},{label:'0.0001',value:0.0001}]"
+                          :warning="fdrWarning"
+                          >
+              </slider-text>
+            </div>
 
-        <div class='col-xs-7' id='expression'>
+            <div v-tooltip="tip('Filter genes by absolute log fold change between any pair of samples')">
+              <label>abs logFC</label>
+              <slider-text class='slider-control'
+                          v-model='fcThreshold'
+                          :step-values='fcStepValues'
+                          :validator="intValidator"
+                          :dropdowns="[{label: '0 (all)', value: 0},{label: '0.585 (> 1.5x)',value: 0.585},{label:'1 (> 2x)',value:1},{label:'2 (> 4x)',value:2},{label:'3 (> 8x)',value:3},{label:'4 (> 16x)',value:4}]"
+                          :warning="fcWarning"
+                          >
+              </slider-text>
+            </div>
+
+            <div v-tooltip="tip('Filter page to genes in this list')">
+              <label>Create Filter</label>
+              <a @click='showGeneList=true'>{{(filter_gene_list.length == 0) ? "Create Filter" : "List Size: " + filter_gene_list.length }}</a>
+            </div>
+
+            <div v-tooltip="tip('Show FC from selected condition')">
+              <label for='fc-relative'>FC relative to</label>
+              <select id='fc-relative' v-model='fc_relative_i'>
+                  <option v-for='(col,i) in fc_columns' :value='i'>{{col.name}}</option>
+                  <option value='-1'>Average</option>
+              </select>
+            </div>
+            <div v-tooltip="tip('FC for the MA-plot')" v-if='cur_plot=="ma" || cur_plot=="volcano"'>
+              <label for='ma-fc-col'>Plot FC</label>
+              <select id='ma-fc-col' v-model='ma_plot_fc_col_i'>
+                  <option v-for='(col,i) in fc_calc_columns' :value='i'>{{col.name}}</option>
+              </select>
+            </div>
+            <div class='pca-opts' v-show="cur_plot=='mds'">
+              <div class='pca-title'>MDS options</div>
+              <div v-tooltip="tip('Number of genes to use for the MDS plot')" class='pca-num-genes-opt'>
+                <label>Num genes</label>
+                <slider-text class='slider-control'
+                            v-model='numGenesThreshold'
+                            :step-values='fcStepValues'
+                            :validator="intValidator"
+                            ref='num_genes'
+                            >
+                </slider-text>
+              </div>
+              <div v-tooltip="tip('Number of genes to ignore for the MDS plot')" class='pca-skip-genes-opt'>
+                <label>Skip genes</label>
+                <slider-text class='slider-control'
+                            v-model='skipGenesThreshold'
+                            :validator="intValidator"
+                            ref='skip_genes'
+                            >
+                </slider-text>
+              </div>
+              <div v-tooltip="tip('MDS dimensions to plot')" class='pca-dims-opt'>
+                <label>Dimensions</label>
+                <slider-text class='slider-control'
+                            v-model='mdsDimension'
+                            :step-values='[1,2,3,4,5,6,7,8,9,10]'
+                            :validator="intValidator"
+                            :fmt='fmtPCAText'
+                            :text-disable='true'
+                            >
+                </slider-text>
+              </div>
+              <div v-tooltip="tip('Plot the MDS dimensions to the same scale, or independently')">
+                <label>Dim scale</label>
+                <select v-model='mdsDimensionScale'>
+                  <option value='independent'>independent</option>
+                  <option value='common'>common</option>
+                </select>
+              </div>
+
+              <div v-tooltip="tip('MDS in 2d or 3d')">
+                <label>MDS plot</label>
+                <select v-model='mds_2d3d'>
+                  <option value='2d'>2d</option>
+                  <option value='3d'>3d</option>
+                </select>
+              </div>
+            </div><!-- div.pca-opts -->
+          </div>
+
+          <div class='text-right' v-show='!is_pre_analysed'>
+            <a class='sm-link' @click='show_r_code'>Show R code</a>
+          </div>
+
+          <div class='text-right'>
+            <a class='sm-link' @click='update_url_link'>Update Link</a>
+          </div>
+
+          <div class='text-right' v-if='!show_heatmap'>
+            <a class='sm-link' @click='show_heatmap=true'>
+                Show heatmap
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class='col-xs-9'>
+        <div class='col-xs-9' id='expression'>
           <div v-show='num_loading>0' class='loading'><img :src='$global.asset_base + "images/ajax-loader.gif"'></div>
           <ul class="nav nav-tabs">
             <li :class='{active: cur_plot=="parcoords"}'>
@@ -151,16 +266,7 @@
         </div><!-- expression -->
 
         <div class='col-xs-3'>
-          <ul class="nav nav-tabs">
-            <li :class='{active: cur_opts=="options"}'>
-                <a @click='cur_opts="options"'>Options</a>
-            </li>
-            <li :class='{active: cur_opts=="gene"}'>
-                <a @click='cur_opts="gene"'>Gene</a>
-            </li>
-          </ul>
-
-          <gene-stripchart v-if='cur_opts=="gene"'
+          <gene-stripchart v-if='true'
                            :gene-data='gene_data'
                            :colour='condition_colouring'
                            :useIntensity='is_maxquant'
@@ -168,138 +274,8 @@
                            >
           </gene-stripchart>
 
-          <div class='filter options' v-if='cur_opts=="options"'>
-            <h4>Options</h4>
-            <div v-tooltip="tip('Filter genes by False Discovery Rate')">
-              <label>FDR cut-off</label>
-              <slider-text class='slider-control'
-                          v-model='fdrThreshold'
-                          :step-values='[0, 1e-6, 1e-5, 1e-4, 0.001, .01, .02, .03, .04, .05, 0.1, 1]'
-                          :validator="fdrValidator"
-                          :dropdowns="[{label: '1', value: 1},{label: '0.05',value: 0.05},{label:'0.01',value:0.01},{label:'0.001',value:0.001},{label:'0.0001',value:0.0001}]"
-                          :warning="fdrWarning"
-                          >
-              </slider-text>
-            </div>
-
-            <div v-tooltip="tip('Filter genes by absolute log fold change between any pair of samples')">
-              <label>abs logFC</label>
-              <slider-text class='slider-control'
-                          v-model='fcThreshold'
-                          :step-values='fcStepValues'
-                          :validator="intValidator"
-                          :dropdowns="[{label: '0 (all)', value: 0},{label: '0.585 (> 1.5x)',value: 0.585},{label:'1 (> 2x)',value:1},{label:'2 (> 4x)',value:2},{label:'3 (> 8x)',value:3},{label:'4 (> 16x)',value:4}]"
-                          :warning="fcWarning"
-                          >
-              </slider-text>
-            </div>
-
-            <div v-tooltip="tip('Filter page to genes in this list')">
-              <label>Create Filter</label>
-              <a @click='showGeneList=true'>{{(filter_gene_list.length == 0) ? "Create Filter" : "List Size: " + filter_gene_list.length }}</a>
-            </div>
-
-            <div v-tooltip="tip('Show FC from selected condition')">
-              <label for='fc-relative'>FC relative to</label>
-              <select id='fc-relative' v-model='fc_relative_i'>
-                  <option v-for='(col,i) in fc_columns' :value='i'>{{col.name}}</option>
-                  <option value='-1'>Average</option>
-              </select>
-            </div>
-            <div v-tooltip="tip('FC for the MA-plot')" v-if='cur_plot=="ma" || cur_plot=="volcano"'>
-              <label for='ma-fc-col'>Plot FC</label>
-              <select id='ma-fc-col' v-model='ma_plot_fc_col_i'>
-                  <option v-for='(col,i) in fc_calc_columns' :value='i'>{{col.name}}</option>
-              </select>
-            </div>
-            <div v-show='is_rnaseq_counts'>
-              <div v-tooltip="tip('Show raw counts (or counts-per-million) in the table')" class='show-counts-opt'>
-                <label for='show-counts'>Show Counts</label>
-                <select v-model="showCounts">
-                  <option value='no'>No</option>
-                  <option value='yes'>Yes</option>
-                  <option value='cpm'>As counts-per-million</option>
-              </select>
-              </div>
-            </div>
-            <div v-show='is_maxquant'>
-              <div v-tooltip="tip('Show raw intensity in the table')" class='show-intensity-opt'>
-                <label for='show-intensity'>Show Intensity</label>
-                <select v-model="showIntensity">
-                  <option value='no'>No</option>
-                  <option value='yes'>Yes</option>
-                  <option value='log2'>As Log2 Intensity</option>
-              </select>
-              </div>
-            </div>
-            <div class='pca-opts' v-show="cur_plot=='mds'">
-              <div class='pca-title'>MDS options</div>
-              <div v-tooltip="tip('Number of genes to use for the MDS plot')" class='pca-num-genes-opt'>
-                <label>Num genes</label>
-                <slider-text class='slider-control'
-                            v-model='numGenesThreshold'
-                            :step-values='fcStepValues'
-                            :validator="intValidator"
-                            ref='num_genes'
-                            >
-                </slider-text>
-              </div>
-              <div v-tooltip="tip('Number of genes to ignore for the MDS plot')" class='pca-skip-genes-opt'>
-                <label>Skip genes</label>
-                <slider-text class='slider-control'
-                            v-model='skipGenesThreshold'
-                            :validator="intValidator"
-                            ref='skip_genes'
-                            >
-                </slider-text>
-              </div>
-              <div v-tooltip="tip('MDS dimensions to plot')" class='pca-dims-opt'>
-                <label>Dimensions</label>
-                <slider-text class='slider-control'
-                            v-model='mdsDimension'
-                            :step-values='[1,2,3,4,5,6,7,8,9,10]'
-                            :validator="intValidator"
-                            :fmt='fmtPCAText'
-                            :text-disable='true'
-                            >
-                </slider-text>
-              </div>
-              <div v-tooltip="tip('Plot the MDS dimensions to the same scale, or independently')">
-                <label>Dim scale</label>
-                <select v-model='mdsDimensionScale'>
-                  <option value='independent'>independent</option>
-                  <option value='common'>common</option>
-                </select>
-              </div>
-
-              <div v-tooltip="tip('MDS in 2d or 3d')">
-                <label>MDS plot</label>
-                <select v-model='mds_2d3d'>
-                  <option value='2d'>2d</option>
-                  <option value='3d'>3d</option>
-                </select>
-              </div>
-            </div><!-- div.pca-opts -->
-          </div>
-
-          <div class='text-right' v-show='!is_pre_analysed'>
-            <a class='sm-link' @click='show_r_code'>Show R code</a>
-          </div>
-
-          <div class='text-right'>
-            <a class='sm-link' @click='update_url_link'>Update Link</a>
-          </div>
-
-          <div class='text-right' v-if='!show_heatmap'>
-            <a class='sm-link' @click='show_heatmap=true'>
-                Show heatmap
-            </a>
-          </div>
         </div>
-
-      </div><!-- row -->
-
-      <div class='row' v-if='show_heatmap'>
+        <div class='row' v-if='show_heatmap'> <!-- Heatmap -->
         <div class="heatmap-info">
             <span v-for='col in info_columns' v-if='genes_highlight.length>0'>
                 <span class='lbl'>{{col.name}}: </span><span>{{genes_highlight[0][col.idx]}}</span>
@@ -316,6 +292,9 @@
                  >
         </heatmap>
       </div>
+      </div>
+      </div><!-- row -->
+
 
       <div class='row'>
         <h2>Genes</h2>

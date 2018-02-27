@@ -1,6 +1,6 @@
 <style scoped>
 
-.files { border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 3px 8px; margin-top: 10px}
+.files { border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 3px 8px; margin-top: 10px; max-height: 130px; overflow-y: scroll;}
 .files label { display: block; font-weight: normal; }
 
 .hidden-factors {
@@ -22,12 +22,23 @@
 
 .dge-method {font-size: 12px; }
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+
 </style>
 
 <template>
     <edit-overlay class='col-xs-2' :enabled='editing' @cancel='cancel' @apply='apply'>
         <div class='conditions'>
-            <h3>Conditions</h3>
+            <h4>Conditions</h4>
             <div class='files'>
                 <label v-for='c in conditions'>
                     <input type='checkbox'
@@ -60,16 +71,21 @@
                     </tr>
                 </table>
             </div>
-            <div v-show='dge_methods.length>0'>
-                <label>Method</label>
-                <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
-                    <option v-for='method in dge_methods' :value='method[0]'>{{method[1]}}</option>
-                </select>
+            <div class='row'>
+            <div class='col-xs-8'>
+                <div v-show='dge_methods.length>0'>
+                    <label>Method</label>
+                    <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
+                        <option v-for='method in dge_methods' :value='method[0]'>{{method[1]}}</option>
+                    </select>
+                </div>
             </div>
-            <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
-                Sample weights
-            </a>
-            <div class='weights collapse'>
+            <div class='col-xs-4'>
+                <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
+                    Sample weights
+                </a>
+                <div class='weights collapse'></div>
+            </div>
             </div>
         </div>
     </edit-overlay>
