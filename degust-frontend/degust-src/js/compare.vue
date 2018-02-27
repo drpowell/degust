@@ -50,13 +50,25 @@
           <!-- <li><a id="tour" href="#">Tour</a></li> -->
           <li><a class="config" :href="config_url" v-show='can_configure'>Configure</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QC <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li v-for="plot of qc_plots"><a @click='show_qc=plot[0]'>{{ plot[1] }}</a></li>
-              </ul>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              QC <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li v-for="plot of qc_plots"><a @click='show_qc=plot[0]'>{{ plot[1] }}</a></li>
+            </ul>
           </li>
           <li><a @click='show_about=true'>About</a></li>
-          <ul class="nav navbar-nav navbar-right navbar-collapse collapse"  v-html='full_settings.extra_menu_html' v-if='full_settings.extra_menu_html'></ul>
+          <ul class="nav navbar-nav navbar-right navbar-collapse collapse"
+              v-html='full_settings.extra_menu_html' v-if='full_settings.extra_menu_html'>
+          </ul>
+          <li class="dropdown" v-if='full_settings.versions'>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li v-for="ver in full_settings.versions"><a :href='ver.path+"?code="+code'>{{ ver.version }}</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
