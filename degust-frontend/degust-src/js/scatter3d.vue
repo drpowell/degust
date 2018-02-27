@@ -33,7 +33,7 @@ class Scatter3d
         w = @w = @opts.tot_width || el.clientWidth
         h = @h = @opts.tot_height || w #el.clientHeight
         @renderer.setSize(w, h)
-        @animating = true
+        @animating = false
 
         @_make_menu(renderer.domElement)
 

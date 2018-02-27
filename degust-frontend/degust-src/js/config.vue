@@ -277,12 +277,6 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-sm-3">EC Number column</label>
-                        <div class="controls col-sm-3">
-                          <multiselect v-model="settings.ec_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Optional ---"></multiselect>
-                        </div>
-                      </div>
-                      <div class="form-group">
                         <label class="control-label col-sm-3">Gene link column</label>
                         <div class="controls col-sm-3">
                           <multiselect v-model="settings.link_column" :options="columns_info" :allow-empty="true" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Optional ---"></multiselect>

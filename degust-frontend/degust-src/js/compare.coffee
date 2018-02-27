@@ -1,255 +1,8 @@
 
-g_vue_obj = null
-
-html_escape = (str) ->
-    $('<div/>').text(str).html()
-
-
 blue_to_brown = d3.scale.linear()
   .domain([0,0.05,1])
   .range(['brown', "steelblue", "steelblue"])
   .interpolate(d3.interpolateLab)
-
-colour_cat20 = d3.scale.category20().domain([1..20])
-colour_by_ec = (ec_col) ->
-    (row) -> colour_cat20(row[ec_col])
-
-colour_by_pval = (col) ->
-    (d) -> blue_to_brown(d[col])
-
-# Globals for widgets
-parcoords = null
-ma_plot = null
-volcano_plot = null
-pca_plot = null
-gene_expr = null
-
-kegg = null
-heatmap = null
-
-g_data = null
-requested_kegg = false
-
-
-# Globals for settings
-sortAbsLogFC = true
-
-kegg_filter = []
-h_runfilters = null
-g_tour_setup = false
-g_colour_by_parent = d3.scale.category10()
-
-kegg_mouseover = (obj) ->
-    ec = obj.id
-    rows = []
-    ec_col = g_data.column_by_type('ec')
-    return if ec_col==null
-    for row in g_data.get_data()
-        rows.push(row) if row[ec_col.idx] == ec
-    g_vue_obj.current_plot.highlight(rows)
-
-# highlight parallel coords (and/or kegg)
-gene_table_mouseover = (item) ->
-    g_vue_obj.current_plot.highlight([item])
-    ec_col = g_data.column_by_type('ec')
-    if ec_col?
-        kegg.highlight(item[ec_col.idx])
-    heatmap.highlight([item])
-    gene_expr.select(g_data, [item])
-
-gene_table_mouseout = () ->
-    g_vue_obj.current_plot.unhighlight()
-    $('#gene-info').html('')
-    kegg.unhighlight()
-    heatmap.unhighlight()
-
-calc_max_parcoords_width = () ->
-    w = $('.container').width()
-    w -= $('.conditions').outerWidth(true) if $('.conditions').is(':visible')
-    w -= $('div.filter').outerWidth(true) if $('div.filter').is(':visible')
-
-# Filter to decide which rows to plot on the parallel coordinates widget
-expr_filter = (row) ->
-    if g_vue_obj.fcThreshold>0
-        # Filter using largest FC between any pair of samples
-        fc = g_data.columns_by_type('fc').map((c) -> row[c.idx])
-        extent_fc = d3.extent(fc.concat([0]))
-        if Math.abs(extent_fc[0] - extent_fc[1]) < g_vue_obj.fcThreshold
-            return false
-
-    # Filter by FDR
-    pval_col = g_data.columns_by_type('fdr')[0]
-    return false if row[pval_col.idx] > g_vue_obj.fdrThreshold
-
-    # If a Kegg pathway is selected, filter to that.
-    if kegg_filter.length>0
-        ec_col = g_data.column_by_type('ec')
-        return row[ec_col.idx] in kegg_filter
-
-    true
-
-
-init_genesets = () ->
-    $('.geneset-save').on('click', () ->
-        console.log "SAVE"
-    )
-    $('.geneset-search input.search').autocomplete(
-        source: "/gene-sets"
-        minLength: 2
-        select: ( event, ui ) ->
-            if ui.item
-                d3.json("/gene-sets/#{ui.item.id}", (err, json) ->
-                    console.log "JSON", ui, json
-                )
-    );
-
-calc_kegg_colours = () ->
-    ec_dirs = {}
-    ec_col = g_data.column_by_type('ec')
-    return if ec_col==null
-    fc_cols = g_data.columns_by_type('fc_calc')[1..]
-    for row in g_data.get_data()
-        ec = row[ec_col.idx]
-        continue if !ec
-        for col in fc_cols
-            v = row[col.idx]
-            dir = if v>0.1 then "up" else if v<-0.1 then "down" else "same"
-            ec_dirs[ec]=dir if !ec_dirs[ec]
-            ec_dirs[ec]='mixed' if ec_dirs[ec]!=dir
-    return ec_dirs
-
-kegg_selected = () ->
-    code = $('select#kegg option:selected').val()
-    title = $('select#kegg option:selected').text()
-
-    set_filter = (ec) ->
-        kegg_filter = ec
-        update_data()
-
-    if !code
-        set_filter([])
-    else
-        ec_colours = calc_kegg_colours()
-        kegg.load(code, ec_colours, set_filter)
-        $('div#kegg-image').dialog({width:500, height:600, title: title, position: {my: "right top", at:"right top+60", of: $('body')} })
-
-process_kegg_data = (ec_data) ->
-    return if requested_kegg
-    requested_kegg = true
-    opts = "<option value=''>--- No pathway selected ---</option>"
-
-    have_ec = {}
-    ec_col = g_data.column_by_type('ec')
-    for row in g_data.get_data()
-        have_ec[row[ec_col.idx]]=1
-
-    ec_data.sort((a,b) ->
-        a=a.title.toLowerCase()
-        b=b.title.toLowerCase()
-        if a==b then 0 else if a<b then -1 else 1
-    )
-    ec_data.forEach (row) ->
-        num=0
-        for ec in row.ec.split(" ").filter((s) -> s.length>0)
-            num++ if have_ec[ec]
-        if num>0
-            opts += "<option value='#{row.code}'>#{row.title} (#{num})</option>"
-    $('select#kegg').html(opts)
-    $('.kegg-filter').show()
-
-process_dge_data = (data, columns) ->
-    g_data = new GeneData(data, columns)
-
-    # Setup FC "relative" pulldown
-    # opts = ""
-    # for col,i in g_data.columns_by_type(['fc','primary'])
-    #     opts += "<option value='#{i}'>#{html_escape col.name}</option>"
-    # opts += "<option value='-1'>Average</option>"
-    # $('select#fc-relative').html(opts)
-
-    # Setup MA-plot pulldown
-    # opts = ""
-    # for col,i in g_data.columns_by_type(['fc','primary'])
-    #     opts += "<option value='#{i}' #{if i==1 then 'selected' else ''}>#{html_escape col.name}</option>"
-    # $('select#ma-fc-col').html(opts)
-
-    if g_data.column_by_type('ec') == null
-        $('.kegg-filter').hide()
-    else if !requested_kegg
-        g_backend.request_kegg_data(process_kegg_data)
-
-    if g_data.columns_by_type('count').length == 0
-        $('.show-counts-opt').hide()
-        $('#select-pca').hide()
-    else
-        $('.show-counts-opt').show()
-        $('#select-pca').show()
-
-    update_from_link(true)
-
-    # First time throught?  Setup the tutorial tour
-    if !g_tour_setup
-        g_tour_setup = true
-        setup_tour(if settings.show_tour? then settings.show_tour else true)
-
-# Called whenever the data is changed, or the "checkboxes" are modified
-update_data = () ->
-    # Set the 'relative' column
-    fc_relative = $('select#fc-relative option:selected').val()
-    if fc_relative<0
-        fc_relative = 'avg'
-    else
-        fc_relative = g_data.columns_by_type(['fc','primary'])[fc_relative]
-    g_data.set_relative(fc_relative)
-
-    dims = g_data.columns_by_type('fc_calc')
-    pval_col = g_data.column_by_type('fdr')
-
-    if g_vue_obj.current_plot == parcoords
-        extent = ParCoords.calc_extent(g_data.get_data(), dims)
-        parcoords.update_data(g_data.get_data(), dims, extent, colour_by_pval(pval_col.idx))
-    else if g_vue_obj.current_plot == ma_plot
-        ma_fc = $('select#ma-fc-col option:selected').val()
-        ma_fc = g_data.columns_by_type(['fc','primary'])[ma_fc].name
-        fc_col = g_data.columns_by_type('fc_calc').filter((c) -> c.name == ma_fc)[0]
-        ma_plot.update_data(g_data.get_data(),
-                            g_data.columns_by_type('avg')[0],
-                            fc_col,
-                            colour_by_pval(pval_col.idx),
-                            g_data.columns_by_type('info'),
-                            pval_col
-                            )
-    else if g_vue_obj.current_plot == volcano_plot
-        ma_fc = $('select#ma-fc-col option:selected').val()
-        ma_fc = g_data.columns_by_type(['fc','primary'])[ma_fc].name
-        fc_col = g_data.columns_by_type('fc_calc').filter((c) -> c.name == ma_fc)[0]
-        volcano_plot.update_data(g_data.get_data(),
-                            fc_col,
-                            pval_col,
-                            colour_by_pval(pval_col.idx),
-                            g_data.columns_by_type('info'),
-                            )
-    else if g_vue_obj.current_plot == pca_plot
-        cols = g_data.columns_by_type('fc_calc').map((c) -> c.name)
-        count_cols = g_data.columns_by_type('count').filter((c) -> cols.indexOf(c.parent)>=0)
-        pca_plot.update_data(g_data, count_cols)
-
-    set_gene_table(g_data.get_data())
-
-    # Update the heatmap
-    if heatmap.enabled()
-        if (!heatmap.show_replicates)
-            heatmap_dims = g_data.columns_by_type('fc_calc_avg')
-            centre=true
-        else
-            count_cols = dims.map((c) -> g_data.assoc_column_by_type('count',c.name))
-            count_cols = [].concat.apply([], count_cols)
-            heatmap_dims = Normalize.normalize(g_data, count_cols)
-            centre=true
-        heatmap.update_columns(g_data, heatmap_dims, centre)
-
-    # Ensure the brush callbacks are called (updates heatmap & table)
-    g_vue_obj.current_plot.brush()
 
 sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
@@ -440,7 +193,6 @@ module.exports =
 
         init_page: () ->
             setup_nav_bar()      #FIXME
-            $("select#kegg").change(kegg_selected) #FIXME
 
         initBackend: (use_backend) ->
             this.ev_backend = new Vue()
@@ -480,7 +232,9 @@ module.exports =
 
         process_dge_data: (data, cols) ->
             this.gene_data = new GeneData(data, cols)
+            this.numGenesThreshold = this.gene_data.get_data().length
             this.maxGenes = this.gene_data.get_data().length
+            this.numGenesThreshold = this.maxGenes
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1
             this.set_genes_selected(this.gene_data.get_data())
@@ -602,11 +356,6 @@ module.exports =
             # Filter by FDR
             pval_col = this.fdr_column
             return false if row[pval_col.idx] > this.fdrThreshold
-
-            # If a Kegg pathway is selected, filter to that.
-            if kegg_filter.length>0
-                ec_col = this.gene_data.column_by_type('ec')
-                return row[ec_col.idx] in kegg_filter
 
             true
 
