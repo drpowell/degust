@@ -6,20 +6,18 @@ require("./d3-req.coffee")
 
 # Ours
 require('./print.coffee')
-require('./kegg.coffee')
-require('./tour.coffee')
 
 # Ours
 compare = require('./compare.vue').default
 global.Vue = Vue = require('vue').default
-VueRouter = require('vue-router').default
-VTooltip = require('v-tooltip').default
 
 # Install tooltips
+VTooltip = require('v-tooltip').default
 Vue.use(VTooltip)
 VTooltip.options.defaultClass = 'v-tooltip'
 
 # Use vue-router for tracking state in URL
+VueRouter = require('vue-router').default
 router = new VueRouter(
     mode: 'hash'
     base: window.location.href
