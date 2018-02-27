@@ -471,7 +471,9 @@ module.exports =
 
         process_dge_data: (data, cols) ->
             this.gene_data = new GeneData(data, cols)
+            this.numGenesThreshold = this.gene_data.get_data().length
             this.maxGenes = this.gene_data.get_data().length
+            this.numGenesThreshold = this.maxGenes
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1
             this.set_genes_selected(this.gene_data.get_data())
