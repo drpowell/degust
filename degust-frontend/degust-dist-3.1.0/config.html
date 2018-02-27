@@ -1,0 +1,214 @@
+<html>
+  <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" type="image/png" href="images/favicon.png"/>
+
+    <!-- Externals CSS -->
+    <link rel="stylesheet" href="./css/lib.css" />
+
+    <link rel="stylesheet" href="./css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/config.css" type="text/css"/>
+
+
+    <script type="text/javascript" src='./common.js'></script>
+    <script type="text/javascript" src='./slickgrid.js'></script>
+    <script type="text/javascript" src='./config.js'></script>
+  </head>
+  <body>
+
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Degust : </a>
+          <span class="navbar-brand exp-name">unnamed</span>
+        </div>
+        <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
+          <li><a class="log-link" href="#">Logs</a>
+          <li><a class="view" href="#">View</a>
+          <li><a href="#about-modal" data-toggle="modal">About</a>
+        </ul>
+      </div>
+    </div>
+
+    <div class='log-list'>
+      <h4>Log messages</h4>
+    </div>
+
+    <div class="container">
+      <h1>Configuration</h1>
+
+      <div class="row">
+        <div class="col-md-12 options">
+          <form class="form-horizontal">
+
+          <div class="form-group">
+            <label class="control-label col-sm-3" for="name">Name</label>
+            <div class="controls col-sm-8">
+              <input class="name" type="text" name="name" placeholder="Unnamed" title="Optional: Give your experiment a name" data-placement='right' size='30' />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-3">Format type</label>
+            <div class="controls col-sm-6">
+              <label class="radio">
+                <input type="radio" name="fmt" class="fmt" id="fmt-csv" value="CSV">Comma separated (CSV)
+              </label>
+              <label class="radio">
+                <input type="radio" name="fmt" class="fmt" id="fmt-tab" value="TAB">TAB separated (TSV)
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-3">Info columns</label>
+            <div class="controls col-sm-6">
+              <select class="info-columns" multiple="multiple" title="Columns to include in the gene-list table" data-placement='right'></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">EC Number column</label>
+            <div class="controls col-sm-6">
+              <select class="ec-column" title="Column containing EC numbers for each gene, used to display Kegg pathways" data-placement='right'></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Gene link column</label>
+            <div class="controls col-sm-6">
+              <select class="link-column" title="Column containing information for external linking" data-placement='right'></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Gene link URL</label>
+            <div class="controls col-sm-6">
+              <input class="link-url" type="text" size='50' placeholder="Leave blank to have Degust guess" title="Optional: External link for genes.  Any '%s' in the link will be replaced by the defined link column" data-placement='right' />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-3" for="analyze-server-side">Analyze server side</label>
+            <div class="controls col-sm-6">
+              <input id="analyze-server-side" type="checkbox" />
+            </div>
+          </div>
+
+          <div class="server-side-analysis-fields">
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="name">Min gene read count</label>
+              <div class="controls col-sm-6">
+                <input class="min-counts" type="text" name="min-counts" placeholder="0" title="Optional: Minimum read count required in at least one replicate or the gene is ignored" data-placement='right' />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="name">Min gene CPM</label>
+              <div class="controls col-sm-2">
+                <input class="min-cpm" type="text" name="min-cpm" placeholder="0" title="Optional: A gene must have at a CPM of at least this, in at least the number of specified samples" data-placement='right' />
+              </div>
+              <label class="control-label col-sm-2" for="name">in at least samples</label>
+              <div class="controls col-sm-3">
+                <input class="min-cpm-samples" type="text" name="min-cpm" placeholder="0" title="Optional: A gene must have at a CPM of at least this, in at least the number of specified samples" data-placement='right' />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="config-locked">Config locked</label>
+              <div class="controls col-sm-6">
+                <input id="config-locked" type="checkbox" title="Lock the configuration page so only you can change it (you must be logged in)" data-placement='right' />
+              </div>
+            </div>
+
+
+            <div class="condition-group conditions">
+              <div class="form-group">
+                <span class="control-label col-sm-3">Condition name</span>
+                <div class="controls col-sm-6">
+                  <span>Replicates</span>
+                </div>
+              </div>
+
+              <div class="form-group condition template">
+                <div class="controls col-sm-3">
+                  <input class="control-label col-name" placeholder="Condition Name"/>
+                </div>
+                <div class="controls col-sm-9">
+                  <select class="columns" multiple="multiple"></select>
+                  <label class='init-select'><input type="checkbox"  />Initial select</label>
+                  <label class='hidden-factor'><input type="checkbox" />Hidden Factor</label>
+                  <button type="button" class="del-condition">&times;</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-3">
+                <button type="button" id="add-condition" class="btn btn-primary" title="Add a new condition or treatment" data-placement='right'>Add condition</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="user-analysed-fields">
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="primary">Primary condition</label>
+              <div class="controls col-sm-6">
+                <input class="primary" type="text" name="primary" placeholder="Primary" title="Name of the condition your fold-change data is relative to" data-placement='right' />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3">FDR column</label>
+              <div class="controls col-sm-6">
+                <select id="fdr-column" title="Column containing the False-Discovery-Rate.  Sometimes called 'adj.P.Val'" data-placement='right'></select>
+                <span class='text-error'></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3">Average expression column</label>
+              <div class="controls col-sm-6">
+                <select id="avg-column" title="Column containing the average (log) expression information.  Often called 'Amean' or 'AveExpr'" data-placement='right'></select>
+                <span class='text-error'></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3">Fold-change columns</label>
+              <div class="controls col-sm-6">
+                <select class="fc-columns" multiple="multiple" title="Columns containg the log fold-change data" data-placement='right'></select>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button type="submit" id="save" class="btn btn-success">Save changes</button>
+              <button type="button" id="cancel" class="btn btn-default">Revert</button>
+              <a class="view btn btn-default" href="#" title="View main page.  Note unsaved configuration will be lost" data-placement='right'>View</a>
+            </div>
+          </div>
+        </form>
+        </div> <!-- options -->
+      </div> <!-- row -->
+
+      <div id="grid-info" class="row"></div>
+      <div id="grid" class="row"></div>
+    </div> <!-- container -->
+
+    <div id="saving-modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h3 id="myModalLabel">Saving settings</h3>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button id="close-modal" class="btn btn-primary">Close</button>
+            <a class="view btn btn-default" href="#">View</a>
+            <!-- <button class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal -->
+    <div id="about-modal"></div>
+
+  </body>
+</html>
