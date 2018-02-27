@@ -47,7 +47,7 @@
 
         <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
           <li><a class="log-link" href="#">Logs</a></li>
-          <li><a id="tour" href="#">Tour</a></li>
+          <!-- <li><a id="tour" href="#">Tour</a></li> -->
           <li><a class="config" :href="config_url" v-show='can_configure'>Configure</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QC <span class="caret"></span></a>
@@ -277,27 +277,6 @@
             </div><!-- div.pca-opts -->
           </div>
 
-          <div class='filter kegg-filter'>
-            <h4>Kegg Pathway</h4>
-            <select id='kegg'></select>
-          </div>
-
-          <div class='text-right'>
-            <a class="genesets-toggle" role="button" data-toggle="collapse" href="#genesets" aria-expanded="false" aria-controls="genesets">
-                Gene Sets
-            </a>
-          </div>
-          <div class="collapse" id="genesets">
-            <div class='filter'>
-              <h4>Gene Sets</h4>
-              <a class='btn btn-primary btn-xs geneset-save'>Save Current as Gene Set</a>
-              <div class="geneset-search">
-                <label>Search</label>
-                <input type="text" class='search' />
-              </div>
-            </div>
-          </div>
-
           <div class='text-right' v-show='!is_pre_analysed'>
             <a class='sm-link' @click='show_r_code'>Show R code</a>
           </div>
@@ -345,8 +324,6 @@
       </div>
 
     </div>
-
-    <div id='kegg-image'></div>
 
     <!-- About box Modal -->
     <about :show='show_about' @close='show_about=false'></about>

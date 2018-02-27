@@ -4,83 +4,6 @@ blue_to_brown = d3.scale.linear()
   .range(['brown', "steelblue", "steelblue"])
   .interpolate(d3.interpolateLab)
 
-
-kegg = null
-requested_kegg = false
-
-# Globals for settings
-sortAbsLogFC = true
-
-kegg_filter = []
-h_runfilters = null
-g_tour_setup = false
-g_colour_by_parent = d3.scale.category10()
-
-kegg_mouseover = (obj) ->
-    ec = obj.id
-    rows = []
-    ec_col = g_data.column_by_type('ec')
-    return if ec_col==null
-    for row in g_data.get_data()
-        rows.push(row) if row[ec_col.idx] == ec
-    g_vue_obj.current_plot.highlight(rows)
-
-
-calc_kegg_colours = () ->
-    ec_dirs = {}
-    ec_col = g_data.column_by_type('ec')
-    return if ec_col==null
-    fc_cols = g_data.columns_by_type('fc_calc')[1..]
-    for row in g_data.get_data()
-        ec = row[ec_col.idx]
-        continue if !ec
-        for col in fc_cols
-            v = row[col.idx]
-            dir = if v>0.1 then "up" else if v<-0.1 then "down" else "same"
-            ec_dirs[ec]=dir if !ec_dirs[ec]
-            ec_dirs[ec]='mixed' if ec_dirs[ec]!=dir
-    return ec_dirs
-
-kegg_selected = () ->
-    code = $('select#kegg option:selected').val()
-    title = $('select#kegg option:selected').text()
-
-    set_filter = (ec) ->
-        kegg_filter = ec
-        update_data()
-
-    if !code
-        set_filter([])
-    else
-        ec_colours = calc_kegg_colours()
-        kegg.load(code, ec_colours, set_filter)
-        $('div#kegg-image').dialog({width:500, height:600, title: title, position: {my: "right top", at:"right top+60", of: $('body')} })
-
-process_kegg_data = (ec_data) ->
-    return if requested_kegg
-    requested_kegg = true
-    opts = "<option value=''>--- No pathway selected ---</option>"
-
-    have_ec = {}
-    ec_col = g_data.column_by_type('ec')
-    for row in g_data.get_data()
-        have_ec[row[ec_col.idx]]=1
-
-    ec_data.sort((a,b) ->
-        a=a.title.toLowerCase()
-        b=b.title.toLowerCase()
-        if a==b then 0 else if a<b then -1 else 1
-    )
-    ec_data.forEach (row) ->
-        num=0
-        for ec in row.ec.split(" ").filter((s) -> s.length>0)
-            num++ if have_ec[ec]
-        if num>0
-            opts += "<option value='#{row.code}'>#{row.title} (#{num})</option>"
-    $('select#kegg').html(opts)
-    $('.kegg-filter').show()
-
-
 sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 about = require('./about.vue').default
@@ -261,7 +184,6 @@ module.exports =
 
         init_page: () ->
             setup_nav_bar()      #FIXME
-            $("select#kegg").change(kegg_selected) #FIXME
 
         initBackend: (use_backend) ->
             this.ev_backend = new Vue()
@@ -410,11 +332,6 @@ module.exports =
             # Filter by FDR
             pval_col = this.fdr_column
             return false if row[pval_col.idx] > this.fdrThreshold
-
-            # If a Kegg pathway is selected, filter to that.
-            if kegg_filter.length>0
-                ec_col = this.gene_data.column_by_type('ec')
-                return row[ec_col.idx] in kegg_filter
 
             true
 
