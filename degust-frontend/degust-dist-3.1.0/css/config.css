@@ -1,0 +1,17 @@
+
+.options { border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 10px 3px; }
+
+#grid { height: 300px; font-size: 8pt; }
+#grid-info { font-size: 9pt; }
+#grid .slick-row { font-size: 8pt; }
+#grid .slick-row:hover { font-weight: normal }
+
+.template { display: none; }
+.conditions { border: 1px solid #aaa; border-radius: 5px; padding: 0 3px; }
+
+.view { float: right; }
+.del-condition { float: right; }
+
+.init-select, .hidden-factor {margin-left: 15px; font-size: smaller;}
+
+.col-name {width: 100%;}

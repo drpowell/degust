@@ -367,6 +367,7 @@ module.exports =
                         return
                     this.orig_settings=json
                     this.revert()
+                    this.get_csv_data()
                     if this.orig_settings['extra_menu_html']
                         $('#right-navbar-collapse').append(this.orig_settings['extra_menu_html'])
                 )
@@ -376,4 +377,3 @@ module.exports =
 
     mounted: ->
         this.get_settings()
-        this.get_csv_data()

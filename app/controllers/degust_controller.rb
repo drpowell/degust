@@ -2,7 +2,14 @@ class DegustController < ApplicationController
     skip_before_action :verify_authenticity_token, :only => [:static, :save_settings]
 
     def static
-        page = 'degust-frontend/degust-dist/' + params['page'].to_s + '.' + params['format'].to_s
+        if params.has_key?('version')
+            # Use a version specific file
+            page = "degust-frontend/degust-dist-#{params['version'].to_s}/#{params['page'].to_s}.#{params['format'].to_s}"
+        else
+            # Use latest
+            page = "degust-frontend/degust-dist/#{params['page'].to_s}.#{params['format'].to_s}"
+        end
+
         if page.include?('..') || !File.exists?(page)
             raise ActionController::RoutingError.new('Not Found')
         else
@@ -46,6 +53,8 @@ class DegustController < ApplicationController
         res['extra_menu_html'] = render_to_string(partial: 'layouts/navigation_links.html.erb')
         res['is_logged_in'] = !current_user.nil?
         res['is_owner'] = de_setting.is_owner(current_user)
+        res['versions'] = [{version:'latest', path: degust_page_path("compare.html")},
+                           {version:'v3.1.0',  path: degust_version_path('3.1.0',"compare.html")}]
         render :json => res
     end
 
