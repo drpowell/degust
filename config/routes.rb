@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/upload' => 'de_settings#new'
   post '/upload' => 'de_settings#create'
 
+  get '/degust', to: redirect('/')
 
   # Routes for degust app
   resources :degust, only: [] do
