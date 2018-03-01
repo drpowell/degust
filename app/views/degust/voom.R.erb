@@ -15,11 +15,26 @@ out2 <- cbind(fit2$coef,
               out[, c('P.Value','adj.P.Val','AveExpr')],
               x[, c(<%== @export_cols %>)] )
 
-write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+param_normalized <- '<%= @normalized %>'
+normalized <- matrix(0)
+if (param_normalized=='') {
+    write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+} else if (param_normalized=='backend') {
+    normalized <- y$E
+} else if (param_normalized=='remove-hidden') {
+    hidden_factors <- <%== @hidden_factors %>
+    if (length(hidden_factors)>0) {
+        # Remove the batch effect (as done in removeBatchEffect)
+        beta <- fit$coefficients[, hidden_factors, drop=FALSE]
+        normalized <- as.matrix(y) - beta %*% t(design[, hidden_factors, drop=FALSE])
+    }
+}
 
 cat(
    toJSON(list(rank=fit2$rank, df_prior=fit2$df.prior,
                design=data.frame(fit2$design), contrasts=data.frame(fit2$contrasts),
-               cov_coefficients=data.frame(fit2$cov.coefficients))),
+               cov_coefficients=data.frame(fit2$cov.coefficients),
+               normalized=list(columns=colnames(normalized), values=normalized)
+         )),
    file="<%== @output_dir %>/extra.json"
 )
