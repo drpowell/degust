@@ -189,7 +189,6 @@ module.exports =
             this.ev_backend = new Vue()
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
             this.ev_backend.$on("done_loading", () => this.num_loading-=1)
-            this.ev_backend.$on("dge_data", (data,cols) => this.process_dge_data(data,cols))
             if !use_backend
                 this.backend = new backends.BackendNone(this.settings, this.ev_backend)
             else
@@ -209,7 +208,6 @@ module.exports =
                 this.dge_methods = this.backend.dge_methods()
                 this.qc_plots = this.backend.qc_plots()
 
-
                 # If there is no default dge_method set, then use first thing in the list
                 if this.dge_methods.length>0 && !this.settings.dge_method?
                     this.dge_method = this.dge_methods[0][0]
@@ -219,9 +217,10 @@ module.exports =
 
         # Send a request to the backend.  First request, or when selected samples has changed
         request_data: () ->
-            this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast)
+            p = this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast)
+            p.then(([data,cols,extra]) => this.process_dge_data(data,cols,extra))
 
-        process_dge_data: (data, cols) ->
+        process_dge_data: (data, cols, extra) ->
             this.gene_data = new GeneData(data, cols)
             this.numGenesThreshold = this.gene_data.get_data().length
             this.maxGenes = this.gene_data.get_data().length
