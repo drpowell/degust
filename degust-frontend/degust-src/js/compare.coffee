@@ -54,6 +54,10 @@ module.exports =
         numGenesThreshold: 100
         skipGenesThreshold: 0
         mdsDimension: 1
+        normalization: 'cpm'
+        normalizationModeration: 10
+        normalizationColumns: null
+        normalized_data: null
         maxGenes: 0
         mds_2d3d: '2d'
         mdsDimensionScale: 'independent'
@@ -114,13 +118,15 @@ module.exports =
             this.fdrThreshold
             this.fcThreshold
             Date.now()
+        need_renormalization: () ->
+            this.normalization
+            this.normalizationModeration
+            Date.now()
         heatmap_dimensions: () ->
             if (!this.heatmap_show_replicates)
                 heatmap_dims = this.gene_data.columns_by_type('fc_calc_avg')
             else
-                count_cols = this.fc_calc_columns.map((c) => this.gene_data.assoc_column_by_type('count',c.name))
-                count_cols = [].concat.apply([], count_cols)
-                heatmap_dims = Normalize.normalize(this.gene_data, count_cols)
+                heatmap_dims = this.normalizationColumns
             heatmap_dims
 
         #Added to show/hide counts/intensity
@@ -150,6 +156,8 @@ module.exports =
             this.gene_data.set_relative(this.fc_relative)
         experimentName: () ->
             document.title = this.experimentName
+        need_renormalization: () ->
+            this.renormalize()
 
     methods:
         init: () ->
@@ -233,7 +241,20 @@ module.exports =
                 this.cur_plot = if this.fc_columns.length>2 then "parcoords" else "ma"
             if this.fc_columns.length==2
                 this.heatmap_show_replicates = true
+            this.renormalize()
 
+        renormalize: () ->
+            switch this.normalization
+                when 'cpm'
+                    cols = Normalize.normalize_cpm(this.gene_data, this.count_columns, this.normalizationModeration)
+                    this.normalizationColumns = cols
+                when 'backend', 'remove-hidden'
+                    this.ev_backend.$emit('start_loading')
+                    p = this.backend.request_normalized(this.normalization, this.dge_method, this.sel_conditions, this.sel_contrast)
+                    Normalize.normalize_from_backend(this.gene_data, this.count_columns, this.normalization, p).then((new_cols) =>
+                        this.normalizationColumns = new_cols
+                        this.ev_backend.$emit('done_loading')
+                    )
 
         # Selected samples have changed, request a new dge
         change_samples: (cur) ->

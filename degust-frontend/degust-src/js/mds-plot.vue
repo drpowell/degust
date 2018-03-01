@@ -109,7 +109,7 @@ module.exports =
         scatter3d: scatter3d
         barGraph: barGraph
     props:
-        geneData: null
+        data: null
         columns: null
         conditionColouring: null
         filter: null
@@ -133,7 +133,7 @@ module.exports =
             this.dimension
             Date.now()
     watch:
-        geneData: () ->
+        columns: () ->
             this.update_components()
         needsRedraw: () ->
             this.redraw()
@@ -142,27 +142,25 @@ module.exports =
         this.update_components()
 
     methods:
-        # Note, this is naughty - it writes to the 'data' array a "_variance" column
-        # and several "_transformed_" columns.
-        # Also, compute the per-column (library) size for later normalization
+        # Computes per-row variance (ie. variance for each gene)
         update_components: () ->
-            # Compute the library size for each column (for normalising in _compute_variance)
-            @norm_cols = Normalize.normalize(this.geneData, this.columns)
-            @variances = {}
-            @rows = this.geneData.get_data()
-            @rows.forEach((row) => @variances[row.id] = @_compute_variance(row))
+            return if !this.data
+            startTime = Date.now()
+            this.variances = {}
+            this.data.forEach((row) => @variances[row.id] = @_compute_variance(row))
+            console.log( "MDS normalization took : #{Date.now() - startTime }ms");
             @redraw()
 
         # Convert to log2 counts, and normalize for library size, and compute the gene variance.
         _compute_variance: (row) ->
-            vals = @norm_cols.map((col) => row[col.idx])
+            vals = @columns.map((col) => row[col.idx])
             PCA.variance(vals)
 
         redraw: () ->
-            console.log "mds redraw"
+            startTime = Date.now()
 
             # Log transformed counts
-            kept_data = @rows.filter((d) => this.filter(d))
+            kept_data = this.data.filter((d) => this.filter(d))
 
             top_genes = kept_data.sort((a,b) => @variances[b.id] - @variances[a.id])
             top_genes = top_genes[this.skipGenes ... (this.skipGenes + this.numGenes)]
@@ -171,7 +169,7 @@ module.exports =
             return if top_genes.length==0
 
             # Get the transformed counts
-            transformed = top_genes.map((row) => @norm_cols.map((col) -> row[col.idx]))
+            transformed = top_genes.map((row) => @columns.map((col) -> row[col.idx]))
 
             # Transpose to row per sample.
             by_gene = numeric.transpose(transformed)
@@ -191,6 +189,8 @@ module.exports =
                     range = pca_results.eigenvalues[i]/tot_eigen * 100
                     {lbl: "#{i+1}", val: range}
                 ))
+            console.log( "MDS redraw took : #{Date.now() - startTime }ms");
+
 
         # Called from bargraph.  Pass it to the parent to set the prop
         set_dimension: (d) ->
