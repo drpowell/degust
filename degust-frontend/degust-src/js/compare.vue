@@ -254,7 +254,8 @@
                 <label>Moderation</label>
                 <slider-text class='slider-control'
                              v-model='normalizationModeration'
-                              :step-values='[0.5,1,2,3,4,5,6,7,8,9,10]'
+                             :step-values='[0.5,1,2,3,4,5,6,7,8,9,10]'
+                             :validator="moderationValidator"
                             >
                 </slider-text>
               </div>

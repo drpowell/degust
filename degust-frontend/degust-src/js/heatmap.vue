@@ -122,6 +122,7 @@ calc_order = (e) ->
     # Done.
     order_ids = order.map((i) => data[i].id)
     postMessage({done: order_ids, took: (new Date())-t1})
+    close()
 
 class Heatmap
     constructor: (@opts) ->

@@ -337,6 +337,9 @@ module.exports =
         intValidator: (v) ->
              n = Number(v)
              !(isNaN(n) || n<0)
+        moderationValidator: (v) ->
+            n = Number(v)
+            !(isNaN(n) || n<=0)
 
         # Check if the passed row passes filters for : FDR, FC, Kegg
         expr_filter: (row) ->
