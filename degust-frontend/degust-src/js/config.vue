@@ -45,25 +45,15 @@
 
 <template>
     <div>
-
-        <div class="navbar navbar-inverse navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="/">Degust : </a>
-              <span class="navbar-brand exp-name">{{settings.name}}</span>
-            </div>
-            <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
-              <li><a class="log-link" href="#">Logs</a></li>
-              <li><a class="view" v-bind:href="view_url">View</a></li>
-              <li><a @click='show_about=true'>About</a></li>
-            </ul>
-          </div>
-        </div>
-
-
-        <div class='log-list'>
-          <h4>Log messages</h4>
-        </div>
+        <navbar :homeLink='"/"'
+            :experimentName='settings.name'
+            :fullSettings='settings'
+            :extraMenuHtml='orig_settings["extra_menu_html"]'
+            :uniqueCode='code'
+            @showAbout='v => show_about = v'
+            >
+            <li slot="switchURL"><a class="view" v-bind:href="view_url">View</a></li>
+        </navbar>
 
         <div class="container">
           <h1>Configuration</h1>

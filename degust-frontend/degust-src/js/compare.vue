@@ -32,15 +32,23 @@
 
   <div v-if='load_success'>
     <navbar :homeLink='home_link'
-            :exprimentName='experimentName'
-            :canConfigure='can_configure'
-            :configUrl='config_url'
-            :qcPlots='qc_plots'
+            :experimentName='experimentName'
             :fullSettings='full_settings'
             :extraMenuHtml='full_settings'
-            @qcplot='qc_plots'
+            :uniqueCode='code'
+            @showAbout='v => show_about = v'
             >
+            <li slot="qclist" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                QC <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                <li v-for="plot of qc_plots"><a @click='show_qc=plot[0]'>{{ plot[1] }}</a></li>
+                </ul>
+            </li>
+            <li slot="switchURL"><a class="config" :href="config_url">Configure</a></li>
     </navbar>
+
     <div class='container'>
 
       <div class='row'>

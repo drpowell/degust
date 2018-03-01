@@ -130,6 +130,7 @@ Modal = require('modal-vue').default
 about = require('./about.vue').default
 slickTable = require('./slick-table.vue').default
 contrasts = require('./contrasts.vue').default
+navbar = require('./navbar.vue').default
 
 module.exports =
     components:
@@ -138,6 +139,7 @@ module.exports =
         about: about
         slickTable: slickTable
         contrasts: contrasts
+        navbar: navbar
     data: () ->
         settings:
             info_columns: []
