@@ -26,10 +26,46 @@
 .heatmap >>> #arrow, .heatmap >>> .arrow {
     stroke-width:2;
 }
+
+    div.tooltip {
+      position: absolute;
+      text-align: center;
+      padding: 2px;
+      font: 12px sans-serif;
+      background: #333;
+      color: #fff;
+      border: 0px;
+      border-radius: 8px;
+      pointer-events: none;
+      width: 200px;
+      opacity: 0.8;
+    }
+
+    div.tooltip table {
+      font: 12px sans-serif;
+      color: #fff;
+    }
 </style>
 
 <template>
-    <div class='heatmap' v-once>
+    <div>
+        <div>
+            <div class='heatmap' v-once></div>
+        </div>
+        <div class='tooltip' v-if='hover.length>0 && interactive' :style="tooltipStyle" id='heamtaptooltip'>
+            <table>
+                <tr v-for='c in infoCols'>
+                    <td><b>{{c.name}}:</b></td>
+                    <td>{{hover[0][c.idx]}}</td>
+                </tr>
+                <tr><td><b>Ave Expr:</b></td><td>{{fmt(hover[0][avgCol.idx])}}</td></tr>
+                <!-- <tr><td><b>log FC:</b></td><td>{{fmt(hover[0][logfcCol.idx])}}</td></tr> -->
+                <tr><td><b>FDR:</b></td><td>{{fmt2(hover[0][fdrCol.idx])}}</td></tr>
+            </table>
+            <div v-if='hover.length>1'>
+                And {{hover.length-1}} other{{hover.length>2 ? 's' : ''}}
+            </div>
+        </div>
     </div>
 </template>
 
@@ -133,6 +169,7 @@ class Heatmap
         @opts.enablecontextmenu ?= true
         @opts.showlegend ?= true
         @opts.twocolor ?= false
+        @opts.interactive ?= true
 
         @opts.width ?= d3.select(@opts.elem).node().clientWidth - 20;
 
@@ -461,10 +498,13 @@ class Heatmap
              .style("fill", (d) => @colorScale(d.score))
              .attr("x", (d) => d.x)
              .attr("y", (d) => d.col * @opts.h)
+             .attr("yloc", (d) => d.yloc)
         cells.exit().remove()
 
-        genes.on('mouseover', (d) =>
-            @dispatch.mouseover(@data_object.row_by_id(d.rest.id))
+        genes.on('mouseover', (d, loc) =>
+            x = d.x
+            y = d3.event.clientY - 150
+            @dispatch.mouseover(@data_object.row_by_id(d.rest.id), [x, y])
         )
         genes.on('mouseout', () => @dispatch.mouseout())
 
@@ -550,12 +590,20 @@ module.exports =
             default: true
         twocolor:
             default: false
+        infoCols:
+            default: []
+        avgCol: null
+        logfcCol : null
+        fdrCol: null
+        interactive: null
     computed:
         needsUpdate: () ->
             # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
             this.geneData
             this.dimensions
             Date.now()
+        tooltipStyle: () ->
+            {left: (this.tooltipLoc[0] + 40)+'px', top: (this.tooltipLoc[1])+'px'}
     watch:
         needsUpdate: () ->
             this.update_all()
@@ -572,6 +620,11 @@ module.exports =
         showReplicates: (v) ->
             this.heatmap.opts.show_replicates = v
 
+    data: () ->
+        hover: []
+        tooltipLoc: [0,0]
+        xcoord: null
+
     mounted: () ->
         this.heatmap = new Heatmap(
             elem: this.$el
@@ -582,10 +635,12 @@ module.exports =
             showlegend: this.showlegend
             twocolor: this.twocolor
         )
-        this.heatmap.on("mouseover", (d) => this.$emit("mouseover", d))
-        this.heatmap.on("mouseout", ()  => this.$emit("mouseout"))
+
+        this.heatmap.on("mouseover", (d, loc) => this.$emit("mousehover", d); this.show_info(d,loc))
+        this.heatmap.on("mouseout", ()  => this.hide_info())
+
         this.heatmap.on("hide", () => this.$emit('hide'))
-        this.heatmap.on("show_replicates", (v) => this.$emit('show-replicates',v))
+        this.heatmap.on("show_replicates", (v) => this.$emit('show-replicates',v); this.$emit("mousestop"))
         this.update_all()
 
     methods:
@@ -598,4 +653,14 @@ module.exports =
         update_all: () ->
             if this.dimensions.length>0
                 this.heatmap.update_columns(this.geneData, this.genesShow, this.dimensions, true)
+
+        show_info: (d,loc) ->
+            this.hover=[d]
+            this.tooltipLoc = loc
+            this.$emit('hover-start',[d], loc)
+        hide_info: () ->
+            this.hover=[]
+            this.$emit('hover-end')
+        fmt: (val) -> val.toFixed(2)
+        fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)
 </script>

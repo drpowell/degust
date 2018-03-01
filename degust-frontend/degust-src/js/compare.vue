@@ -31,52 +31,16 @@
     </div>
 
   <div v-if='load_success'>
-    <div class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#right-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-
-          <a class="navbar-brand" :href="home_link">Degust : </a>
-          <span class="navbar-brand">{{experimentName}}</span>
-        </div>
-
-        <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
-          <li><a class="log-link" href="#">Logs</a></li>
-          <!-- <li><a id="tour" href="#">Tour</a></li> -->
-          <li><a class="config" :href="config_url" v-show='can_configure'>Configure</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              QC <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li v-for="plot of qc_plots"><a @click='show_qc=plot[0]'>{{ plot[1] }}</a></li>
-            </ul>
-          </li>
-          <li><a @click='show_about=true'>About</a></li>
-          <ul class="nav navbar-nav navbar-right navbar-collapse collapse"
-              v-html='full_settings.extra_menu_html' v-if='full_settings.extra_menu_html'>
-          </ul>
-          <li class="dropdown" v-if='full_settings.versions'>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li v-for="ver in full_settings.versions"><a :href='ver.path+"?code="+code'>{{ ver.version }}</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class='log-list'>
-      <h4>Log messages</h4>
-    </div>
-
+    <navbar :homeLink='home_link'
+            :exprimentName='experimentName'
+            :canConfigure='can_configure'
+            :configUrl='config_url'
+            :qcPlots='qc_plots'
+            :fullSettings='full_settings'
+            :extraMenuHtml='full_settings'
+            @qcplot='qc_plots'
+            >
+    </navbar>
     <div class='container'>
 
       <div class='row'>
@@ -187,15 +151,15 @@
             </div><!-- div.pca-opts -->
           </div>
 
-          <div class='text-right' v-show='!is_pre_analysed'>
+          <div class='text-left' v-show='!is_pre_analysed'>
             <a class='sm-link' @click='show_r_code'>Show R code</a>
           </div>
 
-          <div class='text-right'>
+          <div class='text-left'>
             <a class='sm-link' @click='update_url_link'>Update Link</a>
           </div>
 
-          <div class='text-right' v-if='!show_heatmap'>
+          <div class='text-left' v-if='!show_heatmap'>
             <a class='sm-link' @click='show_heatmap=true'>
                 Show heatmap
             </a>
@@ -288,19 +252,19 @@
 
         </div>
         <div class='row' v-if='show_heatmap'> <!-- Heatmap -->
-        <div class="heatmap-info">
-            <span v-for='col in info_columns' v-if='genes_highlight.length>0'>
-                <span class='lbl'>{{col.name}}: </span><span>{{genes_highlight[0][col.idx]}}</span>
-            </span>
-        </div>
         <heatmap :gene-data='gene_data'
                  :genes-show='genes_selected'
                  :dimensions='heatmap_dimensions'
                  :highlight='genes_hover'
                  :show-replicates='heatmap_show_replicates'
+                 :info-cols='info_columns'
+                 :logfCcol='ma_plot_fc_col'
+                 :avgCol='avg_column'
+                 :fdrCol='fdr_column'
                  @hide='show_heatmap=false'
                  @show-replicates='v => heatmap_show_replicates=v'
-                 @mouseover='heatmap_hover' @mouseout='heatmap_nohover'
+                 @mousehover='hover_heatmap' @mousestop='stop_hover_heatmap'
+                 @hover-start='v => genes_hover=v'
                  >
         </heatmap>
       </div>

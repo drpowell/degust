@@ -17,6 +17,7 @@ qcPlots = require('./qc-plots.vue').default
 geneStripchart = require('./gene-stripchart.vue').default
 parallelCoord = require('./parcoords.vue').default
 heatmap = require('./heatmap.vue').default
+navbar = require('./navbar.vue').default
 { Normalize } = require('./normalize.coffee')
 { GeneData } = require('./gene_data.coffee')
 
@@ -38,6 +39,7 @@ module.exports =
         geneStripchart: geneStripchart
         parallelCoord: parallelCoord
         heatmap: heatmap
+        navbar: navbar
     data: () ->
         settings: {}
         full_settings:
@@ -192,7 +194,8 @@ module.exports =
                 )
 
         init_page: () ->
-            setup_nav_bar()      #FIXME
+            # setup_nav_bar()      #FIXME
+            console.log("Initialising...")
 
         initBackend: (use_backend) ->
             this.ev_backend = new Vue()
@@ -255,9 +258,9 @@ module.exports =
         set_genes_selected: (d) ->
             this.genes_selected = Vue.noTrack(d)
 
-        heatmap_hover: (d) ->
+        hover_heatmap: (d) ->
             this.genes_hover = this.genes_highlight = Vue.noTrack([d])
-        heatmap_nohover: () ->
+        stop_hover_heatmap: () ->
             this.genes_highlight=[]
         gene_table_hover: (d) ->
             this.genes_hover = this.genes_highlight = Vue.noTrack([d])

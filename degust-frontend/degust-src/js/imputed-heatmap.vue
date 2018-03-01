@@ -22,6 +22,7 @@
             :showlegend='false'
             :enablecontextmenu='false'
             :twocolor='true'
+            :interactive='false'
             >
 
     </heatmap>
