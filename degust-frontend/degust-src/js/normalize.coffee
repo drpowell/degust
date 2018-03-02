@@ -1,20 +1,51 @@
-log_moderation = 10.0
 
 normalized_key = "_normalized_"
 
 class Normalize
 	# Compute normalisation for the given count columns - unless already computed.
 	# return the columns for normalised in the same order
-	@normalize: (data, columns) ->
+	@normalize_cpm: (data,columns,log_moderation) ->
 		columns.map((c) =>
 			idx = normalized_key+c.idx
 			col = data.column_by_idx(idx)
-			if (!col)
+			if (!col || col.log_moderation != log_moderation)
 				norm_factor = data.get_total(c) / 1000000.0
-				col = {idx: idx, name: "#{c.name} (N)", type: 'norm', parent: c.parent}
-				data.add_column(col, (r) => Math.log(log_moderation + r[c.idx]/norm_factor)/Math.log(2))
+				col = {idx: idx, name: "#{c.name}", type: 'norm', parent: c.parent, log_moderation: log_moderation}
+				data.add_column(col, (r) => Math.log(log_moderation + r[c.idx]/norm_factor) * Math.LOG2E)
 			col
 		)
+
+	# Handle normalization that needs to be handled on the backend.
+	# Takes the type (used to put in the table, and for caching)
+	# and a promise, that will issue the http request
+	@normalize_from_backend: (data,columns,type, req_promise) ->
+		# First check if we have the data already
+		new_cols = columns.map((col) ->
+			idx = normalized_key+type+"_"+col.idx
+			data.column_by_idx(idx)
+		).filter((col) -> col!=null)
+		if (new_cols.length == columns.length)
+			return new Promise((resolve) -> resolve(new_cols))
+
+		# Nope, need to request it
+		#this.ev_backend.$emit('start_loading')
+		startTime = Date.now()
+		new Promise((resolve) ->
+			req_promise.then((d) =>
+				console.log("Normalized data request took #{Date.now() - startTime }ms")
+				#this.ev_backend.$emit('done_loading')
+				new_cols = []
+				columns.forEach((col) =>
+					idx = normalized_key+type+"_"+col.idx
+					new_col = {idx: idx, name: "#{col.name}", type: 'norm', parent: col.parent}
+					i = d.extra.normalized.columns.indexOf(col.name)
+					data.add_column(new_col, (r,rid) => d.extra.normalized.values[rid][i])
+					new_cols.push(new_col)
+				)
+				resolve(new_cols)
+			)
+		)
+
 
 # Calculate min/max for each dimension passed
 calc_extent = (data, dims) ->

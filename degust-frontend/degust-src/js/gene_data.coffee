@@ -99,7 +99,6 @@ class GeneData
                 if col.type in ['fc_calc']
                     d[col.idx] = col.calc(d)
 
-
     # Returns a columns index (or null)
     column_by_type: (type) ->
         for col in @columns
@@ -138,12 +137,16 @@ class GeneData
         @_totals[col.name] = d3.sum( @data.map( (d) -> d[col.idx] ) )
         @_totals[col.name]
 
+    # Add (or replace if existing) column
     add_column: (col, func) ->
-        if (@column_by_idx(col.idx))
-            log_warning("already have added column : ",col)
-            return
-        @columns.push(col)
-        @data.forEach((r) -> r[col.idx] = func(r))
+        replaced = false
+        for c,i in @columns
+            if col.idx == c.idx
+                @columns[i] = col
+                replaced=true
+        if !replaced
+            @columns.push(col)
+        @data.forEach((r,idx) -> r[col.idx] = func(r,idx))
 
     row_by_id: (id) ->
         @_by_id_cache[id]

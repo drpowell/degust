@@ -136,75 +136,97 @@ class BackendRNACounts
             $('.weights-toggle').hide()
         $('.weights').html(html)
 
-    _gen_request: (call, method, columns, contrast) ->
-        if contrast
-            req = BackendCommon.script(this.code, call,"method=#{method}&contrast=#{encodeURIComponent(JSON.stringify contrast)}")
-        else
-            req = BackendCommon.script(this.code, call,"method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
+    _request_from_params: (call, params) ->
+        arr = []
+        for k,v of params
+            if typeof v == 'string'
+                arr.push("#{k}=#{v}")
+            else
+                arr.push("#{k}=#{encodeURIComponent(JSON.stringify v)}")
 
+        BackendCommon.script(this.code, call, arr.join("&"))
+
+    _gen_request: (call, method, columns, contrast, opt) ->
+        if contrast
+            hsh = {method: method, contrast: contrast}
+        else
+            hsh = {method: method, fields: columns}
+        Object.assign(hsh, opt)
+        @_request_from_params(call, hsh)
 
     _request_dge_data: (method,columns,contrast) ->
         console.log "request_dge_data",method,columns,contrast
         return if columns.length <= 1 && !contrast
 
         # load csv file and create the chart
-        req = @_gen_request('dge', method, columns,contrast)
+        req = @_gen_request('dge', method, columns, contrast)
         @events.$emit("start_loading")
-        d3.json(req, (err, json) =>
-            @events.$emit("done_loading")
+        new Promise((resolve) =>
+            d3.json(req, (err, json) =>
+                @events.$emit("done_loading")
 
-            if err
-                log_error(err)
-                return
+                if err
+                    log_error(err)
+                    return
 
-            if (json.error?)    # FIXME
-                log_error("Error doing DGE",json.error)
-                $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
-                $('div#error-modal .modal-body pre.error-input').text(json.error.input)
-                $('div#error-modal').modal()
-                return
+                if (json.error?)    # FIXME
+                    log_error("Error doing DGE",json.error)
+                    $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
+                    $('div#error-modal .modal-body pre.error-input').text(json.error.input)
+                    $('div#error-modal').modal()
+                    return
 
-            data = d3.csv.parse(json.csv);
-            log_info("Downloaded DGE counts : rows=#{data.length}")
-            log_debug("Downloaded DGE counts : rows=#{data.length}",data,err)
-            log_info("Extra info : ",json.extra)
+                data = d3.csv.parse(json.csv);
+                log_info("Downloaded DGE counts : rows=#{data.length}")
+                log_debug("Downloaded DGE counts : rows=#{data.length}",data,err)
+                log_info("Extra info : ",json.extra)
 
-            @_extra_info(json.extra)
+                @_extra_info(json.extra)
 
 
-            data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
-            pri=true
-            columns.forEach((n) ->
-                typ = if pri then 'primary' else 'fc'
-                data_cols.push({idx: n, type: typ, name: n})
-                pri=false
-            )
-            if contrast
-                data_cols.push({idx: "primary", type:'primary', name: "primary"})
-                data_cols.push({idx: contrast.name, type:'fc', name: contrast.name})
-
-            data_cols.push({idx: 'adj.P.Val', name: 'FDR', type: 'fdr'})
-            data_cols.push({idx: 'AveExpr', name: 'AveExpr', type: 'avg'})
-            if data[0]["P.Value"]?
-                data_cols.push({idx: 'P.Value', name: 'P value', type: 'p'})
-
-            if @settings.ec_column?
-                data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
-            if @settings.link_column?
-                data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
-            @settings.replicates.forEach(([name,reps]) ->
-                reps.forEach((rep) ->
-                    data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
+                data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
+                pri=true
+                columns.forEach((n) ->
+                    typ = if pri then 'primary' else 'fc'
+                    data_cols.push({idx: n, type: typ, name: n})
+                    pri=false
                 )
-            )
+                if contrast
+                    data_cols.push({idx: "primary", type:'primary', name: "primary"})
+                    data_cols.push({idx: contrast.name, type:'fc', name: contrast.name})
 
-            @events.$emit("dge_data", data, data_cols)
+                data_cols.push({idx: 'adj.P.Val', name: 'FDR', type: 'fdr'})
+                data_cols.push({idx: 'AveExpr', name: 'AveExpr', type: 'avg'})
+                if data[0]["P.Value"]?
+                    data_cols.push({idx: 'P.Value', name: 'P value', type: 'p'})
+
+                if @settings.ec_column?
+                    data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
+                if @settings.link_column?
+                    data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
+                @settings.replicates.forEach(([name,reps]) ->
+                    reps.forEach((rep) ->
+                        data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
+                    )
+                )
+
+                resolve([data, data_cols, json.extra])
+            )
         )
 
     request_r_code: (method,columns,contrast) ->
         new Promise((resolve) =>
             req = @_gen_request('dge_r_code', method, columns,contrast)
             d3.text(req, (err,data) ->
+                log_debug("Downloaded R Code : len=#{data.length}",data,err)
+                resolve(data)
+            )
+        )
+
+    request_normalized: (normalized, method,columns,contrast) ->
+        new Promise((resolve) =>
+            req = @_gen_request('dge', method, columns,contrast,{normalized: normalized})
+            d3.json(req, (err,data) ->
                 log_debug("Downloaded R Code : len=#{data.length}",data,err)
                 resolve(data)
             )
@@ -244,54 +266,56 @@ class BackendMaxQuant
         # load csv file and create the chart
         req = BackendCommon.script(this.code, "dge","method=maxquant&fields=#{encodeURIComponent(JSON.stringify columns)}")
         @events.$emit("start_loading")
-        d3.json(req, (err, json) =>
-            @events.$emit("done_loading")
+        new Promise((resolve) =>
+            d3.json(req, (err, json) =>
+                @events.$emit("done_loading")
 
-            if err
-                log_error(err)
-                return
+                if err
+                    log_error(err)
+                    return
 
-            if (json.error?)    # FIXME
-                log_error("Error doing DGE",json.error)
-                $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
-                $('div#error-modal .modal-body pre.error-input').text(json.error.input)
-                $('div#error-modal').modal()
-                return
+                if (json.error?)    # FIXME
+                    log_error("Error doing DGE",json.error)
+                    $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
+                    $('div#error-modal .modal-body pre.error-input').text(json.error.input)
+                    $('div#error-modal').modal()
+                    return
 
-            data = d3.csv.parse(json.csv);
-            log_info("Downloaded DGE counts : rows=#{data.length}")
-            log_debug("Downloaded DGE counts : rows=#{data.length}",data,err)
-            log_info("Extra info : ",json.extra)
+                data = d3.csv.parse(json.csv);
+                log_info("Downloaded DGE counts : rows=#{data.length}")
+                log_debug("Downloaded DGE counts : rows=#{data.length}",data,err)
+                log_info("Extra info : ",json.extra)
 
 
-            data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
-            pri=true
-            columns.forEach((n) ->
-                typ = if pri then 'primary' else 'fc'
-                data_cols.push({idx: n, type: typ, name: n})
-                pri=false
-            )
-            data_cols.push({idx: 'adj.P.Val', name: 'FDR', type: 'fdr'})
-            data_cols.push({idx: 'AveExpr', name: 'AveExpr', type: 'avg'})
-            if data[0]["P.Value"]?
-                data_cols.push({idx: 'P.Value', name: 'P value', type: 'p'})
-
-            if @settings.ec_column?
-                data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
-            if @settings.link_column?
-                data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
-            @settings.replicates.forEach(([name,reps]) ->
-                reps.forEach((rep) ->
-                    data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
+                data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
+                pri=true
+                columns.forEach((n) ->
+                    typ = if pri then 'primary' else 'fc'
+                    data_cols.push({idx: n, type: typ, name: n})
+                    pri=false
                 )
-            )
-            @settings.replicates.forEach(([name,reps]) ->
-                reps.forEach((rep) ->
-                    data_cols.push({idx: rep + " imputed", name: rep + " imputed", type: 'imputed', parent: name})
-                )
-            )
+                data_cols.push({idx: 'adj.P.Val', name: 'FDR', type: 'fdr'})
+                data_cols.push({idx: 'AveExpr', name: 'AveExpr', type: 'avg'})
+                if data[0]["P.Value"]?
+                    data_cols.push({idx: 'P.Value', name: 'P value', type: 'p'})
 
-            @events.$emit("dge_data", data, data_cols)
+                if @settings.ec_column?
+                    data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
+                if @settings.link_column?
+                    data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
+                @settings.replicates.forEach(([name,reps]) ->
+                    reps.forEach((rep) ->
+                        data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
+                    )
+                )
+                @settings.replicates.forEach(([name,reps]) ->
+                    reps.forEach((rep) ->
+                        data_cols.push({idx: rep + " imputed", name: rep + " imputed", type: 'imputed', parent: name})
+                    )
+                )
+
+                resolve([data, data_cols])
+            )
         )
 
     request_r_code: (method,columns) ->
