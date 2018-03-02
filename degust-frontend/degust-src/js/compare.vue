@@ -250,13 +250,13 @@
                        >
               </volcano-plot>
               <mds-plot v-if='cur_plot=="mds"'
-                       :gene-data='gene_data'
-                       :columns='count_columns'
+                       :data='gene_data_rows'
                        :filter='expr_filter'
                        :filter-changed='filter_changed'
+                       :columns='normalizationColumns'
+                       :numGenes='numGenesThreshold'
+                       :skipGenes='skipGenesThreshold'
                        :condition-colouring='condition_colouring'
-                       :num-genes='numGenesThreshold'
-                       :skip-genes='skipGenesThreshold'
                        :dimension='mdsDimension'
                        :dimensionScale='mdsDimensionScale'
                        :plot2d3d='mds_2d3d'
