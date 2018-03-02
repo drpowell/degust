@@ -314,7 +314,7 @@ class BackendMaxQuant
                     )
                 )
 
-                resolve(data, data_cols)
+                resolve([data, data_cols])
             )
         )
 
