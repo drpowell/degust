@@ -15,6 +15,13 @@ class DegustLogic
             raise "Bad query"
         end
 
+        # Return normalized data, or batch effect removed?
+        normalized = case query['normalized']
+                     when 'backend' then 'backend'
+                     when 'remove-hidden' then 'remove-hidden'
+                     else ''
+                     end
+
         params = {
                 "sep_char" => settings['csv_format'] ? "," : "\t",
                 "counts_file" => real ? de_setting.user_file.location : de_setting.user_file.name,
@@ -25,6 +32,8 @@ class DegustLogic
                 "min_cpm_samples" => force_num(settings['min_cpm_samples']),
                 "design" => matToR(design_matrix(settings)),
                 "cont_matrix" => cont_matrix,
+                "normalized" => normalized,
+                "hidden_factors" => arrToR(settings["hidden_factor"] || [], true),
                 "export_cols" => arrToR(export_cols(settings), true),
                 "output_dir" => output_dir,
             }

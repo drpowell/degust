@@ -54,7 +54,8 @@ module.exports =
             this.set_slider(this.value)
             if this.validator?
                 this.isError = !this.validator(this.value)
-            this.$emit('input', this.value)
+            if !this.isError
+                this.$emit('input', +this.value)
 
     methods:
         setup: () ->

@@ -122,6 +122,7 @@ calc_order = (e) ->
     # Done.
     order_ids = order.map((i) => data[i].id)
     postMessage({done: order_ids, took: (new Date())-t1})
+    close()
 
 class Heatmap
     constructor: (@opts) ->
@@ -571,6 +572,6 @@ module.exports =
             this.heatmap.schedule_update(this.genesShow)
 
         update_all: () ->
-            if this.dimensions.length>0
+            if this.dimensions? && this.dimensions.length>0
                 this.heatmap.update_columns(this.geneData, this.genesShow, this.dimensions, true)
 </script>

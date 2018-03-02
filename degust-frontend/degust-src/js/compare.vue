@@ -145,13 +145,13 @@
                        >
               </volcano-plot>
               <mds-plot v-if='cur_plot=="mds"'
-                       :gene-data='gene_data'
-                       :columns='count_columns'
+                       :data='gene_data_rows'
                        :filter='expr_filter'
                        :filter-changed='filter_changed'
+                       :columns='normalizationColumns'
+                       :numGenes='numGenesThreshold'
+                       :skipGenes='skipGenesThreshold'
                        :condition-colouring='condition_colouring'
-                       :num-genes='numGenesThreshold'
-                       :skip-genes='skipGenesThreshold'
                        :dimension='mdsDimension'
                        :dimensionScale='mdsDimensionScale'
                        :plot2d3d='mds_2d3d'
@@ -241,6 +241,24 @@
             </div>
             <div class='pca-opts' v-show="cur_plot=='mds'">
               <div class='pca-title'>MDS options</div>
+              <div v-tooltip="tip('Normalization of gene expression used to calculated MDS and Heatmap')">
+                <label>Normalized</label>
+                <select v-model='normalization'>
+                  <option value='cpm'>CPM</option>
+                  <option value='backend'>Backend normalization</option>
+                  <option v-if='settings.hidden_factor.length>0' value='remove-hidden'>Remove hidden factors</option>
+                </select>
+              </div>
+              <div v-if='normalization=="cpm"'
+                   v-tooltip="tip('Moderation in CPM to add to each gene, for calculating MDS and heatmap')">
+                <label>Moderation</label>
+                <slider-text class='slider-control'
+                             v-model='normalizationModeration'
+                             :step-values='[0.5,1,2,3,4,5,6,7,8,9,10]'
+                             :validator="moderationValidator"
+                            >
+                </slider-text>
+              </div>
               <div v-tooltip="tip('Number of genes to use for the MDS plot')" class='pca-num-genes-opt'>
                 <label>Num genes</label>
                 <slider-text class='slider-control'

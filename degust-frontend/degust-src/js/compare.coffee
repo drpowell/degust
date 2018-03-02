@@ -54,6 +54,10 @@ module.exports =
         numGenesThreshold: 100
         skipGenesThreshold: 0
         mdsDimension: 1
+        normalization: 'cpm'
+        normalizationModeration: 10
+        normalizationColumns: null
+        normalized_data: null
         maxGenes: 0
         mds_2d3d: '2d'
         mdsDimensionScale: 'independent'
@@ -114,13 +118,15 @@ module.exports =
             this.fdrThreshold
             this.fcThreshold
             Date.now()
+        need_renormalization: () ->
+            this.normalization
+            this.normalizationModeration
+            Date.now()
         heatmap_dimensions: () ->
             if (!this.heatmap_show_replicates)
                 heatmap_dims = this.gene_data.columns_by_type('fc_calc_avg')
             else
-                count_cols = this.fc_calc_columns.map((c) => this.gene_data.assoc_column_by_type('count',c.name))
-                count_cols = [].concat.apply([], count_cols)
-                heatmap_dims = Normalize.normalize(this.gene_data, count_cols)
+                heatmap_dims = this.normalizationColumns
             heatmap_dims
 
         #Added to show/hide counts/intensity
@@ -150,6 +156,8 @@ module.exports =
             this.gene_data.set_relative(this.fc_relative)
         experimentName: () ->
             document.title = this.experimentName
+        need_renormalization: () ->
+            this.renormalize()
 
     methods:
         init: () ->
@@ -189,7 +197,6 @@ module.exports =
             this.ev_backend = new Vue()
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
             this.ev_backend.$on("done_loading", () => this.num_loading-=1)
-            this.ev_backend.$on("dge_data", (data,cols) => this.process_dge_data(data,cols))
             if !use_backend
                 this.backend = new backends.BackendNone(this.settings, this.ev_backend)
             else
@@ -209,7 +216,6 @@ module.exports =
                 this.dge_methods = this.backend.dge_methods()
                 this.qc_plots = this.backend.qc_plots()
 
-
                 # If there is no default dge_method set, then use first thing in the list
                 if this.dge_methods.length>0 && !this.settings.dge_method?
                     this.dge_method = this.dge_methods[0][0]
@@ -219,9 +225,10 @@ module.exports =
 
         # Send a request to the backend.  First request, or when selected samples has changed
         request_data: () ->
-            this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast)
+            p = this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast)
+            p.then(([data,cols,extra]) => this.process_dge_data(data,cols,extra))
 
-        process_dge_data: (data, cols) ->
+        process_dge_data: (data, cols, extra) ->
             this.gene_data = new GeneData(data, cols)
             this.numGenesThreshold = this.gene_data.get_data().length
             this.maxGenes = this.gene_data.get_data().length
@@ -234,7 +241,20 @@ module.exports =
                 this.cur_plot = if this.fc_columns.length>2 then "parcoords" else "ma"
             if this.fc_columns.length==2
                 this.heatmap_show_replicates = true
+            this.renormalize()
 
+        renormalize: () ->
+            switch this.normalization
+                when 'cpm'
+                    cols = Normalize.normalize_cpm(this.gene_data, this.count_columns, this.normalizationModeration)
+                    this.normalizationColumns = cols
+                when 'backend', 'remove-hidden'
+                    this.ev_backend.$emit('start_loading')
+                    p = this.backend.request_normalized(this.normalization, this.dge_method, this.sel_conditions, this.sel_contrast)
+                    Normalize.normalize_from_backend(this.gene_data, this.count_columns, this.normalization, p).then((new_cols) =>
+                        this.normalizationColumns = new_cols
+                        this.ev_backend.$emit('done_loading')
+                    )
 
         # Selected samples have changed, request a new dge
         change_samples: (cur) ->
@@ -317,6 +337,9 @@ module.exports =
         intValidator: (v) ->
              n = Number(v)
              !(isNaN(n) || n<0)
+        moderationValidator: (v) ->
+            n = Number(v)
+            !(isNaN(n) || n<=0)
 
         # Check if the passed row passes filters for : FDR, FC, Kegg
         expr_filter: (row) ->
