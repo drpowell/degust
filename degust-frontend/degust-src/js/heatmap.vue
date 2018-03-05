@@ -592,7 +592,7 @@ module.exports =
         twocolor:
             default: false
         infoCols:
-            default: []
+            default: null
         avgCol: null
         logfcCol : null
         fdrCol: null

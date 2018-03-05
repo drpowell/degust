@@ -24,6 +24,8 @@ class BarGraph
         @opts.rotate_labels ||= false
         @opts.xordinal = true if !@opts.xordinal?
 
+        @opts.stacked ?= false
+
         margin = {top: @opts.margin_t, right: @opts.margin_r, bottom: @opts.margin_b, left: @opts.margin_l}
         @width = @opts.tot_width - margin.left - margin.right
         @height = @opts.tot_height - margin.top - margin.bottom
@@ -60,9 +62,17 @@ class BarGraph
         d3.select(el).on('contextmenu', d3.contextMenu(print_menu)) # attach menu to element
 
     draw: (data) ->
-        @svg.selectAll("*").remove()
-        @x.domain(if @opts.xdomain? then @opts.xdomain else data.map((d) -> d.lbl ))
-        @y.domain([0, d3.max(data, (d) -> d.val)])
+        if @opts.stacked
+            data = d3.layout.stack().x((d) => d.lbl).y((d) => d.val)(data)
+            @svg.selectAll("*").remove()
+            max_y = d3.max(data, (d) -> d3.max d, (d) -> d.y0 + d.y)
+            @x.domain(if @opts.xdomain? then @opts.xdomain else data.map((d) -> d.lbl))
+            @y.domain([0, max_y])
+
+        else
+            @svg.selectAll("*").remove()
+            @x.domain(if @opts.xdomain? then @opts.xdomain else data.map((d) -> d.lbl))
+            @y.domain([0, d3.max(data, (d) -> debugger; d.val)])
 
         @svg.append("text")
              .attr('class', 'title')
@@ -98,16 +108,33 @@ class BarGraph
              .style("text-anchor", "end")
              .text(@opts.ylabel)
 
-        @svg.selectAll(".bar")
-            .data(data)
-            .enter().append("rect")
-              .attr("class", "bar")
-              .attr("x", (d) => @x(d.lbl))
-              .attr("width", (d) => if d.width then @x(d.width) else @x.rangeBand())
-              .attr("y", (d) => @y(d.val))
-              .attr("height", (d) => @height - @y(d.val))
-              .attr("fill", (d) => @opts.fill(d))
-              .on('click', (d) => if @opts.click? then @opts.click(d))
+        if @opts.stacked
+            groups = @svg.selectAll("g.cost")
+                .data(data)
+                .enter().append("g")
+                .attr("class", "cost")
+                .attr("fill", (d, i) => ["#cddded", "#de0065"][i])
+
+            groups.selectAll(".bar")
+                .data((d) -> d)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr('x', (d) => @x(d.lbl))
+                .attr('y', (d) => @y(d.y + d.y0))
+                .attr('width', (d) => if d.width then @x(d.width) else @x.rangeBand())
+                .attr("height", (d) => @height - @y(d.val))
+
+        else
+            @svg.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", (d) => @x(d.lbl))
+                .attr("width", (d) => if d.width then @x(d.width) else @x.rangeBand())
+                .attr("y", (d) => @y(d.val))
+                .attr("height", (d) => @height - @y(d.val))
+                .attr("fill", (d) => @opts.fill(d))
+                .on('click', (d) => if @opts.click? then @opts.click(d))
 
 module.exports =
     name: 'bargraph'
@@ -143,6 +170,8 @@ module.exports =
         data:
             required: true
             type: Array
+        stacked:
+            default: null
     watch:
         data: () ->
             this.bargraph.draw(this.data)
@@ -163,6 +192,7 @@ module.exports =
             rotate_labels: this.rotateLabels
             xordinal: this.xOrdinal
             xdomain: this.xDomain
+            stacked: this.stacked
             click: (d) => this.$emit('click',d)
         )
         this.bargraph.draw(this.data)

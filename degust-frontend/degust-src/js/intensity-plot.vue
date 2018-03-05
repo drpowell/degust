@@ -12,7 +12,6 @@
 
 <template>
 <div>
-    <div v-for="graph of barGraphData">
         <bar-graph class='bar-graph'
                 :tot-width='700'
                 :tot-height='500'
@@ -20,7 +19,7 @@
                 :margin-r='50'
                 :margin-l='90'
                 :margin-b='75'
-                :title='graph.title'
+                :title='"Density of Raw and Imputed Values"'
                 :title-y='-20'
                 x-label="Log2 Intensity"
                 y-label="Total"
@@ -28,11 +27,10 @@
                 :x-domain='[0,35]'
                 :x-ordinal='false'
                 :fill='colourSample'
-                :data='graph.data'
+                :data='bin_intensity'
+                :stacked='true'
                 >
         </bar-graph>
-        <p></p>
-    </div>
 </div>
 </template>
 
@@ -63,18 +61,16 @@ module.exports =
                 )
                 [].concat.apply([], row)
             count_intensity = group_intensity("count").filter((el) -> el != 0).map((el) -> Math.log(el) * Math.LOG2E)
-            imputed_itensity = group_intensity("imputed")
+            imputed_itensity = group_intensity("imputed").map((el) -> Number(el))
             {count:count_intensity, imputed:imputed_itensity}
-        # bin_intensity: () ->
-        #     data = this.gather_intensity
-        #     count_bins = d3.layout.histogram().bins(50)(data.count).map((el) -> {lbl: el.x, val: el.y, group: "count"})
-        #     intensity_bins = d3.layout.histogram().bins(50)(data.imputed).map((el) -> {lbl: el.x, val: el.y, group: "imputed"})
-        #     [].concat.apply([], [count_bins, intensity_bins])
         bin_intensity: () ->
             data = this.gather_intensity
-            count_bins = d3.layout.histogram().bins(30)(data.count).map((el) -> {lbl: el.x, val: el.y, width: el.dx,  group: "count"})
-            imputed_bins = d3.layout.histogram().bins(30)(data.imputed).map((el) -> {lbl: el.x, val: el.y, width: el.dx, group: "imputed"})
-            res = [{data:count_bins, title:"Density of Log2 Intensities" + " Raw"}, {data:imputed_bins, title:"Density of Imputed Intensities" + " Raw & Imputed"}]
+            maxval = Math.ceil(Math.max.apply(null, data.imputed))
+            manualBins = [0..(maxval)]
+            count_bins = d3.layout.histogram().bins(manualBins)(data.count).map((el) -> {lbl: el.x, val: el.y, width: el.dx,  group: "count"})
+            imputed_bins = d3.layout.histogram().bins(manualBins)(data.imputed).map((el) -> {lbl: el.x, val: el.y, width: el.dx, group: "imputed"})
+            imputed_bins.map((el, i) -> el.val = (el.val - count_bins[i].val))
+            [count_bins, imputed_bins]
 
         barGraphData: () ->
             Vue.noTrack(this.bin_intensity)
