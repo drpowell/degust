@@ -661,6 +661,7 @@ module.exports =
             this.$emit('hover-start',[d], loc)
         hide_info: () ->
             this.hover=[]
+            this.$emit("mousestop")
             this.$emit('hover-end')
         fmt: (val) -> val.toFixed(2)
         fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)
