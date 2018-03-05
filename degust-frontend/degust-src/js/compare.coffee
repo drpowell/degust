@@ -201,10 +201,6 @@ module.exports =
                     )
                 )
 
-        init_page: () ->
-            # setup_nav_bar()      #FIXME
-            console.log("Initialising...")
-
         initBackend: (use_backend) ->
             this.ev_backend = new Vue()
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
@@ -232,7 +228,6 @@ module.exports =
                 if this.dge_methods.length>0 && !this.settings.dge_method?
                     this.dge_method = this.dge_methods[0][0]
 
-            this.init_page()
             this.request_data()
 
         # Send a request to the backend.  First request, or when selected samples has changed
@@ -388,7 +383,6 @@ module.exports =
             {content:txt, placement:'left'}
 
     mounted: () ->
-        g_vue_obj = this
         this.init()
         this.parse_url_params(this.$route.query)
 
