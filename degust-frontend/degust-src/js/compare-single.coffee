@@ -4,9 +4,12 @@ blue_to_brown = d3.scale.linear()
   .range(['brown', "steelblue", "steelblue"])
   .interpolate(d3.interpolateLab)
 
+about = require('./about.vue').default
+navbar = require('./navbar.vue').default
+
+backends = require('./backend.coffee')
 sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
-about = require('./about.vue').default
 filterGenes = require('./filter-genes.vue').default
 Modal = require('modal-vue').default
 geneTable = require('./gene-table.vue').default
@@ -17,18 +20,21 @@ qcPlots = require('./qc-plots.vue').default
 geneStripchart = require('./gene-stripchart.vue').default
 parallelCoord = require('./parcoords.vue').default
 heatmap = require('./heatmap.vue').default
-navbar = require('./navbar.vue').default
 { Normalize } = require('./normalize.coffee')
 { GeneData } = require('./gene_data.coffee')
 
-backends = require('./backend.coffee')
-
 module.exports =
-    name: 'compare'
+    name: 'compare-single'
+    props:
+        inputSettings:
+            default: () -> {}
+        inputCode: null
     components:
+        about: about
+        navbar: navbar
+
         sliderText: sliderText
         conditionsSelector: conditions
-        about: about
         filterGenes: filterGenes
         Modal: Modal
         geneTable: geneTable
@@ -39,8 +45,8 @@ module.exports =
         geneStripchart: geneStripchart
         parallelCoord: parallelCoord
         heatmap: heatmap
-        navbar: navbar
     data: () ->
+        code: null
         settings: {}
         full_settings:
             extra_menu_html: ''
@@ -66,7 +72,6 @@ module.exports =
         mds_2d3d: '2d'
         mdsDimensionScale: 'independent'
         r_code: ''
-        show_about: false
         dge_method: null
         dge_methods: []
         qc_plots: []
@@ -83,10 +88,10 @@ module.exports =
         show_heatmap: true
         heatmap_show_replicates: false
         show_qc: ''
+        show_about: false
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:
-        code: () -> get_url_vars()["code"]
         home_link: () -> this.settings?.home_link || '/'
         fdrWarning: () -> this.cur_plot == 'mds' && this.fdrThreshold<1
         fcWarning: () -> this.cur_plot == 'mds' && this.fcThreshold>0
@@ -172,10 +177,16 @@ module.exports =
 
     methods:
         init: () ->
-            if !this.code?
+            if !this.inputCode? && Object.keys(this.inputSettings).length==0
+                log_error("No code, or settings specified")
+            else if Object.keys(this.inputSettings).length>0
+                # This is used when data is embedded in the html page
                 this.load_success=true
+                this.settings = this.inputSettings
                 this.$nextTick(() -> this.initBackend(false))
             else
+                this.code = this.inputCode
+                log_info("Loading settings for code : #{this.code}")
                 $.ajax({
                     type: "GET",
                     url: backends.BackendCommon.script(this.code,"settings"),
@@ -183,7 +194,6 @@ module.exports =
                 }).done((json) =>
                     this.full_settings = json
                     this.settings = json.settings
-
 
                     # Deal with old "analyze_server_side" option
                     if this.settings.analyze_server_side? && !this.settings.input_type?
@@ -282,48 +292,6 @@ module.exports =
         gene_table_nohover: () ->
             this.genes_highlight=[]
 
-        # Update the URL with the current page state
-        update_url_link: () ->
-            state = {}
-            state.sel_conditions = this.sel_conditions
-            state.plot = this.cur_plot
-            state.show_counts = this.showCounts
-            state.show_intensity = this.showIntensity
-            state.fdrThreshold = this.fdrThreshold
-            state.fcThreshold = this.fcThreshold
-            #state.sortAbsLogFC = def(sortAbsLogFC, true)
-            state.fc_relative_i = this.fc_relative_i
-            state.heatmap_show_replicates = this.heatmap_show_replicates
-            if this.cur_plot=='mds'
-                state.numGenesThreshold = this.numGenesThreshold
-                state.skipGenesThreshold = this.skipGenesThreshold
-                state.pcaDimension = this.pcaDimension
-            #state.searchStr = this.searchStr
-            if this.cur_opts=='gene'
-                state.single_gene_expr = true
-            this.$router.push({name: 'home', query: state})
-
-        parse_url_params: (q) ->
-            this.cur_plot = q.plot if q.plot?
-            this.showCounts = q.show_counts if q.show_counts?
-            this.showIntensity = q.show_intensity if q.show_intensity?
-            if q.fdrThreshold?
-                this.fdrThreshold = q.fdrThreshold
-            else if settings.fdrThreshold?
-                this.fdrThreshold = settings.fdrThreshold
-            if q.fcThreshold?
-                this.fcThreshold = q.fcThreshold
-            else if settings.fcThreshold?
-                this.fcThreshold = settings.fcThreshold
-            #state.sortAbsLogFC = def(sortAbsLogFC, true)
-            this.fc_relative_i = q.fc_relative_i if q.fc_relative_i
-            this.heatmap_show_replicates = q.heatmap_show_replicates=='true' if q.heatmap_show_replicates?
-            this.numGenesThreshold = q.numGenesThreshold if q.numGenesThreshold?
-            this.skipGenesThreshold = q.skipGenesThreshold if q.skipGenesThreshold?
-            this.pcaDimension = q.pcaDimension if q.pcaDimension?
-            #this.searchStr = q.searchStr if q.searchStr?
-            this.cur_opts='gene' if q.single_gene_expr
-
         # Request and display r-code for current selection
         show_r_code: () ->
             p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast)
@@ -384,7 +352,6 @@ module.exports =
 
     mounted: () ->
         this.init()
-        this.parse_url_params(this.$route.query)
 
         # TODO : ideally just this component, not window.  But, need ResizeObserver to do this nicely
         window.addEventListener('resize', () => this.$emit('resize'))

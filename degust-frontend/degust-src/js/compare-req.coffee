@@ -8,7 +8,7 @@ require("./d3-req.coffee")
 require('./print.coffee')
 
 # Ours
-compare = require('./compare.vue').default
+compare = require('./compare-main.vue').default
 global.Vue = Vue = require('vue').default
 
 # Install tooltips
