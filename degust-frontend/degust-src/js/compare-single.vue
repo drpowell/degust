@@ -41,7 +41,7 @@
             </li>
             <li slot="switchURL"><a class="config" :href="config_url">Configure</a></li>
     </navbar>
-
+  <div class="container">
     <!-- About box Modal -->
     <about :show='show_about' @close='show_about=false'></about>
     <div v-if='load_success'>
@@ -343,6 +343,7 @@
           <button class='btn btn-primary' @click='close_r_code'>Close</button>
         </div>
     </modal>
+  </div>
   </div>
 </template>
 
