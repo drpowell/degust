@@ -34,31 +34,6 @@ div#forkme { position: relative; height: 0 }
     padding: 5px 20px;
 }
 
-
-
-/* Log message panel ****************************************************/
-
-.log-list {
-    display: none;
-    position: absolute;
-    top: 60px;
-    right: 60px;
-
-    border: thin solid black;
-    background: #ddd;
-    padding: 5px;
-    border-radius: 5px;
-    z-index: 99;
-    max-height: 600px;
-    overflow: scroll;
-}
-
-.log-list .error { color: red; }
-.log-list .warn { color: yellow; }
-.log-list .info { color: blue; }
-
-.log-link { opacity: 0.4; }
-
 /* Fix slickgrid & bootstrap 3 incompatibility ******************************/
 
 #grid, #grid div {

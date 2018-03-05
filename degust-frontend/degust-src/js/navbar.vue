@@ -1,4 +1,25 @@
 <style scoped>
+/* Log message panel ****************************************************/
+
+.log-list {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+
+    border: thin solid black;
+    background: #ddd;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 99;
+    max-height: 600px;
+    overflow: scroll;
+}
+
+.log-list .error { color: red; }
+.log-list .warn { color: yellow; }
+.log-list .info { color: blue; }
+
+.log-link { opacity: 0.4; }
 
 </style>
 <template>
@@ -18,7 +39,7 @@
             </div>
 
             <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="right-navbar-collapse">
-            <li><a class="log-link" href="#">Logs</a></li>
+            <li><a @click='show_log_list = !show_log_list' class='log-link'>Logs</a></li>
             <!-- <li><a id="tour" href="#">Tour</a></li> -->
             <slot name="switchURL"></slot>
 
@@ -38,11 +59,11 @@
             </li>
             </ul>
         </div>
-        </div>
+    </div>
 
-        <div class='log-list'>
-        <h4>Log messages</h4>
-        </div>
+    <div v-show='show_log_list' class='log-list'>
+    <h4>Log messages</h4>
+    </div>
 </div>
 </template>
 
@@ -59,6 +80,9 @@ module.exports =
         extraMenuHtml: null
         experimentName: null
         uniqueCode: null
+
+    data: () ->
+        show_log_list: false
 
     computed:
         null
