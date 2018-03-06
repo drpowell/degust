@@ -49,18 +49,15 @@
 
 <template>
     <div>
-        <div>
-            <div class='heatmap' v-once></div>
-        </div>
-        <div class='tooltip' v-if='hover.length>0 && interactive' :style="tooltipStyle" id='heamtaptooltip'>
+        <div class='heatmap' v-once ref='hmap' id='heatmap'></div>
+        <div class='tooltip' v-if='Object.keys(hover).length > 0 && interactive' :style='tooltipStyle'>
             <table>
                 <tr v-for='c in infoCols'>
                     <td><b>{{c.name}}:</b></td>
-                    <td>{{hover[0][c.idx]}}</td>
+                    <td>{{hover[c.idx]}}</td>
                 </tr>
-                <tr><td><b>Ave Expr:</b></td><td>{{fmt(hover[0][avgCol.idx])}}</td></tr>
-                <!-- <tr><td><b>log FC:</b></td><td>{{fmt(hover[0][logfcCol.idx])}}</td></tr> -->
-                <tr><td><b>FDR:</b></td><td>{{fmt2(hover[0][fdrCol.idx])}}</td></tr>
+                <tr><td><b>Ave Expr:</b></td><td>{{fmt(hover[avgCol.idx])}}</td></tr>
+                <tr><td><b>FDR:</b></td><td>{{fmt2(hover[fdrCol.idx])}}</td></tr>
             </table>
             <div v-if='hover.length>1'>
                 And {{hover.length-1}} other{{hover.length>2 ? 's' : ''}}
@@ -504,7 +501,7 @@ class Heatmap
 
         genes.on('mouseover', (d, loc) =>
             x = d.x
-            y = d3.event.clientY - 150
+            y = d3.event.pageY
             @dispatch.mouseover(@data_object.row_by_id(d.rest.id), [x, y])
         )
         genes.on('mouseout', () => @dispatch.mouseout())
@@ -596,7 +593,8 @@ module.exports =
         avgCol: null
         logfcCol : null
         fdrCol: null
-        interactive: null
+        interactive:
+            default: true
     computed:
         needsUpdate: () ->
             # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
@@ -604,7 +602,7 @@ module.exports =
             this.dimensions
             Date.now()
         tooltipStyle: () ->
-            {left: (this.tooltipLoc[0] + 40)+'px', top: (this.tooltipLoc[1])+'px'}
+            {left: (this.tooltipLoc[0] + 40)+'px', top: (this.tooltipLoc[1] - 170)+'px'}
     watch:
         needsUpdate: () ->
             this.update_all()
@@ -624,11 +622,10 @@ module.exports =
     data: () ->
         hover: []
         tooltipLoc: [0,0]
-        xcoord: null
 
     mounted: () ->
         this.heatmap = new Heatmap(
-            elem: this.$el
+            elem: this.$refs.hmap
             show_replicates: this.showReplicates
             geneOrder: this.geneOrder
             width: this.width
@@ -637,7 +634,7 @@ module.exports =
             twocolor: this.twocolor
         )
 
-        this.heatmap.on("mouseover", (d, loc) => this.$emit("mousehover", d); this.show_info(d,loc))
+        this.heatmap.on("mouseover", (d, loc) => this.show_info(d,loc); this.$emit("mousehover", d))
         this.heatmap.on("mouseout", ()  => this.hide_info())
 
         this.heatmap.on("hide", () => this.$emit('hide'))
@@ -656,12 +653,11 @@ module.exports =
                 this.heatmap.update_columns(this.geneData, this.genesShow, this.dimensions, true)
 
         show_info: (d,loc) ->
-            this.hover=[d]
+            this.hover=d
             this.tooltipLoc = loc
-            this.$emit('hover-start',[d], loc)
+            this.$emit('hover-start',d,loc)
         hide_info: () ->
-            this.hover=[]
-            this.$emit("mousestop")
+            this.hover = []
             this.$emit('hover-end')
         fmt: (val) -> val.toFixed(2)
         fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)

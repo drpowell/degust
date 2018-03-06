@@ -279,7 +279,7 @@
                       :fdrCol='fdr_column'
                       @hide='show_heatmap=false'
                       @show-replicates='v => heatmap_show_replicates=v'
-                      @mousehover='hover_heatmap' @mousestop='stop_hover_heatmap'
+                      @mousehover='hover_heatmap' @hover-end='stop_hover_heatmap'
                       @hover-start='v => genes_hover=v'
                       >
               </heatmap>
