@@ -24,7 +24,8 @@
       </div>
     </div> <!-- load_failed -->
 
-    <navbar :homeLink='home_link'
+    <navbar v-if='navbar'
+            :homeLink='home_link'
             :experimentName='experimentName'
             :fullSettings='full_settings'
             :extraMenuHtml='full_settings'

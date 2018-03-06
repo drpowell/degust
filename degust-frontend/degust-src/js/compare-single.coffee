@@ -29,6 +29,8 @@ module.exports =
         inputSettings:
             default: () -> {}
         inputCode: null
+        navbar:
+            default: () -> true
     components:
         about: about
         navbar: navbar
