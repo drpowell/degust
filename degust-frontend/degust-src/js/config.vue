@@ -73,7 +73,6 @@
                   <label class="control-label col-sm-3">Input type</label>
                   <div class="controls col-sm-6"  v-tooltip="tip('Data type of the CSV file')">
                       <multiselect v-model="settings.input_type" :options='input_type_options' track-by='key' label='label' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
-
                   </div>
               </div>
 

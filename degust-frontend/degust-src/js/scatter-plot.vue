@@ -454,8 +454,12 @@ module.exports =
         text:
             type: Function
             default: null
-        alpha: () -> 0.7
-        size: () -> 3
+        alpha:
+            type: Function
+            default: () -> 0.7
+        size:
+            type: Function
+            default: () -> 3
         brushEnable: false
         animate: false             # Attempt to transition dots around.  Only works for canvas
         canvas: true               # Draw using canvas (or svg)

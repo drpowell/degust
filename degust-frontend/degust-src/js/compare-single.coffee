@@ -261,6 +261,7 @@ module.exports =
             if this.fc_columns.length==2
                 this.heatmap_show_replicates = true
             this.renormalize()
+            this.$emit('update', this.gene_data)
 
         renormalize: () ->
             switch this.normalization

@@ -30,7 +30,9 @@
                     :x-column='xColumn' :y-column='yColumn'
                     :colour='colour'
                     :highlight='highlight'
-                    :brush-enable='true' :canvas='true'
+                    :brush-enable='true'
+                    :canvas='true'
+                    :size='dotSize'
                     @mouseover='show_info'
                     @mouseout='hide_info'
                     @brush='brushed'
@@ -72,6 +74,9 @@ module.exports =
         highlight: null
         filter: null
         filterChanged: null
+        dotSize:
+            type: Function
+            default: () -> 3
     data: () ->
         hover: []
         tooltipLoc: [0,0]
