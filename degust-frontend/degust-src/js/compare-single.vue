@@ -105,7 +105,7 @@
               </div>
               <div class='pca-opts' v-show="cur_plot=='mds'">
                 <div class='pca-title'>MDS options</div>
-                <div v-tooltip="tip('Normalization of gene expression used to calculated MDS and Heatmap')">
+                <div v-if='!is_maxquant' v-tooltip="tip('Normalization of gene expression used to calculated MDS and Heatmap')">
                   <label>Normalized</label>
                   <select v-model='normalization'>
                     <option value='cpm'>CPM</option>
