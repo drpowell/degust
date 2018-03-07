@@ -27,6 +27,7 @@
         <compare-single :inputCode='code1.secure_id'
                         v-show='show_code1'
                         v-if='code1'
+                        :shown='show_code1'
                         :navbar='false'
                         @update='update1'
                         ref='dataset1'

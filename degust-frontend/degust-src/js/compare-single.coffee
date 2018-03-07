@@ -31,6 +31,9 @@ module.exports =
         inputCode: null
         navbar:
             default: () -> true
+        shown:
+            default: true              # Can be useful to allow this to trigger redraws, etc
+
     components:
         about: about
         navbar: navbar
@@ -176,6 +179,8 @@ module.exports =
             document.title = this.experimentName
         need_renormalization: () ->
             this.renormalize()
+        shown: () ->
+            this.$emit('resize')
 
     methods:
         init: () ->

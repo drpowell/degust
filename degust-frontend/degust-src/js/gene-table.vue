@@ -94,6 +94,7 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
 slickTable = require('./slick-table.vue').default
 popupMenu = require('./popup-menu.vue').default
 { Menu, Menuitem } = require('@hscmap/vue-menu')
+resize = require('./resize-mixin.coffee')
 
 # TODO : restore page from link info
 
@@ -166,6 +167,7 @@ do_download = (gene_data, gene_table, fmt) ->
 
 module.exports =
     name: 'gene-table'
+    mixins: [resize]
     components:
         slickTable: slickTable
         popupMenu: popupMenu
@@ -247,6 +249,9 @@ module.exports =
                     false
                 )
     methods:
+        resize: () ->
+            this.$emit('resize')
+
         showPopup: (ev) ->
             this.$refs.menu.show(ev)
 
