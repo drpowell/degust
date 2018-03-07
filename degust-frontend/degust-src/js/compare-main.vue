@@ -30,6 +30,7 @@
                         :navbar='false'
                         @update='update1'
                         ref='dataset1'
+                        :key='"d1"+code1.secure_id'
                         >
         </compare-single>
         <compare-single :inputCode='code2.secure_id'
@@ -38,6 +39,7 @@
                         :navbar='false'
                         @update='update2'
                         ref='dataset2'
+                        :key='"d2"+code2.secure_id'
                         >
         </compare-single>
         <div v-if='!(show_code1 || show_code2)'>
