@@ -72,7 +72,7 @@ class BarGraph
         else
             @svg.selectAll("*").remove()
             @x.domain(if @opts.xdomain? then @opts.xdomain else data.map((d) -> d.lbl))
-            @y.domain([0, d3.max(data, (d) -> debugger; d.val)])
+            @y.domain([0, d3.max(data, (d) -> d.val)])
 
         @svg.append("text")
              .attr('class', 'title')

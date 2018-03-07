@@ -334,10 +334,8 @@ module.exports =
             if this.filter_gene_list.length > 0
                 info_cols = this.gene_data.columns_by_type('info').map((c) -> row[c.idx])
                 matching = info_cols.filter((col) =>
-                    debugger
                     col.toLowerCase() of this.filter_gene_list_cache
                 )
-                debugger
                 if matching.length == 0
                     return false
 

@@ -259,6 +259,24 @@ class BackendMaxQuant
     request_data: (method,columns) ->
         @_request_dge_data(method,columns)
 
+    _request_from_params: (call, params) ->
+        arr = []
+        for k,v of params
+            if typeof v == 'string'
+                arr.push("#{k}=#{v}")
+            else
+                arr.push("#{k}=#{encodeURIComponent(JSON.stringify v)}")
+
+        BackendCommon.script(this.code, call, arr.join("&"))
+
+    _gen_request: (call, method, columns, contrast, opt) ->
+        if contrast
+            hsh = {method: method, contrast: contrast}
+        else
+            hsh = {method: method, fields: columns}
+        Object.assign(hsh, opt)
+        @_request_from_params(call, hsh)
+
     _request_dge_data: (method,columns) ->
         console.log "request_dge_data",method,columns
         return if columns.length <= 1
@@ -322,6 +340,15 @@ class BackendMaxQuant
         new Promise((resolve) =>
             req = BackendCommon.script(this.code, "dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
             d3.text(req, (err,data) ->
+                log_debug("Downloaded R Code : len=#{data.length}",data,err)
+                resolve(data)
+            )
+        )
+
+    request_normalized: (normalized, method,columns,contrast) ->
+        new Promise((resolve) =>
+            req = @_gen_request('dge', method, columns,contrast,{normalized: normalized})
+            d3.json(req, (err,data) ->
                 log_debug("Downloaded R Code : len=#{data.length}",data,err)
                 resolve(data)
             )

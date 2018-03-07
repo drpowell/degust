@@ -121,7 +121,7 @@
                 <div class="form-group">
                   <label class="control-label col-sm-3" for="name">Min present columns</label>
                   <div class="controls col-sm-1">
-                    <input v-model.number='settings.min_columns' class="form-control" type="text" name="min-columnns" placeholder="0" v-tooltip="tip('Optional: Minumum percent of columns with values present to keep the protein')" />
+                    <input v-model.number='settings.min_cpm' class="form-control" type="text" name="min-columnns" placeholder="0.8" v-tooltip="tip('Optional: Minumum percent of columns with values present to keep the protein')" />
                   </div>
                 </div>
                 <div class="form-group">
