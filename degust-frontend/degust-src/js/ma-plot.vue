@@ -58,9 +58,12 @@
 <script lang='coffee'>
 
 scatter = require('./scatter-plot.vue').default
+resize = require('./resize-mixin.coffee')
+
 
 module.exports =
     name: "ma-plot"
+    mixins: [resize]
     components:
         scatterPlot: scatter
     props:
@@ -103,6 +106,8 @@ module.exports =
         styleComp: () ->
             height: this.height
     methods:
+        resize: () ->
+            this.$emit('resize')
         fmt: (val) -> val.toFixed(2)
         fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)
         brushed: (d) ->

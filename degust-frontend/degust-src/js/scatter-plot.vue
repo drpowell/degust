@@ -428,7 +428,10 @@ class ScatterPlot
         @_draw_dots(@colouring || @opts.colouring)
         @_brushed_dots()
 
+resize = require('./resize-mixin.coffee')
+
 module.exports =
+    mixins: [resize]
     props:
         name: "scatter"         # Used for saving filename
         marginL:
@@ -498,6 +501,8 @@ module.exports =
                 this.me.update_data(this.data,this.xColumn,this.yColumn,this.colour,this.dimensionScale)
         reFilter: () ->
             this.me.reFilter()
+        resize: () ->
+            this.$nextTick(() => this.me.resize())
 
     mounted: () ->
         #console.log "scatter mounted",this.$refs.outer
