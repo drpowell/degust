@@ -1,5 +1,4 @@
 <style scoped>
-    .ma-plot { height: 330px; }
 
     div.tooltip {
       position: absolute;
@@ -33,6 +32,7 @@
                     :brush-enable='true'
                     :canvas='true'
                     :size='dotSize'
+                    :style='styleComp'
                     @mouseover='show_info'
                     @mouseout='hide_info'
                     @brush='brushed'
@@ -77,6 +77,8 @@ module.exports =
         dotSize:
             type: Function
             default: () -> 3
+        height:
+            default: '330px'
     data: () ->
         hover: []
         tooltipLoc: [0,0]
@@ -98,6 +100,8 @@ module.exports =
                 null
         tooltipStyle: () ->
             {left: (this.tooltipLoc[0]+40)+'px', top: (this.tooltipLoc[1]+35)+'px'}
+        styleComp: () ->
+            height: this.height
     methods:
         fmt: (val) -> val.toFixed(2)
         fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)
