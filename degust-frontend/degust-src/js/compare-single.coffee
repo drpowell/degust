@@ -12,6 +12,7 @@ sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 filterGenes = require('./filter-genes.vue').default
 extraInfo = require('./extra-info.vue').default
+ErrorMsg = require('./modal-error-msg.vue').default
 Modal = require('modal-vue').default
 geneTable = require('./gene-table.vue').default
 maPlot = require('./ma-plot.vue').default
@@ -38,6 +39,7 @@ module.exports =
         conditionsSelector: conditions
         filterGenes: filterGenes
         extraInfo: extraInfo
+        ErrorMsg: ErrorMsg
         Modal: Modal
         geneTable: geneTable
         maPlot: maPlot
@@ -93,6 +95,8 @@ module.exports =
         show_about: false
         show_extraInfo: false
         extraInfo_data: null
+        error_msg: null
+        show_Error: false
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:
@@ -209,9 +213,8 @@ module.exports =
                     log_error "Failed to get settings!",x
                     this.load_failed = true
                     this.$nextTick(() ->
-                        pre = $("<pre></pre>")
-                        pre.text("Error failed to get settings : #{x.responseText}")
-                        $('.error-msg').append(pre)
+                        this.error_msg.msg = x.responseText
+                        this.show_Error = true
                     )
                 )
 
@@ -219,6 +222,10 @@ module.exports =
             this.ev_backend = new Vue()
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
             this.ev_backend.$on("done_loading", () => this.num_loading-=1)
+            this.ev_backend.$on("errorMsg", (errorMsg) =>
+                this.error_msg = errorMsg
+                this.show_Error = true
+                )
             if !use_backend
                 this.backend = new backends.BackendNone(this.settings, this.ev_backend)
             else
@@ -352,6 +359,7 @@ module.exports =
 
         tip: (txt) ->
             {content:txt, placement:'left'}
+
 
     mounted: () ->
         this.init()

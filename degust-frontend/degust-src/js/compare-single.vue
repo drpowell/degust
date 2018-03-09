@@ -311,32 +311,19 @@
               @close='show_extraInfo=false'>
     </extraInfo>
 
-    <qc-plots :show-qc='show_qc'
+    <qc-plots
+              :show-qc='show_qc'
               :gene-data='gene_data'
               :colour='condition_colouring'
               @close='show_qc=""'>
     </qc-plots>
 
-    <!-- Error box Modal -->
-    <div id='error-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
-      <div class='modal-dialog'>
-        <div class='modal-content'>
-          <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>x</button>
-            <h3>Error</h3>
-          </div>
-          <div class='modal-body'>
-            Error Message:
-            <pre class='error-msg'></pre>
-            Input:
-            <pre class='error-input'></pre>
-          </div>
-          <div class='modal-footer'>
-            <button class='btn btn-primary' data-dismiss='modal' aria-hidden='true'>Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    <ErrorMsg
+                  :show='show_Error'
+                  :errorMsg='error_msg'
+                  @close='show_Error=false'
+    >
+    </ErrorMsg>
 
     <!-- Modal for showing R code -->
     <modal :showModal='r_code.length>0' :closeAction='close_r_code'>

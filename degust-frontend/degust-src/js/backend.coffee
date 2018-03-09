@@ -158,11 +158,9 @@ class BackendRNACounts
                     log_error(err)
                     return
 
-                if (json.error?)    # FIXME
+                if (json.error?)
+                    @events.$emit("errorMsg", json.error)
                     log_error("Error doing DGE",json.error)
-                    $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
-                    $('div#error-modal .modal-body pre.error-input').text(json.error.input)
-                    $('div#error-modal').modal()
                     return
 
                 data = d3.csv.parse(json.csv);
@@ -279,11 +277,9 @@ class BackendMaxQuant
                     log_error(err)
                     return
 
-                if (json.error?)    # FIXME
+                if (json.error?)
+                    @events.$emit("errorMsg", json.error)
                     log_error("Error doing DGE",json.error)
-                    $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
-                    $('div#error-modal .modal-body pre.error-input').text(json.error.input)
-                    $('div#error-modal').modal()
                     return
 
                 data = d3.csv.parse(json.csv);
