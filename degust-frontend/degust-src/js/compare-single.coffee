@@ -11,6 +11,7 @@ backends = require('./backend.coffee')
 sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 filterGenes = require('./filter-genes.vue').default
+extraInfo = require('./extra-info.vue').default
 Modal = require('modal-vue').default
 geneTable = require('./gene-table.vue').default
 maPlot = require('./ma-plot.vue').default
@@ -36,6 +37,7 @@ module.exports =
         sliderText: sliderText
         conditionsSelector: conditions
         filterGenes: filterGenes
+        extraInfo: extraInfo
         Modal: Modal
         geneTable: geneTable
         maPlot: maPlot
@@ -89,6 +91,8 @@ module.exports =
         heatmap_show_replicates: false
         show_qc: ''
         show_about: false
+        show_extraInfo: false
+        extraInfo_data: null
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:
@@ -250,6 +254,7 @@ module.exports =
             this.maxGenes = this.gene_data.get_data().length
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1
+            this.extraInfo_data = extra
             this.set_genes_selected(this.gene_data.get_data())
             this.genes_hover = [this.gene_data.get_data()[0]]
             this.genes_highlight = []

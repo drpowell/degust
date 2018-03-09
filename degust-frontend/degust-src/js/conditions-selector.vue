@@ -20,6 +20,8 @@
     padding: 1px;
 }
 
+a {font-size: 10px}
+
 .dge-method {font-size: 12px; }
 
 ::-webkit-scrollbar {
@@ -72,7 +74,7 @@
                 </table>
             </div>
             <div class='row'>
-            <div class='col-xs-8'>
+            <div class='col-xs-7'>
                 <div v-show='dge_methods.length>0'>
                     <label>Method</label>
                     <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
@@ -80,11 +82,14 @@
                     </select>
                 </div>
             </div>
-            <div class='col-xs-4'>
+            <!-- <div class='col-xs-4'>
                 <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
                     Sample weights
                 </a>
-                <div class='weights collapse'></div>
+                <div class='weights collapse'></div> -->
+            <div class='col-xs-5' align="right">
+                <a @click='showSampleWeights' v-if='cur.dge_method=="voom-weights"'>View sample weights</a>
+            </div>
             </div>
             </div>
         </div>
@@ -161,6 +166,8 @@ module.exports =
             this.cur.sel_conditions = this.sel_conditions
             this.cur.sel_contrast = this.sel_contrast
             this.update_sel_contrast_idx()
+        showSampleWeights: () ->
+            this.$emit('SampleWeights')
 
 
 </script>

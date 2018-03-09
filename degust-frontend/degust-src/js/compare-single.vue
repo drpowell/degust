@@ -44,6 +44,7 @@
   <div class="container">
     <!-- About box Modal -->
     <about :show='show_about' @close='show_about=false'></about>
+
     <div v-if='load_success'>
       <div class='row'>
         <div class='col-xs-3'>
@@ -54,7 +55,8 @@
                               :sel_conditions='sel_conditions'
                               :sel_contrast='sel_contrast'
                               :dge_methods='dge_methods'
-                              @apply='change_samples'>
+                              @apply='change_samples'
+                              @SampleWeights='show_extraInfo=true'>
             </conditions-selector>
           </div>
           <hr/>
@@ -302,6 +304,12 @@
 
     <!-- Gene List box Modal -->
     <filterGenes :show='showGeneList' @close='showGeneList=false' @filterList='filterList'></filterGenes>
+
+    <extraInfo
+              :show='show_extraInfo'
+              :extraInfoData='extraInfo_data'
+              @close='show_extraInfo=false'>
+    </extraInfo>
 
     <qc-plots :show-qc='show_qc'
               :gene-data='gene_data'

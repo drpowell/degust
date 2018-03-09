@@ -125,17 +125,6 @@ class BackendRNACounts
     request_data: (method,columns,contrasts) ->
         @_request_dge_data(method,columns,contrasts)
 
-    _extra_info: (extra) ->
-        html = ""
-        if extra.sample_weights?
-            $('.weights-toggle').show()     # FIXME
-            html = $("<div></div>")
-            for i in [0...extra.sample_weights.length]
-                html.append("<div><span class='name'>#{extra.samples[i]}</span><span class='val'>#{extra.sample_weights[i]}</span></div>")
-        else
-            $('.weights-toggle').hide()
-        $('.weights').html(html)
-
     _request_from_params: (call, params) ->
         arr = []
         for k,v of params
@@ -180,8 +169,6 @@ class BackendRNACounts
                 log_info("Downloaded DGE counts : rows=#{data.length}")
                 log_debug("Downloaded DGE counts : rows=#{data.length}",data,err)
                 log_info("Extra info : ",json.extra)
-
-                @_extra_info(json.extra)
 
 
                 data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
