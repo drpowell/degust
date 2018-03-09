@@ -196,7 +196,6 @@ class Heatmap
 
         # Create a single wrapper for later use
         @worker = new WorkerWrapper(calc_order, (d) => @_worker_callback(d))
-        @_enabled = true
         @columns_changed = false
         if @opts.enablecontextmenu
             @_make_menu(@opts.elem)
@@ -218,21 +217,10 @@ class Heatmap
                     .attr("class","arrowHead");
 
     resize: () ->
-        if !@_enabled
-            return
         @opts.width = d3.max([0, d3.select(@opts.elem).node().clientWidth - 20])
         @info.attr("x", @opts.width-200)
         @_redraw_all();
 
-    # Enable/disable the heatmap.  When disabled it is hidden and does not update
-    enabled: (enabled) ->
-        if enabled?
-            @_enabled = enabled
-            $(@opts.elem).toggle(enabled)
-            if (@opts.show_elem?)
-                $(@opts.show_elem).toggle(!enabled)
-        else
-            @_enabled
 
     # Return a copy of the SVG with styles attached from the stylesheet
     _get_svg: () ->
@@ -394,7 +382,7 @@ class Heatmap
     # Update which rows are displayed (set in update_columns())
     schedule_update: (rows) ->
         @rows=rows if rows
-        return if !@rows? || !@columns? || !@_enabled
+        return if !@rows? || !@columns?
 
         scheduler.schedule('heatmap.render', () => )
 
@@ -514,7 +502,7 @@ class Heatmap
         @dispatch.on(t, func)
 
     highlight: (rows) ->
-        return if !@_enabled || @_is_thinking
+        return if @_is_thinking
         pos = rows.map((r) => @order.indexOf(r.id)).filter((p) -> p>=0)
         #console.log rows,pos
         if pos.length==0
