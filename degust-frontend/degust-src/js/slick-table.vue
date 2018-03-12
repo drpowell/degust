@@ -71,6 +71,8 @@ module.exports =
         @grid.onDblClick.subscribe( (e,args) =>
             this.$emit('dblclick', @grid.getDataItem(args.row))
         )
+        this.set_data(true)
+
     computed:
         # Want to watch rows & cols and issue one update when both change
         rowsAndCols: () ->
