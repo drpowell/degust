@@ -110,8 +110,8 @@ module.exports =
             this.$emit('resize')
         fmt: (val) -> val.toFixed(2)
         fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)
-        brushed: (d) ->
-            this.$emit('brush', d)
+        brushed: (d,empty) ->
+            this.$emit('brush', d,empty)
         show_info: (d,loc) ->
             this.hover=d
             this.tooltipLoc = loc

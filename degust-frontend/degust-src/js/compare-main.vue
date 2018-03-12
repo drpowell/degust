@@ -42,11 +42,12 @@
                         :experiment-list='experiment_list'
                         :id='idx'
                         :genes-highlight='genes_highlight[idx]'
+                        :genes-colour='dataset.gene_colour'
                         @code='(code) => dataset.code=code'
                         @remove='remove_dataset(idx)'
                         @large='dataset.show_large = $event'
                         @update='(component) => update_dataset(idx,component)'
-                        @brush='(genes) => brush_dataset(idx,genes)'
+                        @brush='(genes,empty) => brush_dataset(idx,genes,empty)'
                         >
           </compare-compact>
         </div>
@@ -79,9 +80,10 @@
                         :size='function() {return 2}'
                         style='height: 300px; width: 300px;'
                         :highlight='merged_genes_highlight'
+                        :colour='merged_colour'
+                        :alpha='() => 0.5'
                         >
                         <!-- :filter='filter'
-                        :colour='colour'
                         :highlight='highlight'
                         @mouseover='show_info'
                         @mouseout='hide_info'

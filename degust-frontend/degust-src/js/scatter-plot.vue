@@ -382,7 +382,7 @@ class ScatterPlot
 
     _brushed_dots: () ->
         sel = @_selected()
-        @dispatch.brush(sel, !@_brush_empty())
+        @dispatch.brush(sel, @_brush_empty())
 
     # Find the data points with the extent (for brushing)
     # Extent is in screen coordina
@@ -530,7 +530,7 @@ module.exports =
         )
         this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', d, loc))
         this.me.on('mouseout.tooltip', () => this.$emit('mouseout'))
-        this.me.on('brush', (d) => this.$emit('brush', d))
+        this.me.on('brush', (d,empty) => this.$emit('brush', d, empty))
 
         this.update()
 </script>

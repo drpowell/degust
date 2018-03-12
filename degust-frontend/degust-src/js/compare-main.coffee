@@ -35,6 +35,7 @@ module.exports =
         y_column: null
         genes_highlight: []
         merged_genes_highlight: []
+        merged_colour: () -> "blue"
 
     computed:
         column_width: () ->
@@ -75,13 +76,14 @@ module.exports =
                     Vue.noTrack(d.key_mappings[gene.key])
             )
             this.genes_highlight = highlights
-            this.merged_genes_highlight = Vue.noTrack([gene])
+            if this.x_column && this.y_column && gene[this.x_column.idx]? && gene[this.y_column.idx]?
+                this.merged_genes_highlight = Vue.noTrack([gene])
         gene_table_nohover: () ->
             this.genes_highlight=[]
             this.merged_genes_highlight=[]
 
         add_dataset: () ->
-            this.datasets.push({show_large: false, code:null})
+            this.datasets.push({show_large: false, code:null, gene_colour: () -> "blue"})
         remove_dataset: (idx) ->
             this.datasets.splice(idx, 1)
             this.merge_datasets()
@@ -111,19 +113,23 @@ module.exports =
 
             this.merge_datasets()
 
-        brush_dataset: (idx, genes) ->
-            console.log "brush",idx,genes
+        brush_dataset: (idx, genes, empty) ->
             dataset = this.datasets[idx]
-            keys = genes.map((r) -> r[dataset.key_col.idx])
+            brushed_keys = genes.map((r) -> r[dataset.key_col.idx])
+            # First the merged dataset
+            this.merged_colour = (gene) ->
+                if !empty && brushed_keys.indexOf(gene.key)>=0
+                    "darkgreen"
+                else
+                    "blue"
+            # Now the others
             this.datasets.forEach((d,idx2) ->
-                return if !d.component? || idx==idx2
-                res = []
-                keys.forEach((k) ->
-                    ids = d.key_mappings[k]
-                    ids.forEach((id) -> res.push({id: id}))
-                )
-                console.log "highlight",res
-                d.component.set_genes_selected(res)
+                return if idx==idx2 || !d.component?
+                d.gene_colour = (gene) ->
+                    if !empty && brushed_keys.indexOf(gene[d.key_col.idx])>=0
+                        "darkgreen"
+                    else
+                        "blue"
             )
 
         merge_datasets: () ->

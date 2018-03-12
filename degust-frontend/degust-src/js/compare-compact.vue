@@ -42,12 +42,12 @@
                         :logfc-col='$refs.dataset.ma_plot_fc_col'
                         :avg-col='$refs.dataset.avg_column'
                         :fdr-col='$refs.dataset.fdr_column'
-                        :colour='$refs.dataset.plot_colouring'
+                        :colour='genesColour'
                         :info-cols='$refs.dataset.info_columns'
                         :dot-size='function() {return 2}'
                         :height='250'
                         :highlight='genesHighlight'
-                        @brush='(x) => $emit("brush",x)'
+                        @brush='(sel,empty) => $emit("brush",sel,empty)'
                         >
                         <!-- @hover-start='v => genes_hover=v' -->
                     </ma-plot>
@@ -80,6 +80,9 @@ module.exports =
         code: null
         genesHighlight:
             default: () -> []
+        genesColour:
+            default: () ->
+                (gene) -> "blue"
     data: () ->
         gene_data: null
     # watch:
