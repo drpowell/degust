@@ -7,6 +7,8 @@ scatter = require('./scatter-plot.vue').default
 { GeneData } = require('./gene_data.coffee')
 geneTable = require('./gene-table.vue').default
 
+colour_highlight = "Crimson"
+colour_normal = "DarkCyan"
 
 module.exports =
     name: 'compare-main'
@@ -36,7 +38,7 @@ module.exports =
         y_column: null
         genes_highlight: []
         merged_genes_highlight: []
-        merged_colour: () -> "blue"
+        merged_colour: () -> colour_normal
 
     computed:
         column_width: () ->
@@ -84,7 +86,7 @@ module.exports =
             this.merged_genes_highlight=[]
 
         add_dataset: () ->
-            this.datasets.push({show_large: false, code:null, gene_colour: () -> "blue"})
+            this.datasets.push({show_large: false, code:null, gene_colour: () -> colour_normal})
         remove_dataset: (idx) ->
             this.datasets.splice(idx, 1)
             this.merge_datasets()
@@ -122,9 +124,9 @@ module.exports =
                 # Colour the merged dataset
                 this.merged_colour = (gene) ->
                     if !empty && brushed_keys.indexOf(gene.key)>=0
-                        "darkgreen"
+                        colour_highlight
                     else
-                        "blue"
+                        colour_normal
             else
                 # Brush on the merged scatter plot
                 brushed_keys = genes.map((r) -> r.key)
@@ -134,9 +136,9 @@ module.exports =
                 return if idx==idx2 || !d.component?
                 d.gene_colour = (gene) ->
                     if !empty && brushed_keys.indexOf(gene[d.key_col.idx])>=0
-                        "darkgreen"
+                        colour_highlight
                     else
-                        "blue"
+                        colour_normal
             )
 
             # Select subset of rows in the table
