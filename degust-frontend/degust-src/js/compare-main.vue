@@ -5,6 +5,10 @@
         width: 1380px;
       }
     }
+
+    .multiselect__option {padding: 5px; font-size: 12px; min-height: auto;}
+    .multiselect__content-wrapper { border: thin solid black;}
+    .multiselect--active {  z-index: 3; }  /* Make it above the slickgrid elements */
 </style>
 
 <template>
@@ -37,6 +41,7 @@
                         :code='dataset.code'
                         :experiment-list='experiment_list'
                         :id='idx'
+                        :genes-highlight='genes_highlight[idx]'
                         @code='(code) => dataset.code=code'
                         @remove='remove_dataset(idx)'
                         @large='dataset.show_large = $event'
@@ -46,42 +51,58 @@
           </compare-compact>
         </div>
 
-        <button type='button' class="btn btn-primary" @click='add_dataset()'>
-          Add data set
-        </button>
+        <div v-if='show_small'>
+          <button type='button' class="btn btn-primary" @click='add_dataset()'>
+            Add data set
+          </button>
 
-        <hr/>
+          <hr/>
 
-        <div v-if='merged_rows'>
-          <div class='row'>
-            <div class='col-sm-4'>
-              <label>X axis</label>
-              <multiselect v-model="x_column" :options='plot_columns' label='name' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
+          <div v-if='merged_rows'>
+            <div class='row'>
+              <div class='col-sm-4'>
+                <div class='row'>
+                  <label>X axis</label>
+                  <multiselect v-model="x_column" :options='plot_columns' label='name' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
+                </div>
+                <div class='row'>
+                  <label>Y axis</label>
+                  <multiselect v-model="y_column" :options='plot_columns' label='name' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
+                </div>
+              </div>
+              <div v-if='x_column && y_column' class='col-sm-4'>
+                <scatter-plot
+                        :data='merged_rows'
+                        :x-column='ma_plot_x_column' :y-column='ma_plot_y_column'
+                        :brush-enable='true'
+                        :canvas='true'
+                        :size='function() {return 2}'
+                        style='height: 300px; width: 300px;'
+                        :highlight='merged_genes_highlight'
+                        >
+                        <!-- :filter='filter'
+                        :colour='colour'
+                        :highlight='highlight'
+                        @mouseover='show_info'
+                        @mouseout='hide_info'
+                        @brush='brushed' -->
+                </scatter-plot>
+              </div>
+            </div> <!-- row -->
+            <div class='row'>
+              <gene-table :gene-data='merged_data'
+                          :fc-columns='merged_fc_columns'
+                          :rows='merged_rows'
+                          :show-counts='false'
+                          :show-intensity='false'
+                          :useProt='false'
+                          @mouseover='gene_table_hover'
+                          @mouseout='gene_table_nohover'
+                          >
+              </gene-table>
             </div>
-            <div class='col-sm-4'>
-              <label>Y axis</label>
-              <multiselect v-model="y_column" :options='plot_columns' label='name' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
-            </div>
-          </div>
-
-          <div v-if='x_column && y_column'>
-            <scatter-plot
-                    :data='merged_rows'
-                    :x-column='ma_plot_x_column' :y-column='ma_plot_y_column'
-                    :brush-enable='true'
-                    :canvas='true'
-                    :size='function() {return 2}'
-                    style='height: 300px; width: 300px;'
-                    >
-                    <!-- :filter='filter'
-                    :colour='colour'
-                    :highlight='highlight'
-                    @mouseover='show_info'
-                    @mouseout='hide_info'
-                    @brush='brushed' -->
-            </scatter-plot>
-          </div>
-        </div>
+          </div> <!-- if merged_rows -->
+        </div> <!-- if show_small -->
       </div>
   </div>
 </template>

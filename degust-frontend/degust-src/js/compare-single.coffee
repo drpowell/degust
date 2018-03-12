@@ -290,6 +290,8 @@ module.exports =
 
         set_genes_selected: (d) ->
             this.genes_selected = Vue.noTrack(d)
+        set_genes_highlight: (d) ->
+            this.genes_highlight = Vue.noTrack(d)
 
         hover_heatmap: (d) ->
             this.genes_hover = this.genes_highlight = Vue.noTrack([d])

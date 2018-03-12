@@ -46,6 +46,7 @@
                         :info-cols='$refs.dataset.info_columns'
                         :dot-size='function() {return 2}'
                         :height='250'
+                        :highlight='genesHighlight'
                         @brush='(x) => $emit("brush",x)'
                         >
                         <!-- @hover-start='v => genes_hover=v' -->
@@ -77,6 +78,8 @@ module.exports =
         showSmall: null
         experimentList: null
         code: null
+        genesHighlight:
+            default: () -> []
     data: () ->
         gene_data: null
     # watch:

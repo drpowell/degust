@@ -488,7 +488,8 @@ module.exports =
     watch:
         needsUpdate: () ->
             this.update()
-        highlight: (v) -> set_highlight(v)
+        highlight: (v) ->
+            this.set_highlight(v)
 
     methods:
         update: () ->

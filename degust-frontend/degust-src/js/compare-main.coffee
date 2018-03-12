@@ -4,6 +4,8 @@ compareCompact = require('./compare-compact.vue').default
 Multiselect = require('vue-multiselect').default
 maPlot = require('./ma-plot.vue').default
 scatter = require('./scatter-plot.vue').default
+{ GeneData } = require('./gene_data.coffee')
+geneTable = require('./gene-table.vue').default
 
 
 module.exports =
@@ -14,6 +16,8 @@ module.exports =
         Multiselect: Multiselect
         maPlot: maPlot
         scatterPlot: scatter
+        GeneData: GeneData
+        geneTable: geneTable
 
     data: () ->
         home_link: null
@@ -23,10 +27,14 @@ module.exports =
         experiment_list: []
         redirect: null
         datasets: []
+        merged_data: null
+        merged_fc_columns: []
         merged_rows: null
         merged_cols: null
         x_column: null
         y_column: null
+        genes_highlight: []
+        merged_genes_highlight: []
 
     computed:
         column_width: () ->
@@ -46,7 +54,7 @@ module.exports =
         multi_codes: () ->
             this.datasets.map((x) -> x.code?.secure_id).filter((x) -> x && x.length>0)
         plot_columns: () ->
-            [].concat.apply([],this.merged_cols).filter((c) -> c.type == 'fc')
+            [].concat.apply([],this.merged_cols).filter((c) -> c.type == 'fc_calc')
         ma_plot_x_column: () ->
             x_col = this.x_column
             {name: x_col.name, get: (d) -> d[x_col.idx]}
@@ -59,6 +67,19 @@ module.exports =
             this.$emit('resize')
 
     methods:
+        gene_table_hover: (gene) ->
+            highlights = this.datasets.map((d) ->
+                if !d.component?
+                    []
+                else
+                    Vue.noTrack(d.key_mappings[gene.key])
+            )
+            this.genes_highlight = highlights
+            this.merged_genes_highlight = Vue.noTrack([gene])
+        gene_table_nohover: () ->
+            this.genes_highlight=[]
+            this.merged_genes_highlight=[]
+
         add_dataset: () ->
             this.datasets.push({show_large: false, code:null})
         remove_dataset: (idx) ->
@@ -76,9 +97,9 @@ module.exports =
             # Create a mapping from the key column
             startTime = Date.now()
             warn=0
-            d.gene_data.get_data().forEach((r,rid) =>
+            d.gene_data.get_data().forEach((r) =>
                 key = r[d.key_col.idx]
-                (d.key_mappings[key] ?= []).push(rid)
+                (d.key_mappings[key] ?= []).push(r)
                 if (!warn && d.key_mappings[key].length>1)
                     warn+=1
                     log_warn("Duplicate key '#{key}' in #{d.name}")
@@ -94,15 +115,15 @@ module.exports =
             console.log "brush",idx,genes
             dataset = this.datasets[idx]
             keys = genes.map((r) -> r[dataset.key_col.idx])
-            this.datasets.forEach((d,idx2) =>
+            this.datasets.forEach((d,idx2) ->
                 return if !d.component? || idx==idx2
                 res = []
-                keys.forEach((k) =>
-                    ids = this.data_merged[this.main_keys[k]][idx2]
-                    ids.forEach((id) => res.push(d.gene_data.get_data()[id]))
+                keys.forEach((k) ->
+                    ids = d.key_mappings[k]
+                    ids.forEach((id) -> res.push({id: id}))
                 )
-                console.log "highlight",d.genes_highlight
-                d.component.set_highlight(res)
+                console.log "highlight",res
+                d.component.set_genes_selected(res)
             )
 
         merge_datasets: () ->
@@ -116,7 +137,7 @@ module.exports =
                 # Add all the columns
                 columns[idx] = []
                 d.gene_data.columns.forEach((c) ->
-                    return if ['fc','info'].indexOf(c.type)<0   # Just pertinent columns for now
+                    return if ['fc_calc','info','fdr'].indexOf(c.type)<0   # Just pertinent columns for now
                     new_col = Object.assign({}, c)
                     new_col.name = d.name + " : "+c.name
                     new_col.orig_idx = c.idx
@@ -128,7 +149,9 @@ module.exports =
                     key = r[d.key_col.idx]
                     if !(key of main_keys)
                         main_keys[key] = all_rows.length
-                    all_row = (all_rows[main_keys[key]] ||= {})
+                    all_row = (all_rows[main_keys[key]] ||= {key: key})
+                    all_row.membership ||= []
+                    all_row.membership[idx]=true
                     # Only keeping 1 copy of duplicate keys for now.
                     columns[idx].forEach((c) ->
                         all_row[c.idx] = r[c.orig_idx]
@@ -138,16 +161,21 @@ module.exports =
             this.merged_rows = all_rows
             this.merged_cols = columns
             this.main_keys = main_keys
+
+            # FIXME : Hack to pretend to use gene-data
+            this.merged_data = new GeneData([],[])
+            this.merged_data.data = this.merged_rows
+            this.merged_data.columns = [].concat.apply([],this.merged_cols)
+            this.merged_data._process_data()
+            this.merged_fc_columns = this.merged_data.columns.filter((x) -> x.type == 'fc_calc')
+
             console.log("merge processing took #{Date.now() - startTime }ms")
-            console.log("Union cols = ", this.merged_cols)
-            console.log("Union rows = ", this.merged_rows)
 
     mounted: () ->
         $.ajax('/visited.json').then((response) =>
             if (response.redirect)
                 this.redirect = response.redirect
             else
-                console.log response
                 this.experiment_list = response.mine.concat(response.others)
         )
 
