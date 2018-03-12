@@ -54,36 +54,48 @@ class BackendPreAnalysed
         @common.request_kegg_data(callback)
 
     request_data: () ->
-        req = BackendCommon.script(this.code, "csv")
-        @events.$emit("start_loading")
-        d3.text(req, (err, dat) =>
-            log_info("Downloaded DGE CSV: len=#{dat.length}")
-            @events.$emit("done_loading")
-            if err
-                log_error(err)
-                return
+        new Promise((resolve) =>
+            req = BackendCommon.script(this.code, "csv")
+            @events.$emit("start_loading")
+            d3.text(req, (err, dat) =>
+                log_info("Downloaded DGE CSV: len=#{dat.length}")
+                @events.$emit("done_loading")
+                if err
+                    log_error(err)
+                    return
 
-            if @settings.csv_format
-               data = d3.csv.parse(dat)
-            else
-               data = d3.tsv.parse(dat)
-            log_info("Parsed DGE CSV : rows=#{data.length}")
-            log_debug("Parsed DGE CSV : rows=#{data.length}",data,err)
+                if @settings.csv_format
+                    data = d3.csv.parse(dat)
+                else
+                    data = d3.tsv.parse(dat)
+                log_info("Parsed DGE CSV : rows=#{data.length}")
+                log_debug("Parsed DGE CSV : rows=#{data.length}",data,err)
 
-            data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
-            data_cols.push({idx: '_dummy', type: 'primary', name:@settings.primary_name})
-            @settings.fc_columns.forEach((n) ->
-                data_cols.push({idx: n, type: 'fc', name: n})
+                data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
+                data_cols.push({idx: '_dummy', type: 'primary', name:@settings.primary_name})
+                @settings.fc_columns.forEach((n) ->
+                    data_cols.push({idx: n, type: 'fc', name: n})
+                )
+                data_cols.push({idx: @settings.fdr_column, name: @settings.fdr_column, type: 'fdr'})
+                data_cols.push({idx: @settings.avg_column, name: @settings.avg_column, type: 'avg'})
+                if @settings.ec_column?
+                    data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
+                if @settings.link_column?
+                    data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
+
+                resolve([data, data_cols])
             )
-            data_cols.push({idx: @settings.fdr_column, name: @settings.fdr_column, type: 'fdr'})
-            data_cols.push({idx: @settings.avg_column, name: @settings.avg_column, type: 'avg'})
-            if @settings.ec_column?
-                data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
-            if @settings.link_column?
-                data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
-
-            @events.$emit("dge_data", data, data_cols)
         )
+
+
+    dge_methods: () ->
+        []
+
+    qc_plots: () ->
+        []
+
+    request_r_code: () ->
+        "This data is pre-analysed. No R code available."
 
 class BackendRNACounts
     constructor: (@code, @settings, @events) ->
