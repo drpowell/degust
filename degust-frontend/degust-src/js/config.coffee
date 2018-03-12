@@ -355,7 +355,7 @@ module.exports =
         get_csv_data: () ->
             d3.text(this.script("partial_csv"), "text/csv", (err,dat) =>
                 if err
-                    $('div.container').text("ERROR : #{err.statusText}")
+                    document.getElementsByClassName('div.container').insertAdjacentText('beforeend', 'ERROR : #{err.statusText}')
                     return
                 this.csv_data = dat
             )
@@ -371,7 +371,7 @@ module.exports =
                     this.revert()
                     this.get_csv_data()
                     if this.orig_settings['extra_menu_html']
-                        $('#right-navbar-collapse').append(this.orig_settings['extra_menu_html'])
+                        document.getElementById('right-navbar-collapse').insertAdjacentHTML('beforeend', this.orig_settings['extra_menu_html'])
                 )
 
         tip: (txt) ->
