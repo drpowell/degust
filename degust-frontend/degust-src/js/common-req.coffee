@@ -19,13 +19,8 @@ require('./analytics.js')
 add_browser_warning = () ->
 	if window.navigator.userAgent.indexOf("MSIE ")>=0
 		html = require("./browser-warning.html")
-		outer = $('.browser-warning-outer')
-		if outer.length==0
-			# No container found, let's create a popup one
-			$('body').prepend('<div class="warning-popover browser-warning-outer"></div>')
-			outer = $('.browser-warning-outer')
-		outer.append(html)
+		outer = document.getElementsByTagName('body')
+		outer[0].insertAdjacentHTML('afterbegin', html)
 
-$(document).ready(() ->
+window.onload = () ->
 	add_browser_warning()
-)
