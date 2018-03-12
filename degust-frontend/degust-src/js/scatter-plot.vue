@@ -488,11 +488,7 @@ module.exports =
     watch:
         needsUpdate: () ->
             this.update()
-        highlight: (v) ->
-            if v.length>0
-                this.me.highlight(v)
-            else
-                this.me.unhighlight()
+        highlight: (v) -> set_highlight(v)
 
     methods:
         update: () ->
@@ -503,6 +499,12 @@ module.exports =
             this.me.reFilter()
         resize: () ->
             this.$nextTick(() => this.me.resize())
+        set_highlight: (v) ->
+            if v.length>0
+                this.me.highlight(v)
+            else
+                this.me.unhighlight()
+
 
     mounted: () ->
         #console.log "scatter mounted",this.$refs.outer

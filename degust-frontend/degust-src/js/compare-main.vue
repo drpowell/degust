@@ -15,108 +15,75 @@
       </compare-single>
   </div>
   <div v-else class='container'>
-      <button type='button' class="btn btn-primary pull-right"
-              v-if='show_code1 || show_code2' @click='show_code1=show_code2=false'>
-        Back
-      </button>
-      <h2>Compare Multiple</h2>
+      <h2>Compare Multiple Datasets</h2>
+
+
       <div v-if='redirect'>
         <a :href='redirect'>You must log in to use this page</a>
       </div>
-      <div v-else>
-        <compare-single :inputCode='code1.secure_id'
-                        v-show='show_code1'
-                        v-if='code1'
-                        :shown='show_code1'
-                        :navbar='false'
-                        @update='update1'
-                        ref='dataset1'
-                        :key='"d1"+code1.secure_id'
-                        >
-        </compare-single>
-        <compare-single :inputCode='code2.secure_id'
-                        v-show='show_code2'
-                        v-if='code2'
-                        :navbar='false'
-                        @update='update2'
-                        ref='dataset2'
-                        :key='"d2"+code2.secure_id'
-                        >
-        </compare-single>
-        <div v-if='!(show_code1 || show_code2)'>
-          <div class='row'>
-            <label class='col-sm-1'>Dataset 1</label>
-            <div class='col-sm-3'>
-              <multiselect v-model="code1" :options='experiment_list' track-by='secure_id' label='name' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
-            </div>
-            <a v-if='code1' @click='show_code1=true'>Show</a>
-          </div>
-          <div class='row'>
-            <label class='col-sm-1'>Dataset 2</label>
-            <div class='col-sm-3'>
-              <multiselect v-model="code2" :options='experiment_list' track-by='secure_id' label='name' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
-            </div>
-            <a v-if='code2' @click='show_code2=true'>Show</a>
-          </div> <!-- row -->
-          <div class='row'>
-            <div v-if='info1' class='col-sm-3'>
-              {{info1}}
-              <ma-plot
-                        :data='$refs.dataset1.gene_data_rows'
-                        :filter='$refs.dataset1.expr_filter'
-                        :filter-changed='$refs.dataset1.filter_changed'
-                        :logfc-col='$refs.dataset1.ma_plot_fc_col'
-                        :avg-col='$refs.dataset1.avg_column'
-                        :fdr-col='$refs.dataset1.fdr_column'
-                        :colour='$refs.dataset1.plot_colouring'
-                        :info-cols='$refs.dataset1.info_columns'
-                        :dot-size='function() {return 1}'
-                        >
-                        <!-- :highlight='genes_highlight'
-                        @brush='set_genes_selected'
-                        @hover-start='v => genes_hover=v' -->
-              </ma-plot>
-            </div>
-            <div v-if='info2' class='col-sm-3'>
-              {{info2}}
-              <ma-plot
-                        :data='$refs.dataset2.gene_data_rows'
-                        :filter='$refs.dataset2.expr_filter'
-                        :filter-changed='$refs.dataset2.filter_changed'
-                        :logfc-col='$refs.dataset2.ma_plot_fc_col'
-                        :avg-col='$refs.dataset2.avg_column'
-                        :fdr-col='$refs.dataset2.fdr_column'
-                        :colour='$refs.dataset2.plot_colouring'
-                        :info-cols='$refs.dataset2.info_columns'
-                        :dot-size='function() {return 1}'
-                        >
-                        <!-- :highlight='genes_highlight'
-                        @brush='set_genes_selected'
-                        @hover-start='v => genes_hover=v' -->
-              </ma-plot>
-            </div>
-            <div v-if='data_merged' class='col-sm-3'>
-              <scatter-plot
-                      :data='data_merged'
-                      :x-column='xColumn' :y-column='yColumn'
-                      :brush-enable='true'
-                      :canvas='true'
-                      :size='function() {return 1}'
-                      >
-                      <!-- :filter='filter'
-                      :colour='colour'
-                      :highlight='highlight'
-                      @mouseover='show_info'
-                      @mouseout='hide_info'
-                      @brush='brushed' -->
-              </scatter-plot>
-            </div>
-          </div>
-        </div> <!--!(show_code1 || show_code2) -->
 
+
+      <div v-else>
+        <button type='button' class="btn btn-primary pull-right" v-if='!show_small'
+                @click='datasets.forEach((d) => d.show_large=false)'>
+            Back
+        </button>
+
+        <div class='row'>
+          <compare-compact v-for='(dataset,idx) in datasets'
+                        :class='column_width'
+                        :show-large='dataset.show_large'
+                        :show-small='show_small'
+                        :code='dataset.code'
+                        :experiment-list='experiment_list'
+                        :id='idx'
+                        @code='(code) => dataset.code=code'
+                        @remove='remove_dataset(idx)'
+                        @large='dataset.show_large = $event'
+                        @update='(component) => update_dataset(idx,component)'
+                        @brush='(genes) => brush_dataset(idx,genes)'
+                        >
+          </compare-compact>
+        </div>
+
+        <button type='button' class="btn btn-primary" @click='add_dataset()'>
+          Add data set
+        </button>
+
+        <hr/>
+
+        <div v-if='merged_rows'>
+          <div class='row'>
+            <div class='col-sm-4'>
+              <label>X axis</label>
+              <multiselect v-model="x_column" :options='plot_columns' label='name' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
+            </div>
+            <div class='col-sm-4'>
+              <label>Y axis</label>
+              <multiselect v-model="y_column" :options='plot_columns' label='name' :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Required ---" />
+            </div>
+          </div>
+
+          <div v-if='x_column && y_column'>
+            <scatter-plot
+                    :data='merged_rows'
+                    :x-column='ma_plot_x_column' :y-column='ma_plot_y_column'
+                    :brush-enable='true'
+                    :canvas='true'
+                    :size='function() {return 2}'
+                    style='height: 300px; width: 300px;'
+                    >
+                    <!-- :filter='filter'
+                    :colour='colour'
+                    :highlight='highlight'
+                    @mouseover='show_info'
+                    @mouseout='hide_info'
+                    @brush='brushed' -->
+            </scatter-plot>
+          </div>
+        </div>
       </div>
   </div>
-
 </template>
 
 <script lang='coffee' src="./compare-main.coffee"></script>

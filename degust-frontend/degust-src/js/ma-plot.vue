@@ -119,5 +119,7 @@ module.exports =
         hide_info: () ->
             this.hover=[]
             this.$emit('hover-end')
+        set_highlight: (rows) ->
+            this.$refs.scatter.set_highlight(rows)
 
 </script>
