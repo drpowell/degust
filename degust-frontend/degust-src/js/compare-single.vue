@@ -31,7 +31,7 @@
             :uniqueCode='code'
             @showAbout='v => show_about = v'
             >
-            <li slot="qclist" class="dropdown">
+            <li slot="qclist" class="dropdown" v-if='!is_pre_analysed'>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 QC <span class="caret"></span>
                 </a>
@@ -49,7 +49,7 @@
       <div class='row'>
         <div class='col-xs-3'>
           <div class='row'> <!-- Give Condition Selector its own row-->
-            <conditions-selector v-show='!settings.is_pre_analysed' style='width:100%;'
+            <conditions-selector v-show='!is_pre_analysed' style='width:100%;'
                               :settings='settings'
                               :dge_method='dge_method'
                               :sel_conditions='sel_conditions'
@@ -195,7 +195,7 @@
               <li :class='{active: cur_plot=="ma"}'>
                   <a @click='cur_plot="ma"'>MA plot</a>
               </li>
-              <li :class='{active: cur_plot=="mds"}'>
+              <li :class='{active: cur_plot=="mds"}' v-if='!is_pre_analysed'>
                   <a @click='cur_plot="mds"'>MDS plot</a>
               </li>
               <li :class='{active: cur_plot=="volcano"}'>
@@ -260,7 +260,7 @@
             </div><!-- expression -->
 
             <div class='col-xs-3'>
-              <gene-stripchart v-if='true'
+              <gene-stripchart v-if='!is_pre_analysed'
                               :gene-data='gene_data'
                               :colour='condition_colouring'
                               :useIntensity='is_maxquant'
