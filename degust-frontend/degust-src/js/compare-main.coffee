@@ -30,6 +30,7 @@ module.exports =
         merged_data: null
         merged_fc_columns: []
         merged_rows: null
+        merged_rows_selected: null
         merged_cols: null
         x_column: null
         y_column: null
@@ -114,14 +115,20 @@ module.exports =
             this.merge_datasets()
 
         brush_dataset: (idx, genes, empty) ->
-            dataset = this.datasets[idx]
-            brushed_keys = genes.map((r) -> r[dataset.key_col.idx])
-            # First the merged dataset
-            this.merged_colour = (gene) ->
-                if !empty && brushed_keys.indexOf(gene.key)>=0
-                    "darkgreen"
-                else
-                    "blue"
+            if idx>=0
+                # Brush on a dataset scatter plot
+                dataset = this.datasets[idx]
+                brushed_keys = genes.map((r) -> r[dataset.key_col.idx])
+                # Colour the merged dataset
+                this.merged_colour = (gene) ->
+                    if !empty && brushed_keys.indexOf(gene.key)>=0
+                        "darkgreen"
+                    else
+                        "blue"
+            else
+                # Brush on the merged scatter plot
+                brushed_keys = genes.map((r) -> r.key)
+
             # Now the others
             this.datasets.forEach((d,idx2) ->
                 return if idx==idx2 || !d.component?
@@ -130,6 +137,11 @@ module.exports =
                         "darkgreen"
                     else
                         "blue"
+            )
+
+            # Select subset of rows in the table
+            this.merged_rows_selected = this.merged_rows.filter((gene) ->
+                empty || brushed_keys.indexOf(gene.key)>=0
             )
 
         merge_datasets: () ->
@@ -165,6 +177,7 @@ module.exports =
                 )
             )
             this.merged_rows = all_rows
+            this.merged_rows_selected = all_rows
             this.merged_cols = columns
             this.main_keys = main_keys
 

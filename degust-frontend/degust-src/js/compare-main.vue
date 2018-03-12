@@ -82,19 +82,19 @@
                         :highlight='merged_genes_highlight'
                         :colour='merged_colour'
                         :alpha='() => 0.5'
+                        @brush='(genes,empty) => brush_dataset(-1,genes,empty)'
                         >
                         <!-- :filter='filter'
-                        :highlight='highlight'
                         @mouseover='show_info'
                         @mouseout='hide_info'
-                        @brush='brushed' -->
+                        -->
                 </scatter-plot>
               </div>
             </div> <!-- row -->
             <div class='row'>
               <gene-table :gene-data='merged_data'
                           :fc-columns='merged_fc_columns'
-                          :rows='merged_rows'
+                          :rows='merged_rows_selected'
                           :show-counts='false'
                           :show-intensity='false'
                           :useProt='false'
