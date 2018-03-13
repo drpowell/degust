@@ -48,8 +48,9 @@
                         :height='250'
                         :highlight='genesHighlight'
                         @brush='(sel,empty) => $emit("brush",sel,empty)'
+                        @hover-start='v => $emit("mouseover",v)'
+                        @hover-end='v => $emit("mouseout")'
                         >
-                        <!-- @hover-start='v => genes_hover=v' -->
                     </ma-plot>
                 </div>
             </div>

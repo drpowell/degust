@@ -48,6 +48,8 @@
                         @large='dataset.show_large = $event'
                         @update='(component) => update_dataset(idx,component)'
                         @brush='(genes,empty) => brush_dataset(idx,genes,empty)'
+                        @mouseover='(genes) => gene_hover(idx,genes)'
+                        @mouseout='() => gene_nohover()'
                         >
           </compare-compact>
         </div>
@@ -75,6 +77,7 @@
                 <scatter-plot
                         :data='merged_rows'
                         :x-column='ma_plot_x_column' :y-column='ma_plot_y_column'
+                        :dimensionScale='"common"'
                         :brush-enable='true'
                         :canvas='true'
                         :size='function() {return 2}'
@@ -98,8 +101,8 @@
                           :show-counts='false'
                           :show-intensity='false'
                           :useProt='false'
-                          @mouseover='gene_table_hover'
-                          @mouseout='gene_table_nohover'
+                          @mouseover='(v) => gene_hover(-1,[v])'
+                          @mouseout='gene_nohover'
                           >
               </gene-table>
             </div>

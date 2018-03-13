@@ -71,17 +71,27 @@ module.exports =
             this.$emit('resize')
 
     methods:
-        gene_table_hover: (gene) ->
-            highlights = this.datasets.map((d) ->
-                if !d.component?
+        gene_hover: (idx, genes) ->
+            if idx<0
+                keys=genes.map((x) -> x.key)
+            else
+                keys=genes.map((x) => x[this.datasets[idx].key_col.idx])
+                # Highlight the merged plot
+                if this.x_column && this.y_column
+                    highlights = keys.map((x) => this.merged_rows[this.merged_keys[x]])
+                    this.merged_genes_highlight = Vue.noTrack(highlights)
+
+            # Now highlight the individual plots
+            highlights = this.datasets.map((d,idx2) ->
+                if !d.component? || idx2==idx
                     []
                 else
-                    Vue.noTrack(d.key_mappings[gene.key])
+                    sub = keys.map((x) -> d.key_mappings[x]).filter((x) -> x?)
+                    Vue.noTrack( [].concat.apply([], sub) )
             )
             this.genes_highlight = highlights
-            if this.x_column && this.y_column && gene[this.x_column.idx]? && gene[this.y_column.idx]?
-                this.merged_genes_highlight = Vue.noTrack([gene])
-        gene_table_nohover: () ->
+
+        gene_nohover: () ->
             this.genes_highlight=[]
             this.merged_genes_highlight=[]
 
@@ -181,7 +191,7 @@ module.exports =
             this.merged_rows = all_rows
             this.merged_rows_selected = all_rows
             this.merged_cols = columns
-            this.main_keys = main_keys
+            this.merged_keys = main_keys
 
             # FIXME : Hack to pretend to use gene-data
             this.merged_data = new GeneData([],[])
