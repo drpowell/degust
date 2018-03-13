@@ -80,7 +80,7 @@ class GeneData
                     new_cols.push(col)
                 if col.type in ['fc','primary']
                     new_cols.push(
-                        idx: "_calc_#{i}"
+                        idx: "_calc_#{col.name}"
                         name: col.name
                         type: 'fc_calc'
                         calc: (d) =>

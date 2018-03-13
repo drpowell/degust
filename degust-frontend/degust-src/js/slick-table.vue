@@ -13,6 +13,7 @@ require('./lib/jquery.event.drag-2.2.js')
 require('./lib/slick.core.js')
 require('./lib/slick.grid.js')
 require('./lib/slick.dataview.js')
+resize = require('./resize-mixin.coffee')
 
 # Vue wrapper for slick-grid
 #   mouseover: callback for row mouse-over
@@ -20,6 +21,7 @@ require('./lib/slick.dataview.js')
 #   dblclick: callback for row double-click
 module.exports =
     name: 'slick-table'
+    mixins: [resize]
     props:
         rows:
             default: []
@@ -69,6 +71,8 @@ module.exports =
         @grid.onDblClick.subscribe( (e,args) =>
             this.$emit('dblclick', @grid.getDataItem(args.row))
         )
+        this.set_data(true)
+
     computed:
         # Want to watch rows & cols and issue one update when both change
         rowsAndCols: () ->
@@ -81,6 +85,10 @@ module.exports =
                 this.set_data(false)
 
     methods:
+        resize: () ->
+            @grid.resizeCanvas()
+            @invalidate()
+
         resort: () ->
             @dataView.reSort()
 

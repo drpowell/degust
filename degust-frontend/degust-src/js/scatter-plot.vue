@@ -382,7 +382,7 @@ class ScatterPlot
 
     _brushed_dots: () ->
         sel = @_selected()
-        @dispatch.brush(sel, !@_brush_empty())
+        @dispatch.brush(sel, @_brush_empty())
 
     # Find the data points with the extent (for brushing)
     # Extent is in screen coordina
@@ -428,7 +428,10 @@ class ScatterPlot
         @_draw_dots(@colouring || @opts.colouring)
         @_brushed_dots()
 
+resize = require('./resize-mixin.coffee')
+
 module.exports =
+    mixins: [resize]
     props:
         name: "scatter"         # Used for saving filename
         marginL:
@@ -454,8 +457,12 @@ module.exports =
         text:
             type: Function
             default: null
-        alpha: () -> 0.7
-        size: () -> 3
+        alpha:
+            type: Function
+            default: () -> 0.7
+        size:
+            type: Function
+            default: () -> 3
         brushEnable: false
         animate: false             # Attempt to transition dots around.  Only works for canvas
         canvas: true               # Draw using canvas (or svg)
@@ -482,10 +489,7 @@ module.exports =
         needsUpdate: () ->
             this.update()
         highlight: (v) ->
-            if v.length>0
-                this.me.highlight(v)
-            else
-                this.me.unhighlight()
+            this.set_highlight(v)
 
     methods:
         update: () ->
@@ -494,6 +498,14 @@ module.exports =
                 this.me.update_data(this.data,this.xColumn,this.yColumn,this.colour,this.dimensionScale)
         reFilter: () ->
             this.me.reFilter()
+        resize: () ->
+            this.$nextTick(() => this.me.resize())
+        set_highlight: (v) ->
+            if v.length>0
+                this.me.highlight(v)
+            else
+                this.me.unhighlight()
+
 
     mounted: () ->
         #console.log "scatter mounted",this.$refs.outer
@@ -518,7 +530,7 @@ module.exports =
         )
         this.me.on('mouseover.tooltip', (d, loc, loc_doc) => this.$emit('mouseover', d, loc))
         this.me.on('mouseout.tooltip', () => this.$emit('mouseout'))
-        this.me.on('brush', (d) => this.$emit('brush', d))
+        this.me.on('brush', (d,empty) => this.$emit('brush', d, empty))
 
         this.update()
 </script>

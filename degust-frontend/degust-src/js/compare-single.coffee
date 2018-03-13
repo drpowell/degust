@@ -31,6 +31,11 @@ module.exports =
         inputSettings:
             default: () -> {}
         inputCode: null
+        navbar:
+            default: () -> true
+        shown:
+            default: true              # Can be useful to allow this to trigger redraws, etc
+
     components:
         about: about
         navbar: navbar
@@ -182,6 +187,8 @@ module.exports =
             document.title = this.experimentName
         need_renormalization: () ->
             this.renormalize()
+        shown: () ->
+            this.$emit('resize')
 
     methods:
         init: () ->
@@ -271,6 +278,7 @@ module.exports =
             if this.fc_columns.length==2
                 this.heatmap_show_replicates = true
             this.renormalize()
+            this.$emit('update', this.gene_data)
 
         renormalize: () ->
             switch this.normalization
@@ -294,6 +302,8 @@ module.exports =
 
         set_genes_selected: (d) ->
             this.genes_selected = Vue.noTrack(d)
+        set_genes_highlight: (d) ->
+            this.genes_highlight = Vue.noTrack(d)
 
         hover_heatmap: (d) ->
             this.genes_hover = this.genes_highlight = Vue.noTrack([d])

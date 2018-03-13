@@ -1,5 +1,4 @@
 <style scoped>
-    .ma-plot { height: 330px; }
 
     div.tooltip {
       position: absolute;
@@ -30,7 +29,10 @@
                     :x-column='xColumn' :y-column='yColumn'
                     :colour='colour'
                     :highlight='highlight'
-                    :brush-enable='true' :canvas='true'
+                    :brush-enable='true'
+                    :canvas='true'
+                    :size='dotSize'
+                    :style='styleComp'
                     @mouseover='show_info'
                     @mouseout='hide_info'
                     @brush='brushed'
@@ -56,9 +58,12 @@
 <script lang='coffee'>
 
 scatter = require('./scatter-plot.vue').default
+resize = require('./resize-mixin.coffee')
+
 
 module.exports =
     name: "ma-plot"
+    mixins: [resize]
     components:
         scatterPlot: scatter
     props:
@@ -72,6 +77,11 @@ module.exports =
         highlight: null
         filter: null
         filterChanged: null
+        dotSize:
+            type: Function
+            default: () -> 3
+        height:
+            default: '330px'
     data: () ->
         hover: []
         tooltipLoc: [0,0]
@@ -93,11 +103,15 @@ module.exports =
                 null
         tooltipStyle: () ->
             {left: (this.tooltipLoc[0]+40)+'px', top: (this.tooltipLoc[1]+35)+'px'}
+        styleComp: () ->
+            height: this.height
     methods:
+        resize: () ->
+            this.$emit('resize')
         fmt: (val) -> val.toFixed(2)
         fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)
-        brushed: (d) ->
-            this.$emit('brush', d)
+        brushed: (d,empty) ->
+            this.$emit('brush', d,empty)
         show_info: (d,loc) ->
             this.hover=d
             this.tooltipLoc = loc
@@ -105,5 +119,7 @@ module.exports =
         hide_info: () ->
             this.hover=[]
             this.$emit('hover-end')
+        set_highlight: (rows) ->
+            this.$refs.scatter.set_highlight(rows)
 
 </script>

@@ -94,6 +94,7 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
 slickTable = require('./slick-table.vue').default
 popupMenu = require('./popup-menu.vue').default
 { Menu, Menuitem } = require('@hscmap/vue-menu')
+resize = require('./resize-mixin.coffee')
 
 # TODO : restore page from link info
 
@@ -166,6 +167,7 @@ do_download = (gene_data, gene_table, fmt) ->
 
 module.exports =
     name: 'gene-table'
+    mixins: [resize]
     components:
         slickTable: slickTable
         popupMenu: popupMenu
@@ -215,6 +217,7 @@ module.exports =
                     field: col.idx
                     sortable: true
                     formatter: (i,c,val,m,row) ->
+                        return "" if !val?
                         if col.type in ['fc_calc']
                             me.fc_div(val, col, row)
                         else if col.type in ['fdr','p']
@@ -247,6 +250,9 @@ module.exports =
                     false
                 )
     methods:
+        resize: () ->
+            this.$emit('resize')
+
         showPopup: (ev) ->
             this.$refs.menu.show(ev)
 
@@ -272,9 +278,7 @@ module.exports =
                     "<span>#{val}</span>"
                 )
                 countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
-            "<div class='#{colour}'>#{n.toFixed(2)}#{countStr}</div>"
-
-            if this.showIntensity=='yes'
+            else if this.showIntensity=='yes'
                 count_columns = this.geneData.assoc_column_by_type('count',column.name)
                 vals = count_columns.map((c,i) -> "<span>#{row[c.idx]}</span>")
                 countStr = "<span class='counts'>(#{vals.join(" ")})</span>"
