@@ -36,18 +36,18 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
                             <input type='checkbox' v-model='sortAbsLogFC'/>
                         </label>
                         <div>
-                        <label v-show="!useProt">
+                        <label v-if="!useProt">
                             Show Counts
                             <select v-model="showCounts">
-                                <option selected value='no'>No</option>
+                                <option value='no'>No</option>
                                 <option value='yes'>Yes</option>
                                 <option value='cpm'>As counts-per-million</option>
                             </select>
                         </label>
-                        <label v-show="useProt">
+                        <label v-else-if="useProt">
                             Show Intensity
                             <select v-model="showIntensity">
-                                <option selected value='no'>No</option>
+                                <option value='no'>No</option>
                                 <option value='yes'>Yes</option>
                                 <option value='log2'>As Log2 Intensity</option>
                             </select>
@@ -182,10 +182,6 @@ module.exports =
         rows:
             default: []
             required: true
-        showCounts:
-            default: false
-        showIntensity:
-            default: false
         fcColumns:
             required: true
         useProt:
@@ -197,6 +193,8 @@ module.exports =
             top: 0
             btm: 0
             total: 0
+        showCounts: "no"
+        showIntensity: "no"
     watch:
         # Not detected automatically in the gene_table_columns cause only used in a callback
         showCounts: () ->
