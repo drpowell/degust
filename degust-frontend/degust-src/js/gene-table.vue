@@ -220,6 +220,8 @@ module.exports =
                             me.fc_div(val, col, row)
                         else if col.type in ['fdr','p']
                             if val<0.01 then val.toExponential(2) else val.toFixed(2)
+                        else if col.type == "info"
+                            val.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
                         else
                             val
                 if col.type in ['fdr','p']
@@ -244,7 +246,6 @@ module.exports =
                         return true if str? &&
                             typeof str == 'string' &&
                             searchStr.map((el) -> str.toLowerCase().indexOf(el)>=0).reduce((a,b) -> a || b)
-                                       #str.indexOf(searchStr)>=0
                     false
                 )
     methods:

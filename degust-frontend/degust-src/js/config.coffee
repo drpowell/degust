@@ -200,6 +200,8 @@ module.exports =
                 asRows = d3.csv.parseRows(this.csv_data)
             else
                 asRows = d3.tsv.parseRows(this.csv_data)
+            if asRows?
+                asRows = asRows.map((row) -> row.map((entry) -> entry.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')))
             column_keys = asRows.shift()
             column_keys ?= []
 
