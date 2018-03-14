@@ -1,5 +1,5 @@
 <style scoped>
-#grid { height: 300px; }
+div >>> #grid { height: 300px; }
 
 #grid >>> .slick-row { font-size: 9pt; }
 #grid >>> .slick-row:hover {

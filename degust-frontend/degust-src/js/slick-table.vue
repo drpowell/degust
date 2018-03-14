@@ -1,8 +1,33 @@
 <style scoped>
+    div >>> div.tooltip {
+      position: absolute;
+      text-align: center;
+      padding: 2px;
+      font: 12px sans-serif;
+      background: #333;
+      color: #fff;
+      border: 0px;
+      border-radius: 8px;
+      pointer-events: none;
+      width: 'auto';
+      opacity: 0.8;
+      margin: 0 auto;
+      -webkit-transform: translate(-50%, 0); /* Center the tooltip element*/
+    }
+
+    div.tooltip table {
+      font: 12px sans-serif;
+      color: #fff;
+    }
 </style>
 
 <template>
-    <div id="grid" ref='outer'>
+    <div>
+        <div id="grid" ref='outer'></div>
+        <div class='tooltip' v-if='showToolTip' :style='tooltipStyle' ref='tooltip'>
+            <tr v-html="colName"> <!-- Need to escape colName before it is returned, otherwise risk XSS -->
+            </tr>
+        </div>
     </div>
 </template>
 
@@ -30,6 +55,10 @@ module.exports =
             default: []
             required: true
         sorter: null
+    data: () ->
+        colName: ""
+        tooltipLoc: [0,0]
+        showToolTip: false
     mounted: () ->
         grid_options =
             enableCellNavigation: true
@@ -38,7 +67,7 @@ module.exports =
             forceFitColumns: true
             enableTextSelectionOnCells: true
 
-        @dataView = new Slick.Data.DataView()
+        @dataView = new Slick.Data.DataView(this.$refs.outer)
         @grid = new Slick.Grid(this.$refs.outer, @dataView, [], grid_options)
 
         @dataView.onRowCountChanged.subscribe( (e, args) =>
@@ -56,8 +85,18 @@ module.exports =
             @grid.onSort.subscribe( (e,args) => this.sorter(args) )
         @grid.onViewportChanged.subscribe( (e,args) => @_update_info() )
 
-        #@grid.onHeaderMouseEnter.subscribe((e,args) => console.log("enter",e,args))
-        #@grid.onHeaderMouseLeave.subscribe((e,args) => console.log("leave",e,args))
+        @grid.onHeaderMouseEnter.subscribe((e,args) =>
+            val = e.currentTarget.attributes.tooltip.value
+            if val == ""
+                val = args.column.id
+            this.colName = val
+            rect = e.currentTarget.getBoundingClientRect()
+            this.tooltipLoc = [(rect.left + rect.width / 2) , rect.top]
+            this.showToolTip = true
+        )
+        @grid.onHeaderMouseLeave.subscribe((e,args) =>
+            this.showToolTip = false
+        )
 
         # Set up event callbacks
         @grid.onMouseEnter.subscribe( (e,args) =>
@@ -77,6 +116,8 @@ module.exports =
         # Want to watch rows & cols and issue one update when both change
         rowsAndCols: () ->
             {rows: this.rows, cols: this.columns}
+        tooltipStyle: () ->
+            {left: (this.tooltipLoc[0])+'px', top: (this.tooltipLoc[1] + window.pageYOffset - 25)+'px'}
     watch:
         rowsAndCols: (n,o) ->
             if n.cols != o.cols
@@ -114,7 +155,7 @@ module.exports =
             @dataView.endUpdate()
             if new_columns
                 @grid.setColumns(this.columns)
-                $("[title]",this.$el).popover({trigger: 'hover',placement: 'top',container: 'body',html:true})
+                this.$el.querySelectorAll('[title]').forEach((el) -> el.setAttribute("tooltip", el.title))
 
         # Refresh the view.  Call this when the filter changes
         refresh: () ->
