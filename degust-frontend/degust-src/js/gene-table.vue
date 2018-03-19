@@ -31,7 +31,6 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
                     <div slot="body" @mousedown.stop>
                     <div class='text-left' slot="body" @mousedown.stop>
                         <label>
-                            <input type='checkbox' v-model='sortAbsLogFC'/>
                             Sorting by ABSOLUTE logFC
                             <input type='checkbox' v-model='sortAbsLogFC'/>
                         </label>

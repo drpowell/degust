@@ -16,7 +16,7 @@ td, th {
             :closeAction='close'
         >
             <h6 slot='header'>Extra Information</h6>
-            <div slot='body'>
+            <div slot='body' style="overflow-x: auto;">
                 <!-- <select v-if='extraInfoData != null' v-model="selectShown">
                     <option v-for='entry of Object.keys(extraInfoData)' :value='entry'>{{entry}}</option>
                 </select> -->
