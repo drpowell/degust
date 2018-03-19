@@ -17,14 +17,12 @@ log_msg = (msg,rest) ->
     window.our_log.apply(window, r)
 
     return if msg=='DEBUG'
-
-    $('.log-list').append("<pre class='#{msg.toLowerCase()}'>#{msg}: #{args}")
+    document.getElementsByClassName('log-list')[0].insertAdjacentHTML("beforeend", "<pre class='#{msg.toLowerCase()}'>#{msg}: #{args}")
     if msg=='ERROR'
-        $('.log-link').removeClass('btn-link')
-        $('.log-link').addClass('btn-danger')
+        document.getElementsByClassName('log-list')[0].classList.add('btn-link')
+        document.getElementsByClassName('log-list')[0].classList.add('btn-danger')
     if msg=='ERROR' || msg=='WARN'
-        $('.log-link').css('opacity','1')
-
+        document.getElementsByClassName('log-list')[0].style.opacity = 1
 
 # ------------------------------------------------------------
 # This "scheduler" is designed to be used for tasks that may take some time, and
