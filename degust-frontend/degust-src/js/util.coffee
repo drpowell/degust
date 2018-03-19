@@ -17,12 +17,15 @@ log_msg = (msg,rest) ->
     window.our_log.apply(window, r)
 
     return if msg=='DEBUG'
-    document.getElementsByClassName('log-list')[0].insertAdjacentHTML("beforeend", "<pre class='#{msg.toLowerCase()}'>#{msg}: #{args}")
-    if msg=='ERROR'
-        document.getElementsByClassName('log-list')[0].classList.add('btn-link')
-        document.getElementsByClassName('log-list')[0].classList.add('btn-danger')
-    if msg=='ERROR' || msg=='WARN'
-        document.getElementsByClassName('log-list')[0].style.opacity = 1
+    logList = document.getElementsByClassName('log-list')[0]
+    if logList?
+
+        logList.insertAdjacentHTML("beforeend", "<pre class='#{msg.toLowerCase()}'>#{msg}: #{args}")
+        if msg=='ERROR'
+            logList.classList.add('btn-link')
+            logList.classList.add('btn-danger')
+        if msg=='ERROR' || msg=='WARN'
+            logList.style.opacity = 1
 
 # ------------------------------------------------------------
 # This "scheduler" is designed to be used for tasks that may take some time, and
