@@ -50,7 +50,6 @@ module.exports =
 
     mounted: () ->
         Vue.nextTick( () =>
-            console.log(this.value, this.min, this.max)
             if this.value >= this.min && this.value <= this.max
                 elArr = this.stepValuesCur.map((el) => Math.abs((el - this.value)))
                 this.sliderVal = elArr.indexOf(Math.min.apply(null, elArr))
@@ -85,18 +84,18 @@ module.exports =
         set_max: (val, min, max, log) ->
             if !log
                 this.stepValuesCur = (x for x in [0 .. max] by 10)
-                this.stepValuesCur[0] = min
+                this.stepValuesCur = this.stepValuesCur.filter((val) => val >= min)
+                if this.stepValuesCur[0]>min
+                    this.stepValuesCur.unshift(min)
             else
                 #Generate scale
                 newStepValues = [0,1,2,3,4,5,10,25,50,100,200]
-                if !(newStepValues.every((val) => max > val))
-                    newStepValues = newStepValues.filter((val) => val < max)
-                else
-                    fibMax = 300
-                    while max > fibMax
-                        newStepValues.push(fibMax)
-                        len = newStepValues.length
-                        fibMax = newStepValues.slice(len - 2, len).reduce((acc, val) -> acc + val)
+                fibMax = 300
+                while max > fibMax
+                    newStepValues.push(fibMax)
+                    len = newStepValues.length
+                    fibMax = newStepValues.slice(len - 2, len).reduce((acc, val) -> acc + val)
+                newStepValues = newStepValues.filter((val) => val < max)
                 newStepValues.push(max)
                 this.stepValuesCur = newStepValues
             this.max = this.stepValuesCur.length - 1
