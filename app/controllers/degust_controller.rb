@@ -124,31 +124,5 @@ class DegustController < ApplicationController
         #send_data buf.to_csv(:col_sep => "\t", :row_sep => "\n")
         send_data buf.map {|x| x.join("\t")}.join("\n") + "\n"
     end
-#
-#     var readOne = function(lst, buf) {
-#         var codeTitle = lst.shift();
-#         if (!codeTitle || codeTitle.length<2) {
-#             var str = buf.map(function(l) {return l.join("\t");}).join("\n") + "\n";
-#             res.setHeader('content-type', 'text/csv');
-#             return res.send(str);
-#         }
-#         fs.readFile(__dirname + "/kegg/kgml/map/map"+codeTitle[0]+".xml", function(err, data) {
-#             var ecs = [];
-#             if (!err) {
-#                 var re = /name="ec:([.\d]+)"/g;
-#                 var m;
-#                 do {
-#                     m = re.exec(data);
-#                     if (m) {
-#                         ecs.push(m[1]);
-#                     }
-#                 } while (m);
-#             }
-#             buf.push([codeTitle[0], codeTitle[1], ecs.join(" ")]);
-#             readOne(lst, buf);
-#         });
-#     };
-#     readOne(lst, [["code","title","ec"]]);
-# });
 
 end
