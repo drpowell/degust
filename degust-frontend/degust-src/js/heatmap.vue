@@ -49,18 +49,15 @@
 
 <template>
     <div>
-        <div>
-            <div class='heatmap' v-once></div>
-        </div>
-        <div class='tooltip' v-if='hover.length>0 && interactive' :style="tooltipStyle" id='heamtaptooltip'>
+        <div class='heatmap' v-once ref='hmap' id='heatmap'></div>
+        <div class='tooltip' v-if='Object.keys(hover).length > 0 && interactive' :style='tooltipStyle'>
             <table>
                 <tr v-for='c in infoCols'>
                     <td><b>{{c.name}}:</b></td>
-                    <td>{{hover[0][c.idx]}}</td>
+                    <td>{{hover[c.idx]}}</td>
                 </tr>
-                <tr><td><b>Ave Expr:</b></td><td>{{fmt(hover[0][avgCol.idx])}}</td></tr>
-                <!-- <tr><td><b>log FC:</b></td><td>{{fmt(hover[0][logfcCol.idx])}}</td></tr> -->
-                <tr><td><b>FDR:</b></td><td>{{fmt2(hover[0][fdrCol.idx])}}</td></tr>
+                <tr><td><b>Ave Expr:</b></td><td>{{fmt(hover[avgCol.idx])}}</td></tr>
+                <tr><td><b>FDR:</b></td><td>{{fmt2(hover[fdrCol.idx])}}</td></tr>
             </table>
             <div v-if='hover.length>1'>
                 And {{hover.length-1}} other{{hover.length>2 ? 's' : ''}}
@@ -199,7 +196,6 @@ class Heatmap
 
         # Create a single wrapper for later use
         @worker = new WorkerWrapper(calc_order, (d) => @_worker_callback(d))
-        @_enabled = true
         @columns_changed = false
         if @opts.enablecontextmenu
             @_make_menu(@opts.elem)
@@ -221,21 +217,10 @@ class Heatmap
                     .attr("class","arrowHead");
 
     resize: () ->
-        if !@_enabled
-            return
         @opts.width = d3.max([0, d3.select(@opts.elem).node().clientWidth - 20])
         @info.attr("x", @opts.width-200)
         @_redraw_all();
 
-    # Enable/disable the heatmap.  When disabled it is hidden and does not update
-    enabled: (enabled) ->
-        if enabled?
-            @_enabled = enabled
-            $(@opts.elem).toggle(enabled)
-            if (@opts.show_elem?)
-                $(@opts.show_elem).toggle(!enabled)
-        else
-            @_enabled
 
     # Return a copy of the SVG with styles attached from the stylesheet
     _get_svg: () ->
@@ -397,7 +382,7 @@ class Heatmap
     # Update which rows are displayed (set in update_columns())
     schedule_update: (rows) ->
         @rows=rows if rows
-        return if !@rows? || !@columns? || !@_enabled
+        return if !@rows? || !@columns?
 
         scheduler.schedule('heatmap.render', () => )
 
@@ -504,7 +489,7 @@ class Heatmap
 
         genes.on('mouseover', (d, loc) =>
             x = d.x
-            y = d3.event.clientY - 150
+            y = d3.event.pageY
             @dispatch.mouseover(@data_object.row_by_id(d.rest.id), [x, y])
         )
         genes.on('mouseout', () => @dispatch.mouseout())
@@ -517,7 +502,7 @@ class Heatmap
         @dispatch.on(t, func)
 
     highlight: (rows) ->
-        return if !@_enabled || @_is_thinking
+        return if @_is_thinking
         pos = rows.map((r) => @order.indexOf(r.id)).filter((p) -> p>=0)
         #console.log rows,pos
         if pos.length==0
@@ -592,11 +577,12 @@ module.exports =
         twocolor:
             default: false
         infoCols:
-            default: []
+            default: null
         avgCol: null
         logfcCol : null
         fdrCol: null
-        interactive: null
+        interactive:
+            default: true
     computed:
         needsUpdate: () ->
             # As per https://github.com/vuejs/vue/issues/844#issuecomment-265315349
@@ -604,7 +590,7 @@ module.exports =
             this.dimensions
             Date.now()
         tooltipStyle: () ->
-            {left: (this.tooltipLoc[0] + 40)+'px', top: (this.tooltipLoc[1])+'px'}
+            {left: (this.tooltipLoc[0] + 40)+'px', top: (this.tooltipLoc[1] - 170)+'px'}
     watch:
         needsUpdate: () ->
             this.update_all()
@@ -624,11 +610,10 @@ module.exports =
     data: () ->
         hover: []
         tooltipLoc: [0,0]
-        xcoord: null
 
     mounted: () ->
         this.heatmap = new Heatmap(
-            elem: this.$el
+            elem: this.$refs.hmap
             show_replicates: this.showReplicates
             geneOrder: this.geneOrder
             width: this.width
@@ -637,7 +622,7 @@ module.exports =
             twocolor: this.twocolor
         )
 
-        this.heatmap.on("mouseover", (d, loc) => this.$emit("mousehover", d); this.show_info(d,loc))
+        this.heatmap.on("mouseover", (d, loc) => this.show_info(d,loc); this.$emit("mousehover", d))
         this.heatmap.on("mouseout", ()  => this.hide_info())
 
         this.heatmap.on("hide", () => this.$emit('hide'))
@@ -656,11 +641,11 @@ module.exports =
                 this.heatmap.update_columns(this.geneData, this.genesShow, this.dimensions, true)
 
         show_info: (d,loc) ->
-            this.hover=[d]
+            this.hover=d
             this.tooltipLoc = loc
-            this.$emit('hover-start',[d], loc)
+            this.$emit('hover-start',d,loc)
         hide_info: () ->
-            this.hover=[]
+            this.hover = []
             this.$emit('hover-end')
         fmt: (val) -> val.toFixed(2)
         fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)

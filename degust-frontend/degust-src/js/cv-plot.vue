@@ -1,34 +1,38 @@
 <style scoped>
 .bar-graph>>>.label {
-  font-size: 100%;
+  font-size: 50%;
 }
 
 .bar-graph>>>.title {
   font-weight: bold;
-  font-size: 140%;
+  font-size: 70%;
 }
 </style>
 
 <template>
 <div>
-    <div v-for="graph of barGraphData">
-        <bar-graph class='bar-graph'
-                :tot-width='700'
-                :tot-height='500'
-                :margin-t='50'
-                :margin-r='50'
-                :margin-l='80'
-                :margin-b='50'
-                :title=graph.p_label
-                :title-y='-20'
-                x-label="Variation"
-                y-label="Frequency"
-                :x-domain='[0,165]'
-                :x-ordinal='false'
-                :data=graph.val
-                >
-        </bar-graph>
-        <p></p>
+    <div class='row' v-for="i of Math.ceil(barGraphData.length / 4)">
+        <div class='container'>
+        <div class='col-sm-3' v-for="graph of barGraphData.slice((i - 1) * 4, i * 4)">
+            <bar-graph class='bar-graph'
+                    :tot-width='340'
+                    :tot-height='260'
+                    :margin-t='50'
+                    :margin-r='50'
+                    :margin-l='80'
+                    :margin-b='50'
+                    :title=graph.p_label
+                    :title-y='-20'
+                    x-label="Variation"
+                    y-label="Frequency"
+                    :x-domain='[0,165]'
+                    :x-ordinal='false'
+                    :data=graph.val
+                    >
+            </bar-graph>
+            <p></p>
+        </div>
+        </div>
     </div>
 </div>
 </template>
@@ -49,12 +53,12 @@ module.exports =
         cv: () ->
             data = this.geneData
             parents = data.columns_by_type("count").map((i) -> i.parent).filter((el, i, ar) -> ar.indexOf(el) == i)
-            res = parents.map((parent) -> 
+            res = parents.map((parent) ->
                     row = data.get_data().map((rw) ->
                             names = data.assoc_column_by_type("count", parent).map((i) -> i.idx)
                             names.map((el) -> rw[el])
                             )
-                    result = row.map((rw) -> 
+                    result = row.map((rw) ->
                             rw.filter((e) -> e != 0)
                             mean = d3.mean(rw)
                             seriesSum = d3.sum(rw.map((el) -> el - mean).map((e) -> e ** 2))
@@ -73,7 +77,6 @@ module.exports =
         barGraphData: () ->
             res = []
             for value in this.bins
-                res.push( {p_label: "CV Histogram of " + value.p_label, val: value.val.map((bin) -> {lbl: bin.x, val: bin.y, width: bin.dx} ) } )
-            #res = this.bins.map((g) -> g.map((b) -> {lbl: b.x, val: b.y, width: b.dx}))
+                res.push( {p_label: "CV Histogram of " + value.p_label, val: value.val.map((bin) -> {lbl: bin.x, val: bin.y, width: bin.dx}) } )
             Vue.noTrack(res)
 </script>

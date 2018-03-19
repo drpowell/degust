@@ -9,16 +9,23 @@ data<-read.delim('<%== @counts_file %>',skip=<%= @counts_skip %>, sep="<%== @sep
 rzr_col <- data$`Peptide counts (razor+unique)`
 rzr_uniq <- lapply(lapply(mapply(rzr_col, FUN = strsplit, ";"), FUN = as.numeric), FUN = sum)
 
+
 data <- data[data$Reverse != "+" & data$`Only identified by site` != "+" & rzr_uniq > 1,]
 data[,count_cols] <- apply(data[,count_cols], 2, function(v) as.numeric(v)) # Force numeric count columns
+data <- data[data$`Potential contaminant` == "",] # Filter rows with potential contaminants
+data <- data[data$Reverse == "",] # Filter rows in reverse direction
 
 counts <- as.matrix(data[, count_cols])
 #Remove rows with >= 20% missing values (Missing mean NA, not 0)
-data <- data[rowMeans(counts == 0) <= 0.2,]
-counts <- counts[rowMeans(counts == 0) <= 0.2,]
+keepNonZero <- rowMeans(counts != 0) >= <%= @min_cpm %>
+keepIntensity <- rowSums(cpm(counts)> <%= @min_counts %>) >= <%= @min_cpm_samples %>
+
+keep <- keepNonZero & keepIntensity
+data <- data[keep,]
+counts <- counts[keep,]
 #Variance Stabilise
 
-#Impute here.
+#Imputation starts here.
 #lowpt <- median(as.matrix(counts)) - (sd(as.matrix(counts)) * 1.5)
 #highpt <- median(as.matrix(counts)) - (sd(as.matrix(counts)) * 2.1)
 #mid_vals <- counts[counts < highpt & lowpt < counts]
@@ -32,7 +39,7 @@ counts <- counts[rowMeans(counts == 0) <= 0.2,]
 #We set 0 to NA so we can easily replace them
 counts[counts == 0] <- NA
 
-#log2 counts
+#Impute on log2 counts
 counts <-  log2(counts)
 
 stat_tb <- data.frame(matrix(nrow = ncol(counts), ncol=4))
@@ -53,22 +60,12 @@ for (a in seq_len(nrow(stat_tb))) {
         sd = stat_tb$sd[a] * scale)
     }
 colnames(counts) <- paste(colnames(counts), "imputed")
-#Assay call
 
-#Pre-process here
-#data <- input %>%
-#	filter(Reverse!="+", Only.identified.by.site!="+", Razor...unique.peptides>=2).
-#data_filter<-filter_missval(data_se,thr = 2)
-
-#Filters low intensity/counts (not missing values) Probably redundant as missing values are 0's
-keepMin <- apply(counts, 1, max) >= <%= @min_counts %>
-data <- data[keepMin,]
-y <- log2(counts[keepMin,]+0.5)
-
+#No normalisaiton present?
 design <- <%== @design %>
 cont.matrix <- <%== @cont_matrix %>
 
-fit <- lmFit(y,design)
+fit <- lmFit(counts,design)
 fit2 <- contrasts.fit(fit, cont.matrix)
 fit2 <- eBayes(fit2)
 
@@ -79,11 +76,26 @@ out2 <- cbind(fit2$coef,
 			  data[, c(<%== @export_cols %>)],
               counts)
 
-write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+param_normalized <- '<%= @normalized %>'
+normalized <- matrix(0)
+if (param_normalized=='') {
+    write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+} else if (param_normalized=='backend') {
+    normalized <- out2
+} else if (param_normalized=='remove-hidden') {
+    hidden_factors <- <%== @hidden_factors %>
+    if (length(hidden_factors)>0) {
+        # Remove the batch effect (as done in removeBatchEffect)
+        beta <- fit$coefficients[, hidden_factors, drop=FALSE]
+        normalized <- as.matrix(y) - beta %*% t(design[, hidden_factors, drop=FALSE])
+    }
+}
 
 cat(
    toJSON(list(rank=fit2$rank, df_prior=fit2$df.prior,
-			   design=data.frame(fit2$design), contrasts=data.frame(fit2$contrasts),
-			   cov_coefficients=data.frame(fit2$cov.coefficients))),
+               design=data.frame(fit2$design), contrasts=data.frame(fit2$contrasts),
+               cov_coefficients=data.frame(fit2$cov.coefficients),
+               normalized=list(columns=colnames(normalized), values=normalized)
+         )),
    file="<%== @output_dir %>/extra.json"
 )

@@ -62,6 +62,8 @@ class GeneData
             for c in @columns
                 if c.type in ['fc','abs','avg','fdr','count','p']
                     d[c.idx] = +d[c.idx]
+                if(c.type == 'info')
+                    d[c.idx].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
         fdr_col = @column_by_type('fdr')?.idx
         @data.sort((a,b) -> a[fdr_col] - b[fdr_col])
         @_totals = {}

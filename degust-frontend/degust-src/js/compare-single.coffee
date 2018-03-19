@@ -11,6 +11,8 @@ backends = require('./backend.coffee')
 sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 filterGenes = require('./filter-genes.vue').default
+extraInfo = require('./extra-info.vue').default
+ErrorMsg = require('./modal-error-msg.vue').default
 Modal = require('modal-vue').default
 geneTable = require('./gene-table.vue').default
 maPlot = require('./ma-plot.vue').default
@@ -41,6 +43,8 @@ module.exports =
         sliderText: sliderText
         conditionsSelector: conditions
         filterGenes: filterGenes
+        extraInfo: extraInfo
+        ErrorMsg: ErrorMsg
         Modal: Modal
         geneTable: geneTable
         maPlot: maPlot
@@ -94,6 +98,10 @@ module.exports =
         heatmap_show_replicates: false
         show_qc: ''
         show_about: false
+        show_extraInfo: false
+        extraInfo_data: null
+        error_msg: null
+        show_Error: false
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:
@@ -212,9 +220,8 @@ module.exports =
                     log_error "Failed to get settings!",x
                     this.load_failed = true
                     this.$nextTick(() ->
-                        pre = $("<pre></pre>")
-                        pre.text("Error failed to get settings : #{x.responseText}")
-                        $('.error-msg').append(pre)
+                        this.error_msg.msg = x.responseText
+                        this.show_Error = true
                     )
                 )
 
@@ -222,6 +229,10 @@ module.exports =
             this.ev_backend = new Vue()
             this.ev_backend.$on("start_loading", () => this.num_loading+=1)
             this.ev_backend.$on("done_loading", () => this.num_loading-=1)
+            this.ev_backend.$on("errorMsg", (errorMsg) =>
+                this.error_msg = errorMsg
+                this.show_Error = true
+                )
             if !use_backend
                 this.backend = new backends.BackendNone(this.settings, this.ev_backend)
             else
@@ -257,6 +268,7 @@ module.exports =
             this.maxGenes = this.gene_data.get_data().length
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1
+            this.extraInfo_data = extra
             this.set_genes_selected(this.gene_data.get_data())
             this.genes_hover = [this.gene_data.get_data()[0]]
             this.genes_highlight = []
@@ -344,10 +356,8 @@ module.exports =
             if this.filter_gene_list.length > 0
                 info_cols = this.gene_data.columns_by_type('info').map((c) -> row[c.idx])
                 matching = info_cols.filter((col) =>
-                    debugger
                     col.toLowerCase() of this.filter_gene_list_cache
                 )
-                debugger
                 if matching.length == 0
                     return false
 
@@ -359,6 +369,7 @@ module.exports =
 
         tip: (txt) ->
             {content:txt, placement:'left'}
+
 
     mounted: () ->
         this.init()

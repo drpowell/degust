@@ -7,7 +7,7 @@
         <input type="text" :class="{error: isError, warning: isWarning}"
                :disabled='textDisable'
                :value="this.my_fmt(value)" v-on:input="value = $event.target.value" />
-        <div class='slider' v-once></div>
+        <input type="range" v-model="sliderVal" v-bind:min="min" v-bind:max="max" value="sliderVal" class="slider" id="myRange">
         <span v-if='dropdowns' class="dropdown">
           <button class="btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="caret"></span>
@@ -34,7 +34,7 @@ module.exports =
         textDisable: false
         dropdowns: null
         stepValues:
-            default: () -> [0..10]
+            default: () -> [0 .. 10]
 
     data: () ->
         value: this.value_in
@@ -43,32 +43,34 @@ module.exports =
         stepValuesCur: this.stepValues
         slider:
             data: this.stepValuesCur
+        min: 0
+        max: this.stepValues.length - 1
+        steps: 1
+        sliderVal: this.value_in
 
     mounted: () ->
-        this.setup()
+        Vue.nextTick( () =>
+            console.log(this.value, this.min, this.max)
+            if this.value >= this.min && this.value <= this.max
+                elArr = this.stepValuesCur.map((el) => Math.abs((el - this.value)))
+                this.sliderVal = elArr.indexOf(Math.min.apply(null, elArr))
+                this.max = this.stepValuesCur.length - 1
+        )
 
     watch:
+        sliderVal: (v) -> this.value = this.stepValuesCur[v]
         warning: (v) -> this.isWarning = v
         value_in: (v) -> this.value = v
         value: () ->
-            this.set_slider(this.value)
             if this.validator?
                 this.isError = !this.validator(this.value)
+            if this.value >= this.min #Find the index of the array that is closest to the value (if it is inside it)
+                elArr = this.stepValuesCur.map((el) => Math.abs((el - this.value)))
+                this.sliderVal = elArr.indexOf(Math.min.apply(null, elArr))
             if !this.isError
                 this.$emit('input', +this.value)
 
     methods:
-        setup: () ->
-            this.slider = $(".slider",this.$el).slider({
-              animate: true,
-              min: 0,
-              max: this.stepValuesCur.length-1,
-              value: 1,
-              slide: (event, ui) =>
-                this.value = this.stepValuesCur[ui.value]
-            })
-            this.set_slider(this.value)
-
         my_fmt: (v) ->
             if this.fmt?
                 return this.fmt(v)
@@ -79,23 +81,28 @@ module.exports =
                 n.toExponential(0)
             else
                 v
-        # Set the slider to the nearest entry
-        set_slider: (v) ->
-          set_i=0
-          $.each(this.stepValuesCur, (i,v2) ->
-            if (v2<=v)
-              set_i = i
-          )
-          this.slider.slider("value", set_i)
 
         set_max: (val, min, max, log) ->
             if !log
-                @stepValuesCur = (x for x in [min..max] by 10)
+                this.stepValuesCur = (x for x in [0 .. max] by 10)
+                this.stepValuesCur[0] = min
             else
-                # FIXME
-                @stepValuesCur = [0,1,2,3,4,5,10,20,100,200,Math.floor(max/3),Math.floor(max/2),max]
-                @stepValuesCur = @stepValuesCur.filter((v) -> v>=min && v<=max)
-            @slider.slider("option", "max", @stepValuesCur.length-1)
-            @set_slider(val)
+                #Generate scale
+                newStepValues = [0,1,2,3,4,5,10,25,50,100,200]
+                if !(newStepValues.every((val) => max > val))
+                    newStepValues = newStepValues.filter((val) => val < max)
+                else
+                    fibMax = 300
+                    while max > fibMax
+                        newStepValues.push(fibMax)
+                        len = newStepValues.length
+                        fibMax = newStepValues.slice(len - 2, len).reduce((acc, val) -> acc + val)
+                newStepValues.push(max)
+                this.stepValuesCur = newStepValues
+            this.max = this.stepValuesCur.length - 1
+            if this.value >= this.min
+                elArr = this.stepValuesCur.map((el) => Math.abs((el - this.value)))
+                this.sliderVal = elArr.indexOf(Math.min.apply(null, elArr))
+                this.max = this.stepValuesCur.length - 1
 
 </script>

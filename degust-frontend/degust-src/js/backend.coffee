@@ -54,36 +54,48 @@ class BackendPreAnalysed
         @common.request_kegg_data(callback)
 
     request_data: () ->
-        req = BackendCommon.script(this.code, "csv")
-        @events.$emit("start_loading")
-        d3.text(req, (err, dat) =>
-            log_info("Downloaded DGE CSV: len=#{dat.length}")
-            @events.$emit("done_loading")
-            if err
-                log_error(err)
-                return
+        new Promise((resolve) =>
+            req = BackendCommon.script(this.code, "csv")
+            @events.$emit("start_loading")
+            d3.text(req, (err, dat) =>
+                log_info("Downloaded DGE CSV: len=#{dat.length}")
+                @events.$emit("done_loading")
+                if err
+                    log_error(err)
+                    return
 
-            if @settings.csv_format
-               data = d3.csv.parse(dat)
-            else
-               data = d3.tsv.parse(dat)
-            log_info("Parsed DGE CSV : rows=#{data.length}")
-            log_debug("Parsed DGE CSV : rows=#{data.length}",data,err)
+                if @settings.csv_format
+                    data = d3.csv.parse(dat)
+                else
+                    data = d3.tsv.parse(dat)
+                log_info("Parsed DGE CSV : rows=#{data.length}")
+                log_debug("Parsed DGE CSV : rows=#{data.length}",data,err)
 
-            data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
-            data_cols.push({idx: '_dummy', type: 'primary', name:@settings.primary_name})
-            @settings.fc_columns.forEach((n) ->
-                data_cols.push({idx: n, type: 'fc', name: n})
+                data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
+                data_cols.push({idx: '_dummy', type: 'primary', name:@settings.primary_name})
+                @settings.fc_columns.forEach((n) ->
+                    data_cols.push({idx: n, type: 'fc', name: n})
+                )
+                data_cols.push({idx: @settings.fdr_column, name: @settings.fdr_column, type: 'fdr'})
+                data_cols.push({idx: @settings.avg_column, name: @settings.avg_column, type: 'avg'})
+                if @settings.ec_column?
+                    data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
+                if @settings.link_column?
+                    data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
+
+                resolve([data, data_cols])
             )
-            data_cols.push({idx: @settings.fdr_column, name: @settings.fdr_column, type: 'fdr'})
-            data_cols.push({idx: @settings.avg_column, name: @settings.avg_column, type: 'avg'})
-            if @settings.ec_column?
-                data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
-            if @settings.link_column?
-                data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
-
-            @events.$emit("dge_data", data, data_cols)
         )
+
+
+    dge_methods: () ->
+        []
+
+    qc_plots: () ->
+        []
+
+    request_r_code: () ->
+        "This data is pre-analysed. No R code available."
 
 class BackendRNACounts
     constructor: (@code, @settings, @events) ->
@@ -125,17 +137,6 @@ class BackendRNACounts
     request_data: (method,columns,contrasts) ->
         @_request_dge_data(method,columns,contrasts)
 
-    _extra_info: (extra) ->
-        html = ""
-        if extra.sample_weights?
-            $('.weights-toggle').show()     # FIXME
-            html = $("<div></div>")
-            for i in [0...extra.sample_weights.length]
-                html.append("<div><span class='name'>#{extra.samples[i]}</span><span class='val'>#{extra.sample_weights[i]}</span></div>")
-        else
-            $('.weights-toggle').hide()
-        $('.weights').html(html)
-
     _request_from_params: (call, params) ->
         arr = []
         for k,v of params
@@ -169,19 +170,15 @@ class BackendRNACounts
                     log_error(err)
                     return
 
-                if (json.error?)    # FIXME
+                if (json.error?)
+                    @events.$emit("errorMsg", json.error)
                     log_error("Error doing DGE",json.error)
-                    $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
-                    $('div#error-modal .modal-body pre.error-input').text(json.error.input)
-                    $('div#error-modal').modal()
                     return
 
                 data = d3.csv.parse(json.csv);
                 log_info("Downloaded DGE counts : rows=#{data.length}")
                 log_debug("Downloaded DGE counts : rows=#{data.length}",data,err)
                 log_info("Extra info : ",json.extra)
-
-                @_extra_info(json.extra)
 
 
                 data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
@@ -259,6 +256,24 @@ class BackendMaxQuant
     request_data: (method,columns) ->
         @_request_dge_data(method,columns)
 
+    _request_from_params: (call, params) ->
+        arr = []
+        for k,v of params
+            if typeof v == 'string'
+                arr.push("#{k}=#{v}")
+            else
+                arr.push("#{k}=#{encodeURIComponent(JSON.stringify v)}")
+
+        BackendCommon.script(this.code, call, arr.join("&"))
+
+    _gen_request: (call, method, columns, contrast, opt) ->
+        if contrast
+            hsh = {method: method, contrast: contrast}
+        else
+            hsh = {method: method, fields: columns}
+        Object.assign(hsh, opt)
+        @_request_from_params(call, hsh)
+
     _request_dge_data: (method,columns) ->
         console.log "request_dge_data",method,columns
         return if columns.length <= 1
@@ -274,11 +289,9 @@ class BackendMaxQuant
                     log_error(err)
                     return
 
-                if (json.error?)    # FIXME
+                if (json.error?)
+                    @events.$emit("errorMsg", json.error)
                     log_error("Error doing DGE",json.error)
-                    $('div#error-modal .modal-body pre.error-msg').text(json.error.msg)
-                    $('div#error-modal .modal-body pre.error-input').text(json.error.input)
-                    $('div#error-modal').modal()
                     return
 
                 data = d3.csv.parse(json.csv);
@@ -322,6 +335,15 @@ class BackendMaxQuant
         new Promise((resolve) =>
             req = BackendCommon.script(this.code, "dge_r_code","method=#{method}&fields=#{encodeURIComponent(JSON.stringify columns)}")
             d3.text(req, (err,data) ->
+                log_debug("Downloaded R Code : len=#{data.length}",data,err)
+                resolve(data)
+            )
+        )
+
+    request_normalized: (normalized, method,columns,contrast) ->
+        new Promise((resolve) =>
+            req = @_gen_request('dge', method, columns,contrast,{normalized: normalized})
+            d3.json(req, (err,data) ->
                 log_debug("Downloaded R Code : len=#{data.length}",data,err)
                 resolve(data)
             )
