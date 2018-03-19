@@ -130,7 +130,6 @@
                   <label>Num genes</label>
                   <slider-text class='slider-control'
                               v-model='numGenesThreshold'
-                              :step-values='fcStepValues'
                               :validator="intValidator"
                               ref='num_genes'
                               >
