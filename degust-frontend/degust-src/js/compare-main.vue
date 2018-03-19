@@ -86,11 +86,9 @@
                         :colour='merged_colour'
                         :alpha='() => 0.5'
                         @brush='(genes,empty) => brush_dataset(-1,genes,empty)'
+                        @mouseover='(v) => gene_hover(-1,v)'
+                        @mouseout='gene_nohover'
                         >
-                        <!-- :filter='filter'
-                        @mouseover='show_info'
-                        @mouseout='hide_info'
-                        -->
                 </scatter-plot>
               </div>
             </div> <!-- row -->

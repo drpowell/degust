@@ -78,7 +78,8 @@ module.exports =
                 keys=genes.map((x) => x[this.datasets[idx].key_col.idx])
                 # Highlight the merged plot
                 if this.x_column && this.y_column
-                    highlights = keys.map((x) => this.merged_rows[this.merged_keys[x]])
+                    highlights = keys.map((x) => this.merged_rows[this.merged_keys[x]]).
+                                      filter((x) => x[this.x_column.idx]? && x[this.y_column.idx]?)
                     this.merged_genes_highlight = Vue.noTrack(highlights)
 
             # Now highlight the individual plots
