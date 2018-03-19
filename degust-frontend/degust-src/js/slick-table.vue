@@ -2,18 +2,29 @@
     div >>> div.tooltip {
       position: absolute;
       text-align: center;
-      padding: 2px;
+      padding: 6px 12px 6px;
       font: 12px sans-serif;
       background: #333;
       color: #fff;
       border: 0px;
-      border-radius: 8px;
+      border-radius: 12px;
       pointer-events: none;
       width: 'auto';
-      opacity: 0.8;
+      opacity: 1;
       margin: 0 auto;
       -webkit-transform: translate(-50%, 0); /* Center the tooltip element*/
     }
+
+    div >>> div.tooltip::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* Place at the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
 
     div.tooltip table {
       font: 12px sans-serif;
@@ -117,7 +128,7 @@ module.exports =
         rowsAndCols: () ->
             {rows: this.rows, cols: this.columns}
         tooltipStyle: () ->
-            {left: (this.tooltipLoc[0])+'px', top: (this.tooltipLoc[1] + window.pageYOffset - 25)+'px'}
+            {left: (this.tooltipLoc[0])+'px', top: (this.tooltipLoc[1] + window.pageYOffset - 31)+'px'}
     watch:
         rowsAndCols: (n,o) ->
             if n.cols != o.cols
