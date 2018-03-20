@@ -88,7 +88,7 @@ a {font-size: 10px}
                 </a>
                 <div class='weights collapse'></div> -->
             <div class='col-xs-5' align="right">
-                <a @click='showSampleWeights' v-if='cur.dge_method=="voom-weights"'>View sample weights</a>
+                <a @click='showSampleWeights'>View Extra Information</a>
             </div>
             </div>
             </div>
