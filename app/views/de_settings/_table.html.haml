@@ -17,14 +17,23 @@
         = number_to_human_size(de.user_file.size)
       %td.smaller{"data-val" => de.created_at.to_i}
         = de.created_at.to_formatted_s(:rfc822)
-      %td.smaller{"data-val" => de.last_visit_by(current_user).last.to_i}
-        = de.last_visit_by(current_user).last.to_formatted_s(:rfc822)
+      %td.smaller{"data-val" => de.last_visit_by(current_user) ? de.last_visit_by(current_user).last.to_i : ''}
+        = de.last_visit_by(current_user) ? de.last_visit_by(current_user).last.to_formatted_s(:rfc822) : ''
       -#   = moment(val.last).format("MMMM Do YYYY, h:mm:ss a")}
       %td
         = de.user.nil? ? '<Anonymous>' : de.user.name
       %td
-        = link_to "View", de_setting_path(de.secure_id),
-          :class => 'btn btn-info btn-xs'
+        .btn-group
+          = link_to "View", degust_compare_url('', de.secure_id), :class => 'btn btn-info btn-xs'
+          %a.dropdown-toggle.btn.btn-xs.btn-info{"data-toggle"=>"dropdown","role"=>"button","aria-haspopup"=>"true", "aria-expanded"=>"false" }
+            %span.caret
+            %span.sr-only
+              Toggle Dropdown
+          %ul.dropdown-menu
+            - frontend_versions.each do |ver|
+              %li
+                = link_to "Version #{ver}", degust_compare_url(ver, de.secure_id)
+
         - if de.user == current_user
           = link_to "Delete", de_setting_path(de.secure_id),
             :method => :delete,

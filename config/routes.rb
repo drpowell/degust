@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     get '/degust/version/:version/:id/dge_r_code' => 'degust#dge_r_code'
     get '/degust/version/:version/:id/kegg_titles' => 'degust#kegg_titles'
     get '/degust/version/:version/kegg/*page' => 'degust#static_kegg'
-    get '/degust/version/:version/*page' => 'degust#static', :as => :degust_version
+    get '/degust/version/:version/*page' => 'degust#static', :as => :degust_page_version
   end
 
   # General calls

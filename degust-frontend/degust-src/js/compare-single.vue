@@ -89,7 +89,7 @@
               </div>
 
               <div v-tooltip="tip('Filter page to genes in this list')">
-                <label>Create Filter</label>
+                <label>Gene list</label>
                 <a @click='showGeneList=true'>{{(filter_gene_list.length == 0) ? "Create Filter" : "List Size: " + filter_gene_list.length }}</a>
               </div>
 

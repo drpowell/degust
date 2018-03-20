@@ -2,18 +2,14 @@ class DegustController < ApplicationController
     skip_before_action :verify_authenticity_token, :only => [:static, :save_settings]
 
     def static
-        if params.has_key?('version')
-            # Use a version specific file
-            page = "degust-frontend/degust-dist-#{params['version'].to_s}/#{params['page'].to_s}.#{params['format'].to_s}"
-        else
-            # Use latest
-            page = "degust-frontend/degust-dist/#{params['page'].to_s}.#{params['format'].to_s}"
-        end
+        version = params['version'] || ''
+        filename = dir_for_version(version) + "/#{params['page'].to_s}.#{params['format'].to_s}"
 
-        if page.include?('..') || !File.exists?(page)
+        print "filename",filename
+        if filename.include?('..') || !File.exists?(filename)
             raise ActionController::RoutingError.new('Not Found')
         else
-            send_file page, disposition: 'inline'
+            send_file filename, disposition: 'inline'
         end
     end
 
@@ -53,8 +49,6 @@ class DegustController < ApplicationController
         res['extra_menu_html'] = render_to_string(partial: 'layouts/navigation_links.html.erb')
         res['is_logged_in'] = !current_user.nil?
         res['is_owner'] = de_setting.is_owner(current_user)
-        res['versions'] = [{version:'latest', path: degust_page_path("compare.html")},
-                           {version:'v3.1.0',  path: degust_version_path('3.1.0',"compare.html")}]
         render :json => res
     end
 
@@ -124,31 +118,5 @@ class DegustController < ApplicationController
         #send_data buf.to_csv(:col_sep => "\t", :row_sep => "\n")
         send_data buf.map {|x| x.join("\t")}.join("\n") + "\n"
     end
-#
-#     var readOne = function(lst, buf) {
-#         var codeTitle = lst.shift();
-#         if (!codeTitle || codeTitle.length<2) {
-#             var str = buf.map(function(l) {return l.join("\t");}).join("\n") + "\n";
-#             res.setHeader('content-type', 'text/csv');
-#             return res.send(str);
-#         }
-#         fs.readFile(__dirname + "/kegg/kgml/map/map"+codeTitle[0]+".xml", function(err, data) {
-#             var ecs = [];
-#             if (!err) {
-#                 var re = /name="ec:([.\d]+)"/g;
-#                 var m;
-#                 do {
-#                     m = re.exec(data);
-#                     if (m) {
-#                         ecs.push(m[1]);
-#                     }
-#                 } while (m);
-#             }
-#             buf.push([codeTitle[0], codeTitle[1], ecs.join(" ")]);
-#             readOne(lst, buf);
-#         });
-#     };
-#     readOne(lst, [["code","title","ec"]]);
-# });
 
 end
