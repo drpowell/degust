@@ -5,7 +5,6 @@ class DegustController < ApplicationController
         version = params['version'] || ''
         filename = dir_for_version(version) + "/#{params['page'].to_s}.#{params['format'].to_s}"
 
-        print "filename",filename
         if filename.include?('..') || !File.exists?(filename)
             raise ActionController::RoutingError.new('Not Found')
         else
