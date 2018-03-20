@@ -23,8 +23,17 @@
       %td
         = de.user.nil? ? '<Anonymous>' : de.user.name
       %td
-        = link_to "View", de_setting_path(de.secure_id),
-          :class => 'btn btn-info btn-xs'
+        .btn-group
+          = link_to "View", degust_compare_url('', de.secure_id), :class => 'btn btn-info btn-xs'
+          %a.dropdown-toggle.btn.btn-xs.btn-info{"data-toggle"=>"dropdown","role"=>"button","aria-haspopup"=>"true", "aria-expanded"=>"false" }
+            %span.caret
+            %span.sr-only
+              Toggle Dropdown
+          %ul.dropdown-menu
+            - frontend_versions.each do |ver|
+              %li
+                = link_to "Version #{ver}", degust_compare_url(ver, de.secure_id)
+
         - if de.user == current_user
           = link_to "Delete", de_setting_path(de.secure_id),
             :method => :delete,

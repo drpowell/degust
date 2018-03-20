@@ -3,7 +3,7 @@ class DeSettingsController < ApplicationController
     end
 
     def show
-        redirect_to degust_page_path("compare.html")+"?code="+params['id']
+        redirect_to degust_compare_url(params['version'], params['id'])
     end
 
     def create
@@ -17,7 +17,7 @@ class DeSettingsController < ApplicationController
         @de_setting.user = current_user
         @de_setting.save!
 
-        redirect_to degust_page_path("compare.html")+"?code="+@de_setting.secure_id
+        redirect_to degust_compare_url('', @de_setting.secure_id)
     end
 
     def destroy
