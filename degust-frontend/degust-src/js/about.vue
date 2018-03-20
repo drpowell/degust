@@ -38,7 +38,8 @@ module.exports =
         modal: Modal
     props:
         show: false
-        version: degust_version
+        version:
+            default: degust_version
     methods:
         close: () -> this.$emit('close')
 </script>
