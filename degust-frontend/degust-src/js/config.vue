@@ -36,12 +36,22 @@
       color: #069;
     }
 
+    #experimentDescription {
+      resize: none;
+      height: 37px;
+      transition: all 0.4s;
+    }
+
+    #experimentDescription:focus {
+      resize: none;
+      height: 200px;
+      transition: all 0.4s;
+    }
 
     .flip-list-move {
         transition: transform 1s;
     }
 </style>
-
 
 <template>
     <div>
@@ -94,6 +104,13 @@
                 <label class="control-label col-sm-3">Info columns</label>
                 <div class="controls col-sm-6"  v-tooltip="tip('Information columns to display in the gene table')">
                   <multiselect v-model="settings.info_columns" :options="columns_info" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="true" placeholder="Add column"/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-3">Experiment Description</label>
+                <div class="controls col-sm-6" >
+                  <textarea class="form-control" v-model="settings.experimentDescription" type="text" placeholder="" id="experimentDescription" v-tooltip="tip('Brief Decription of Expriment')" size='30'/>
                 </div>
               </div>
 
