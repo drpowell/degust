@@ -25,6 +25,7 @@
 <template>
     <div>
         <scatter-plot class='volcano-plot' ref='scatter'
+                      :name='name'
                       yaxis-loc='zero'
                       :data='data'
                       :filter='filter'
@@ -65,6 +66,8 @@ module.exports =
     components:
         scatterPlot: scatter
     props:
+        name:
+            default: "volcano"
         data: null
         avgCol: null
         logfcCol : null

@@ -40,6 +40,7 @@
 <template>
     <div>
         <scatter-plot v-if='plot2d3d=="2d"' class='mds-plot' ref='scatter'
+                      :name='name'
                       :data='components'
                       :x-column='xColumn' :y-column='yColumn'
                       :dimensionScale='dimensionScale'
@@ -109,6 +110,8 @@ module.exports =
         scatter3d: scatter3d
         barGraph: barGraph
     props:
+        name:
+            default: "mds"
         data: null
         columns: null
         conditionColouring: null

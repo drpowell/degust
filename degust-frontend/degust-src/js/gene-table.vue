@@ -135,7 +135,7 @@ odf_fmt = (cols,rows) ->
            "COLUMN_NAMES: "+cols.map((c)->c.name).join("\t"),
     ].concat(rows.map((r) -> r.join("\t"))).join("\n")
 
-do_download = (gene_data, gene_table, fmt) ->
+do_download = (filename, gene_data, gene_table, fmt) ->
     items = gene_table
     return if items.length==0
     cols = gene_data.columns_by_type(['info','fc_calc','count','fdr','avg','p'])
@@ -147,18 +147,18 @@ do_download = (gene_data, gene_table, fmt) ->
     )
     mimetype = 'text/csv'
     switch fmt
-        when 'csv' then filename='degust.csv'; result=d3.csv.format([keys].concat(rows))
-        when 'tsv' then filename='degust.tsv'; result=d3.tsv.format([keys].concat(rows))
+        when 'csv' then suffix='.csv'; result=d3.csv.format([keys].concat(rows))
+        when 'tsv' then suffix='.tsv'; result=d3.tsv.format([keys].concat(rows))
         when 'odf'
             mimetype = 'text/plain'
-            filename='degust.odf'
+            suffix='.odf'
             cols_all = cols.concat(count_cols.map((c) -> {type:'cpm', name: c.name+" CPM"}))
             result=odf_fmt(cols_all, rows)
 
     # In future, look at this library : https://github.com/eligrey/FileSaver.js
     link = document.createElement("a")
     link.setAttribute("href", window.URL.createObjectURL(new Blob([result], {type: mimetype})))
-    link.setAttribute("download", filename)
+    link.setAttribute("download", filename+suffix)
     document.body.appendChild(link)
     link.click()
     link.remove()
@@ -173,6 +173,8 @@ module.exports =
         VueMenu: Menu
         VueMenuItem: Menuitem
     props:
+        name:
+            default: 'degust'
         linkUrl:
             default: null
         geneData:
@@ -255,7 +257,7 @@ module.exports =
             this.$refs.menu.show(ev)
 
         do_download: (typ) ->
-            do_download(this.geneData, this.tableRows, typ)
+            do_download(this.name || 'degust', this.geneData, this.tableRows, typ)
 
         set_table_info: (info) ->
             this.table_info = info

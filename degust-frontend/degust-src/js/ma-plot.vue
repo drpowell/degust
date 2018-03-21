@@ -24,6 +24,7 @@
 <template>
     <div>
         <scatter-plot class='ma-plot' ref='scatter'
+                    :name='name'
                     :data='data'
                     :filter='filter'
                     :x-column='xColumn' :y-column='yColumn'
@@ -67,6 +68,8 @@ module.exports =
     components:
         scatterPlot: scatter
     props:
+        name:
+            default: "ma-plot"
         data: null
         avgCol: null
         logfcCol : null

@@ -256,8 +256,8 @@ class ScatterPlot
                 name: "print"
                 brush_enable: false
                 animate: false
-                xaxis_loc: this.opts.xaxisLoc
-                yaxis_loc: this.opts.yaxisLoc
+                xaxis_loc: this.opts.xaxis_loc
+                yaxis_loc: this.opts.yaxis_loc
                 colouring: this.opts.colouring
                 alpha: this.opts.alpha
                 size: this.opts.size
@@ -433,7 +433,8 @@ resize = require('./resize-mixin.coffee')
 module.exports =
     mixins: [resize]
     props:
-        name: "scatter"         # Used for saving filename
+        name:
+            default: "scatter"         # Used for saving filename
         marginL:
             default: 30
         marginR:
