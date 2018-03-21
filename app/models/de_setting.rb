@@ -69,6 +69,10 @@ class DeSetting < ApplicationRecord
         self.settings = JSON.generate(json)
     end
 
+    def description
+        settings_as_json['experimentDescription']
+    end
+
 private
     def update_name
         self.name = settings_as_json['name']

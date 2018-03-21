@@ -13,6 +13,12 @@
       %td
         %a{:href=>degust_compare_url('', de.secure_id)}
           = de.name || "<Unnamed>"
+        - if !de.description.nil? && !de.description.empty?
+          %div{:style => 'float: right; position: relative;' }
+            %span.hover ...
+            %div.on-hover{:style => 'display: none'}
+              %pre
+                = preserve de.description
       %td{"data-val" => de.user_file.size}
         = number_to_human_size(de.user_file.size)
       %td.smaller{"data-val" => de.created_at.to_i}
@@ -45,6 +51,16 @@
 
 
 :javascript
+
+  $('.hover').hover(
+    function(ev) {
+      $(this).siblings('.on-hover').show();
+    },
+    function(ev) {
+      $(this).siblings('.on-hover').hide();
+    }
+  )
+
   $.tablesorter.addParser({
     // set a unique id
     id: 'data',

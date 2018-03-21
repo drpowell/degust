@@ -22,3 +22,14 @@
 .table.visited td {
     vertical-align: middle;
 }
+
+
+.on-hover {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
