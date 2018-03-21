@@ -23,7 +23,7 @@
       %td
         = de.user.nil? ? '<Anonymous>' : de.user.name
       %td
-        .btn-group
+        .btn-group{ :style => "display: inline-flex" }
           = link_to "View", degust_compare_url('', de.secure_id), :class => 'btn btn-info btn-xs'
           %a.dropdown-toggle.btn.btn-xs.btn-info{"data-toggle"=>"dropdown","role"=>"button","aria-haspopup"=>"true", "aria-expanded"=>"false" }
             %span.caret
