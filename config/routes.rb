@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/visited' => 'de_settings#index'
   get '/upload' => 'de_settings#new'
   post '/upload' => 'de_settings#create'
+  post '/copy/:id' => 'de_settings#copy', :as => :copy
 
   get '/degust', to: redirect('/')
 

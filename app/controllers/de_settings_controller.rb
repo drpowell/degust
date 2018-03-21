@@ -20,6 +20,21 @@ class DeSettingsController < ApplicationController
         redirect_to degust_compare_url('', @de_setting.secure_id)
     end
 
+    def copy
+        de_setting = DeSetting.find_by_secure_id(params[:id])
+        if current_user.nil? || de_setting.nil?
+            redirect_to :back, :alert => "Access denied!"
+        else
+            new_de = de_setting.dup
+            new_de.randomize_id()
+            new_de.user = current_user
+            new_de.set_name("COPY : "+new_de.name)
+            new_de.save!
+            redirect_to degust_compare_url('', new_de.secure_id)
+
+        end
+    end
+
     def destroy
         de_setting = DeSetting.find_by_secure_id(params[:id])
         if !current_user.nil? && de_setting.user == current_user

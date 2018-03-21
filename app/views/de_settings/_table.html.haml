@@ -32,13 +32,17 @@
           %ul.dropdown-menu
             - frontend_versions.each do |ver|
               %li
-                = link_to "Version #{ver}", degust_compare_url(ver, de.secure_id)
+                = link_to "View with #{ver}", degust_compare_url(ver, de.secure_id)
+            %li.divider{ :role => "separator"}
+            %li
+              = link_to "Copy", copy_path(de.secure_id),
+                :method => :post
+            - if de.user == current_user
+              %li
+                = link_to "Delete", de_setting_path(de.secure_id),
+                  :method => :delete,
+                  :data =>  { confirm: 'Are you certain you want to delete this data?' }
 
-        - if de.user == current_user
-          = link_to "Delete", de_setting_path(de.secure_id),
-            :method => :delete,
-            :class => 'btn btn-danger btn-xs',
-            :data =>  { confirm: 'Are you certain you want to delete this data?' }
 
 :javascript
   $.tablesorter.addParser({
