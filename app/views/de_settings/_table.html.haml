@@ -18,7 +18,7 @@
             %span.hover ...
             %div.on-hover{:style => 'display: none'}
               %pre
-                = preserve de.description
+                = preserve h(de.description)
       %td{"data-val" => de.user_file.size}
         = number_to_human_size(de.user_file.size)
       %td.smaller{"data-val" => de.created_at.to_i}
