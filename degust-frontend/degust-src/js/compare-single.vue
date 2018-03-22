@@ -214,6 +214,7 @@
                         >
                 </parallel-coord>
                 <ma-plot v-if='cur_plot=="ma"'
+                        :name='experimentName+" - "+"ma-plot"'
                         :data='gene_data_rows'
                         :filter='expr_filter'
                         :filter-changed='filter_changed'
@@ -228,6 +229,7 @@
                         >
                 </ma-plot>
                 <volcano-plot v-if='cur_plot=="volcano"'
+                        :name='experimentName+" - "+"volcano"'
                         :data='gene_data_rows'
                         :filter='expr_filter'
                         :filter-changed='filter_changed'
@@ -242,6 +244,7 @@
                         >
                 </volcano-plot>
                 <mds-plot v-if='cur_plot=="mds"'
+                        :name='experimentName+" - "+"mds"'
                         :data='gene_data_rows'
                         :filter='expr_filter'
                         :filter-changed='filter_changed'
@@ -291,7 +294,8 @@
 
       <div class='row'>
         <h2>Genes</h2>
-        <gene-table :gene-data='gene_data' :link-url='settings.link_url'
+        <gene-table :name='experimentName'
+                    :gene-data='gene_data' :link-url='settings.link_url'
                     :fc-columns='fc_calc_columns'
                     :rows='genes_selected' :show-counts='showCounts' :show-intensity='showIntensity'
                     :useProt='is_maxquant'

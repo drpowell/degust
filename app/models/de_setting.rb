@@ -54,13 +54,26 @@ class DeSetting < ApplicationRecord
 
     BAD_REGEX = /[\\'"\n]/
 
-private
     def randomize_id
+        if !self.new_record?
+            raise "Only use randomize_id for new record"
+        end
         begin
             self.secure_id = Digest::MD5.hexdigest(Random.rand.to_s)
         end while DeSetting.where(secure_id: self.secure_id).exists?
     end
 
+    def set_name(name)
+        json = settings_as_json
+        json['name'] = name
+        self.settings = JSON.generate(json)
+    end
+
+    def description
+        settings_as_json['experimentDescription']
+    end
+
+private
     def update_name
         self.name = settings_as_json['name']
     end

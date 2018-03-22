@@ -11,8 +11,14 @@
   - list.each do |de|
     %tr
       %td
-        %a{:href=>de_setting_path(de.secure_id)}
+        %a{:href=>degust_compare_url('', de.secure_id)}
           = de.name || "<Unnamed>"
+        - if !de.description.nil? && !de.description.empty?
+          %div{:style => 'float: right; position: relative;' }
+            %span.hover ...
+            %div.on-hover{:style => 'display: none'}
+              %pre
+                = preserve h(de.description)
       %td{"data-val" => de.user_file.size}
         = number_to_human_size(de.user_file.size)
       %td.smaller{"data-val" => de.created_at.to_i}
@@ -23,7 +29,7 @@
       %td
         = de.user.nil? ? '<Anonymous>' : de.user.name
       %td
-        .btn-group
+        .btn-group{ :style => "display: inline-flex" }
           = link_to "View", degust_compare_url('', de.secure_id), :class => 'btn btn-info btn-xs'
           %a.dropdown-toggle.btn.btn-xs.btn-info{"data-toggle"=>"dropdown","role"=>"button","aria-haspopup"=>"true", "aria-expanded"=>"false" }
             %span.caret
@@ -32,15 +38,29 @@
           %ul.dropdown-menu
             - frontend_versions.each do |ver|
               %li
-                = link_to "Version #{ver}", degust_compare_url(ver, de.secure_id)
+                = link_to "View with #{ver}", degust_compare_url(ver, de.secure_id)
+            %li.divider{ :role => "separator"}
+            %li
+              = link_to "Copy", copy_path(de.secure_id),
+                :method => :post
+            - if de.user == current_user
+              %li
+                = link_to "Delete", de_setting_path(de.secure_id),
+                  :method => :delete,
+                  :data =>  { confirm: 'Are you certain you want to delete this data?' }
 
-        - if de.user == current_user
-          = link_to "Delete", de_setting_path(de.secure_id),
-            :method => :delete,
-            :class => 'btn btn-danger btn-xs',
-            :data =>  { confirm: 'Are you certain you want to delete this data?' }
 
 :javascript
+
+  $('.hover').hover(
+    function(ev) {
+      $(this).siblings('.on-hover').show();
+    },
+    function(ev) {
+      $(this).siblings('.on-hover').hide();
+    }
+  )
+
   $.tablesorter.addParser({
     // set a unique id
     id: 'data',
