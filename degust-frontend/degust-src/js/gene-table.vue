@@ -40,7 +40,7 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
                             <select v-model="showCounts">
                                 <option value='no'>No</option>
                                 <option value='yes'>Yes</option>
-                                <option value='cpm'>As counts-per-million</option>
+                                <option value='cpm'>As CPM</option>
                             </select>
                         </label>
                         <label v-else-if="useProt">
@@ -51,6 +51,9 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
                                 <option value='log2'>As Log2 Intensity</option>
                             </select>
                         </label>
+                        </div>
+                        <div v-if='allowSelcols'>
+                            <a @click='show_selectCols=true' style='font-size:10pt'>Select columns to show</a>
                         </div>
                     </div>
                     </div>
@@ -85,6 +88,15 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
                      @mouseout='mouseout'
                      >
         </slick-table>
+
+        <selectColumns
+            :show='show_selectCols'
+            :allColData='allCols'
+            :defaultCols='defaultCols'
+            :colTypes='colsToShow'
+            @close='show_selectCols=false'
+            @columnsToShow='showSelectColumns'>
+        </selectColumns>
     </div>
 </template>
 
@@ -94,6 +106,7 @@ slickTable = require('./slick-table.vue').default
 popupMenu = require('./popup-menu.vue').default
 { Menu, Menuitem } = require('@hscmap/vue-menu')
 resize = require('./resize-mixin.coffee')
+SelectColumns = require('./modal-select-columns.vue').default
 
 # TODO : restore page from link info
 
@@ -172,6 +185,7 @@ module.exports =
         popupMenu: popupMenu
         VueMenu: Menu
         VueMenuItem: Menuitem
+        SelectColumns: SelectColumns
     props:
         linkUrl:
             default: null
@@ -185,6 +199,9 @@ module.exports =
             required: true
         useProt:
             default: false
+        allCols: null
+        allowSelcols:
+            default: false
     data: () ->
         searchStr: ""
         sortAbsLogFC: true
@@ -194,6 +211,9 @@ module.exports =
             total: 0
         showCounts: "no"
         showIntensity: "no"
+        show_selectCols: false
+        keepCols: []
+        colsToShow: ['info','fdr','p', 'fc_calc']
     watch:
         # Not detected automatically in the gene_table_columns cause only used in a callback
         showCounts: () ->
@@ -204,8 +224,17 @@ module.exports =
             this.$refs.slickGrid.resort()
     computed:
         gene_table_columns: () ->
-            column_keys = this.geneData.columns_by_type(['info','fdr','p'])
-            column_keys = column_keys.concat(this.fcColumns)
+            column_keys = []
+            this.colsToShow.forEach((type) =>
+                column_keys = column_keys.concat(this.geneData.columns_by_type(type))
+            )
+            # column_keys = this.geneData.columns_by_type(['info','fdr','p'])
+            # column_keys = column_keys.concat(this.fcColumns)
+            if this.keepCols.length > 0
+                keepCols_idx = this.keepCols.map((col) -> col.idx)
+                column_keys = column_keys.filter((col) ->
+                    keepCols_idx.indexOf(col.name) >= 0 || keepCols_idx.indexOf(col.idx) >= 0
+                )
             me = this
             columns = column_keys.map((col) ->
                 hsh =
@@ -247,6 +276,9 @@ module.exports =
                             searchStr.map((el) -> str.toLowerCase().indexOf(el)>=0).reduce((a,b) -> a || b)
                     false
                 )
+
+        defaultCols: () ->
+            this.geneData.columns_by_type(['info','fdr','p']).concat(this.fcColumns)
     methods:
         resize: () ->
             this.$emit('resize')
@@ -259,6 +291,9 @@ module.exports =
 
         set_table_info: (info) ->
             this.table_info = info
+
+        showSelectColumns: (cols) ->
+            this.keepCols = cols
 
         # Used to format the fold-change divs in the table.
         fc_div: (n, column, row) ->

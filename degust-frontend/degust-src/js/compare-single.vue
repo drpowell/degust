@@ -296,6 +296,9 @@
                     :rows='genes_selected' :show-counts='showCounts' :show-intensity='showIntensity'
                     :useProt='is_maxquant'
                     @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
+                    :allCols='all_columns'
+                    :allowSelcols='true'
+                    @showSelectColumns='show_selectCols=true'
                     >
         </gene-table>
       </div> <!-- row -->

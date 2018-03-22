@@ -74,23 +74,17 @@ a {font-size: 10px}
                 </table>
             </div>
             <div class='row'>
-            <div class='col-xs-7'>
-                <div v-show='dge_methods.length>0'>
-                    <label>Method</label>
-                    <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
-                        <option v-for='method in dge_methods' :value='method[0]'>{{method[1]}}</option>
-                    </select>
+                <div class='col-xs-7'>
+                    <div v-show='dge_methods.length>0'>
+                        <label>Method</label>
+                        <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
+                            <option v-for='method in dge_methods' :value='method[0]'>{{method[1]}}</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <!-- <div class='col-xs-4'>
-                <a class="weights-toggle" role="button" data-toggle="collapse" href=".weights" aria-expanded="false" aria-controls="genesets">
-                    Sample weights
-                </a>
-                <div class='weights collapse'></div> -->
-            <div class='col-xs-5' align="right">
-                <a @click='showSampleWeights'>View Extra Information</a>
-            </div>
-            </div>
+                <div class='col-xs-5' align="right">
+                    <a @click='showSampleWeights'>View Extra Information</a>
+                </div>
             </div>
         </div>
     </edit-overlay>

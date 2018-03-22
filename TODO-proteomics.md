@@ -6,7 +6,6 @@
 
 * Analysis script, and options.  eg, imputation.  Other filtering?
     * Find suitable variance stabilising transformation
-    * Remove redundant column filtering? (Is it redundant?)
 
 * Look into re-enabling error reports (Currently disabled)
     * Need to be replaced with non-JQuery dependant code
