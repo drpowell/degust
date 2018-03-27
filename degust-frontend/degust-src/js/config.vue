@@ -309,6 +309,16 @@
                             </div>
                           </div>
                       </div>
+
+                      <div class='form-group'>
+                        <label class='control-label col-sm-3'>Delete Dataset</label>
+                        <div class="controls col-sm-3">
+                          <button type="button" class="btn btn-danger" v-bind:disabled="!can_lock" @click='deleteDataset' v-tooltip="tip('Delete the current dataset')">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+
                   </div>
               </transition>
 
@@ -346,6 +356,14 @@
 
         <!-- About box Modal -->
         <about :show='show_about' @close='show_about=false'></about>
+
+        <deleteModal
+                  :show='show_deleteModal'
+                  @close='show_deleteModal=false'
+                  @destroy='destroy'
+                  >
+        </deleteModal>
+
     </div>
 </template>
 <script lang='coffee' src="./config.coffee"></script>

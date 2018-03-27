@@ -30,7 +30,7 @@ class DeSettingsController < ApplicationController
             new_de.user = current_user
             new_de.set_name("COPY : "+new_de.name)
             new_de.save!
-            redirect_to degust_compare_url('', new_de.secure_id)
+            redirect_to visited_path
 
         end
     end

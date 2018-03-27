@@ -127,6 +127,7 @@ input_type_options = [{key: 'counts', label: 'RNA-seq counts'},
 
 Multiselect = require('vue-multiselect').default
 Modal = require('modal-vue').default
+deleteModal = require('./modal-deleteData.vue').default
 about = require('./about.vue').default
 slickTable = require('./slick-table.vue').default
 contrasts = require('./contrasts.vue').default
@@ -136,6 +137,7 @@ module.exports =
     components:
         Multiselect: Multiselect
         Modal: Modal
+        deleteModal: deleteModal
         about: about
         slickTable: slickTable
         contrasts: contrasts
@@ -161,6 +163,7 @@ module.exports =
         show_about: false
         input_type_options: input_type_options
         editing_contrast: null
+        show_deleteModal: false
 
     computed:
         code: () ->
@@ -275,6 +278,27 @@ module.exports =
                 this.modal.show = true
                 this.modal.reload_on_close=true
             )
+        deleteDataset: () ->
+            this.show_deleteModal = true
+        destroy: () ->
+            delete_url = this.orig_settings.delete_url
+            token = this.orig_settings.tok
+            $.ajax(
+                type: "DELETE"
+                beforeSend: (xhr) -> xhr.setRequestHeader('X-CSRF-Token', token)
+                url: delete_url
+            ).complete((e) =>
+                if e.status == 200
+                    window.location.href = '/visited' #uses JS to redirect instead of Ruby. May want to replace?
+                else
+                    console.log("Error")
+                    this.modal.msgs_class = 'alert alert-danger'
+                    this.modal.msgs = ["Failed : #{e.responseText}"]
+                    this.modal.view = false
+                    this.modal.show = true
+                    this.modal.reload_on_close=true
+            )
+
         revert: () ->
             this.settings = from_server_model(this.orig_settings.settings)
         check_errs: () -> #TODO: Add error checking for other user inputs
