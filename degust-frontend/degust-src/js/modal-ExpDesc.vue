@@ -5,7 +5,7 @@
     >
         <h4 slot='header'>Experiment Description</h4>
         <div slot='body'>
-            <pre v-if='desc == ""'>{{ desc }}</pre>
+            <pre v-if='desc != ""'>{{ desc }}</pre>
             <pre v-else>No Experiment Description to show.</pre>
         </div>
         <div slot='footer'>
