@@ -111,5 +111,8 @@ module.exports =
         hide_info: () ->
             this.hover=[]
             this.$emit('hover-end')
+    # TODO emit brush event to correctly set filtered data
+    mounted: () ->
+        this.$emit('brush', this.data.filter((d) => this.filter(d)), true)
 
 </script>
