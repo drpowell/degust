@@ -11,6 +11,48 @@
 
     .heatmap-info { font-size: 9pt; height: 2em; }
     .heatmap-info .lbl { margin-left: 20px; font-weight: bold; display: inline-block;}
+
+    #descPreformatted {
+      margin: 1em 0;
+      display: block;
+      font-size: 9pt;
+    }
+
+    #experimentDescriptionLoc {
+      font-size: 7.5pt;
+    }
+
+    #descTooltip {
+      position: absolute;
+      text-align: left;
+      padding: 6px 12px 6px;
+      font: 12px sans-serif;
+      background: #fff;
+      color: #000000;
+      border: 1px;
+      border-radius: 6px;
+      border-color: #000000;
+      border-style: solid;
+      pointer-events: none;
+      width: 'auto';
+      opacity: 1;
+      margin: 0 auto;
+      -webkit-transform: translate(50%, -90%);
+    }
+
+    #descTooltip::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+    }
+
+
+
 </style>
 
 <template>
@@ -63,7 +105,9 @@
           <hr/>
           <div>
             <div class='filter options'>
-              <h4>Options</h4>
+              <div>
+                  <h4>Options</h4>
+              </div>
               <div v-tooltip="tip('Filter genes by False Discovery Rate')">
                 <label>FDR cut-off</label>
                 <slider-text class='slider-control'
@@ -176,11 +220,21 @@
             <div class='text-left' v-show='!is_pre_analysed'>
               <a class='sm-link' @click='show_r_code'>Show R code</a>
             </div>
-
             <div class='text-left' v-if='!show_heatmap'>
               <a class='sm-link' @click='show_heatmap=true'>
                   Show heatmap
               </a>
+            </div>
+            <div class='text-left'>
+                    <a  @mouseover='hoverDesc'
+                        @mouseout="show_hoverDesc=false"
+                        @mouseup='clickDesc'
+                        id="experimentDescriptionLoc"
+                        >Show Description
+                    </a>
+                <div class='tooltip' v-if='show_hoverDesc' :style='tooltipStyleDesc' ref='tooltip' id='descTooltip'>
+                  <pre id='descPreformatted'>{{ settings.experimentDescription }}</pre>
+                </div>
             </div>
           </div>
         </div>
@@ -311,6 +365,12 @@
 
     <!-- Gene List box Modal -->
     <filterGenes :show='showGeneList' @close='showGeneList=false' @filterList='filterList'></filterGenes>
+
+    <clickExpDesc
+              :show='show_clickDesc'
+              :desc='settings.experimentDescription'
+              @close='show_clickDesc=false'>
+    </clickExpDesc>
 
     <extraInfo
               :show='show_extraInfo'

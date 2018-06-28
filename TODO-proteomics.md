@@ -15,8 +15,6 @@
     * In Firefox: The condition selector clips group the sample is added to in half
 
 * UI
-    * Select columns on table
-    * Fix compare multi (Logs are broken, no log-list to add to)
     * Add "delete dataset" from config
     * Add free form text input to config page for describing the experiment
     * Sample Weights & Extra Info

@@ -12,6 +12,7 @@ sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 filterGenes = require('./filter-genes.vue').default
 extraInfo = require('./extra-info.vue').default
+clickExpDesc = require('./clickExpDesc.vue').default
 ErrorMsg = require('./modal-error-msg.vue').default
 Modal = require('modal-vue').default
 geneTable = require('./gene-table.vue').default
@@ -45,6 +46,7 @@ module.exports =
         filterGenes: filterGenes
         extraInfo: extraInfo
         ErrorMsg: ErrorMsg
+        clickExpDesc: clickExpDesc
         Modal: Modal
         geneTable: geneTable
         maPlot: maPlot
@@ -102,6 +104,9 @@ module.exports =
         extraInfo_data: null
         error_msg: null
         show_Error: false
+        show_hoverDesc: false
+        show_clickDesc: false
+        descTooltipLoc: [0,0]
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:
@@ -167,6 +172,9 @@ module.exports =
             this.settings.input_type == 'counts'
         is_maxquant: () ->
             this.settings.input_type == 'maxquant'
+
+        tooltipStyleDesc: () ->
+            {left: (this.descTooltipLoc[0])+'px', top: (this.descTooltipLoc[1] + window.pageYOffset)+'px'}
 
     watch:
         '$route': (n,o) ->
@@ -373,6 +381,15 @@ module.exports =
         tip: (txt) ->
             {content:txt, placement:'left'}
 
+        hoverDesc: () ->
+            this.show_hoverDesc = true
+            rect = document.getElementById("experimentDescriptionLoc").getBoundingClientRect()
+            this.descTooltipLoc = [(rect.left), (rect.top)]
+            return
+
+        clickDesc: () ->
+            this.show_clickDesc = true
+            return
 
     mounted: () ->
         this.init()
