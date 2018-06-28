@@ -36,11 +36,10 @@
       pointer-events: none;
       width: 'auto';
       opacity: 1;
-      margin: 0 auto;
-      -webkit-transform: translate(50%, -90%);
+      -webkit-transform: translate(0%, -50%);
     }
 
-    #descTooltip::after {
+    div >>> #descTooltip::after {
     content: " ";
     position: absolute;
     top: 50%;
@@ -50,7 +49,6 @@
     border-style: solid;
     border-color: transparent black transparent transparent;
     }
-
 
 
 </style>
@@ -226,15 +224,14 @@
               </a>
             </div>
             <div class='text-left'>
-                    <a  @mouseover='hoverDesc'
+                    <a  @mouseover='hoverExperimentDesc'
                         @mouseout="show_hoverDesc=false"
-                        @mouseup='clickDesc'
-                        id="experimentDescriptionLoc"
+                        @mouseup='modalExperimentDesc'
+                        id='experimentDescriptionLoc'
                         >Show Description
                     </a>
                     <div class='tooltip' v-if='show_hoverDesc' :style='tooltipStyleDesc' ref='tooltip' id='descTooltip'>
-                      <pre id='descPreformatted' v-if='settings.experimentDescription !=null'>{{ settings.experimentDescription }}</pre>
-                      <pre id='descPreformatted' v-else>No Experiment Description to show.</pre>
+                      <pre id='descPreformatted'>{{ settings.experimentDescription }}</pre>
                     </div>
             </div>
           </div>
@@ -367,11 +364,11 @@
     <!-- Gene List box Modal -->
     <filterGenes :show='showGeneList' @close='showGeneList=false' @filterList='filterList'></filterGenes>
 
-    <clickExpDesc
-              :show='show_clickDesc'
+    <modalExpDesc
+              :show='show_ModalExperimentDesc'
               :desc='settings.experimentDescription'
-              @close='show_clickDesc=false'>
-    </clickExpDesc>
+              @close='show_ModalExperimentDesc=false'>
+    </modalExpDesc>
 
     <extraInfo
               :show='show_extraInfo'
