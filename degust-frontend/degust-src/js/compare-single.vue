@@ -232,9 +232,10 @@
                         id="experimentDescriptionLoc"
                         >Show Description
                     </a>
-                <div class='tooltip' v-if='show_hoverDesc' :style='tooltipStyleDesc' ref='tooltip' id='descTooltip'>
-                  <pre id='descPreformatted'>{{ settings.experimentDescription }}</pre>
-                </div>
+                    <div class='tooltip' v-if='show_hoverDesc' :style='tooltipStyleDesc' ref='tooltip' id='descTooltip'>
+                      <pre id='descPreformatted' v-if='settings.experimentDescription !=null'>{{ settings.experimentDescription }}</pre>
+                      <pre id='descPreformatted' v-else>No Experiment Description to show.</pre>
+                    </div>
             </div>
           </div>
         </div>
