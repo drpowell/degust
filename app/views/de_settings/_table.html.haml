@@ -78,8 +78,18 @@
     type: 'numeric'
   });
 
+
+  // Default table sorting from localStorage.
+  var defSort = [[3,1]];
+  if (window.localStorage) {
+    tmp = JSON.parse(window.localStorage.getItem("visited-sort"));
+    if (tmp) {
+      defSort = tmp;
+    }
+  }
   $('.tablesorter').tablesorter({
     theme : 'blue',
+    sortList: defSort,
     headers: {
         1 : { sorter: 'data' },
         2 : { sorter: 'data' },
@@ -87,3 +97,11 @@
         5 : { sorter: false },
      },
   });
+
+  // Save the most recent sort as the default
+  $('.tablesorter').bind("sortEnd",function(ev,target) {
+    if (window.localStorage) {
+      window.localStorage.setItem("visited-sort", JSON.stringify(target.config.sortList));
+    }
+  });
+
