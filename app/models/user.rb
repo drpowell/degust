@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :de_settings
   has_many :visited
+  has_many :gene_lists
 
   def self.create_with_omniauth(auth)
     create! do |user|

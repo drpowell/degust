@@ -2,6 +2,7 @@ class DeSetting < ApplicationRecord
     belongs_to :user, optional: true
     belongs_to :user_file
     has_many :visiteds
+    has_many :gene_lists
 
     before_create :randomize_id
     before_save :update_name

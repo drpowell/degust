@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get 'dge'
       get 'dge_r_code'
       get 'kegg_titles'
+      resources :gene_lists, param: :gene_list_id
     end
   end
 
