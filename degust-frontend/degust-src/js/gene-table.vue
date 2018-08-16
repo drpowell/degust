@@ -17,6 +17,59 @@ div >>> #grid { height: 300px; }
 div.csv-download-div { float: right; margin: -7px 30px 0 0; }
 .csv-download-div a { font-size: 9pt; }
 
+#grid >>> gTableCog {
+    padding-left: 5px;
+}
+
+/* CSS based on https://bootsnipp.com/snippets/featured/multi-level-dropdown-menu-bs3 */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: -80%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 6px 0px 6px 6px;
+    -moz-border-radius: 6px 0px 6px;
+    border-radius: 6px 0px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 5px 0px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10%;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 6px 0px 6px;
+    -moz-border-radius: 6px 6px 0px 6px;
+    border-radius: 6px 6px 0px 6px;
+}
+
 </style>
 
 <template>
@@ -25,37 +78,33 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
           <div class="tab-search">
             Search:
             <input type="text" v-model='searchStr' :class='{active: searchStr!=""}' @keyup.esc='searchStr=""'>
-            <span class='glyphicon glyphicon-cog' @click='showPopup'></span>
-            <popup-menu ref='menu'>
-                <vue-menu-item>
-                    <div slot="body" @mousedown.stop>
-                    <div class='text-left' slot="body" @mousedown.stop>
-                        <label>
-                            Sorting by ABSOLUTE logFC
-                            <input type='checkbox' v-model='sortAbsLogFC'/>
-                        </label>
-                        <div>
-                        <label v-if="!useProt">
-                            Show Counts
-                            <select v-model="showCounts">
-                                <option value='no'>No</option>
-                                <option value='yes'>Yes</option>
-                                <option value='cpm'>As counts-per-million</option>
-                            </select>
-                        </label>
-                        <label v-else-if="useProt">
-                            Show Intensity
-                            <select v-model="showIntensity">
-                                <option value='no'>No</option>
-                                <option value='yes'>Yes</option>
-                                <option value='log2'>As Log2 Intensity</option>
-                            </select>
-                        </label>
-                        </div>
-                    </div>
-                    </div>
-                </vue-menu-item>
-            </popup-menu>
+            <span class='dropdown'>
+            <button class="btn-link dropdown-toggle" type="button" id="gTableCog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-target="#">
+                    <span class='glyphicon glyphicon-cog'></span>
+            </button>
+    		<ul class="dropdown-menu multi-level dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu">
+                <li><a v-on:click='sortAbsLogFC=!sortAbsLogFC'>
+                        Sort by <b>ABS</b> logFC
+                        <input type='checkbox' v-model='sortAbsLogFC'/>
+                    </a>
+                </li>
+                <li><a @click='show_selectCols=true' style='font-size:10pt'>Select columns to show</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-submenu dropdown-menu-right">
+                <a tabindex="-1">Show {{!useProt ? "Counts" : "Intensity"}}</a>
+                <ul v-if='!useProt' class="dropdown-menu">
+                    <li v-on:click='showCounts="no"'><a>No</a></li>
+                    <li v-on:click='showCounts="yes"'><a>Yes</a></li>
+                    <li v-on:click='showCounts="cpm"'><a>As CPM</a></li>
+                </ul>
+                <ul v-if='useProt' class="dropdown-menu">
+                    <li v-on:click='showIntensity="no"'><a>No</a></li>
+                    <li v-on:click='showIntensity="yes"'><a>Yes</a></li>
+                    <li v-on:click='showIntensity="log2"'><a>As Log2 Intensity</a></li>
+                </ul>
+              </li>
+            </ul>
+            </span>
           </div>
           <div class='csv-download-div'>
             <a @click='do_download("csv")'>Download CSV</a>
@@ -85,6 +134,15 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
                      @mouseout='mouseout'
                      >
         </slick-table>
+
+        <selectColumns
+            :show='show_selectCols'
+            :allColData='allCols'
+            :defaultCols='defaultCols'
+            :colTypes='colsToShow'
+            @close='show_selectCols=false'
+            @columnsToShow='showSelectColumns'>
+        </selectColumns>
     </div>
 </template>
 
@@ -94,6 +152,7 @@ slickTable = require('./slick-table.vue').default
 popupMenu = require('./popup-menu.vue').default
 { Menu, Menuitem } = require('@hscmap/vue-menu')
 resize = require('./resize-mixin.coffee')
+SelectColumns = require('./modal-select-columns.vue').default
 
 # TODO : restore page from link info
 
@@ -172,6 +231,7 @@ module.exports =
         popupMenu: popupMenu
         VueMenu: Menu
         VueMenuItem: Menuitem
+        SelectColumns: SelectColumns
     props:
         name:
             default: 'degust'
@@ -187,6 +247,9 @@ module.exports =
             required: true
         useProt:
             default: false
+        allCols: null
+        allowSelcols:
+            default: false
     data: () ->
         searchStr: ""
         sortAbsLogFC: true
@@ -196,6 +259,9 @@ module.exports =
             total: 0
         showCounts: "no"
         showIntensity: "no"
+        show_selectCols: false
+        keepCols: []
+        colsToShow: ['info','fdr','p', 'fc_calc']
     watch:
         # Not detected automatically in the gene_table_columns cause only used in a callback
         showCounts: () ->
@@ -206,8 +272,17 @@ module.exports =
             this.$refs.slickGrid.resort()
     computed:
         gene_table_columns: () ->
-            column_keys = this.geneData.columns_by_type(['info','fdr','p'])
-            column_keys = column_keys.concat(this.fcColumns)
+            column_keys = []
+            this.colsToShow.forEach((type) =>
+                column_keys = column_keys.concat(this.geneData.columns_by_type(type))
+            )
+            # column_keys = this.geneData.columns_by_type(['info','fdr','p'])
+            # column_keys = column_keys.concat(this.fcColumns)
+            if this.keepCols.length > 0
+                keepCols_idx = this.keepCols.map((col) -> col.idx)
+                column_keys = column_keys.filter((col) ->
+                    keepCols_idx.indexOf(col.name) >= 0 || keepCols_idx.indexOf(col.idx) >= 0
+                )
             me = this
             columns = column_keys.map((col) ->
                 hsh =
@@ -249,6 +324,9 @@ module.exports =
                             searchStr.map((el) -> str.toLowerCase().indexOf(el)>=0).reduce((a,b) -> a || b)
                     false
                 )
+
+        defaultCols: () ->
+            this.geneData.columns_by_type(['info','fdr','p']).concat(this.fcColumns)
     methods:
         resize: () ->
             this.$emit('resize')
@@ -261,6 +339,9 @@ module.exports =
 
         set_table_info: (info) ->
             this.table_info = info
+
+        showSelectColumns: (cols) ->
+            this.keepCols = cols
 
         # Used to format the fold-change divs in the table.
         fc_div: (n, column, row) ->

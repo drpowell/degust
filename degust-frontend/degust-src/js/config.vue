@@ -275,6 +275,15 @@
               </button>
               <transition name="fade">
                   <div v-show='advanced'>
+                      <div class='form-group'>
+                        <label class='control-label col-sm-3'>Download Raw Data</label>
+                        <div class="controls col-sm-3">
+                          <button type="button" class="btn btn-info" v-on:click='download_raw' v-tooltip="tip('Download the dataset as raw a csv')">
+                            Download
+                          </button>
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <label class="control-label col-sm-3" for="config-locked">Config locked</label>
                         <div class="controls col-sm-1">
@@ -309,6 +318,16 @@
                             </div>
                           </div>
                       </div>
+
+                      <div class='form-group'>
+                        <label class='control-label col-sm-3'>Delete Dataset</label>
+                        <div class="controls col-sm-3">
+                          <button type="button" class="btn btn-danger" v-bind:disabled="!can_lock" @click='deleteDataset' v-tooltip="tip('Delete the current dataset')">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+
                   </div>
               </transition>
 
@@ -346,6 +365,14 @@
 
         <!-- About box Modal -->
         <about :show='show_about' @close='show_about=false'></about>
+
+        <deleteModal
+                  :show='show_deleteModal'
+                  @close='show_deleteModal=false'
+                  @destroy='destroy'
+                  >
+        </deleteModal>
+
     </div>
 </template>
 <script lang='coffee' src="./config.coffee"></script>

@@ -12,6 +12,7 @@ sliderText = require('./slider.vue').default
 conditions = require('./conditions-selector.vue').default
 filterGenes = require('./filter-genes.vue').default
 extraInfo = require('./extra-info.vue').default
+modalExpDesc = require('./modal-ExpDesc.vue').default
 ErrorMsg = require('./modal-error-msg.vue').default
 Modal = require('modal-vue').default
 geneTable = require('./gene-table.vue').default
@@ -45,6 +46,7 @@ module.exports =
         filterGenes: filterGenes
         extraInfo: extraInfo
         ErrorMsg: ErrorMsg
+        modalExpDesc: modalExpDesc
         Modal: Modal
         geneTable: geneTable
         maPlot: maPlot
@@ -102,6 +104,9 @@ module.exports =
         extraInfo_data: null
         error_msg: null
         show_Error: false
+        show_hoverDesc: false
+        show_ModalExperimentDesc: false
+        descTooltipLoc: [0,0]
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:
@@ -138,6 +143,8 @@ module.exports =
         count_columns: () ->
             fc_names = this.fc_calc_columns.map((c) -> c.name)
             this.gene_data.columns_by_type('count').filter((c) -> fc_names.indexOf(c.parent)>=0)
+        all_columns: () ->
+            this.gene_data.columns
         filter_changed: () ->
             this.fdrThreshold
             this.fcThreshold
@@ -165,6 +172,10 @@ module.exports =
             this.settings.input_type == 'counts'
         is_maxquant: () ->
             this.settings.input_type == 'maxquant'
+
+        tooltipStyleDesc: () ->
+            {left: (this.descTooltipLoc[0])+'px', top: (this.descTooltipLoc[1] + window.pageYOffset)+'px'}
+            # {left: (this.descTooltipLoc[0])+'px', top: undefined}
 
     watch:
         '$route': (n,o) ->
@@ -370,6 +381,68 @@ module.exports =
 
         tip: (txt) ->
             {content:txt, placement:'left'}
+
+        hoverExperimentDesc: () ->
+            this.show_hoverDesc = true
+            locRect = document.getElementById("experimentDescriptionLoc").getBoundingClientRect()
+            this.descTooltipLoc = [(locRect.left + locRect.width + 1), locRect.top - 60] #Need to find a better way to set this y-axis location.
+            return
+
+        modalExperimentDesc: () ->
+            this.show_ModalExperimentDesc = true
+            return
+
+        script: (typ) ->
+            "#{this.code}/#{typ}"
+        # This needs to have some/any feedback upon a(n) (un)successful save
+        save: () ->
+            # to_send = to_server_model(this.settings)
+            $.ajax(
+                type: "POST"
+                url: this.script("settings")
+                data: {settings: JSON.stringify(this.settings)}
+                dataType: 'json'
+            ).done((x) =>
+            ).fail((x) =>
+                log_error("ERROR",x)
+            )
+
+        download_raw: () ->
+            $.ajax(
+                type: "GET"
+                url: window.location.origin + '/degust/' + this.code + '/' + 'csv'
+            ).done((x) =>
+                # Generate download link from: https://stackoverflow.com/q/2897619
+                pom = document.createElement('a')
+                pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + x)
+                pom.setAttribute('download', this.settings.name)
+                if document.createEvent
+                    event = document.createEvent('MouseEvents')
+                    event.initEvent('click', true, true)
+                    pom.dispatchEvent(event)
+                else
+                    pom.click()
+                    document.body.appendChild(link)
+                    pom.remove()
+            ).fail((x) =>
+                log_error("ERROR", x)
+            )
+        get_predef: () ->
+            this.predef_gene_lists = await GeneListAPI.get_all_geneLists()
+            console.log(this.predef_gene_lists)
+        downloadR: () ->
+            rcode = ""
+            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast)
+            p.then((d) =>
+                element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(d));
+                element.setAttribute('download', "degust.R");
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+
+            )
 
 
     mounted: () ->
