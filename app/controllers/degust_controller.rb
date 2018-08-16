@@ -48,6 +48,10 @@ class DegustController < ApplicationController
         res['extra_menu_html'] = render_to_string(partial: 'layouts/navigation_links.html.erb')
         res['is_logged_in'] = !current_user.nil?
         res['is_owner'] = de_setting.is_owner(current_user)
+        if de_setting.is_owner(current_user)
+            res['delete_url'] = de_setting_path(params[:id])
+            res['tok'] = form_authenticity_token
+        end
         render :json => res
     end
 
