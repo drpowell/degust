@@ -8,6 +8,12 @@ class DeSettingsController < ApplicationController
 
     def create
         f = params['filename']
+
+        if f.nil?
+            redirect_back(fallback_location: upload_path, :alert => "No file selected")
+            return
+        end
+
         @user_file = UserFile.create()
         @user_file.from_tempfile(f)
         @user_file.save!
