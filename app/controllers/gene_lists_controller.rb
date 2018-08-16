@@ -1,7 +1,7 @@
 class GeneListsController < ApplicationController
     def index
-        #de_setting = DeSetting.find_by_secure_id(params[:id])
-        genelists = GeneList.where(:de_setting_id => params[:id]).select([:title, :description])
+        de_setting = DeSetting.find_by_secure_id(params[:id])
+        genelists = GeneList.where(:de_setting_id => de_setting.id).select([:title, :description])
         render json: genelists
     end
 
@@ -19,7 +19,7 @@ class GeneListsController < ApplicationController
 
         @gene_list = GeneList.new()
         @gene_list.user = current_user
-        @gene_list.de_settings = params[:id]
+        @gene_list.de_setting_id = de_setting.id
 
         @gene_list.title = params[:title]
         @gene_list.description = params[:description]
@@ -27,6 +27,7 @@ class GeneListsController < ApplicationController
         @gene_list.columns = params[:columns]
         @gene_list.rows = params[:rows]
         @gene_list.save!
+        render json: {msg: "Saved", id: @gene_list.id}
     end
 
     def destroy
