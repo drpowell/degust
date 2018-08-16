@@ -50,8 +50,8 @@ class DegustController < ApplicationController
         res['is_owner'] = de_setting.is_owner(current_user)
         if de_setting.is_owner(current_user)
             res['delete_url'] = de_setting_path(params[:id])
-            res['tok'] = form_authenticity_token
         end
+        res['tok'] = form_authenticity_token
         render :json => res
     end
 
