@@ -46,9 +46,18 @@
     border-color: transparent black transparent transparent;
     }
 
-.smallText {
-  font-size: 7.5pt;
-}
+    .smallText {
+      font-size: 7.5pt;
+    }
+
+    .handIcon {
+        cursor: pointer;
+    }
+
+    .dropdown-submenu {
+        position: relative;
+    }
+
 </style>
 
 <template>
@@ -215,6 +224,15 @@
 
             <div class='text-left' v-show='!is_pre_analysed'>
               <a class='sm-link' @click='show_r_code'>Show R code</a>
+              <!-- Download R code/Show R code -->
+              <span class="dropdown">
+                <button class="btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-target="#">
+                      <span class='caret'></span>
+                </button>
+                <ul class="dropdown-menu download" aria-labelledby="dropDownload">
+                  <li><a @click='downloadR()'>Download R code</a></li>
+                </ul>
+              </span>
             </div>
             <div class='text-left' v-if='!show_heatmap'>
               <a class='sm-link' @click='show_heatmap=true'>
