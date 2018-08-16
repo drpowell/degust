@@ -26,7 +26,7 @@ gem 'omniauth-google-oauth2'
 gem 'simple_form'
 
 gem 'browser-timezone-rails'
-gem 'rails-backup-migrate'
+#gem 'rails-backup-migrate'
 
 gem 'jquery-tablesorter'
 
