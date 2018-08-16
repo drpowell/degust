@@ -392,6 +392,42 @@ module.exports =
             this.show_ModalExperimentDesc = true
             return
 
+        script: (typ) ->
+            "#{this.code}/#{typ}"
+        # This needs to have some/any feedback upon a(n) (un)successful save
+        save: () ->
+            # to_send = to_server_model(this.settings)
+            $.ajax(
+                type: "POST"
+                url: this.script("settings")
+                data: {settings: JSON.stringify(this.settings)}
+                dataType: 'json'
+            ).done((x) =>
+            ).fail((x) =>
+                log_error("ERROR",x)
+            )
+
+        download_raw: () ->
+            $.ajax(
+                type: "GET"
+                url: window.location.origin + '/degust/' + this.code + '/' + 'csv'
+            ).done((x) =>
+                # Generate download link from: https://stackoverflow.com/q/2897619
+                pom = document.createElement('a')
+                pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + x)
+                pom.setAttribute('download', this.settings.name)
+                if document.createEvent
+                    event = document.createEvent('MouseEvents')
+                    event.initEvent('click', true, true)
+                    pom.dispatchEvent(event)
+                else
+                    pom.click()
+                    document.body.appendChild(link)
+                    pom.remove()
+            ).fail((x) =>
+                log_error("ERROR", x)
+            )
+
     mounted: () ->
         this.init()
 

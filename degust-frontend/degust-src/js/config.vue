@@ -275,6 +275,15 @@
               </button>
               <transition name="fade">
                   <div v-show='advanced'>
+                      <div class='form-group'>
+                        <label class='control-label col-sm-3'>Download Raw Data</label>
+                        <div class="controls col-sm-3">
+                          <button type="button" class="btn btn-info" v-on:click='download_raw' v-tooltip="tip('Download the dataset as raw a csv')">
+                            Download
+                          </button>
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <label class="control-label col-sm-3" for="config-locked">Config locked</label>
                         <div class="controls col-sm-1">

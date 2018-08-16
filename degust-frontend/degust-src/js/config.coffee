@@ -403,5 +403,27 @@ module.exports =
         tip: (txt) ->
             {content:txt, placement:'right'}
 
+        download_raw: () ->
+            $.ajax(
+                type: "GET"
+                url: window.location.origin + '/degust/' + this.code + '/' + 'csv'
+            ).done((x) =>
+                # Generate download link from: https://stackoverflow.com/q/2897619
+                pom = document.createElement('a')
+                pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + x)
+                pom.setAttribute('download', this.settings.name)
+                if document.createEvent
+                    event = document.createEvent('MouseEvents')
+                    event.initEvent('click', true, true)
+                    pom.dispatchEvent(event)
+                else
+                    pom.click()
+                    document.body.appendChild(link)
+                    link.click()
+                    link.remove()
+            ).fail((x) =>
+                log_error("ERROR", x)
+            )
+
     mounted: ->
         this.get_settings()

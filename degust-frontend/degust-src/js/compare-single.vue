@@ -18,10 +18,6 @@
       font-size: 9pt;
     }
 
-    #experimentDescriptionLoc {
-      font-size: 7.5pt;
-    }
-
     #descTooltip {
       position: absolute;
       text-align: left;
@@ -50,7 +46,9 @@
     border-color: transparent black transparent transparent;
     }
 
-
+.smallText {
+  font-size: 7.5pt;
+}
 </style>
 
 <template>
@@ -223,7 +221,7 @@
                   Show heatmap
               </a>
             </div>
-            <div class='text-left'>
+            <div class='text-left smallText'>
                     <a  @mouseover='hoverExperimentDesc'
                         @mouseout="show_hoverDesc=false"
                         @mouseup='modalExperimentDesc'
@@ -234,6 +232,11 @@
                       <pre id='descPreformatted' v-if='settings.experimentDescription !=null'>{{ settings.experimentDescription }}</pre>
                       <pre id='descPreformatted' v-else>No Experiment Description to show.</pre>
                     </div>
+            </div>
+            <div v-tooltip="tip('Download a copy of the raw data uploaded to Degust')">
+              <div class='text-left smallText' style=''>
+                  <a v-on:click='download_raw'>Download Raw Data</a>
+              </div>
             </div>
           </div>
         </div>
