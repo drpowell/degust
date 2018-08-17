@@ -52,12 +52,10 @@
 <script lang="coffee">
 
 Multiselect = require('vue-multiselect').default
-Modal = require('modal-vue').default
 
 module.exports =
     components:
         Multiselect: Multiselect
-        modal: Modal
     props:
         conditions:         # Array of hashes.  Each hash has "rep.name" for name of the condition
             required: true

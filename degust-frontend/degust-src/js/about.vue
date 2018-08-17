@@ -30,16 +30,14 @@
 
 <script lang='coffee'>
 
-Modal = require('modal-vue').default
 
 module.exports =
     name: 'about'
-    components:
-        modal: Modal
     props:
         show: false
         version:
             default: degust_version
     methods:
         close: () -> this.$emit('close')
+
 </script>

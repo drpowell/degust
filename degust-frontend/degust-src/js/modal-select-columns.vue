@@ -35,14 +35,10 @@
 
 <script lang='coffee'>
 
-Modal = require('modal-vue').default
-
 module.exports =
     name: 'filterGenes'
     data: () ->
         filterGeneList: ""
-    components:
-        modal: Modal
     props:
         show: false
         allColData: null

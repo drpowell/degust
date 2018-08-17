@@ -89,12 +89,8 @@ td, th {
 
 <script lang='coffee'>
 
-Modal = require('modal-vue').default
-
 module.exports =
     name: 'extraInfo'
-    components:
-        modal: Modal
     props:
         show: false
         extraInfoData: null

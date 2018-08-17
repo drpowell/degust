@@ -24,12 +24,9 @@ pre {
 
 <script lang='coffee'>
 
-Modal = require('modal-vue').default
 
 module.exports =
     name: 'modalDelete'
-    components:
-        modal: Modal
     props:
         show:
             default: false

@@ -126,7 +126,7 @@ input_type_options = [{key: 'counts', label: 'RNA-seq counts'},
                      ]
 
 Multiselect = require('vue-multiselect').default
-Modal = require('modal-vue').default
+Modal = require('./modal.vue').default
 deleteModal = require('./modal-deleteData.vue').default
 about = require('./about.vue').default
 slickTable = require('./slick-table.vue').default

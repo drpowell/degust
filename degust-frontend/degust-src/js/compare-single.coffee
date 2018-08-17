@@ -14,7 +14,6 @@ filterGenes = require('./filter-genes.vue').default
 extraInfo = require('./extra-info.vue').default
 modalExpDesc = require('./modal-ExpDesc.vue').default
 ErrorMsg = require('./modal-error-msg.vue').default
-Modal = require('modal-vue').default
 geneTable = require('./gene-table.vue').default
 maPlot = require('./ma-plot.vue').default
 volcanoPlot = require('./volcano-plot.vue').default
@@ -47,7 +46,6 @@ module.exports =
         extraInfo: extraInfo
         ErrorMsg: ErrorMsg
         modalExpDesc: modalExpDesc
-        Modal: Modal
         geneTable: geneTable
         maPlot: maPlot
         volcanoPlot: volcanoPlot
