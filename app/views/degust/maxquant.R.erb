@@ -4,7 +4,7 @@ library(jsonlite)
 
 #From _common
 count_cols <- <%== @columns %>
-data<-read.delim('<%== @counts_file %>',skip=<%= @counts_skip %>, sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
+data<-read.delim('<%== @counts_file %>', sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
 
 rzr_col <- data$`Peptide counts (razor+unique)`
 rzr_uniq <- lapply(lapply(mapply(rzr_col, FUN = strsplit, ";"), FUN = as.numeric), FUN = sum)
