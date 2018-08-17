@@ -25,7 +25,6 @@ class DegustLogic
         params = {
                 "sep_char" => settings['csv_format'] ? "," : "\t",
                 "counts_file" => real ? de_setting.user_file.location : de_setting.user_file.name,
-                "counts_skip" => 0,
                 "columns" => arrToR(count_columns(settings), true),
                 "min_counts" => force_num(settings['min_counts']),
                 "min_cpm" => force_num(settings['min_cpm']),
