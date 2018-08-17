@@ -4,8 +4,8 @@
 
 <template>
     <div :class="containerClass">
-        <div :class="{modal: true, in: showModal}" :style="{ display: showModal ? 'block' : 'none' }">
-            <div class="modal-dialog">
+        <div :class="{modal: true, in: showModal}" :style="{ display: showModal ? 'block' : 'none' }" @click='mayClose'>
+            <div class="modal-dialog" @click.stop=''>
                 <div class="modal-content">
                     <div v-if="this.$slots.header || closeAction" class="modal-header">
                         <button class="close" @click="closeAction">x</button>
@@ -31,6 +31,10 @@ module.exports =
         showModal: Boolean,
         closeAction: Function,
         containerClass: String
+    methods:
+        mayClose: () ->
+            if this.closeAction?
+                this.closeAction()
     mounted: () ->
         document.addEventListener("keydown", (e) =>
             if (this.showModal && e.keyCode == 27 && this.closeAction?)
