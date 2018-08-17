@@ -316,14 +316,20 @@ module.exports =
             errs
         check_conditon_names: () ->
             invalid = []
-            for rep in this.settings.replicates
-                if (rep.name in this.columns_info)
-                    invalid.push("ERROR : Cannot use condition name '#{rep.name}', it is already a column name")
-                if (rep.name=="")
+            rep_names = this.settings.replicates.map((rep) -> rep.name)
+            if (new Set(rep_names).size != rep_names.length)
+                invalid.push("Duplicate condition name")
+
+            for name in rep_names
+                if (name in this.columns_info)
+                    invalid.push("ERROR : Cannot use condition name '#{name}', it is already a column name")
+                if (name=="")
                     invalid.push("Missing condition name")
             this.settings.contrasts.forEach((c) =>
                 if (c.name in this.columns_info)
                     invalid.push("ERROR : Cannot use contrast name '#{c.name}', it is already a column name")
+                if (c.name in rep_names)
+                    invalid.push("ERROR : Contrast name '#{c.name}' is already a condition name")
                 if (c.name=="")
                     invalid.push("Missing contrast name")
             )
