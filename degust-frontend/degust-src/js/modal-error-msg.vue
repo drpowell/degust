@@ -28,12 +28,8 @@ pre {
 
 <script lang='coffee'>
 
-Modal = require('modal-vue').default
-
 module.exports =
     name: 'DGEErrorMsg'
-    components:
-        modal: Modal
     props:
         show: false
         errorMsg: null

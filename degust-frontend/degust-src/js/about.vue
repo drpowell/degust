@@ -18,7 +18,7 @@
                 <div style='margin-top: 10px;'>
                     Past Support:
                     <a href='http://vicbioinformatics.com/'>Victorian Bioinformatics Consortium, Monash University</a>
-                    <a href='http://www.vlsci.org.au/lscc'>VLSCI's Life Sciences Computation Centre</a>
+                    VLSCI's Life Sciences Computation Centre
                 </div>
             </div>
         </div>
@@ -30,16 +30,14 @@
 
 <script lang='coffee'>
 
-Modal = require('modal-vue').default
 
 module.exports =
     name: 'about'
-    components:
-        modal: Modal
     props:
         show: false
         version:
             default: degust_version
     methods:
         close: () -> this.$emit('close')
+
 </script>

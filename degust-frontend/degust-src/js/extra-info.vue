@@ -35,13 +35,19 @@ td, th {
                 <!-- Rank -->
                 <table v-else-if='selectShown == "rank"'>
                     <tr>
-                        <th>Rank</th><td>{{ formatData("rank")[0] }}</td>
+                        <th>Rank</th><td>{{ formatData("rank") != null ? formatData("rank")[0] : undefined}}</td>
                     </tr>
                 </table>
                 <!-- df_prior -->
                 <table v-else-if='selectShown == "df_prior"'>
                     <tr>
                         <th>DF Prior</th><td>{{ formatData("df_prior")[0] }}</td>
+                    </tr>
+                </table>
+                <!-- prior_df -->
+                <table v-else-if='selectShown == "prior_df"'>
+                    <tr>
+                        <th>DF Prior</th><td>{{ formatData("prior_df")[0] }}</td>
                     </tr>
                 </table>
                 <!-- Design -->
@@ -83,12 +89,8 @@ td, th {
 
 <script lang='coffee'>
 
-Modal = require('modal-vue').default
-
 module.exports =
     name: 'extraInfo'
-    components:
-        modal: Modal
     props:
         show: false
         extraInfoData: null
@@ -112,30 +114,33 @@ module.exports =
             this.close()
         formatData: (type) ->
             if this.extraInfoData?
-                switch
-                    when type == "sample_weights"
-                        {weights: this.extraInfoData.sample_weights, samples: this.extraInfoData.samples}
-                    when type == "rank"
-                        this.extraInfoData.rank
-                    when type == "df_prior"
-                        this.extraInfoData.df_prior
-                    when type == "design"
-                        this.extraInfoData.design.map((el) ->
-                            shortKeys = Object.keys(el).slice(0, Object.keys(el).length-1)
-                            {groups: shortKeys, membership: shortKeys.map((key) -> el[key]), sample:el["_row"]}
-                        )
-                    when type == "samples"
-                        this.extraInfoData.samples
-                    when type == "contrasts"
-                        this.extraInfoData.contrasts.map((el) ->
-                            shortKeys = Object.keys(el).slice(0, Object.keys(el).length-1)
-                            {groups: shortKeys, membership: shortKeys.map((key) -> el[key]), sample:el["_row"]}
-                        )
-                    when type == "cov_coefficients"
-                        this.extraInfoData.cov_coefficients.map((el) ->
-                            shortKeys = Object.keys(el).slice(0, Object.keys(el).length-1)
-                            {groups: shortKeys, membership: shortKeys.map((key) -> el[key]), sample:el["_row"]}
-                        )
-                    else
-                        this.extraInfoData[type]
+                if Object.keys(this.extraInfoData).indexOf(type) >= 0
+                    switch
+                        when type == "sample_weights"
+                            {weights: this.extraInfoData.sample_weights, samples: this.extraInfoData.samples}
+                        when type == "rank"
+                            this.extraInfoData.rank
+                        when type == "df_prior"
+                            this.extraInfoData.df_prior
+                        when type == "prior_df"
+                            this.extraInfoData.prior_df
+                        when type == "design"
+                            this.extraInfoData.design.map((el) ->
+                                shortKeys = Object.keys(el).slice(0, Object.keys(el).length-1)
+                                {groups: shortKeys, membership: shortKeys.map((key) -> el[key]), sample:el["_row"]}
+                            )
+                        when type == "samples"
+                            this.extraInfoData.samples
+                        when type == "contrasts"
+                            this.extraInfoData.contrasts.map((el) ->
+                                shortKeys = Object.keys(el).slice(0, Object.keys(el).length-1)
+                                {groups: shortKeys, membership: shortKeys.map((key) -> el[key]), sample:el["_row"]}
+                            )
+                        when type == "cov_coefficients"
+                            this.extraInfoData.cov_coefficients.map((el) ->
+                                shortKeys = Object.keys(el).slice(0, Object.keys(el).length-1)
+                                {groups: shortKeys, membership: shortKeys.map((key) -> el[key]), sample:el["_row"]}
+                            )
+                        else
+                            this.extraInfoData[type]
 </script>

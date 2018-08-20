@@ -8,7 +8,7 @@ library(DEP)
 
 #From _common
 count_cols <- <%== @columns %>
-x<-read.delim('<%== @counts_file %>',skip=<%= @counts_skip %>, sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
+x<-read.delim('<%== @counts_file %>', sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
 x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v)) # Force numeric count columns
 
 #Pre-process here

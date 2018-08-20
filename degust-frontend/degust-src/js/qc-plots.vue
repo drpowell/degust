@@ -94,4 +94,10 @@ module.exports =
         colour:
             type: Function
             default: d3.scale.category10()
+    mounted: () ->
+        document.addEventListener("keydown", (e) =>
+            if (this.showQc!='' && e.keyCode == 27)
+                this.$emit('close')
+        )
+
 </script>

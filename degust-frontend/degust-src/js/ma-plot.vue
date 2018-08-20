@@ -125,4 +125,8 @@ module.exports =
         set_highlight: (rows) ->
             this.$refs.scatter.set_highlight(rows)
 
+    # TODO emit brush event to correctly set filtered data
+    mounted: () ->
+        this.$emit('brush', this.data.filter((d) => this.filter(d)), true)
+
 </script>

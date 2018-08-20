@@ -1,3 +1,22 @@
+v4.1.0
+  * Simple Gene filters added as "Create Filter"
+  * Experiment can be given a description
+  * Accept MaxQuant data format to process proteomics data and pre-fill important columns (exprimental)
+  * QC plots for proteomics added (Imputed value heatmap, Intensity histogram, CV-Histograms)
+  * Gene table shows intensity or log2 intensity for MaxQuant data
+  * Gene table can guess UniProt ID lookup when MaxQuant data is loaded (double-click id on gene table)
+  * Gene table can be searched by comma separating search terms
+  * Gene table can select columns to show/hide (from cog menu)
+  * Updated gene-table options and cog
+  * "View Extra Information" can now display some information in a table
+  * Moved options to left side of page to always show Strip Chart
+  * Add button to delete dataset from config page (Under extra options)
+  * Add button to download R code
+  * Add button to download a copy of the uploaded counts data (on both View and Config pages)
+  * Add button to make copy of dataset from "visited" page (split button)
+  * Heatmap tooltips updated
+  * Hide irrelevant UI elements on load of "pre-analysed" data
+
 v4.0.0
   * Large refactor of front-end to Vue
   * Make config page conditions able to be reordered by up/down arrows

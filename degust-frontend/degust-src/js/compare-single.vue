@@ -11,6 +11,53 @@
 
     .heatmap-info { font-size: 9pt; height: 2em; }
     .heatmap-info .lbl { margin-left: 20px; font-weight: bold; display: inline-block;}
+
+    #descPreformatted {
+      margin: 1em 0;
+      display: block;
+      font-size: 9pt;
+    }
+
+    #descTooltip {
+      position: absolute;
+      text-align: left;
+      padding: 6px 12px 6px;
+      font: 12px sans-serif;
+      background: #fff;
+      color: #000000;
+      border: 1px;
+      border-radius: 6px;
+      border-color: #000000;
+      border-style: solid;
+      pointer-events: none;
+      width: 'auto';
+      opacity: 1;
+      -webkit-transform: translate(0%, -50%);
+    }
+
+    div >>> #descTooltip::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+    }
+
+    .smallText {
+      font-size: 7.5pt;
+    }
+
+    .handIcon {
+        cursor: pointer;
+    }
+
+    .dropdown-submenu {
+        position: relative;
+    }
+
 </style>
 
 <template>
@@ -63,7 +110,9 @@
           <hr/>
           <div>
             <div class='filter options'>
-              <h4>Options</h4>
+              <div>
+                  <h4>Options</h4>
+              </div>
               <div v-tooltip="tip('Filter genes by False Discovery Rate')">
                 <label>FDR cut-off</label>
                 <slider-text class='slider-control'
@@ -175,12 +224,37 @@
 
             <div class='text-left' v-show='!is_pre_analysed'>
               <a class='sm-link' @click='show_r_code'>Show R code</a>
+              <!-- Download R code/Show R code -->
+              <span class="dropdown">
+                <button class="btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-target="#">
+                      <span class='caret'></span>
+                </button>
+                <ul class="dropdown-menu download" aria-labelledby="dropDownload">
+                  <li><a @click='downloadR()'>Download R code</a></li>
+                </ul>
+              </span>
             </div>
-
             <div class='text-left' v-if='!show_heatmap'>
               <a class='sm-link' @click='show_heatmap=true'>
                   Show heatmap
               </a>
+            </div>
+            <div class='text-left smallText'>
+                    <a  @mouseover='hoverExperimentDesc'
+                        @mouseout="show_hoverDesc=false"
+                        @mouseup='modalExperimentDesc'
+                        id='experimentDescriptionLoc'
+                        >Show Description
+                    </a>
+                    <div class='tooltip' v-if='show_hoverDesc' :style='tooltipStyleDesc' ref='tooltip' id='descTooltip'>
+                      <pre id='descPreformatted' v-if='settings.experimentDescription !=null'>{{ settings.experimentDescription }}</pre>
+                      <pre id='descPreformatted' v-else>No Experiment Description to show.</pre>
+                    </div>
+            </div>
+            <div v-tooltip="tip('Download a copy of the raw data uploaded to Degust')">
+              <div class='text-left smallText' style=''>
+                  <a v-on:click='download_raw'>Download Raw Data</a>
+              </div>
             </div>
           </div>
         </div>
@@ -300,6 +374,9 @@
                     :rows='genes_selected' :show-counts='showCounts' :show-intensity='showIntensity'
                     :useProt='is_maxquant'
                     @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
+                    :allCols='all_columns'
+                    :allowSelcols='true'
+                    @showSelectColumns='show_selectCols=true'
                     >
         </gene-table>
       </div> <!-- row -->
@@ -308,6 +385,12 @@
 
     <!-- Gene List box Modal -->
     <filterGenes :show='showGeneList' @close='showGeneList=false' @filterList='filterList'></filterGenes>
+
+    <modalExpDesc
+              :show='show_ModalExperimentDesc'
+              :desc='settings.experimentDescription'
+              @close='show_ModalExperimentDesc=false'>
+    </modalExpDesc>
 
     <extraInfo
               :show='show_extraInfo'

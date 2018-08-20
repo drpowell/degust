@@ -43,6 +43,11 @@ Vue.use(
         )
 )
 
+# Global registration of modal, as it is used in many places
+Modal = require('./modal.vue').default
+Vue.component('modal', Modal)
+
+
 new Vue(
     name: 'app'
     el: '#replace-me'

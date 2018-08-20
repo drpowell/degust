@@ -1,7 +1,12 @@
 <%= render "degust/libraries.R.erb" %>
 
 count_cols <- <%== @columns %>
-x<-read.delim('<%== @counts_file %>',skip=<%= @counts_skip %>, sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
+
+x<-read.delim('<%== @counts_file %>', sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
+
+# Now re-read the first header line.  Workaround R problem that always has strip.white=T for read.table
+colnames(x) <- scan('<%== @counts_file %>', what="", sep="<%== @sep_char %>", nlines=1,strip.white=F, quote = "\"")
+
 x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v))     # Force numeric count columns
 counts <- x[, count_cols]
 keepMin <- apply(counts, 1, max) >= <%= @min_counts %>
