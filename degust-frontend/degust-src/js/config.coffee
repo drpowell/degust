@@ -313,7 +313,26 @@ module.exports =
                 if (c.column.length != this.settings.replicates.length)
                     errs.push("Contrast '"+c.name+"' does not match number of samples")
             )
+            errs = errs.concat(this.check_duplicate_columns())
             errs
+
+        check_duplicate_columns: () ->
+            errs=[]
+            # Get all the column names from the configured replicates
+            used_cols = this.settings.replicates.map((rep) -> rep.cols).reduce(((x, y) -> x.concat(y)), [])
+            # Get the  duplicate columns from the CSV
+            duplicate_cols = []
+            for col, index in this.column_names
+                if this.column_names.lastIndexOf(col) > index
+                    duplicate_cols.push(col)
+            console.log("duplicates",duplicate_cols)
+            # Check if any of the duplicate columns are actually used
+            console.log "info",this.settings.info_columns
+            for col in duplicate_cols
+                if (col in this.settings.info_columns) || (col in used_cols)
+                    errs.push("Cannot use column '#{col}' as it is duplicated in the csv file")
+            errs
+
         check_conditon_names: () ->
             invalid = []
             rep_names = this.settings.replicates.map((rep) -> rep.name)
