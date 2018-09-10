@@ -79,7 +79,7 @@ from_server_model = (mdl) ->
         if res.input_type==''
             delete res.input_type
 
-    console.log("server model",mdl,res)
+    #console.log("server model",mdl,res)
     res
 
 to_server_model = (mdl) ->
@@ -325,9 +325,7 @@ module.exports =
             for col, index in this.column_names
                 if this.column_names.lastIndexOf(col) > index
                     duplicate_cols.push(col)
-            console.log("duplicates",duplicate_cols)
             # Check if any of the duplicate columns are actually used
-            console.log "info",this.settings.info_columns
             for col in duplicate_cols
                 if (col in this.settings.info_columns) || (col in used_cols)
                     errs.push("Cannot use column '#{col}' as it is duplicated in the csv file")
