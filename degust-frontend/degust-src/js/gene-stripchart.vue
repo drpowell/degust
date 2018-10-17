@@ -71,7 +71,7 @@ class GeneStripchart
                      .style("opacity", 0)
 
         @jitter_cache = {}
-        @show_cpm = false
+        @show_cpm = true
         @show_log2Intensity = false
         @useIntensity = @opts.useIntensity
         @_make_menu(@opts.elem)
@@ -108,11 +108,11 @@ class GeneStripchart
         vals = cols.map((c) =>
             norm_factor = @data.get_total(c) / 1000000.0
             # {lbl: c.name, parent: c.parent, val: Math.log(0.5 + row[c.idx]/norm_factor)/Math.log(2)}
-            
+
             # Shouldn't be able to set both @show_cpm AND @show_log2Intensity to be true at the same time.
             if !@useIntensity
                 val = if @show_cpm then row[c.idx]/norm_factor else row[c.idx]
-            else 
+            else
                 val = if @show_log2Intensity then Math.log(row[c.idx]) * Math.LOG2E else row[c.idx]
             {lbl: c.name, parent: c.parent, val: val}
         )
@@ -170,7 +170,7 @@ class GeneStripchart
     # i.e. displays "Show in CPM when in counts mode and vice versa"
         txt = if @useIntensity
             if @show_log2Intensity == !prefix then "Log2" else "Intensity"
-        else 
+        else
             if @show_cpm == !prefix then "CPM" else "Counts"
         return prefix + txt
 
