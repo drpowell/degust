@@ -30,9 +30,20 @@ class DeSettingsController < ApplicationController
     @user_file.from_tempfile(f)
     @user_file.save!
 
+    # Create the DeSetting object
     @de_setting = DeSetting.new()
     @de_setting.user_file = @user_file
     @de_setting.user = user
+
+    # If there are settings from the user, use those as default
+    if params['settings']
+        new_settings = JSON.parse(params['settings'])
+        ok = @de_setting.update_from_json(new_settings)
+        if !ok
+            render status: 400, plain: 'Invalid character in field'
+            return
+        end
+    end
     @de_setting.save!
 
     redirect_to degust_page_path("compare.html")+"?code="+@de_setting.secure_id
