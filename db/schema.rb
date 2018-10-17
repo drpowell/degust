@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181017024316) do
+ActiveRecord::Schema.define(version: 20181017031052) do
 
   create_table "de_settings", force: :cascade do |t|
     t.integer  "user_id"
@@ -55,9 +55,10 @@ ActiveRecord::Schema.define(version: 20181017024316) do
     t.string   "provider"
     t.string   "uid"
     t.text     "extra"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.boolean  "admin"
+    t.string   "upload_token"
   end
 
   create_table "visiteds", force: :cascade do |t|

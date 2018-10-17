@@ -1,2 +1,5 @@
 <td><%= link_to user.name, user %></td>
 <td><%= user.admin? %></td>
+<% if current_user.admin?%>
+  <td><%= user.extra %></td>
+<% end %>

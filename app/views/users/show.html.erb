@@ -1,3 +1,14 @@
 <h3>User</h3>
-<p>Name: <%= @user.name if @user.name %></p>
-<p>Admin: <%= @user.admin? %></p>
+<table>
+<tr><td>Name: <td><%= @user.name if @user.name %></p>
+<tr><td>Admin: <td><%= @user.admin? %></p>
+<tr><td>Upload token:
+    <% if @user.upload_token.nil?%>
+        <td>Not set
+        <td><%= button_to "Create", {action: "reset_token"}, {class: 'btn btn-default btn-xs'} %>
+    <% else %>
+        <td><%= @user.upload_token %>
+        <td><%= button_to "Clear", {action: "delete_token"}, {class: 'btn btn-default btn-xs'} %>
+        <td><%= button_to "Reset", {action: "reset_token"}, {class: 'btn btn-default btn-xs'} %>
+    <% end %>
+

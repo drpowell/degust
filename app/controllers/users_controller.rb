@@ -11,7 +11,23 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    if params[:id] == 'me'
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
+  end
+
+  def reset_token
+    @user.create_upload_token()
+    @user.save!
+    redirect_to user_path(@user)
+  end
+
+  def delete_token
+    @user.delete_upload_token()
+    @user.save!
+    redirect_to user_path(@user)
   end
 
 end
