@@ -11,7 +11,8 @@
     .row
       .col-md-12
         You are logged in as
-        %b #{current_user.name}
+        %b
+          = link_to current_user.name, user_path(current_user)
         via
         %b #{if current_user.provider == "twitter" then "twitter" else "google" end}
 

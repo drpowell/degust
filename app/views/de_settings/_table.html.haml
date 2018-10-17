@@ -23,8 +23,9 @@
         = number_to_human_size(de.user_file.size)
       %td.smaller{"data-val" => de.created_at.to_i}
         = de.created_at.to_formatted_s(:rfc822)
-      %td.smaller{"data-val" => de.last_visit_by(current_user) ? de.last_visit_by(current_user).last.to_i : ''}
-        = de.last_visit_by(current_user) ? de.last_visit_by(current_user).last.to_formatted_s(:rfc822) : ''
+      - last_visit = de.last_visit_by(current_user)
+      %td.smaller{"data-val" => last_visit ? last_visit.last.to_i : 0}
+        = last_visit ? last_visit.last.to_formatted_s(:rfc822) : 'never'
       -#   = moment(val.last).format("MMMM Do YYYY, h:mm:ss a")}
       %td
         = de.user.nil? ? '<Anonymous>' : de.user.name

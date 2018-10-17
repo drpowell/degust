@@ -1,4 +1,6 @@
 class DegustController < ApplicationController
+    # Skip CSRF for static pages (these are safe anyway)
+    # FIXME: Also skip CSRF for saving settings.  The frontend should send the tokens.  Careful to still allow CLI where appropriate
     skip_before_action :verify_authenticity_token, :only => [:static, :save_settings]
 
     def static

@@ -24,7 +24,23 @@ The MDS plot is only available when you have included "count" columns
   * And the next "Num genes" are selected.
   * These selected genes are used to compute an MDS (or PCA) plot
 
-### Configuring a Degust session programmatically
+
+### Uploading a counts file from the command line
+
+You will need to be logged in to degust for this functionality.  You will also need to create an upload token.  Browse to the user page : [http://degust.erc.monash.edu/users/me](http://degust.erc.monash.edu/users/me) and create a token, then copy this token.
+
+Then use `curl` to upload your counts file with the token from above:
+
+    curl 'http://degust.erc.monash.edu/upload' -F 'upload_token=35758967af4c201aabfd7231a71fad6d' -F 'filename=@/home/dave/degust-counts.tsv'
+
+This will return a link that you can use to browse the new file.
+
+Note this can used to upload AND configure a degust session at the same time.  See the next section for the contents of the `settings.json` file.
+
+    curl 'http://degust.erc.monash.edu/upload' -F 'upload_token=35758967af4c201aabfd7231a71fad6d' -F 'filename=@/home/dave/degust-counts.tsv' -F 'settings=<settings.json'
+
+
+### Configuring a Degust session from the command line
 
 First upload your count matrix, and note the special code created in the url.  eg. `73fb85e4625f5bdd08cfeb3b9fc7a7f2`
 
@@ -99,3 +115,4 @@ Example json settings below.   Important parts:
   "csv_format": true,
 }
 ```
+

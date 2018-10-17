@@ -1,23 +1,49 @@
 class DeSettingsController < ApplicationController
-    def new
-    end
+    # Skip verifying csrf to allow command line uploads.  This will be checked in the method below
+    skip_before_action :verify_authenticity_token, :only => [:create]
+
 
     def show
         redirect_to degust_compare_url(params['version'], params['id'])
     end
 
     def create
+        # Either valid upload token OR CSRF tags
+        tok = params['upload_token']
+        if tok.nil? || !tok
+            user = current_user
+            verify_authenticity_token
+        else
+            user = User.find_by_upload_token(tok)
+            if user.nil?
+                render status: 400, plain: 'Access denied'
+                return
+            end
+        end
+
+        # All valid, create the file.
         f = params['filename']
         @user_file = UserFile.create()
         @user_file.from_tempfile(f)
         @user_file.save!
 
+        # Create the DeSetting object
         @de_setting = DeSetting.new()
         @de_setting.user_file = @user_file
-        @de_setting.user = current_user
+        @de_setting.user = user
+
+        # If there are settings from the user, use those as default
+        if params['settings']
+            new_settings = JSON.parse(params['settings'])
+            ok = @de_setting.update_from_json(new_settings)
+            if !ok
+                render status: 400, plain: 'Invalid character in field'
+                return
+            end
+        end
         @de_setting.save!
 
-        redirect_to degust_compare_url('', @de_setting.secure_id)
+        redirect_to degust_page_path("compare.html")+"?code="+@de_setting.secure_id
     end
 
     def copy
