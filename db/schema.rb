@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418032152) do
+ActiveRecord::Schema.define(version: 20181017024316) do
 
   create_table "de_settings", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 20170418032152) do
     t.index ["secure_id"], name: "index_de_settings_on_secure_id"
     t.index ["user_file_id"], name: "index_de_settings_on_user_file_id"
     t.index ["user_id"], name: "index_de_settings_on_user_id"
+  end
+
+  create_table "gene_lists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "de_setting_id"
+    t.string   "title"
+    t.string   "description"
+    t.string   "id_type"
+    t.string   "columns"
+    t.string   "rows"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["de_setting_id"], name: "index_gene_lists_on_de_setting_id"
+    t.index ["user_id"], name: "index_gene_lists_on_user_id"
   end
 
   create_table "user_files", force: :cascade do |t|
@@ -43,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170418032152) do
     t.text     "extra"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "admin"
   end
 
   create_table "visiteds", force: :cascade do |t|
