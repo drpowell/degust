@@ -194,11 +194,24 @@ odf_fmt = (cols,rows) ->
            "COLUMN_NAMES: "+cols.map((c)->c.name).join("\t"),
     ].concat(rows.map((r) -> r.join("\t"))).join("\n")
 
+# Remove duplicates from an array using the passed function "by_key" as the identifier
+remove_duplicates = (arr, by_key) ->
+    keys={}
+    res = []
+    for v in arr
+        k = by_key(v)
+        if !(k of res)
+            res.push(v)
+            res[k] = 1
+    res
+
 do_download = (filename, gene_data, gene_table, fmt) ->
     items = gene_table
     return if items.length==0
     cols = gene_data.columns_by_type(['info','fc_calc','count','fdr','avg','p'])
+    cols = remove_duplicates(cols, (x) -> x.idx)
     count_cols = gene_data.columns_by_type('count')
+    count_cols = remove_duplicates(count_cols, (x) -> x.idx)
     keys = cols.map((c) -> c.name).concat(count_cols.map((c) -> c.name+" CPM"))
     rows = items.map( (r) ->  #FIXME re-use Normalize
         cpms = count_cols.map((c) -> (r[c.idx]/(gene_data.get_total(c)/1000000.0)).toFixed(3))
