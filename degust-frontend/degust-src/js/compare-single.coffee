@@ -406,25 +406,14 @@ module.exports =
             )
 
         download_raw: () ->
-            $.ajax(
-                type: "GET"
-                url: window.location.origin + '/degust/' + this.code + '/' + 'csv'
-            ).done((x) =>
-                # Generate download link from: https://stackoverflow.com/q/2897619
-                pom = document.createElement('a')
-                pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + x)
-                pom.setAttribute('download', this.settings.name)
-                if document.createEvent
-                    event = document.createEvent('MouseEvents')
-                    event.initEvent('click', true, true)
-                    pom.dispatchEvent(event)
-                else
-                    pom.click()
-                    document.body.appendChild(link)
-                    pom.remove()
-            ).fail((x) =>
-                log_error("ERROR", x)
-            )
+            link = document.createElement('a')
+            link.setAttribute('href', window.location.origin + '/degust/' + this.code + '/' + 'csv')
+            suffix = if this.settings.csv_format then ".csv" else ".tsv"
+            link.setAttribute('download', this.experimentName + suffix)
+            document.body.appendChild(link)
+            link.click()
+            link.remove()
+
         get_predef: () ->
             this.predef_gene_lists = await GeneListAPI.get_all_geneLists()
             console.log(this.predef_gene_lists)
