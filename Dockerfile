@@ -1,5 +1,9 @@
 FROM ruby:2.4.0
 
+RUN echo "deb http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
+RUN sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list
+RUN echo "Acquire::Check-Valid-Until \"false\";" > /etc/apt/apt.conf.d/100disablechecks
+
 # Install NodeJS (6.X, LTS)
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \ 
     && apt-get update \
