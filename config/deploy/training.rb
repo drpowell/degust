@@ -7,11 +7,12 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-set :deploy_to, "/mnt/degust-training"
-append :linked_files, "db/training.sqlite3"
+set :deploy_to, "/mnt/degust"
+append :linked_files, "db/production.sqlite3"
+set :rails_env, "production"
 
 server "degust-training.erc.monash.edu",
-  user: "degust-training",
+  user: "degust",
   roles: %w(app db web),
   ssh_options: {
       keys_only: true,    # Important to stop Net::SSH trying all keys in the agent!

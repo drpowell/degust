@@ -8,6 +8,7 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 set :deploy_to, "/mnt/degust-rails/"
+set :rails_env, "production"
 
 append :linked_files, "db/production.sqlite3"
 

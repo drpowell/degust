@@ -9,6 +9,7 @@
 
 set :deploy_to, "/mnt/degust-staging/"
 set :branch, "vue"
+set :rails_env, "staging"
 
 append :linked_files, "db/staging.sqlite3"
 

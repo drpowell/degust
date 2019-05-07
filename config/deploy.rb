@@ -44,9 +44,7 @@ namespace :deploy do
         #invoke 'deploy:frontend_deps'
         on roles(:all) do
             within release_path do
-                with rails_env: fetch(:stage) do
                     execute :rake, "degust:build"
-                end
             end
         end
     end
@@ -54,9 +52,7 @@ namespace :deploy do
     task :frontend_deps do
         on roles(:all) do
             within release_path do
-                with rails_env: fetch(:stage) do
                     execute :rake, "degust:deps"
-                end
             end
         end
     end
