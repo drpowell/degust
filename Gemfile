@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 ruby '2.4.0'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.0.7'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -19,7 +19,7 @@ gem "bootstrap-sass", ">= 3.4.1"
 gem "nokogiri", ">= 1.8.5"
 gem "rack", ">= 2.0.6"
 gem "loofah", ">= 2.2.3"
-
+gem "actionview", ">= 5.0.7.2"
 
 gem "font-awesome-rails"
 gem 'bootstrap-social-rails'
