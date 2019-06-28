@@ -21,6 +21,11 @@ Read a summary on the <a href='http://drpowell.github.io/degust/'>Degust home pa
 
 See [FAQ.md](FAQ.md)
 
+# How to Cite
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3258933.svg)](https://doi.org/10.5281/zenodo.3258933)
+
+
 # Installation
 
 If you do not want to use the [public Degust installation](http://degust.erc.monash.edu), you may install your own.
