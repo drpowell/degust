@@ -1,0 +1,1911 @@
+Feature,cdhR-rep1,cdhR-rep2,GppX-rep1,GppX-rep2,luxS-rep1,luxS-rep2,luxS-rep3,wt-rep1,wt-rep2,wt-rep3,Length,gene,product,On same fragment,Ambiguous alignment,EC Number
+PG_0001,491,258,198,442,480,737,651,336,633,286,1422,dnaA,chromosomal replication initiator protein DnaA,53xPG_0002,
+PG_0002,69,54,45,86,84,72,119,92,94,63,573,,hexapeptide transferase family protein,53xPG_0001 37xPG_0003,
+PG_0003,107,45,54,62,47,93,76,72,86,26,1020,,"membrane protein, putative",37xPG_0002,
+PG_0004,145,70,100,45,141,170,85,99,232,95,705,,"transcriptional regulator, Sir2 family",,,3.5.1.-
+PG_0005,276,172,104,233,189,475,277,181,269,115,1155,,conserved hypothetical protein,,
+PG_0006,140,92,84,118,85,186,169,89,161,47,1329,,MATE efflux family protein,,
+PG_0007,10,0,5,0,4,2,0,7,1,0,159,,hypothetical protein,,
+PG_0008,0,0,0,0,0,0,0,0,0,0,939,,ISPg5 transposase Orf2,,
+PG_0009,0,0,0,0,0,0,0,0,0,0,390,,ISPg5 transposase Orf1,,
+PG_0010,621,969,291,1668,978,1190,1504,654,2270,1215,2580,clpC,"ATP-dependent Clp protease, ATP-binding subunit ClpC",,
+PG_0011,395,317,211,437,262,293,537,260,810,300,3012,,"glycosyl hydrolase, family 3",1xPG_0012,
+PG_0012,163,172,96,164,194,347,266,173,452,140,1029,,"L-threonine-O-3-phosphate decarboxylase, putative",93xPG_0013 1xPG_0011,,2.6.1.9
+PG_0013,80,63,47,60,71,105,93,74,114,50,771,,conserved hypothetical protein,93xPG_0012,,3.1.3.71
+PG_0016,165,78,89,96,91,212,150,119,189,54,1350,,sigma-54 dependent DNA-binding response regulator,24xPG_0017,
+PG_0017,124,94,68,129,71,114,155,92,237,71,1338,,sensor histidine kinase,31xPG_0018 24xPG_0016,
+PG_0018,186,115,125,115,140,257,161,153,267,78,2247,,hypothetical protein,31xPG_0017,
+PG_0019,0,0,0,0,0,0,0,0,1,0,1158,,ISPg4 transposase,,1xPG_0050 1xPG_0487 1xPG_0177 1xPG_1261 1xPG_0970 1xPG_1673 1xPG_0225 1xPG_2194 1xPG_1658
+PG_0020,198,95,92,71,157,369,143,105,232,114,705,,"transcriptional regulator, MarR family",160xPG_0021,
+PG_0021,161,71,92,70,80,171,106,68,169,42,1002,,"TIM-barrel protein, putative, NifR3 family",160xPG_0020 26xPG_0022,
+PG_0022,190,100,90,161,68,126,165,107,201,51,1677,,sulfate permease family protein,26xPG_0021,
+PG_0024,190,103,91,91,232,296,177,134,302,72,657,,"DNA-binding protein, putative",,
+PG_0025,254,320,101,311,255,482,350,133,506,152,660,,fumarylacetoacetate hydrolase family protein,,
+PG_0026,644,564,336,895,644,842,970,408,1252,334,3372,,hypothetical protein,,
+PG_0027,1179,362,470,320,641,1159,642,290,618,219,1176,,hypothetical protein,1254xPG_0028,
+PG_0028,519,147,158,124,262,420,232,101,269,75,489,ispF,"2C-methyl-D-erythritol 2,4-cyclodiphosphate synthase",1254xPG_0027,,4.6.1.12
+PG_0030,59,40,27,37,29,46,54,39,80,28,477,,cytidine deaminase,,,3.5.4.5
+PG_0031,95,42,66,42,66,111,89,80,112,32,675,,hypothetical protein,,588xPG_1757
+PG_0032,191,74,112,106,102,102,97,124,160,53,2586,,"beta-mannosidase, putative",5xPG_0033,,3.2.1.25
+PG_0033,117,65,64,112,107,195,109,121,121,32,1299,,RmuC domain protein,5xPG_0032,
+PG_0034,1578,502,518,326,723,3015,336,315,877,216,315,trx,thioredoxin,28xPG_0035,
+PG_0035,1098,1222,421,1631,1429,4451,1935,892,2021,1081,3687,dnaE,"DNA polymerase III, alpha subunit",28xPG_0034,,2.7.7.7
+PG_0037,1742,2061,545,1727,2281,17859,2408,1460,3270,1243,366,rplS,ribosomal protein L19,,
+PG_0039,14,1,5,11,10,27,12,14,20,5,120,,hypothetical protein,,
+PG_0040,1,0,0,0,1,0,1,0,0,0,390,,ISPg5 transposase Orf1,,
+PG_0041,0,0,0,0,0,0,0,0,0,0,939,,ISPg5 transposase Orf2,,
+PG_0042,627,352,254,719,448,1098,655,269,868,345,1281,glyA,serine hydroxymethyltransferase,,,2.1.2.1
+PG_0043,173,108,100,260,133,260,241,145,328,119,2334,nahA,beta-hexosaminidase,,,3.2.1.52
+PG_0045,290,198,219,346,821,955,541,674,1002,480,2055,htpG,heat shock protein HtpG,,
+PG_0046,169,194,77,206,167,359,210,125,302,117,855,cdsA,phosphatidate cytidylyltransferase,34xPG_0047,,2.7.7.41
+PG_0047,382,350,228,636,451,980,497,295,520,200,2022,,"cell division protein FtsH, putative",34xPG_0046,,3.4.24.-
+PG_0048,351,196,145,271,450,958,311,246,353,137,1104,,conserved hypothetical protein TIGR00092,143xPG_0049,
+PG_0049,73,50,26,56,93,178,62,44,84,43,165,,hypothetical protein,143xPG_0048,
+PG_0050,0,0,0,0,0,0,0,0,1,0,1158,,"ISPg4, transposase",,1xPG_0487 1xPG_0177 1xPG_1261 1xPG_0970 1xPG_1673 1xPG_0225 1xPG_2194 1xPG_1658 1xPG_0019
+PG_0052,103,53,60,51,64,101,97,72,159,42,1188,,sensor histidine kinase,,
+PG_0053,18,7,15,3,20,37,19,25,50,6,120,,hypothetical protein,43xPG_0054,
+PG_0054,347,221,180,299,358,644,397,244,824,235,1755,recJ,single-stranded-DNA-specific exonuclease RecJ,98xPG_0055 43xPG_0053,,3.1.-.-
+PG_0055,172,145,85,215,197,297,201,147,306,162,1056,,conserved domain protein,98xPG_0054,
+PG_0056,811,374,391,285,816,1619,418,475,802,289,1701,,hypothetical protein,88xPG_0057,
+PG_0057,365,165,156,219,270,641,257,165,412,130,1185,pncB,nicotinate phosphoribosyltransferase,126xPG_0058 88xPG_0056,,2.4.2.11
+PG_0058,99,69,47,76,71,410,161,70,160,61,594,nadD,nicotinate (nicotinamide) nucleotide adenylyltransferase,126xPG_0057 44xPG_0059,
+PG_0059,37,30,34,31,17,84,31,23,68,18,384,,hypothetical protein,44xPG_0058 34xPG_0060,
+PG_0060,17,6,12,11,8,15,17,21,34,6,183,,hypothetical protein,34xPG_0059 3xPG_0061,
+PG_0061,185,91,81,172,110,266,173,107,246,92,1539,yngK-1,yngK protein,38xPG_0062 3xPG_0060,
+PG_0062,178,129,125,148,100,163,203,106,284,93,2043,,TPR domain protein,38xPG_0061,
+PG_0063,117,98,63,144,141,156,158,103,256,109,1179,,outer membrane efflux protein,24xPG_0064,
+PG_0064,226,118,138,333,134,169,230,198,323,135,3120,,"heavy metal efflux pump, CzcA family",24xPG_0063 18xPG_0065,
+PG_0065,105,56,57,174,77,91,122,80,261,72,975,,"efflux transporter, RND family, MFP subunit",18xPG_0064,
+PG_0066,24,10,7,47,15,48,32,16,44,14,288,,hypothetical protein,,
+PG_0068,34,199,21,385,44,107,211,40,161,186,252,,hypothetical protein,,
+PG_0069,352,154,173,325,326,874,327,261,659,155,1515,,conserved hypothetical protein,212xPG_0070,
+PG_0070,155,95,74,208,143,366,210,127,450,85,795,lpxA,acyl-(acyl-carrier-protein)-UDP-N- acetylglucosamine acyltransferase,212xPG_0069 99xPG_0071,
+PG_0071,269,146,140,329,252,501,299,210,677,164,1389,,UDP-3-O-acyl-GlcNAc deacetylase/beta-hydroxyacyl-[acyl carrier protein] dehydratase FabZ,165xPG_0072 99xPG_0070,
+PG_0072,385,320,190,422,437,753,504,342,1098,293,1050,lpxD,UDP-3-O-[3-hydroxymyristoyl] glucosamine N-acyltransferase,165xPG_0071,
+PG_0073,422,233,192,402,390,521,428,194,493,219,831,,orotidine 5'-monophosphate decarboxylase,343xPG_0074,,4.1.1.23
+PG_0074,355,201,171,405,227,474,399,196,324,164,1086,prfA,peptide chain release factor 1,343xPG_0073 86xPG_0075,
+PG_0075,222,128,108,216,164,405,244,111,306,117,1242,,"phosphoribosylformylglycinamidine cyclo-ligase, putative",443xPG_0076 86xPG_0074,
+PG_0076,377,415,205,442,384,1074,612,288,1151,316,942,,"N-acetylmuramoyl-L-alanine amidase, family 4",443xPG_0075,
+PG_0078,85,51,39,33,108,254,52,64,95,32,699,,conserved hypothetical protein,167xPG_0079,
+PG_0079,249,195,111,104,380,684,173,245,348,104,1302,,"abortive infection protein, putative",167xPG_0078 1xPG_0080,
+PG_0080,15,0,9,0,1,14,2,4,5,5,264,,hypothetical protein,11xPG_0081 1xPG_0079,
+PG_0081,215,247,111,258,195,572,405,203,527,162,2178,,hypothetical protein,11xPG_0080,
+PG_0082,174,270,84,465,181,342,320,106,655,170,903,,hypothetical protein,238xPG_0083,
+PG_0083,147,195,83,284,92,175,255,109,255,131,786,,hypothetical protein,238xPG_0082,
+PG_0084,175,163,92,238,142,238,243,108,273,113,1200,sda,"L-serine dehydratase, iron-sulfur-dependent, single chain form",,
+PG_0085,339,552,111,547,256,661,763,205,676,238,1305,,alpha-galactosidase,91xPG_0086,
+PG_0086,666,1757,288,2743,1064,1764,3169,700,1567,1019,1815,,"ATP-dependent RNA helicase, DEAD/DEAH box family",91xPG_0085,
+PG_0087,233,519,96,817,318,709,934,252,778,245,621,,SIS domain protein,,
+PG_0088,132,85,76,69,70,203,77,86,121,35,1218,,"peptidase, M16 family",,,3.4.99.-
+PG_0090,1742,1613,548,1499,4158,21180,1871,1271,5182,1469,480,,Dps family protein,,
+PG_0091,151,91,78,124,108,294,143,112,206,73,1218,,"transporter, putative",,
+PG_0092,148,79,72,109,80,169,121,76,168,57,1140,,"transporter, putative",9xPG_0093,
+PG_0093,117,107,74,248,90,197,215,119,285,121,996,,HlyD family secretion protein,9xPG_0092,
+PG_0094,359,142,180,426,289,504,390,206,420,144,1506,,"outer membrane efflux protein, putative",,
+PG_0095,365,243,220,597,456,1047,574,360,521,222,2676,mutS,DNA mismatch repair protein MutS,,
+PG_0097,251,184,115,221,244,638,300,168,461,152,693,,conserved hypothetical protein TIGR01033,134xPG_0098,
+PG_0098,36,33,19,39,39,88,60,28,93,30,99,,hypothetical protein,181xPG_0099 134xPG_0097,
+PG_0099,552,221,245,431,458,741,405,340,540,201,2460,pheT,"phenylalanyl-tRNA synthetase, beta subunit",181xPG_0098,,6.1.1.20
+PG_0100,8163,5213,2222,5205,6556,21330,7780,5345,9888,3682,168,,hypothetical protein,25848xPG_0101,73480xPG_1672 70384xPG_1267 36392xPG_2076 24794xPG_1671 21698xPG_1266 21698xPG_2075
+PG_0101,113916,100332,52154,104960,102758,202233,146691,80721,111175,101987,219,,hypothetical protein,25848xPG_0100,1092041xPG_1671 1067146xPG_1266 1067146xPG_2075 24794xPG_1672 21698xPG_2076 21698xPG_1267
+PG_0102,1181,1594,512,2592,1304,3523,2274,1030,3336,1338,159,,hypothetical protein,,18408xPG_1265 18408xPG_2074 18408xPG_1670
+PG_0103,13032,9607,2367,9088,13779,46593,14496,9957,14762,6519,156,,hypothetical protein,,138224xPG_1669 138224xPG_1264 138224xPG_2073
+PG_0104,168,81,89,228,145,289,166,97,182,64,2028,topB-1,DNA topoisomerase III,,,5.99.1.2
+PG_0106,285,171,71,77,225,2107,149,172,207,60,1137,,"glycosyl transferase, group 4 family protein",,,2.7.8.-
+PG_0108,295,161,97,130,329,1244,215,188,228,70,1209,epsD,UDP-N-acetyl-D-mannosaminuronic acid dehydrogenase,,,1.1.1.-
+PG_0109,0,0,0,0,0,0,0,0,0,0,1224,,hypothetical protein,,
+PG_0110,0,0,0,0,0,0,0,0,0,0,1041,,"glycosyl transferase, group 1 family protein",,
+PG_0111,0,0,0,0,0,0,0,0,0,0,1269,,"capsular polysacharride biosynthesis gene, putative",,
+PG_0113,0,0,0,0,0,0,0,0,0,0,858,,conserved domain protein,,
+PG_0114,10,19,8,17,41,90,26,22,23,8,1140,,hypothetical protein,,
+PG_0115,98,94,41,39,79,255,80,41,135,33,438,,hexapeptide transferase family protein,152xPG_0116,,2.3.1.30
+PG_0116,154,194,58,109,116,371,236,57,278,69,1224,,conserved hypothetical protein,152xPG_0115,
+PG_0117,0,0,0,0,0,0,0,0,0,0,1539,,"polysaccharide transport protein, putative",,
+PG_0118,0,0,0,0,1,0,0,0,0,0,1056,,"glycosyl transferase, group 2 family protein",,
+PG_0119,301,131,113,80,227,544,108,163,203,57,699,,"glycosyl transferase, WecB/TagA/CpsF family",250xPG_0120,,2.4.1.-
+PG_0120,1512,490,508,252,850,2261,510,454,829,235,1161,epsC,UDP-N-acetylglucosamine 2-epimerase,250xPG_0119,,5.1.3.14
+PG_0121,10456,3948,3671,2655,7274,27227,3879,3334,8082,3038,267,hup-1,DNA-binding protein HU,,
+PG_0123,75,85,34,85,41,124,110,55,177,44,519,,hypothetical protein,,
+PG_0124,51,64,26,53,32,62,84,24,91,35,621,,conserved hypothetical protein,33xPG_0125,
+PG_0125,58,59,28,63,34,54,90,36,102,28,549,,hypothetical protein,74xPG_0126 33xPG_0124,
+PG_0126,141,141,63,119,71,155,185,81,241,85,1236,,type I phosphodiesterase/nucleotide pyrophosphatase family protein,74xPG_0125,
+PG_0127,96,52,59,78,112,137,128,66,131,38,1038,hemH,ferrochelatase,27xPG_0128,,4.99.1.1
+PG_0128,65,20,49,43,34,62,40,43,61,21,975,,conserved domain protein,27xPG_0127 16xPG_0129,
+PG_0129,77,38,48,75,35,52,79,44,120,44,1125,,mannosyltransferase,16xPG_0128,
+PG_0130,196,112,98,177,190,327,192,120,172,53,747,gpm,phosphoglycerate mutase,,,5.4.2.1
+PG_0132,8,6,4,6,6,8,8,6,14,2,96,,hypothetical protein,,
+PG_0133,121,66,60,71,46,83,108,62,156,41,1506,,hypothetical protein,27xPG_0134,
+PG_0134,190,205,102,201,171,392,305,132,479,167,1353,mgtE,magnesium transporter,34xPG_0135 27xPG_0133,
+PG_0135,343,619,165,964,412,898,940,285,872,558,777,ksgA,dimethyladenosine transferase,34xPG_0134,,2.1.1.-
+PG_0136,158,116,97,154,96,371,175,121,203,95,1050,,hypothetical protein,78xPG_0137,
+PG_0137,292,127,166,353,227,504,265,192,276,125,1455,pepD-1,aminoacyl-histidine dipeptidase,78xPG_0136,,3.4.13.3
+PG_0138,233,112,134,319,252,296,270,148,301,162,882,fabD,malonyl CoA-acyl carrier protein transacylase,,,2.3.1.39
+PG_0139,171,202,86,197,161,113,292,136,292,127,1356,,"membrane-bound lytic murein transglycosylase D, putative",24xPG_0140,
+PG_0140,71,71,37,75,52,59,113,46,99,34,708,,hypothetical protein,56xPG_0141 24xPG_0139,
+PG_0141,115,171,93,192,157,282,367,120,311,114,870,spo0J,spoOJ protein,127xPG_0142 56xPG_0140,
+PG_0142,146,135,63,224,87,184,298,88,250,101,777,soj,SpoOJ regulator protein,127xPG_0141,
+PG_0143,127,152,54,153,125,192,244,87,433,133,879,,"hydrolase, carbon-nitrogen family",195xPG_0144,
+PG_0144,131,312,62,352,157,173,540,116,730,239,1026,,conserved hypothetical protein,195xPG_0143,
+PG_0145,348,516,254,534,974,2609,884,569,1190,367,579,,hypothetical protein,390xPG_0146,
+PG_0146,65,75,36,78,39,111,104,96,167,57,708,,hypothetical protein,390xPG_0145 44xPG_0147,
+PG_0147,51,39,40,112,39,75,88,63,89,37,540,,hypothetical protein,68xPG_0148 44xPG_0146,
+PG_0148,163,253,90,522,199,326,478,161,476,221,1254,,sigma-54-dependent transcriptional regulator,68xPG_0147 53xPG_0149,
+PG_0149,176,131,105,368,146,274,259,118,290,126,1269,,conserved domain protein,53xPG_0148 21xPG_0150,
+PG_0150,218,143,115,368,155,342,285,162,283,115,1305,,conserved hypothetical protein TIGR01125,73xPG_0151 21xPG_0149,
+PG_0151,132,55,54,157,79,165,106,78,146,56,954,ftsY,signal recognition particle-docking protein FtsY,73xPG_0150 7xPG_0152,
+PG_0152,103,56,57,119,43,159,134,62,170,52,1137,nspC,carboxynorspermidine decarboxylase,51xPG_0153 7xPG_0151,
+PG_0153,154,159,99,376,95,186,385,144,347,126,1764,aspS,aspartyl-tRNA synthetase,51xPG_0152,,6.1.1.12
+PG_0155,77,66,46,61,38,56,104,67,169,58,993,ribD,riboflavin biosynthesis protein RibD,46xPG_0156,,1.1.1.193 3.5.4.26
+PG_0156,137,81,74,157,76,141,187,92,271,88,882,,"modification methylase, HemK family",58xPG_0157 46xPG_0155,,2.1.1.-
+PG_0157,52,20,24,50,47,35,55,33,49,35,486,recX,regulatory protein RecX,58xPG_0156 39xPG_0158,
+PG_0158,79,18,42,37,48,52,55,57,51,21,741,,competence protein F-related protein,39xPG_0157,
+PG_0159,903,233,395,434,1205,2727,623,710,975,235,2070,pepO,endopeptidase PepO,61xPG_0160,,3.4.24.-
+PG_0160,236,101,123,124,305,435,162,174,277,76,903,,conserved domain protein,61xPG_0159,
+PG_0161,272,142,130,48,193,968,217,111,277,64,150,,hypothetical protein,,
+PG_0162,673,513,327,384,660,1909,529,321,1025,255,582,,"RNA polymerase sigma-70 factor, ECF subfamily",,
+PG_0163,233,97,123,266,183,326,181,191,251,94,1650,pfk,phosphofructokinase,,,2.7.1.90
+PG_0164,43,10,17,42,12,28,23,15,31,15,315,,conserved hypothetical protein,72xPG_0165,
+PG_0165,73,17,24,50,31,62,61,46,77,20,438,hslR,heat shock protein 15,72xPG_0164 63xPG_0166,
+PG_0166,100,30,37,56,71,189,105,66,123,30,558,pth,peptidyl-tRNA hydrolase,63xPG_0165,,3.1.1.29
+PG_0167,199,262,102,315,299,1087,611,271,847,199,579,rplY,ribosomal protein L25,,
+PG_0170,284,178,142,305,212,442,327,213,468,159,2043,metG,methionyl-tRNA synthetase,16xPG_0171,,6.1.1.10
+PG_0171,182,144,98,235,189,291,305,180,337,126,1773,,5'-nucleotidase family protein,46xPG_0172 16xPG_0170,,3.1.4.16
+PG_0172,208,140,68,122,199,343,201,106,223,98,783,,exonuclease,46xPG_0171,
+PG_0173,99,48,41,38,78,233,58,45,141,38,354,,"transcriptional regulator, putative",,
+PG_0174,152,68,89,167,60,171,117,114,176,63,2817,,pyridine nucleotide-disulphide oxidoreductase family protein,,
+PG_0177,0,0,0,0,0,0,0,0,1,0,1158,,"ISPg4, transposase",,1xPG_0050 1xPG_0225 1xPG_0487 1xPG_1261 1xPG_0970 1xPG_1673 1xPG_1658 1xPG_2194 1xPG_0019
+PG_0179,1741,711,585,913,2173,4569,895,1101,1463,328,975,,hypothetical protein,,
+PG_0180,1851,1195,627,1859,2721,4952,1405,1495,2044,640,1341,,"lipoprotein, putative",313xPG_0181,
+PG_0181,918,378,282,683,889,1966,579,510,948,247,1002,,immunoreactive 32 kDa antigen PG49,313xPG_0180,
+PG_0182,3714,4741,1164,5355,5858,6943,5718,3259,6867,2474,3681,,von Willebrand factor type A domain protein,,10867xPG_0183
+PG_0183,2333,3446,731,3610,4298,2411,3972,2088,3969,2205,6615,,"lipoprotein, putative",,10867xPG_0182
+PG_0184,3127,1787,2293,640,4055,3454,2060,2580,10027,2893,1086,,"ISPg1, transposase",,32525xPG_1448 32132xPG_1906 21513xPG_0460 21507xPG_1244 9469xPG_0825 9467xPG_0549 5169xPG_1320 4872xPG_1031 4129xPG_1177 4128xPG_1197 3702xPG_1624
+PG_0185,2554,495,1268,1042,3748,3941,784,2064,1113,320,3054,ragA,ragA protein,,
+PG_0186,0,0,0,0,0,0,0,0,0,0,1506,ragB,lipoprotein RagB,,
+PG_0188,644,635,288,667,659,2033,713,444,1263,374,1371,,"lipoprotein, putative",197xPG_0189,
+PG_0189,225,198,117,263,259,595,266,180,380,104,708,,hypothetical protein,197xPG_0188,
+PG_0190,301,217,140,272,393,756,350,265,634,152,765,uppS,undecaprenyl diphosphate synthase,90xPG_0191,,2.5.1.31
+PG_0191,1326,684,620,728,1520,5199,1067,1197,1981,567,2676,,"outer membrane protein, putative",90xPG_0190,
+PG_0192,368,335,189,197,916,3286,435,606,1253,246,525,ompH-1,cationic outer membrane protein OmpH,126xPG_0193,
+PG_0193,536,527,225,288,1326,5099,767,722,1922,323,492,ompH-2,cationic outer membrane protein OmpH,126xPG_0192,
+PG_0194,1049,1109,673,701,1708,5219,1372,1137,2651,861,903,,"ISPg3, transposase",,16252xPG_0261 14084xPG_0798 11723xPG_1032 11300xPG_1262
+PG_0195,2189,1070,800,492,1855,1460,564,1302,5139,1561,579,,rubrerythrin,,
+PG_0196,561,567,289,735,574,1589,801,506,1493,461,2826,,"peptidase, M16 family",,,3.4.99.-
+PG_0197,15,5,7,6,8,28,7,7,10,4,264,,hypothetical protein,,7xPG_0494
+PG_0198,67,80,51,59,96,188,120,80,196,70,540,,conserved hypothetical protein,104xPG_0199,
+PG_0199,57,71,37,49,78,196,112,58,169,50,714,,TatD family protein,104xPG_0198 61xPG_0200,,3.1.21.-
+PG_0200,6,12,5,14,20,48,24,10,42,10,231,,conserved hypothetical protein TIGR00278,61xPG_0199 41xPG_0201,
+PG_0201,98,42,49,64,68,247,97,48,92,27,414,rnpA,ribonuclease P protein component,326xPG_0202 41xPG_0200,,3.1.26.5
+PG_0202,606,266,270,282,587,3333,483,476,484,181,747,,"uroporphyrinogen-III synthase HemD, putative",1708xPG_0203 326xPG_0201,
+PG_0203,212,89,123,103,312,1528,191,304,195,121,708,,hypothetical protein,1708xPG_0202,
+PG_0204,32,25,12,44,36,135,54,37,61,21,246,,hypothetical protein,74xPG_0205,
+PG_0205,180,143,84,257,234,424,274,133,314,111,1581,prfC,peptide chain release factor 3,74xPG_0204,
+PG_0209,115,80,48,135,137,201,89,69,100,34,786,,formate/nitrite transporter,,
+PG_0210,148,52,87,138,92,155,107,87,137,55,1809,,precorrin-6x reductase/cobalamin biosynthetic protein CbiD,21xPG_0211,
+PG_0211,108,49,65,109,51,110,103,76,100,50,1845,cbiGF,cobalamin biosynthesis protein CbiG/precorrin-4 C11-methyltransferase,21xPG_0210 12xPG_0212,
+PG_0212,79,82,56,149,57,86,173,55,211,69,1242,cobL,"precorrin-6Y C5,15-methyltransferase, decarboxylating",50xPG_0213 12xPG_0211,
+PG_0213,222,166,83,189,94,457,311,103,317,108,1407,,precorrin-3 methylase/precorrin-8X methylmutase,50xPG_0212,
+PG_0214,63,284,27,316,364,254,725,295,3063,926,501,,"RNA polymerase sigma-70 factor, ECF subfamily",227xPG_0215,
+PG_0215,42,43,27,58,79,43,96,67,749,120,489,,hypothetical protein,227xPG_0214 93xPG_0216,
+PG_0216,26,18,25,41,39,37,56,50,265,53,501,,hypothetical protein,93xPG_0215 6xPG_0217,
+PG_0217,88,63,47,109,90,68,136,146,608,137,894,,hypothetical protein,152xPG_0218 6xPG_0216,
+PG_0218,74,65,38,94,100,104,144,132,996,153,960,,hypothetical protein,152xPG_0217,
+PG_0219,0,0,0,0,0,0,0,0,0,0,549,,conserved domain protein,,
+PG_0221,0,0,0,0,0,0,0,0,0,0,222,,hypothetical protein,,
+PG_0222,40,16,25,14,36,53,27,19,67,14,468,,"DNA-binding protein, histone-like family",,
+PG_0223,39,21,35,23,32,85,53,40,109,26,492,,exonuclease,94xPG_0224,,2.7.7.7
+PG_0224,83,48,39,46,51,126,82,49,139,48,639,,conserved hypothetical protein,94xPG_0223,
+PG_0225,0,1,0,0,2,3,1,0,4,0,1158,,"ISPg4, transposase",,11xPG_0487 11xPG_1658 11xPG_2194 1xPG_0050 1xPG_0177 1xPG_1261 1xPG_1673 1xPG_0970 1xPG_0019
+PG_0226,309,365,166,589,317,524,702,233,751,300,2694,,transglutaminase-related protein,,
+PG_0227,111,56,61,74,52,114,115,68,192,57,1386,radA,DNA repair protein RadA,1xPG_0228,
+PG_0228,108,39,56,75,50,133,104,70,118,50,927,,DdaH family protein,101xPG_0229 1xPG_0227,
+PG_0229,22,7,20,7,11,26,13,16,37,13,399,,hypothetical protein,101xPG_0228,
+PG_0230,561,689,260,468,597,1386,623,370,1398,671,663,,"transaldolase TalC, putative",228xPG_0231,,2.2.1.2
+PG_0231,175,145,96,164,135,259,226,100,408,136,1299,,conserved hypothetical protein,228xPG_0230,
+PG_0232,2444,786,1619,1695,2080,3400,1374,1179,2229,895,2466,,"zinc carboxypeptidase, putative",,
+PG_0234,318,519,169,276,411,1215,500,501,369,201,624,,immunoreactive 23 kDa antigen PG66,,
+PG_0235,139,120,75,141,92,367,164,124,223,60,1524,,carboxyl-terminal protease,,,3.4.21.102
+PG_0236,188,132,114,129,137,271,234,118,202,60,1521,,hypothetical protein,28xPG_0237,
+PG_0237,58,123,41,66,45,110,202,48,86,85,669,ung,uracil-DNA glycosylase,28xPG_0236,,3.2.2.-
+PG_0240,79,115,39,127,124,534,228,89,283,80,699,,"hydrolase, haloacid dehalogenase-like family",,
+PG_0241,1062,1241,568,2356,2140,3799,2278,1571,5075,1315,855,,"lipoprotein, putative",50xPG_0242,
+PG_0242,769,780,345,1753,1241,2519,1272,799,2133,796,702,,conserved hypothetical protein TIGR00096,917xPG_0243 50xPG_0241,
+PG_0243,1393,853,456,1351,1203,5504,1169,712,2377,698,477,,hypothetical protein,917xPG_0242,
+PG_0245,708,194,382,159,932,789,332,450,1498,619,1113,,universal stress protein family,,
+PG_0246,686,76,405,54,494,457,85,194,638,227,192,,hypothetical protein,,
+PG_0248,41,27,17,25,36,93,35,35,78,40,333,,"translation initation factor SUI1, putative",,
+PG_0249,1087,1289,509,2087,1409,2385,2147,781,3199,1882,1860,,"oxaloacetate decarboxylase, putative",,
+PG_0250,19,7,13,6,14,6,4,6,21,8,177,,hypothetical protein,,
+PG_0253,209,300,112,608,352,1195,577,320,627,252,459,,conserved hypothetical protein,7xPG_0254,
+PG_0254,596,363,256,947,411,1227,833,336,838,326,1335,,"N utilization substance protein A, putative",7xPG_0253,
+PG_0255,1389,1006,598,1988,1603,3310,2298,1030,2803,840,2940,infB,translation initiation factor IF-2,134xPG_0256,
+PG_0256,149,236,67,200,179,418,399,117,623,160,492,,CvpA family protein,134xPG_0255 115xPG_0257,
+PG_0257,751,551,306,664,862,1673,761,522,987,333,1446,,conserved hypothetical protein,115xPG_0256 38xPG_0258,
+PG_0258,383,185,132,292,409,522,295,175,383,136,753,,"ABC transporter, ATP-binding protein",235xPG_0259 38xPG_0257,
+PG_0259,383,256,156,450,438,635,469,212,568,220,1344,,conserved hypothetical protein,235xPG_0258,
+PG_0261,1114,1127,705,723,1760,5431,1407,1191,2743,875,903,,"ISPg3, transposase",,16252xPG_0194 13901xPG_0798 11931xPG_1032 11819xPG_1262
+PG_0263,269,198,142,284,259,585,524,181,462,168,1293,tyrS,tyrosyl-tRNA synthetase,71xPG_0264,,6.1.1.1
+PG_0264,106,68,47,86,102,321,133,98,192,46,1068,,"glycosyl transferase, group 2 family protein",71xPG_0263,
+PG_0265,51,18,31,20,17,79,31,42,47,15,159,,hypothetical protein,,16xPG_1426 6xPG_0493 3xPG_0494
+PG_0267,458,312,189,387,589,847,406,310,1068,382,1794,argS,arginyl-tRNA synthetase,51xPG_0268,,6.1.1.19
+PG_0268,116,53,58,79,144,260,81,146,170,66,1086,trmU,tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase,51xPG_0267 10xPG_0269,
+PG_0269,93,22,54,43,56,183,47,55,102,21,765,xth,exodeoxyribonuclease III,10xPG_0268,,3.1.11.2
+PG_0270,76,21,46,48,48,111,48,53,77,19,927,oxyR,redox-sensitive transcriptional activator OxyR,,
+PG_0271,68,42,37,54,55,103,50,45,136,45,471,ssb,single-stranded binding protein,,
+PG_0272,346,238,111,242,358,879,280,165,507,139,1260,,CBS domain protein,40xPG_0273,
+PG_0273,221,233,100,267,198,510,191,87,411,114,597,,4'-phosphopantetheinyl transferase family protein,40xPG_0272 17xPG_0274,
+PG_0274,202,280,73,260,297,665,212,161,325,159,369,,hypothetical protein,17xPG_0273,
+PG_0275,1330,1037,555,752,1600,2666,805,715,2477,488,510,,thioredoxin family protein,,
+PG_0276,379,304,190,374,551,1678,587,443,796,263,1188,,conserved hypothetical protein,,
+PG_0277,251,277,130,228,295,1791,286,234,402,117,1131,,"ISPg2, transposase",,3998xPG_1350 3917xPG_2176 3914xPG_0865 3913xPG_1746
+PG_0278,37,23,26,10,29,48,47,26,96,27,351,,hypothetical protein,,
+PG_0279,600,348,299,417,355,628,575,289,1043,330,2280,maeB,NADP-dependent malic enzyme,,,1.1.1.40
+PG_0280,94,1,60,5,12,20,14,72,34,9,1329,,"ABC transporter, permease protein, putative",8xPG_0281,
+PG_0281,97,6,85,12,16,5,18,76,50,15,1377,,"ABC transporter, permease protein, putative",8xPG_0280,
+PG_0282,43,2,28,9,11,4,6,27,21,4,672,,"ABC transporter, ATP-binding protein",,
+PG_0283,100,3,53,5,14,3,7,52,33,6,1251,,"efflux transporter, MFP component, RND family",,
+PG_0285,74,8,56,9,20,4,13,56,37,7,1506,,hypothetical protein,,
+PG_0286,281,189,137,212,548,1193,272,494,500,138,258,,hypothetical protein,,
+PG_0287,176,156,99,163,169,283,336,159,303,70,942,,hypothetical protein,,
+PG_0288,506,329,267,374,614,1265,704,465,572,196,1476,,"lipoprotein, putative",268xPG_0289,
+PG_0289,273,107,148,192,220,307,253,223,177,68,1041,,hypothetical protein,268xPG_0288 59xPG_0290,
+PG_0290,530,278,323,418,763,989,636,458,570,173,1551,,hypothetical protein,227xPG_0291 59xPG_0289,
+PG_0291,347,277,237,232,737,1135,648,402,405,127,1086,,hypothetical protein,227xPG_0290,
+PG_0293,817,404,373,325,826,2453,467,408,1521,406,579,,"secretion activator protein, putative",,
+PG_0294,98,60,57,92,78,271,108,87,149,43,891,,"glycosyl transferase, group 2 family protein",65xPG_0295,
+PG_0295,180,149,86,257,300,640,347,222,403,219,1125,dprA,"DNA processing protein DprA, putative",502xPG_0296 65xPG_0294,
+PG_0296,712,546,342,1175,626,1389,993,611,1211,504,3705,,"phosphoribosylformylglycinamidine synthase, putative",502xPG_0295,,6.3.5.3
+PG_0297,26,3,13,2,4,6,2,8,10,2,222,,hypothetical protein,,
+PG_0300,76,14,53,16,33,307,74,62,71,46,1293,,TPR domain protein,,
+PG_0302,254,124,121,214,264,863,174,138,420,84,423,,hypothetical protein,193xPG_0303,
+PG_0303,336,168,170,677,232,512,475,229,488,194,873,,"electron transport complex, RnfABCDGE type, B subunit",193xPG_0302 35xPG_0304,
+PG_0304,1088,800,487,1500,789,1597,1319,652,1608,674,1332,,"electron transport complex, RnfABCDGE type, C subunit",562xPG_0305 35xPG_0303,
+PG_0305,807,1382,348,2019,991,2115,2025,784,2791,1058,984,,"electron transport complex, RnfABCDGE type, D subunit",562xPG_0304 216xPG_0306,
+PG_0306,467,766,197,1180,488,1730,981,341,1929,545,648,,"electron transport complex, RnfABCDGE type, G subunit",1130xPG_0307 216xPG_0305,
+PG_0307,445,789,167,1070,512,1361,933,337,1773,485,591,,"electron transport complex, RnfABCDGE type, E subunit",1130xPG_0306 213xPG_0308,
+PG_0308,411,274,145,326,250,1062,392,150,851,218,573,,"electron transport complex, RnfABCDGE type, A subunit",213xPG_0307,
+PG_0309,101,53,48,65,85,190,103,81,94,42,1014,apbE,thiamine biosynthesis lipoprotein ApbE,43xPG_0310,
+PG_0310,59,31,36,37,52,90,49,62,74,26,540,,nitroreductase family protein,45xPG_0311 43xPG_0309,
+PG_0311,103,78,58,102,74,218,137,97,185,59,954,,"glycosyl transferase, group 2 family protein",96xPG_0312 45xPG_0310,
+PG_0312,78,45,42,51,46,166,68,58,108,28,540,,hypothetical protein,96xPG_0311,
+PG_0313,187,181,68,143,262,833,195,218,491,95,309,,hypothetical protein,2578xPG_0314,
+PG_0314,1487,2532,714,1729,2733,9831,3222,2522,4587,2178,363,rplU,ribosomal protein L21,5998xPG_0315 2578xPG_0313,
+PG_0315,1112,2272,569,1291,1614,5552,2263,1450,2816,1731,258,rpmA,ribosomal protein L27,5998xPG_0314,
+PG_0316,355,165,127,272,312,893,349,225,362,136,1272,serS,seryl-tRNA synthetase,38xPG_0317,,6.1.1.11
+PG_0317,225,103,136,162,152,251,209,209,294,105,2661,,"peptidase, M49 family",38xPG_0316,,3.4.14.4
+PG_0319,416,541,230,1137,561,1491,881,381,1911,682,429,,hypothetical protein,87xPG_0320,
+PG_0320,246,263,125,551,265,410,493,187,745,274,1089,,hypothetical protein,87xPG_0319,
+PG_0321,248,690,155,1093,346,525,1102,269,1102,431,1032,,LAO/AO transport system ATPase,23xPG_0322,,2.7.-.-
+PG_0322,460,220,162,222,345,497,425,208,577,138,1179,,serine/threonine transporter,23xPG_0321,
+PG_0323,57,47,43,32,62,62,113,56,101,37,330,,conserved hypothetical protein,,
+PG_0324,192,148,131,323,155,348,329,172,403,119,1494,hutH,histidine ammonia-lyase,66xPG_0325,,4.3.1.3
+PG_0325,99,46,56,133,69,167,94,78,128,50,630,,conserved hypothetical protein,66xPG_0324 25xPG_0326,
+PG_0326,141,126,90,260,116,184,255,126,294,93,1236,,hypothetical protein,263xPG_0327 25xPG_0325,
+PG_0327,154,172,98,324,185,361,292,116,354,109,1155,,hypothetical protein,263xPG_0326,
+PG_0328,150,141,97,408,145,239,323,143,292,141,1272,hutI,imidazolonepropionase,,,3.5.2.7
+PG_0329,2955,632,1277,1561,2627,4682,1370,573,977,1089,903,,formiminotransferase-cyclodeaminase-related protein,,,2.1.2.5
+PG_0330,75,268,54,432,148,138,458,133,323,204,516,,"DNA-binding protein, histone-like family",,
+PG_0332,387,920,270,1920,644,881,2301,492,1316,667,1977,rho,transcription termination factor Rho,,
+PG_0333,140,167,77,191,82,157,275,104,342,84,909,,"membrane protein, putative",105xPG_0334,
+PG_0334,136,116,87,111,113,231,223,129,251,91,960,,"glycosyl transferase, group 2 family protein",105xPG_0333,,2.4.1.83
+PG_0335,70,29,41,39,62,99,57,41,107,31,903,miaA-1,tRNA delta(2)-isopentenylpyrophosphate transferase,11xPG_0336,,2.5.1.8
+PG_0336,117,249,54,154,142,259,335,85,480,168,570,,hypothetical protein,11xPG_0335,
+PG_0337,15,4,10,5,5,4,5,9,5,2,153,,hypothetical protein,,
+PG_0338,288,59,174,112,141,199,136,211,197,82,3528,,hypothetical protein,18xPG_0339,
+PG_0339,1506,429,775,277,2167,3300,546,828,2277,791,546,,hypothetical protein,18xPG_0338,
+PG_0340,135,38,57,18,102,231,38,46,191,41,291,,hypothetical protein,,
+PG_0343,164,237,99,333,142,329,537,118,554,166,1182,megL,methionine gamma-lyase,,,4.4.1.11
+PG_0344,175,135,107,185,127,222,230,116,368,165,1470,,purple acid phosphatase,81xPG_0345,
+PG_0345,94,75,48,138,63,159,138,55,204,123,594,,hypothetical protein,81xPG_0344,
+PG_0346,144,72,73,115,164,220,123,110,307,111,606,,GTP-binding protein,99xPG_0347,
+PG_0347,196,200,75,269,135,315,288,114,413,175,1029,galE,UDP-glucose 4-epimerase,99xPG_0346 2xPG_0348,,5.1.3.2
+PG_0348,260,181,129,313,117,339,316,181,462,136,2097,recG,ATP-dependent DNA helicase RecG,32xPG_0349 2xPG_0347,,3.6.1.-
+PG_0349,128,52,54,57,56,142,79,75,147,57,753,,"hydrolase, haloacid dehalogenase-like family",32xPG_0348,
+PG_0350,542,522,287,413,1130,2789,1009,504,1448,378,1455,,internalin-related protein,415xPG_0351,
+PG_0351,62,41,31,58,111,206,91,77,109,30,261,,hypothetical protein,415xPG_0350,
+PG_0352,103,31,64,38,38,47,52,74,76,27,1581,,"sialidase, putative",,
+PG_0354,0,0,0,0,0,0,0,0,0,0,153,,hypothetical protein,,
+PG_0355,142,64,92,92,115,219,129,95,241,60,984,,hypothetical protein,67xPG_0356,
+PG_0356,129,108,73,155,89,180,152,88,235,84,783,,conserved hypothetical protein,67xPG_0355 6xPG_0357,
+PG_0357,209,226,118,428,199,398,368,179,399,215,915,pyrB,"aspartate carbamoyltransferase, catalytic subunit",111xPG_0358 6xPG_0356,,2.1.3.2
+PG_0358,278,397,130,751,426,419,492,242,500,354,456,pyrI,"aspartate carbamoyltransferase, regulatory subunit",113xPG_0359 111xPG_0357,,2.1.3.2
+PG_0359,207,430,94,485,264,430,351,175,517,326,588,,flavin reductase domain protein,113xPG_0358 11xPG_0360,
+PG_0360,322,303,116,336,318,496,319,162,479,178,591,,lemA protein,129xPG_0361 11xPG_0359,
+PG_0361,575,346,240,308,509,1015,462,264,855,308,1308,,conserved domain protein,314xPG_0362 129xPG_0360,
+PG_0362,561,326,220,482,304,760,457,287,597,258,2169,,hypothetical protein,314xPG_0361 95xPG_0363,
+PG_0363,143,114,63,128,138,269,122,96,218,81,828,,conserved domain protein,95xPG_0362,
+PG_0364,140,75,98,96,118,206,128,95,183,64,1206,,conserved hypothetical protein,34xPG_0365,
+PG_0365,66,34,35,74,34,71,78,29,61,31,567,,3'-5' exonuclease domain protein,34xPG_0364,
+PG_0366,86,48,52,106,35,94,141,62,177,58,561,,hypothetical protein,,
+PG_0368,279,347,150,520,336,894,698,284,601,297,1935,,"DNA topoisomerase IV, B subunit, putative",89xPG_0369,,5.99.1.-
+PG_0369,25,17,24,15,16,65,36,26,69,23,462,coaD,phosphopantetheine adenylyltransferase,89xPG_0368,,2.7.7.3
+PG_0371,4,1,4,0,0,2,1,4,6,2,102,,hypothetical protein,,9xPG_1574
+PG_0373,73,85,35,52,84,201,91,83,239,53,669,,hypothetical protein,8xPG_0374,
+PG_0374,12,6,3,5,8,17,6,6,16,5,117,,hypothetical protein,8xPG_0373,
+PG_0375,337,400,155,1486,378,1354,972,339,1002,309,456,rplM,ribosomal protein L13,276xPG_0376,
+PG_0376,264,134,107,589,266,741,299,205,306,111,387,rpsI,ribosomal protein S9,276xPG_0375,
+PG_0377,437,600,195,1147,576,1494,1420,540,2082,529,846,rpsB,ribosomal protein S2,,
+PG_0378,418,449,180,459,508,1264,901,345,1349,437,825,tsf,translation elongation factor Ts,,
+PG_0380,164,51,89,113,93,146,121,130,122,49,2037,uvrB,"excinuclease ABC, B subunit",24xPG_0381,
+PG_0381,137,54,71,52,67,88,98,86,180,34,1521,,sodium/hydrogen antiporter,24xPG_0380,
+PG_0382,0,0,0,0,0,0,0,0,0,0,1473,,conserved hypothetical protein,,
+PG_0383,202,190,92,204,106,313,324,107,414,126,1320,,"membrane-associated zinc metalloprotease, putative",166xPG_0384,,3.4.24.-
+PG_0384,225,97,143,231,171,409,200,198,274,90,2523,,MutS2 family protein,166xPG_0383,
+PG_0385,702,1020,236,838,1271,6525,1013,932,1446,544,192,rpsU,ribosomal protein S21,,
+PG_0386,1484,1130,894,1075,2881,9368,1757,1905,2737,1139,1203,,"site-specific recombinase, phage integrase family/ribosomal subunit interface protein",,
+PG_0387,2152,1832,903,2999,3701,12195,4455,2339,5070,1744,1188,tuf,translation elongation factor Tu,,,3.6.5.3
+PG_0389,3720,2367,1304,3612,3846,12875,4427,2221,7657,1745,540,nusG,transcription antitermination protein NusG,,
+PG_0390,3239,2190,1200,3551,3240,9186,4102,2277,6198,1839,438,rplK,ribosomal protein L11,3316xPG_0391,
+PG_0391,4257,2530,1768,4831,5556,14918,5344,3407,7011,2159,699,rplA,ribosomal protein L1,3316xPG_0390 1985xPG_0392,
+PG_0392,3457,2919,1608,4469,4802,10476,4707,3258,7160,2335,525,rplJ,ribosomal protein L10,2598xPG_0393 1985xPG_0391,
+PG_0393,3944,2587,1764,3234,3963,10513,3684,2259,5759,2020,378,rplL,ribosomal protein L7/L12,2598xPG_0392,
+PG_0394,3855,3203,1716,5686,6531,13800,4897,3685,6533,2056,3810,rpoB,"DNA-directed RNA polymerase, beta subunit",,,2.7.7.6
+PG_0395,7332,2985,2659,3837,7843,19861,5530,4036,8304,2381,4302,rpoC,"DNA-directed RNA polymerase, beta' subunit",,,2.7.7.6
+PG_0396,135,192,69,201,143,815,301,100,270,87,699,,"transcriptional regulator, Crp/Fnr family",1xPG_0397,
+PG_0397,50,38,28,46,43,108,70,31,71,25,291,,hypothetical protein,66xPG_0398 1xPG_0396,
+PG_0398,258,167,142,245,328,810,316,175,617,171,1095,recF,recF protein,123xPG_0399 66xPG_0397,
+PG_0399,301,101,114,145,147,280,178,69,220,80,531,,"lipoprotein, putative",123xPG_0398 118xPG_0400,
+PG_0400,408,345,195,539,383,810,592,218,1018,299,1284,,conserved hypothetical protein,118xPG_0399,
+PG_0401,673,523,336,888,801,1471,1082,533,1373,524,1542,,KH/HDIG domain protein,,
+PG_0403,84,52,47,102,115,364,98,79,151,44,309,,hypothetical protein,195xPG_0404,
+PG_0404,126,46,64,75,153,513,84,78,167,53,339,,hypothetical protein,195xPG_0403,
+PG_0408,168,88,88,77,206,278,107,88,472,127,534,,hypothetical protein,113xPG_0409,
+PG_0409,204,134,132,96,184,500,197,103,626,173,822,,hypothetical protein,113xPG_0408,
+PG_0410,480,48,251,19,161,265,46,45,162,82,3885,,hypothetical protein,1559xPG_0411,
+PG_0411,3960,653,2314,482,3130,3292,736,1234,3517,1312,2778,,"hemagglutinin, putative",1559xPG_0410,
+PG_0412,266,198,129,212,217,497,344,188,565,185,1857,mutL,DNA mismatch repair protein MutL,118xPG_0413,
+PG_0413,52,63,33,88,83,201,123,78,115,70,345,,hypothetical protein,182xPG_0414 118xPG_0412,
+PG_0414,320,159,137,279,321,769,350,213,560,181,1881,,hypothetical protein,182xPG_0413,
+PG_0415,432,224,233,257,555,1804,423,430,738,211,1383,,"peptidyl-prolyl cis-trans isomerase, PPIC-type",33xPG_0416,,5.2.1.8
+PG_0416,944,684,388,985,1197,3186,1050,823,1837,611,2178,recQ-1,ATP-dependent DNA helicase RecQ,33xPG_0415,,3.6.1.-
+PG_0417,999,645,371,780,961,2194,1056,541,2370,746,1236,clpX,"ATP-dependent Clp protease, ATP-binding subunit ClpX",108xPG_0418,
+PG_0418,733,407,373,507,853,1178,623,592,1868,553,669,clpP,"ATP-dependent Clp protease, proteolytic subunit",108xPG_0417,,3.4.21.92
+PG_0419,2835,3475,1043,2344,5064,4251,3941,2067,10471,3527,906,,hypothetical protein,,
+PG_0421,584,269,199,828,846,2480,340,435,458,224,858,,hypothetical protein,,
+PG_0422,258,96,80,43,324,655,90,168,332,97,372,,hypothetical protein,1188xPG_0423,
+PG_0423,308,101,120,62,275,803,84,173,291,96,243,,hypothetical protein,1188xPG_0422 197xPG_0424,
+PG_0424,107,37,58,33,59,204,54,42,123,24,666,,hypothetical protein,197xPG_0423 4xPG_0425,
+PG_0425,61,30,23,44,28,64,54,43,74,41,771,,"esterase, putative",4xPG_0424,,3.1.1.-
+PG_0426,0,0,0,0,0,0,0,0,0,0,939,,"ISPg5, transposase Orf2",,
+PG_0427,0,0,0,0,0,0,0,0,0,0,390,,"ISPg5, transposase Orf1",,
+PG_0428,9,2,2,3,1,3,3,7,15,4,225,,hypothetical protein,,
+PG_0429,441,612,129,1633,408,1512,1399,286,838,355,1860,,pyruvate synthase,123xPG_0430,,1.2.7.3
+PG_0430,364,577,124,543,333,997,1074,176,1475,348,1008,,"oxidoreductase, putative",232xPG_0431 123xPG_0429,,1.2.7.3
+PG_0431,17,27,8,9,12,36,43,5,88,29,117,,hypothetical protein,232xPG_0430,
+PG_0432,201,249,99,349,138,185,401,123,414,192,1407,,NOL1/NOP2/sun family protein,116xPG_0433,
+PG_0433,108,102,54,179,76,107,138,65,150,76,714,,tetrapyrrole methylase family protein,116xPG_0432 22xPG_0434,
+PG_0434,255,409,106,452,208,339,323,100,445,184,1080,,hypothetical protein,22xPG_0433,
+PG_0435,142,48,60,86,86,336,75,57,106,49,744,,"capsular polysaccharide biosythesis protein, putative",132xPG_0436,
+PG_0436,197,85,103,91,224,688,152,189,269,83,2469,,"capsular polysaccharide transport protein, putative",132xPG_0435,,2.7.10.-
+PG_0437,49,22,20,27,39,59,47,43,117,28,924,,"polysaccharide export protein, BexD/CtrA/VexA family",,
+PG_0438,213,71,107,38,97,183,102,73,340,121,951,,hypothetical protein,44xPG_0439,35xPG_0439
+PG_0439,75,24,45,37,24,43,51,38,145,54,900,,hypothetical protein,44xPG_0438 27xPG_0441,35xPG_0438
+PG_0441,177,396,99,279,90,73,455,112,545,577,2634,,hypothetical protein,27xPG_0439,
+PG_0442,12,1,7,1,2,3,4,5,5,0,369,,hypothetical protein,,
+PG_0443,238,134,127,123,151,493,244,107,608,136,1047,,hemagglutinin-related protein,,
+PG_0444,185,77,105,165,78,160,234,110,281,113,1980,,"oligopeptide transporter, OPT family",26xPG_0445,
+PG_0445,110,69,74,156,82,142,221,86,264,75,1218,pepT,peptidase T,26xPG_0444,,3.4.11.4
+PG_0446,62,50,35,73,44,76,109,51,107,23,708,thiF,thiF protein,75xPG_0447,
+PG_0447,60,40,35,67,35,72,87,41,80,30,819,,conserved hypothetical protein,114xPG_0448 75xPG_0446,
+PG_0448,457,215,238,378,585,1319,516,453,530,172,1305,,hypothetical protein,196xPG_0449 114xPG_0447,
+PG_0449,1599,2091,839,2051,2171,3442,2858,1732,4578,1926,1383,,TPR domain protein,2091xPG_0450 196xPG_0448,
+PG_0450,219,388,77,377,282,416,511,197,713,321,711,,hypothetical protein,2091xPG_0449 44xPG_0451,
+PG_0451,174,129,80,93,184,538,226,142,480,124,1254,,CBS domain protein,44xPG_0450,
+PG_0452,1096,971,397,959,1413,3034,1391,876,1861,529,2148,,conserved hypothetical protein,,
+PG_0453,121,107,77,128,151,330,169,101,276,90,1275,,conserved domain protein,,
+PG_0456,0,0,0,0,0,0,0,0,0,0,2040,,PHP N-terminal domain protein,,
+PG_0457,0,0,0,0,0,0,0,0,0,0,294,,hypothetical protein,,
+PG_0458,0,0,0,0,0,0,0,0,0,0,939,,"ISPg5, transposase Orf2",,
+PG_0459,0,0,2,0,0,1,0,0,2,0,378,,"ISPg5, transposase Orf1",,
+PG_0460,4435,2861,3084,1047,5169,4729,3216,3137,14566,4391,1086,,"ISPg1, transposase",,46628xPG_1244 30928xPG_0549 24182xPG_1448 24157xPG_1906 21513xPG_0184 8851xPG_1320 34xPG_0825 14xPG_1031 14xPG_1177 13xPG_1197 10xPG_0938 8xPG_1624
+PG_0461,138,27,51,29,121,132,33,61,162,38,1308,,"ISPg7, transposase",,
+PG_0462,538,286,237,221,259,588,424,163,801,268,1404,,"transporter, putative",27xPG_0463,
+PG_0463,213,138,131,247,159,388,222,155,340,109,1290,folC,folylpolyglutamate synthase,74xPG_0464 27xPG_0462,,6.3.2.17
+PG_0464,202,91,113,205,167,298,201,122,253,78,1272,purA,adenylosuccinate synthetase,74xPG_0463 14xPG_0465,,6.3.4.4
+PG_0465,174,93,131,104,293,393,194,217,217,97,501,fur,ferric uptake transcriptional regulator,14xPG_0464,
+PG_0466,92,66,46,92,61,95,116,71,204,68,756,,hypothetical protein,,
+PG_0468,121,197,60,266,104,195,302,112,605,196,1011,manA,"mannose-6-phosphate isomerase, class I",383xPG_0469,,5.3.1.8
+PG_0469,94,205,48,271,100,199,280,106,455,204,252,,hypothetical protein,383xPG_0468,
+PG_0470,11,0,1,0,2,0,0,6,1,1,147,,hypothetical protein,,
+PG_0471,375,259,216,349,513,609,509,331,938,322,1065,,hypothetical protein,235xPG_0472,
+PG_0472,91,52,36,87,75,124,101,70,141,63,996,,"iron-sulfur cluster binding protein, putative",235xPG_0471,
+PG_0474,103,60,63,62,64,136,91,66,93,42,1038,,low-specificity L-threonine aldolase,3xPG_0475,,4.1.2.5
+PG_0475,105,77,54,131,42,122,122,86,126,46,1131,,"oxygen-independent coproporphyrinogen III oxidase, putative",75xPG_0476 3xPG_0474,
+PG_0476,111,62,84,128,66,134,145,103,137,53,1548,yngK-2,yngK protein,75xPG_0475 42xPG_0477,
+PG_0477,87,42,44,104,62,93,103,63,65,34,846,panC,pantoate--beta-alanine ligase,42xPG_0476,,6.3.2.1
+PG_0479,68,27,45,36,46,120,33,56,55,18,780,,hypothetical protein,,
+PG_0480,110,39,66,60,126,215,72,66,147,45,714,,"precorrin-2 C20-methyltransferase, putative",,,2.1.1.151
+PG_0481,278,159,140,243,584,946,321,344,377,172,1191,kbl,2-amino-3-ketobutyrate CoA ligase,,,2.3.1.29
+PG_0482,97,97,67,259,298,229,191,177,86,56,432,,hypothetical protein,,
+PG_0483,44,55,27,144,29,41,74,32,75,21,609,,"kinase, putative",63xPG_0484,,2.7.1.24
+PG_0484,166,222,88,388,202,400,414,121,335,151,1008,,hypothetical protein,63xPG_0483,
+PG_0485,242,384,132,400,231,524,401,195,1135,253,339,yajC,"preprotein translocase, YajC subunit",,
+PG_0486,96,47,60,64,82,75,77,70,143,60,528,ogt,methylated-DNA--protein-cysteine S-methyltransferase,,,2.1.1.63
+PG_0487,0,1,0,0,2,3,1,0,4,0,1158,,"ISPg4, transposase",,11xPG_1658 11xPG_0225 11xPG_2194 1xPG_0050 1xPG_0177 1xPG_0970 1xPG_1673 1xPG_1261 1xPG_0019
+PG_0488,125,103,61,127,63,169,198,70,241,88,1032,ruvB,Holliday junction DNA helicase RuvB,4xPG_0489,
+PG_0489,94,65,53,65,59,139,123,88,192,68,1482,,polysaccharide biosynthesis-related protein,4xPG_0488,
+PG_0490,177,100,77,116,107,219,146,103,208,53,1341,,"membrane protein, putative",23xPG_0491,
+PG_0491,621,302,286,663,673,762,599,393,685,230,2139,,conserved hypothetical protein,23xPG_0490 3xPG_0492,
+PG_0492,9,0,5,0,8,5,5,9,2,2,261,,hypothetical protein,3xPG_0491,
+PG_0493,6,2,6,0,1,8,5,7,8,3,159,,hypothetical protein,,6xPG_0265 2xPG_1426
+PG_0494,22,4,8,5,5,22,7,17,26,5,273,,hypothetical protein,,7xPG_0197 3xPG_0265
+PG_0495,60,36,60,80,418,3974,328,64,128,36,1410,,hypothetical protein,,
+PG_0496,15,5,6,12,34,111,44,11,31,7,93,,hypothetical protein,167xPG_0497,
+PG_0497,78,43,43,80,216,602,352,58,148,37,687,mtn,5'-methylthioadenosine/S-adenosylhomocysteine nucleosidase,167xPG_0496 84xPG_0498,
+PG_0498,55,61,27,87,396,1045,479,35,113,44,480,luxS,autoinducer-2 production protein LuxS,84xPG_0497,,4.4.1.21
+PG_0499,33,49,26,48,458,422,450,60,83,28,354,,hypothetical protein,,767xPG_2220 498xPG_1059 327xPG_1787 254xPG_1398 218xPG_1363 90xPG_1251 10xPG_0879
+PG_0500,277,225,194,312,788,1511,1099,247,481,179,1131,tgt,queuine tRNA-ribosyltransferase,94xPG_0501,,2.4.2.29
+PG_0501,104,73,41,180,211,467,430,88,151,59,1083,,conserved hypothetical protein,94xPG_0500 23xPG_0502,
+PG_0502,36,31,18,50,131,224,141,51,86,22,462,smpB,SsrA-binding protein,26xPG_0503 23xPG_0501,
+PG_0503,364,226,183,300,740,1441,1158,257,699,211,2172,dpp,dipeptidyl aminopeptidase IV,26xPG_0502,,3.4.14.5
+PG_0504,199,70,82,147,465,951,285,127,200,59,849,lipA,lipoate synthase,,,2.8.1.8
+PG_0505,157,57,136,103,250,334,74,237,314,80,123,,hypothetical protein,836xPG_0506,
+PG_0506,8395,3581,6135,9302,19288,20530,5379,11346,10669,5184,2211,prtRII,arginine-specific cysteine proteinase,836xPG_0505,46523xPG_2024,3.4.22.37
+PG_0507,11,13,10,17,32,22,19,16,21,18,195,,hypothetical protein,74xPG_0508,
+PG_0508,52,32,39,42,40,61,66,36,76,28,603,,"HAD-superfamily subfamily IB hydrolase, TIGR01490",74xPG_0507 47xPG_0509,
+PG_0509,47,46,34,37,22,64,55,36,55,17,861,,"prenyltransferase, UbiA family",47xPG_0508 12xPG_0510,
+PG_0510,48,27,20,27,24,130,40,35,63,23,456,,conserved hypothetical protein,19xPG_0511 12xPG_0509,
+PG_0511,88,54,54,82,81,186,82,74,114,25,1233,,spore maturation protein A/spore maturation protein B,19xPG_0510 14xPG_0512,
+PG_0512,26,27,11,33,55,149,46,53,44,12,567,gmk,guanylate kinase,15xPG_0513 14xPG_0511,,2.7.4.8
+PG_0513,51,35,32,42,77,309,47,87,50,18,891,,conserved hypothetical protein TIGR00255,15xPG_0512,
+PG_0514,1587,850,815,1534,2291,3429,1636,1317,2198,773,3324,secA,"preprotein translocase, SecA subunit",,
+PG_0515,425,315,231,433,536,958,549,311,731,258,1596,,conserved hypothetical protein,321xPG_0516,
+PG_0516,237,116,84,108,284,648,176,164,385,117,1248,,conserved hypothetical protein,321xPG_0515 17xPG_0517,
+PG_0517,218,145,87,198,247,637,298,175,597,129,2883,,hypothetical protein,17xPG_0516,
+PG_0518,69,43,42,57,64,211,65,46,129,27,726,,abortive infection protein family,49xPG_0519,
+PG_0519,22,11,4,11,15,88,19,8,22,9,111,,hypothetical protein,49xPG_0518,
+PG_0520,629,240,458,855,1454,1842,628,985,1436,562,1638,groEL,"chaperonin, 60 kDa",,
+PG_0521,228,155,157,212,682,703,365,476,923,367,270,groES,"chaperonin, 10 kDa",,
+PG_0522,80,46,39,121,84,143,128,55,118,32,909,miaA-2,tRNA delta(2)-isopentenylpyrophosphate transferase,108xPG_0523,,2.5.1.8
+PG_0523,271,325,117,416,279,626,602,220,668,235,1497,guaB,inosine-5'-monophosphate dehydrogenase,108xPG_0522,,1.1.1.205
+PG_0524,12,3,4,0,3,1,6,6,20,1,285,,hypothetical protein,,
+PG_0525,417,389,187,554,348,870,789,268,851,261,1620,pyrG,CTP synthase,,,6.3.4.2
+PG_0526,409,280,179,455,397,798,597,331,579,210,1884,,"membrane protein, putative",,
+PG_0528,478,206,311,295,368,1058,426,286,702,223,1884,,"amidophosphoribosyltransferase, putative",70xPG_0529,
+PG_0529,135,55,105,104,135,275,109,100,201,57,1074,carA,"carbamoyl-phosphate synthase, small subunit",70xPG_0528 48xPG_0530,,6.3.5.5
+PG_0530,718,313,430,563,550,1635,682,416,1224,318,3228,carB,"carbamoyl-phosphate synthase, large subunit",48xPG_0529,,6.3.5.5
+PG_0531,362,263,178,319,287,705,534,236,601,212,1944,nadE,glutamine-dependent NAD+ synthetase,,,6.3.5.1
+PG_0532,82,63,48,103,48,83,107,57,107,44,900,,conserved domain protein,,
+PG_0534,550,1023,294,2098,634,1502,1686,582,1543,600,2484,,hypothetical protein,,
+PG_0535,238,159,94,124,342,1338,178,201,547,86,621,,conserved hypothetical protein,198xPG_0536,
+PG_0536,160,113,113,107,538,954,152,492,354,102,306,,hypothetical protein,1437xPG_0537 198xPG_0535,
+PG_0537,532,512,353,806,1050,1626,885,830,1669,546,1461,pepD-2,aminoacyl-histidine dipeptidase,1437xPG_0536,,3.4.13.3
+PG_0538,145,107,83,124,145,456,858,168,741,230,1389,,outer membrane efflux protein,6xPG_0539,
+PG_0539,111,55,45,158,108,138,707,110,374,193,1053,,"efflux transporter, MFP component, RND family",35xPG_0540 6xPG_0538,
+PG_0540,288,179,120,364,264,489,2044,289,1283,496,3150,,AcrB/AcrD/AcrF family protein,216xPG_0541 35xPG_0539,
+PG_0541,13,22,16,19,26,70,169,30,135,50,300,,hypothetical protein,216xPG_0540,
+PG_0542,41,50,18,36,37,175,38,30,41,17,306,,hypothetical protein,,
+PG_0543,0,0,0,0,0,0,0,0,0,0,204,,"transcriptional regulator, putative",,
+PG_0544,0,0,0,0,0,0,0,0,0,0,1947,,"type I restriction-modification system, M subunit, putative",,
+PG_0545,0,0,1,0,1,0,0,0,0,0,2106,,hypothetical protein,2xPG_0546,
+PG_0546,5,1,5,0,9,10,3,2,9,2,213,,conserved domain protein,2xPG_0545,
+PG_0547,913,419,416,688,632,5356,801,441,1071,309,1197,,conserved hypothetical protein,,
+PG_0548,906,861,371,1733,1056,3208,1634,695,2031,737,3582,,pyruvate ferredoxin/flavodoxin oxidoreductase family protein,,
+PG_0549,3396,2252,2464,763,4147,3684,2451,2363,11662,3466,1086,,"ISPg1, transposase",,30928xPG_0460 30922xPG_1244 9467xPG_0184 9114xPG_1448 9113xPG_1906 3351xPG_1320 639xPG_0825 618xPG_1031 618xPG_1177 612xPG_1197 380xPG_1624 10xPG_0938
+PG_0553,313,510,208,788,508,852,685,517,2297,576,2823,,"extracellular protease, putative",,
+PG_0554,19,2,14,4,6,14,6,4,7,3,117,,hypothetical protein,,
+PG_0555,251,109,94,79,141,344,212,90,171,86,519,,"DNA-binding protein, histone-like family",,
+PG_0556,0,0,0,0,0,0,0,0,0,0,903,,hypothetical protein,,
+PG_0557,141,89,54,42,121,777,62,78,202,36,693,,hypothetical protein,,
+PG_0558,111,162,58,183,98,566,233,78,560,157,822,,"purine nucleoside phosphorylase I, inosine and guanosine-specific",48xPG_0559,
+PG_0559,88,83,43,157,48,157,122,63,233,91,1146,,chlorohydrolase family protein,48xPG_0558 45xPG_0560,
+PG_0560,21,18,22,25,20,103,40,20,133,33,246,,hypothetical protein,210xPG_0561 45xPG_0559,
+PG_0561,428,175,177,349,482,991,360,233,918,258,1356,,"peptidase, M20/M25/M40 family",210xPG_0560,
+PG_0562,140,29,78,43,43,118,65,62,127,30,1677,,"potassium uptake protein TrkA, putative",14xPG_0563,
+PG_0563,3,0,3,0,0,2,1,2,2,1,504,,hypothetical protein,14xPG_0562,
+PG_0564,0,0,0,0,0,0,0,0,0,0,195,,hypothetical protein,,
+PG_0565,0,0,0,0,0,0,0,0,0,0,873,,hypothetical protein,,
+PG_0566,529,331,244,190,807,567,550,316,479,259,507,,"DNA-binding protein, histone-like family",,4226xPG_1276
+PG_0568,883,617,588,708,548,1105,1111,426,1135,493,567,efp-1,translation elongation factor P,,4023xPG_1274
+PG_0569,103,55,51,109,53,153,135,65,164,57,1527,,hypothetical protein,,
+PG_0571,143,139,74,137,137,358,272,104,329,76,1014,asd,aspartate-semialdehyde dehydrogenase,87xPG_0572,,1.2.1.11
+PG_0572,11,16,5,10,14,38,30,11,47,11,138,,hypothetical protein,87xPG_0571,
+PG_0573,144,130,58,224,168,261,267,98,235,87,936,mraW,S-adenosyl-methyltransferase MraW,59xPG_0574,,2.1.1.-
+PG_0574,49,25,35,67,74,97,59,61,54,34,474,,hypothetical protein,59xPG_0573 30xPG_0575,
+PG_0575,289,198,137,335,259,617,381,220,465,181,2202,,"penicillin-binding protein 2, putative",94xPG_0576 30xPG_0574,,2.4.1.129
+PG_0576,313,165,142,219,283,706,264,140,462,160,1464,murE,"UDP-N-acetylmuramoylalanyl-D-glutamyl-2, 6-diaminopimelate ligase",94xPG_0575 63xPG_0577,
+PG_0577,131,65,78,94,137,340,127,74,203,63,1260,mraY,phospho-N-acetylmuramoyl-pentapeptide- transferase,63xPG_0576 62xPG_0578,,2.7.8.13
+PG_0578,238,95,117,106,211,617,148,139,377,96,1353,murD,UDP-N-acetylmuramoylalanine--D-glutamate ligase,72xPG_0579 62xPG_0577,,6.3.2.9
+PG_0579,160,81,73,92,106,312,78,91,157,41,1257,,"cell division protein FtsW, putative",72xPG_0578 44xPG_0580,
+PG_0580,105,46,40,130,72,156,77,65,92,45,1140,murG,UDP-N-acetylglucosamine--N-acetylmuramyl- (pentapeptide) pyrophosphoryl-undecaprenol N-acetylglucosamine transferase,53xPG_0581 44xPG_0579,
+PG_0581,167,106,73,154,96,291,140,96,240,89,1371,murC,UDP-N-acetylmuramate--alanine ligase,59xPG_0582 53xPG_0580,,6.3.2.8
+PG_0582,101,75,52,87,79,247,106,52,162,52,777,,"cell division protein FtsQ, putative",59xPG_0581 6xPG_0583,
+PG_0583,454,429,214,528,484,1079,573,363,1084,336,1440,ftsA,cell division protein FtsA,55xPG_0584 6xPG_0582,
+PG_0584,217,88,97,258,542,584,163,226,171,96,1374,ftsz,cell division protein FtsZ,55xPG_0583 18xPG_0585,
+PG_0585,80,66,47,81,83,203,87,80,149,56,450,,YqeY family protein,18xPG_0584,
+PG_0587,76,19,26,30,50,128,53,35,69,16,633,yadS,yadS protein,,
+PG_0588,97,135,57,232,186,161,256,132,268,119,822,panB,3-methyl-2-oxobutanoate hydroxymethyltransferase,,,2.1.2.11
+PG_0589,246,259,148,414,244,577,553,207,471,180,1521,guaA,GMP synthase,,,6.3.5.2
+PG_0590,0,0,0,0,0,0,0,0,0,0,396,,"ISPg5, transposase Orf1",,
+PG_0591,0,0,0,0,0,0,0,0,0,0,939,,"ISPg5, transposase Orf2",,
+PG_0592,655,340,263,276,1187,6619,507,519,654,197,258,rpmE,ribosomal protein L31,,
+PG_0593,1115,1935,439,1789,2024,2732,3107,1327,6707,1877,1497,htrA,htrA protein,,,3.4.21.-
+PG_0594,595,613,291,1232,1043,2228,1358,748,1442,448,864,rpoD,RNA polymerase sigma-70 factor,,
+PG_0595,732,568,318,980,1115,2109,1092,947,1078,303,354,rpsF,ribosomal protein S6,736xPG_0596,
+PG_0596,440,620,219,780,924,1766,901,890,1095,305,273,rpsR,ribosomal protein S18,736xPG_0595 351xPG_0597,
+PG_0597,653,777,277,897,1055,3163,1142,1057,1521,574,540,rplI,ribosomal protein L9,351xPG_0596,
+PG_0598,154,212,90,314,177,261,479,169,529,187,1956,,hypothetical protein,248xPG_0599,
+PG_0599,238,412,156,360,324,786,764,232,1670,375,1218,ribBA,"3,4-dihydroxy-2-butanone 4-phosphate synthase/GTP cyclohydrolase II",248xPG_0598,
+PG_0602,237,199,135,203,215,627,243,179,399,145,1041,,hypothetical protein,19xPG_0603,
+PG_0603,96,81,45,128,72,233,130,79,159,45,696,cmk,cytidylate kinase,69xPG_0604 19xPG_0602,,2.7.4.14
+PG_0604,112,104,62,124,68,193,143,75,225,49,870,ispH,hydroxymethylbutenyl pyrophosphate reductase,81xPG_0605 69xPG_0603,,1.17.1.2
+PG_0605,205,275,105,251,355,1042,368,257,668,245,1242,,hypothetical protein,81xPG_0604 15xPG_0606,
+PG_0606,92,139,34,174,169,514,107,159,483,111,108,,hypothetical protein,58xPG_0607 15xPG_0605,
+PG_0607,160,276,89,309,282,1033,313,285,1477,277,363,,hypothetical protein,64xPG_0608 58xPG_0606,
+PG_0608,6,17,6,16,3,18,14,10,20,4,135,,hypothetical protein,64xPG_0607,
+PG_0609,5,4,1,1,1,4,0,2,2,1,93,,hypothetical protein,,
+PG_0610,69,48,38,46,73,116,69,57,146,42,420,,hypothetical protein,39xPG_0611,
+PG_0611,131,76,78,94,116,248,89,91,191,82,951,,"lipoprotein, putative",39xPG_0610 9xPG_0612,
+PG_0612,21,6,10,20,23,42,15,16,21,7,204,,hypothetical protein,27xPG_0613 9xPG_0611,
+PG_0613,39,22,25,50,52,73,37,40,81,28,690,,hypothetical protein,63xPG_0614 27xPG_0612,
+PG_0614,81,100,41,78,97,380,106,71,348,94,981,,hypothetical protein,63xPG_0613,
+PG_0615,215,224,100,449,240,632,470,207,536,181,1800,typA,GTP-binding protein TypA,,
+PG_0616,587,303,519,508,873,2644,351,1478,2613,615,1035,,"thioredoxin, putative",,
+PG_0617,159,318,56,249,135,832,312,85,424,118,300,,hypothetical protein,2478xPG_0618,
+PG_0618,1386,2912,422,2763,2084,7587,2663,735,4102,1671,567,,"alkyl hydroperoxide reductase, C subunit",2478xPG_0617,,1.11.1.15
+PG_0619,932,1630,224,2201,1285,6003,1369,325,3048,1012,1548,,"alkyl hydroperoxide reductase, F subunit",,,1.6.4.-
+PG_0620,1455,583,513,1238,1854,3725,756,890,1261,435,2433,lon,ATP-dependent protease La,463xPG_0621,,3.4.21.53
+PG_0621,383,152,135,178,326,829,153,170,327,95,549,,conserved hypothetical protein,463xPG_0620 207xPG_0622,
+PG_0622,499,416,180,748,654,1389,503,363,1025,293,1293,,hypothetical protein,207xPG_0621 154xPG_0623,
+PG_0623,431,187,128,362,461,687,239,251,471,156,756,tpiA,triosephosphate isomerase,154xPG_0622,,5.3.1.1
+PG_0624,119,102,45,142,154,172,117,83,130,78,507,,hypothetical protein,182xPG_0625,
+PG_0625,192,144,62,139,191,399,164,117,311,115,582,folE,GTP cyclohydrolase I,182xPG_0624,,3.5.4.16
+PG_0626,35,40,26,25,109,105,18,89,20,22,867,,hypothetical protein,,
+PG_0627,395,455,227,241,625,1175,581,371,543,234,294,,RNA-binding protein,,
+PG_0628,41,43,38,62,28,53,77,35,75,30,756,,"ABC transporter, ATP-binding protein",,
+PG_0629,80,83,57,120,51,79,159,66,126,54,867,ppnK,ATP-NAD kinase,,,2.7.1.23
+PG_0630,138,131,66,153,99,188,199,96,343,90,717,pdxJ,pyridoxal phosphate biosynthetic protein PdxJ,,,2.6.99.2
+PG_0631,70,51,35,113,38,113,114,59,121,33,615,,MotA/TolQ/ExbB proton channel family protein,47xPG_0632,
+PG_0632,48,29,33,89,27,88,92,44,112,38,420,,"biopolymer transport protein ExbD, putative",74xPG_0633 47xPG_0631,
+PG_0633,90,68,49,167,69,131,139,74,192,48,828,,hypothetical protein,74xPG_0632 59xPG_0634,
+PG_0634,48,75,36,78,57,138,208,58,417,83,546,,ThiJ/PfpI family protein,59xPG_0633,
+PG_0635,143,43,53,87,61,194,69,65,150,28,936,prmA,ribosomal protein L11 methyltransferase,107xPG_0636,,2.1.1.-
+PG_0636,133,75,73,118,73,163,105,84,130,38,1365,,MATE efflux family protein,107xPG_0635 48xPG_0637,
+PG_0637,70,40,45,75,34,138,69,63,104,31,1041,thiL,thiamine monophosphate kinase,48xPG_0636 12xPG_0638,,2.7.4.16
+PG_0638,99,42,68,122,37,109,78,53,109,32,1074,lpxK,tetraacyldisaccharide 4'-kinase,18xPG_0639 12xPG_0637,,2.7.1.130
+PG_0639,349,155,175,310,298,969,325,242,505,139,1788,sppA,"signal peptide peptidase SppA, 67K type",18xPG_0638,,3.4.21.-
+PG_0645,133,54,70,114,75,136,101,73,165,51,1077,,conserved domain protein,,
+PG_0646,104,61,83,60,67,108,74,73,125,40,1002,,"iron compound ABC transporter, ATP-binding protein",24xPG_0647,,3.6.3.34
+PG_0647,63,36,46,42,52,57,91,69,139,44,1035,,"iron compound ABC transporter, permease protein",77xPG_0648 24xPG_0646,
+PG_0648,171,124,77,151,132,264,223,132,456,127,1176,,"iron compound ABC transporter, periplasmic iron compound-binding protein, putative",77xPG_0647,
+PG_0649,61,60,28,56,36,136,89,62,170,32,585,,hypothetical protein,,
+PG_0650,45,46,32,56,45,223,55,49,101,26,384,,hypothetical protein,,
+PG_0651,92,102,53,167,91,668,144,94,229,53,552,,HDIG domain protein,,
+PG_0652,78,69,32,73,71,312,97,49,155,56,303,,conserved hypothetical protein,119xPG_0653,
+PG_0653,413,385,137,352,541,1873,501,281,945,225,1242,serB,phosphoserine phosphatase,119xPG_0652,,3.1.3.3
+PG_0654,564,308,253,304,820,2582,553,533,707,175,1173,,hypothetical protein,,
+PG_0655,51,23,18,30,48,644,26,22,49,14,96,,hypothetical protein,,
+PG_0656,203,62,65,79,203,2195,80,116,158,32,153,rpmH,ribosomal protein L34,,
+PG_0657,44,27,38,27,37,87,35,40,124,18,624,maf,maf protein,55xPG_0658,
+PG_0658,55,62,41,65,73,116,99,52,233,58,522,,"phosphatase, YrbI family",55xPG_0657 33xPG_0659,,3.1.3.45
+PG_0659,143,169,61,112,76,213,268,74,447,162,813,,conserved hypothetical protein,194xPG_0660 33xPG_0658,
+PG_0660,171,93,103,104,141,363,249,122,588,174,555,,nitroreductase family protein,194xPG_0659 108xPG_0661,
+PG_0661,34,22,20,15,29,95,35,33,64,24,162,,hypothetical protein,108xPG_0660,
+PG_0662,13,10,5,13,8,20,13,10,21,6,210,,hypothetical protein,,1xPG_0722
+PG_0664,97,35,58,151,52,120,101,83,109,36,1488,,"oxidoreductase, Gfo/Idh/MocA family",,
+PG_0665,203,41,104,128,83,197,110,150,129,42,3339,lacZ-1,beta-galactosidase,,,3.2.1.23
+PG_0668,651,616,299,679,770,1527,843,511,1669,508,2274,,TonB-dependent receptor,278xPG_0669,
+PG_0669,706,354,316,415,779,1779,522,528,1812,469,882,fetB,heme-binding protein FetB,278xPG_0668,,4.99.1.3
+PG_0670,155,86,64,202,136,301,195,94,225,88,1140,,"lipoprotein, putative",69xPG_0671,
+PG_0671,112,120,51,170,50,112,171,76,219,75,1071,,"iron compound ABC transporter, permease protein",69xPG_0670 2xPG_0672,
+PG_0672,76,111,46,110,63,145,183,62,190,71,759,,"iron compound ABC transporter, ATP-binding protein",2xPG_0671,,3.6.3.34
+PG_0674,511,254,253,257,384,1278,368,136,846,201,594,iorB,"indolepyruvate ferredoxin oxidoreductase, beta subunit",86xPG_0675,,1.2.7.8
+PG_0675,323,411,180,483,200,619,639,188,1381,323,1608,iorA,"indolepyruvate ferredoxin oxidoreductase, alpha subunit",86xPG_0674,,1.2.7.8
+PG_0676,68,60,40,97,27,55,137,31,177,69,762,,"oxidoreductase, short chain dehydrogenase/reductase family",,
+PG_0677,123,53,85,106,82,198,126,108,154,48,1194,LYS1,saccharopine dehydrogenase,6xPG_0678,
+PG_0678,91,77,36,78,79,175,137,47,225,77,513,,"pyrazinamidase/nicotinamidase, putative",6xPG_0677,,3.5.1.- 3.5.1.19
+PG_0679,52,11,35,7,15,14,19,46,63,18,1335,,outer membrane efflux protein,2xPG_0680,
+PG_0680,80,9,42,7,13,11,22,41,34,10,1254,,"efflux transporter, MFP component, RND family",2xPG_0679,
+PG_0681,21,4,5,3,0,11,9,5,18,7,309,,hypothetical protein,,
+PG_0682,101,5,64,5,17,11,19,55,60,19,2352,,"ABC transporter, permease protein, putative",,
+PG_0683,33,2,11,2,6,13,8,13,15,5,2367,,"ABC transporter, permease protein, putative",6xPG_0684,
+PG_0684,150,56,89,90,61,48,103,70,110,43,2376,,"ABC transporter, permease protein, putative",6xPG_0683,
+PG_0685,67,54,45,114,40,45,100,35,140,37,660,,"ABC transporter, ATP-binding protein",,
+PG_0686,444,864,132,967,737,1194,869,282,723,515,1554,,conserved hypothetical protein,,
+PG_0687,1481,1426,566,2061,1918,8180,2533,1160,2616,1137,1356,sucD,succinate-semialdehyde dehydrogenase,,,1.2.1.10
+PG_0689,1304,456,547,668,1444,3820,822,836,1417,398,1116,4hbD,NAD-dependent 4-hydroxybutyrate dehydrogenase,,
+PG_0690,1138,417,492,829,1168,2656,818,931,1084,319,1296,abfT-1,4-hydroxybutyrate CoA-transferase,400xPG_0691,
+PG_0691,368,159,160,204,189,1227,327,157,506,161,285,,NifU-related protein,400xPG_0690,
+PG_0692,7174,4597,3383,5536,7905,20776,8047,5299,9276,3833,1461,abfD,4-hydroxybutyryl-CoA dehydratase,,
+PG_0694,12638,14250,6085,8740,39628,84896,17993,23984,26012,15431,1143,,immunoreactive 42 kDa antigen PG33,329xPG_0695,
+PG_0695,18538,6732,8385,7031,36199,78564,10542,21463,24002,7947,1176,,immunoreactive 43 kDa antigen PG32,329xPG_0694,
+PG_0698,240,202,111,133,398,854,163,258,333,142,984,,"lipoprotein, putative",45xPG_0699,
+PG_0699,346,147,191,344,380,526,268,407,418,141,2571,malP,maltodextrin phosphorylase,45xPG_0698,,2.4.1.1
+PG_0700,23,17,10,8,44,37,17,14,39,9,513,,hypothetical protein,154xPG_0701,
+PG_0701,103,52,49,46,102,155,77,49,166,40,537,cobU,cobinamide kinase/cobinamide phosphate guanylyltransferase,154xPG_0700,
+PG_0702,122,65,68,115,106,141,150,67,247,73,1038,,"nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase, putative",85xPG_0703,
+PG_0703,74,35,50,79,32,84,89,42,155,45,783,,"cobalamin (5'-phosphate) synthase, putative",85xPG_0702 72xPG_0704,,2.7.8.26
+PG_0704,46,27,22,47,21,70,69,16,98,29,540,,phosphoglycerate mutase family protein,72xPG_0703,
+PG_0705,251,198,150,257,354,991,330,240,874,241,825,murI,glutamate racemase,270xPG_0706,,5.1.1.3
+PG_0706,256,66,74,91,171,698,120,131,375,86,453,,hypothetical protein,270xPG_0705,
+PG_0707,3141,1664,1100,2324,5409,5726,3916,1639,2841,1185,2547,,"TonB-dependent receptor, putative",,
+PG_0708,379,367,191,418,540,1492,537,413,1136,260,831,,"peptidyl-prolyl cis-trans isomerase, FKBP-type",24xPG_0709,
+PG_0709,222,140,94,185,267,729,237,200,232,85,762,fkpA,"peptidyl-prolyl cis-trans isomerase FkpA, FKBP-type",63xPG_0710 24xPG_0708,,5.2.1.8
+PG_0710,140,149,80,134,174,437,188,174,236,50,588,,"peptidyl-prolyl cis-trans isomerase, FKBP-type",63xPG_0709,,5.2.1.8
+PG_0711,6,1,5,0,3,10,1,5,4,2,132,,hypothetical protein,,
+PG_0712,377,210,97,189,396,629,285,183,239,131,348,,hypothetical protein,52xPG_0713,
+PG_0713,123,114,50,144,98,354,155,103,203,61,597,trpG,anthranilate synthase component II,52xPG_0712,,4.1.3.27
+PG_0714,71,74,31,84,67,168,112,72,190,38,747,cutC,copper homeostasis protein CutC,53xPG_0715,
+PG_0715,127,172,65,205,97,389,306,108,449,126,921,,transporter,53xPG_0714,
+PG_0717,6,0,0,0,1,6,1,1,11,2,1104,,"lipoprotein, putative",,
+PG_0718,0,0,0,0,0,0,0,0,0,0,438,,conserved hypothetical protein,,
+PG_0719,6,3,6,5,6,31,6,9,18,6,1284,,sensor histidine kinase,3xPG_0720,
+PG_0720,88,42,47,66,102,230,74,97,224,68,690,,DNA-binding response regulator,3xPG_0719,
+PG_0721,324,277,148,230,448,1750,407,333,694,218,609,,NLP/P60 family protein,,
+PG_0722,6,1,3,1,1,4,2,4,8,0,153,,hypothetical protein,,1xPG_0662
+PG_0723,42,54,34,68,65,104,73,44,71,39,327,,hypothetical protein,230xPG_0724,
+PG_0724,285,344,167,494,282,616,546,230,751,226,1947,,prolyl oligopeptidase family protein,230xPG_0723,
+PG_0725,71,153,41,103,61,157,181,46,240,58,627,,"hydrolase, haloacid dehalogenase-like family",,
+PG_0726,568,243,221,162,546,2841,261,440,989,244,390,,"lipoprotein, putative",1103xPG_0727,
+PG_0727,276,45,137,56,239,705,47,251,187,110,207,,hypothetical protein,1103xPG_0726 1xPG_0728,
+PG_0728,165,48,71,92,123,358,125,129,183,51,1167,,conserved hypothetical protein,60xPG_0729 1xPG_0727,
+PG_0729,145,96,58,142,112,272,170,130,213,71,993,ddlA,D-alanine--D-alanine ligase,60xPG_0728,,6.3.2.4
+PG_0731,370,283,189,259,474,632,373,246,1126,338,657,,hypothetical protein,285xPG_0732,
+PG_0732,56,20,18,18,30,46,29,17,92,27,318,,hypothetical protein,285xPG_0731,
+PG_0733,85,181,66,191,86,259,339,79,382,112,603,ribE,"riboflavin synthase, alpha subunit",218xPG_0734,,2.5.1.9
+PG_0734,86,147,38,187,59,258,318,61,288,107,552,,nitroreductase family protein,218xPG_0733,
+PG_0735,118,113,70,154,106,165,222,98,241,64,1215,,"aminotransferase, class V",49xPG_0736,,4.4.1.16
+PG_0736,42,28,30,49,22,18,50,31,58,23,606,rnhB,ribonuclease HII,49xPG_0735 41xPG_0737,,3.1.26.4
+PG_0737,48,50,21,55,26,80,77,40,88,31,279,,hypothetical protein,109xPG_0738 41xPG_0736,
+PG_0738,58,43,25,51,27,88,92,47,101,39,453,,cytidine/deoxycytidylate deaminase family protein,109xPG_0737 17xPG_0739,
+PG_0739,80,46,45,73,36,94,109,62,93,31,915,,metallo-beta-lactamase family protein,33xPG_0740 17xPG_0738,,3.1.26.11
+PG_0740,43,17,20,38,31,51,40,32,53,16,570,,NLP/P60 family protein,33xPG_0739,
+PG_0741,0,0,0,0,0,0,0,0,0,0,600,,conserved hypothetical protein,,
+PG_0742,0,0,0,0,0,0,0,0,0,0,1338,pgaA,antigen PgaA,,
+PG_0744,87,97,46,146,47,125,133,69,298,71,765,,"RNA methyltransferase, TrmH family",,
+PG_0745,128,63,55,105,86,156,83,69,152,53,399,,"lactoylglutathione lyase, putative",,,4.4.1.5
+PG_0746,112,51,57,58,40,85,73,71,119,35,1368,,sensor histidine kinase,18xPG_0747,
+PG_0747,101,94,56,129,67,122,180,92,206,84,1395,,sigma-54 dependent DNA-binding response regulator,18xPG_0746,
+PG_0749,7,10,6,12,13,7,11,6,16,2,117,,hypothetical protein,,
+PG_0750,1244,661,513,790,712,1300,798,936,424,375,747,,"glycosyl transferase, group 2 family protein",,
+PG_0751,210,154,116,167,186,284,321,159,280,101,735,porT,porT protein,,
+PG_0752,98,155,53,114,104,288,206,106,230,78,651,,"uracil phosphoribosyltransferase, putative",35xPG_0753,,2.4.2.9
+PG_0753,133,63,65,79,67,137,127,79,203,50,1908,prtQ,protease,35xPG_0752,,3.4.-.-
+PG_0754,248,198,110,294,205,706,401,190,311,116,2367,topA,DNA topoisomerase I,,,5.99.1.2
+PG_0756,169,69,97,153,158,391,163,150,121,47,1353,,conserved hypothetical protein,,
+PG_0757,54,32,32,58,67,145,79,43,89,32,648,,hypothetical protein,,
+PG_0758,316,303,153,504,418,619,631,277,877,307,2088,dcp-1,peptidyl-dipeptidase Dcp,,,3.4.15.5
+PG_0759,444,438,228,796,581,840,870,388,1118,370,2154,,TPR domain protein,,
+PG_0762,446,315,197,439,655,2604,696,493,614,213,1377,,"trigger factor, putative",,
+PG_0766,515,921,318,1732,566,1167,2050,541,2733,922,2232,pnpA,polyribonucleotide nucleotidyltransferase,,,2.7.7.8
+PG_0767,153,52,73,135,68,172,110,97,164,50,1977,malQ,4-alpha-glucanotransferase,,,2.4.1.25
+PG_0768,72,100,62,115,54,130,102,85,250,59,1107,,conserved hypothetical protein,,
+PG_0769,114,45,56,88,111,181,59,85,138,45,1623,,fibronectin type III domain protein,37xPG_0770,
+PG_0770,26,10,10,17,31,42,14,31,33,11,417,,hypothetical protein,37xPG_0769 34xPG_0771,
+PG_0771,16,8,8,20,26,63,9,24,28,9,264,,hypothetical protein,34xPG_0770,
+PG_0772,5,0,3,0,2,1,1,2,4,0,150,,hypothetical protein,2xPG_0773,
+PG_0773,1,0,2,0,1,2,0,9,4,1,138,,hypothetical protein,2xPG_0772,
+PG_0774,76,23,39,25,51,162,26,55,73,20,1245,,hypothetical protein,,
+PG_0775,377,372,259,769,514,1381,569,418,1760,680,1722,,acyl-CoA dehydrogenase family protein,1625xPG_0776,,1.3.99.-
+PG_0776,295,394,247,1204,436,765,665,546,1029,843,1020,etfA-1,"electron transfer flavoprotein, alpha subunit",1625xPG_0775 78xPG_0777,
+PG_0777,205,88,127,292,206,385,173,219,541,155,867,etfB-1,"electron transfer flavoprotein, beta subunit",78xPG_0776,
+PG_0778,52,43,39,67,43,102,53,61,111,47,720,,conserved hypothetical protein,,
+PG_0779,498,700,226,638,700,3357,880,537,2333,490,474,,hypothetical protein,1482xPG_0780,
+PG_0780,1164,1340,513,993,1526,9739,1793,1254,2945,890,615,,hypothetical protein,1482xPG_0779 372xPG_0781,
+PG_0781,894,775,351,1062,1370,4090,1014,1014,1290,483,471,,hypothetical protein,372xPG_0780 355xPG_0782,
+PG_0782,831,322,387,835,1146,2702,659,878,764,259,813,,MotA/TolQ/ExbB proton channel family protein,355xPG_0781,
+PG_0783,65,82,27,77,75,195,90,49,82,40,828,,"hydrolase, putative",2xPG_0784,,3.1.21.-
+PG_0784,96,87,36,81,81,253,113,63,156,42,978,,polyprenyl synthetase,2xPG_0783,,2.5.1.1 2.5.1.10
+PG_0785,483,296,239,547,300,884,608,182,782,266,693,,"tonB protein, putative",811xPG_0786,
+PG_0786,64,52,29,112,65,180,105,35,150,31,123,,hypothetical protein,811xPG_0785 5xPG_0787,
+PG_0787,14,7,10,12,9,32,20,15,16,9,243,,hypothetical protein,5xPG_0786,
+PG_0788,217,156,111,232,156,434,274,143,297,92,2634,,hypothetical protein,5xPG_0789,
+PG_0789,91,49,43,114,73,154,104,55,93,41,717,,conserved hypothetical protein,162xPG_0790 5xPG_0788,
+PG_0790,260,154,129,359,328,657,355,227,300,160,1185,obg,GTP-binding protein Obg,162xPG_0789 119xPG_0791,
+PG_0791,143,94,69,210,189,376,252,137,212,91,585,adk,adenylate kinase,119xPG_0790 76xPG_0792,,2.7.4.3
+PG_0792,149,113,59,220,205,398,229,165,196,86,537,hpt,hypoxanthine phosphoribosyltransferase,76xPG_0791,,2.4.2.8
+PG_0793,1074,524,505,833,1010,3025,944,636,1941,546,1968,fbp,"fructose-1,6-bisphosphatase",,,3.1.3.11
+PG_0794,672,374,311,595,764,1771,557,463,1026,380,2361,,"penicillin-binding protein 1A, putative",8xPG_0795,,2.4.2.- 3.4.-.-
+PG_0795,81,58,36,42,89,230,66,77,171,45,711,,"membrane protein, putative",8xPG_0794,
+PG_0796,415,495,184,651,502,1402,868,423,1104,332,2778,leuS,leucyl-tRNA synthetase,,,6.1.1.4
+PG_0798,1210,1203,776,741,1894,5716,1476,1295,2970,985,903,,"ISPg3, transposase",,14084xPG_0194 13901xPG_0261 13240xPG_1262 12427xPG_1032
+PG_0799,23,6,7,5,15,10,6,17,9,1,186,,hypothetical protein,,
+PG_0800,122,69,51,92,70,158,140,83,141,43,1560,,conserved hypothetical protein,34xPG_0801,
+PG_0801,118,90,65,121,205,336,179,150,238,80,1452,,polyA polymerase family protein,34xPG_0800,,2.7.7.19
+PG_0802,231,84,132,192,187,451,210,143,263,93,1350,pdhD,"alpha keto acid dehydrogenase complex, E3 component, lipoamide dehydrogenase",70xPG_0803,
+PG_0803,129,53,83,122,109,355,107,93,158,47,792,nagB,glucosamine-6-phosphate isomerase,70xPG_0802 12xPG_0804,,3.5.99.6
+PG_0804,240,183,153,335,330,796,393,240,348,174,1209,,flavodoxin,12xPG_0803 11xPG_0805,
+PG_0805,60,94,44,148,73,100,166,71,155,65,852,lgt,prolipoprotein diacylglyceryl transferase,26xPG_0806 11xPG_0804,,2.4.99.-
+PG_0806,144,293,99,439,270,479,532,205,477,230,906,,"oxidoreductase, Gfo/Idh/MocA family",180xPG_0807 26xPG_0805,,1.4.1.16
+PG_0807,263,466,127,481,262,837,922,242,675,287,1095,,NusB family protein,180xPG_0806,
+PG_0809,645,367,425,436,649,1583,757,560,684,212,6951,,hypothetical protein,85xPG_0810,
+PG_0810,55,44,34,30,48,70,64,44,28,15,591,,hypothetical protein,85xPG_0809 8xPG_0811,
+PG_0811,82,67,45,57,59,182,120,59,88,21,609,ruvA,Holliday junction DNA helicase RuvA,8xPG_0810,
+PG_0814,0,0,0,0,0,0,0,0,0,0,348,,hypothetical protein,,
+PG_0815,0,0,0,0,0,0,0,0,0,0,138,,hypothetical protein,,
+PG_0816,0,0,0,0,0,0,0,0,0,0,474,,hypothetical protein,,
+PG_0819,0,0,0,0,0,0,0,0,0,0,1230,,integrase,,
+PG_0820,0,0,0,0,0,0,0,0,0,0,1203,,integrase,,
+PG_0821,0,0,0,0,0,0,0,0,0,0,363,,"lipoprotein, putative",,
+PG_0822,0,0,0,0,0,0,0,0,0,0,408,,hypothetical protein,,
+PG_0823,0,0,0,0,0,0,0,0,0,0,315,,conserved hypothetical protein,,
+PG_0824,1,3,0,2,2,2,2,1,1,0,681,,conserved hypothetical protein,,14xPG_1449
+PG_0825,1139,648,893,239,1818,1307,800,1192,3283,1138,1086,,"ISPg1, transposase",,9469xPG_0184 9080xPG_1448 8711xPG_1906 7859xPG_1031 7116xPG_1177 7109xPG_1197 6390xPG_1624 1306xPG_1320 639xPG_0549 34xPG_0460 27xPG_1244
+PG_0826,133,95,47,120,218,547,148,72,166,99,849,,"transcriptional regulator, AraC family",,1585xPG_1447
+PG_0827,214,182,102,188,228,758,193,108,339,95,1359,,MATE efflux family protein,,2206xPG_1446
+PG_0829,9,0,2,2,3,3,3,3,8,1,477,,hypothetical protein,,22xPG_1444
+PG_0831,0,0,0,0,0,0,0,0,0,0,429,,hypothetical protein,,
+PG_0832,0,0,0,0,0,0,0,0,0,0,1029,,hypothetical protein,,
+PG_0833,0,0,0,0,0,0,0,0,0,0,1866,,conserved hypothetical protein,,
+PG_0834,0,0,0,0,0,0,0,0,0,0,1263,,hypothetical protein,,
+PG_0835,0,0,0,0,0,0,0,0,0,0,138,,hypothetical protein,,
+PG_0838,0,0,0,0,0,0,0,0,0,0,1299,,integrase,,
+PG_0839,0,0,0,0,0,0,0,0,0,0,1182,,conserved hypothetical protein,,
+PG_0840,0,0,0,0,0,0,0,0,0,0,4032,,hypothetical protein,,
+PG_0841,0,0,0,0,0,0,0,0,0,0,894,,"mobilizable transposon, excision protein, putative",,
+PG_0842,0,0,0,0,0,0,0,0,0,0,1065,,"mobilizable transposon, hypothetical protein, putative",,
+PG_0843,0,0,0,0,0,0,0,0,0,0,312,,hypothetical protein,,
+PG_0844,0,0,0,0,0,0,0,0,0,0,93,,hypothetical protein,,
+PG_0847,0,0,0,0,0,0,0,0,0,0,1581,,conserved domain protein,,
+PG_0848,0,0,0,0,0,0,0,0,0,0,999,,hypothetical protein,,
+PG_0849,0,0,0,0,0,0,0,0,0,0,771,,hypothetical protein,,
+PG_0850,0,0,0,0,0,0,0,0,0,0,309,,"DNA binding protein, excisionase family, putative",,
+PG_0851,0,0,0,0,0,0,0,0,0,0,1167,,conserved hypothetical protein,,
+PG_0853,0,0,0,0,0,0,0,0,0,0,486,,"DNA-binding protein, histone-like family",,
+PG_0854,0,0,0,0,0,0,0,0,0,0,819,,hypothetical protein,,
+PG_0855,0,0,0,0,0,0,0,0,0,0,96,,hypothetical protein,,
+PG_0856,0,0,0,0,0,0,0,0,0,0,906,,hypothetical protein,,
+PG_0857,0,0,0,0,0,0,0,0,0,0,225,,"transcriptional regulator, putative",,
+PG_0858,0,0,0,0,0,0,0,0,0,0,336,,conserved hypothetical protein,,
+PG_0859,0,0,0,0,0,0,0,0,0,0,939,,conserved hypothetical protein,,
+PG_0860,0,0,0,0,0,0,0,0,0,0,306,,"transcriptional regulator, putative",,
+PG_0861,0,0,0,0,0,0,0,0,0,0,3483,,"helicase, SNF2/RAD54 family",,
+PG_0862,0,0,0,0,0,0,0,0,0,0,3399,,"type IIS restriction endonuclease, putative",,
+PG_0864,0,0,0,0,0,0,0,0,0,0,621,,"site-specific recombinase, resolvase family",,
+PG_0865,248,272,129,224,295,1797,282,228,390,113,1131,,"ISPg2, transposase",,3970xPG_2176 3962xPG_1746 3915xPG_1350 3914xPG_0277
+PG_0866,0,0,0,0,0,0,0,0,0,0,1146,,hypothetical protein,,
+PG_0867,0,0,0,0,0,0,0,0,0,0,696,,hypothetical protein,,
+PG_0868,0,0,0,0,0,0,0,0,0,0,924,,mobilization protein,,
+PG_0869,0,0,0,0,0,0,0,0,0,0,354,,mobilization protein,,
+PG_0870,0,0,0,0,0,0,0,0,0,0,1059,,conserved hypothetical protein,,
+PG_0871,0,0,0,0,0,0,0,0,0,0,1377,,hypothetical protein,,
+PG_0872,0,0,0,0,0,0,0,0,0,0,360,,"mobilizable transposon, xis protein",,
+PG_0873,0,0,0,0,0,0,0,0,0,0,699,,"mobilizable transposon, tnpC protein",,
+PG_0874,0,0,0,0,0,0,0,0,0,0,1104,,"mobilizable transposon, int protein",,
+PG_0875,0,0,0,0,0,0,0,0,0,0,903,,"mobilizable transposon, tnpA protein",,
+PG_0876,111,168,60,248,88,188,303,90,263,93,1557,thdF,thiophene and furan oxidation protein ThdF,11xPG_0877,
+PG_0877,46,26,17,39,25,56,51,32,60,17,708,,hypothetical protein,11xPG_0876,
+PG_0879,17,8,10,11,53,60,70,9,20,4,606,,hypothetical protein,,12xPG_1251 11xPG_2220 10xPG_0499 7xPG_1787 5xPG_1363 3xPG_1059 2xPG_1398
+PG_0880,119,101,65,164,203,418,196,120,269,139,504,bcp,bacterioferritin comigratory protein,111xPG_0881,
+PG_0881,229,167,115,474,349,660,350,215,394,185,1023,recA,recA protein,111xPG_0880,
+PG_0882,163,145,83,282,127,349,296,99,297,132,930,,hypothetical protein,86xPG_0883,
+PG_0883,164,165,93,300,147,359,291,136,380,121,1362,,hypothetical protein,86xPG_0882 37xPG_0884,
+PG_0884,134,43,68,128,97,292,104,88,136,51,1251,,hypothetical protein,37xPG_0883 24xPG_0885,
+PG_0885,88,31,64,61,47,145,65,66,72,14,1101,,phospho-2-dehydro-3-deoxyheptonate aldolase/chorismate mutase,24xPG_0884 15xPG_0886,
+PG_0886,280,134,119,215,422,1206,136,185,298,81,765,,hypothetical protein,15xPG_0885,
+PG_0888,32,7,16,30,28,76,17,17,11,8,132,,hypothetical protein,,
+PG_0889,448,273,146,546,459,733,277,219,401,154,1197,,"peptidase, M24 family",67xPG_0890,
+PG_0890,809,518,252,720,1066,1651,548,462,787,231,1692,,"alkaline phosphatase, putative",67xPG_0889,,3.1.3.1
+PG_0893,114,36,73,66,69,139,59,72,72,26,1653,,prismane protein,,,1.7.-.-
+PG_0894,31,18,30,33,16,41,38,37,33,11,684,radC,DNA repair protein RadC,,
+PG_0896,161,58,105,103,86,171,135,135,191,51,3054,lacZ-2,beta-galactosidase,,
+PG_0897,112,34,61,51,49,90,56,77,115,41,1605,,alpha-amylase family protein,,
+PG_0898,65,28,41,45,26,82,43,54,112,20,792,,conserved hypothetical protein,,
+PG_0899,1262,772,398,951,855,3691,702,323,1571,607,1164,cydB,"cytochrome d ubiquinol oxidase, subunit II",5xPG_0900,,1.10.3.-
+PG_0900,1222,714,303,1136,1014,3616,1082,420,1336,468,1584,cydA,"cytochrome d ubiquinol oxidase, subunit I",277xPG_0901 5xPG_0899,,1.10.3.-
+PG_0901,286,117,91,140,225,1718,151,172,204,52,249,,conserved hypothetical protein,277xPG_0900,
+PG_0902,140,27,75,47,34,72,60,70,86,22,2226,,"alpha-1,2-mannosidase family protein",,
+PG_0903,148,122,132,106,234,500,208,201,373,104,543,,conserved hypothetical protein,,
+PG_0906,612,305,279,378,797,1849,396,668,1093,383,453,,"lipoprotein, putative",,
+PG_0908,34,31,27,33,46,175,71,40,91,22,492,,"G/U mismatch-specific DNA glycosylase, putative",86xPG_0909,
+PG_0909,208,166,104,193,298,759,324,239,332,98,1302,,conserved hypothetical protein,86xPG_0908,
+PG_0910,100,75,45,92,169,425,130,103,135,54,573,,FHA domain protein,,
+PG_0912,231,87,101,63,223,1135,102,156,230,52,1566,,"polysaccharide transport protein, putative",,
+PG_0914,66,34,47,13,84,120,29,70,137,29,714,,hypothetical protein,,
+PG_0915,8,2,5,2,3,17,2,11,8,1,393,,conserved hypothetical protein,,
+PG_0917,36,26,13,28,23,135,45,21,81,38,396,,GtrA family protein,36xPG_0918,
+PG_0918,81,52,43,52,59,216,85,60,170,40,756,,hypothetical protein,36xPG_0917,
+PG_0919,130,150,55,209,109,248,267,122,336,106,1350,pyrC,dihydroorotase,103xPG_0920,,3.5.2.3
+PG_0920,128,153,65,237,125,284,286,96,539,147,681,,"glycosyl transferase, group 2 family protein",103xPG_0919,
+PG_0922,104,91,43,97,85,189,175,102,331,84,1224,,"membrane protein, putative",14xPG_0923,
+PG_0923,38,28,23,49,27,58,74,37,99,24,336,rbfA,ribosome-binding factor A,14xPG_0922 14xPG_0924,
+PG_0924,79,60,50,112,70,141,157,93,200,70,816,,"5'-nucleotidase, lipoprotein e(P4) family",133xPG_0925 14xPG_0923,
+PG_0925,121,209,66,243,167,307,433,143,747,270,615,tmk,thymidine kinase,133xPG_0924,,2.7.1.21
+PG_0926,56,87,28,73,73,103,182,54,357,102,228,,hypothetical protein,127xPG_0927,
+PG_0927,95,134,66,135,136,183,233,85,572,127,417,,conserved hypothetical protein TIGR00150,127xPG_0926 124xPG_0928,
+PG_0928,189,153,148,236,352,402,332,373,608,165,1557,,response regulator,124xPG_0927,
+PG_0929,0,0,1,0,0,4,4,1,3,4,483,,hypothetical protein,7xPG_0930,
+PG_0930,23,8,20,20,12,11,38,26,49,11,390,,hypothetical protein,7xPG_0929,
+PG_0932,161,187,74,196,155,280,311,121,386,161,1251,,"DNA polymerase III, delta prime subunit, putative",,,2.7.7.7
+PG_0933,563,550,298,589,500,1549,721,362,2226,677,2160,,"translation elongation factor G, putative",,,3.6.5.3
+PG_0934,121,62,63,96,77,154,111,103,130,42,1905,,radical SAM domain protein,11xPG_0935,
+PG_0935,82,76,37,80,53,108,94,71,111,30,825,ispE,4-diphosphocytidyl-2C-methyl-D-erythritol kinase,19xPG_0936 11xPG_0934,,2.7.1.148
+PG_0936,115,105,59,131,65,120,205,84,232,58,1302,,xanthine/uracil permease family protein,27xPG_0937 19xPG_0935,
+PG_0937,80,162,37,114,57,95,223,71,267,96,723,,hypothetical protein,88xPG_0938 27xPG_0936,
+PG_0938,269,163,155,187,296,341,252,237,419,103,3192,,calcium-transporting ATPase,88xPG_0937,28xPG_1196 10xPG_0549 10xPG_1244 10xPG_0460
+PG_0942,0,0,0,0,0,1,0,0,0,0,396,,"ISPg5, transposase Orf1",,
+PG_0943,0,0,0,0,0,0,0,0,0,0,939,,"ISPg5, transposase Orf2",,
+PG_0945,223,367,112,366,225,409,568,169,793,348,1329,,"ABC transporter, permease protein, putative",87xPG_0946,
+PG_0946,120,181,63,180,107,158,282,100,483,146,960,,"ABC transporter, ATP-binding protein",170xPG_0947 87xPG_0945,
+PG_0947,103,92,80,107,106,228,179,80,329,81,474,,conserved hypothetical protein,170xPG_0946,
+PG_0948,158,431,82,348,127,236,572,118,604,404,777,,"AMP nucleosidase, putative",12xPG_0949,
+PG_0949,95,51,45,63,61,97,96,78,141,52,1008,,conserved hypothetical protein,12xPG_0948,,2.7.7.7
+PG_0950,347,180,145,182,245,1079,285,166,511,107,381,gcvH,glycine cleavage system H protein,232xPG_0951,
+PG_0951,494,159,236,235,523,1395,285,181,513,153,507,purE,"phosphoribosylaminoimidazole carboxylase, PurE protein",232xPG_0950,,4.1.1.21
+PG_0952,250,158,127,296,206,511,286,164,323,124,1746,ispG,1-hydroxy-2-methyl-2-(E)-butenyl 4-diphosphate synthase,,
+PG_0953,81,29,47,54,62,133,57,47,37,28,435,dut,deoxyuridine 5'-triphosphate nucleotidohydrolase,19xPG_0954,,3.6.1.23
+PG_0954,176,143,124,207,233,529,208,199,301,87,1740,,TPR domain protein,462xPG_0955 19xPG_0953,
+PG_0955,70,84,56,89,122,252,107,112,175,48,954,,hypothetical protein,462xPG_0954 40xPG_0956,
+PG_0956,147,98,89,95,112,412,128,126,262,54,1296,,"peptidase, M23/M37 family, putative",69xPG_0957 40xPG_0955,
+PG_0957,105,51,41,70,62,239,103,63,152,41,972,ribF,riboflavin biosynthesis protein RibF,69xPG_0956 2xPG_0958,,2.7.1.26 2.7.7.2
+PG_0958,159,233,98,249,178,562,308,180,459,147,1236,,"ribonuclease BN, putative",2xPG_0957,,3.1.-.-
+PG_0959,302,202,109,288,348,898,379,204,638,185,1119,mrp,"ATP-binding protein, Mrp/Nbp35 family",70xPG_0960,
+PG_0960,134,65,58,117,156,451,115,100,228,51,735,,conserved hypothetical protein,70xPG_0959 2xPG_0961,,2.1.1.33
+PG_0961,41,46,23,54,50,191,57,26,91,21,330,,hypothetical protein,2xPG_0960,
+PG_0962,410,285,179,365,429,1218,400,284,437,173,1482,proS,prolyl-tRNA synthetase,,,6.1.1.15
+PG_0963,35,51,14,31,23,99,55,27,45,25,246,,hypothetical protein,,
+PG_0965,175,72,114,63,279,309,104,138,289,93,666,,phosphatidylserine decarboxylase-related protein,,,4.1.1.65
+PG_0968,139,92,61,53,183,1171,80,129,154,28,918,mrr,Mrr restriction system protein,,
+PG_0969,111,101,46,123,54,193,168,57,154,38,1218,,"S-adenosylmethionine:tRNA ribosyltransferase-isomerase, putative",,
+PG_0970,0,0,0,0,0,0,0,0,1,0,1158,,"ISPg4, transposase",,1xPG_0050 1xPG_0487 1xPG_0177 1xPG_1261 1xPG_1658 1xPG_1673 1xPG_0225 1xPG_2194 1xPG_0019
+PG_0971,0,0,0,0,0,0,0,0,0,0,1716,,"McrBC restriction endonuclease system, McrB subunit, putative",,
+PG_0972,0,0,0,0,0,0,0,0,0,0,1296,,conserved hypothetical protein,,
+PG_0973,158,72,91,89,79,301,139,98,217,71,2316,,"alpha-1,2-mannosidase family protein",,
+PG_0975,141,164,70,337,130,372,337,124,318,101,993,,PhoH family protein,,
+PG_0976,134,243,81,447,179,324,562,120,266,181,942,,"phosphoribosylaminoimidazole-succinocarboxamide synthase, putative",25xPG_0977,
+PG_0977,118,89,52,135,101,305,207,93,175,87,738,ubiE,ubiquinone/menaquinone biosynthesis methyltransferase UbiE,81xPG_0978 25xPG_0976,
+PG_0978,94,90,53,140,67,220,187,50,212,69,750,aroE,shikimate 5-dehydrogenase,150xPG_0979 81xPG_0977,,1.1.1.25
+PG_0979,27,34,7,35,16,41,48,16,60,13,159,,hypothetical protein,150xPG_0978 52xPG_0980,
+PG_0980,222,233,98,285,184,413,360,141,388,135,2238,,hypothetical protein,52xPG_0979,
+PG_0982,842,351,406,189,920,4762,310,766,1150,232,2253,,TPR domain protein,,
+PG_0984,59,52,35,36,59,202,44,34,113,29,207,,hypothetical protein,,
+PG_0985,24,60,21,67,35,44,132,50,460,125,507,,"RNA polymerase sigma-70 factor, ECF subfamily",33xPG_0986,
+PG_0986,27,27,16,46,17,20,67,44,215,47,561,,hypothetical protein,33xPG_0985 19xPG_0987,
+PG_0987,65,94,19,128,76,124,168,90,656,158,777,,hypothetical protein,19xPG_0986,
+PG_0989,455,272,215,215,491,2207,419,344,1302,162,348,rplT,ribosomal protein L20,,
+PG_0990,388,348,187,155,469,1903,431,354,973,194,198,rpmI,ribosomal protein L35,,
+PG_0991,1180,516,460,617,1788,8314,1066,1086,1126,352,606,infC,translation initiation factor IF-3,,
+PG_0992,1560,992,637,1283,2107,6699,1774,1612,2192,756,1962,thrS,threonyl-tRNA synthetase,,,6.1.1.3
+PG_0994,3,4,2,0,14,29,3,10,8,1,99,,hypothetical protein,,
+PG_0995,2,2,1,1,2,2,1,5,1,5,117,,hypothetical protein,,
+PG_0996,38,14,18,10,23,43,14,21,32,19,909,,conserved hypothetical protein TIGR01777,,
+PG_0997,8,2,7,1,8,8,4,12,13,1,267,,"transcriptional regulator, putative",11xPG_0998,
+PG_0998,4,0,2,2,2,6,3,2,11,0,96,,hypothetical protein,15xPG_0999 11xPG_0997,
+PG_0999,27,9,17,15,15,70,11,20,46,5,546,,hypothetical protein,20xPG_1000 15xPG_0998,
+PG_1000,90,45,40,56,118,260,60,65,90,28,633,,hypothetical protein,51xPG_1001 20xPG_0999,
+PG_1001,55,13,39,13,68,117,40,33,33,9,537,,conserved hypothetical protein,51xPG_1000 28xPG_1002,
+PG_1002,29,10,22,6,25,74,21,15,38,8,387,,hypothetical protein,28xPG_1001,
+PG_1003,123,38,72,34,106,257,65,89,149,35,993,,conserved hypothetical protein,,
+PG_1004,203,149,122,414,194,320,348,206,550,148,2280,,prolyl oligopeptidase family protein,,
+PG_1005,61,28,34,99,56,80,65,40,151,24,741,,"lipoprotein, putative",10xPG_1006,
+PG_1006,174,153,130,357,203,220,331,204,454,170,2685,,hypothetical protein,10xPG_1005 1xPG_1007,
+PG_1007,25,6,12,33,11,16,34,24,47,15,372,,"transcriptional regulator, GntR family",48xPG_1008 1xPG_1006,
+PG_1008,72,42,38,72,58,84,111,66,217,58,759,,hypothetical protein,77xPG_1009 48xPG_1007,
+PG_1009,90,72,59,96,98,235,166,110,338,80,855,,hypothetical protein,77xPG_1008 67xPG_1010,
+PG_1010,95,88,56,100,184,225,230,134,397,96,828,,"ABC transporter, ATP-binding protein",67xPG_1009,
+PG_1012,226,179,112,161,238,982,256,136,389,120,1392,,tRNA-i(6)A37 modification enzyme MiaB,,
+PG_1013,575,470,239,468,712,2316,836,441,1554,381,1497,,acetyl-CoA hydrolase/transferase family protein,,
+PG_1014,377,236,152,202,312,1338,243,223,774,171,2013,,TPR domain protein,,
+PG_1015,42,48,19,138,53,172,69,18,121,35,144,,hypothetical protein,,
+PG_1017,3104,4443,1226,5127,2367,4423,5689,1495,9325,3705,2727,ppdK,pyruvate phosphate dikinase,3xPG_1018,,2.7.9.1
+PG_1018,40,14,9,27,24,39,22,15,41,12,309,,hypothetical protein,8xPG_1019 3xPG_1017,
+PG_1019,78,69,45,73,61,187,102,45,143,37,1182,,"lipoprotein, putative",8xPG_1018,
+PG_1020,100,40,72,43,68,215,113,65,106,27,2811,,hypothetical protein,38xPG_1021,
+PG_1021,15,2,6,2,10,19,13,4,5,6,198,,hypothetical protein,38xPG_1020 13xPG_1022,
+PG_1022,83,20,37,16,30,85,55,45,46,12,1482,,hypothetical protein,13xPG_1021,
+PG_1024,9,5,3,3,5,16,9,5,16,3,99,,hypothetical protein,,
+PG_1025,0,0,0,0,0,0,0,0,0,0,1089,,conserved domain protein,,
+PG_1026,0,0,0,0,0,0,0,0,0,0,732,,hypothetical protein,,
+PG_1027,85,74,34,64,168,239,83,130,118,37,243,,hypothetical protein,,
+PG_1028,877,563,436,619,901,2536,866,599,1680,401,1347,,TPR domain protein,,
+PG_1029,8,1,1,0,2,13,1,5,6,2,177,,hypothetical protein,,
+PG_1030,433,105,215,36,415,745,94,178,655,165,1341,,hypothetical protein,,
+PG_1031,2572,1533,1853,512,3632,2650,1592,2316,7380,2212,1086,,"ISPg1, transposase",,25509xPG_1177 25502xPG_1197 24783xPG_1624 7859xPG_0825 4872xPG_0184 4483xPG_1448 4114xPG_1906 795xPG_1320 618xPG_0549 14xPG_0460 7xPG_1244
+PG_1032,1005,873,675,585,1515,4842,1174,1049,2443,724,903,,"ISPg3, transposase",,12427xPG_0798 11931xPG_0261 11723xPG_0194 9677xPG_1262
+PG_1033,404,226,174,259,373,956,279,223,511,122,747,,conserved hypothetical protein,136xPG_1034,
+PG_1034,194,171,94,217,184,491,304,175,452,146,735,,"ABC transporter, ATP-binding protein",136xPG_1033 104xPG_1035,
+PG_1035,203,142,96,210,170,447,201,175,344,109,1491,,hypothetical protein,104xPG_1034,
+PG_1036,1424,1167,545,1261,2527,6423,1804,1366,2608,816,2904,uvrA-1,"excinuclease ABC, A subunit",783xPG_1037,
+PG_1037,2559,3342,1356,2842,7427,10534,5154,3663,10062,2399,1380,,hypothetical protein,783xPG_1036 273xPG_1038,
+PG_1038,435,372,194,542,463,1278,808,308,1424,324,2298,,ATP-dependent DNA helicase UvrD/PcrA/Rep Family,273xPG_1037,,3.6.1.-
+PG_1039,266,501,124,447,342,769,739,251,1248,271,1728,,integral membrane protein,,
+PG_1040,28,32,19,36,16,35,62,33,122,28,465,,"transcriptional regulator, putative",17xPG_1041,
+PG_1041,135,92,53,78,78,178,137,93,335,67,954,,K+-dependent Na+/Ca+ exchanger related-protein,17xPG_1040,
+PG_1042,157,177,62,147,81,112,225,104,356,119,1647,,"glycogen synthase, putative",13xPG_1043,
+PG_1043,476,400,157,359,242,305,451,185,823,230,2178,feoB-1,ferrous iron transport protein B,21xPG_1044 13xPG_1042,
+PG_1044,168,176,61,239,137,215,223,92,376,116,933,,"iron dependent repressor, putative",21xPG_1043,
+PG_1048,479,888,205,804,1533,2486,1089,839,1115,527,1191,,"N-acetylmuramoyl-L-alanine amidase, family 3",31xPG_1049,,3.5.1.28
+PG_1049,395,262,114,231,342,1258,313,178,473,127,879,,conserved hypothetical protein,110xPG_1050 31xPG_1048,
+PG_1050,197,147,69,168,158,468,176,135,295,70,897,,hypothetical protein,110xPG_1049 12xPG_1051,
+PG_1051,326,231,99,161,252,762,231,188,346,85,1416,,hypothetical protein,12xPG_1050,
+PG_1052,98,79,39,46,159,590,147,87,189,59,357,,"transcriptional regulator, putative",44xPG_1053,
+PG_1053,88,46,32,38,78,212,63,58,108,20,687,,"transcriptional regulator, putative",44xPG_1052,
+PG_1055,0,0,0,0,0,0,0,0,0,0,1446,tpr,thiol protease,,,3.4.22.-
+PG_1056,512,446,280,412,554,2578,795,372,1694,601,420,,conserved hypothetical protein,221xPG_1057,
+PG_1057,204,323,101,454,196,716,524,187,883,271,594,,conserved hypothetical protein,232xPG_1058 221xPG_1056,
+PG_1058,276,230,124,323,261,677,417,231,556,149,2019,,OmpA family protein,232xPG_1057,
+PG_1059,75,64,30,36,337,432,453,55,83,36,300,,hypothetical protein,,1125xPG_2220 498xPG_0499 197xPG_1787 195xPG_1398 171xPG_1363 61xPG_1251 3xPG_0879 2xPG_1250
+PG_1060,3425,2123,1436,1698,5063,16235,3011,3072,4565,1343,1710,,carboxyl-terminal protease,,,3.4.21.102
+PG_1061,153,101,59,72,107,564,114,112,350,89,1089,,"ISPg6, transposase",,124xPG_1787
+PG_1063,62,48,31,34,120,185,64,65,192,47,441,,"transcriptional regulator, putative",,
+PG_1064,197,173,89,129,252,665,248,127,473,143,798,,"dihydroorotate dehydrogenase, putative",293xPG_1065,
+PG_1065,119,228,75,148,177,622,318,151,365,163,924,pyrD,dihydroorotate dehydrogenase,293xPG_1064,,1.3.3.1
+PG_1066,214,365,92,424,342,890,561,291,633,265,645,ctfA,"butyrate-acetoacetate CoA-transferase, subunit A",,,2.8.3.8
+PG_1067,155,105,50,150,194,375,169,107,352,85,390,,conserved hypothetical protein,54xPG_1068,
+PG_1068,107,68,55,132,135,292,168,80,267,83,822,,conserved hypothetical protein,54xPG_1067 17xPG_1069,
+PG_1069,634,222,240,338,642,1269,500,314,1030,248,1044,,"alcohol dehydrogenase, zinc-containing, putative",17xPG_1068,
+PG_1070,423,308,134,395,437,1116,585,278,1078,241,1251,kamA,"L-lysine 2,3-aminomutase",,,5.4.3.2
+PG_1071,254,142,86,204,323,813,202,172,522,87,969,,conserved hypothetical protein,381xPG_1072,
+PG_1072,263,120,111,117,258,888,179,174,414,92,1392,,MutS family protein,381xPG_1071 46xPG_1073,
+PG_1073,511,337,227,351,706,1620,485,395,935,247,1572,kamD,"D-lysine 5,6-aminomutase, alpha subunit",183xPG_1074 46xPG_1072,,5.4.3.3
+PG_1074,102,50,46,78,135,384,72,94,167,47,792,kamE,"D-lysine 5,6-aminomutase, beta subunit",183xPG_1073 19xPG_1075,,5.4.3.3
+PG_1075,78,42,38,137,101,207,79,63,110,53,663,,"coenzyme A transferase, beta subunit",19xPG_1074 4xPG_1076,,2.8.3.8
+PG_1076,997,250,406,537,1428,1413,600,819,816,251,1140,acdA,"acyl-CoA dehydrogenase, short-chain specific",288xPG_1077 4xPG_1075,
+PG_1077,765,281,304,491,988,1808,561,502,872,270,786,etfB-2,"electron transfer flavoprotein, beta subunit",288xPG_1076 213xPG_1078,
+PG_1078,534,352,226,452,718,1801,743,391,2048,447,1008,etfA-2,"electron transfer flavoprotein, alpha subunit",213xPG_1077,
+PG_1079,265,114,144,206,179,302,214,115,413,141,771,,enoyl-CoA hydratase/isomerase family protein,8xPG_1080,,4.2.1.55
+PG_1080,469,181,273,224,255,396,244,168,623,230,846,,3-hydroxyacyl-CoA dehydrogenase family protein,8xPG_1079,,1.1.1.157
+PG_1081,493,400,201,611,541,1317,629,324,980,251,1197,ackA,acetate kinase,3xPG_1082,,2.7.2.1
+PG_1082,467,205,205,320,487,1798,362,280,436,124,1011,pta,phosphotransacetylase,3xPG_1081,,2.3.1.8
+PG_1083,229,89,139,65,339,1015,144,248,226,80,942,,hypothetical protein,,
+PG_1084,1142,1246,435,1010,2560,5842,1427,1457,3315,901,1077,,thioredoxin family protein,,
+PG_1085,1376,834,703,823,7331,9357,781,2832,1911,1392,249,,hypothetical protein,,
+PG_1087,123,167,50,141,146,334,203,104,317,113,936,,"radical SAM protein, TIGR01212 family",,
+PG_1088,157,202,45,116,180,601,151,88,202,78,585,,"acetyltransferase, GNAT family",,
+PG_1089,1073,715,249,461,1078,4745,524,338,1529,324,738,rprY,DNA-binding response regulator RprY,,
+PG_1091,132,175,68,237,157,388,234,159,333,146,996,,DHH subfamily 1 protein,,
+PG_1093,96,54,49,88,81,252,99,59,170,53,579,,hypothetical protein,,
+PG_1094,153,148,74,217,132,377,321,120,403,134,1389,pgm,phosphomannomutase,,,5.4.2.8
+PG_1095,136,172,78,275,98,199,292,81,314,80,1398,,"RNA methyltransferase, TrmA family",,,2.1.1.-
+PG_1096,70,42,38,56,39,136,68,59,131,26,1083,,hypothetical protein,9xPG_1097,
+PG_1097,120,67,80,68,70,322,91,107,180,42,2472,,Mur ligase domain protein/alanine racemase,9xPG_1096,,5.1.1.1 6.3.2.10
+PG_1098,293,520,123,733,373,1454,866,227,477,264,1224,,hypothetical protein,,
+PG_1099,56,37,35,93,67,103,80,42,72,31,825,,glucokinase regulator-related protein,29xPG_1100,
+PG_1100,56,56,34,45,24,55,72,28,131,43,852,,hypothetical protein,44xPG_1101 29xPG_1099,
+PG_1101,119,65,73,72,58,107,120,60,188,59,1461,,sodium:solute symporter family protein,44xPG_1100,
+PG_1102,0,0,0,0,0,1,1,0,3,0,2778,,hypothetical protein,5xPG_1103,
+PG_1103,96,45,73,65,71,133,101,92,129,47,1305,,"ATPase, AAA family",23xPG_1104 5xPG_1102,
+PG_1104,42,20,47,29,25,39,54,36,60,28,768,,conserved hypothetical protein,69xPG_1105 23xPG_1103,
+PG_1105,162,95,83,158,153,341,204,156,262,95,1458,rpoN,RNA polymerase sigma-54 factor,91xPG_1106 69xPG_1104,
+PG_1106,217,120,107,206,176,300,258,125,386,160,1263,murF,"UDP-N-acetylmuramoylalanyl-D-glutamyl-2, 6-diaminopimelate--D-alanyl-D-alanyl ligase",91xPG_1105,
+PG_1107,0,0,0,0,0,0,0,0,0,0,1410,,hypothetical protein,,
+PG_1108,0,0,0,0,0,0,0,0,0,0,402,,hypothetical protein,,
+PG_1109,0,0,0,0,0,0,0,0,0,0,1368,,mobilization protein,,
+PG_1110,0,0,0,0,0,0,0,0,0,0,417,,hypothetical protein,,
+PG_1112,0,0,0,0,0,0,0,0,0,0,489,,hypothetical protein,,
+PG_1113,0,0,0,0,0,0,0,0,0,0,1224,,integrase,,
+PG_1114,278,252,96,389,434,1168,452,319,449,131,357,panD,aspartate-1-decarboxylase,,,4.1.1.11
+PG_1115,387,604,174,1125,570,1129,1207,465,841,428,1338,ffh,signal recognition particle protein,,
+PG_1116,538,2784,201,2956,931,1693,2424,376,3812,1411,891,folD,methylenetetrahydrofolate dehydrogenase/methenyltetrahydrofolate cyclohydrolase,,
+PG_1117,64,50,42,78,61,67,99,55,78,35,1452,,MATE efflux family protein,,
+PG_1118,127,98,110,116,124,174,364,178,616,313,2592,clpB,clpB protein,,
+PG_1119,54,44,25,77,89,241,84,57,45,20,561,,"flavodoxin, putative",,
+PG_1121,786,1051,262,1287,1240,2939,1366,604,2404,554,1410,asnS,asparaginyl-tRNA synthetase,,,6.1.1.22
+PG_1123,1169,631,379,639,1001,2669,832,447,1935,347,1344,purB,adenylosuccinate lyase,,,4.3.2.2
+PG_1124,465,265,146,329,493,1137,243,176,580,147,552,,"ATP:cob(I)alamin adenosyltransferase, putative",7xPG_1125,
+PG_1125,38,39,30,47,29,90,59,20,105,27,657,,hypothetical protein,22xPG_1126 7xPG_1124,
+PG_1126,71,47,37,60,44,72,83,50,143,38,1188,uraA,uracil permease,22xPG_1125,
+PG_1127,101,46,44,58,71,199,105,100,135,51,468,,"transcriptional regulator, AsnC Family",,
+PG_1128,89,49,44,45,32,79,74,44,94,24,1383,xseA,"exodeoxyribonuclease VII, large subunit",,,3.1.11.6
+PG_1129,440,312,185,435,316,611,608,185,832,267,2553,nrd,ribonucleotide reductase,,,1.17.4.1
+PG_1130,66,29,39,19,52,191,27,42,59,10,1998,,TPR domain protein,,
+PG_1132,429,598,246,1039,635,1786,1538,536,1169,489,2631,valS,valyl-tRNA synthetase,89xPG_1133,,6.1.1.9
+PG_1133,84,50,33,33,122,269,106,72,167,36,453,,hypothetical protein,89xPG_1132,
+PG_1134,1122,955,451,1266,763,1501,1203,365,2356,669,942,trxB,thioredoxin reductase,,,1.8.1.9
+PG_1135,317,213,101,158,286,1278,230,168,240,101,615,,bacterial sugar transferase,,
+PG_1136,270,204,103,157,270,1169,270,168,277,85,1629,,conserved hypothetical protein,96xPG_1137,
+PG_1137,128,78,41,74,89,322,103,77,155,51,1308,porS,porS protein,96xPG_1136 78xPG_1138,
+PG_1138,190,115,83,65,149,642,177,103,222,43,1155,porR,pigmentation and extracellular proteinase regulator,78xPG_1137,
+PG_1139,404,280,159,152,372,2232,373,245,396,83,1137,,hypothetical protein,,
+PG_1140,325,175,106,91,260,1186,184,182,274,49,861,,"glycosyl transferase, group 2 family protein",164xPG_1141,
+PG_1141,365,188,120,123,382,2172,229,252,320,70,1194,,"glycosyl transferase, group 1 family protein",164xPG_1140,
+PG_1142,195,81,53,69,173,1171,142,135,198,74,909,,exopolysaccharide synthesis-related protein,,
+PG_1143,387,249,149,320,431,1611,436,282,613,195,1569,,"sugar dehydrogenase, UDP-glucose/GDP-mannose dehydrogenase family",,1xPG_1827
+PG_1145,141,128,59,254,138,435,266,127,286,80,1824,,"long-chain-fatty-acid--CoA ligase, putative",,,6.2.1.3
+PG_1148,2,0,1,0,2,8,1,3,2,1,93,,hypothetical protein,,
+PG_1149,264,58,120,49,269,784,86,162,363,88,1128,,"glycosyl transferase, group 1 family protein",,
+PG_1150,74,20,92,28,137,183,34,86,118,67,264,,hypothetical protein,655xPG_1151,
+PG_1151,884,292,546,397,1142,1521,477,580,1287,542,1149,,"alcohol dehydrogenase, iron-containing",655xPG_1150,,1.1.-.-
+PG_1152,997,1560,400,752,2749,6626,1455,1259,3364,832,273,,hypothetical protein,8xPG_1153,
+PG_1153,277,196,98,261,340,1420,345,216,425,131,714,,hypothetical protein,76xPG_1154 8xPG_1152,
+PG_1154,13,33,13,38,24,85,71,28,96,27,129,,hypothetical protein,76xPG_1153,
+PG_1155,120,185,64,179,147,280,245,102,407,118,891,,"ADP-heptose--LPS heptosyltransferase, putative",265xPG_1156,
+PG_1156,91,141,54,81,134,381,183,121,391,100,453,,S4 domain protein,265xPG_1155,
+PG_1159,217,119,100,90,101,390,146,90,224,73,1011,cbiB,cobalamin biosynthesis protein CbiB,18xPG_1160,,6.3.1.10
+PG_1160,101,46,48,74,52,156,77,51,138,35,1008,,"L-threonine-O-3-phosphate decarboxylase, putative",18xPG_1159,,2.6.1.9
+PG_1162,61,45,33,88,51,92,95,51,137,43,567,,"ATP:cob(I)alamin adenosyltransferase, putative",39xPG_1163,
+PG_1163,151,60,62,158,68,178,168,73,181,70,1320,cbiA,"cobyrinic acid a,c-diamide synthase",39xPG_1162,,6.3.1.-
+PG_1164,623,598,235,871,623,1670,1186,379,1000,398,3408,,hypothetical protein,57xPG_1165,
+PG_1165,164,81,47,70,126,381,117,78,107,43,717,,hypothetical protein,57xPG_1164,
+PG_1166,2,2,2,1,1,4,0,1,6,2,144,,hypothetical protein,7xPG_1167,
+PG_1167,7,3,2,0,4,14,2,3,6,4,138,,hypothetical protein,7xPG_1166,
+PG_1169,3,0,3,0,2,3,0,4,2,0,99,,hypothetical protein,6xPG_1170,
+PG_1170,68,33,38,36,26,61,86,39,139,44,873,,SerB family protein,6xPG_1169,
+PG_1171,291,73,165,163,160,286,174,136,489,146,741,,"oxidoreductase, putative",,
+PG_1172,335,168,187,345,200,360,316,212,568,241,1287,,"iron-sulfur cluster binding protein, putative",325xPG_1173,
+PG_1173,304,108,165,142,156,329,192,166,336,167,615,,YkgG family protein,325xPG_1172,
+PG_1174,117,120,84,123,123,317,187,109,294,88,498,,thioesterase family protein,,
+PG_1175,118,43,81,38,182,824,146,74,309,72,1707,,"ABC transporter, ATP-binding protein, putative",2xPG_1176,
+PG_1176,118,58,85,46,139,598,142,97,250,46,1722,,"ABC transporter, ATP-binding protein, putative",2xPG_1175,6xPG_1196
+PG_1177,2719,1511,2048,556,4131,2925,1612,2686,7334,2314,1086,,"ISPg1, transposase",,27829xPG_1197 27110xPG_1624 25509xPG_1031 7116xPG_0825 4129xPG_0184 3740xPG_1448 3371xPG_1906 795xPG_1320 618xPG_0549 14xPG_0460 7xPG_1244
+PG_1178,132,49,87,40,161,519,134,85,254,57,1278,,hypothetical protein,59xPG_1179,
+PG_1179,73,10,46,22,73,284,47,45,96,10,792,,conserved hypothetical protein,59xPG_1178,
+PG_1180,192,68,136,85,176,404,168,136,305,70,2406,,"membrane protein, putative",8xPG_1181,
+PG_1181,45,22,38,28,51,166,49,50,96,23,600,,"transcriptional regulator, tetR family",8xPG_1180,
+PG_1184,78,114,42,162,80,173,150,81,221,83,1536,,"alginate O-acetyltransferase, putative",107xPG_1185,
+PG_1185,153,263,50,290,134,307,246,100,614,146,861,,hypothetical protein,249xPG_1186 107xPG_1184,
+PG_1186,347,288,118,321,175,640,284,172,654,179,1449,,hypothetical protein,249xPG_1185,
+PG_1189,1641,678,755,850,1974,3788,1138,1104,3134,923,1881,,hypothetical protein,,
+PG_1190,212,176,58,270,176,526,184,73,282,85,954,hprA,glycerate dehydrogenase,,,1.1.1.29
+PG_1195,300,365,108,326,307,884,314,163,475,180,1149,bioF-2,8-amino-7-oxononanoate synthase,156xPG_1196,,2.3.1.47
+PG_1196,43,43,11,31,59,109,32,31,66,13,153,,hypothetical protein,156xPG_1195,28xPG_0938 6xPG_1176
+PG_1197,2718,1511,2048,556,4130,2924,1611,2685,7332,2314,1086,,"ISPg1, transposase",,27829xPG_1177 27110xPG_1624 25502xPG_1031 7109xPG_0825 4128xPG_0184 3739xPG_1448 3370xPG_1906 793xPG_1320 612xPG_0549 13xPG_0460 6xPG_1244
+PG_1198,33,44,7,43,36,94,36,24,74,18,240,,hypothetical protein,62xPG_1199,
+PG_1199,9,11,2,5,7,14,5,2,10,3,426,,hypothetical protein,62xPG_1198,
+PG_1200,0,0,1,1,0,5,0,1,1,0,513,,hypothetical protein,,
+PG_1202,0,0,0,0,0,0,0,0,0,0,3423,,hypothetical protein,,
+PG_1203,9,1,7,1,8,24,4,4,11,1,210,,"transcriptional regulator, putative",,
+PG_1205,4,0,1,0,2,4,0,2,0,1,471,,"DNA-binding protein, histone-like family",,
+PG_1206,8,7,4,2,16,58,3,6,10,3,222,,hypothetical protein,,
+PG_1207,0,0,0,0,0,0,0,0,0,0,159,,hypothetical protein,,
+PG_1208,567,304,301,625,1370,1586,950,690,2635,1160,1923,dnaK,dnaK protein,,
+PG_1209,483,138,267,202,724,778,284,357,919,277,1551,,hypothetical protein,1xPG_1210,
+PG_1210,264,114,130,271,229,560,230,163,401,125,1788,,"peptidase, M24 family",241xPG_1211 1xPG_1209,
+PG_1211,81,73,37,113,111,352,127,61,180,70,579,,hexapeptide transferase family protein,241xPG_1210 37xPG_1212,
+PG_1212,49,62,37,111,80,261,117,50,203,79,1014,,TPR domain protein,37xPG_1211 19xPG_1213,
+PG_1213,31,31,17,40,27,72,45,30,60,29,651,rnhA,ribonuclease H,22xPG_1214 19xPG_1212,
+PG_1214,26,24,22,30,12,60,25,27,36,19,1239,,hypothetical protein,22xPG_1213,
+PG_1215,464,286,215,422,504,2088,531,400,651,269,813,,"lipoprotein protein, putative",324xPG_1216,
+PG_1216,46,80,35,74,71,294,144,78,157,63,156,,hypothetical protein,391xPG_1217 324xPG_1215,
+PG_1217,115,143,67,135,213,539,256,175,274,102,333,,hypothetical protein,391xPG_1216 57xPG_1218,
+PG_1218,123,64,73,64,119,406,121,60,168,49,459,,hypothetical protein,57xPG_1217,
+PG_1219,111,128,61,100,179,213,202,78,362,120,312,,hypothetical protein,75xPG_1220,
+PG_1220,111,112,42,180,82,163,208,71,245,93,1134,,"erythronate-4-phosphate dehydrogenase, putative",75xPG_1219 68xPG_1221,,1.1.1.290
+PG_1221,51,65,33,144,148,157,150,74,146,45,726,,"oxidoreductase, short chain dehydrogenase/reductase family",68xPG_1220,
+PG_1222,68,65,10,64,47,542,69,45,48,35,318,,hypothetical protein,,
+PG_1223,117,31,38,40,83,869,51,41,79,28,204,,hypothetical protein,,
+PG_1225,165,130,70,285,95,125,265,113,236,109,1872,,"ABC transporter, ATP-binding protein",78xPG_1226,
+PG_1226,60,48,43,49,110,122,79,83,97,46,705,,"peptidyl-prolyl cis-trans isomerase, cyclophilin-type",78xPG_1225,,5.2.1.8
+PG_1229,13,6,10,4,13,45,10,25,13,9,294,,hypothetical protein,,
+PG_1230,352,243,175,393,364,435,430,242,1014,378,2109,,hypothetical protein,,
+PG_1232,1311,867,610,1111,1142,2885,1855,579,3134,1002,1338,gdh,"glutamate dehydrogenase, NAD-specific",,,1.4.1.4
+PG_1233,7,3,2,1,4,14,2,3,8,1,111,,hypothetical protein,,
+PG_1234,56,16,29,25,61,91,19,28,36,17,129,,hypothetical protein,98xPG_1235,
+PG_1235,265,339,109,636,377,767,726,253,389,220,957,,"epimerase/reductase, putative",98xPG_1234,
+PG_1236,312,264,114,138,317,743,226,180,336,89,711,,hypothetical protein,204xPG_1237,
+PG_1237,261,277,58,92,191,457,169,114,234,59,600,,"transcriptional regulator, LuxR family",204xPG_1236,
+PG_1239,672,380,454,602,635,1544,531,646,1230,398,747,fabG,3-oxoacyl-(acyl-carrier-protein) reductase,,,1.1.1.100
+PG_1240,274,162,156,171,347,2053,348,376,615,185,609,,"transcriptional regulator, tetR family",,
+PG_1241,408,776,184,1211,417,773,1621,402,677,600,1788,lepA,GTP-binding protein Lepa,38xPG_1242,
+PG_1242,172,242,81,315,145,265,427,143,260,158,1587,dnaB,replicative DNA helicase,38xPG_1241,,3.6.1.-
+PG_1244,4676,2989,3263,1102,5606,4955,3340,3418,15081,4549,1086,,"ISPg1, transposase",,46628xPG_0460 30922xPG_0549 26533xPG_1448 26508xPG_1906 21507xPG_0184 11202xPG_1320 27xPG_0825 10xPG_0938 7xPG_1031 7xPG_1177 6xPG_1197 1xPG_1624
+PG_1246,610,455,271,772,495,1402,755,306,1088,342,2631,alaS,alanyl-tRNA synthetase,186xPG_1247,,6.1.1.7
+PG_1247,216,111,76,147,143,495,194,81,349,84,1062,aroB,3-dehydroquinate synthase,186xPG_1246,,4.2.3.4
+PG_1248,81,70,36,53,47,241,113,57,145,26,732,,conserved hypothetical protein,32xPG_1249,
+PG_1249,49,68,26,50,36,133,79,38,105,30,615,,"1-acyl-sn-glycerol-3-phosphate acetyltransferase, putative",32xPG_1248 26xPG_1250,
+PG_1250,787,296,315,306,1429,4183,475,761,720,208,663,,hypothetical protein,189xPG_1251 26xPG_1249,2xPG_2220 2xPG_1059 2xPG_1363
+PG_1251,44,54,17,48,104,134,149,30,74,14,354,,hypothetical protein,189xPG_1250,144xPG_1787 96xPG_2220 90xPG_0499 75xPG_1363 61xPG_1059 45xPG_1398 12xPG_0879
+PG_1252,127,363,45,243,141,256,424,113,453,167,1236,,"membrane protein, putative",31xPG_1253,
+PG_1253,278,425,97,484,180,509,648,144,761,279,2010,ligA,"DNA ligase, NAD-dependent",164xPG_1254 31xPG_1252,,6.5.1.2
+PG_1254,85,126,39,157,54,185,174,36,224,72,528,,"acetyltransferase, GNAT family",198xPG_1255 164xPG_1253,,2.3.1.57
+PG_1255,228,248,76,296,166,472,319,100,351,118,624,recR,recombination protein RecR,258xPG_1256 198xPG_1254,
+PG_1256,1396,768,382,1079,1151,3918,1403,577,1331,412,1515,,"ribonuclease, Rne/Rng family",258xPG_1255,,3.1.4.-
+PG_1257,2710,1025,849,781,783,10571,1098,617,1527,558,93,,hypothetical protein,1151xPG_1258,
+PG_1258,1053,551,369,484,627,7814,644,533,1428,255,279,hup-2,DNA-binding protein HU,1151xPG_1257,
+PG_1259,131,79,50,154,160,447,126,85,208,56,492,nrdG,anaerobic ribonucleoside-triphosphate reductase activating protein,39xPG_1260,
+PG_1260,1163,1399,561,1910,2124,6095,2436,1035,3482,1007,2397,,"anaerobic ribonucleoside-triphosphate reductase, putative",39xPG_1259,
+PG_1261,0,0,0,0,0,0,0,0,1,0,1158,,"ISPg4, transposase",,1xPG_0050 1xPG_0487 1xPG_0177 1xPG_0970 1xPG_1673 1xPG_0225 1xPG_2194 1xPG_1658 1xPG_0019
+PG_1262,957,920,610,591,1500,4736,1218,1004,2388,788,903,,"ISPg3, transposase",,13240xPG_0798 11819xPG_0261 11300xPG_0194 9677xPG_1032
+PG_1264,13016,9608,2362,9111,13844,46625,14522,9926,14817,6503,156,,hypothetical protein,,140334xPG_1669 140334xPG_2073 138224xPG_0103
+PG_1265,1182,1595,508,2577,1305,3516,2277,1027,3328,1340,159,,hypothetical protein,,18655xPG_2074 18655xPG_1670 18408xPG_0102
+PG_1266,117399,102071,52527,106049,102297,205014,148219,80548,111709,103966,219,,hypothetical protein,22744xPG_1267,1129799xPG_2075 1088649xPG_1671 1067146xPG_0101 22744xPG_2076 22471xPG_1672 21698xPG_0100
+PG_1267,7951,4894,2148,4836,6083,20938,7351,4977,9452,3496,168,,hypothetical protein,22744xPG_1266,71853xPG_1672 70384xPG_0100 37653xPG_2076 22744xPG_2075 22471xPG_1671 21698xPG_0101
+PG_1268,9,3,9,15,9,31,1,11,28,13,99,,hypothetical protein,,
+PG_1269,103,24,102,223,82,106,37,109,358,109,1632,pruA,delta-1-pyrroline-5-carboxylate dehydrogenase,,,1.5.1.12
+PG_1270,99,21,100,200,87,81,40,83,378,163,930,,conserved hypothetical protein,89xPG_1271,
+PG_1271,480,108,376,308,501,215,137,328,1484,540,1230,,"acetylornithine aminotransferase, putative",89xPG_1270,,2.6.1.13
+PG_1273,38,19,16,27,12,35,46,23,25,16,156,,hypothetical protein,,
+PG_1274,582,386,399,478,329,644,641,278,707,351,567,efp-2,translation elongation factor P,,4023xPG_0568
+PG_1276,529,330,244,193,816,579,548,318,494,259,507,,"DNA-binding protein, histone-like family",,4226xPG_0566
+PG_1277,170,106,127,99,257,733,132,181,248,73,1266,,"UDP-glucose-6 dehydrogenase, putative",,
+PG_1278,1213,672,571,743,1623,5304,1325,1014,1286,415,1083,serC,phosphoserine aminotransferase,,,2.6.1.52
+PG_1279,651,273,391,561,946,1469,632,526,586,170,921,,D-isomer specific 2-hydroxyacid dehydrogenase family protein,64xPG_1280,
+PG_1280,624,515,324,713,959,2718,1005,503,1119,385,1248,,conserved hypothetical protein,64xPG_1279,
+PG_1281,94,62,67,154,144,206,90,99,126,46,1164,,hypothetical protein,25xPG_1282,
+PG_1282,42,21,27,57,44,130,49,39,59,14,456,,conserved hypothetical protein,25xPG_1281,
+PG_1283,403,223,193,497,502,1058,547,249,716,198,2163,,conserved hypothetical protein,,
+PG_1285,110,221,77,290,122,557,392,96,407,131,1968,,"glucosamine-6-phosphate isomerase, putative",,,3.5.99.6
+PG_1286,1029,1493,408,1428,1595,4787,1670,1013,2703,818,483,ftn,ferritin,,
+PG_1288,219,194,86,283,230,483,374,167,409,149,1086,gmd,"GDP-mannose 4,6-dehydratase",72xPG_1289,,4.2.1.47
+PG_1289,144,79,73,160,97,229,167,85,179,62,1074,fcl,GDP-fucose synthetase,72xPG_1288,,1.1.1.271
+PG_1290,2665,555,958,821,1263,5385,1150,460,1602,487,1020,ilvE,branched-chain amino acid aminotransferase,,,2.6.1.42
+PG_1291,444,144,226,127,383,472,152,211,704,219,1728,,hypothetical protein,,
+PG_1294,189,96,106,153,116,286,180,155,181,59,2535,feoB-2,ferrous iron transport protein B,,
+PG_1296,37,19,27,36,23,65,31,44,58,15,456,,hypothetical protein,,
+PG_1297,4542,521,2120,1296,2789,9741,1358,1272,2806,453,1800,rpsA,ribosomal protein S1,,
+PG_1300,44,56,25,64,37,99,96,34,125,30,540,,conserved hypothetical protein,15xPG_1301,
+PG_1301,222,186,73,280,187,377,297,91,257,122,816,,hypothetical protein,119xPG_1302 15xPG_1300,
+PG_1302,779,774,329,877,1037,3327,1183,968,1387,511,699,,hypothetical protein,119xPG_1301,
+PG_1303,124,79,66,73,74,177,134,106,295,74,1416,,"helicase, putative",29xPG_1304,,3.1.11.5
+PG_1304,108,78,73,80,105,212,170,104,317,59,1341,,hypothetical protein,29xPG_1303,
+PG_1305,886,703,377,1225,656,1909,1791,459,2534,672,2868,gcvP,glycine cleavage system P protein,89xPG_1306,,1.4.4.2
+PG_1306,66,74,38,102,66,84,133,55,146,65,645,,metallo-beta-lactamase family protein,89xPG_1305 78xPG_1307,
+PG_1307,84,120,52,107,94,211,173,85,311,100,666,gidB,glucose-inhibited division protein B,78xPG_1306 63xPG_1308,,2.1.-.-
+PG_1308,347,244,186,239,334,728,316,215,994,215,846,,hypothetical protein,63xPG_1307,
+PG_1310,135,166,47,260,104,193,232,105,184,127,663,,exsB protein,75xPG_1311,
+PG_1311,56,52,19,39,26,64,51,31,104,34,567,,conserved hypothetical protein,75xPG_1310 26xPG_1312,
+PG_1312,90,103,54,92,65,146,127,75,272,43,1188,,"capA protein, putative",26xPG_1311,
+PG_1313,813,941,348,775,913,1888,1233,421,2495,716,1659,,dipeptidase-related protein,,
+PG_1314,168,514,94,372,478,1592,990,300,2788,518,1107,aroC,chorismate synthase,,,4.2.3.5
+PG_1315,1702,1662,719,1177,3947,4603,2808,2287,6100,1879,573,slyD,"peptidyl-prolyl cis-trans isomerase SlyD, FKBP-type",,,5.2.1.8
+PG_1316,254,263,150,369,759,843,509,439,1111,293,531,,hypothetical protein,616xPG_1317,
+PG_1317,193,272,106,426,639,722,597,351,1143,288,411,,hypothetical protein,616xPG_1316 9xPG_1318,
+PG_1318,216,160,80,237,232,727,281,124,426,102,567,,"RNA polymerase sigma-70 factor, ECF subfamily",9xPG_1317,
+PG_1320,1671,989,1122,399,1972,1836,1223,1254,5084,1492,636,,"ISPg1, transposase, internal deletion",,11202xPG_1244 9288xPG_1448 8896xPG_1906 8851xPG_0460 5169xPG_0184 3351xPG_0549 1306xPG_0825 795xPG_1031 795xPG_1177 793xPG_1197 380xPG_1624
+PG_1321,1001,1434,425,2350,1429,3041,1618,736,1588,724,1668,fhs,formate--tetrahydrofolate ligase,,,6.3.4.3
+PG_1323,468,274,220,311,481,1516,468,394,764,267,1335,,PhoH family protein,3xPG_1324,
+PG_1324,88,80,57,84,91,217,155,62,171,60,570,ruvC,crossover junction endodeoxyribonuclease RuvC,3xPG_1323,,3.1.22.4
+PG_1325,50,18,25,38,41,96,32,29,67,24,375,,hypothetical protein,,
+PG_1326,213,85,119,58,219,281,85,153,563,136,1059,,"hemagglutinin, putative",,
+PG_1327,229,142,92,243,258,830,317,197,348,110,1311,,"aminotransferase, putative",7xPG_1328,
+PG_1328,395,194,166,401,376,873,402,252,553,145,2058,,CoA ligase family protein,7xPG_1327,
+PG_1330,204,82,97,58,120,277,100,101,351,107,420,mscL,large conductance mechanosensitive channel protein,,
+PG_1332,466,221,248,293,241,600,392,229,490,171,1989,pntB,"NAD(P) transhydrogenase, beta subunit",,,1.6.1.2
+PG_1333,127,71,64,72,99,182,110,80,184,54,1200,,hypothetical protein,62xPG_1334,
+PG_1334,203,222,107,228,190,460,344,169,580,230,981,,band 7/Mec-2 family protein,68xPG_1335 62xPG_1333,
+PG_1335,119,59,57,89,158,437,97,128,237,100,465,,"membrane protein, putative",68xPG_1334,
+PG_1337,89,149,42,102,69,220,188,68,339,103,426,umuD,umuD protein,48xPG_1338,,3.4.21.-
+PG_1338,90,105,51,87,69,157,185,71,360,80,1299,umuC,umuC protein,48xPG_1337,
+PG_1340,288,228,139,178,203,492,345,167,773,227,1551,,L-lactate permease,,
+PG_1341,1036,530,553,620,1922,3897,695,1194,2937,679,555,,hypothetical protein,1059xPG_1342,
+PG_1342,208,149,110,315,264,748,220,206,690,173,1017,murB,UDP-N-acetylenolpyruvoylglucosamine reductase,1059xPG_1341 21xPG_1343,,1.1.1.158
+PG_1343,115,97,60,175,76,354,148,87,173,53,1479,lipB,lipoate-protein ligase B,21xPG_1342,,2.3.1.181
+PG_1345,61,52,50,86,25,66,86,49,100,44,1122,,"glycosyl transferase, group 1 family protein",24xPG_1346,
+PG_1346,75,29,35,38,27,64,78,53,97,18,1272,,"glycosyl transferase, group 1 family protein",24xPG_1345,
+PG_1347,68,20,37,28,73,122,47,37,93,22,465,,conserved hypothetical protein,17xPG_1348,
+PG_1348,80,28,33,46,39,108,59,58,95,25,882,,conserved hypothetical protein TIGR00147,17xPG_1347,
+PG_1350,252,279,132,228,295,1793,286,234,398,116,1131,,"ISPg2, transposase",,3998xPG_0277 3922xPG_2176 3915xPG_0865 3913xPG_1746
+PG_1351,60,19,36,23,34,82,38,30,92,16,507,,hypothetical protein,154xPG_1352,
+PG_1352,93,59,47,64,123,237,132,60,251,56,414,,hypothetical protein,154xPG_1351,
+PG_1353,175,144,77,140,154,381,207,87,317,106,633,pyrE,orotate phosphoribosyltransferase,,,2.4.2.10
+PG_1354,170,108,73,101,119,279,139,76,215,105,822,,"hydrolase, carbon-nitrogen family",139xPG_1355,
+PG_1355,167,220,68,213,166,304,294,119,428,173,531,,"acyltransferase, putative",139xPG_1354,
+PG_1356,170,99,63,91,158,357,163,102,317,95,489,,hypothetical protein,,
+PG_1357,19,9,1,5,18,82,2,20,21,7,132,,hypothetical protein,,
+PG_1358,57,50,22,31,81,490,43,65,116,29,681,,"acetyltransferase, GNAT family",,
+PG_1359,54,38,34,36,37,68,42,34,87,39,972,,hypothetical protein,66xPG_1360,
+PG_1360,278,134,127,212,308,686,271,178,402,138,1296,purD,phosphoribosylamine--glycine ligase,161xPG_1361 66xPG_1359,,6.3.4.13
+PG_1361,401,142,197,240,392,825,284,267,454,129,2199,,"dipeptidyl aminopeptidase IV, putative",161xPG_1360 15xPG_1362,
+PG_1362,423,211,167,232,390,995,359,251,882,234,1455,,conserved hypothetical protein,15xPG_1361,
+PG_1363,19,37,8,29,146,84,180,18,40,18,276,,hypothetical protein,,269xPG_1787 218xPG_0499 208xPG_2220 204xPG_1398 171xPG_1059 75xPG_1251 5xPG_0879 2xPG_1250
+PG_1364,130,174,80,265,143,383,317,103,315,94,1158,dxr,1-deoxy-D-xylulose 5-phosphate reductoisomerase,147xPG_1365,,1.1.1.267
+PG_1365,117,130,51,190,113,402,240,71,294,90,528,,"16S rRNA processing protein RimM, putative",147xPG_1364 117xPG_1366,
+PG_1366,313,267,153,432,265,826,432,174,658,189,1305,murA,UDP-N-acetylglucosamine 1-carboxyvinyltransferase,117xPG_1365 53xPG_1367,,2.5.1.7
+PG_1367,112,94,45,129,139,399,213,88,255,73,603,,hypothetical protein,53xPG_1366 41xPG_1368,
+PG_1368,274,122,119,258,318,661,264,260,289,142,1338,pgi,glucose-6-phosphate isomerase,49xPG_1369 41xPG_1367,,5.3.1.9
+PG_1369,334,153,162,259,421,746,317,349,386,229,1005,gpsA,glycerol-3-phosphate dehydrogenase (NAD(P)+),49xPG_1368,,1.1.1.94
+PG_1370,1264,446,497,1078,1394,3052,778,805,1074,528,1737,lysS,lysyl-tRNA synthetase,,,6.1.1.6
+PG_1371,198,169,102,235,248,418,253,175,503,228,879,,phosphorylase family protein,,,2.4.2.3
+PG_1372,325,327,196,414,369,642,545,273,1441,483,1422,,hypothetical protein,,
+PG_1373,64,31,45,22,36,100,29,30,96,31,276,,hypothetical protein,,
+PG_1374,826,282,555,284,2053,6144,798,752,730,210,1287,,immunoreactive 47 kDa antigen PG97,,
+PG_1375,15,10,7,15,38,73,11,33,12,8,111,,hypothetical protein,,
+PG_1378,32,64,32,24,27,79,81,26,88,43,1224,mutY,A/G-specific adenine glycosylase,,,3.2.2.-
+PG_1379,149,106,83,150,166,458,210,99,166,74,939,,"ABC transporter, periplasmic substrate-binding protein, putative",,
+PG_1380,57,25,19,38,35,117,50,39,59,13,699,,"ABC transporter, ATP-binding protein",12xPG_1381,
+PG_1381,47,11,16,25,23,65,37,24,48,11,750,,"ABC transporter, permease protein",41xPG_1382 12xPG_1380,
+PG_1382,140,123,76,78,197,694,175,142,379,105,1140,,hypothetical protein,41xPG_1381,
+PG_1383,85,59,43,62,107,269,108,83,136,32,639,,"amino acid exporter, putative",,
+PG_1385,822,356,431,449,1141,1995,684,927,1197,472,1203,,TPR domain protein,48xPG_1386,
+PG_1386,1007,737,453,945,1109,2466,1251,763,2279,617,2580,gyrA,"DNA gyrase, A subunit",48xPG_1385,,5.99.1.3
+PG_1387,91,124,61,157,114,113,242,103,240,86,927,,hypothetical protein,41xPG_1388,
+PG_1388,179,207,75,365,137,298,323,122,528,191,795,,hypothetical protein,140xPG_1389 41xPG_1387,
+PG_1389,137,146,77,161,228,399,248,164,456,172,459,,"DNA-binding protein, histone-like family",140xPG_1388,
+PG_1391,86,103,48,136,72,189,206,66,269,89,1212,,hypothetical protein,24xPG_1392,
+PG_1392,172,145,85,168,93,330,268,95,359,108,1458,,"rod shape-determining protein RodA, putative",68xPG_1393 24xPG_1391,
+PG_1393,154,178,70,248,84,213,275,97,344,118,1866,,"penicillin-binding protein 2, putative",68xPG_1392 57xPG_1394,
+PG_1394,53,56,27,93,26,123,89,33,78,44,519,,hypothetical protein,76xPG_1395 57xPG_1393,
+PG_1395,100,143,46,232,95,371,219,83,243,68,888,,"cell shape-determining protein MreC, putative",76xPG_1394 18xPG_1396,
+PG_1396,223,209,101,402,211,578,432,194,500,200,1020,mreB,cell shape-determining protein MreB,18xPG_1395,
+PG_1397,845,1299,352,1623,1117,3133,1935,700,2375,1087,1527,purH,phosphoribosylaminoimidazolecarboxamide formyltransferase/IMP cyclohydrolase,,
+PG_1398,14,31,8,30,180,120,197,15,43,10,174,,hypothetical protein,,508xPG_1787 262xPG_2220 254xPG_0499 204xPG_1363 195xPG_1059 45xPG_1251 2xPG_0879
+PG_1401,827,690,343,879,628,1951,1151,360,1414,435,1380,,beta-eliminating lyase,,,4.1.99.2
+PG_1402,91,68,50,68,69,176,89,63,172,57,933,,AP endonuclease domain protein,,
+PG_1403,134,86,75,72,153,271,76,97,165,57,867,,rhomboid family protein,7xPG_1404,
+PG_1404,83,36,46,44,46,132,61,46,119,35,717,,rhomboid family protein,28xPG_1405 7xPG_1403,
+PG_1405,344,178,197,285,346,917,306,264,457,122,2856,,hypothetical protein,28xPG_1404,
+PG_1407,20,11,11,7,10,31,13,17,45,7,537,,"nitroimidazole resistance protein, putative",,
+PG_1408,80,63,46,58,97,282,127,94,224,66,966,,"heavy metal efflux pump, CzcD family",83xPG_1409,
+PG_1409,61,56,17,22,46,179,71,34,49,23,393,,hypothetical protein,83xPG_1408 3xPG_1410,
+PG_1410,13,18,5,13,13,68,31,5,21,3,96,,hypothetical protein,3xPG_1409,
+PG_1411,173,233,92,248,154,520,333,106,302,95,1686,,"potassium uptake protein TrkA, putative",,
+PG_1414,287,247,167,387,351,1009,446,346,749,240,2616,,hypothetical protein,,
+PG_1416,241,364,117,355,300,678,520,235,759,282,942,fabK,enoyl-(acyl-carrier-protein) reductase II,,
+PG_1417,220,280,114,427,208,564,503,174,661,279,1647,fumB,"fumarate hydratase class I, anaerobic",,,4.2.1.2
+PG_1418,249,306,104,360,187,435,406,175,404,252,1809,dnaX,"DNA polymerase III, gamma and tau subunits",,,2.7.7.7
+PG_1419,0,0,0,0,0,0,0,0,0,0,396,,"ISPg5, transposase Orf1",,
+PG_1420,0,0,0,0,0,0,0,0,0,0,939,,"ISPg5, transposase Orf2",,
+PG_1421,19518,10899,4109,3550,7011,14927,2791,5901,30367,4968,171,,"ferredoxin, 4Fe-4S",,
+PG_1422,158,93,65,110,179,543,120,120,235,49,1533,dacB,D-alanyl-D-alanine carboxypeptidase,83xPG_1423,,3.4.16.4 3.4.99.-
+PG_1423,15,11,5,16,20,68,15,16,23,12,198,,hypothetical protein,83xPG_1422 1xPG_1424,
+PG_1424,1041,967,429,1504,1367,3259,1632,842,1899,670,1671,,peptidylarginine deiminase,1xPG_1423,
+PG_1426,8,7,14,7,13,16,11,9,21,3,159,,hypothetical protein,,16xPG_0265 2xPG_0493
+PG_1427,846,557,344,644,968,5059,954,819,1081,330,2532,,"thiol protease/hemagglutinin PrtT precursor, putative",,
+PG_1428,186,138,87,275,279,1210,258,232,240,69,486,ribH,"riboflavin synthase, beta subunit",531xPG_1429,
+PG_1429,67,55,32,52,126,356,84,111,74,30,111,,hypothetical protein,531xPG_1428 435xPG_1430,
+PG_1430,954,420,330,411,1405,2554,547,805,750,240,687,,TPR domain protein,435xPG_1429,
+PG_1431,658,309,217,208,616,3696,313,482,827,199,684,,"DNA-binding response regulator, LuxR family",,
+PG_1432,522,284,186,236,480,2600,295,421,610,138,1866,,sensor histidine kinase,,
+PG_1433,37,10,17,18,64,47,16,42,23,8,216,,hydrolase,37xPG_1434,,3.1.11.6
+PG_1434,52,19,28,22,33,105,40,36,83,20,669,ispD,4-diphosphocytidyl-2C-methyl-D-erythritol synthase,37xPG_1433,,2.7.7.60
+PG_1435,0,0,0,0,0,0,0,0,0,0,1227,,integrase,,
+PG_1436,0,0,0,0,0,0,0,0,0,0,2019,,"ATPase, putative",,
+PG_1439,0,0,0,0,0,0,0,0,0,0,2076,,hypothetical protein,,
+PG_1440,0,0,0,0,0,0,0,0,0,0,618,,hypothetical protein,,
+PG_1441,43,19,32,12,96,157,29,39,135,38,168,,lysozyme-related protein,,
+PG_1442,0,0,0,0,0,0,0,0,0,0,429,,hypothetical protein,,
+PG_1444,11,0,4,1,5,4,3,3,7,1,417,,hypothetical protein,,22xPG_0829
+PG_1446,245,199,110,203,269,812,204,124,389,109,1320,,MATE efflux family protein,,2206xPG_0827
+PG_1447,171,108,62,146,255,673,165,83,205,107,849,,"transcriptional regulator, AraC family",,1585xPG_0826
+PG_1448,3565,2065,2608,761,4704,3959,2366,3020,11202,3303,1086,,"ISPg1, transposase",,37160xPG_1906 32525xPG_0184 26533xPG_1244 24182xPG_0460 9288xPG_1320 9114xPG_0549 9080xPG_0825 4483xPG_1031 3740xPG_1177 3739xPG_1197 3313xPG_1624
+PG_1449,1,3,0,2,2,2,2,1,1,0,681,,conserved hypothetical protein,,14xPG_0824
+PG_1450,0,0,0,0,0,0,0,0,0,0,315,,conserved hypothetical protein,,
+PG_1451,0,0,0,0,0,0,0,0,0,0,408,,conserved hypothetical protein,,
+PG_1452,0,0,1,0,0,0,1,0,2,0,363,,"lipoprotein, putative",,
+PG_1453,0,0,0,0,0,0,0,0,0,0,1203,,integrase,,
+PG_1454,0,0,0,0,0,0,0,0,0,0,1230,,integrase,,
+PG_1457,17,5,10,5,5,14,5,14,12,5,468,,hypothetical protein,2xPG_1458,
+PG_1458,14,6,8,1,19,20,5,22,9,2,459,,hypothetical protein,5xPG_1459 2xPG_1457,
+PG_1459,2,0,2,0,1,3,0,4,0,0,138,,hypothetical protein,5xPG_1458,
+PG_1460,4,0,4,0,1,4,1,5,5,1,360,,hypothetical protein,2xPG_1461,
+PG_1461,8,3,10,2,5,15,3,12,4,2,522,,hypothetical protein,7xPG_1462 2xPG_1460,
+PG_1462,7,5,4,3,3,14,4,8,1,2,228,,conserved hypothetical protein,7xPG_1461 5xPG_1463,
+PG_1463,6,2,5,3,5,12,6,6,8,1,282,,hypothetical protein,5xPG_1462,
+PG_1465,0,0,0,0,0,0,0,0,0,0,645,,hypothetical protein,,
+PG_1466,0,0,0,0,0,0,0,0,0,0,573,,hypothetical protein,,
+PG_1467,0,0,0,0,0,0,0,0,0,0,612,,"methlytransferase, UbiE/COQ5 family",,
+PG_1469,0,0,0,0,0,0,0,0,0,0,3009,,"type I restriction-modification system, M subunit, putative",,
+PG_1470,0,0,0,0,0,0,0,0,0,0,231,,hypothetical protein,,
+PG_1471,0,0,0,0,0,0,0,0,0,0,468,,conserved hypothetical protein,,
+PG_1472,0,0,0,0,0,0,0,0,0,0,648,,hypothetical protein,,
+PG_1473,0,0,0,0,0,0,0,0,0,0,465,,conjugative transposon protein TraQ,,
+PG_1474,0,0,0,0,0,0,0,0,0,0,579,,conjugative transposon protein TraO,,
+PG_1475,0,0,0,0,0,0,0,0,0,0,1026,,conjugative transposon protein TraN,,
+PG_1476,0,0,0,0,0,0,0,0,0,0,1362,,conjugative transposon protein TraM,,
+PG_1477,0,0,0,0,0,0,0,0,0,0,288,,hypothetical protein,,
+PG_1478,0,0,0,0,0,0,0,0,0,0,624,,conjugative transposon protein TraK,,
+PG_1479,0,0,0,0,0,0,0,0,0,0,1107,,conjugative transposon protein TraJ,,
+PG_1480,0,0,0,0,0,0,0,0,0,0,630,,conjugative transposon protein TraI,,
+PG_1481,3,5,0,4,2,2,3,2,2,0,2526,,conjugative transposon protein TraG,,
+PG_1482,0,0,0,0,0,0,0,0,0,0,336,,conjugative transposon protein TraF,,
+PG_1483,0,1,0,0,0,0,0,1,0,0,303,,conjugative transposon protein TraE,,
+PG_1484,0,0,0,0,0,0,0,0,0,0,705,,hypothetical protein,,
+PG_1485,0,0,0,0,0,0,0,0,0,0,387,,conjugative transposon protein TraC,,
+PG_1486,0,0,0,0,0,0,0,0,0,0,810,,conjugative transposon protein TraA,,
+PG_1487,0,0,0,0,0,0,0,0,0,0,252,,hypothetical protein,,
+PG_1488,0,0,0,0,0,0,0,0,0,0,402,,hypothetical protein,,
+PG_1489,0,0,0,0,0,0,0,0,0,0,1281,,conserved hypothetical protein,,
+PG_1490,2,1,0,1,0,0,1,1,1,0,2010,,TraG family protein,,
+PG_1491,206,42,113,31,186,373,40,105,395,73,213,,hypothetical protein,,
+PG_1492,196,73,154,46,303,685,59,131,693,112,717,,hypothetical protein,60xPG_1493,
+PG_1493,365,200,163,146,391,1662,163,220,898,243,2676,,hypothetical protein,60xPG_1492,
+PG_1494,2,1,3,2,0,4,3,3,3,3,1314,,conserved hypothetical protein,,
+PG_1495,0,0,0,0,0,0,0,0,0,0,2094,topB-2,DNA topoisomerase III,,,5.99.1.2
+PG_1496,0,0,0,0,0,0,0,0,0,0,276,,hypothetical protein,,
+PG_1497,0,0,0,0,0,0,0,0,0,0,471,,"DNA-binding protein, histone-like family",,
+PG_1498,0,0,0,0,0,0,0,0,0,0,915,,hypothetical protein,,
+PG_1499,0,0,0,0,0,0,0,0,0,0,498,,hypothetical protein,,
+PG_1500,1,1,1,1,0,2,0,1,3,2,2292,,conserved domain protein,,
+PG_1501,0,0,0,0,0,0,0,0,0,0,600,,"transcriptional regulator, tetR family",,
+PG_1503,0,0,0,0,0,0,0,0,0,0,951,,LytB-related protein,,
+PG_1504,0,0,0,0,0,0,0,0,0,0,987,,NAD dependent protein,,
+PG_1505,0,0,0,0,0,0,0,0,0,0,879,,radical SAM domain protein,,
+PG_1507,0,0,0,0,0,0,0,0,0,0,2430,,hypothetical protein,,
+PG_1508,0,0,0,0,0,0,0,0,0,0,549,,hypothetical protein,,
+PG_1509,0,0,0,0,0,0,0,0,0,0,669,,"HAD-superfamily hydrolase, subfamily IA, variant 1 family protein",,
+PG_1510,0,0,0,0,0,0,0,0,0,0,108,,hypothetical protein,,
+PG_1511,0,0,0,0,0,0,0,0,0,0,162,,hypothetical protein,,
+PG_1512,0,0,0,0,0,0,0,0,0,0,618,,conserved domain protein,,
+PG_1513,0,0,0,0,0,0,0,0,0,0,1317,,"phosphoribosyltransferase, putative/phosphoglycerate mutase family protein",,
+PG_1514,0,0,0,0,0,0,0,0,0,0,990,,glycerol dehydrogenase-related protein,,
+PG_1515,0,0,0,0,0,0,0,0,0,0,1014,,ribulose bisphosphate carboxylase-related protein,,
+PG_1516,0,0,0,0,0,0,0,0,0,0,1377,,hypothetical protein,,
+PG_1519,79,21,44,12,47,466,14,26,117,19,1641,,hypothetical protein,,
+PG_1521,0,0,0,0,0,0,0,0,0,0,1050,,O-succinylbenzoic acid--CoA ligase,,,6.2.1.26
+PG_1522,0,0,0,0,0,0,0,0,0,0,1071,,mandelate racemase/muconate lactonizing enzyme family protein,,
+PG_1523,0,0,0,0,0,0,0,0,0,0,819,menB,naphthoate synthase,,,4.1.3.36
+PG_1524,0,0,0,0,0,0,0,0,0,0,1734,menD,"2-succinyl-6-hydroxy-2, 4-cyclohexadiene-1-carboxylic acid synthase/2-oxoglutarate decarboxylase",,
+PG_1525,0,0,0,0,0,0,0,0,0,0,1107,,"isochorismate synthase, putative",,,5.4.4.2
+PG_1526,0,0,0,0,0,0,0,0,0,0,1440,,conserved hypothetical protein,,
+PG_1527,0,0,0,0,0,0,0,0,0,0,228,,hypothetical protein,,
+PG_1528,0,0,0,0,0,0,0,0,0,0,1326,,conserved hypothetical protein,,
+PG_1529,0,0,0,0,0,0,0,0,0,0,2139,,hypothetical protein,,
+PG_1530,0,0,0,0,0,0,0,0,0,0,891,,conserved domain protein,,
+PG_1532,0,0,0,0,0,0,0,0,0,0,195,,hypothetical protein,,
+PG_1533,0,0,0,0,0,0,0,0,0,0,2049,,Toprim domain protein,,
+PG_1534,0,0,0,1,0,1,0,1,0,0,390,,conserved domain protein,3xPG_1535,
+PG_1535,6,0,5,3,11,6,3,8,4,6,342,,"transcriptional regulator, putative",3xPG_1534,
+PG_1536,113,139,59,251,142,409,308,131,380,148,888,,"cell division protein FtsX, putative",83xPG_1537,
+PG_1537,21,11,16,43,33,121,39,39,66,15,300,,conserved hypothetical protein,83xPG_1536,
+PG_1538,65,38,47,125,80,129,87,58,106,34,843,,"undecaprenol kinase, putative",,,3.6.1.27
+PG_1540,500,487,187,715,715,1408,652,385,909,305,1053,queA,S-adenosylmethionine:tRNA ribosyltransferase-isomerase,142xPG_1541,,5.-.-.-
+PG_1541,159,89,43,131,145,257,147,76,196,58,450,folK,2-amino-4-hydroxy-6- hydroxymethyldihydropteridine pyrophosphokinase,142xPG_1540 66xPG_1542,
+PG_1542,257,191,104,347,321,568,241,168,379,117,1245,prtC,collagenase,66xPG_1541,,3.4.-.-
+PG_1543,231,338,101,352,442,443,395,233,738,206,420,,thioesterase family protein,,
+PG_1544,86,181,51,228,98,162,253,56,174,81,771,yaaA,yaaA protein,,
+PG_1545,1537,2893,971,2067,3295,5813,2788,1932,3831,1401,576,sodB,"superoxide dismutase, Fe-Mn",166xPG_1546,,1.15.1.1
+PG_1546,48,48,26,23,51,85,34,32,61,28,189,,hypothetical protein,166xPG_1545 77xPG_1547,
+PG_1547,44,49,19,46,53,149,48,20,92,56,354,,hypothetical protein,77xPG_1546,
+PG_1549,8,6,5,0,0,14,2,4,13,3,141,,hypothetical protein,,
+PG_1551,10,4,34,46,1204,4798,510,38,159,58,429,hmuY,hmuY protein,48xPG_1552,
+PG_1552,40,11,41,84,194,791,295,46,163,33,1941,hmuR,TonB-dependent receptor HmuR,48xPG_1551 8xPG_1553,
+PG_1553,183,17,129,104,627,1788,599,135,139,86,4410,,CobN/magnesium chelatase family protein,297xPG_1554 8xPG_1552,
+PG_1554,51,1,21,11,85,220,102,23,26,12,678,,hypothetical protein,297xPG_1553,
+PG_1555,35,0,16,10,18,33,47,9,8,4,579,,conserved domain protein,9xPG_1556,
+PG_1556,14,0,11,3,15,37,20,10,6,0,327,,conserved hypothetical protein,9xPG_1555,
+PG_1559,253,188,117,248,371,906,340,244,484,196,1089,gcvT,glycine cleavage system T protein,,,2.1.2.10
+PG_1560,217,172,106,217,219,830,350,134,358,103,1065,rfbB,"dTDP-glucose 4,6-dehydratase",94xPG_1561,,4.2.1.46
+PG_1561,149,121,72,142,118,325,176,81,304,68,858,rfbD,dTDP-4-dehydrorhamnose reductase,160xPG_1562 94xPG_1560,,1.1.1.133
+PG_1562,141,177,68,117,149,535,296,112,397,107,591,rfbC,"dTDP-4-dehydrorhamnose 3,5-epimerase",486xPG_1563 160xPG_1561,,5.1.3.13
+PG_1563,271,393,148,298,240,986,644,210,592,189,870,rfbA,glucose-1-phosphate thymidylyltransferase,486xPG_1562,,2.7.7.24
+PG_1564,209,105,123,135,176,464,158,131,294,72,1956,,"membrane protein, putative",,
+PG_1565,99,67,51,151,97,287,133,93,146,46,1239,,"3-deoxy-D-manno-octulosonic-acid transferase, putative",8xPG_1566,,2.-.-.-
+PG_1566,250,141,139,187,216,685,311,194,357,150,1518,gltX,glutamyl-tRNA synthetase,8xPG_1565,,6.1.1.17
+PG_1570,20,2,15,3,7,6,5,13,9,5,384,,rhodanese-like domain protein,21xPG_1571,
+PG_1571,83,15,47,23,19,21,44,51,74,20,1416,,metallo-beta-lactamase superfamily protein,21xPG_1570,
+PG_1572,44,15,24,25,10,10,38,31,52,13,807,,"membrane protein, putative",,
+PG_1573,134,54,73,40,87,258,74,71,229,40,852,,"transcriptional regulator, Crp family",,
+PG_1574,16,9,8,8,59,20,23,30,22,9,153,,hypothetical protein,,9xPG_0371
+PG_1576,248,323,117,443,248,588,519,165,814,269,1557,nadB,L-aspartate oxidase,4xPG_1577,,1.4.3.16
+PG_1577,109,58,57,133,81,224,167,79,188,58,828,nadC,nicotinate-nucleotide pyrophosphorylase,43xPG_1578 4xPG_1576,,2.4.2.19
+PG_1578,86,67,63,155,96,235,149,104,243,55,927,nadA,"quinolinate synthetase complex, subunit A",43xPG_1577,
+PG_1579,281,337,139,477,622,1117,702,450,1584,465,996,,"ATPase, MoxR family",405xPG_1580,,3.6.3.-
+PG_1580,187,199,85,233,389,568,364,283,705,219,873,,conserved hypothetical protein,405xPG_1579 105xPG_1581,
+PG_1581,135,121,76,186,243,399,220,172,570,139,957,,hypothetical protein,156xPG_1582 105xPG_1580,
+PG_1582,218,166,96,210,353,792,328,233,848,185,984,batA,batA protein,156xPG_1581 76xPG_1583,
+PG_1583,234,139,119,227,443,789,183,289,512,142,1020,batB,batB protein,114xPG_1584 76xPG_1582,
+PG_1584,109,51,69,114,194,433,119,170,258,54,744,batC,batC protein,114xPG_1583,
+PG_1585,239,163,137,234,342,755,266,245,542,153,1803,batD,batD protein,138xPG_1586,
+PG_1586,120,36,70,76,152,259,62,90,198,37,909,batE,batE protein,138xPG_1585 46xPG_1587,
+PG_1587,88,82,51,88,73,238,82,81,220,48,717,,PAP2 superfamily protein,51xPG_1588 46xPG_1586,
+PG_1588,63,54,45,70,60,125,69,63,199,53,768,,conserved hypothetical protein,51xPG_1587,
+PG_1589,71,60,41,43,32,65,110,44,150,53,846,folP,dihydropteroate synthase,,,2.5.1.15
+PG_1591,0,0,0,0,0,0,0,0,1,0,1098,,conserved hypothetical protein,,
+PG_1592,269,213,128,362,262,577,391,234,417,179,2073,,HDIG domain protein,1xPG_1593,
+PG_1593,54,30,31,40,35,64,57,33,49,22,561,aroK,shikimate kinase,73xPG_1594 1xPG_1592,,2.7.1.71
+PG_1594,99,60,49,68,54,101,93,80,91,38,1536,,ComEC/Rec2-related protein,73xPG_1593 26xPG_1595,
+PG_1595,69,44,30,38,58,105,81,61,135,47,657,rpe,ribulose-phosphate 3-epimerase,26xPG_1594,,5.1.3.1
+PG_1596,695,314,288,828,614,1712,791,470,861,274,3414,,"isoleucyl-tRNA synthetase, putative",,,6.1.1.5
+PG_1597,174,76,66,96,134,668,175,102,279,61,381,,"DnaK suppressor protein, putative",218xPG_1598,
+PG_1598,285,105,108,139,248,867,197,175,279,66,681,,"lipoprotein signal peptidase, putative",218xPG_1597 136xPG_1599,,3.4.23.36
+PG_1599,176,127,78,181,258,1066,222,169,332,82,789,,hypothetical protein,136xPG_1598 52xPG_1600,
+PG_1600,87,108,46,163,95,418,161,100,157,48,1026,,"membrane protein, putative",52xPG_1599 22xPG_1601,
+PG_1601,102,54,65,46,55,181,71,57,127,26,774,,biotin--acetyl-CoA-carboxylase ligase,174xPG_1602 22xPG_1600,
+PG_1602,122,47,92,48,100,213,67,70,114,35,381,,conserved hypothetical protein,174xPG_1601,
+PG_1603,119,73,55,72,112,313,99,81,155,36,585,,HAM1 protein,105xPG_1604,
+PG_1604,387,217,173,323,360,795,370,280,549,139,2331,,immunoreactive 84 kDa antigen PG93,105xPG_1603,
+PG_1605,325,191,190,409,427,519,410,266,308,148,1344,pepC,aminopeptidase C,,,3.4.22.40
+PG_1606,79,37,36,19,44,281,33,59,68,23,723,,ion transporter,,
+PG_1608,380,596,199,487,480,1075,735,263,1370,383,1152,mmdB,"methylmalonyl-CoA decarboxylase, beta subunit",203xPG_1609,,4.1.1.41
+PG_1609,110,125,76,149,141,303,217,90,317,110,435,mmdC,"methylmalonyl-CoA decarboxylase, gamma subunit",203xPG_1608 20xPG_1610,,4.1.1.41
+PG_1610,52,156,41,157,47,277,246,109,275,146,237,,hypothetical protein,574xPG_1611 20xPG_1609,
+PG_1611,848,513,339,852,466,1533,900,424,1096,528,942,,hypothetical protein,574xPG_1610 384xPG_1612,
+PG_1612,892,368,474,711,722,1742,766,510,1393,416,1554,mmdA,"methylmalonyl-CoA decarboxylase, alpha subunit",384xPG_1611,,6.4.1.3
+PG_1613,184,189,165,177,250,568,248,226,627,225,405,,glyoxalase family protein,,,4.4.1.5
+PG_1614,213,203,128,233,262,919,401,166,830,195,756,frdB,"fumarate reductase, iron-sulfur protein",75xPG_1615,,1.3.99.1
+PG_1615,902,962,441,1397,930,1913,1924,751,2169,861,1944,frdA,"fumarate reductase, flavoprotein subunit",181xPG_1616 75xPG_1614,,1.3.99.1
+PG_1616,473,722,255,631,401,927,1154,314,1625,502,693,,conserved hypothetical protein,181xPG_1615 9xPG_1617,
+PG_1617,73,36,40,45,38,170,51,61,53,29,459,,hypothetical protein,9xPG_1616,
+PG_1618,119,92,61,98,53,155,147,69,121,60,687,,conserved hypothetical protein,124xPG_1619,
+PG_1619,75,116,49,149,46,98,228,65,131,60,768,,"biotin synthesis protein BioC, putative",124xPG_1618 18xPG_1620,
+PG_1620,153,167,65,246,110,311,244,76,230,85,1077,,carboxyl-terminal protease-related protein,64xPG_1621 18xPG_1619,
+PG_1621,137,134,70,177,83,202,221,89,326,88,948,,hypothetical protein,110xPG_1622 64xPG_1620,
+PG_1622,495,531,221,558,580,1257,680,352,864,373,2697,,"DNA topoisomerase IV, A subunit, putative",110xPG_1621,,5.99.1.-
+PG_1623,163,132,98,156,116,160,264,77,421,172,1191,,"membrane bound regulatory protein, putative",,
+PG_1624,2636,1472,1994,545,4035,2851,1566,2619,7138,2254,1086,,"ISPg1, transposase",,27110xPG_1197 27110xPG_1177 24783xPG_1031 6390xPG_0825 3702xPG_0184 3313xPG_1448 2944xPG_1906 380xPG_0549 380xPG_1320 8xPG_0460 1xPG_1244
+PG_1625,1705,1007,836,920,1911,4336,1225,1072,4525,1042,1203,,hypothetical protein,,
+PG_1626,700,1290,355,1404,1556,2282,1596,908,4077,1246,1665,,hypothetical protein,,
+PG_1630,15,12,23,68,6,39,17,65,413,53,291,,hypothetical protein,,
+PG_1632,164,147,80,225,102,152,271,110,388,186,1068,galM,aldose 1-epimerase,,,5.1.3.3
+PG_1633,260,154,158,134,226,434,297,185,540,223,1155,galK,galactokinase,,,2.7.1.6
+PG_1634,240,202,129,142,758,771,395,302,648,220,426,,hypothetical protein,,
+PG_1635,65,88,49,125,97,114,263,107,484,110,648,,hypothetical protein,200xPG_1636,
+PG_1636,294,235,176,409,280,771,387,305,591,146,2586,,FtsK/SpoIIIE family protein,200xPG_1635,
+PG_1638,97,144,67,353,101,104,238,97,199,98,987,,thioredoxin family protein,,
+PG_1639,9,29,15,74,24,30,48,13,49,19,144,,hypothetical protein,48xPG_1640,
+PG_1640,171,335,91,529,137,186,364,105,401,159,1311,dinF,DNA-damage-inducible protein F,63xPG_1641 48xPG_1639,
+PG_1641,82,135,49,254,93,154,171,50,218,75,504,,phosphotyrosine protein phosphatase,63xPG_1640,,3.1.3.48
+PG_1644,0,0,0,0,0,0,0,0,0,0,939,,"ISPg5, transposase Orf2",,
+PG_1645,0,0,0,0,0,0,0,0,0,0,390,,"ISPg5, transposase Orf1",,
+PG_1647,188,98,99,74,96,215,142,113,321,82,1422,cls,cardiolipin synthetase,,,2.7.8.-
+PG_1648,194,82,105,85,76,159,136,119,276,84,2241,,RelA/SpoT family protein,24xPG_1649,
+PG_1649,10,3,5,4,1,5,2,2,9,0,123,,hypothetical protein,24xPG_1648,
+PG_1651,390,141,261,236,287,454,265,241,489,175,2988,,TPR domain protein,27xPG_1652,
+PG_1652,209,97,128,128,155,234,213,154,349,126,1791,,hypothetical protein,27xPG_1651 26xPG_1653,
+PG_1653,151,127,74,145,139,262,242,121,415,125,1224,,conserved hypothetical protein,26xPG_1652,
+PG_1654,76,33,38,33,48,131,67,45,108,38,624,,D-alanyl-D-alanine dipeptidase,,,3.4.13.-
+PG_1655,0,0,0,0,0,0,0,0,0,0,210,,hypothetical protein,,
+PG_1656,584,362,215,366,358,937,488,225,1058,345,1857,mutA,"methylmalonyl-CoA mutase, small subunit",21xPG_1657,,5.4.99.2
+PG_1657,226,185,112,207,140,367,273,141,448,118,2148,mutB,"methylmalonyl-CoA mutase, large subunit",21xPG_1656,,5.4.99.2
+PG_1658,0,1,0,0,2,3,1,0,4,0,1158,,"ISPg4, transposase",,11xPG_0487 11xPG_0225 11xPG_2194 1xPG_0050 1xPG_0177 1xPG_1261 1xPG_0970 1xPG_1673 1xPG_0019
+PG_1659,21,8,21,17,14,25,21,31,60,21,393,,hypothetical protein,40xPG_1660,
+PG_1660,66,42,25,48,81,56,84,76,153,65,525,,"RNA polymerase sigma-70 factor, ECF subfamily",40xPG_1659,
+PG_1661,19,27,14,14,68,75,42,34,96,28,288,,hypothetical protein,110xPG_1662,
+PG_1662,33,40,17,38,69,65,74,65,142,37,375,,hypothetical protein,110xPG_1661 83xPG_1663,
+PG_1663,67,122,41,83,126,131,199,123,367,143,660,,"ABC transporter, ATP-binding protein",89xPG_1664 83xPG_1662,
+PG_1664,89,66,45,60,142,134,133,134,239,80,1275,,"ABC transporter, permease protein, putative",89xPG_1663 10xPG_1665,
+PG_1665,92,37,58,83,122,154,87,100,203,63,1263,,"ABC transporter, permease protein, putative",10xPG_1664,
+PG_1666,127,122,75,146,174,242,256,142,430,134,1107,,"efflux transporter, MFP component, RND family",85xPG_1667,
+PG_1667,217,370,105,375,177,292,667,141,1126,368,1368,,outer membrane efflux protein,85xPG_1666,
+PG_1669,13016,9608,2362,9111,13844,46625,14522,9926,14817,6503,156,,hypothetical protein,,140334xPG_1264 140334xPG_2073 138224xPG_0103
+PG_1670,1182,1595,508,2577,1305,3516,2277,1027,3328,1340,159,,hypothetical protein,,18655xPG_1265 18655xPG_2074 18408xPG_0102
+PG_1671,114324,100481,51910,103980,102684,201485,145963,80724,110819,102624,219,,hypothetical protein,25639xPG_1672,1092041xPG_0101 1088649xPG_1266 1088649xPG_2075 24794xPG_0100 22471xPG_2076 22471xPG_1267
+PG_1672,8157,5145,2208,5165,6522,21315,7770,5308,9780,3651,168,,hypothetical protein,25639xPG_1671,73480xPG_0100 71853xPG_1267 37380xPG_2076 24794xPG_0101 22471xPG_1266 22471xPG_2075
+PG_1673,0,0,0,0,0,0,0,0,1,0,1158,,"ISPg4, transposase",,1xPG_0050 1xPG_0487 1xPG_0177 1xPG_1261 1xPG_0970 1xPG_0225 1xPG_2194 1xPG_1658 1xPG_0019
+PG_1675,7,0,0,0,0,0,0,2,1,0,99,,hypothetical protein,,
+PG_1676,282,569,175,701,387,852,1047,429,1444,740,1608,pckA,phosphoenolpyruvate carboxykinase (ATP),,,4.1.1.49
+PG_1677,226,298,111,505,375,586,563,259,475,245,1257,pgk,phosphoglycerate kinase,,,2.7.2.3
+PG_1678,12,2,3,0,3,5,1,8,11,0,108,,hypothetical protein,18xPG_1679,
+PG_1679,96,17,46,26,28,30,27,43,79,9,1395,,hypothetical protein,18xPG_1678,
+PG_1681,602,131,333,331,595,581,319,391,949,337,1977,,"glycogen debranching enzyme, archaeal type, putative",79xPG_1682,
+PG_1682,130,72,92,131,107,149,217,151,301,105,1263,,"glycosyl transferase, group 1 family protein",94xPG_1683 79xPG_1681,
+PG_1683,184,141,139,129,306,451,255,271,485,180,1287,,conserved hypothetical protein,241xPG_1684 94xPG_1682,,3.2.1.1
+PG_1684,185,143,137,92,305,504,191,175,400,101,477,,hypothetical protein,241xPG_1683,
+PG_1685,0,0,0,0,0,0,0,0,0,0,783,,hypothetical protein,,
+PG_1687,90,97,27,65,145,325,146,67,162,35,390,,HIT family protein,96xPG_1688,
+PG_1688,183,197,37,100,212,646,262,135,369,108,471,greA,transcription elongation factor GreA,96xPG_1687,
+PG_1690,49,31,38,30,31,47,58,31,77,33,603,,Sua5/YciO/YrdC/YwlC family protein,116xPG_1691,
+PG_1691,61,56,31,91,48,52,89,41,96,63,705,,conserved domain protein,116xPG_1690 10xPG_1692,
+PG_1692,80,38,46,80,51,73,76,54,117,37,660,,"ABC transporter, ATP-binding protein",76xPG_1693 10xPG_1691,
+PG_1693,85,53,50,72,53,88,98,44,164,36,750,,HesA/MoeB/ThiF family protein,76xPG_1692 61xPG_1694,
+PG_1694,114,127,36,173,117,195,251,101,408,132,1095,,conserved hypothetical protein,61xPG_1693,
+PG_1695,21,14,7,6,14,165,4,13,17,15,192,,hypothetical protein,,
+PG_1696,213,229,104,167,261,610,376,149,474,247,1038,,"type II DNA modification methyltransferase, putative",57xPG_1697,
+PG_1697,292,180,157,251,209,682,381,196,439,145,3975,,"type II restriction endonuclease, putative",57xPG_1696,
+PG_1701,203,80,109,78,111,276,171,96,357,101,1809,,"glutamine amidotransferase, class II/dipeptidase",81xPG_1702,
+PG_1702,1263,858,528,1203,1359,3414,1609,817,2244,838,1965,gyrB,"DNA gyrase, B subunit",81xPG_1701,,5.99.1.3
+PG_1703,358,239,180,241,375,790,375,213,606,210,786,,MazG family protein,287xPG_1704,
+PG_1704,1007,661,484,976,917,1776,1293,488,1360,472,2049,,"thiol:disulfide interchange protein dsbD, putative",287xPG_1703,
+PG_1706,147,123,66,156,120,342,218,104,234,68,363,,hypothetical protein,135xPG_1707,
+PG_1707,529,1740,250,1152,1048,2116,1946,920,1613,1042,366,,hypothetical protein,135xPG_1706,
+PG_1709,0,0,0,0,0,0,0,0,0,0,390,,"ISPg5, transposase Orf1",,
+PG_1710,0,0,0,0,0,0,0,0,0,0,939,,"ISPg5, transposase Orf2",,
+PG_1711,249,277,131,260,224,616,380,236,753,275,2262,,"alpha-1,2-mannosidase family protein",,
+PG_1712,165,144,111,179,116,270,308,169,464,167,2346,,"alpha-1,2-mannosidase family protein",,
+PG_1713,73,64,40,78,50,114,111,51,229,79,405,,"lipoprotein, putative",16xPG_1714,
+PG_1714,133,83,70,90,100,202,116,71,306,75,645,pdxH,pyridoxamine-phosphate oxidase,16xPG_1713,,1.4.3.5
+PG_1715,595,1920,310,1794,2407,2864,3871,1680,10225,2320,2664,,hypothetical protein,,
+PG_1718,31,8,17,11,14,25,12,15,39,15,276,,hypothetical protein,147xPG_1719,
+PG_1719,194,93,144,220,138,304,200,145,344,140,1851,,"ABC transporter, ATP-binding protein, MsbA family",147xPG_1718 49xPG_1720,
+PG_1720,246,147,164,269,276,526,330,229,439,172,1530,,conserved domain protein,49xPG_1719,
+PG_1721,234,154,145,355,180,315,327,189,409,179,2109,vacB,ribonuclease R,,,3.1.-.-
+PG_1722,14,13,11,12,12,63,21,23,54,9,306,,hypothetical protein,,
+PG_1723,235,405,106,405,330,2384,626,193,884,160,255,rpsT,ribosomal protein S20,,
+PG_1724,140,124,65,148,187,333,210,140,342,65,1026,gcp,O-sialoglycoprotein endopeptidase,58xPG_1725,,3.4.24.57
+PG_1725,45,50,42,65,43,79,104,47,89,25,483,,competence/damage-inducible protein CinA domain protein,81xPG_1726 58xPG_1724,
+PG_1726,315,356,180,399,473,948,645,346,706,319,1419,,PDZ domain protein,128xPG_1727 81xPG_1725,
+PG_1727,122,157,54,175,168,350,223,120,305,83,864,yitL,yitL protein,128xPG_1726,
+PG_1728,87,154,43,105,124,353,136,88,173,70,453,,cytidine/deoxycytidylate deaminase family protein,,
+PG_1729,1515,616,517,487,2827,3662,485,1314,1423,332,540,,thiol peroxidase,3xPG_1730,,1.11.1.-
+PG_1730,66,95,35,78,60,138,143,89,144,57,651,,O-methyltransferase family protein,3xPG_1729,,2.1.1.-
+PG_1731,53,46,32,47,52,136,59,57,107,45,426,aroQ,"3-dehydroquinate dehydratase, type II",,,4.2.1.10
+PG_1732,77,54,40,57,67,121,86,68,115,54,927,xerD,integrase/recombinase XerD,2xPG_1733,
+PG_1733,48,20,26,17,40,106,36,37,58,21,438,,hypothetical protein,65xPG_1734 2xPG_1732,
+PG_1734,52,34,28,31,36,89,58,57,87,25,942,,"transporter, putative",65xPG_1733 36xPG_1735,
+PG_1735,36,17,12,13,27,62,20,24,36,14,555,,MutT/nudix family protein,36xPG_1734,
+PG_1738,91,126,48,146,79,171,182,91,210,59,1035,,hypothetical protein,93xPG_1739,
+PG_1739,93,162,55,179,129,371,226,130,218,72,582,,conserved domain protein,93xPG_1738,
+PG_1741,529,1154,230,1016,698,2272,2131,357,3274,829,1428,aspA,aspartate ammonia-lyase,265xPG_1742,,4.3.1.1
+PG_1742,17,46,4,35,13,64,75,15,83,12,177,,hypothetical protein,265xPG_1741,
+PG_1743,63,72,43,95,68,205,159,63,197,53,819,kdsA,2-dehydro-3-deoxyphosphooctonate aldolase,,,2.5.1.55
+PG_1745,410,122,173,162,294,448,226,180,814,210,1590,,phosphoribulokinase family protein,,,2.7.1.48
+PG_1746,247,271,129,224,295,1793,284,229,397,117,1131,,"ISPg2, transposase",,3962xPG_2176 3962xPG_0865 3913xPG_1350 3913xPG_0277
+PG_1747,72,46,31,39,47,63,74,52,154,45,438,,"ribose 5-phosphate isomerase B, putative",,,5.3.1.6
+PG_1748,288,217,188,412,267,451,549,233,738,243,2028,tkt,transketolase,,,2.2.1.1
+PG_1750,181,31,100,52,55,129,74,142,99,27,1821,,"alpha-1,3/4-fucosidase, putative",,,3.2.1.51
+PG_1751,234,236,106,384,163,316,468,163,599,242,1131,,"aminotransferase, class V",107xPG_1752,,4.4.1.-
+PG_1752,32,37,17,59,12,42,67,18,90,31,225,,hypothetical protein,126xPG_1753 107xPG_1751,
+PG_1753,128,120,81,238,61,132,242,94,263,106,1047,selD,"selenide, water dikinase",126xPG_1752 49xPG_1754,,2.7.9.3
+PG_1754,461,391,230,657,494,1309,708,344,928,344,2526,,conserved domain protein,49xPG_1753,
+PG_1755,905,889,382,798,870,2317,1273,533,3220,984,882,fbaB,"fructose-bisphosphate aldolase, class I",,,4.1.2.13
+PG_1757,167,96,106,96,111,205,148,131,181,51,1032,,hypothetical protein,,588xPG_0031
+PG_1758,170,171,71,155,279,4954,333,154,663,135,270,rpsO,ribosomal protein S15,,
+PG_1759,132,77,84,86,106,169,127,98,237,77,948,,"adhesion protein, putative",51xPG_1760,
+PG_1760,88,27,38,46,57,72,64,45,102,31,630,,"ABC transporter, ATP-binding protein",109xPG_1761 51xPG_1759,
+PG_1761,44,35,38,24,39,73,54,40,74,23,576,,"acetyltransferase, GNAT family",109xPG_1760,
+PG_1762,1689,851,650,1194,1593,5112,1509,947,2197,610,2835,secDF,protein-export membrane protein SecD/protein-export membrane protein SecF,,
+PG_1763,189,120,127,201,196,600,149,192,635,164,714,rnc,ribonuclease III,,,3.1.26.3
+PG_1764,892,780,671,2265,2846,5275,2100,2330,4748,2212,1257,fabF,3-oxoacyl-(acyl-carrier-protein) synthase II,940xPG_1765,,2.3.1.179
+PG_1765,350,452,330,977,1018,1943,782,1078,2161,1194,237,acpP,acyl carrier protein,940xPG_1764,
+PG_1766,50,25,33,51,32,67,45,37,58,16,582,purN,phosphoribosylglycinamide formyltransferase,41xPG_1767,,2.1.2.2
+PG_1767,56,65,49,89,48,83,114,74,101,29,1041,,"lipoprotein, putative",41xPG_1766 13xPG_1768,
+PG_1768,139,198,91,204,82,190,302,102,257,98,1542,,"magnesium chelatase, subunit D/I family",58xPG_1769 13xPG_1767,
+PG_1769,38,58,23,77,50,45,87,48,76,37,324,,hypothetical protein,58xPG_1768,
+PG_1770,127,144,79,178,101,191,233,97,391,171,678,,hypothetical protein,,
+PG_1771,251,142,115,195,255,962,348,170,414,134,1023,pheS,"phenylalanyl-tRNA synthetase, alpha subunit",209xPG_1772,,6.1.1.20
+PG_1772,177,60,78,84,219,677,128,116,181,50,675,nth,endonuclease III,209xPG_1771,,4.2.99.18
+PG_1773,332,95,113,124,155,368,147,129,216,74,1338,,PAP2 superfamily protein,56xPG_1774,
+PG_1774,283,170,169,255,145,252,290,199,389,155,3369,mfd,transcription-repair coupling factor,56xPG_1773,
+PG_1775,120,59,88,232,242,276,195,222,292,230,585,grpE,grpE protein,109xPG_1776,
+PG_1776,170,138,121,423,232,421,329,201,579,298,1152,dnaJ,dnaJ protein,109xPG_1775,
+PG_1777,137,64,53,116,95,303,144,66,288,104,318,,conserved hypothetical protein,96xPG_1778,
+PG_1778,147,172,82,297,112,297,333,132,579,230,789,,conserved hypothetical protein,96xPG_1777,,3.6.1.-
+PG_1779,84,114,44,140,58,154,204,75,381,154,495,,conserved hypothetical protein,,
+PG_1780,245,255,124,420,234,572,483,231,606,173,1188,bioF-3,8-amino-7-oxononanoate synthase,,,2.3.1.47
+PG_1781,81,84,53,143,113,220,143,111,190,61,630,udk,uridine kinase,4xPG_1782,,2.7.1.48
+PG_1782,130,142,78,162,94,270,237,92,316,80,1188,,hypothetical protein,110xPG_1783 4xPG_1781,
+PG_1783,87,78,55,59,64,406,101,75,183,46,711,,"glycosyl transferase, group 2 family protein",110xPG_1782 83xPG_1784,
+PG_1784,90,21,53,47,71,217,64,59,99,33,795,,conserved hypothetical protein,83xPG_1783,
+PG_1786,115,83,22,73,103,688,97,84,88,12,885,,hypothetical protein,,
+PG_1787,75,65,34,51,313,271,305,48,114,30,468,,hypothetical protein,,508xPG_1398 327xPG_0499 269xPG_1363 248xPG_2220 197xPG_1059 144xPG_1251 124xPG_1061 7xPG_0879
+PG_1788,747,712,348,503,1029,2921,1143,928,2096,479,1272,,"cysteine peptidase, putative",,
+PG_1789,190,150,112,170,89,160,205,151,278,85,2037,dcp-2,peptidyl-dipeptidase Dcp,22xPG_1790,,3.4.15.5
+PG_1790,172,93,81,123,113,213,152,124,202,70,1485,,hypothetical protein,50xPG_1791 22xPG_1789,
+PG_1791,25,17,19,21,48,20,33,33,48,10,216,,hypothetical protein,50xPG_1790,
+PG_1792,469,346,233,328,334,611,489,253,771,305,2304,,sodium/hydrogen antiporter,36xPG_1793,
+PG_1793,221,121,108,169,142,223,216,123,343,131,2007,glgB,"1,4-alpha-glucan branching enzyme",36xPG_1792,,2.4.1.18
+PG_1794,277,215,157,221,139,340,419,154,412,158,2781,polA,DNA polymerase type I,,,2.7.7.7
+PG_1795,21532,8641,3405,3833,12523,78253,7618,7258,13097,5156,822,,hypothetical protein,,
+PG_1797,771,439,3,3,827,1660,549,681,864,288,2886,,DNA-binding response regulator/sensor histidine kinase,,
+PG_1798,1177,353,477,190,1397,1756,804,786,1811,690,1218,,immunoreactive 46 kDa antigen PG99,,
+PG_1799,8,2,5,1,3,8,4,3,5,1,210,,hypothetical protein,,
+PG_1801,280,608,124,715,845,4493,1118,636,940,581,591,,"v-type ATPase, subunit E, putative",110xPG_1802,,3.6.3.14
+PG_1802,230,155,89,386,158,633,314,139,301,84,939,,hypothetical protein,110xPG_1801 77xPG_1803,
+PG_1803,980,766,309,2041,825,2777,1869,461,1664,563,1755,atpA,"v-type ATPase, subunit A",263xPG_1804 77xPG_1802,,3.6.3.14
+PG_1804,440,609,188,1454,650,1322,1392,424,1199,544,1320,atpB,"v-type ATPase, subunit B",263xPG_1803 190xPG_1805,,3.6.3.14
+PG_1805,1242,557,289,1020,846,2286,1059,396,1222,452,615,atpD,"v-type ATPase, subunit D",680xPG_1806 190xPG_1804,,3.6.3.14
+PG_1806,969,735,328,1356,1174,2887,1550,600,2280,631,1815,atpI,"v-type ATPase, subunit I",680xPG_1805,,3.6.3.15
+PG_1807,381,305,153,236,460,835,402,197,1162,206,477,atpK,"v-type ATPase, subunit K",,,3.6.3.15
+PG_1808,431,370,211,452,544,888,634,367,967,302,2289,spoT,"guanosine-3',5'-bis(diphosphate) 3'-pyrophosphohydrolase",,
+PG_1809,178,205,101,268,218,689,289,166,523,157,546,,"2-oxoglutarate oxidoreductase, gamma subunit",160xPG_1810,,1.2.7.3
+PG_1810,370,315,138,687,432,1076,591,319,651,232,693,,"2-oxoglutarate oxidoreductase, beta subunit",160xPG_1809,,1.2.7.3
+PG_1811,52,51,21,108,55,161,99,44,146,66,93,,hypothetical protein,,
+PG_1812,633,450,233,756,511,1275,609,396,1082,344,1062,,"2-oxoglutarate oxidoreductase, alpha subunit",50xPG_1813,,1.2.7.3
+PG_1813,270,295,112,206,234,1215,372,172,753,261,228,,"ferredoxin, 4Fe-4S",50xPG_1812,,1.2.7.3
+PG_1814,223,307,117,347,271,832,486,173,426,194,2022,dnaG,DNA primase,6xPG_1815,
+PG_1815,104,39,49,72,54,101,87,53,89,35,765,kdsB,3-deoxy-D-manno-octulosonate cytidylyltransferase,44xPG_1816 6xPG_1814,,2.7.7.38
+PG_1816,64,46,38,52,56,77,79,41,63,22,522,,"NAD(P)H dehydrogenase, quinone family, putative",44xPG_1815,,1.6.99.-
+PG_1817,45,40,39,31,41,93,52,45,106,22,816,,conserved hypothetical protein,52xPG_1818,
+PG_1818,53,84,30,72,62,124,86,50,142,33,717,,hypothetical protein,96xPG_1819 52xPG_1817,
+PG_1819,52,70,26,76,41,80,67,40,158,38,627,,hypothetical protein,96xPG_1818,
+PG_1820,273,189,118,435,297,739,369,259,611,203,1497,nrfA,"cytochrome c nitrite reductase, catalytic subunit NrfA",132xPG_1821,,1.7.2.2
+PG_1821,665,322,244,393,528,1804,339,292,970,465,612,nrfH,"cytochrome c nitrite reductase, small subunit NrfH",132xPG_1820,
+PG_1823,286,269,193,190,515,997,419,364,858,204,654,,hypothetical protein,,
+PG_1824,305,185,143,256,294,551,451,194,552,157,1278,eno,enolase,,,4.2.1.11
+PG_1825,43,38,18,20,30,83,43,20,65,25,162,,hypothetical protein,127xPG_1826,
+PG_1826,68,94,39,78,74,103,125,55,253,84,420,,conserved domain protein,144xPG_1827 127xPG_1825,
+PG_1827,37124,16881,7283,12098,14687,172515,17140,6792,15869,7421,642,,"RNA polymerase sigma-70 factor, ECF subfamily",144xPG_1826,1xPG_1143
+PG_1828,24478,4671,2214,3433,7396,45140,4683,2211,9033,2119,213,,"lipoprotein, putative",,
+PG_1829,111,79,89,204,110,430,119,165,273,73,1674,,"long-chain-fatty-acid--CoA ligase, putative",,
+PG_1831,176,76,81,104,71,133,116,104,175,46,1968,recQ-2,ATP-dependent DNA helicase RecQ,,,3.6.1.-
+PG_1834,553,550,340,824,831,1936,720,492,1720,588,816,,glycogen synthase-related protein,,
+PG_1835,653,1466,347,875,990,2828,2460,760,2908,1295,1368,,"lipoprotein, putative",,
+PG_1836,95,33,67,45,51,109,64,53,115,33,1236,nupG,nucleoside permease NupG,,
+PG_1837,5738,4555,2893,9515,7327,9389,4123,4844,10779,4968,6318,,hemagglutinin protein HagA,,39127xPG_2024
+PG_1840,16,2,6,2,2,9,3,6,11,0,114,,conserved domain protein,,
+PG_1841,193,218,114,305,145,286,202,113,248,104,924,,conserved hypothetical protein,29xPG_1842,
+PG_1842,104,210,55,199,57,131,164,49,178,81,993,,"acetyltransferase, GNAT family",29xPG_1841,
+PG_1846,7,3,3,4,12,9,2,4,6,1,138,,hypothetical protein,36xPG_1847,
+PG_1847,91,84,53,132,238,237,160,136,276,80,381,,"endoribonuclease L-PSP, putative",36xPG_1846 35xPG_1848,
+PG_1848,127,112,74,179,124,230,199,84,357,94,750,,"RNA methyltransferase, TrmH family",105xPG_1849 35xPG_1847,,2.1.1.-
+PG_1849,278,254,136,358,294,590,487,180,577,201,1656,recN,DNA repair protein RecN,105xPG_1848 101xPG_1850,
+PG_1850,118,126,67,211,82,295,212,92,287,100,909,,hypothetical protein,101xPG_1849 83xPG_1851,
+PG_1851,297,231,122,443,281,525,482,191,401,208,1215,coaBC,phosphopantothenoylcysteine decarboxylase/phosphopantothenate--cysteine ligase,83xPG_1850 49xPG_1852,
+PG_1852,255,148,115,270,191,492,259,123,425,131,780,,exonuclease,211xPG_1853 49xPG_1851,,2.7.7.7
+PG_1853,444,250,180,383,374,836,433,227,806,225,1134,dnaN,"DNA polymerase III, beta subunit",211xPG_1852,,2.7.7.7
+PG_1854,73,59,29,34,43,150,83,55,75,22,558,,5-formyltetrahydrofolate cyclo-ligase family protein,251xPG_1855,,6.3.3.2
+PG_1855,203,182,84,187,116,521,291,118,223,99,1635,,carboxyl-terminal protease,251xPG_1854 68xPG_1856,
+PG_1856,98,68,39,80,53,432,79,28,143,38,456,,cytidine/deoxycytidylate deaminase family protein,68xPG_1855,,3.5.4.12
+PG_1857,27,8,18,10,21,124,29,21,26,9,354,,conserved hypothetical protein,,
+PG_1858,56,44,47,51,966,2146,470,48,229,52,498,,flavodoxin,,
+PG_1859,160,138,60,140,89,155,172,86,257,81,1161,,glycerate kinase family protein,,15xPG_1861,2.7.1.31
+PG_1860,221,101,128,136,240,473,154,152,158,76,1185,,conserved hypothetical protein,,
+PG_1861,21,7,14,17,25,38,12,20,27,4,171,,hypothetical protein,27xPG_1862,15xPG_1859
+PG_1862,71,16,30,12,46,112,33,39,98,16,294,,hypothetical protein,111xPG_1863 27xPG_1861,
+PG_1863,63,21,32,17,75,103,17,34,85,25,153,,hypothetical protein,127xPG_1864 111xPG_1862,
+PG_1864,606,207,250,109,643,1340,239,315,627,225,3801,,leucine-rich protein,127xPG_1863,
+PG_1866,48,19,5,9,46,123,21,37,14,10,126,,hypothetical protein,,
+PG_1868,78,83,35,29,69,162,78,35,73,22,522,,"membrane protein, putative",27xPG_1869,
+PG_1869,41,122,18,40,39,247,156,14,48,56,168,,hypothetical protein,27xPG_1868,
+PG_1870,41,10,26,17,22,29,23,20,32,10,660,,"methlytransferase, UbiE/COQ5 family",1xPG_1871,
+PG_1871,19,7,10,2,12,31,6,8,19,3,291,,hypothetical protein,1xPG_1870,
+PG_1872,1300,405,591,663,751,1541,736,461,1117,473,1980,hutU,urocanate hydratase,,,4.2.1.49
+PG_1874,32,6,23,25,33,48,29,37,30,17,408,,conserved hypothetical protein,40xPG_1875,
+PG_1875,110,56,71,77,95,212,100,85,136,69,975,,hemolysin,40xPG_1874 38xPG_1876,
+PG_1876,145,134,82,151,91,183,195,109,304,104,828,,conserved hypothetical protein,52xPG_1877 38xPG_1875,
+PG_1877,615,267,246,248,390,869,315,229,994,260,1359,nhaA,Na+/H+ antiporter,52xPG_1876,
+PG_1878,286,110,123,196,178,420,247,154,378,143,1473,cysS,cysteinyl-tRNA synthetase,,,6.1.1.16
+PG_1879,108,69,69,112,135,350,125,107,191,81,1020,,conserved hypothetical protein,28xPG_1880,
+PG_1880,98,87,40,86,89,206,100,77,244,55,1011,,"glycosyl transferase, group 2 family protein",28xPG_1879 18xPG_1881,
+PG_1881,316,427,129,341,311,875,544,198,764,248,1443,,hypothetical protein,18xPG_1880,
+PG_1884,532,382,227,475,508,1149,493,318,919,302,2025,,"alpha-L-fucosidase precursor, putative",,
+PG_1885,917,1074,422,1001,844,1791,1535,602,1341,978,2088,ppk,polyphosphate kinase,,,2.7.4.1
+PG_1886,154,77,84,159,111,206,127,128,169,70,1221,hflX,GTP-binding protein HflX,,
+PG_1887,127,153,54,144,119,205,209,94,291,98,1035,,rhodanese-like domain protein,27xPG_1888,,2.9.1.-
+PG_1888,38,22,21,31,13,20,33,27,30,15,615,,conserved hypothetical protein,27xPG_1887,
+PG_1889,62,61,44,57,87,282,99,72,163,58,660,,hypothetical protein,,
+PG_1890,27,34,10,27,38,189,27,26,55,23,228,,"lipoprotein, putative",,
+PG_1891,48,47,14,40,28,365,36,29,110,27,510,,hypothetical protein,,
+PG_1892,151,132,54,138,92,973,59,127,135,78,387,,hypothetical protein,,
+PG_1893,64,35,35,37,48,522,32,43,53,13,774,,hypothetical protein,,
+PG_1894,0,0,0,0,0,0,0,0,0,0,579,,hypothetical protein,,
+PG_1895,25,6,17,3,3,96,4,14,7,3,699,,hypothetical protein,,
+PG_1896,115,83,71,179,114,336,158,106,253,70,1290,metK,S-adenosylmethionine synthase,,,2.5.1.6
+PG_1897,52,41,27,66,37,109,69,31,136,46,678,,thiamin pyrophosphokinase catalytic domain protein,45xPG_1898,
+PG_1898,71,57,22,49,51,100,83,46,120,36,609,,"transporter, putative",55xPG_1899 45xPG_1897,
+PG_1899,285,137,144,213,199,426,279,174,347,80,2385,,"TonB-dependent receptor, putative",55xPG_1898,
+PG_1900,66,64,52,83,77,188,59,68,117,30,948,,conserved hypothetical protein TIGR00157,,,3.6.1.-
+PG_1901,64,17,37,90,50,89,72,75,87,30,522,frr,ribosome recycling factor,,
+PG_1902,183,102,75,235,138,278,198,106,291,127,720,pyrH,uridylate kinase,,,2.7.4.-
+PG_1903,175,123,95,127,88,260,184,96,311,131,1992,,conserved hypothetical protein,,
+PG_1904,39,9,6,14,20,119,21,24,62,14,330,,hypothetical protein,,
+PG_1906,3521,2045,2569,753,4650,3926,2345,2974,11110,3267,1086,,"ISPg1, transposase",,37160xPG_1448 32132xPG_0184 26508xPG_1244 24157xPG_0460 9113xPG_0549 8896xPG_1320 8711xPG_0825 4114xPG_1031 3371xPG_1177 3370xPG_1197 2944xPG_1624
+PG_1908,432,226,213,109,436,3496,162,278,779,201,846,,hypothetical protein,,
+PG_1910,447,389,134,262,591,2420,697,395,1378,319,483,rplQ,ribosomal protein L17,1267xPG_1911,
+PG_1911,1458,794,485,968,1978,5946,1516,1245,3075,615,993,rpoA,"DNA-directed RNA polymerase, alpha subunit",1720xPG_1912 1267xPG_1910,,2.7.7.6
+PG_1912,1482,683,528,925,1898,5773,1312,1279,2298,579,606,rpsD,ribosomal protein S4,1720xPG_1911,
+PG_1913,1180,353,391,541,1235,2838,573,777,1183,275,387,rpsK,ribosomal protein S11,458xPG_1914,
+PG_1914,1004,283,375,434,1216,2902,555,692,911,241,381,rpsM,ribosomal protein S13,458xPG_1913 335xPG_1915,
+PG_1915,317,188,120,168,335,1290,277,354,406,183,117,rpmJ,ribosomal protein L36,686xPG_1916 335xPG_1914,
+PG_1916,470,299,194,296,595,1746,423,377,674,194,219,infA,translation initiation factor IF-1,888xPG_1917 686xPG_1915,
+PG_1917,1889,1035,755,1580,2674,5485,1508,1280,2456,812,786,map,"methionine aminopeptidase, type I",1421xPG_1918 888xPG_1916,,3.4.11.18
+PG_1918,7875,3267,2632,5004,8639,17198,4771,4413,7063,2486,1341,secY,"preprotein translocase, SecY subunit",4487xPG_1919 1421xPG_1917,
+PG_1919,2528,1485,888,2764,3524,6099,2382,2309,3650,1224,447,rplO,ribosomal protein L15,4487xPG_1918 379xPG_1920,
+PG_1920,341,176,178,495,539,952,308,363,618,155,177,rpmD,ribosomal protein L30,492xPG_1921 379xPG_1919,
+PG_1921,1035,429,443,1457,1832,2711,940,1090,1644,405,519,rpsE,ribosomal protein S5,492xPG_1920 367xPG_1922,
+PG_1922,562,410,281,721,854,1612,746,550,1286,338,345,rplR,ribosomal protein L18,896xPG_1923 367xPG_1921,
+PG_1923,710,472,304,909,931,2219,837,666,1785,376,552,rplF,ribosomal protein L6,896xPG_1922 296xPG_1924,
+PG_1924,384,237,184,548,628,994,399,402,677,202,396,rpsH,ribosomal protein S8,296xPG_1923,
+PG_1925,706,488,262,557,1899,2485,643,884,1044,488,270,rpsN,ribosomal protein S14,5794xPG_1926,
+PG_1926,1173,937,441,1221,3634,4004,1371,1670,2642,1011,561,rplE,ribosomal protein L5,5794xPG_1925 999xPG_1927,
+PG_1927,399,326,174,630,742,1256,543,433,1019,280,321,rplX,ribosomal protein L24,999xPG_1926 282xPG_1928,
+PG_1928,292,145,113,361,496,761,220,277,400,81,366,rplN,ribosomal protein L14,410xPG_1929 282xPG_1927,
+PG_1929,250,308,132,508,555,1196,421,429,718,254,255,rpsQ,ribosomal protein S17,410xPG_1928 400xPG_1930,
+PG_1930,136,138,89,386,217,598,233,203,525,94,195,rpmC,ribosomal protein L29,400xPG_1929 326xPG_1931,
+PG_1931,295,81,153,465,384,638,193,326,316,77,435,rplP,ribosomal protein L16,326xPG_1930 106xPG_1932,
+PG_1932,514,264,257,801,619,1335,530,502,727,203,741,rpsC,ribosomal protein S3,689xPG_1933 106xPG_1931,
+PG_1933,427,268,158,627,497,1012,453,338,979,222,351,rplV,ribosomal protein L22,689xPG_1932,
+PG_1934,219,172,97,536,282,529,304,217,487,149,270,rpsS,ribosomal protein S19,230xPG_1935,
+PG_1935,615,398,252,1124,574,1575,747,437,1047,308,825,rplB,ribosomal protein L2,982xPG_1936 230xPG_1934,
+PG_1936,169,347,75,491,168,675,504,176,731,216,294,rplW,ribosomal protein L23,982xPG_1935 274xPG_1937,
+PG_1937,454,424,240,980,616,1894,891,419,1349,384,630,rplD,ribosomal protein L4,1415xPG_1938 274xPG_1936,
+PG_1938,683,638,295,1174,789,2722,1101,573,2173,614,618,rplC,ribosomal protein L3,1415xPG_1937 395xPG_1939,
+PG_1939,202,213,81,500,214,601,345,168,607,169,306,rpsJ,ribosomal protein S10,395xPG_1938 70xPG_1940,
+PG_1940,1181,1059,520,3185,1394,4362,2545,1053,3312,1017,2124,fusA,translation elongation factor G,238xPG_1941 70xPG_1939,,3.6.5.3
+PG_1941,205,280,98,732,215,730,529,184,619,175,477,rpsG,ribosomal protein S7,238xPG_1940,
+PG_1942,144,194,81,593,285,1055,454,217,366,157,405,rpsL,ribosomal protein S12,,
+PG_1943,98,29,76,41,64,65,56,93,111,40,1287,,hypothetical protein,,
+PG_1944,525,219,244,262,334,486,391,204,621,200,1260,aroA,3-phosphoshikimate 1-carboxyvinyltransferase,32xPG_1945,,2.5.1.19
+PG_1945,57,24,39,70,34,89,108,39,110,37,444,,hypothetical protein,87xPG_1946 32xPG_1944,
+PG_1946,85,35,35,85,34,55,96,53,86,30,807,,ABC 3 transporter family protein,87xPG_1945 54xPG_1947,
+PG_1947,455,447,278,808,393,810,975,458,1044,408,3483,,TPR domain protein,54xPG_1946 13xPG_1948,
+PG_1948,255,238,149,281,237,431,463,195,401,200,1422,,"lipoprotein, putative",13xPG_1947,
+PG_1949,344,252,178,297,456,727,478,287,947,313,1005,mdh,malate dehydrogenase,,,1.1.1.37
+PG_1950,207,124,113,94,249,362,159,201,294,77,1161,,"membrane protein, putative",,
+PG_1951,325,241,164,305,369,600,422,224,607,210,1701,glnS,glutaminyl-tRNA synthetase,25xPG_1952,,6.1.1.18
+PG_1952,81,50,51,87,68,154,81,78,169,36,648,,DedA family protein,25xPG_1951,
+PG_1953,318,219,151,196,400,541,354,221,634,153,936,,YitT family protein,141xPG_1954,
+PG_1954,171,167,88,154,131,255,268,117,240,94,1020,,NAD dependent epimerase/reductase-related protein,141xPG_1953,
+PG_1956,570,494,214,632,529,1149,873,320,1055,318,1296,abfT-2,4-hydroxybutyrate CoA-transferase,,
+PG_1959,1321,829,557,763,1492,11478,1369,1081,2226,522,189,rpmG,ribosomal protein L33,4372xPG_1960,
+PG_1960,2195,1418,1096,1510,4281,17440,1739,3020,2912,745,240,rpmB,ribosomal protein L28,4372xPG_1959,
+PG_1961,524,263,236,279,465,853,395,344,582,153,2268,,hypothetical protein,,
+PG_1963,84,120,32,133,68,105,157,56,168,58,576,,Sua5/YciO/YrdC/YwlC family protein,39xPG_1964,
+PG_1964,170,100,62,101,60,103,184,94,224,65,1407,,bacterial sugar transferase,39xPG_1963,
+PG_1966,57,84,34,137,43,105,159,43,155,56,807,,conserved hypothetical protein,,
+PG_1967,57,28,30,20,23,39,66,34,67,27,888,,TPR domain protein,,
+PG_1968,0,0,0,0,0,0,0,0,0,0,105,,hypothetical protein,,
+PG_1969,0,0,0,0,0,0,0,0,0,0,903,,hypothetical protein,,
+PG_1970,113,15,58,12,71,111,19,20,24,23,300,,hypothetical protein,,
+PG_1972,350,729,128,498,395,715,928,223,1891,580,1122,,hemagglutinin protein HagB,,5534xPG_1975
+PG_1974,3799,763,1213,511,3653,11158,1053,2591,4055,338,1092,,hypothetical protein,,
+PG_1975,303,668,108,443,284,569,841,181,1662,521,1053,,hemagglutinin protein HagC,,5534xPG_1972
+PG_1977,166,159,74,137,78,122,240,85,336,108,2007,,hypothetical protein,,
+PG_1978,15,18,3,7,8,11,7,8,21,6,615,,hypothetical protein,68xPG_1979,
+PG_1979,19,16,5,8,5,11,12,9,19,8,168,,hypothetical protein,68xPG_1978,
+PG_1980,27,41,8,33,153,414,39,41,116,14,171,,hypothetical protein,,
+PG_1981,11,4,6,4,5,18,6,13,13,2,291,cas2-1,CRISPR-associated protein Cas2,8xPG_1982,
+PG_1982,94,80,73,123,49,148,112,88,298,83,3096,,CRISPR-associated protein Cas1,8xPG_1981,
+PG_1983,26,24,16,17,15,36,15,18,36,8,762,,"CRISPR-associated protein, TM1791 family",10xPG_1984,
+PG_1984,8,28,12,20,14,59,15,6,32,13,444,,hypothetical protein,43xPG_1985 10xPG_1983,
+PG_1985,36,52,14,51,44,153,48,34,101,27,702,,"CRISPR-associated protein, TM1792 family",43xPG_1984 23xPG_1986,
+PG_1986,56,44,32,42,64,237,57,48,146,45,1191,,"CRISPR-associated protein, TM1793 family",23xPG_1985 18xPG_1987,
+PG_1987,94,152,56,99,130,544,147,123,221,88,1647,,"CRISPR-associated protein, TM1811 family",18xPG_1986,
+PG_1988,56,44,25,30,66,203,33,43,95,28,1443,,hypothetical protein,63xPG_1989,
+PG_1989,13,11,8,4,6,33,5,4,21,10,219,,hypothetical protein,63xPG_1988,
+PG_1992,221,95,107,152,103,258,143,116,265,92,1878,gidA,glucose-inhibited division protein A,,
+PG_1993,130,26,81,57,64,106,52,100,74,35,1800,uvrC,"excinuclease ABC, C subunit",33xPG_1994,
+PG_1994,35,20,27,29,60,92,28,51,39,18,453,dtd,D-tyrosyl-tRNA(Tyr) deacylase,33xPG_1993 32xPG_1995,,3.1.-.-
+PG_1995,32,15,18,18,42,70,30,45,53,14,351,,conserved hypothetical protein,101xPG_1996 32xPG_1994,
+PG_1996,119,71,59,67,121,277,156,83,185,61,870,deoC,deoxyribose-phosphate aldolase,101xPG_1995 7xPG_1997,,4.1.2.4
+PG_1997,14,7,5,5,23,71,24,12,48,8,162,,hypothetical protein,7xPG_1996,
+PG_1998,409,251,195,168,328,691,270,210,468,209,879,,polyprenyl synthetase,,,2.5.1.-
+PG_1999,51,32,40,32,30,103,52,47,72,17,639,,conserved hypothetical protein,17xPG_2000,
+PG_2000,62,38,37,65,43,69,72,49,101,27,627,,signal peptidase-related protein,53xPG_2001 17xPG_1999,,3.4.21.89
+PG_2001,152,150,92,226,101,209,239,111,220,102,1398,lepB,signal peptidase I,53xPG_2000 38xPG_2002,,3.4.21.89
+PG_2002,147,132,66,184,145,296,193,130,320,105,717,dapB,dihydrodipicolinate reductase,38xPG_2001,,1.3.1.26
+PG_2003,180,91,91,132,146,228,206,120,435,187,1344,dgt,deoxyguanosinetriphosphate triphosphohydrolase,,,3.1.5.1
+PG_2004,58,20,30,27,22,56,36,35,35,12,993,,conserved hypothetical protein,,
+PG_2006,177,98,44,73,129,278,77,66,133,32,360,,hypothetical protein,,
+PG_2008,457,562,163,641,729,557,501,405,762,251,2502,,"TonB-dependent receptor, putative",,
+PG_2009,178,91,69,131,213,418,116,153,159,75,738,,"DNA repair protein RecO, putative",,
+PG_2010,1028,506,436,536,816,2075,736,500,1138,445,1653,,"phosphomannomutase, putative",,,5.4.2.8
+PG_2013,67,64,37,35,134,213,73,98,61,38,264,cas2-2,CRISPR-associated protein Cas2,88xPG_2014,
+PG_2014,119,238,37,118,150,614,306,95,300,137,1017,cas1,CRISPR-associated protein Cas1,370xPG_2015 88xPG_2013,
+PG_2015,102,302,39,200,132,609,375,93,404,213,513,cas4,CRISPR-associated protein Cas4,370xPG_2014,
+PG_2016,0,0,0,0,0,0,0,0,0,0,2337,cas3,CRISPR-associated helicase Cas3,,
+PG_2017,0,0,0,0,0,0,0,0,0,0,1017,,hypothetical protein,,
+PG_2018,0,0,0,0,0,0,0,0,0,0,1500,,hypothetical protein,,
+PG_2019,36,20,18,24,46,58,30,22,106,25,795,,hypothetical protein,385xPG_2020,
+PG_2020,621,441,333,363,832,1214,586,377,1830,597,666,,"CRISPR-associated protein, TM1814 family",385xPG_2019,
+PG_2021,266,350,144,347,345,736,554,276,675,203,1932,,conserved hypothetical protein,116xPG_2022,
+PG_2022,449,403,257,506,480,844,729,332,910,298,2544,,hypothetical protein,116xPG_2021,
+PG_2023,242,138,118,310,284,351,229,181,435,187,972,fmt,methionyl-tRNA formyltransferase,,,2.1.2.9
+PG_2024,11687,7609,6631,17998,21821,26483,8424,11333,18174,8238,5121,hagE,hemagglutinin protein HagE,,46523xPG_0506 39127xPG_1837
+PG_2026,101,100,39,67,63,135,162,47,252,50,534,,phosphoglycerate mutase family protein,21xPG_2027,
+PG_2027,141,126,56,114,115,214,192,109,564,122,525,,hypothetical protein,92xPG_2028 21xPG_2026,
+PG_2028,72,52,38,70,43,112,112,49,222,67,510,,ebsC protein,92xPG_2027 64xPG_2029,
+PG_2029,383,291,199,538,420,659,638,405,1092,363,2580,,hypothetical protein,64xPG_2028,
+PG_2030,118,57,63,50,94,148,89,83,237,73,582,,hypothetical protein,54xPG_2031,
+PG_2031,870,436,374,284,911,849,444,522,1786,570,453,,hypothetical protein,128xPG_2032 54xPG_2030,
+PG_2032,293,250,186,271,232,370,401,267,910,277,2514,priA,primosomal protein N',128xPG_2031 36xPG_2033,
+PG_2033,231,226,114,361,239,484,490,227,619,181,1389,gltD,"glutamate synthase, small subunit",36xPG_2032,,1.4.1.13
+PG_2034,321,902,151,1055,468,974,1577,374,1560,737,792,,"oxidoreductase, FAD-binding, putative",,
+PG_2035,61,21,36,34,34,67,40,46,64,31,678,trmD,tRNA (guanine-N1)-methyltransferase,8xPG_2036,,2.1.1.31
+PG_2036,84,25,42,45,35,45,56,54,87,28,912,,ion transporter,8xPG_2035,
+PG_2037,18,14,11,9,26,8,21,14,25,6,222,,hypothetical protein,17xPG_2038,
+PG_2038,33,5,19,8,25,14,11,15,16,3,399,,"N-acetylmuramoyl-L-alanine amidase, putative",17xPG_2037,
+PG_2040,79,79,40,181,183,107,74,48,96,60,477,,"DNA-binding protein, histone-like family",,
+PG_2041,51,42,37,24,48,116,45,46,89,22,732,,hypothetical protein,,
+PG_2042,90,35,59,22,83,147,34,82,89,29,1011,,thioredoxin family protein,,
+PG_2043,191,160,77,152,317,721,172,264,429,113,1095,,conserved hypothetical protein TIGR00486,1548xPG_2044,
+PG_2044,604,621,249,460,1121,4564,886,761,1475,441,756,,conserved hypothetical protein,1548xPG_2043,
+PG_2046,145,73,97,117,84,165,164,104,244,71,1365,,conserved hypothetical protein,28xPG_2047,,6.3.4.-
+PG_2047,272,214,135,269,252,387,432,196,541,161,2286,,"helicase, putative",28xPG_2046,
+PG_2048,141,134,71,106,173,219,182,110,557,179,381,,hypothetical protein,278xPG_2049,
+PG_2049,573,586,294,460,612,652,602,435,1501,703,378,,hypothetical protein,278xPG_2048,
+PG_2050,2888,940,1565,571,4065,3935,1098,2176,4751,1436,276,,hypothetical protein,,
+PG_2052,260,83,125,103,240,422,182,141,268,81,870,dapA,dihydrodipicolinate synthase,35xPG_2053,,4.2.1.52
+PG_2053,117,55,78,38,72,212,89,79,122,37,654,bioD,dethiobiotin synthase,35xPG_2052,,6.3.3.3
+PG_2054,1915,1125,1197,968,1510,5071,1919,1252,4038,977,672,,lipoprotein PG3,,
+PG_2055,1623,727,636,1047,1291,5604,1273,892,2065,562,981,,dihydroorotate dehydrogenase family protein,,
+PG_2057,0,0,0,0,0,0,0,0,0,0,939,,"ISPg5, transposase Orf2",,
+PG_2058,0,0,0,0,0,0,1,0,0,0,390,,"ISPg5, transposase Orf1",,
+PG_2060,262,173,120,162,177,485,275,151,385,134,804,thyA,thymidylate synthase,13xPG_2061,,2.1.1.45
+PG_2061,84,70,43,105,58,154,164,56,206,65,489,folA,dihydrofolate reductase,13xPG_2060,,1.5.1.3
+PG_2062,280,180,133,185,163,473,252,158,484,133,1365,hisS,histidyl-tRNA synthetase,62xPG_2063,,6.1.1.21
+PG_2063,24,10,13,10,9,17,17,17,33,4,207,,hypothetical protein,62xPG_2062 16xPG_2064,
+PG_2064,39,18,18,30,44,65,32,45,44,32,405,,hypothetical protein,16xPG_2063 3xPG_2065,
+PG_2065,157,85,83,113,80,115,187,126,205,64,1026,,conserved hypothetical protein TIGR00048,3xPG_2064,
+PG_2066,242,279,109,386,442,697,538,238,648,252,1056,,"lipoprotein, putative",10xPG_2067,
+PG_2067,254,185,127,263,229,693,426,165,528,153,1098,pdxA,pyridoxal phosphate biosynthetic protein PdxA,45xPG_2068 10xPG_2066,,1.1.1.262
+PG_2068,105,81,45,125,67,137,146,73,188,74,459,tagD,glycerol-3-phosphate cytidylyltransferase,86xPG_2069 45xPG_2067,,2.7.7.39
+PG_2069,144,90,69,144,146,304,174,95,266,88,732,,"oxidoreductase, short chain dehydrogenase/reductase family",120xPG_2070 86xPG_2068,
+PG_2070,161,138,80,164,117,275,273,113,310,97,927,,hypothetical protein,120xPG_2069 105xPG_2071,
+PG_2071,115,145,48,170,84,129,239,66,208,73,936,,conserved domain protein,105xPG_2070 56xPG_2072,
+PG_2072,412,654,232,633,299,580,906,279,1093,385,3309,,UvrD/REP helicase domain protein,56xPG_2071,
+PG_2073,13016,9608,2362,9111,13844,46625,14522,9926,14817,6503,156,,hypothetical protein,,140334xPG_1669 140334xPG_1264 138224xPG_0103
+PG_2074,1182,1595,508,2577,1305,3516,2277,1027,3328,1340,159,,hypothetical protein,,18655xPG_1265 18655xPG_1670 18408xPG_0102
+PG_2075,117399,102071,52527,106049,102297,205014,148219,80548,111709,103966,219,,hypothetical protein,22744xPG_2076,1129799xPG_1266 1088649xPG_1671 1067146xPG_0101 22744xPG_1267 22471xPG_1672 21698xPG_0100
+PG_2076,9199,6144,2438,7346,8949,21526,8511,6395,10686,3788,549,,hypothetical protein,22744xPG_2075 8xPG_2077,37653xPG_1267 37380xPG_1672 36392xPG_0100 22744xPG_1266 22471xPG_1671 21698xPG_0101
+PG_2077,15,2,11,5,3,3,4,13,9,7,387,,hypothetical protein,8xPG_2076,
+PG_2078,156,106,75,68,159,290,166,121,329,100,1173,,conserved hypothetical protein,,
+PG_2079,36,16,23,9,9,32,19,26,35,10,477,,hypothetical protein,18xPG_2080,
+PG_2080,114,37,47,34,46,38,83,48,104,34,1302,bioA,adenosylmethionine--8-amino-7-oxononanoate aminotransferase,40xPG_2081 18xPG_2079,
+PG_2081,81,53,43,51,53,98,120,53,155,34,993,bioB,biotin synthetase,40xPG_2080,,2.8.1.6
+PG_2082,1047,853,561,466,1731,2420,1108,1117,2357,709,1542,,POT family protein,111xPG_2083,
+PG_2083,244,343,127,360,269,710,465,284,645,187,1098,,hypothetical protein,111xPG_2082,
+PG_2085,539,310,212,422,552,1078,490,288,783,282,984,trpS,tryptophanyl-tRNA synthetase,,,6.1.1.2
+PG_2086,311,167,178,216,293,624,310,142,465,196,420,,hypothetical protein,393xPG_2087,
+PG_2087,145,91,73,128,154,282,173,86,276,106,474,,conserved hypothetical protein,393xPG_2086,
+PG_2088,202,155,95,277,180,398,309,153,520,143,1059,msrA,peptide methionine sulfoxide reductase,,,1.8.4.12
+PG_2089,192,176,114,321,226,898,309,175,390,142,1185,,hypothetical protein,,
+PG_2090,178,105,64,70,127,342,126,95,213,48,909,,cation efflux family protein,4xPG_2091,
+PG_2091,35,40,20,33,55,76,60,34,78,25,354,folB,dihydroneopterin aldolase,4xPG_2090,,4.1.2.25
+PG_2092,116,99,94,91,76,213,139,80,419,90,1260,,hypothetical protein,,
+PG_2094,456,202,261,271,231,591,351,319,516,150,4548,,conserved domain protein,,
+PG_2095,226,64,122,103,127,182,131,174,178,61,2328,,"lipoprotein, putative",81xPG_2096,
+PG_2096,616,318,307,481,425,1023,667,457,829,248,4791,,conserved domain protein,81xPG_2095,
+PG_2097,225,156,99,201,218,464,310,148,435,106,942,prsA,ribose-phosphate pyrophosphokinase,159xPG_2098,,2.7.6.1
+PG_2098,37,27,15,39,39,68,57,24,57,24,177,,hypothetical protein,159xPG_2097 34xPG_2099,
+PG_2099,270,235,118,230,225,343,358,183,457,151,1284,,"ATP-dependent RNA helicase, DEAD/DEAH box family",34xPG_2098,
+PG_2100,0,0,0,0,0,0,0,0,0,0,1665,,immunoreactive 63 kDa antigen PG102,,
+PG_2101,181,98,42,12,750,74,50,265,349,136,996,,hypothetical protein,,
+PG_2102,1047,394,82,69,7310,380,170,2525,1328,598,1623,,immunoreactive 61 kDa antigen PG91,,
+PG_2103,15,1,8,2,53,7,1,29,10,8,135,,hypothetical protein,,
+PG_2104,3,0,8,1,4,8,1,10,3,0,135,,hypothetical protein,,
+PG_2105,847,646,510,640,1410,5175,780,1079,2468,793,501,,"lipoprotein, putative",,
+PG_2106,191,147,114,101,206,1229,220,267,630,195,684,,hypothetical protein,,
+PG_2107,63,13,51,27,22,16,41,62,41,15,1113,thiH,thiH protein,11xPG_2108,
+PG_2108,48,3,34,6,10,7,17,34,11,5,780,thiG,thiG protein,11xPG_2107,
+PG_2109,114,26,69,39,25,8,55,69,57,19,1944,,hydroxymethylpyrimidine kinase/thiamin-phosphate pyrophosphorylase,17xPG_2110,
+PG_2110,131,20,67,115,26,18,79,80,58,29,1764,thiC,thiamine biosynthesis protein ThiC,17xPG_2109,
+PG_2111,25,14,7,11,33,114,25,46,62,14,201,thiS,thiS protein,31xPG_2112,
+PG_2112,92,48,46,48,144,534,74,146,186,34,1113,,hypothetical protein,31xPG_2111,
+PG_2114,18,10,7,12,14,52,12,12,8,7,177,,hypothetical protein,,
+PG_2116,18,14,12,26,11,67,23,21,19,6,153,,hypothetical protein,,
+PG_2117,5492,3707,1957,3160,5995,18966,3506,2887,4652,2162,579,rpsP,ribosomal protein S16,,
+PG_2119,102,98,64,121,113,211,166,106,193,47,972,,"oxidoreductase, Gfo/Idh/MocA family",,
+PG_2120,121,263,81,253,127,239,398,97,331,109,810,,metallo-beta-lactamase superfamily protein,,
+PG_2121,266,378,129,470,258,619,669,261,562,229,1080,ansA,L-asparaginase,,,3.5.1.1
+PG_2123,97,91,66,133,137,591,166,124,246,114,273,,hypothetical protein,384xPG_2124,
+PG_2124,456,490,276,582,579,2243,902,613,1764,515,1011,gapA,"glyceraldehyde 3-phosphate dehydrogenase, type I",384xPG_2123,,1.2.1.12
+PG_2125,115,74,60,64,114,286,167,115,178,46,879,,"transcriptional regulator, AraC family",,
+PG_2126,117,124,47,162,101,234,231,96,277,85,675,,conserved hypothetical protein TIGR00044,107xPG_2127,
+PG_2127,120,102,47,135,118,353,182,87,229,92,444,,hypothetical protein,107xPG_2126,
+PG_2128,0,0,0,0,0,0,0,0,0,0,939,,"ISPg5, transposase Orf2",,
+PG_2129,0,0,0,0,0,0,0,0,0,0,390,,"ISPg5, transposase Orf1",,
+PG_2130,1197,563,532,447,1804,1326,749,1014,1486,503,582,,hypothetical protein,385xPG_2131,
+PG_2131,1511,1359,633,1189,2411,1102,1747,1455,2382,1132,1473,,60 kDa protein,385xPG_2130,
+PG_2132,1019,294,348,243,2580,535,392,1112,649,304,1167,fimA,fimbrilin,,
+PG_2133,270,132,124,196,327,338,222,188,202,72,912,,"lipoprotein, putative",49xPG_2134,
+PG_2134,471,150,196,279,811,389,263,421,213,75,1374,,"lipoprotein, putative",49xPG_2133,
+PG_2135,0,0,0,0,0,0,0,0,0,0,2013,,"lipoprotein, putative",,
+PG_2136,0,0,0,0,0,0,0,0,0,0,1665,,hypothetical protein,,
+PG_2139,336,607,123,504,943,3054,819,778,1180,377,480,,hypothetical protein,1044xPG_2140,
+PG_2140,703,288,163,208,710,1986,384,381,984,177,186,rpmF,ribosomal protein L32,1044xPG_2139,
+PG_2141,582,867,229,1020,804,1349,1182,497,1466,583,1008,fabH,3-oxoacyl-(acyl-carrier-protein) synthase III,,,2.3.1.180
+PG_2142,175,236,78,351,182,514,405,146,461,140,900,era,GTP-binding protein Era,,
+PG_2143,197,156,110,259,192,605,254,173,379,101,1314,,"GTP-binding protein, Era/ThdF family",,
+PG_2144,649,657,319,958,566,1166,1148,387,1614,467,3300,,hypothetical protein,10xPG_2145,
+PG_2145,84,148,49,187,40,102,200,51,268,71,606,,polysaccharide deacetylase,133xPG_2146 10xPG_2144,
+PG_2146,78,117,51,129,60,187,163,61,184,39,756,,conserved hypothetical protein,133xPG_2145,
+PG_2147,44,35,39,51,53,160,59,46,103,25,582,xpt,xanthine phosphoribosyltransferase,7xPG_2148,,2.4.2.-
+PG_2148,117,106,70,117,99,168,158,86,235,75,1338,,xanthine/uracil permease family protein,7xPG_2147,
+PG_2149,88,83,44,109,68,102,136,62,203,62,723,,hypothetical protein,113xPG_2150,
+PG_2150,200,249,107,304,210,412,392,184,465,146,1506,,LysM domain protein,113xPG_2149,
+PG_2152,0,0,0,0,0,0,0,0,0,0,486,,"DNA-binding protein, histone-like family",,
+PG_2154,77,90,32,48,80,294,145,47,112,53,186,,hypothetical protein,105xPG_2155,
+PG_2155,245,284,109,221,202,464,330,120,555,147,891,,"lipoprotein, putative",105xPG_2154 22xPG_2156,
+PG_2156,119,59,64,108,87,134,111,107,215,84,747,,conserved hypothetical protein TIGR00046,22xPG_2155,
+PG_2157,93,104,64,209,76,195,201,67,236,101,1002,,glutamine cyclotransferase-related protein,78xPG_2158,
+PG_2158,89,147,44,214,79,110,296,76,311,105,426,,conserved hypothetical protein,125xPG_2159 78xPG_2157,
+PG_2159,197,614,101,689,226,271,881,203,603,455,1398,,protoporphyrinogen oxidase,125xPG_2158,,1.3.3.4
+PG_2161,69,19,30,35,29,87,52,40,57,23,900,,"transcriptional regulator, AraC family",31xPG_2162,
+PG_2162,239,133,87,326,208,192,212,156,164,81,1152,lpxB,lipid A disaccharide synthase,101xPG_2163 31xPG_2161,,2.4.1.182
+PG_2163,255,276,140,704,134,296,346,147,405,148,771,surE,stationary-phase survival protein SurE,209xPG_2164 101xPG_2162,,3.1.3.5
+PG_2164,121,130,60,239,106,187,205,100,248,78,558,,"peptidyl-prolyl cis-trans isomerase, FKBP-type",209xPG_2163 44xPG_2165,
+PG_2165,282,199,156,335,223,797,352,229,400,121,1548,glyS,glycyl-tRNA synthetase,44xPG_2164,,6.1.1.14
+PG_2166,0,0,0,0,2,1,0,0,1,0,111,,hypothetical protein,,
+PG_2167,1670,1124,717,1142,2858,7586,1444,2177,3197,893,1440,,immunoreactive 53 kDa antigen PG123,118xPG_2168,
+PG_2168,1055,449,472,479,1562,2598,474,1485,1036,294,570,,hypothetical protein,118xPG_2167,
+PG_2170,520,535,204,599,398,1003,649,246,1153,357,1290,,sugar transporter,54xPG_2171,
+PG_2171,305,459,121,599,266,837,555,169,1413,349,960,,D-isomer specific 2-hydroxyacid dehydrogenase family protein,54xPG_2170,
+PG_2172,1269,798,696,685,1193,2746,1016,735,3335,1043,747,,hypothetical protein,1956xPG_2173,
+PG_2173,843,592,528,533,841,2513,718,778,1674,671,873,omp28,outer membrane lipoprotein Omp28,1956xPG_2172 220xPG_2174,
+PG_2174,851,481,404,713,884,1885,913,665,949,300,1746,,hypothetical protein,220xPG_2173,
+PG_2175,275,269,113,311,381,853,368,303,374,129,483,,conserved hypothetical protein,,
+PG_2176,249,273,129,224,297,1806,282,231,390,113,1131,,"ISPg2, transposase",,3970xPG_0865 3962xPG_1746 3922xPG_1350 3917xPG_0277
+PG_2177,308,115,159,169,369,905,201,206,337,110,1239,nqrF,"NADH:ubiquinone oxidoreductase, Na translocating, F subunit",42xPG_2178,
+PG_2178,119,42,56,35,79,211,77,57,128,34,615,nqrE,"NADH:ubiquinone oxidoreductase, Na translocating, E subunit",42xPG_2177 19xPG_2179,
+PG_2179,127,80,52,102,103,237,130,66,220,71,630,nqrD,"NADH:ubiquinone oxidoreductase, Na translocating, D subunit",35xPG_2180 19xPG_2178,
+PG_2180,89,37,51,77,62,139,106,54,119,33,735,nqrC,"NADH:ubiquinone oxidoreductase, Na translocating, C subunit",35xPG_2179 15xPG_2181,
+PG_2181,126,71,67,93,90,168,167,80,170,43,1200,nqrB,"NADH:ubiquinone oxidoreductase, Na translocating, B subunit",15xPG_2180 8xPG_2182,
+PG_2182,187,228,85,206,151,373,486,143,361,150,1356,nqrA,"NADH:ubiquinone oxidoreductase, Na translocating, A subunit",8xPG_2181,
+PG_2185,111,131,51,142,111,171,184,88,322,108,1317,,"transporter, putative",28xPG_2186,
+PG_2186,67,37,38,47,93,168,86,71,167,45,336,,"transcriptional regulator, putative",28xPG_2185,
+PG_2187,96,118,48,167,117,248,223,71,191,75,888,menA,"1,4-dihydroxy-2-naphthoate octaprenyltransferase",356xPG_2188,,2.5.1.-
+PG_2188,460,500,142,698,460,1749,952,236,1134,363,1149,lysA,diaminopimelate decarboxylase,356xPG_2187 32xPG_2189,,4.1.1.20
+PG_2189,323,202,164,225,307,603,324,173,503,167,1341,lysC,aspartate kinase,49xPG_2190 32xPG_2188,,2.7.2.4
+PG_2190,247,102,104,152,204,372,171,159,472,117,741,ftsE,cell-division ATP-binding protein,49xPG_2189,
+PG_2192,2879,2270,1059,2422,2565,10923,2708,1746,3592,1234,1014,,"peptidase, M23/M37 family",,
+PG_2194,0,1,0,0,2,3,1,0,4,0,1158,,"ISPg4, transposase",,11xPG_0487 11xPG_1658 11xPG_0225 1xPG_0050 1xPG_0177 1xPG_0970 1xPG_1673 1xPG_1261 1xPG_0019
+PG_2197,111,34,64,69,120,208,54,121,108,27,798,,conserved hypothetical protein,,
+PG_2199,289,343,195,336,415,767,722,421,946,422,1938,,"ABC transporter, ATP-binding protein, putative",64xPG_2200,
+PG_2200,256,175,151,245,238,345,397,233,856,197,2088,,TPR domain protein,64xPG_2199 24xPG_2201,
+PG_2201,58,140,50,177,58,67,321,94,486,167,570,def,polypeptide deformylase,24xPG_2200,,3.5.1.88
+PG_2202,53,35,38,53,67,120,68,47,116,22,417,,conserved hypothetical protein TIGR00250,,,3.1.-.-
+PG_2204,928,567,496,665,477,1038,766,473,1524,494,5727,,hypothetical protein,546xPG_2205,
+PG_2205,690,758,259,705,529,1319,681,287,1225,409,945,panE,2-dehydropantoate 2-reductase,546xPG_2204,
+PG_2206,447,662,194,792,573,1212,1075,472,793,351,1617,,"ABC transporter, ATP-binding protein",,
+PG_2207,596,1057,320,892,871,1534,1167,481,3488,980,1020,,conserved domain protein,,
+PG_2208,54,21,34,48,62,76,32,18,60,14,255,,hypothetical protein,,
+PG_2209,202,124,58,99,140,246,95,31,221,58,255,,conserved hypothetical protein,43xPG_2210,
+PG_2210,375,164,213,362,302,447,399,309,544,189,2859,uvrA-2,"excinuclease ABC, A subunit",43xPG_2209,
+PG_2212,104,56,22,53,49,793,66,23,116,22,285,,hypothetical protein,,
+PG_2213,2296,2532,517,989,1615,29237,2012,587,2399,920,183,,nitrite reductase-related protein,,
+PG_2214,165,109,84,86,82,198,180,85,243,74,1275,,hypothetical protein,41xPG_2215,
+PG_2215,405,358,212,492,733,550,742,288,1294,396,1086,manC,mannose-1-phosphate guanylyltransferase,41xPG_2214,,2.7.7.22
+PG_2216,387,230,208,308,286,568,486,230,734,174,1731,,hypothetical protein,,
+PG_2217,286,238,178,291,214,289,344,292,730,271,1905,dxs,deoxyxylulose-5-phosphate synthase,,,2.2.1.7
+PG_2218,197,116,93,132,80,114,167,186,273,110,1341,trkA,potassium uptake protein TrkA,21xPG_2219,
+PG_2219,153,188,109,181,90,206,238,153,288,111,1464,trkH,potassium uptake protein TrkH,21xPG_2218,
+PG_2220,45,40,27,33,367,388,465,63,59,27,354,,hypothetical protein,,1125xPG_1059 767xPG_0499 262xPG_1398 248xPG_1787 208xPG_1363 96xPG_1251 11xPG_0879 2xPG_1250
+PG_2221,183,85,87,114,74,128,151,105,186,61,1335,,MiaB-like tRNA modifying enzyme,69xPG_2222,
+PG_2222,125,85,60,100,66,51,162,79,158,42,918,,"acyltransferase, HtrB/MsbB family",69xPG_2221 5xPG_2223,,2.3.1.-
+PG_2223,115,62,52,51,40,263,130,62,166,61,969,,"glycosyl transferase, group 2 family protein",5xPG_2222,
+PG_2224,78,69,66,51,84,248,99,94,245,63,558,,"membrane protein, putative",33xPG_2225,
+PG_2225,28,28,21,23,36,83,35,35,79,21,270,,conserved hypothetical protein,33xPG_2224,
+PG_2226,190,46,134,71,74,56,91,144,150,32,2223,,hypothetical protein,31xPG_2227,
+PG_2227,58,19,29,18,20,24,40,45,98,20,657,,hypothetical protein,31xPG_2226,
+
