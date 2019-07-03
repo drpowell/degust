@@ -1,0 +1,8 @@
+
+NAME   := drpowell/degust
+VER    := $$(cat VERSION)
+TAG    := $$(git rev-parse --short HEAD)
+
+build:
+	@docker build -t ${NAME}:${VER} -t ${NAME}:${TAG} -t ${NAME}:latest .
+

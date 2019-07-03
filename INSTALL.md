@@ -46,7 +46,7 @@ Install R package dependencies
 
 ### Installing Degust
 
-Ensure rails 4.2 is installed.  Install the necessary gems:
+Ensure rails 5.0 is installed.  Install the necessary gems:
 
     bundle install
 
@@ -82,10 +82,13 @@ repository, run:
 Once the build process has completed, you will have a docker image tagged as "degust" on your system.
 To run this container, run:
 
-    docker run -p 8001:3000 --volume /tmp/degust:/opt/degust/uploads degust
+    docker run -p 8001:3000 --volume /tmp/degust/uploads:/opt/degust/uploads --volumen /tmp/degust/db:/opt/degust/db-file degust
 
 This will start Degust in the Docker container, and allow access to the container via port 8001 on your machine.
-The container directory `/opt/degust/uploads` is mapped to `/tmp/degust` on the host.
+The container directory `/opt/degust/uploads` is mapped to `/tmp/degust/uploads` on the host.  And the sqlite database
+is mapped to `/tmp/degust/db`.  To allow logins, you'll need provied secret keys - see `scripts/example-run-prod.sh`
+and include keys from https://console.developers.google.com/apis/credentials
+
 To access the website, go to `http://localhost:8001/` on your web browser.
 You can change `8001` to any port you wish  to have Degust listening on
 (eg, `-p 80:3000` for a public production service).
