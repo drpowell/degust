@@ -2,10 +2,23 @@
 
 count_cols <- <%== @columns %>
 
-x<-read.delim('<%== @counts_file %>', sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
+x<-read.delim('<%== @counts_file %>',
+              sep="<%== @sep_char %>",
+              check.names=FALSE,
+              colClasses='character',
+              na.strings=c(),
+              skip=<%= @skip_header_lines %>
+              )
 
 # Now re-read the first header line.  Workaround R problem that always has strip.white=T for read.table
-colnames(x) <- scan('<%== @counts_file %>', what="", sep="<%== @sep_char %>", nlines=1,strip.white=F, quote = "\"")
+colnames(x) <- scan('<%== @counts_file %>',
+                    what="",
+                    sep="<%== @sep_char %>",
+                    nlines=1,
+                    strip.white=F,
+                    quote = "\"",
+                    skip="<%= @skip_header_lines %>"
+                    )
 
 x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v))     # Force numeric count columns
 counts <- x[, count_cols]

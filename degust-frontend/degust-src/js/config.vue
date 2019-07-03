@@ -317,6 +317,12 @@
                                 <input v-model.number='settings.fdrThreshold' class="form-control" type="text" placeholder="1" v-tooltip="tip('Optional: Default FDR threshold for display')" />
                             </div>
                           </div>
+                          <div class="form-group">
+                            <label class="control-label col-sm-3">Skip header lines</label>
+                            <div class="controls col-sm-3">
+                                <input v-model.number='settings.skip_header_lines' class="form-control" type="text" placeholder="0" v-tooltip="tip('Optional: Skip this many header lines')" />
+                            </div>
+                          </div>
                       </div>
 
                       <div class='form-group'>

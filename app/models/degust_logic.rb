@@ -35,6 +35,7 @@ class DegustLogic
                 "hidden_factors" => arrToR(settings["hidden_factor"] || [], true),
                 "export_cols" => arrToR(export_cols(settings), true),
                 "output_dir" => output_dir,
+                "skip_header_lines" => force_num(settings['skip_header_lines']),
             }
         method = case query['method']
                  when 'voom' then 'voom'

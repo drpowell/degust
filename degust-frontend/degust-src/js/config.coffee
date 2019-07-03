@@ -42,7 +42,7 @@ input_type_option_row = (val) ->
         ''
 
 flds_optional = ["ec_column","link_column","link_url","min_counts", "min_columns", "min_cpm",
-                 "min_cpm_samples","fdr_column","avg_column"]
+                 "min_cpm_samples","fdr_column","avg_column","skip_header_lines"]
 from_server_model = (mdl) ->
     res = $.extend(true, {}, mdl)
 
@@ -175,6 +175,7 @@ module.exports =
         grid_watch: () ->
             this.settings.csv_format
             this.settings.input_type
+            this.settings.skip_header_lines
             this.csv_data
             Date.now()
         is_pre_analysed: () ->
@@ -203,6 +204,8 @@ module.exports =
                 asRows = d3.csv.parseRows(this.csv_data)
             else
                 asRows = d3.tsv.parseRows(this.csv_data)
+            if this.settings.skip_header_lines
+                asRows = asRows[this.settings.skip_header_lines..]
             if asRows?
                 asRows = asRows.map((row) -> row.map((entry) -> entry.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')))
             column_keys = asRows.shift()
@@ -309,6 +312,8 @@ module.exports =
                 errs.push("Invalid CPM value")
             if !(valid_int(this.settings.min_cpm_samples))
                 errs.push("Invalid 'in at least samples'")
+            if !(valid_int(this.settings.skip_header_lines))
+                errs.push("Invalid 'Skip header lines'")
             this.settings.contrasts.forEach((c) =>
                 if (c.column.length != this.settings.replicates.length)
                     errs.push("Contrast '"+c.name+"' does not match number of samples")
