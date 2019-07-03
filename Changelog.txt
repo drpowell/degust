@@ -32,6 +32,7 @@ v4.0.0
 
 v3.2.0
   * Add uploading from the command line
+  * Update docker build.  Use specific version of Bioconductor 3.9, so we get predictable R library versions
 
 v3.1.1
   * Fix "save to svg" order rendering
