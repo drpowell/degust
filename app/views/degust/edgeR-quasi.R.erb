@@ -1,7 +1,5 @@
 <%= render "degust/common.R.erb" %>
 
-cont.matrix <- <%== @cont_matrix %>
-
 y <- DGEList(counts=counts)
 
 y <- calcNormFactors(y, method="TMM")

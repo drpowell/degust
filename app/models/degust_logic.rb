@@ -7,10 +7,10 @@ class DegustLogic
 
         if query['fields']
             fields = JSON.parse(query['fields'])
-            cont_matrix = matToR(cont_matrix(settings, fields))
+            cont_mat = cont_matrix(settings, fields)
         elsif query['contrast']
             contrast = JSON.parse(query['contrast'])
-            cont_matrix = matToR(explicit_cont_matrix(settings, contrast["name"], contrast["column"]))
+            cont_mat = explicit_cont_matrix(settings, contrast["name"], contrast["column"])
         else
             raise "Bad query"
         end
@@ -28,14 +28,15 @@ class DegustLogic
                 "columns" => arrToR(count_columns(settings), true),
                 "min_counts" => force_num(settings['min_counts']),
                 "min_cpm" => force_num(settings['min_cpm']),
-                "min_cpm_samples" => force_num(settings['min_cpm_samples']),
+                "min_cpm_samples" => force_int(settings['min_cpm_samples']),
                 "design" => matToR(design_matrix(settings)),
-                "cont_matrix" => cont_matrix,
+                "cont_matrix" => matToR(cont_mat),
                 "normalized" => normalized,
                 "hidden_factors" => arrToR(settings["hidden_factor"] || [], true),
                 "export_cols" => arrToR(export_cols(settings), true),
                 "output_dir" => output_dir,
-                "skip_header_lines" => force_num(settings['skip_header_lines']),
+                "skip_header_lines" => force_int(settings['skip_header_lines']),
+                "model_only_selected" => boolToR(settings['model_only_selected']),
             }
         method = case query['method']
                  when 'voom' then 'voom'
@@ -96,6 +97,18 @@ private
         str.to_f
     end
 
+    def self.force_int(str)
+        str.to_i
+    end
+
+    def self.boolToR(bool)
+        if (bool)
+            "TRUE"
+        else
+            "FALSE"
+        end
+    end
+
     def self.count_columns(settings)
         cols = {}
         settings['replicates'].each {|arr| arr[1].each {|c| cols[c]=1 } }
@@ -141,8 +154,8 @@ private
     def self.cont_matrix(settings, conds)
         mat = []
         col_names = []
-        pri = conds.shift
-        conds.each do |cond|
+        pri = conds[0]
+        conds.drop(1).each do |cond|
             if DeSetting::BAD_REGEX.match?(cond)
                 raise "Invalid character in condition"
             end

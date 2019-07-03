@@ -287,7 +287,7 @@
                       <div class="form-group">
                         <label class="control-label col-sm-3" for="config-locked">Config locked</label>
                         <div class="controls col-sm-1">
-                          <input v-model='settings.config_locked' v-bind:disabled="!can_lock" class="form-control" type="checkbox" v-tooltip="tip('Lock the configuration page so only you can change it (you must be logged in)')" />
+                          <input v-model='settings.config_locked' v-bind:disabled="!can_lock" id="config-locked" class="form-control" type="checkbox" v-tooltip="tip('Lock the configuration page so only you can change it (you must be logged in)')" />
                         </div>
                       </div>
 
@@ -321,6 +321,12 @@
                             <label class="control-label col-sm-3">Skip header lines</label>
                             <div class="controls col-sm-3">
                                 <input v-model.number='settings.skip_header_lines' class="form-control" type="text" placeholder="0" v-tooltip="tip('Optional: Skip this many header lines')" />
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-sm-3" for="model_only_selected">Only selected samples</label>
+                            <div class="controls col-sm-1">
+                              <input v-model='settings.model_only_selected' id="model_only_selected" class="form-control" type="checkbox" v-tooltip="tip('Only use the samples in the direct comparison.  Usually all configured samples are used to build the linear model and estimate parameters')" />
                             </div>
                           </div>
                       </div>
