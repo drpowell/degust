@@ -3,8 +3,6 @@
 nf <- calcNormFactors(counts)
 y<-voom(counts, design, plot=FALSE,lib.size=colSums(counts)*nf)
 
-cont.matrix <- <%== @cont_matrix %>
-
 fit <- lmFit(y,design)
 fit2 <- contrasts.fit(fit, cont.matrix)
 fit2 <- eBayes(fit2)

@@ -1,6 +1,20 @@
 <%= render "degust/libraries.R.erb" %>
 
 count_cols <- <%== @columns %>
+design <- <%== @design %>
+cont.matrix <- <%== @cont_matrix %>
+
+# Maybe filter out samples that are not used in the model
+if (<%== @model_only_selected %>) {
+    # Remove columns not used in the comparison
+    use.samples <- rowSums((design %*% cont.matrix)!=0)>0
+    use.conditions <- colSums(design[use.samples,]!=0)>0
+
+    count_cols <- count_cols[use.samples,drop=F]
+    design <- design[use.samples, use.conditions,drop=F]
+    cont.matrix <- cont.matrix[use.conditions,,drop=F]
+}
+
 
 x<-read.delim('<%== @counts_file %>',
               sep="<%== @sep_char %>",
@@ -27,4 +41,4 @@ keepCpm <- rowSums(cpm(counts)> <%= @min_cpm %>) >= <%= @min_cpm_samples %>     
 keep <- keepMin & keepCpm
 x <- x[keep,]
 counts <- counts[keep,]
-design <- <%== @design %>
+
