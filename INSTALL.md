@@ -82,7 +82,7 @@ repository, run:
 Once the build process has completed, you will have a docker image tagged as "degust" on your system.
 To run this container, run:
 
-    docker run -p 8001:3000 --volume /tmp/degust/uploads:/opt/degust/uploads --volumen /tmp/degust/db:/opt/degust/db-file degust
+    docker run -p 8001:3000 --volume /tmp/degust/uploads:/opt/degust/uploads --volume /tmp/degust/db:/opt/degust/db-file degust
 
 This will start Degust in the Docker container, and allow access to the container via port 8001 on your machine.
 The container directory `/opt/degust/uploads` is mapped to `/tmp/degust/uploads` on the host.  And the sqlite database
