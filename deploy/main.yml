@@ -35,6 +35,7 @@
         image: "degust-image:{{ gitresult.after }}"
         state: started
         env_file: "{{ remote_running_loc }}/env-list"
+        restart_policy: always
         ports:
           - "{{ remote_port }}:3000"
         volumes:
