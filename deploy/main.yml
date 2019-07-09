@@ -1,0 +1,42 @@
+---
+- hosts: webserver
+  tasks:
+    - name: Install a list of packages
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - docker.io
+          - python-pip
+      become: yes
+
+    - name: install docker-py
+      pip: name=docker-py
+      become: yes
+
+    - git:
+        repo: "{{ git_remote }}"
+        version: "{{ git_branch }}"
+        dest: "{{ remote_repo_loc }}"
+      register: gitresult
+
+    - name: Build image and with build args
+      docker_image:
+        name: degust-image
+        build:
+          path: "{{ remote_repo_loc }}"
+          pull: no
+        tag: "{{ gitresult.after }}"
+        source: build
+
+    - name: Running the container
+      docker_container:
+        name: degust-training
+        image: "degust-image:{{ gitresult.after }}"
+        state: started
+        env_file: "{{ remote_running_loc }}/env-list"
+        ports:
+          - "{{ remote_port }}:3000"
+        volumes:
+          - "{{ remote_running_loc }}/uploads:/opt/degust/uploads"
+          - "{{ remote_running_loc }}/db:/opt/degust/db-file"

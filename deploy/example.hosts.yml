@@ -1,0 +1,10 @@
+webserver:
+    hosts:
+        degust-hostname.monash.edu:
+            git_remote: https://github.com/drpowell/degust.git
+            git_branch: master
+            remote_user: joebloggs
+            remote_repo_loc: /mnt/degust-repo
+            remote_running_loc: /mnt/degust-running
+            remote_port: 8000
+
