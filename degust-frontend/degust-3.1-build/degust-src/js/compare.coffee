@@ -1113,6 +1113,7 @@ render_page = (template) ->
     opts =
         asset_base: settings.asset_base || ''
         home_link: settings.home_link || '/'
+        degust_name: full_settings.degust_name || 'Degust'
 
     body = $(template(opts))
     $('#replace-me').replaceWith(body)

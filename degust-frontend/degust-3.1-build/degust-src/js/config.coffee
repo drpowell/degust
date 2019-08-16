@@ -126,6 +126,9 @@ update_data = () ->
     if mod_settings['extra_menu_html']
         $('#right-navbar-collapse').append(mod_settings['extra_menu_html'])
 
+    if full_settings['degust_name']
+        $(".degust-name").text(full_settings['degust_name'])
+
     title = mod_settings.name || "Unnamed"
     $(".exp-name").text(title)
     document.title = title
