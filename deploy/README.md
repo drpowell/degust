@@ -17,3 +17,7 @@ In the configured directory for `remote_running_loc` create a file `env-list` ba
     ansible-playbook -i hosts main.yml --ask-become-pass
 
 
+### Just 1 host to deploy:
+
+    ansible-playbook -i hosts.yml  main.yml --ask-become-pass -l production
+
