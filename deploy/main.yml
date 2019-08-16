@@ -26,12 +26,15 @@
         build:
           path: "{{ remote_repo_loc }}"
           pull: no
+          args:
+            run_user: "{{ run_user }}"
+            run_group: "{{ run_group }}"
         tag: "{{ gitresult.after }}"
         source: build
 
     - name: Running the container
       docker_container:
-        name: degust-training
+        name: degust
         image: "degust-image:{{ gitresult.after }}"
         state: started
         env_file: "{{ remote_running_loc }}/env-list"
@@ -41,3 +44,5 @@
         volumes:
           - "{{ remote_running_loc }}/uploads:/opt/degust/uploads"
           - "{{ remote_running_loc }}/db:/opt/degust/db-file"
+          - "{{ remote_running_loc }}/tmp:/opt/degust/tmp"
+          - "{{ remote_running_loc }}/log:/opt/degust/log"

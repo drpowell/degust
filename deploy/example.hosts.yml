@@ -7,4 +7,7 @@ webserver:
             remote_repo_loc: /mnt/degust-repo
             remote_running_loc: /mnt/degust-running
             remote_port: 8000
+            run_user: 1001
+            run_group: 1001
+
 

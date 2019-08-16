@@ -56,5 +56,10 @@ COPY --from=0 /opt/degust .
 
 ENV RAILS_ENV=production RAILS_SERVE_STATIC_FILES=1
 
+ARG run_user=root
+ARG run_group=root
+
+USER ${run_user}:${run_group}
+
 # Run server (this will also migrate the db if necessary)
 CMD ["/opt/degust/scripts/migrate-run.sh"]
