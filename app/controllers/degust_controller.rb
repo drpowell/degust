@@ -47,6 +47,7 @@ class DegustController < ApplicationController
             v.save
         end
         res = {settings: de_setting.settings_with_defaults}
+        res['degust_name'] = helpers.app_name
         res['extra_menu_html'] = render_to_string(partial: 'layouts/navigation_links.html.erb')
         res['is_logged_in'] = !current_user.nil?
         res['is_owner'] = de_setting.is_owner(current_user)

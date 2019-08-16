@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" :href="homeLink">Degust : </a>
+            <a class="navbar-brand" :href="homeLink">{{ fullSettings.degust_name }} : </a>
             <span class="navbar-brand">{{ experimentName }}</span>
             </div>
 
