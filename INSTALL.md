@@ -69,9 +69,7 @@ For development:
     (cd degust-frontend ; ./node_modules/.bin/webpack --watch)
     rails s
 
-For production deploy.  Configure `config/deploy/production.rb`
-
-    cap production deploy
+For production deploy, use ansible and docker.  See `deploy/README.md`
 
 ## Docker
 Ensure Docker is installed, clone this repository, and then from inside the cloned
