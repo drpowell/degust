@@ -1,0 +1,12 @@
+Older frontend code.  Useful if we need to patch the 3.1 dist frontend
+
+Copied from the repo version : a17b7804fdd6928cf785c401a27a046790bf45a8
+
+
+To use:
+
+  npm install
+  ./node_modules/.bin/grunt production
+  
+
+Then copy the degust-dist to ../degust-dist-3.1
