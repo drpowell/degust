@@ -34,7 +34,7 @@
         </button>
 
         <div class='row'>
-          <compare-compact v-for='(dataset,idx) in datasets'
+          <compare-compact v-for='(dataset,idx) in datasets' v-bind:key='idx'
                         :class='column_width'
                         :show-large='dataset.show_large'
                         :show-small='show_small'
