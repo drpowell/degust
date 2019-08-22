@@ -16,6 +16,15 @@ VTooltip = require('v-tooltip').default
 Vue.use(VTooltip)
 VTooltip.options.defaultClass = 'v-tooltip'
 
+VueAWN = require('vue-awesome-notifications').default
+AWNOptions =
+    position: 'top-right'
+    durations:
+        warning: 0
+    icons:
+        enabled: false
+Vue.use(VueAWN, AWNOptions)
+
 # Use vue-router for tracking state in URL
 VueRouter = require('vue-router').default
 router = new VueRouter(

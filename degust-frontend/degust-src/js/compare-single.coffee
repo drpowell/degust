@@ -187,6 +187,8 @@ module.exports =
             # On plot change, reset brushes
             this.genes_highlight = []
             this.genes_selected = this.gene_data.get_data()
+            this.warningToggle(this.fc_calc_columns.length>2 && this.cur_plot=="ma",
+                               'maPlotWarningElem', 'Using MA plot with >2 conditions')
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
@@ -198,6 +200,10 @@ module.exports =
             this.renormalize()
         shown: () ->
             this.$emit('resize')
+        fdrWarning: () ->
+            this.warningToggle(this.fdrWarning, 'fdrWarningElem', "MDS misleading : using FDR filter")
+        fcWarning: () ->
+            this.warningToggle(this.fcWarning, 'fcWarningElem', "MDS misleading : using FC filter")
 
     methods:
         init: () ->
@@ -324,6 +330,13 @@ module.exports =
         gene_table_nohover: () ->
             this.genes_highlight=[]
 
+        warningToggle: (warn, warnElem, msg) ->
+            if warn && !this[warnElem]
+                this[warnElem] = this.$awn.warning(msg)
+            else if !warn && this[warnElem]
+                this[warnElem].remove()
+                this[warnElem] = null
+
         # Request and display r-code for current selection
         show_r_code: () ->
             p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast)
@@ -434,6 +447,5 @@ module.exports =
 
     mounted: () ->
         this.init()
-
         # TODO : ideally just this component, not window.  But, need ResizeObserver to do this nicely
         window.addEventListener('resize', () => this.$emit('resize'))
