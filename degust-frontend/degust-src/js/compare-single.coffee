@@ -281,6 +281,7 @@ module.exports =
         process_dge_data: (data, cols, extra) ->
             this.gene_data = new GeneData(data, cols)
             this.maxGenes = this.gene_data.get_data().length
+            this.$awn.info("Loaded #{this.maxGenes} genes", {durations : {info: 3000}})
             this.numGenesThreshold = this.maxGenes
             this.fc_relative_i = 0
             this.ma_plot_fc_col_i = 1

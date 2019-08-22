@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" :href="homeLink">{{ fullSettings.degust_name }} : </a>
+            <a class="navbar-brand" :href="homeLink">{{ degustName }} : </a>
             <span class="navbar-brand">{{ experimentName }}</span>
             </div>
 
@@ -72,6 +72,7 @@ module.exports =
         extraMenuHtml: null
         experimentName: null
         uniqueCode: null
+        degustName: null
 
     data: () ->
         show_log_list: false
