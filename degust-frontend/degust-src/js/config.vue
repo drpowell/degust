@@ -60,6 +60,7 @@
             :fullSettings='settings'
             :extraMenuHtml='orig_settings["extra_menu_html"]'
             :uniqueCode='code'
+            :degustName='orig_settings["degust_name"]'
             @showAbout='v => show_about = v'
             >
             <li slot="switchURL"><a class="view" v-bind:href="view_url">View</a></li>

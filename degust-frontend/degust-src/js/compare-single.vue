@@ -77,6 +77,7 @@
             :fullSettings='full_settings'
             :extraMenuHtml='full_settings'
             :uniqueCode='code'
+            :degustName='full_settings["degust_name"]'
             @showAbout='v => show_about = v'
             >
             <li slot="qclist" class="dropdown" v-if='!is_pre_analysed'>
