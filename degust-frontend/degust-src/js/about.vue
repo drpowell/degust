@@ -8,6 +8,9 @@
                 or the <a href='https://github.com/drpowell/degust'>source code on GitHub</a>
             </p>
             <div>Written by <a href='http://thunking.drp.id.au/'>David R. Powell</a> (<a href='http://twitter.com/d_r_powell'>@d_r_powell</a>)</div>
+            <a href='https://doi.org/10.5281/zenodo.3258932'>
+              <img src='https://zenodo.org/badge/DOI/10.5281/zenodo.3258932.svg' style="margin: 1em 0"/>
+            </a>
             <hr/>
             <div class='supported-by'>
                 Supported by:
