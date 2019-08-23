@@ -20,13 +20,13 @@ out2 <- cbind(lfc,
 			  'P.Value'   = out[,'PValue'],
 			  'adj.P.Val' = out[,'FDR'],
 			  'AveExpr'   = out[,'logCPM'],
-			  x[, c(<%== @export_cols %>)] )
+			  x[, export_cols] )
 
-write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+write.csv(out2, file=paste0(output_dir, "/output.txt"), row.names=FALSE,na='')
 
 cat(
    toJSON(list(prior_df=qlf$prior.df,
 			   design=data.frame(qlf$design)
 		 )),
-   file="<%== @output_dir %>/extra.json"
+   file=paste0(output_dir, "/extra.json")
 )
