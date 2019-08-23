@@ -11,12 +11,12 @@ out <- topTable(fit2, n=Inf, sort.by='none')
 
 out2 <- cbind(fit2$coef,
               out[, c('P.Value','adj.P.Val','AveExpr')],
-              x[, c(<%== @export_cols %>)] )
+              x[, export_cols] )
 
 param_normalized <- '<%= @normalized %>'
 normalized <- matrix(0)
 if (param_normalized=='') {
-    write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+    write.csv(out2, file=paste0(output_dir, "/output.txt"), row.names=FALSE,na='')
 } else if (param_normalized=='backend') {
     normalized <- y$E
 } else if (param_normalized=='remove-hidden') {
@@ -34,5 +34,5 @@ cat(
                cov_coefficients=data.frame(fit2$cov.coefficients),
                normalized=list(columns=colnames(normalized), values=normalized)
          )),
-   file="<%== @output_dir %>/extra.json"
+   file=paste0(output_dir, "/extra.json")
 )
