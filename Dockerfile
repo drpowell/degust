@@ -10,7 +10,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && rm -rf /var/lib/apt/lists/*
 
 # Install R libs
-RUN Rscript -e "install.packages(c('BiocManager','jsonlite')); BiocManager::install(version='3.9'); BiocManager::install(c('limma','edgeR'))"
+RUN Rscript -e "install.packages(c('BiocManager','jsonlite')); BiocManager::install(version='3.9'); BiocManager::install(c('limma','edgeR','topconfects'))"
 
 ENV RAILS_ENV=production
 

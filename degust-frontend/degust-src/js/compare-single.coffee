@@ -18,6 +18,7 @@ geneTable = require('./gene-table.vue').default
 maPlot = require('./ma-plot.vue').default
 volcanoPlot = require('./volcano-plot.vue').default
 mdsPlot = require('./mds-plot.vue').default
+topconfect = require('./topconfect.vue').default
 qcPlots = require('./qc-plots.vue').default
 geneStripchart = require('./gene-stripchart.vue').default
 parallelCoord = require('./parcoords.vue').default
@@ -50,6 +51,7 @@ module.exports =
         maPlot: maPlot
         volcanoPlot: volcanoPlot
         mdsPlot: mdsPlot
+        topconfect: topconfect
         qcPlots: qcPlots
         geneStripchart: geneStripchart
         parallelCoord: parallelCoord

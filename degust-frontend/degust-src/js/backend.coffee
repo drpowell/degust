@@ -135,7 +135,9 @@ class BackendRNACounts
         @common.request_kegg_data(callback)
 
     request_data: (method,columns,contrasts) ->
-        @_request_dge_data(method,columns,contrasts)
+        @do_request_data(method,columns,contrasts).then(([data,json]) =>
+            @_process_dge_data(columns, contrasts, data, json.extra)
+        )
 
     _request_from_params: (call, params) ->
         arr = []
@@ -155,8 +157,7 @@ class BackendRNACounts
         Object.assign(hsh, opt)
         @_request_from_params(call, hsh)
 
-    _request_dge_data: (method,columns,contrast) ->
-        console.log "request_dge_data",method,columns,contrast
+    do_request_data: (method,columns,contrast) ->
         return if columns.length <= 1 && !contrast
 
         # load csv file and create the chart
@@ -175,41 +176,40 @@ class BackendRNACounts
                     log_error("Error doing DGE",json.error)
                     return
 
-                data = d3.csv.parse(json.csv);
-                log_info("Downloaded DGE counts : rows=#{data.length}")
-                log_debug("Downloaded DGE counts : rows=#{data.length}",data,err)
-                log_info("Extra info : ",json.extra)
+                data = d3.csv.parse(json.csv)
+                resolve([data, json])
+            ))
 
+    _process_dge_data: (columns,contrast,data,extra) ->
+        log_info("Downloaded DGE counts : rows=#{data.length}")
+        log_info("Extra info : ", extra)
 
-                data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
-                pri=true
-                columns.forEach((n) ->
-                    typ = if pri then 'primary' else 'fc'
-                    data_cols.push({idx: n, type: typ, name: n})
-                    pri=false
-                )
-                if contrast
-                    data_cols.push({idx: "primary", type:'primary', name: "primary"})
-                    data_cols.push({idx: contrast.name, type:'fc', name: contrast.name})
+        data_cols = @settings.info_columns.map((n) -> {idx: n, name: n, type: 'info' })
+        pri=true
+        columns.forEach((n) ->
+            typ = if pri then 'primary' else 'fc'
+            data_cols.push({idx: n, type: typ, name: n})
+            pri=false
+        )
+        if contrast
+            data_cols.push({idx: "primary", type:'primary', name: "primary"})
+            data_cols.push({idx: contrast.name, type:'fc', name: contrast.name})
 
-                data_cols.push({idx: 'adj.P.Val', name: 'FDR', type: 'fdr'})
-                data_cols.push({idx: 'AveExpr', name: 'AveExpr', type: 'avg'})
-                if data[0]["P.Value"]?
-                    data_cols.push({idx: 'P.Value', name: 'P value', type: 'p'})
+        data_cols.push({idx: 'adj.P.Val', name: 'FDR', type: 'fdr'})
+        data_cols.push({idx: 'AveExpr', name: 'AveExpr', type: 'avg'})
+        if data[0]["P.Value"]?
+            data_cols.push({idx: 'P.Value', name: 'P value', type: 'p'})
 
-                if @settings.ec_column?
-                    data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
-                if @settings.link_column?
-                    data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
-                @settings.replicates.forEach(([name,reps]) ->
-                    reps.forEach((rep) ->
-                        data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
-                    )
-                )
-
-                resolve([data, data_cols, json.extra])
+        if @settings.ec_column?
+            data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
+        if @settings.link_column?
+            data_cols.push({idx: @settings.link_column, name: 'link', type: 'link'})
+        @settings.replicates.forEach(([name,reps]) ->
+            reps.forEach((rep) ->
+                data_cols.push({idx: rep, name: rep, type: 'count', parent: name})
             )
         )
+        [data, data_cols, extra]
 
     request_r_code: (method,columns,contrast) ->
         new Promise((resolve) =>

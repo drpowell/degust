@@ -22,32 +22,36 @@ class DegustLogic
                      else ''
                      end
 
-        params = {
-                "sep_char" => settings['csv_format'] ? "," : "\t",
-                "counts_file" => real ? de_setting.user_file.location : de_setting.user_file.name,
-                "columns" => arrToR(count_columns(settings), true),
-                "min_counts" => force_num(settings['min_counts']),
-                "min_cpm" => force_num(settings['min_cpm']),
-                "min_cpm_samples" => force_int(settings['min_cpm_samples']),
-                "design" => matToR(design_matrix(settings)),
-                "cont_matrix" => matToR(cont_mat),
-                "normalized" => normalized,
-                "hidden_factors" => arrToR(settings["hidden_factor"] || [], true),
-                "export_cols" => arrToR(export_cols(settings), true),
-                "output_dir" => output_dir,
-                "skip_header_lines" => force_int(settings['skip_header_lines']),
-                "model_only_selected" => boolToR(settings['model_only_selected']),
-            }
         method = case query['method']
-                 when 'voom' then 'voom'
-                 when 'edgeR' then 'edgeR'
-                 when 'edgeR-quasi' then 'edgeR-quasi'
-                 when 'voom-weights' then 'voom-weights'
-                 when 'maxquant' then 'maxquant'
-                 when 'logFC-only' then 'logFC-only'
-                 end
+                     when 'voom' then 'voom'
+                     when 'edgeR' then 'edgeR'
+                     when 'edgeR-quasi' then 'edgeR-quasi'
+                     when 'voom-weights' then 'voom-weights'
+                     when 'maxquant' then 'maxquant'
+                     when 'logFC-only' then 'logFC-only'
+                     when 'topconfect' then 'topconfect'
+                     else nil
+                     end
 
         return nil if method.nil?
+
+        params = {
+            "sep_char" => settings['csv_format'] ? "," : "\t",
+            "counts_file" => real ? de_setting.user_file.location : de_setting.user_file.name,
+            "columns" => arrToR(count_columns(settings), true),
+            "min_counts" => force_num(settings['min_counts']),
+            "min_cpm" => force_num(settings['min_cpm']),
+            "min_cpm_samples" => force_int(settings['min_cpm_samples']),
+            "design" => matToR(design_matrix(settings)),
+            "cont_matrix" => matToR(cont_mat),
+            "normalized" => normalized,
+            "hidden_factors" => arrToR(settings["hidden_factor"] || [], true),
+            "export_cols" => arrToR(export_cols(settings), true),
+            "output_dir" => output_dir,
+            "skip_header_lines" => force_int(settings['skip_header_lines']),
+            "method" => method,
+            "model_only_selected" => boolToR(settings['model_only_selected']),
+        }
 
         ApplicationController.render(template: "degust/#{method}.R.erb", assigns: params, layout: false)
     end

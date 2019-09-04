@@ -1,0 +1,23 @@
+<%= render "degust/common.R.erb" %>
+library(topconfects)
+
+nf <- calcNormFactors(counts)
+y<-voom(counts, design, plot=FALSE,lib.size=colSums(counts)*nf)
+
+fit <- lmFit(y,design)
+fit2 <- contrasts.fit(fit, cont.matrix)
+
+out <- limma_confects(fit2, coef=1, fdr=0.05)
+
+out2 <- cbind(out$table[, c('effect','confect','AveExpr','index')])
+
+write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+
+cat(
+   toJSON(list(rank=fit2$rank, df_prior=fit2$df.prior,
+               design=data.frame(fit2$design), contrasts=data.frame(fit2$contrasts),
+               cov_coefficients=data.frame(fit2$cov.coefficients),
+               fdr=out$fdr
+         )),
+   file="<%== @output_dir %>/extra.json"
+)

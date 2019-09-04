@@ -276,6 +276,9 @@
               <li :class='{active: cur_plot=="volcano"}'>
                   <a @click='cur_plot="volcano"'>Volcano</a>
               </li>
+              <li :class='{active: cur_plot=="topconfect"}'>
+                  <a @click='cur_plot="topconfect"'>Topconfect</a>
+              </li>
             </ul>
             <div v-bind:style="{ opacity: num_loading>0 ? 0.4 : 1 }">
                 <parallel-coord v-if='cur_plot=="parcoords"'
@@ -334,6 +337,13 @@
                         @dimension='v => mdsDimension = v'
                         >
                 </mds-plot>
+                <topconfect v-if='cur_plot=="topconfect"'
+                            :backend='backend'
+                            :sel_conditions='sel_conditions'
+                            :gene_data='gene_data'
+                            @hover-start='v => genes_hover=v'
+                            >
+                </topconfect>
               </div>
             </div><!-- expression -->
 
@@ -354,7 +364,7 @@
                       :highlight='genes_hover'
                       :show-replicates='heatmap_show_replicates'
                       :info-cols='info_columns'
-                      :logfCcol='ma_plot_fc_col'
+                      :logfc-col='ma_plot_fc_col'
                       :avgCol='avg_column'
                       :fdrCol='fdr_column'
                       @hide='show_heatmap=false'
