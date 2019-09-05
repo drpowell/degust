@@ -175,7 +175,7 @@ class GeneStripchart
         return prefix + txt
 
     _hide_tooltip: () ->
-        @tooltip.style("opacity", 0)
+        @tooltip.transition().duration(0).style("opacity", 0)   # Transition to cancel any "fade in"
 
     _show_tooltip: (row) ->
         if (!row)
