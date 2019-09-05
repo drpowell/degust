@@ -62,8 +62,6 @@ module.exports =
         load_failed: false
         load_success: false
         num_loading: 0
-        showCounts: 'no'
-        showIntensity: 'no'
         fdrThreshold: 1
         fcThreshold: 0
         fc_relative_i: null

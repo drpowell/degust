@@ -372,7 +372,7 @@
         <gene-table :name='experimentName'
                     :gene-data='gene_data' :link-url='settings.link_url'
                     :fc-columns='fc_calc_columns'
-                    :rows='genes_selected' :show-counts='showCounts' :show-intensity='showIntensity'
+                    :rows='genes_selected'
                     :useProt='is_maxquant'
                     @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
                     :allCols='all_columns'
