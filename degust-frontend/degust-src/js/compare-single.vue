@@ -35,6 +35,15 @@
       -webkit-transform: translate(0%, -50%);
     }
 
+    /* CSS to allow disables some navlinks */
+    li.disabled {
+        cursor: not-allowed;
+    }
+    li.disabled a {
+            pointer-events: none;
+
+    }
+
     div >>> #descTooltip::after {
     content: " ";
     position: absolute;
@@ -276,8 +285,9 @@
               <li :class='{active: cur_plot=="volcano"}'>
                   <a @click='cur_plot="volcano"'>Volcano</a>
               </li>
-              <li :class='{active: cur_plot=="topconfect"}'>
-                  <a @click='cur_plot="topconfect"'>Topconfect</a>
+              <li :class='{active: cur_plot=="topconfect", disabled: dge_method != "voom" || sel_conditions.length!=2}'>
+                  <a @click='cur_plot="topconfect"'
+                  >Topconfect</a>
               </li>
             </ul>
             <div v-bind:style="{ opacity: num_loading>0 ? 0.4 : 1 }">
