@@ -136,12 +136,12 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
         </slick-table>
 
         <selectColumns
-            :show='show_selectCols'
-            :allColData='allCols'
-            :defaultCols='defaultCols'
-            :colTypes='colsToShow'
+            v-if='show_selectCols'
+            :allColData='allColData'
+            :defaultCols='keepCols'
+            :colTypes='colTypesToShow'
             @close='show_selectCols=false'
-            @columnsToShow='showSelectColumns'>
+            @columnsToShow='selectedColumns'>
         </selectColumns>
     </div>
 </template>
@@ -260,9 +260,9 @@ module.exports =
             required: true
         useProt:
             default: false
-        allCols: null
-        allowSelcols:
+        addColumnType:
             default: false
+
     data: () ->
         searchStr: ""
         sortAbsLogFC: true
@@ -274,7 +274,7 @@ module.exports =
         showIntensity: "no"
         show_selectCols: false
         keepCols: []
-        colsToShow: ['info','fdr','p', 'fc_calc']
+        colTypesToShow: ['info','fdr','p', 'fc_calc', 'confect']
     watch:
         # Not detected automatically in the gene_table_columns cause only used in a callback
         showCounts: () ->
@@ -283,10 +283,22 @@ module.exports =
             this.$refs.slickGrid.invalidate()
         sortAbsLogFC: () ->
             this.$refs.slickGrid.resort()
+        allColData: () ->
+            if this.keepCols.length==0
+                this.keepCols = this.geneData.columns_by_type(['info','fdr','p']).concat(this.fcColumns)
+
+        # This is a hack to add "confect" column on plot change
+        addColumnType: () ->
+            if this.keepCols.length>0 && this.keepCols.filter((v) -> v.type=='confect').length==0
+                this.keepCols = this.keepCols.concat(this.geneData.columns_by_type(['confect']))
+
     computed:
+        allColData: () ->
+            this.geneData.columns
+
         gene_table_columns: () ->
             column_keys = []
-            this.colsToShow.forEach((type) =>
+            this.colTypesToShow.forEach((type) =>
                 column_keys = column_keys.concat(this.geneData.columns_by_type(type))
             )
             # column_keys = this.geneData.columns_by_type(['info','fdr','p'])
@@ -305,7 +317,7 @@ module.exports =
                     sortable: true
                     formatter: (i,c,val,m,row) ->
                         return "" if !val?
-                        if col.type in ['fc_calc']
+                        if col.type in ['fc_calc','confect']
                             me.fc_div(val, col, row)
                         else if col.type in ['fdr','p']
                             if val<0.01 then val.toExponential(2) else val.toFixed(2)
@@ -320,6 +332,7 @@ module.exports =
                     when 'fdr'     then hsh.toolTip = "False Discovery Rate"
                     when 'p'       then hsh.toolTip = "Raw P value"
                     when 'fc_calc' then hsh.toolTip = "Log<sub>2</sub> Fold-change"
+                    when 'confect' then hsh.toolTip = "Confident effect-size"
                 hsh
             )
             columns
@@ -338,8 +351,6 @@ module.exports =
                     false
                 )
 
-        defaultCols: () ->
-            this.geneData.columns_by_type(['info','fdr','p']).concat(this.fcColumns)
     methods:
         resize: () ->
             this.$emit('resize')
@@ -353,7 +364,7 @@ module.exports =
         set_table_info: (info) ->
             this.table_info = info
 
-        showSelectColumns: (cols) ->
+        selectedColumns: (cols) ->
             this.keepCols = cols
 
         # Used to format the fold-change divs in the table.
@@ -411,7 +422,7 @@ module.exports =
             this.$refs.slickGrid.sort((r1,r2) =>
                 r = 0
                 x=r1[column.idx]; y=r2[column.idx]
-                if column.type in ['fc_calc']
+                if column.type in ['fc_calc', 'confect']
                     if this.sortAbsLogFC
                     then r = comparer_num(Math.abs(x), Math.abs(y))
                     else r = comparer_num(x, y)

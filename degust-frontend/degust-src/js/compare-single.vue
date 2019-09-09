@@ -352,6 +352,7 @@
                             :sel_conditions='sel_conditions'
                             :gene_data='gene_data'
                             @hover-start='v => genes_hover=v'
+                            @loaded='table_add_column+=1'
                             >
                 </topconfect>
               </div>
@@ -394,10 +395,8 @@
                     :fc-columns='fc_calc_columns'
                     :rows='genes_selected'
                     :useProt='is_maxquant'
+                    :add-column-type='table_add_column'
                     @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
-                    :allCols='all_columns'
-                    :allowSelcols='true'
-                    @showSelectColumns='show_selectCols=true'
                     >
         </gene-table>
       </div> <!-- row -->

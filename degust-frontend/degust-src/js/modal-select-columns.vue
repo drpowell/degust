@@ -8,8 +8,8 @@
 
 <template>
     <modal
-        :showModal='show'
         :closeAction='close'
+        :showModal='true'
     >
         <h4 slot='header'>Select columns to display</h4>
 

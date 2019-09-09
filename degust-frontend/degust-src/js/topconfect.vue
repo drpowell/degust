@@ -133,13 +133,19 @@ module.exports =
                 .attr("y2", @height-@margin.b)
                 .attr('stroke', @axisColour)
 
+        add_to_gene_data: (data) ->
+            col = {idx: "_confect", name: "Confect", type: 'confect'}
+            lookup = []
+            data.map((d) -> lookup[d.index-1] = d)
+            @gene_data.add_column(col, (d) -> lookup[d.id].confect)
+
         process_confect_data: (data) ->
-            #data = data[0...200]
             data.forEach((r) ->
                 # Make columns numeric
                 for col in ['confect','effect','AveExpr', 'index']
                     r[col] = +r[col]
             )
+            @add_to_gene_data(data)
             #data.sort((a,b) -> Math.abs(b.effect) - Math.abs(a.effect))
             data.sort((a,b) -> Math.abs(b.confect) - Math.abs(a.confect))
             @infoCols = @gene_data.columns_by_type('info')
@@ -245,10 +251,10 @@ module.exports =
 
 
     mounted: () ->
-
         p = this.backend.do_request_data('topconfect', this.sel_conditions, this.sel_contrast)
         p.then(([data,extra]) =>
             @process_confect_data(data)
+            this.$emit('loaded')
         )
 
 </script>

@@ -105,6 +105,7 @@ module.exports =
         show_hoverDesc: false
         show_ModalExperimentDesc: false
         descTooltipLoc: [0,0]
+        table_add_column: 0
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:
@@ -141,8 +142,6 @@ module.exports =
         count_columns: () ->
             fc_names = this.fc_calc_columns.map((c) -> c.name)
             this.gene_data.columns_by_type('count').filter((c) -> fc_names.indexOf(c.parent)>=0)
-        all_columns: () ->
-            this.gene_data.columns
         filter_changed: () ->
             this.fdrThreshold
             this.fcThreshold
