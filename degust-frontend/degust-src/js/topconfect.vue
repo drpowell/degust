@@ -4,9 +4,6 @@
     overflow-y: auto;
 }
 
-.outer >>> svg {
-}
-
 .outer >>> .axis line, .outer >>> .axis path {
   fill: none;
   stroke: #222;
@@ -80,6 +77,7 @@ module.exports =
         gene_data: null
         name:
             default: "topconfect"
+        highlight: null
     data: () ->
         width: 1
         height: 1
@@ -90,13 +88,30 @@ module.exports =
             b: 20
             l: 10
         axisColour: '#555'
+        num_rows_show: 1
         hover: null
         tooltipLoc: [0,0]
         infoCols: []
+        id_to_row: []
+        confect_data: null
 
     computed:
         tooltipStyle: () ->
             {left: (this.tooltipLoc[0]+40)+'px', top: (this.tooltipLoc[1]+35)+'px'}
+
+    watch:
+        highlight: () ->
+            if this.highlight.length>0
+                id = this.highlight[0].id
+                top_idx = this.id_to_row[id]
+
+                h = d3.select('svg',this.$el).node().clientHeight
+                pos = top_idx*@pxPerLine - @margin.t
+                d3.select('.outer',this.$el).node().scrollTo(
+                      top: pos / (@confect_data.length * @pxPerLine / h),
+                      left: 0,
+                      behavior: 'smooth'
+                )
 
     methods:
         mk_axes: (xScale) ->
@@ -139,7 +154,12 @@ module.exports =
             data.map((d) -> lookup[d.index-1] = d)
             @gene_data.add_column(col, (d) -> lookup[d.id].confect)
 
+            id_to_row = []
+            data.map((d, idx) => id_to_row[d.index-1] = idx)
+            this.id_to_row = id_to_row
+
         process_confect_data: (data) ->
+            this.confect_data = data
             data.forEach((r) ->
                 # Make columns numeric
                 for col in ['confect','effect','AveExpr', 'index']
@@ -167,10 +187,8 @@ module.exports =
 
             @_mayRender(0, data)
 
-        _mayRender: (pos, data) ->
-            top_idx = Math.floor((pos+@margin.t)/@pxPerLine)
-            num_show = Math.floor((@height-@margin.t-@margin.b)/@pxPerLine)-1
-            idxrows = [top_idx .. top_idx+num_show]
+        _mayRender: (top_idx, data) ->
+            idxrows = [top_idx .. top_idx+@num_rows_show]
             genes = d3.select(this.$el)
                       .select("g.genes")
                       .selectAll('g.row')
@@ -221,6 +239,7 @@ module.exports =
         init_chart: (data) ->
             @width = 600
             @height = 400
+            @num_rows_show = Math.floor((@height-@margin.t-@margin.b)/@pxPerLine)-1
 
             d3.select(this.$el).select('svg').selectAll("*").remove()
 
@@ -235,8 +254,10 @@ module.exports =
                 # Convert from div scroll pixels, to the viewBox coords of svg
                 h = svg.node().clientHeight
                 pos = data.length * @pxPerLine / h * d3.event.target.scrollTop
+                top_idx = Math.floor((pos+@margin.t)/@pxPerLine)
+
                 axis.attr("transform","translate(0,#{pos})")
-                @_mayRender(pos, data)
+                @_mayRender(top_idx, data)
               )
 
         show_info: (confect, gene,loc) ->

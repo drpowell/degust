@@ -351,6 +351,7 @@
                             :backend='backend'
                             :sel_conditions='sel_conditions'
                             :gene_data='gene_data'
+                            :highlight='genes_highlight'
                             @hover-start='v => genes_hover=v'
                             @loaded='table_add_column+=1'
                             >
