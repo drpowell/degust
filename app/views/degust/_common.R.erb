@@ -39,9 +39,19 @@ colnames(x) <- scan(counts_file,
 
 x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v))     # Force numeric count columns
 counts <- x[, count_cols]
+
+# Keep rows based on string based filters of columns.  Rows must match all filters
+filter_rows <- fromJSON('<%== @filter_rows %>')
+if (length(filter_rows)>0) {
+    keepRows <- apply(apply(filter_rows, 1, function(r) grepl(r['regexp'], x[,r['column']])), 1, all)
+} else {
+    keepRows <- rep(TRUE, nrow(x))
+}
+
 keepMin <- apply(counts, 1, max) >= <%= @min_counts %>
 keepCpm <- rowSums(cpm(counts)> <%= @min_cpm %>) >= <%= @min_cpm_samples %>                  # Keep only genes with cpm above x in at least y samples
-keep <- keepMin & keepCpm
+
+keep <- keepMin & keepCpm & keepRows
 x <- x[keep,]
 counts <- counts[keep,]
 

@@ -62,6 +62,7 @@ from_server_model = (mdl) ->
         )
     res.replicates = new_reps
     res.contrasts ?= []
+    res.filter_rows ?= []
 
     if res.dge_method?
         res.dge_method = dge_methods.filter((r) -> r.value == res.dge_method)
@@ -283,6 +284,11 @@ module.exports =
             )
         deleteDataset: () ->
             this.show_deleteModal = true
+        addSettingFilter: () ->
+            this.settings.filter_rows ?= []
+            this.settings.filter_rows.push({column:null, regexp:''})
+        delSettingFilter: (idx) ->
+            this.settings.filter_rows.splice(idx,1)
         destroy: () ->
             delete_url = this.orig_settings.delete_url
             token = this.orig_settings.tok

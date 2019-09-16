@@ -21,7 +21,6 @@ class DegustLogic
                      when 'remove-hidden' then 'remove-hidden'
                      else ''
                      end
-
         params = {
                 "sep_char" => settings['csv_format'] ? "," : "\t",
                 "counts_file" => real ? de_setting.user_file.location : de_setting.user_file.name,
@@ -37,6 +36,7 @@ class DegustLogic
                 "output_dir" => output_dir,
                 "skip_header_lines" => force_int(settings['skip_header_lines']),
                 "model_only_selected" => boolToR(settings['model_only_selected']),
+                "filter_rows" => (settings["filter_rows"] || []).to_json,
             }
         method = case query['method']
                  when 'voom' then 'voom'

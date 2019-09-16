@@ -330,6 +330,24 @@
                               <input v-model='settings.model_only_selected' id="model_only_selected" class="form-control" type="checkbox" v-tooltip="tip('Only use the samples in the direct comparison.  Usually all configured samples are used to build the linear model and estimate parameters')" />
                             </div>
                           </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-sm-3" for="">
+                              Filter rows
+                              <button type="button" class="btn-sm" @click='addSettingFilter'>+</button>
+                            </label>
+                            <div class='col-sm-8'>
+                              <div class='row' v-for='(filt,idx) in settings.filter_rows' :key='idx' >
+                                <span class="controls col-sm-4">
+                                  <multiselect v-model="filt.column" :options="column_names" :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Select ---"></multiselect>
+                                </span>
+                                <span class="controls col-sm-7">
+                                  <input v-model='filt.regexp' class="form-control" type="text" size='50' placeholder="Regex (Perl) must match to keep row" />
+                                </span>
+                                <button v-on:click='delSettingFilter(idx)' type="button" class="del-condition" tabindex=-1>&times;</button>
+                              </div>
+                            </div>
+                          </div>
                       </div>
 
                       <div class='form-group'>
