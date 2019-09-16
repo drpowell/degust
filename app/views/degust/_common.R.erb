@@ -43,7 +43,7 @@ counts <- x[, count_cols]
 # Keep rows based on string based filters of columns.  Rows must match all filters
 filter_rows <- fromJSON('<%== @filter_rows %>')
 if (length(filter_rows)>0) {
-    keepRows <- apply(apply(filter_rows, 1, function(r) grepl(r['regexp'], x[,r['column']])), 1, all)
+    keepRows <- apply(apply(filter_rows, 1, function(r) grepl(r['regexp'], x[,r['column']], perl=T, ignore.case=T)), 1, all)
 } else {
     keepRows <- rep(TRUE, nrow(x))
 }
