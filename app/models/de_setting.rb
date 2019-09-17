@@ -91,9 +91,11 @@ private
             return false
         end
 
-        settings['filter_rows'].each do |filt|
-            if (BAD_REGEX.match?(filt["column"]) || BAD_REGEX.match?(filt["regexp"]))
-                return false
+        if settings.key?("filter_rows")
+            settings['filter_rows'].each do |filt|
+                if (BAD_REGEX.match?(filt["column"]) || BAD_REGEX.match?(filt["regexp"]))
+                    return false
+                end
             end
         end
 
