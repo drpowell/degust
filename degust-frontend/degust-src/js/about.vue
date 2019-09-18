@@ -1,5 +1,5 @@
 <template>
-    <modal :showModal='show' :closeAction='close'>
+    <modal v-if='show' :showModal='show' :closeAction='close'>
         <h3 slot='header'>About Degust</h3>
         <div slot='body'>
             <p>Degust : Visualize, explore and appreciate RNA-seq differential gene-expression data.</p>

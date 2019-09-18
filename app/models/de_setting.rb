@@ -16,6 +16,8 @@ class DeSetting < ApplicationRecord
                 'fc_columns' => [],
                 'info_columns' => [],
                 'analyze_server_side' => true,
+                'hidden_factor' => [],
+                'init_select' => [],
                 }
 
         res = settings_as_json
