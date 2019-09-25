@@ -132,6 +132,7 @@ class ScatterPlot
         # if (@data instanceof DataFrame)
         #     @data = @data.get_data()
         @redraw()
+        @reFilter()
 
     redraw: () ->
         if (!@data)
