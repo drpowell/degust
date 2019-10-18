@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
     def dir_for_version(version)
       case version
       when ''
-        "degust-frontend/degust-dist-3.1"
+        "degust-frontend/degust-dist-4.1"
       when 'dev'
         "degust-frontend/degust-dist"
       else
@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
     end
 
     def frontend_versions
-      ['3.1', 'dev']
+      ['4.1', '3.1', 'dev']
     end
     helper_method :frontend_versions, :dir_for_version, :degust_compare_url
 
