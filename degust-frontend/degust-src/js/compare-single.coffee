@@ -187,6 +187,8 @@ module.exports =
             this.genes_selected = this.gene_data.get_data()
             this.warningToggle(this.fc_calc_columns.length>2 && this.cur_plot=="ma",
                                'maPlotWarningElem', 'Using MA plot with >2 conditions')
+            this.warningToggle(this.fc_calc_columns.length>2 && this.cur_plot=="volcano",
+                               'volcanoPlotWarningElem', 'Using Volcano plot with >2 conditions')
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
