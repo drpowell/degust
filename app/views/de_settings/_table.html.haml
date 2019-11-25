@@ -108,7 +108,7 @@
         filter_external : '.search',
         filter_functions: {
           0: function(e, n, f, i, $r, c, data) {
-            var words = f.split(' ');
+            var words = f.toLowerCase().split(' ');
             var fields = Object.values($r.data()).map(function(x) { return x.toLowerCase() } );
             // All words must match some field
             var matches = words.every(
