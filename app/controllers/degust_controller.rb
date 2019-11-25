@@ -87,8 +87,10 @@ class DegustController < ApplicationController
 
         cacheKey = [de_setting.settings_with_defaults, params].to_s
         cache = ActiveSupport::Cache::FileStore.new("#{Rails.root.to_s}/tmp/R-cache", expires_in: 7.days)
+        fromCache=true
         json = cache.fetch(cacheKey) do
                   logger.info "Not cached."
+                  fromCache=false
                   make_code = lambda {|tempfile| DegustLogic.get_r_code(de_setting, params, tempfile)}
                   DegustLogic.run_r_code(make_code)
                end
@@ -96,6 +98,7 @@ class DegustController < ApplicationController
         if json.key?(:error)
             cache.delete(cacheKey)
         end
+        (json[:extra]||={})[:fromCache] = fromCache
         render json: json
     end
 
