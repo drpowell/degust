@@ -170,7 +170,7 @@ guess_link_info_prot =
 
 
 # Guess the link using the guess_link_info table
-# Return object of {match:"string", link:"link"}
+# Return object of {match:"string that matched regexp", link:"URL"}
 guess_link = (useProt, info) ->
     return if !info?
     if useProt
@@ -394,7 +394,7 @@ module.exports =
                 cols = this.geneData.columns_by_type(['info'])
             if cols.length>0
                 info = item[cols[0].idx]
-                link = if this.linkUrl? then this.linkUrl else guess_link(this.useProt, info)
+                link = if this.linkUrl? then {link:this.linkUrl, match:[info]} else guess_link(this.useProt, info)
                 log_debug("Dbl click.  Using info/link",info,link)
                 if link?
                     link = link.link.replace(/%s/, link.match[0])
