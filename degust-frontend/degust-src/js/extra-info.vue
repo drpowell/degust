@@ -26,10 +26,12 @@ td, th {
                 <!-- Sample Weights -->
                 <table v-if='selectShown == "sample_weights"'>
                     <tr>
-                        <th v-for='samples of formatData("sample_weights").samples'>{{ samples }}</th>
+                        <th>Sample</th>
+                        <th>Weight</th>
                     </tr>
-                    <tr>
-                        <td v-for='weights of formatData("sample_weights").weights'>{{ weights }}</td>
+                    <tr v-for='sample of formatData("sample_weights").weights'>
+                        <td>{{sample._row}}</td>
+                        <td>{{sample['sample.weights']}}</td>
                     </tr>
                 </table>
                 <!-- Rank -->
