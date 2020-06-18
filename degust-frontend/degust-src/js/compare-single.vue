@@ -163,7 +163,7 @@
                   <select v-model='normalization'>
                     <option value='cpm'>CPM</option>
                     <option value='backend'>Backend normalization</option>
-                    <option v-if='settings.hidden_factor.length>0' value='remove-hidden'>Remove hidden factors</option>
+                    <option v-if='settings.hidden_factor.length>0' value='remove-hidden'>Subtract hidden factors</option>
                   </select>
                 </div>
                 <div v-if='normalization=="cpm"'
