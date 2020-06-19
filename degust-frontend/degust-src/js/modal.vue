@@ -8,7 +8,7 @@
             <div class="modal-dialog" @click.stop=''>
                 <div class="modal-content">
                     <div v-if="this.$slots.header || closeAction" class="modal-header">
-                        <button class="close" @click="closeAction">x</button>
+                        <button class="close" @click.prevent="mayClose">x</button>
                         <slot name="header"></slot>
                     </div>
                     <div v-if="this.$slots.body" class="modal-body">
@@ -35,9 +35,11 @@ module.exports =
         mayClose: () ->
             if this.closeAction?
                 this.closeAction()
-    mounted: () ->
-        document.addEventListener("keydown", (e) =>
+        keyHandler: (e) ->
             if (this.showModal && e.keyCode == 27 && this.closeAction?)
                 this.closeAction()
-        )
+    beforeDestroy: () ->
+        document.removeEventListener('keydown', this.keyHandler)
+    mounted: () ->
+        document.addEventListener("keydown", this.keyHandler)
 </script>
