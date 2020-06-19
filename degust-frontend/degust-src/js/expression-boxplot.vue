@@ -54,18 +54,18 @@ module.exports =
             data = this.geneData
             cols = this.columns
             # TODO use normalise function
-            cpm = cols.map((c,i) ->
+            cpm = cols.map((c,i) =>
                     norm_factor = data.get_total(c) / 1000000.0
                     vals = data.get_data().map((r) -> Math.log(0.5 + r[c.idx]/norm_factor)/Math.log(2))
-                    {vals: vals, name:c.name, parent:c.parent}
+                    {vals: vals, name:this.geneData.nice_name(c.name), parent:c.parent}
             )
             Vue.noTrack(cpm)
 
         rle: () ->
             cpm = this.cpm
             medians = cpm[0].vals.map((_v,i) -> d3.median(cpm.map((c) -> c.vals[i])))
-            rle = cpm.map((c) ->
-                {name: c.name, parent:c.parent, vals: c.vals.map((v,i) -> v - medians[i])}
+            rle = cpm.map((c) =>
+                {name: this.geneData.nice_name(c.name), parent:c.parent, vals: c.vals.map((v,i) -> v - medians[i])}
             )
             Vue.noTrack(rle)
 

@@ -49,7 +49,7 @@ module.exports =
         width: () ->
             d3.min([this.columns.length*30 + 200, 700])
         lib_sizes: () ->
-            this.columns.map((c) => {lbl: c.name, val: this.geneData.get_total(c), parent: c.parent})
+            this.columns.map((c) => {lbl: this.geneData.nice_name(c.name), val: this.geneData.get_total(c), parent: c.parent})
         barGraphData: () ->
             Vue.noTrack(this.lib_sizes)
     methods:
