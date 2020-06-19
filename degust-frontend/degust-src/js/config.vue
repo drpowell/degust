@@ -2,7 +2,7 @@
 <style>
     .options { border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 10px 3px; }
 
-    .conditions { border: 1px solid #aaa; border-radius: 5px; padding: 0 3px; }
+    .conditions { border: 1px solid #aaa; border-radius: 5px; padding: 0 3px; margin-bottom: 5px;}
 
     .view { float: right; }
     .del-condition { float: right; }
@@ -176,14 +176,15 @@
                             </div>
                             <div class="col-sm-9">
                               <div class="col-sm-8">
-                                <multiselect v-model="rep.cols" :options="column_names"
+                                <multiselect v-model="rep.cols" :options="column_names_may_hide"
                                              @input='selected_reps(rep)'
+                                             :custom-label="nice_name"
                                              :multiple="true" :close-on-select="false"
                                              :show-labels="false" :searchable="false"
                                              placeholder="Pick some"
                                              :tabindex=-1>
                                   <template slot="option" slot-scope="props">
-                                    <div>{{props.option}}
+                                    <div>{{nice_name(props.option)}}
                                         <span class='rep_used' v-for='cond in conditions_for_rep(props.option)'>{{cond}}</span>
                                     </div>
                                   </template>
@@ -216,7 +217,10 @@
                     </button>
                   </div>
                   <div v-if='editing_contrast!=null'>
-                  <modal :showModal='true'>
+                  <modal :showModal='true' :closeAction='close_contrast'>
+                    <div slot='header'>
+                      <h4>Edit Contrast</h4>
+                    </div>
                     <div slot='body'>
                       <contrasts :conditions='settings.replicates'
                                 :edit='editing_contrast'
@@ -231,10 +235,26 @@
                   </div>
                 </div>
 
+                <div v-if='renaming_samples'>
+                  <modal :showModal='true' :closeAction='close_rename_samples'>
+                    <div slot='header'>
+                      <h4>Rename samples</h4>
+                    </div>
+                    <div slot='body'>
+                      <rename-samples :columns='column_names' :nice-names='settings.nice_names' @close="apply_rename_samples($event)"/>
+                    </div>
+                  </modal>
+                </div>
+
                 <div class="form-group">
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <button v-on:click='add_replicate()' type="button" class="btn btn-primary" v-tooltip="tip('Add a new condition or treatment')">
                       Add condition
+                    </button>
+                  </div>
+                  <div class="col-sm-2">
+                    <button v-on:click='rename_samples()' type="button" class="btn btn-primary" v-tooltip="tip('Rename samples for friendly display')">
+                      Rename Samples
                     </button>
                   </div>
                 </div>
