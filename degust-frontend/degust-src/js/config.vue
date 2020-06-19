@@ -2,7 +2,9 @@
 <style>
     .options { border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 10px 3px; }
 
-    .conditions { border: 1px solid #aaa; border-radius: 5px; padding: 0 3px; }
+    .conditions { border: 1px solid #aaa; border-radius: 5px; padding: 0 3px; margin-bottom: 5px;}
+
+    .condition-autoname { position: absolute; left: -9px; top: 10px;}
 
     .view { float: right; }
     .del-condition { float: right; }
@@ -176,14 +178,15 @@
                             </div>
                             <div class="col-sm-9">
                               <div class="col-sm-8">
-                                <multiselect v-model="rep.cols" :options="column_names"
-                                             @input='selected_reps(rep)'
+                                <button v-on:click='selected_reps(rep)' type="button" class="btn btn-xs condition-autoname" tabindex=-1 v-tooltip="tip('Auto-fill a name of this condition')"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span></button>
+                                <multiselect v-model="rep.cols" :options="column_names_may_hide"
+                                             :custom-label="nice_name"
                                              :multiple="true" :close-on-select="false"
                                              :show-labels="false" :searchable="false"
                                              placeholder="Pick some"
                                              :tabindex=-1>
                                   <template slot="option" slot-scope="props">
-                                    <div>{{props.option}}
+                                    <div>{{nice_name(props.option)}}
                                         <span class='rep_used' v-for='cond in conditions_for_rep(props.option)'>{{cond}}</span>
                                     </div>
                                   </template>
@@ -216,7 +219,10 @@
                     </button>
                   </div>
                   <div v-if='editing_contrast!=null'>
-                  <modal :showModal='true'>
+                  <modal :showModal='true' :closeAction='close_contrast'>
+                    <div slot='header'>
+                      <h4>Edit Contrast</h4>
+                    </div>
                     <div slot='body'>
                       <contrasts :conditions='settings.replicates'
                                 :edit='editing_contrast'
@@ -231,10 +237,26 @@
                   </div>
                 </div>
 
+                <div v-if='renaming_samples'>
+                  <modal :showModal='true' :closeAction='close_rename_samples'>
+                    <div slot='header'>
+                      <h4>Rename samples</h4>
+                    </div>
+                    <div slot='body'>
+                      <rename-samples :columns='column_names' :nice-names='settings.nice_names' @close="apply_rename_samples($event)"/>
+                    </div>
+                  </modal>
+                </div>
+
                 <div class="form-group">
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <button v-on:click='add_replicate()' type="button" class="btn btn-primary" v-tooltip="tip('Add a new condition or treatment')">
                       Add condition
+                    </button>
+                  </div>
+                  <div class="col-sm-2">
+                    <button v-on:click='rename_samples()' type="button" class="btn btn-primary" v-tooltip="tip('Rename samples for friendly display')">
+                      Rename Samples
                     </button>
                   </div>
                 </div>
@@ -328,6 +350,24 @@
                             <label class="control-label col-sm-3" for="model_only_selected">Only selected samples</label>
                             <div class="controls col-sm-1">
                               <input v-model='settings.model_only_selected' id="model_only_selected" class="form-control" type="checkbox" v-tooltip="tip('Only use the samples in the direct comparison.  Usually all configured samples are used to build the linear model and estimate parameters')" />
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-sm-3" for="">
+                              Filter rows
+                              <button type="button" class="btn-sm" @click='addSettingFilter'>+</button>
+                            </label>
+                            <div class='col-sm-8'>
+                              <div class='row' v-for='(filt,idx) in settings.filter_rows' :key='idx' >
+                                <span class="controls col-sm-4">
+                                  <multiselect v-model="filt.column" :options="column_names" :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Select ---"></multiselect>
+                                </span>
+                                <span class="controls col-sm-7">
+                                  <input v-model='filt.regexp' class="form-control" type="text" size='50' placeholder="Regex (Perl) must match to keep row" />
+                                </span>
+                                <button v-on:click='delSettingFilter(idx)' type="button" class="del-condition" tabindex=-1>&times;</button>
+                              </div>
                             </div>
                           </div>
                       </div>

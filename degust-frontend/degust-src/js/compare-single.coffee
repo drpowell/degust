@@ -188,6 +188,8 @@ module.exports =
             this.genes_selected = this.gene_data.get_data()
             this.warningToggle(this.fc_calc_columns.length>2 && this.cur_plot=="ma",
                                'maPlotWarningElem', 'Using MA plot with >2 conditions')
+            this.warningToggle(this.fc_calc_columns.length>2 && this.cur_plot=="volcano",
+                               'volcanoPlotWarningElem', 'Using Volcano plot with >2 conditions')
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
@@ -279,6 +281,8 @@ module.exports =
 
         process_dge_data: (data, cols, extra) ->
             this.gene_data = new GeneData(data, cols)
+            if this.settings.nice_names?
+                this.gene_data.set_column_renaming(this.settings.nice_names)
             this.maxGenes = this.gene_data.get_data().length
             this.$awn.info("Loaded #{this.maxGenes} genes", {durations : {info: 3000}})
             this.numGenesThreshold = this.maxGenes

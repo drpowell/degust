@@ -13,6 +13,7 @@
 class GeneData
     constructor: (@data,@columns) ->
         @columns_by_type_cache = {}
+        @renaming = {}
         @_process_data()
         @set_relative( 'avg' )
         @_store_fc_avg()
@@ -20,6 +21,17 @@ class GeneData
         # Mark it as not-extendible so Vue won't track it
         Object.preventExtensions(@data)
         Object.preventExtensions(this)
+
+    # Set column nice names - a hash from original column name to an object with a ".name" field
+    set_column_renaming: (renaming) ->
+        @renaming = renaming
+
+    # Return the "nice name" for a column from the renaming hash.  Or, if not, return the same name
+    nice_name: (col) ->
+        if (col of @renaming) && @renaming[col].name
+            @renaming[col].name
+        else
+            col
 
     set_relative: (relative) ->
         if relative != @relative

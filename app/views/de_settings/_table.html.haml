@@ -9,7 +9,9 @@
       %th
   %tbody
   - list.each do |de|
-    %tr
+    %tr{"data-desc" => de.description,
+        "data-name" => de.name || "<Unnamed>",
+        "data-owner" => de.user.nil? ? '<Anonymous>' : de.user.name}
       %td
         %a{:href=>degust_compare_url('', de.secure_id)}
           = de.name || "<Unnamed>"
@@ -88,8 +90,10 @@
       defSort = tmp;
     }
   }
+
   $('.tablesorter').tablesorter({
     theme : 'blue',
+    widgets: ["filter"],
     sortList: defSort,
     headers: {
         1 : { sorter: 'data' },
@@ -97,6 +101,25 @@
         3 : { sorter: 'data' },
         5 : { sorter: false },
      },
+
+     // Allow filtering by words.  Matches any field in the above data-* fields on the row
+     widgetOptions : {
+        filter_columnFilters: false,
+        filter_external : '.search',
+        filter_functions: {
+          0: function(e, n, f, i, $r, c, data) {
+            var words = f.toLowerCase().split(' ');
+            var fields = Object.values($r.data()).map(function(x) { return x.toLowerCase() } );
+            // All words must match some field
+            var matches = words.every(
+              function(w) {
+                return fields.some(function(val) { return val.includes(w) } );
+              }
+            );
+            return matches;
+          }
+        }
+      },
   });
 
   // Save the most recent sort as the default

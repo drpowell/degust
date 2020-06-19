@@ -17,7 +17,7 @@ write.csv(out2, file=paste0(output_dir, "/output.txt"), row.names=FALSE,na='')
 
 
 cat(
-   toJSON(list(sample_weights=y$sample.weights, samples=colnames(counts),
+   toJSON(list(sample_weights=y$targets, samples=colnames(counts),
 			   rank=fit2$rank, df_prior=fit2$df.prior,
 			   design=data.frame(fit2$design), contrasts=data.frame(fit2$contrasts),
 			   cov_coefficients=data.frame(fit2$cov.coefficients))),

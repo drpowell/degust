@@ -29,7 +29,11 @@ class User < ApplicationRecord
   def fill_missing_omniauth(auth)
     if auth['info']
       if (name.nil? || name=='')
-        self.name = auth['info']['name']
+        if auth['info']['name'].kind_of?(String)
+          self.name = auth['info']['name']
+        elsif auth['info']['name'].key?('familyName')
+          self.name = auth['info']['givenName'] + " " + auth['info']['familyName']
+        end
       end
       self.extra = auth['info'].to_json
       save

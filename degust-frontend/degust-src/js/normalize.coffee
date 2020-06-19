@@ -10,7 +10,7 @@ class Normalize
 			col = data.column_by_idx(idx)
 			if (!col || col.log_moderation != log_moderation)
 				norm_factor = data.get_total(c) / 1000000.0
-				col = {idx: idx, name: "#{c.name}", type: 'norm', parent: c.parent, log_moderation: log_moderation}
+				col = {idx: idx, name: "#{c.name}", type: 'norm', parent: c.parent, log_moderation: log_moderation, nice_name: data.nice_name(c.name)}
 				data.add_column(col, (r) => Math.log(log_moderation + r[c.idx]/norm_factor) * Math.LOG2E)
 			col
 		)
@@ -37,7 +37,7 @@ class Normalize
 				new_cols = []
 				columns.forEach((col) =>
 					idx = normalized_key+type+"_"+col.idx
-					new_col = {idx: idx, name: "#{col.name}", type: 'norm', parent: col.parent}
+					new_col = {idx: idx, name: "#{col.name}", type: 'norm', parent: col.parent, nice_name: data.nice_name(col.name)}
 					i = d.extra.normalized.columns.indexOf(col.name)
 					data.add_column(new_col, (r,rid) => d.extra.normalized.values[rid][i])
 					new_cols.push(new_col)

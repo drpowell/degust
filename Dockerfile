@@ -4,13 +4,13 @@ FROM ruby:2.4.6-stretch AS degust-builder
 # Install node and R
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && echo 'deb http://cran.rstudio.org/bin/linux/debian stretch-cran35/' > '/etc/apt/sources.list.d/r-base.list' \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' \
     && apt-get update \
     && apt-get install -y nodejs r-base \
     && rm -rf /var/lib/apt/lists/*
 
 # Install R libs
-RUN Rscript -e "install.packages(c('BiocManager','jsonlite')); BiocManager::install(version='3.9'); BiocManager::install(c('limma','edgeR','topconfects'))"
+RUN Rscript -e "install.packages(c('BiocManager','jsonlite')); BiocManager::install(version='3.9', ask=F); BiocManager::install(c('limma','edgeR','topconfects'))"
 
 ENV RAILS_ENV=production
 
@@ -38,7 +38,7 @@ FROM ruby:2.4.6-stretch
 # Install node and R
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && echo 'deb http://cran.rstudio.org/bin/linux/debian stretch-cran35/' > '/etc/apt/sources.list.d/r-base.list' \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' \
     && apt-get update \
     && apt-get install -y nodejs r-base \
     && rm -rf /var/lib/apt/lists/*

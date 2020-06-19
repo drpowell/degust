@@ -62,6 +62,7 @@ from_server_model = (mdl) ->
         )
     res.replicates = new_reps
     res.contrasts ?= []
+    res.filter_rows ?= []
 
     if res.dge_method?
         res.dge_method = dge_methods.filter((r) -> r.value == res.dge_method)
@@ -110,7 +111,6 @@ to_server_model = (mdl) ->
         res.input_type = res.input_type.key
     if !res.input_type?
         delete res.input_type
-
     res
 
 
@@ -131,6 +131,7 @@ deleteModal = require('./modal-deleteData.vue').default
 about = require('./about.vue').default
 slickTable = require('./slick-table.vue').default
 contrasts = require('./contrasts.vue').default
+renameSamples = require('./rename-samples.vue').default
 navbar = require('./navbar.vue').default
 
 module.exports =
@@ -141,6 +142,7 @@ module.exports =
         about: about
         slickTable: slickTable
         contrasts: contrasts
+        renameSamples: renameSamples
         navbar: navbar
     data: () ->
         settings:
@@ -163,6 +165,7 @@ module.exports =
         show_about: false
         input_type_options: input_type_options
         editing_contrast: null
+        renaming_samples: false
         show_deleteModal: false
 
     computed:
@@ -184,6 +187,9 @@ module.exports =
             this.settings.input_type?.key == 'counts'
         is_maxquant: () ->
             this.settings.input_type?.key == 'maxquant'
+        column_names_may_hide: () ->
+            nice = this.settings.nice_names || {}
+            this.column_names.filter((c) -> !nice[c]? || !nice[c].hide)
 
     watch:
         'settings.name': () -> document.title = this.settings.name
@@ -283,6 +289,11 @@ module.exports =
             )
         deleteDataset: () ->
             this.show_deleteModal = true
+        addSettingFilter: () ->
+            this.settings.filter_rows ?= []
+            this.settings.filter_rows.push({column:null, regexp:''})
+        delSettingFilter: (idx) ->
+            this.settings.filter_rows.splice(idx,1)
         destroy: () ->
             delete_url = this.orig_settings.delete_url
             token = this.orig_settings.tok
@@ -385,6 +396,21 @@ module.exports =
                     c.column.splice(idx+dir, 0, r[0])
                 )
 
+        nice_name: (col) ->
+            nice = this.settings.nice_names
+            if nice? && (col of nice) && nice[col].name
+                nice[col].name
+            else
+                col
+        rename_samples: () ->
+            this.renaming_samples = true
+        close_rename_samples: () ->
+            this.renaming_samples = false
+        apply_rename_samples: (conf) ->
+            if conf
+                this.$set(this.settings, "nice_names", conf)
+            this.close_rename_samples()
+
         add_contrast: () ->
             r = {name:''}
             this.settings.contrasts.push(r)
@@ -401,7 +427,7 @@ module.exports =
             this.editing_contrast=null
 
         selected_reps: (rep) ->
-            n = common_prefix(rep.cols)
+            n = common_prefix(rep.cols.map((c) => this.nice_name(c)))
             rep.name = n
         script: (typ) ->
             "#{this.code}/#{typ}"

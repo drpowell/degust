@@ -86,14 +86,15 @@ class GeneStripchart
 
     _make_menu: (el) ->
         print_menu = (new Print((() => @_get_svg()), "Gene expression")).menu()
-        menu = [
-                title: () => @set_text("Plot as ")
-                action: () =>
-                    if @useIntensity
-                        @show_log2Intensity = !@show_log2Intensity
-                    else
-                        @show_cpm = !@show_cpm
-                    @update()
+        menu = [{
+                    title: () => @cpm_label_text("Plot as ")
+                    action: () =>
+                        if @useIntensity
+                            @show_log2Intensity = !@show_log2Intensity
+                        else
+                            @show_cpm = !@show_cpm
+                        @update()
+                }
         ]
         d3.select(el).on('contextmenu', d3.contextMenu(menu.concat(print_menu))) # attach menu to element
 
@@ -114,7 +115,7 @@ class GeneStripchart
                 val = if @show_cpm then row[c.idx]/norm_factor else row[c.idx]
             else
                 val = if @show_log2Intensity then Math.log(row[c.idx]) * Math.LOG2E else row[c.idx]
-            {lbl: c.name, parent: c.parent, val: val}
+            {lbl: c.name, parent: c.parent, val: val, nice_name: @data.nice_name(c.name)}
         )
 
         @x.domain(vals.map((d) -> d.parent ))
@@ -147,7 +148,7 @@ class GeneStripchart
              .attr("x", 0)
              .attr("y", 10)
              .style("text-anchor", "end")
-             .text(@set_text(""))
+             .text(@cpm_label_text(""))
 
         pts = @svg.selectAll(".pts")
             .data(vals)
@@ -164,7 +165,7 @@ class GeneStripchart
     jitter: (d) ->
         @jitter_cache[d.lbl] ?= Math.random()*8 - 4
 
-    set_text: (prefix) ->
+    cpm_label_text: (prefix) ->
     # Prefix is set to non-empty string when we need it for a menu (Can be used as Falsy, otherwise we can use prefix.length > 0).
     # We use it negate the menu text so that it shows the correct option. Alternatively we can use !(A ^ !B) in this case.
     # i.e. displays "Show in CPM when in counts mode and vice versa"
@@ -195,7 +196,7 @@ class GeneStripchart
         @tooltip.transition().duration(200)
                 .style("opacity", 0.8)
         info="<table>"
-        info += "<tr><td><b>#{row.lbl}</b>:<td>#{fmt(row.val)}"
+        info += "<tr><td><b>#{row.nice_name}</b>:<td>#{fmt(row.val)}"
         info += "</table>"
 
         @tooltip.html(info)
@@ -205,7 +206,7 @@ class GeneStripchart
 module.exports =
     name: 'gene-stripchart'
     props:
-        selected:
+        selected:                   # Which rows (genes) are selected
             type: Array
             required: true
         geneData:

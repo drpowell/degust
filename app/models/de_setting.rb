@@ -16,6 +16,8 @@ class DeSetting < ApplicationRecord
                 'fc_columns' => [],
                 'info_columns' => [],
                 'analyze_server_side' => true,
+                'hidden_factor' => [],
+                'init_select' => [],
                 }
 
         res = settings_as_json
@@ -89,6 +91,14 @@ private
             !check_array(settings['info_columns']) ||
             !check_array(settings['hidden_factors']))
             return false
+        end
+
+        if settings.key?("filter_rows")
+            settings['filter_rows'].each do |filt|
+                if (BAD_REGEX.match?(filt["column"]) || BAD_REGEX.match?(filt["regexp"]))
+                    return false
+                end
+            end
         end
 
         if (settings.key?('ec_column') && BAD_REGEX.match?(settings['ec_column']))

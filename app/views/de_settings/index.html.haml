@@ -18,6 +18,9 @@
 
   .row
     .col-md-12
+      %input.search{:size=>'40', :type=>"search",
+                    :placeholder=>"Filter tables", "data-column"=>"0", :style=>"float: right"}
+
       .mine
         - if @mine.length
           %h4 My Data sets

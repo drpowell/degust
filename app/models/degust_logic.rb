@@ -1,4 +1,5 @@
 require 'open3'
+require 'timeout'
 
 class DegustLogic
 
@@ -21,7 +22,6 @@ class DegustLogic
                      when 'remove-hidden' then 'remove-hidden'
                      else ''
                      end
-
         method = case query['method']
                      when 'voom' then 'voom'
                      when 'edgeR' then 'edgeR'
@@ -51,6 +51,7 @@ class DegustLogic
             "skip_header_lines" => force_int(settings['skip_header_lines']),
             "method" => method,
             "model_only_selected" => boolToR(settings['model_only_selected']),
+            "filter_rows" => (settings["filter_rows"] || []).to_json,
         }
 
         ApplicationController.render(template: "degust/#{method}.R.erb", assigns: params, layout: false)
@@ -64,13 +65,24 @@ class DegustLogic
         tempfile = Dir.mktmpdir("R-tmp", "#{Rails.root.to_s}/tmp/")
         code = make_code.call(tempfile)
 
-        sout = serr = exit_status = nil
+        sout = serr = exit_status = timeout = nil
         Open3.popen3('R','-q','--vanilla') do |stdin, stdout, stderr, wait_thr|
-            stdin.write(code)
-            stdin.close_write
-            exit_status = wait_thr.value
-            sout = stdout.read
-            serr = stderr.read
+            begin
+                Timeout.timeout(120) do   # R has to complete running within this time
+                    stdin.write(code)
+                    stdin.close_write
+                    exit_status = wait_thr.value
+                    sout = stdout.read
+                    serr = stderr.read
+                end
+            rescue Timeout::Error => e
+                STDERR.puts "Timeout ruby run : #{e.inspect}"
+                timeout = true
+                Process.kill("KILL", wait_thr.pid)
+            end
+        end
+        if (timeout)
+            return {error: {input: code, msg: "R run timed out", stdout: sout, exit_status: exit_status}}
         end
         if (exit_status.exitstatus != 0)
             return {error: {input: code, msg: serr, stdout: sout, exit_status: exit_status}}
@@ -91,9 +103,9 @@ class DegustLogic
         end
 
         res = {csv: output, extra: extra, stdout: sout, stderr: serr }
-        FileUtils.remove_dir(tempfile)
-
         return res
+    ensure
+        FileUtils.remove_dir(tempfile)
     end
 
 private
