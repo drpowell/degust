@@ -1,5 +1,8 @@
 
 <style scoped>
+.modal {
+    position: absolute;
+}
 </style>
 
 <template>
