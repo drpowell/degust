@@ -18,10 +18,10 @@
         <hr/>
         <div class='row'>
             <div class="col-sm-1">
-                <button v-on:click='clearAll' type="button" class="btn btn-default btn-xs" tabindex=-1><span class="ui-icon ui-icon-trash"></span></button>
+                <button v-on:click='clearAll' type="button" class="btn btn-default btn-sm" tabindex=-1 v-tooltip="tip('Clear all')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
             </div>
             <div class="col-sm-1">
-                <button v-on:click='showModal=true' type="button" class="btn btn-default btn-xs" tabindex=-1><span class="ui-icon ui-icon-suitcase"></span></button>
+                <button v-on:click='showModal=true' type="button" class="btn btn-default btn-sm" tabindex=-1 v-tooltip="tip('Use a regexp to configure')"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span></button>
             </div>
             <div class="col-sm-6">
                 <input type="checkbox" id='show_all' v-model="showAll">
@@ -109,5 +109,7 @@ module.exports =
                     if m && m.length>1
                         col.name = m[1..].join('-')
             this.closeModal()
+        tip: (txt) ->
+            {content:txt, placement:'right'}
 
 </script>

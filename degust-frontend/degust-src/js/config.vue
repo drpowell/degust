@@ -4,6 +4,8 @@
 
     .conditions { border: 1px solid #aaa; border-radius: 5px; padding: 0 3px; margin-bottom: 5px;}
 
+    .condition-autoname { position: absolute; left: -9px; top: 10px;}
+
     .view { float: right; }
     .del-condition { float: right; }
 
@@ -176,8 +178,8 @@
                             </div>
                             <div class="col-sm-9">
                               <div class="col-sm-8">
+                                <button v-on:click='selected_reps(rep)' type="button" class="btn btn-xs condition-autoname" tabindex=-1 v-tooltip="tip('Auto-fill a name of this condition')"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span></button>
                                 <multiselect v-model="rep.cols" :options="column_names_may_hide"
-                                             @input='selected_reps(rep)'
                                              :custom-label="nice_name"
                                              :multiple="true" :close-on-select="false"
                                              :show-labels="false" :searchable="false"
