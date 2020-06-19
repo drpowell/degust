@@ -119,7 +119,7 @@ class Scatter3d
             sphere.userData = {datapoint: data[i]}
 
             @scatterPlot.add( sphere )
-            @addText(@scatterPlot, data[i].sample.name, 50,
+            @addText(@scatterPlot, data[i].sample.nice_name, 50,
                      sphere.position.x, sphere.position.y, sphere.position.z,
                      colour(data[i]), -20)
 

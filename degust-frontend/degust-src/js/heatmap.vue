@@ -432,7 +432,7 @@ class Heatmap
         cols.enter().append('text').attr("class","label")
         cols.exit().remove()
         cols.attr("text-anchor", "end")
-            .text((d) -> d.name)
+            .text((d) -> if d.nice_name? then d.nice_name else d.name)
             .transition()
             .attr('x', @opts.label_width)
             .attr('y', (d,i) => i * @opts.h + @opts.h/2)
@@ -502,7 +502,7 @@ class Heatmap
         @dispatch.on(t, func)
 
     highlight: (rows) ->
-        return if @_is_thinking
+        return if @_is_thinking || !@order?
         pos = rows.map((r) => @order.indexOf(r.id)).filter((p) -> p>=0)
         #console.log rows,pos
         if pos.length==0

@@ -204,7 +204,7 @@ module.exports =
             this.conditionColouring(d.sample.parent)
 
         text: (d) ->
-            d.sample.name
+            d.sample.nice_name
 
         brush: () ->
             @redraw()

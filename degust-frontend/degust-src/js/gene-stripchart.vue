@@ -115,7 +115,7 @@ class GeneStripchart
                 val = if @show_cpm then row[c.idx]/norm_factor else row[c.idx]
             else
                 val = if @show_log2Intensity then Math.log(row[c.idx]) * Math.LOG2E else row[c.idx]
-            {lbl: c.name, parent: c.parent, val: val}
+            {lbl: c.name, parent: c.parent, val: val, nice_name: @data.nice_name(c.name)}
         )
 
         @x.domain(vals.map((d) -> d.parent ))
@@ -196,7 +196,7 @@ class GeneStripchart
         @tooltip.transition().duration(200)
                 .style("opacity", 0.8)
         info="<table>"
-        info += "<tr><td><b>#{row.lbl}</b>:<td>#{fmt(row.val)}"
+        info += "<tr><td><b>#{row.nice_name}</b>:<td>#{fmt(row.val)}"
         info += "</table>"
 
         @tooltip.html(info)

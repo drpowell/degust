@@ -280,6 +280,8 @@ module.exports =
 
         process_dge_data: (data, cols, extra) ->
             this.gene_data = new GeneData(data, cols)
+            if this.settings.nice_names?
+                this.gene_data.set_column_renaming(this.settings.nice_names)
             this.maxGenes = this.gene_data.get_data().length
             this.$awn.info("Loaded #{this.maxGenes} genes", {durations : {info: 3000}})
             this.numGenesThreshold = this.maxGenes
