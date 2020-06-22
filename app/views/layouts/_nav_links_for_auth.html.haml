@@ -6,6 +6,7 @@
     %ul.dropdown-menu
       %li
         = link_to 'Your data', visited_path
+      = render 'layouts/ui_versions'
       %li
         = link_to 'Upload new', upload_path
       %li
@@ -16,6 +17,7 @@
       Sign in
       .caret
     %ul.dropdown-menu
+      = render 'layouts/ui_versions'
       %li
         = link_to "Via Twitter", "/auth/twitter"
       %li
@@ -26,6 +28,7 @@
         Sign in
         .caret
       %ul.dropdown-menu
+        = render 'layouts/ui_versions'
         %li
           = link_to "Via Twitter", "/auth/twitter"
         %li
