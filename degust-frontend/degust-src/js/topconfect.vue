@@ -2,6 +2,7 @@
 .outer {
     height: 400px;
     overflow-y: auto;
+    margin-bottom: 20px;
 }
 
 .outer >>> .axis line, .outer >>> .axis path {
@@ -42,6 +43,11 @@ div.tooltip table {
 
 <template>
     <div>
+        <div>
+            <small>
+                This topconfects feature is <b>experimental</b>.  See the <a target=_blank href='https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1674-7'>paper</a> for details
+            </small>
+        </div>
         <div class='outer'>
             <svg>
             </svg>
@@ -179,7 +185,7 @@ module.exports =
                 .range(xrange)
             @yScale = d3.scale.linear()
                 .domain( [0, data.length] )
-                .range([@margin.t + @pxPerLine/2, data.length * @pxPerLine])
+                .range([@margin.t + @pxPerLine/2, @margin.t + data.length * @pxPerLine])
             @sc = d3.scale.linear()
                 .domain( d3.extent(data.map((r) -> r.effect) ) )
                 .range([1,10])
@@ -237,7 +243,7 @@ module.exports =
 
 
         init_chart: (data) ->
-            @width = 600
+            @width = 800
             @height = 400
             @num_rows_show = Math.floor((@height-@margin.t-@margin.b)/@pxPerLine)-1
 
@@ -245,7 +251,7 @@ module.exports =
 
             svg = d3.select(this.$el)
                     .select("svg")
-                    .attr('viewBox', "0 0 800 #{data.length * @pxPerLine}")
+                    .attr('viewBox', "0 0 #{@width} #{data.length * @pxPerLine}")
             axis = svg.append("g").attr('class', 'axis')
             svg.append("g").attr('class','genes')
 
