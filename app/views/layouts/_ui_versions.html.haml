@@ -1,0 +1,5 @@
+- if defined? @current_id
+    - frontend_versions.each do |ver|
+        %li
+            = link_to "View with #{ver}", degust_compare_url(ver, @current_id)
+    %hr
