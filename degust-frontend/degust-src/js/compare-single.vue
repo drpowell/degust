@@ -343,6 +343,7 @@
                               :colour='condition_colouring'
                               :useIntensity='is_maxquant'
                               :selected='genes_hover'
+                              :selectedColumns='fc_calc_columns'
                               >
               </gene-stripchart>
 
