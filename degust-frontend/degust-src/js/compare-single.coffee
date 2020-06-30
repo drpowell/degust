@@ -185,10 +185,7 @@ module.exports =
             # On plot change, reset brushes
             this.genes_highlight = []
             this.genes_selected = this.gene_data.get_data()
-            this.warningToggle(this.fc_calc_columns.length>2 && this.cur_plot=="ma",
-                               'maPlotWarningElem', 'Using MA plot with >2 conditions')
-            this.warningToggle(this.fc_calc_columns.length>2 && this.cur_plot=="volcano",
-                               'volcanoPlotWarningElem', 'Using Volcano plot with >2 conditions')
+            this.checkPlotWarning()
         maxGenes: (val) ->
             this.$refs.num_genes.set_max(this.numGenesThreshold, 1, val, true)
             this.$refs.skip_genes.set_max(this.skipGenesThreshold, 0, val, true)
@@ -297,6 +294,7 @@ module.exports =
             if this.fc_columns.length==2
                 this.heatmap_show_replicates = true
             this.renormalize()
+            this.checkPlotWarning()
             this.$emit('update', this.gene_data)
 
         renormalize: () ->
@@ -332,6 +330,12 @@ module.exports =
             this.genes_hover = this.genes_highlight = Vue.noTrack([d])
         gene_table_nohover: () ->
             this.genes_highlight=[]
+
+        checkPlotWarning: () ->
+            this.warningToggle(this.fc_calc_columns.length>2 && this.cur_plot=="ma",
+                               'maPlotWarningElem', 'Using MA plot with >2 conditions')
+            this.warningToggle(this.fc_calc_columns.length>2 && this.cur_plot=="volcano",
+                               'volcanoPlotWarningElem', 'Using Volcano plot with >2 conditions')
 
         warningToggle: (warn, warnElem, msg) ->
             if warn && !this[warnElem]
