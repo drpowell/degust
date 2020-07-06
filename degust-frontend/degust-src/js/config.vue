@@ -178,8 +178,10 @@
                             </div>
                             <div class="col-sm-9">
                               <div class="col-sm-8">
-                                <button v-on:click='selected_reps(rep)' type="button" class="btn btn-xs condition-autoname" tabindex=-1 v-tooltip="tip('Auto-fill a name of this condition')"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span></button>
-                                <multiselect v-model="rep.cols" :options="column_names_may_hide"
+                                <button v-on:click='guess_condition_name(rep, true)' type="button" class="btn btn-xs condition-autoname" tabindex=-1 v-tooltip="tip('Auto-fill a name of this condition')"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span></button>
+                                <multiselect v-model="rep.cols"
+                                             @close='guess_condition_name(rep, false)'
+                                             :options="column_names_may_hide"
                                              :custom-label="nice_name"
                                              :multiple="true" :close-on-select="false"
                                              :show-labels="false" :searchable="false"

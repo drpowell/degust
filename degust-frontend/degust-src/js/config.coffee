@@ -426,7 +426,9 @@ module.exports =
             this.settings.contrasts.splice(this.editing_contrast.idx,1)
             this.editing_contrast=null
 
-        selected_reps: (rep) ->
+        guess_condition_name: (rep, force_guess) ->
+            if (!force_guess && rep.name!="" && rep.cols.length>0)
+                return
             n = common_prefix(rep.cols.map((c) => this.nice_name(c)))
             rep.name = n
         script: (typ) ->
