@@ -65,6 +65,10 @@ class DegustLogic
         tempfile = Dir.mktmpdir("R-tmp", "#{Rails.root.to_s}/tmp/")
         code = make_code.call(tempfile)
 
+        if code.nil?
+            return {error: {msg: "Invalid parameters" } }
+        end
+
         sout = serr = exit_status = timeout = nil
         Open3.popen3('R','-q','--vanilla') do |stdin, stdout, stderr, wait_thr|
             begin
