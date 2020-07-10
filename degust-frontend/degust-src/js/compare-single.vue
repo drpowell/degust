@@ -45,14 +45,14 @@
     }
 
     div >>> #descTooltip::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    right: 100%; /* To the left of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent black transparent transparent;
+      content: " ";
+      position: absolute;
+      top: 50%;
+      right: 100%; /* To the left of the tooltip */
+      margin-top: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent black transparent transparent;
     }
 
     .smallText {
@@ -113,8 +113,7 @@
                               :sel_conditions='sel_conditions'
                               :sel_contrast='sel_contrast'
                               :dge_methods='dge_methods'
-                              @apply='change_samples'
-                              @SampleWeights='show_extraInfo=true'>
+                              @apply='change_samples'>
             </conditions-selector>
           </div>
           <hr/>
@@ -233,6 +232,7 @@
             </div>
 
             <div class='text-left' v-show='!is_pre_analysed'>
+              <div><a class='sm-link' @click='show_extraInfo=true'>Show extra info</a></div>
               <a class='sm-link' @click='show_r_code'>Show R code</a>
               <!-- Download R code/Show R code -->
               <span class="dropdown">

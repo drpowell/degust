@@ -82,9 +82,6 @@ a {font-size: 10px}
                         </select>
                     </div>
                 </div>
-                <div class='col-xs-5' align="right">
-                    <a @click='showSampleWeights'>View Extra Information</a>
-                </div>
             </div>
         </div>
     </edit-overlay>
@@ -162,8 +159,5 @@ module.exports =
             this.cur.sel_conditions = this.sel_conditions
             this.cur.sel_contrast = this.sel_contrast
             this.update_sel_contrast_idx()
-        showSampleWeights: () ->
-            this.$emit('SampleWeights')
-
 
 </script>
