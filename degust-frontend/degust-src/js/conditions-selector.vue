@@ -38,7 +38,7 @@ a {font-size: 10px}
 </style>
 
 <template>
-    <edit-overlay class='col-xs-2' :enabled='editing' @cancel='cancel' @apply='apply'>
+    <edit-overlay class='col-xs-2' :enabled='editing' :valid='isValid' @cancel='cancel' @apply='apply'>
         <div class='conditions'>
             <h4>Conditions</h4>
             <div class='files'>
@@ -135,6 +135,8 @@ module.exports =
             this.settings.hidden_factor
         contrasts: () ->
             this.settings.contrasts || []
+        isValid: () ->
+            this.cur.sel_conditions.length>1
     methods:
         update_sel_contrast_idx: () ->
             this.cur.sel_contrast_idx = this.contrasts.findIndex((x) => x==this.cur.sel_contrast)

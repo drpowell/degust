@@ -39,7 +39,7 @@
             <slot>Editable component</slot>
             <div class="edit-btns" v-if='enabled && showButtons'>
                 <button class='btn btn-default btn-sm' @click='cancel'>Cancel</button>
-                <button class='btn btn-primary btn-sm' @click='apply'>Apply</button>
+                <button class='btn btn-primary btn-sm' @click='apply' :disabled='!valid'>Apply</button>
             </div>
         </div>
         <div class="edit-overlay" v-if='enabled' @click='$emit("bg-click")'></div>
@@ -53,6 +53,8 @@ module.exports =
         enabled:
             required: true
         showButtons:
+            default: true
+        valid:
             default: true
     data: () ->
         backdropStyle:
