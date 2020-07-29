@@ -77,7 +77,7 @@ div.csv-download-div { float: right; margin: -7px 30px 0 0; }
         <div>
           <div class="tab-search">
             Search:
-            <input type="text" v-model='searchStr' :class='{active: searchStr!=""}' @keyup.esc='searchStr=""'>
+            <input type="text" v-model='searchStr' :class='{active: searchStr!=""}' @keyup.esc='searchStr=""' v-tooltip="tip('Search genes by substring match on any info column.  Comma separate for multiple terms')">
             <span class='dropdown'>
             <button class="btn-link dropdown-toggle" type="button" id="gTableCog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-target="#">
                     <span class='glyphicon glyphicon-cog'></span>
@@ -352,6 +352,8 @@ module.exports =
                 )
 
     methods:
+        tip: (txt) ->
+            {content:txt, placement:'top'}
         resize: () ->
             this.$emit('resize')
 
