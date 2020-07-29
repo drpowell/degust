@@ -208,7 +208,7 @@ remove_duplicates = (arr, by_key) ->
 do_download = (filename, gene_data, gene_table, fmt) ->
     items = gene_table
     return if items.length==0
-    cols = gene_data.columns_by_type(['info','fc_calc','count','fdr','avg','p'])
+    cols = gene_data.columns_by_type(['info','fc_calc','count','fdr','avg','p','confect'])
     cols = remove_duplicates(cols, (x) -> x.idx)
     count_cols = gene_data.columns_by_type('count')
     count_cols = remove_duplicates(count_cols, (x) -> x.idx)
