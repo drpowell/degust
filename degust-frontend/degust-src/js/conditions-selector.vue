@@ -81,7 +81,7 @@ a {font-size: 10px}
                 <div class='col-xs-7'>
                     <div v-show='dge_methods.length>0'>
                         <label>Method</label>
-                        <select v-model='cur.dge_method' @click='editing=true' class='dge-method'>
+                        <select v-model='cur.dge_method' @mousedown='editing=true' class='dge-method'>
                             <option v-for='method in dge_methods' :value='method[0]'>{{method[1]}}</option>
                         </select>
                     </div>

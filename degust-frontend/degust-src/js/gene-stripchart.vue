@@ -74,6 +74,7 @@ class GeneStripchart
         @show_cpm = true
         @show_log2Intensity = false
         @useIntensity = @opts.useIntensity
+        @selectedColumns = []
         @_make_menu(@opts.elem)
 
     # Return a copy of the SVG with styles attached from the stylesheet
@@ -94,18 +95,33 @@ class GeneStripchart
                         else
                             @show_cpm = !@show_cpm
                         @update()
+                },{
+                    title: () => if @only_selected_samples then "All conditions" else "Selected conditions"
+                    action: () =>
+                        @only_selected_samples = !@only_selected_samples
+                        @update()
                 }
         ]
         d3.select(el).on('contextmenu', d3.contextMenu(menu.concat(print_menu))) # attach menu to element
+
+    selectColumns: (@selectedColumns) ->
+        @update()
 
     select: (@data, @rows) ->
         @update()
 
     update: () ->
         @svg.selectAll("*").remove()
+        if !@rows || @rows.length==0
+            return
 
         row = @rows[0]  # Just use first for now.  TODO, make others selectable
-        @columns = cols = @data.columns_by_type('count')
+        @columns = @data.columns_by_type('count')
+        if @only_selected_samples
+            keep_cols = @selectedColumns.map((c) -> c.name)
+            @columns = @columns.filter((c) => c.parent in keep_cols)
+
+        cols = @columns
         vals = cols.map((c) =>
             norm_factor = @data.get_total(c) / 1000000.0
             # {lbl: c.name, parent: c.parent, val: Math.log(0.5 + row[c.idx]/norm_factor)/Math.log(2)}
@@ -216,7 +232,11 @@ module.exports =
             default: d3.scale.category10()
         useIntensity:
             default: false
+        selectedColumns:
+            default: []
     watch:
+        selectedColumns: () ->
+            this.me.selectColumns(this.selectedColumns)
         selected: () ->
             if this.selected.length>0
                 this.me.select(this.geneData, this.selected)
