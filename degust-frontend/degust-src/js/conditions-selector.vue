@@ -92,7 +92,7 @@ a {font-size: 10px}
                 <label>FDR cut-off</label>
                 <slider-text class='slider-control'
                             :value_in='cur.confect_fdr' @input='fdrChanged'
-                            :step-values='[0, 1e-6, 1e-5, 1e-4, 0.001, .01, .02, .03, .04, .05, 0.1, 1]'
+                            :step-values='[0, 1e-6, 1e-5, 1e-4, 0.001, .01, .02, .03, .04, .05, 0.1, 0.5]'
                             :dropdowns="[{label: '1', value: 1},{label: '0.05',value: 0.05},{label:'0.01',value:0.01},{label:'0.001',value:0.001},{label:'0.0001',value:0.0001}]"
                             >
                 </slider-text>

@@ -164,7 +164,7 @@
                 <a @click='showGeneList=true'>{{(filter_gene_list.length == 0) ? "Create Filter" : "List Size: " + filter_gene_list.length }}</a>
               </div>
 
-              <div v-tooltip="tip('Show FC from selected condition')">
+              <div v-tooltip="tip('Show FC from selected condition')" v-if='cur_plot!="topconfect"'>
                 <label for='fc-relative'>FC relative to</label>
                 <select id='fc-relative' v-model='fc_relative_i'>
                     <option v-for='(col,i) in fc_columns' :value='i'>{{col.name}}</option>

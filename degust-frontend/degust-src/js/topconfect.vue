@@ -243,7 +243,7 @@ module.exports =
 
         _init_chart: (data) ->
             @width = 800
-            @height = 500
+            @height = 450
             @num_rows_show = Math.floor((@height-@margin.t-@margin.b)/@pxPerLine)-1
 
             d3.select(this.$el).select('svg').selectAll("*").remove()

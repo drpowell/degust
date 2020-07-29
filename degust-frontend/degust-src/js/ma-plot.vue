@@ -48,6 +48,7 @@
                 <tr><td><b>Ave Expr:</b></td><td>{{fmt(hover[0][avgCol.idx])}}</td></tr>
                 <tr><td><b>log FC:</b></td><td>{{fmt(hover[0][logfcCol.idx])}}</td></tr>
                 <tr><td><b>FDR:</b></td><td>{{fmt2(hover[0][fdrCol.idx])}}</td></tr>
+                <tr v-if='hover[0].confect != undefined'><td><b>Confect:</b></td><td>{{fmt2(hover[0].confect)}}</td></tr>
             </table>
             <div v-if='hover.length>1'>
                 And {{hover.length-1}} other{{hover.length>2 ? 's' : ''}}
