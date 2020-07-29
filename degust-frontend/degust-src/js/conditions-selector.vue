@@ -24,6 +24,12 @@ a {font-size: 10px}
 
 .dge-method {font-size: 12px; }
 
+.dge-filters { margin-top: 5px; }
+.dge-filters >>> label, .dge-filters >>> input { display: inline-block; font-size: 8pt; }
+.dge-filters >>> select { display: inline-block; font-size: 8pt; max-width: 200px; }
+.dge-filters >>> input { width: 50px; }
+.slider-control { display: inline-block; }
+
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 7px;
@@ -33,12 +39,10 @@ a {font-size: 10px}
   background-color: rgba(0, 0, 0, .5);
   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
-
-
 </style>
 
 <template>
-    <edit-overlay class='col-xs-2' :enabled='editing' :valid='isValid' @cancel='cancel' @apply='apply'>
+    <edit-overlay class='col-xs-2' :enabled='editing' :valid='isValid' :need-update='overlayUpdate' @cancel='cancel' @apply='apply'>
         <div class='conditions'>
             <h4>Conditions</h4>
             <div class='files'>
@@ -83,6 +87,17 @@ a {font-size: 10px}
                     </div>
                 </div>
             </div>
+            <div class='row dge-filters' v-if='cur.dge_method=="voom-topconfects"'>
+              <div class='col-xs-12'>
+                <label>FDR cut-off</label>
+                <slider-text class='slider-control'
+                            :value_in='cur.confect_fdr' @input='fdrChanged'
+                            :step-values='[0, 1e-6, 1e-5, 1e-4, 0.001, .01, .02, .03, .04, .05, 0.1, 1]'
+                            :dropdowns="[{label: '1', value: 1},{label: '0.05',value: 0.05},{label:'0.01',value:0.01},{label:'0.001',value:0.001},{label:'0.0001',value:0.0001}]"
+                            >
+                </slider-text>
+              </div>
+            </div>
         </div>
     </edit-overlay>
 </template>
@@ -90,9 +105,11 @@ a {font-size: 10px}
 <script lang='coffee'>
 
 editOverlay = require('./edit-overlay.vue').default
+sliderText = require('./slider.vue').default
 
 module.exports =
     components:
+        sliderText: sliderText
         editOverlay: editOverlay
     props:
         dge_methods:
@@ -103,6 +120,8 @@ module.exports =
             required: true
         sel_contrast:
             required: true
+        confect_fdr:
+            required: true
         settings:
             required: true
     data: () ->
@@ -111,7 +130,9 @@ module.exports =
             sel_conditions: this.sel_conditions
             sel_contrast: this.sel_contrast
             sel_contrast_idx: null
+            confect_fdr: 0.05
         editing: false
+        overlayUpdate: 0
     watch:
         dge_method: (v) ->
             this.cur.dge_method=v
@@ -125,6 +146,8 @@ module.exports =
             this.editing = false
         'cur.sel_contrast_idx': () ->
             this.update_sel_contrast()
+        'cur.dge_method': () ->
+            this.overlayUpdate+=1
     computed:
         conditions: () ->
             this.settings.replicates.map((c) -> {name:c[0]}).filter((c) => !(c.name in this.hidden_factors))
@@ -133,31 +156,42 @@ module.exports =
         contrasts: () ->
             this.settings.contrasts || []
         isValid: () ->
-            this.cur.sel_conditions.length>1
+            if this.cur.sel_contrast?
+                return this.cur.dge_method!='voom-topconfects'
+            if this.cur.sel_conditions.length>2
+                return this.cur.dge_method!='voom-topconfects'
+            return this.cur.sel_conditions.length>1
     methods:
+        fdrChanged: (v) ->
+            if v != this.confect_fdr
+                this.editing=true
+            this.cur.confect_fdr = v
         update_sel_contrast_idx: () ->
             this.cur.sel_contrast_idx = this.contrasts.findIndex((x) => x==this.cur.sel_contrast)
         update_sel_contrast: () ->
+            this.overlayUpdate+=1
             idx = this.cur.sel_contrast_idx
             if ((idx>=0) && (idx < this.contrasts.length))
                 this.cur.sel_contrast = this.contrasts[idx]
             else
                 this.cur.sel_contrast = null
-
         click_condition: () ->
             this.editing=true
             this.cur.sel_contrast_idx=null
+            this.overlayUpdate+=1
         click_contrast: (x) ->
             this.editing=true
             this.cur.sel_conditions=[]
+            this.overlayUpdate+=1
         apply: () ->
             this.editing=false
             this.$emit('apply', this.cur)
         cancel: () ->
-            this.editing=false
             this.cur.dge_method = this.dge_method
             this.cur.sel_conditions = this.sel_conditions
             this.cur.sel_contrast = this.sel_contrast
+            this.cur.confect_fdr = this.confect_fdr
             this.update_sel_contrast_idx()
+            this.editing=false
 
 </script>

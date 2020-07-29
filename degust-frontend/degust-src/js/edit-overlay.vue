@@ -56,6 +56,8 @@ module.exports =
             default: true
         valid:
             default: true
+        needUpdate:
+            default: 0
     data: () ->
         backdropStyle:
             top: 0
@@ -65,9 +67,10 @@ module.exports =
     watch:
         enabled: () ->
             this.placeBackdrop()
+        needUpdate: () ->
+            this.placeBackdrop()
     mounted: () ->
         this.placeBackdrop()
-        
     methods:
         cancel: () -> this.$emit('cancel')
         apply: () -> this.$emit('apply')

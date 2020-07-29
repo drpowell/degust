@@ -13,6 +13,12 @@ out2 <- cbind(fit2$coef,
               out[, c('P.Value','adj.P.Val','AveExpr')],
               x[, export_cols] )
 
+if (<%== @topconfects %>) {
+    library(topconfects)
+    confect <- limma_confects(fit2, coef=1, fdr=<%== @topconfects_fdr %>)
+    out2 <- cbind(out2, confect=confect$table$confect[order(confect$table$index)])
+}
+
 param_normalized <- '<%= @normalized %>'
 normalized <- matrix(0)
 if (param_normalized=='') {

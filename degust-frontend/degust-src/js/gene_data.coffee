@@ -72,7 +72,7 @@ class GeneData
             d.id = i if !d.id?
             @_by_id_cache[d.id] = d
             for c in @columns
-                if c.type in ['fc','abs','avg','fdr','count','p']
+                if c.type in ['fc','abs','avg','fdr','count','p','confect']
                     d[c.idx] = +d[c.idx]
                 if(c.type == 'info')
                     if d[c.idx]?

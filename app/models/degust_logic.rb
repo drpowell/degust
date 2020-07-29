@@ -29,9 +29,11 @@ class DegustLogic
                      when 'voom-weights' then 'voom-weights'
                      when 'maxquant' then 'maxquant'
                      when 'logFC-only' then 'logFC-only'
-                     when 'topconfect' then 'topconfect'
+                     when 'voom-topconfects' then 'voom'
                      else nil
                      end
+        topconfects = query['method'] == 'voom-topconfects'
+        fdr = if topconfects then query['fdr'] else '' end
 
         return nil if method.nil?
 
@@ -50,6 +52,8 @@ class DegustLogic
             "output_dir" => output_dir,
             "skip_header_lines" => force_int(settings['skip_header_lines']),
             "method" => method,
+            "topconfects" => boolToR(topconfects),
+            "topconfects_fdr" => force_num(fdr),
             "model_only_selected" => boolToR(settings['model_only_selected']),
             "filter_rows" => (settings["filter_rows"] || []).to_json,
         }

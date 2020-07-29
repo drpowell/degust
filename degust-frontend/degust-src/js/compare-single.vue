@@ -113,6 +113,7 @@
                               :sel_conditions='sel_conditions'
                               :sel_contrast='sel_contrast'
                               :dge_methods='dge_methods'
+                              :confect_fdr='confect_fdr'
                               @apply='change_samples'>
             </conditions-selector>
           </div>
@@ -138,6 +139,18 @@
                 <label>abs logFC</label>
                 <slider-text class='slider-control'
                             v-model='fcThreshold'
+                            :step-values='fcStepValues'
+                            :validator="intValidator"
+                            :dropdowns="[{label: '0 (all)', value: 0},{label: '0.585 (> 1.5x)',value: 0.585},{label:'1 (> 2x)',value:1},{label:'2 (> 4x)',value:2},{label:'3 (> 8x)',value:3},{label:'4 (> 16x)',value:4}]"
+                            :warning="fcWarning"
+                            >
+                </slider-text>
+              </div>
+
+              <div v-if='confect_data_present' v-tooltip="tip('Filter genes by confect')">
+                <label>Confect</label>
+                <slider-text class='slider-control'
+                            v-model='confectThreshold'
                             :step-values='fcStepValues'
                             :validator="intValidator"
                             :dropdowns="[{label: '0 (all)', value: 0},{label: '0.585 (> 1.5x)',value: 0.585},{label:'1 (> 2x)',value:1},{label:'2 (> 4x)',value:2},{label:'3 (> 8x)',value:3},{label:'4 (> 16x)',value:4}]"
@@ -285,9 +298,8 @@
               <li :class='{active: cur_plot=="volcano"}'>
                   <a @click='cur_plot="volcano"'>Volcano</a>
               </li>
-              <li :class='{active: cur_plot=="topconfect", disabled: dge_method != "voom" || sel_conditions.length!=2}'>
-                  <a @click='cur_plot="topconfect"'
-                  >Topconfect</a>
+              <li v-if='confect_data_present' :class='{active: cur_plot=="topconfect"}'>
+                  <a @click='cur_plot="topconfect"'>Topconfect</a>
               </li>
             </ul>
             <div v-bind:style="{ opacity: num_loading>0 ? 0.4 : 1 }">
@@ -348,12 +360,14 @@
                         >
                 </mds-plot>
                 <topconfect v-if='cur_plot=="topconfect"'
-                            :backend='backend'
-                            :sel_conditions='sel_conditions'
                             :gene_data='gene_data'
+                            :data='gene_data_rows'
+                            :filter='expr_filter'
+                            :filter-changed='filter_changed'
+                            :logfc-col='ma_plot_fc_col'
                             :highlight='genes_highlight'
                             @hover-start='v => genes_hover=v'
-                            @loaded='table_add_column+=1'
+                            @brush='set_genes_selected'
                             >
                 </topconfect>
               </div>
@@ -396,7 +410,6 @@
                     :fc-columns='fc_calc_columns'
                     :rows='genes_selected'
                     :useProt='is_maxquant'
-                    :add-column-type='table_add_column'
                     @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
                     >
         </gene-table>

@@ -260,8 +260,6 @@ module.exports =
             required: true
         useProt:
             default: false
-        addColumnType:
-            default: false
 
     data: () ->
         searchStr: ""
@@ -285,13 +283,7 @@ module.exports =
             this.$refs.slickGrid.resort()
         allColData: () ->
             if this.keepCols.length==0
-                this.keepCols = this.geneData.columns_by_type(['info','fdr','p']).concat(this.fcColumns)
-
-        # This is a hack to add "confect" column on plot change
-        addColumnType: () ->
-            if this.keepCols.length>0 && this.keepCols.filter((v) -> v.type=='confect').length==0
-                this.keepCols = this.keepCols.concat(this.geneData.columns_by_type(['confect']))
-
+                this.keepCols = this.geneData.columns_by_type(['info','fdr','p','confect']).concat(this.fcColumns)
     computed:
         allColData: () ->
             this.geneData.columns

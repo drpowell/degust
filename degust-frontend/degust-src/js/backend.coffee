@@ -108,7 +108,8 @@ class BackendRNACounts
                 ['voom', 'Voom/Limma'],
                 ['edgeR-quasi', 'edgeR quasi-likelihood'],
                 ['edgeR', 'edgeR'],
-                ['voom-weights', 'Voom (samp weights)']
+                ['voom-weights', 'Voom (samp weights)'],
+                ['voom-topconfects', 'Topconfects (voom)']
             )
         res.push(['logFC-only', 'LogFC only (no P-values)'])
         res
@@ -134,8 +135,8 @@ class BackendRNACounts
     request_kegg_data: (callback) ->
         @common.request_kegg_data(callback)
 
-    request_data: (method,columns,contrasts) ->
-        @do_request_data(method,columns,contrasts).then(([data,json]) =>
+    request_data: (method,columns,contrasts, opt) ->
+        @do_request_data(method,columns,contrasts,opt).then(([data,json]) =>
             @_process_dge_data(columns, contrasts, data, json.extra)
         )
 
@@ -157,11 +158,11 @@ class BackendRNACounts
         Object.assign(hsh, opt)
         @_request_from_params(call, hsh)
 
-    do_request_data: (method,columns,contrast) ->
+    do_request_data: (method,columns,contrast,opt) ->
         return if columns.length <= 1 && !contrast
 
         # load csv file and create the chart
-        req = @_gen_request('dge', method, columns, contrast)
+        req = @_gen_request('dge', method, columns, contrast, opt)
         @events.$emit("start_loading")
         new Promise((resolve) =>
             d3.json(req, (err, json) =>
@@ -200,6 +201,9 @@ class BackendRNACounts
         if data[0]["P.Value"]?
             data_cols.push({idx: 'P.Value', name: 'P value', type: 'p'})
 
+        if data[0]["confect"]?
+            data_cols.push({idx: 'confect', name: 'Confect', type: 'confect'})
+
         if @settings.ec_column?
             data_cols.push({idx: @settings.ec_column, name: 'EC', type: 'ec'})
         if @settings.link_column?
@@ -211,9 +215,9 @@ class BackendRNACounts
         )
         [data, data_cols, extra]
 
-    request_r_code: (method,columns,contrast) ->
+    request_r_code: (method,columns,contrast,opt) ->
         new Promise((resolve) =>
-            req = @_gen_request('dge_r_code', method, columns,contrast)
+            req = @_gen_request('dge_r_code', method, columns,contrast,opt)
             d3.text(req, (err,data) ->
                 log_debug("Downloaded R Code : len=#{data.length}",data,err)
                 resolve(data)

@@ -66,6 +66,7 @@ module.exports =
         num_loading: 0
         fdrThreshold: 1
         fcThreshold: 0
+        confectThreshold: 0
         fc_relative_i: null
         ma_plot_fc_col_i: null
         fcStepValues:
@@ -81,6 +82,7 @@ module.exports =
         mds_2d3d: '2d'
         mdsDimensionScale: 'independent'
         r_code: ''
+        confect_fdr: 0.05
         dge_method: null
         dge_methods: []
         qc_plots: []
@@ -105,13 +107,13 @@ module.exports =
         show_hoverDesc: false
         show_ModalExperimentDesc: false
         descTooltipLoc: [0,0]
-        table_add_column: 0
+        confect_data_present: false
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:
         home_link: () -> this.settings?.home_link || '/'
         fdrWarning: () -> this.cur_plot == 'mds' && this.fdrThreshold<1
-        fcWarning: () -> this.cur_plot == 'mds' && this.fcThreshold>0
+        fcWarning: () -> this.cur_plot == 'mds' && (this.fcThreshold>0 || this.confectThreshold>0)
         experimentName: () -> this.settings?.name || "Unnamed"
         can_configure: () ->
             !this.settings.config_locked || this.full_settings.is_owner
@@ -145,6 +147,7 @@ module.exports =
         filter_changed: () ->
             this.fdrThreshold
             this.fcThreshold
+            this.confectThreshold
             this.filter_gene_list_cache
             Date.now()
         need_renormalization: () ->
@@ -276,7 +279,7 @@ module.exports =
 
         # Send a request to the backend.  First request, or when selected samples has changed
         request_data: () ->
-            p = this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast)
+            p = this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast, {fdr: this.confect_fdr})
             p.then(([data,cols,extra]) => this.process_dge_data(data,cols,extra))
 
         process_dge_data: (data, cols, extra) ->
@@ -293,10 +296,15 @@ module.exports =
             this.genes_hover = [this.gene_data.get_data()[0]]
             this.genes_highlight = []
             this.colour_by_condition = if this.fc_columns.length<=10 then d3.scale.category10() else d3.scale.category20()
-            if (!this.cur_plot? || this.cur_plot in ["parcoords","ma"])
-                this.cur_plot = if this.fc_columns.length>2 then "parcoords" else "ma"
+            if (!this.cur_plot? || this.cur_plot in ["parcoords","ma","topconfect"])
+                if this.dge_method=='voom-topconfects'
+                    this.cur_plot = 'topconfect'
+                else
+                    this.cur_plot = if this.fc_columns.length>2 then "parcoords" else "ma"
             if this.fc_columns.length==2
                 this.heatmap_show_replicates = true
+            this.confect_data_present = this.gene_data.column_by_type('confect')?
+            this.confectThreshold = 0
             this.renormalize()
             this.$emit('update', this.gene_data)
 
@@ -318,6 +326,7 @@ module.exports =
             this.dge_method = cur.dge_method
             this.sel_conditions = cur.sel_conditions
             this.sel_contrast = cur.sel_contrast
+            this.confect_fdr = cur.confect_fdr
             this.request_data()
 
         set_genes_selected: (d) ->
@@ -343,7 +352,7 @@ module.exports =
 
         # Request and display r-code for current selection
         show_r_code: () ->
-            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast)
+            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast, {fdr: this.confect_fdr})
             p.then((d) =>
                 this.r_code = d
             )
@@ -372,6 +381,10 @@ module.exports =
         # Check if the passed row passes filters for : FDR, FC, Kegg, Filter List
         expr_filter: (row)   ->
             #console.log "filter"
+            if this.confectThreshold>0
+                col = this.gene_data.column_by_type('confect')
+                return false if Math.abs(row[col.idx]) < this.confectThreshold
+
             if this.fcThreshold>0
                 # Filter using largest FC between any pair of samples
                 fc = this.gene_data.columns_by_type('fc').map((c) -> row[c.idx])
@@ -436,7 +449,7 @@ module.exports =
             console.log(this.predef_gene_lists)
         downloadR: () ->
             rcode = ""
-            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast)
+            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast, {fdr: this.confect_fdr})
             p.then((d) =>
                 element = document.createElement('a');
                 element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(d));

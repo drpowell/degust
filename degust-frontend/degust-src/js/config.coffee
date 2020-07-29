@@ -117,7 +117,8 @@ to_server_model = (mdl) ->
 dge_methods = [{value: 'voom', label: 'Voom/Limma'},
                {value: 'edgeR-quasi', label: 'edgeR quasi-likelihood'},
                {value: 'edgeR', label: 'edgeR'},
-               {value: 'voom-weights', label: 'Voom (sample weights)'}
+               {value: 'voom-weights', label: 'Voom (sample weights)'},
+               {value: 'voom-topconfects', label: 'Topconfects (voom)'}
               ]
 
 input_type_options = [{key: 'counts', label: 'RNA-seq counts'},

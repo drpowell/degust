@@ -56,12 +56,12 @@ div.tooltip table {
             <table>
                 <tr v-for='c in infoCols'>
                     <td><b>{{c.name}}:</b></td>
-                    <td>{{hover.gene[c.idx]}}</td>
+                    <td>{{hover[c.idx]}}</td>
                 </tr>
-                <tr><td><b>Ave Expr:</b></td><td>{{fmt(hover.confect.AveExpr)}}</td></tr>
-                <tr><td><b>confect:</b></td><td>{{fmt(hover.confect.confect)}}</td></tr>
-                <tr><td><b>effect:</b></td><td>{{fmt(hover.confect.effect)}}</td></tr>
-                <tr><td><b>FDR:</b></td><td>{{fmt2(hover.gene['adj.P.Val'])}}</td></tr>
+                <tr><td><b>Ave Expr: </b></td><td>{{fmt(hover.AveExpr)}}</td></tr>
+                <tr><td><b>confect: </b></td><td>{{fmt(hover.confect)}}</td></tr>
+                <tr><td><b>effect: </b></td><td>{{fmt(hover[this.logfcCol.idx])}}</td></tr>
+                <tr><td><b>FDR: </b></td><td>{{fmt2(hover['adj.P.Val'])}}</td></tr>
             </table>
             <div v-if='hover.length>1'>
                 And {{hover.length-1}} other{{hover.length>2 ? 's' : ''}}
@@ -77,19 +77,20 @@ module.exports =
     name: 'topconfect'
 
     props:
-        backend: null
-        sel_conditions: null
-        sel_contrast: null
         gene_data: null
+        data: null
+        logfcCol : null
         name:
             default: "topconfect"
         highlight: null
+        filter: null
+        filterChanged: null
     data: () ->
         width: 1
         height: 1
         pxPerLine: 20
         margin:
-            t: 10
+            t: 0
             r: 100
             b: 20
             l: 10
@@ -98,23 +99,26 @@ module.exports =
         hover: null
         tooltipLoc: [0,0]
         infoCols: []
-        id_to_row: []
-        confect_data: null
+        id_to_row: []      # Caches the gene.id integer, to the row we are using.  Used for quick-scroll to highlight
 
     computed:
         tooltipStyle: () ->
             {left: (this.tooltipLoc[0]+40)+'px', top: (this.tooltipLoc[1]+35)+'px'}
 
     watch:
+        filterChanged: () ->
+            this.init()
+        data: () ->
+            this.init()
         highlight: () ->
-            if this.highlight.length>0
+            if this.highlight? && this.highlight.length>0
                 id = this.highlight[0].id
                 top_idx = this.id_to_row[id]
 
                 h = d3.select('svg',this.$el).node().clientHeight
                 pos = top_idx*@pxPerLine - @margin.t
                 d3.select('.outer',this.$el).node().scrollTo(
-                      top: pos / (@confect_data.length * @pxPerLine / h),
+                      top: pos * h / (@id_to_row.length * @pxPerLine),
                       left: 0,
                       behavior: 'smooth'
                 )
@@ -154,47 +158,46 @@ module.exports =
                 .attr("y2", @height-@margin.b)
                 .attr('stroke', @axisColour)
 
-        add_to_gene_data: (data) ->
-            col = {idx: "_confect", name: "Confect", type: 'confect'}
-            lookup = []
-            data.map((d) -> lookup[d.index-1] = d)
-            @gene_data.add_column(col, (d) -> lookup[d.id].confect)
+        init: () ->
+            data_all = @gene_data.get_data()[..]      # Take a show copy of the gene data array.  Sort by confect
+            data  = data_all.filter((d) => @filter(d))
+            this.$emit('brush', data, true)
 
-            id_to_row = []
-            data.map((d, idx) => id_to_row[d.index-1] = idx)
-            this.id_to_row = id_to_row
-
-        process_confect_data: (data) ->
-            this.confect_data = data
-            data.forEach((r) ->
-                # Make columns numeric
-                for col in ['confect','effect','AveExpr', 'index']
-                    r[col] = +r[col]
-            )
-            @add_to_gene_data(data)
-            #data.sort((a,b) -> Math.abs(b.effect) - Math.abs(a.effect))
             data.sort((a,b) -> Math.abs(b.confect) - Math.abs(a.confect))
+
+            @id_to_row = []
+            for gene, row_idx in data
+                @id_to_row[gene.id] = row_idx
+
             @infoCols = @gene_data.columns_by_type('info')
 
-            @init_chart(data)
+            @_init_chart(data)
+            effect = this.logfcCol.idx
 
-            @xrange = xrange = [@margin.l, @width-@margin.r]
+            @xrange = [@margin.l, @width-@margin.r]
             # the axes
+            xMax = d3.max(data_all.map((r) -> Math.abs(r[effect])))
             @xScale = d3.scale.linear()
-                .domain( d3.extent(data.map((r) -> r.effect) ) )
-                .range(xrange)
+                .domain([-xMax, xMax])
+                .range(@xrange)
             @yScale = d3.scale.linear()
                 .domain( [0, data.length] )
-                .range([@margin.t + @pxPerLine/2, @margin.t + data.length * @pxPerLine])
+                .range([@margin.t + @pxPerLine/2, @margin.t + data.length * @pxPerLine + @pxPerLine/2])
             @sc = d3.scale.linear()
-                .domain( d3.extent(data.map((r) -> r.effect) ) )
-                .range([1,10])
+                .domain(d3.extent( data_all.map((r) -> r.AveExpr).concat([0])))
+                .range([1,15])
             @mk_axes(@xScale)
 
             @_mayRender(0, data)
 
         _mayRender: (top_idx, data) ->
-            idxrows = [top_idx .. top_idx+@num_rows_show]
+            if data.length==0
+                return
+            last_idx = top_idx + @num_rows_show
+            if last_idx>data.length-1
+                last_idx = data.length-1
+            idxrows = [top_idx .. last_idx]
+
             genes = d3.select(this.$el)
                       .select("g.genes")
                       .selectAll('g.row')
@@ -215,7 +218,7 @@ module.exports =
                  .attr('y2', (idx) => @yScale(idx))
                  .attr('stroke', '#ddd')
             row.append('circle')
-                 .attr('cx', (idx) => @xScale(data[idx].effect))
+                 .attr('cx', (idx) => @xScale(data[idx][this.logfcCol.idx]))
                  .attr('cy', (idx) => @yScale(idx))
                  .attr('r', (idx) => @sc(data[idx].AveExpr))
                  .attr('fill', 'blue')
@@ -230,28 +233,26 @@ module.exports =
                  .attr('x', (idx) => @xrange[1]+5)
                  .attr('y', (idx) => @yScale(idx))
                  .attr('alignment-baseline', 'middle')
-                 .text((idx) =>
-                    gene = @gene_data.row_by_id(data[idx].index-1)
-                    gene[@infoCols[0].idx]
-                 )
+                 .text((idx) => data[idx][@infoCols[0].idx])
             row.on('mouseover', (idx) =>
-                    gene = @gene_data.row_by_id(data[idx].index-1)
                     loc = d3.mouse(this.$el)             # Location in element
-                    @show_info(data[idx], gene, loc)
+                    @show_info(data[idx], loc)
                  )
             row.on('mouseout', () => @hide_info())
 
 
-        init_chart: (data) ->
+        _init_chart: (data) ->
             @width = 800
-            @height = 400
+            @height = 500
             @num_rows_show = Math.floor((@height-@margin.t-@margin.b)/@pxPerLine)-1
 
             d3.select(this.$el).select('svg').selectAll("*").remove()
 
+            boxHeight = Math.max(data.length, @num_rows_show+2) * @pxPerLine
+
             svg = d3.select(this.$el)
                     .select("svg")
-                    .attr('viewBox', "0 0 #{@width} #{data.length * @pxPerLine}")
+                    .attr('viewBox', "0 0 #{@width} #{boxHeight}")
             axis = svg.append("g").attr('class', 'axis')
             svg.append("g").attr('class','genes')
 
@@ -266,8 +267,8 @@ module.exports =
                 @_mayRender(top_idx, data)
               )
 
-        show_info: (confect, gene,loc) ->
-            this.hover={confect: confect, gene:gene}
+        show_info: (gene,loc) ->
+            this.hover=gene
             this.tooltipLoc = loc
             this.$emit('hover-start',[gene],loc)
         hide_info: () ->
@@ -276,12 +277,7 @@ module.exports =
         fmt: (val) -> val.toFixed(2)
         fmt2: (val) -> if val<0.01 then val.toExponential(2) else val.toFixed(2)
 
-
     mounted: () ->
-        p = this.backend.do_request_data('topconfect', this.sel_conditions, this.sel_contrast)
-        p.then(([data,extra]) =>
-            @process_confect_data(data)
-            this.$emit('loaded')
-        )
+        this.init()
 
 </script>
