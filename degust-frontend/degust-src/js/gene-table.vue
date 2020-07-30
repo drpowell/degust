@@ -313,7 +313,7 @@ module.exports =
                             me.fc_div(val, col, row)
                         else if col.type in ['fdr','p']
                             if val<0.01 then val.toExponential(2) else val.toFixed(2)
-                        else if col.type == "info"
+                        else if col.type == "info" && (typeof val == "string")
                             val.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
                         else
                             val

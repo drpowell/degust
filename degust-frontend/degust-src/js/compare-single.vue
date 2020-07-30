@@ -362,6 +362,7 @@
                 <topconfect v-if='cur_plot=="topconfect"'
                             :gene_data='gene_data'
                             :data='gene_data_rows'
+                            :gene_name_column='settings.gene_name_column'
                             :filter='expr_filter'
                             :filter-changed='filter_changed'
                             :logfc-col='ma_plot_fc_col'
@@ -376,6 +377,7 @@
             <div class='col-xs-3'>
               <gene-stripchart v-if='!is_pre_analysed'
                               :gene-data='gene_data'
+                              :gene_name_column='settings.gene_name_column'
                               :colour='condition_colouring'
                               :useIntensity='is_maxquant'
                               :selected='genes_hover'

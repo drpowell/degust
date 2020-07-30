@@ -78,6 +78,7 @@ module.exports =
 
     props:
         gene_data: null
+        gene_name_column: null
         data: null
         logfcCol : null
         name:
@@ -124,6 +125,15 @@ module.exports =
                 )
 
     methods:
+        row_info: (row) ->
+            if this.gene_name_column && row[this.gene_name_column] != undefined
+                row[this.gene_name_column]
+            else
+                if @infoCols && @infoCols.length>0
+                    row[@infoCols[0].idx]
+                else
+                    ""
+
         mk_axes: (xScale) ->
             xAxis = d3.svg.axis()
                 .scale(xScale)
@@ -233,7 +243,7 @@ module.exports =
                  .attr('x', (idx) => @xrange[1]+5)
                  .attr('y', (idx) => @yScale(idx))
                  .attr('alignment-baseline', 'middle')
-                 .text((idx) => data[idx][@infoCols[0].idx])
+                 .text((idx) => this.row_info(data[idx]))
             row.on('mouseover', (idx) =>
                     loc = d3.mouse(this.$el)             # Location in element
                     @show_info(data[idx], loc)

@@ -110,6 +110,16 @@ class GeneStripchart
     select: (@data, @rows) ->
         @update()
 
+    row_info: (row) ->
+        if @opts.gene_name_column && row[@opts.gene_name_column] != undefined
+            row[@opts.gene_name_column]
+        else
+            infoCols = @data.columns_by_type('info')
+            if infoCols.length>0
+                row[infoCols[0].idx]
+            else
+                ""
+
     update: () ->
         @svg.selectAll("*").remove()
         if !@rows || @rows.length==0
@@ -137,14 +147,12 @@ class GeneStripchart
         @x.domain(vals.map((d) -> d.parent ))
         @y.domain([0, d3.max(vals, (d) -> d.val)])
 
-        info_cols = @data.columns_by_type('info')
-        if info_cols.length>0
-            @svg.append("text")
-                 .attr('class', 'title')
-                 .attr("x", @plot_width/2)
-                 .attr("y", -(@margin_t/2))
-                 .style("text-anchor", "middle")
-                 .text(row[info_cols[0].idx])
+        @svg.append("text")
+                .attr('class', 'title')
+                .attr("x", @plot_width/2)
+                .attr("y", -(@margin_t/2))
+                .style("text-anchor", "middle")
+                .text(this.row_info(row))
 
         @svg.append("g")
              .attr("class", "x axis")
@@ -234,6 +242,8 @@ module.exports =
             default: false
         selectedColumns:
             default: []
+        gene_name_column: null
+
     watch:
         selectedColumns: () ->
             this.me.selectColumns(this.selectedColumns)
@@ -247,5 +257,6 @@ module.exports =
             width: 233
             colour: this.colour
             useIntensity: this.useIntensity
+            gene_name_column: this.gene_name_column
         )
 </script>

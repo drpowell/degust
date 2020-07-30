@@ -108,6 +108,10 @@
                 <div class="controls col-sm-6"  v-tooltip="tip('Information columns to display in the gene table')">
                   <multiselect v-model="settings.info_columns" :options="column_names" :multiple="true" :close-on-select="false" :show-labels="false" :searchable="true" placeholder="Add column"/>
                 </div>
+                <label class="control-label col-sm-1">Main</label>
+                <div class="controls col-sm-2"  v-tooltip="tip('Gene name column - used when only able to show one info column')">
+                  <multiselect v-model="settings.gene_name_column" :options="settings.info_columns" :multiple="false" :close-on-select="true" :show-labels="false" :searchable="true" :placeholder="settings.info_columns[0]"/>
+                </div>
               </div>
 
               <div class="form-group">
