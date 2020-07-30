@@ -22,6 +22,8 @@
         = link_to "Via Twitter", "/auth/twitter"
       %li
         = link_to "Via Google", "/auth/google_oauth2"
+      %li
+        = link_to "Via GitHub", "/auth/github"
   - else
     %li.dropdown
       %a.dropdown-toggle{"data-toggle"=>"dropdown","role"=>"button","aria-haspopup"=>"true", "aria-expanded"=>"false" }
@@ -33,3 +35,5 @@
           = link_to "Via Twitter", "/auth/twitter"
         %li
           = link_to "Via Google", "/auth/google_oauth2"
+        %li
+          = link_to "Via GitHub", "/auth/github"

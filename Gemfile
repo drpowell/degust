@@ -28,6 +28,7 @@ gem 'high_voltage'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
 gem 'simple_form'
 
 gem 'browser-timezone-rails'
