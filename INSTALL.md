@@ -84,8 +84,13 @@ To run this container, run:
 
 This will start Degust in the Docker container, and allow access to the container via port 8001 on your machine.
 The container directory `/opt/degust/uploads` is mapped to `/tmp/degust/uploads` on the host.  And the sqlite database
-is mapped to `/tmp/degust/db`.  To allow logins, you'll need provied secret keys - see `scripts/example-run-prod.sh`
-and include keys from https://console.developers.google.com/apis/credentials
+is mapped to `/tmp/degust/db`. 
+
+ To allow logins, you'll need provied secret keys - see `scripts/example-run-prod.sh`.
+
+For google login : https://console.developers.google.com/apis/credentials
+For twitter login : https://developer.twitter.com/en/apps
+For github login : https://github.com/settings/developers
 
 To access the website, go to `http://localhost:8001/` on your web browser.
 You can change `8001` to any port you wish  to have Degust listening on

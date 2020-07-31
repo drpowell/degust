@@ -21,15 +21,18 @@
           %p Get started with Degust with your own data set.  Just upload a CSV counts file from your RNA-seq experiment, or upload a CSV file containing your own analysis (eg. from Limma/Voom, edgeR or DESeq).
           %a.btn.btn-default.btn-block{:href=> "#{upload_path}"} Upload &raquo;
       - if !user_signed_in?
-        %a.btn.btn-block.btn-social.btn-twitter{:href => "/auth/twitter"}
-          %span.fa.fa-twitter
-          Sign in with Twitter
-        %a.btn.btn-block.btn-social.btn-google{:href => "/auth/google_oauth2"}
-          %span.fa.fa-google
-          Sign in with Google
-        %a.btn.btn-block.btn-social.btn-github{:href => "/auth/github"}
-          %span.fa.fa-github
-          Sign in with GitHub
+        - if ENV.include?("TWITTER_PROVIDER_KEY")
+          %a.btn.btn-block.btn-social.btn-twitter{:href => "/auth/twitter"}
+            %span.fa.fa-twitter
+            Sign in with Twitter
+        - if ENV.include?("GOOGLE_PROVIDER_KEY")
+          %a.btn.btn-block.btn-social.btn-google{:href => "/auth/google_oauth2"}
+            %span.fa.fa-google
+            Sign in with Google
+        - if ENV.include?("GITHUB_PROVIDER_KEY")
+          %a.btn.btn-block.btn-social.btn-github{:href => "/auth/github"}
+            %span.fa.fa-github
+            Sign in with GitHub
     -#.col-md-4
   -#.row
 
