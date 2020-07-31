@@ -49,7 +49,7 @@ class DeSettingsController < ApplicationController
     def copy
         de_setting = DeSetting.find_by_secure_id(params[:id])
         if current_user.nil? || de_setting.nil?
-            redirect_to :back, :alert => "Access denied!"
+            redirect_back :fallback_location => root_path, :alert => "Access denied!"
         else
             new_de = de_setting.dup
             new_de.randomize_id()
@@ -66,9 +66,9 @@ class DeSettingsController < ApplicationController
         if !current_user.nil? && de_setting.user == current_user
             Visited.where(:de_setting => de_setting).map {|v| v.destroy}
             de_setting.destroy
-            redirect_to :back, :alert => "Data deleted!"
+            redirect_back :fallback_location => root_path, :alert => "Data deleted!"
         else
-            redirect_to :back, :alert => "Access denied!"
+            redirect_back :fallback_location => root_path, :alert => "Access denied!"
         end
     end
 
