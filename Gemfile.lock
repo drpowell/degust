@@ -156,7 +156,7 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
-    puma (3.11.4)
+    puma (3.12.6)
     rack (2.0.7)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -267,7 +267,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-google-oauth2
   omniauth-twitter
-  puma (~> 3.0)
+  puma (~> 3.12)
   rack (>= 2.0.6)
   rails (~> 5.0.7)
   rails_layout
