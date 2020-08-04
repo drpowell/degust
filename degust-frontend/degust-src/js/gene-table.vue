@@ -373,11 +373,11 @@ module.exports =
                     info = {sortCol: args.column, sortAsc: false, sortByAbs: false}
                     this.sorter(info)
                 },
-                {disabled: true},
             ]
 
             if col.type in ['fc_calc', 'confect']
                 items.push(
+                    {disabled: true},
                     {title: "Abs sort Ascending", iconImage: "css/images/sort-asc.gif", command: (args) =>
                         info = {sortCol: args.column, sortAsc: true, sortByAbs: true}
                         this.sorter(info)
@@ -386,16 +386,17 @@ module.exports =
                         info = {sortCol: args.column, sortAsc: false, sortByAbs: true}
                         this.sorter(info)
                     },
-                    {disabled: true},
                 )
 
-            items.push(
-                {title: "Copy to clipboard", command: (args) =>
-                    txt = this.$refs.slickGrid.get_data().map((r) -> r[args.column.field])
-                    navigator.clipboard.writeText(txt.join("\n"))
-                    this.$awn.info("Copied #{txt.length} items to clipboard", {durations : {info: 3000}})
-                }
-            )
+            if navigator.clipboard?
+                items.push(
+                    {disabled: true},
+                    {title: "Copy to clipboard", command: (args) =>
+                        txt = this.$refs.slickGrid.get_data().map((r) -> r[args.column.field])
+                        navigator.clipboard.writeText(txt.join("\n"))
+                        this.$awn.info("Copied #{txt.length} items to clipboard", {durations : {info: 3000}})
+                    }
+                )
             items
 
         # Used to format the fold-change divs in the table.
