@@ -24,11 +24,41 @@
     border-width: 5px;
     border-style: solid;
     border-color: black transparent transparent transparent;
-}
+    }
 
     div.tooltip table {
       font: 12px sans-serif;
       color: #fff;
+    }
+
+    div >>> .slick-header-menu {
+      border: 1px solid #718BB7;
+      background: #f0f0f0;
+      padding: 2px;
+      -moz-box-shadow: 2px 2px 2px silver;
+      -webkit-box-shadow: 2px 2px 2px silver;
+      min-width: 100px;
+      z-index: 20;
+    }
+
+    div >>> .slick-header-menucontent {
+        font-size: 8pt;
+    }
+
+    div >>> .slick-header-menuitem {
+      padding: 2px 4px;
+      border: 1px solid transparent;
+      border-radius: 3px;
+    }
+
+    div >>> .slick-header-menuitem:hover {
+      border-color: silver;
+      background: white;
+    }
+
+    div >>> .slick-header-menuitem-disabled {
+      border-color: transparent !important;
+      background: inherit !important;
     }
 </style>
 
@@ -49,6 +79,7 @@ require('./lib/jquery.event.drag-2.2.js')
 require('./lib/slick.core.js')
 require('./lib/slick.grid.js')
 require('./lib/slick.dataview.js')
+require('./lib/slick.headermenu.js')
 resize = require('./resize-mixin.coffee')
 
 # Vue wrapper for slick-grid
@@ -95,6 +126,16 @@ module.exports =
         if this.sorter?
             @grid.onSort.subscribe( (e,args) => this.sorter(args) )
         @grid.onViewportChanged.subscribe( (e,args) => @_update_info() )
+
+        # Use the header plugin for header menu items
+        headerMenuPlugin = new Slick.Plugins.HeaderMenu({})
+        headerMenuPlugin.onCommand.subscribe((e, args) =>
+            if (typeof args.command == "function")
+                args.command(args)
+            else
+                console.log("Unknown menu command", args.command)
+        )
+        @grid.registerPlugin(headerMenuPlugin)
 
         @grid.onHeaderMouseEnter.subscribe((e,args) =>
             val = e.currentTarget.attributes.tooltip.value

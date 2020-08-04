@@ -225,7 +225,7 @@
 
       // Position the menu.
       $menu
-        .offset({ top: $(this).offset().top + $(this).height(), left: $(this).offset().left });
+        .offset({ top: $(this).offset().top + $(this).height(), left: $(this).offset().left - $menu.width() });
 
 
       // Mark the header as active to keep the highlighting.

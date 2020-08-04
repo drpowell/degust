@@ -325,6 +325,7 @@ module.exports =
                     when 'p'       then hsh.toolTip = "Raw P value"
                     when 'fc_calc' then hsh.toolTip = "Log<sub>2</sub> Fold-change"
                     when 'confect' then hsh.toolTip = "Confident effect-size"
+                hsh.header = { menu: { items: me.menu_items(col) } }
                 hsh
             )
             columns
@@ -360,6 +361,42 @@ module.exports =
 
         selectedColumns: (cols) ->
             this.keepCols = cols
+
+        # Create menu items for the header on the slickgrid
+        menu_items: (col) ->
+            items = [
+                {title: "Sort Ascending", iconImage: "css/images/sort-asc.gif", command: (args) =>
+                    info = {sortCol: args.column, sortAsc: true, sortByAbs: false}
+                    this.sorter(info)
+                },
+                {title: "Sort Descending", iconImage: "css/images/sort-desc.gif", command: (args) =>
+                    info = {sortCol: args.column, sortAsc: false, sortByAbs: false}
+                    this.sorter(info)
+                },
+                {disabled: true},
+            ]
+
+            if col.type in ['fc_calc', 'confect']
+                items.push(
+                    {title: "Abs sort Ascending", iconImage: "css/images/sort-asc.gif", command: (args) =>
+                        info = {sortCol: args.column, sortAsc: true, sortByAbs: true}
+                        this.sorter(info)
+                    },
+                    {title: "Abs sort Descending", iconImage: "css/images/sort-desc.gif", command: (args) =>
+                        info = {sortCol: args.column, sortAsc: false, sortByAbs: true}
+                        this.sorter(info)
+                    },
+                    {disabled: true},
+                )
+
+            items.push(
+                {title: "Copy to clipboard", command: (args) =>
+                    txt = this.$refs.slickGrid.get_data().map((r) -> r[args.column.field])
+                    navigator.clipboard.writeText(txt.join("\n"))
+                    this.$awn.info("Copied #{txt.length} items to clipboard", {durations : {info: 3000}})
+                }
+            )
+            items
 
         # Used to format the fold-change divs in the table.
         fc_div: (n, column, row) ->
@@ -412,12 +449,13 @@ module.exports =
 
         # called for sorting columns from slickgrid
         sorter: (args) ->
+            sortByAbs = if args.sortByAbs? then args.sortByAbs else this.sortAbsLogFC
             column = this.geneData.column_by_idx(args.sortCol.field)
             this.$refs.slickGrid.sort((r1,r2) =>
                 r = 0
                 x=r1[column.idx]; y=r2[column.idx]
                 if column.type in ['fc_calc', 'confect']
-                    if this.sortAbsLogFC
+                    if sortByAbs
                     then r = comparer_num(Math.abs(x), Math.abs(y))
                     else r = comparer_num(x, y)
                 else if column.type in ['fdr']
