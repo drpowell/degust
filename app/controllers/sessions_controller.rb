@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to :back, :notice => 'Signed out!'
+    redirect_back :fallback_location => root_url, :notice => 'Signed out!'
   end
 
   def failure
