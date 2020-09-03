@@ -62,6 +62,7 @@ module.exports =
             Vue.noTrack(cpm)
 
         rle: () ->
+            # https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0191629
             cpm = this.cpm
             medians = cpm[0].vals.map((_v,i) -> d3.median(cpm.map((c) -> c.vals[i])))
             rle = cpm.map((c) =>
@@ -70,14 +71,22 @@ module.exports =
             Vue.noTrack(rle)
 
     mounted: () ->
+        if this.columns.length==0
+            this.$el.innerHTML = "Error: No conditions selected"
+            return
+
         if this.isRle
             data_per_sample = this.rle
-            title = "Relative Log Expression"
+            title = "Relative Log Expression (from CPM, whiskers:[min,max])"
             yLabel = ""
+            # Whiskers for RLE plot are min to max
+            whiskers = (vals) -> [0, vals.length-1]
         else
             data_per_sample = this.cpm
-            title = "Log CPM by library"
+            title = "Log CPM by library. (whiskers:IQR=1.5)"
             yLabel = "log(cpm)"
+            # Whiskers for RLE plot are min to max
+            whiskers = iqr(1.5)
 
         margin = {top: 40, right: 50, bottom: 200, left: 50}
         width_box = 40
@@ -86,7 +95,7 @@ module.exports =
         height = box_height + margin.top + margin.bottom
 
         chart = d3.box()
-                  .whiskers(iqr(1.5))
+                  .whiskers(whiskers)
                   .width(width_box/2)
                   .height(box_height)
                   .show_values(false)
