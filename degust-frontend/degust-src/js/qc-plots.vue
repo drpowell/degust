@@ -33,12 +33,16 @@
                                 :gene-data='geneData'
                                 :colour='colour'
                                 :is-rle='false'
+                                :get-normalized='getNormalized'
+                                :avail-normalization='availNormalization'
                                 >
             </expression-boxplot>
             <expression-boxplot v-if='showQc=="rle-boxplot"'
                                 :gene-data='geneData'
                                 :colour='colour'
                                 :is-rle='true'
+                                :get-normalized='getNormalized'
+                                :avail-normalization='availNormalization'
                                 >
             </expression-boxplot>
             <cv-histogram v-if='showQc=="cv-plot"'
@@ -91,6 +95,8 @@ module.exports =
     props:
         showQc: null
         geneData: null
+        getNormalized: null
+        availNormalization: null
         colour:
             type: Function
             default: d3.scale.category10()

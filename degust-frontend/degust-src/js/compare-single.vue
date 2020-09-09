@@ -182,9 +182,7 @@
                 <div v-if='!is_maxquant' v-tooltip="tip('Normalization of gene expression used to calculated MDS and Heatmap')">
                   <label>Normalized</label>
                   <select v-model='normalization'>
-                    <option value='cpm'>CPM</option>
-                    <option value='backend'>Backend normalization</option>
-                    <option v-if='settings.hidden_factor.length>0' value='remove-hidden'>Subtract hidden factors</option>
+                    <option v-for='e in avail_normalization' :value='e.key'>{{e.name}}</option>
                   </select>
                 </div>
                 <div v-if='normalization=="cpm"'
@@ -439,6 +437,8 @@
               :show-qc='show_qc'
               :gene-data='gene_data'
               :colour='condition_colouring'
+              :get-normalized='get_normalized'
+              :avail-normalization='avail_normalization'
               @close='show_qc=""'>
     </qc-plots>
 

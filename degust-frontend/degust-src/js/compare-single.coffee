@@ -142,8 +142,15 @@ module.exports =
         info_columns: () ->
             this.gene_data.columns_by_type(['info'])
         count_columns: () ->
-            fc_names = this.fc_calc_columns.map((c) -> c.name)
+            if this.extraInfo_data? && this.extraInfo_data.contrasts?
+                # Use from the contrast matrix.  Find contasts with a non-zero entry
+                cs = this.extraInfo_data.contrasts.filter((c) -> Object.values(c).filter((x) -> typeof x == "number" && x!=0).length>0)
+                fc_names = cs.map((c) -> c._row)
+            else
+                # Otherwise, try from the FC column names
+                fc_names = this.fc_calc_columns.map((c) -> c.name)
             this.gene_data.columns_by_type('count').filter((c) -> fc_names.indexOf(c.parent)>=0)
+
         filter_changed: () ->
             this.fdrThreshold
             this.fcThreshold
@@ -176,6 +183,14 @@ module.exports =
         tooltipStyleDesc: () ->
             {left: (this.descTooltipLoc[0])+'px', top: (this.descTooltipLoc[1] + window.pageYOffset)+'px'}
             # {left: (this.descTooltipLoc[0])+'px', top: undefined}
+
+        avail_normalization: () ->
+            res = [{key:'cpm', name:'CPM'},
+                   {key:'backend', name:'Backend normalization'}
+                  ]
+            if (this.settings.hidden_factor && this.settings.hidden_factor.length>0)
+                res.push({key:'remove-hidden', name:'Subtract hidden factors'})
+            res
 
     watch:
         '$route': (n,o) ->
@@ -277,7 +292,9 @@ module.exports =
         # Send a request to the backend.  First request, or when selected samples has changed
         request_data: () ->
             p = this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast, {fdr: this.confect_fdr})
-            p.then(([data,cols,extra]) => this.process_dge_data(data,cols,extra))
+            p.then(([data,cols,extra]) =>
+                this.process_dge_data(Vue.noTrack(data),cols,extra)
+            )
 
         process_dge_data: (data, cols, extra) ->
             this.gene_data = new GeneData(data, cols)
@@ -306,18 +323,22 @@ module.exports =
             this.checkPlotWarning()
             this.$emit('update', this.gene_data)
 
-        renormalize: () ->
-            switch this.normalization
+        # Returns a promise that will renormalize, and return the new columns
+        get_normalized: (normalization, normalizationModeration) ->
+            switch normalization
                 when 'cpm'
-                    cols = Normalize.normalize_cpm(this.gene_data, this.count_columns, this.normalizationModeration)
-                    this.normalizationColumns = cols
+                    new_cols = Normalize.normalize_cpm(this.gene_data, this.count_columns, normalizationModeration)
+                    return new_cols
                 when 'backend', 'remove-hidden'
                     this.ev_backend.$emit('start_loading')
-                    p = this.backend.request_normalized(this.normalization, this.dge_method, this.sel_conditions, this.sel_contrast)
-                    Normalize.normalize_from_backend(this.gene_data, this.count_columns, this.normalization, p).then((new_cols) =>
-                        this.normalizationColumns = new_cols
-                        this.ev_backend.$emit('done_loading')
-                    )
+                    p = this.backend.request_normalized(normalization, this.dge_method, this.sel_conditions, this.sel_contrast)
+                    new_cols = await Normalize.normalize_from_backend(this.gene_data, this.count_columns, normalization, p)
+                    this.ev_backend.$emit('done_loading')
+                    return new_cols
+
+        renormalize: () ->
+            this.get_normalized(this.normalization, this.normalizationModeration)
+                .then((new_cols) => this.normalizationColumns = new_cols)
 
         # Selected samples have changed, request a new dge
         change_samples: (cur) ->
