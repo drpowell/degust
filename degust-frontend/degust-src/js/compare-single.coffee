@@ -379,6 +379,7 @@ module.exports =
         show_r_code: () ->
             p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast, {fdr: this.confect_fdr})
             p.then((d) =>
+                d = d.replace(/\t/g,'\\t')
                 this.r_code = d
             )
         close_r_code: () -> this.r_code = ''
