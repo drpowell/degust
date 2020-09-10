@@ -282,8 +282,8 @@ module.exports =
         sortAbsLogFC: () ->
             this.$refs.slickGrid.resort()
         allColData: () ->
-            if this.keepCols.length==0
-                this.keepCols = this.geneData.columns_by_type(['info','fdr','p','confect']).concat(this.fcColumns)
+            this.keepCols = this.geneData.columns_by_type(['info','fdr','p','confect']).concat(this.fcColumns)
+
     computed:
         allColData: () ->
             this.geneData.columns
