@@ -82,7 +82,13 @@ module.exports =
         mds_2d3d: '2d'
         mdsDimensionScale: 'independent'
         r_code: ''
-        confect_fdr: 0.05
+        dge_parameters:
+            confect_fdr: 0.05
+            ruv:
+                flavour: 'ruvg'
+                k: 1
+                prop_empirical: 0.5
+                normalization: 'TMM'
         dge_method: null
         dge_methods: []
         qc_plots: []
@@ -291,7 +297,7 @@ module.exports =
 
         # Send a request to the backend.  First request, or when selected samples has changed
         request_data: () ->
-            p = this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast, {fdr: this.confect_fdr})
+            p = this.backend.request_data(this.dge_method, this.sel_conditions, this.sel_contrast, this.dge_parameters)
             p.then(([data,cols,extra]) =>
                 this.process_dge_data(Vue.noTrack(data),cols,extra)
             )
@@ -331,7 +337,7 @@ module.exports =
                     return new_cols
                 when 'backend', 'remove-hidden'
                     this.ev_backend.$emit('start_loading')
-                    p = this.backend.request_normalized(normalization, this.dge_method, this.sel_conditions, this.sel_contrast)
+                    p = this.backend.request_normalized(normalization, this.dge_method, this.sel_conditions, this.sel_contrast, this.dge_parameters)
                     new_cols = await Normalize.normalize_from_backend(this.gene_data, this.count_columns, normalization, p)
                     this.ev_backend.$emit('done_loading')
                     return new_cols
@@ -345,7 +351,7 @@ module.exports =
             this.dge_method = cur.dge_method
             this.sel_conditions = cur.sel_conditions
             this.sel_contrast = cur.sel_contrast
-            this.confect_fdr = cur.confect_fdr
+            this.dge_parameters = JSON.parse(JSON.stringify(cur.dge_parameters))  # Deep obj copy
             this.request_data()
 
         set_genes_selected: (d) ->
@@ -377,7 +383,7 @@ module.exports =
 
         # Request and display r-code for current selection
         show_r_code: () ->
-            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast, {fdr: this.confect_fdr})
+            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast, this.dge_parameters)
             p.then((d) =>
                 d = d.replace(/\t/g,'\\t')
                 this.r_code = d
@@ -475,7 +481,7 @@ module.exports =
             console.log(this.predef_gene_lists)
         downloadR: () ->
             rcode = ""
-            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast, {fdr: this.confect_fdr})
+            p = this.backend.request_r_code(this.dge_method, this.sel_conditions, this.sel_contrast, this.dge_parameters)
             p.then((d) =>
                 element = document.createElement('a');
                 element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(d));

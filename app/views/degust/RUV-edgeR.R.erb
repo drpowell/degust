@@ -1,0 +1,79 @@
+<%= render "degust/common.R.erb" %>
+library(RUVSeq)
+
+dge.list <- DGEList(counts=counts)
+
+dge.list.norm <- calcNormFactors(dge.list, method=<%== @ruv["normalization"] %>)
+
+y <- estimateDisp(dge.list.norm,design)
+
+fit <- glmQLFit(y,design)
+qlf <- glmQLFTest(fit,contrast=cont.matrix)
+out <- topTags(qlf, n=Inf, sort.by='none')$table
+
+extra <- list()
+extra$contrasts <- cont.matrix
+extra$normalization <- <%== @ruv["normalization"] %>
+extra$normalized <- matrix(0)
+
+# FROM Section 2.4 http://bioconductor.org/packages/release/bioc/vignettes/RUVSeq/inst/doc/RUVSeq.pdf
+if (<%== @ruv["use"] %>) {
+    if ('ruvg' == <%== @ruv["flavour"] %>) {
+        # Here, we consider all but the top proportion of genes
+        rows.by.pvalue <- rownames(out[order(out$PValue),])
+        empirical <- rows.by.pvalue[-c(1 : floor(nrow(counts)*(1-<%== @ruv["empiricalGenes"]%>)))]
+        ruv.g <- RUVg(as.matrix(counts), empirical, k=<%== @ruv["k"]%>)
+        ruv.g.design <- cbind(design, ruv.g$W)
+        ruv.g.contrast <- rbind(cont.matrix, matrix(0, ncol=ncol(cont.matrix), nrow=ncol(ruv.g$W)))
+        extra$contrasts <- ruv.g.contrast
+
+        ruv.g.y <- estimateDisp(dge.list.norm, ruv.g.design)
+        ruv.g.fit <- glmQLFit(ruv.g.y,ruv.g.design)
+        qlf <- glmQLFTest(ruv.g.fit, contrast=ruv.g.contrast)
+
+        out <- topTags(qlf, n=Inf, sort.by='none')$table
+        extra$normalized <- cpm(ruv.g$normalizedCounts, log=T, prior.count=0.5, normalized.lib.sizes=T)
+        extra$ruv.flavour <- 'RUVg'
+        extra$ruv.k <- <%== @ruv["k"]%>
+        extra$ruv.empirical <- length(empirical)
+    } else if ('ruvr' == <%== @ruv["flavour"] %>) {
+        resids <- residuals(fit)
+        genes <- rownames(counts)       # Should this be a subset of neg controls?  vignette uses all
+        ruv.r <- RUVr(as.matrix(counts), genes, k=<%== @ruv["k"]%>, resids)
+        ruv.r.design <- cbind(design, ruv.r$W)
+        ruv.r.contrast <- rbind(cont.matrix, matrix(0, ncol=ncol(cont.matrix), nrow=ncol(ruv.r$W)))
+        extra$contrasts <- ruv.r.contrast
+
+        ruv.r.y <- estimateDisp(dge.list.norm, ruv.r.design)
+        ruv.r.fit <- glmQLFit(ruv.r.y, ruv.r.design)
+        qlf <- glmQLFTest(ruv.r.fit, contrast=ruv.r.contrast)
+
+        out <- topTags(qlf, n=Inf, sort.by='none')$table
+        extra$normalized <- cpm(ruv.r$normalizedCounts, log=T, prior.count=0.5, normalized.lib.sizes=T)
+        extra$ruv.flavour <- 'RUVr'
+        extra$ruv.k <- <%== @ruv["k"]%>
+    } else {
+        warning("Unknown RUV flavour")
+    }
+}
+
+lfc <- as.matrix(out[, c(1:ncol(cont.matrix))])
+colnames(lfc) <- colnames(cont.matrix)
+
+# Output with column names for degust
+out2 <- cbind(lfc,
+              'P.Value'   = out[,'PValue'],
+              'adj.P.Val' = out[,'FDR'],
+              'AveExpr'   = out[,'logCPM'],
+              x[, export_cols] )
+
+write.csv(out2, file=paste0(output_dir, "/output.txt"), row.names=FALSE,na='')
+
+extra$prior_df <- qlf$prior.df
+extra$design <- data.frame(qlf$design)
+extra$contrasts <- data.frame(extra$contrasts)
+extra$normalized <- list(columns=colnames(extra$normalized), values=extra$normalized)
+cat(
+   toJSON(extra),
+   file=paste0(output_dir, "/extra.json")
+)

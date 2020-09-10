@@ -30,10 +30,11 @@ class DegustLogic
                      when 'maxquant' then 'maxquant'
                      when 'logFC-only' then 'logFC-only'
                      when 'voom-topconfects' then 'voom'
+                     when 'RUV-edgeR' then 'RUV-edgeR'
                      else nil
                      end
         topconfects = query['method'] == 'voom-topconfects'
-        fdr = if topconfects then query['fdr'] else '' end
+        confect_fdr = if topconfects then query['confect_fdr'] else '' end
 
         return nil if method.nil?
 
@@ -53,12 +54,34 @@ class DegustLogic
             "skip_header_lines" => force_int(settings['skip_header_lines']),
             "method" => method,
             "topconfects" => boolToR(topconfects),
-            "topconfects_fdr" => force_num(fdr),
+            "topconfects_fdr" => force_num(confect_fdr),
             "model_only_selected" => boolToR(settings['model_only_selected']),
             "filter_rows" => (settings["filter_rows"] || []).to_json,
+            "ruv" => ruv_params(query),
         }
 
         ApplicationController.render(template: "degust/#{method}.R.erb", assigns: params, layout: false)
+    end
+
+    def self.ruv_params(query)
+        res = {"use" => 'FALSE'}
+        if (query['method']=="RUV-edgeR")
+            ruv = JSON.parse(query['ruv'])
+            res["use"] = 'TRUE'
+            res["k"] = force_int(ruv["k"])
+            res["empiricalGenes"] = force_num(ruv["prop_empirical"])
+            res["flavour"] = case ruv["flavour"].downcase
+                                when 'ruvg' then "'ruvg'"
+                                when 'ruvr' then "'ruvr'"
+                             end
+            res["normalization"] = case ruv["normalization"].downcase
+                             when 'tmm' then "'TMM'"
+                             when 'upperquartile' then "'upperquartile'"
+                             when 'rle' then "'RLE'"
+                             when 'none' then "'none'"
+                             end
+     end
+        res
     end
 
     def self.get_versions_code()

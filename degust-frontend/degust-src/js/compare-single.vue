@@ -113,7 +113,7 @@
                               :sel_conditions='sel_conditions'
                               :sel_contrast='sel_contrast'
                               :dge_methods='dge_methods'
-                              :confect_fdr='confect_fdr'
+                              :dge_parameters='dge_parameters'
                               @apply='change_samples'>
             </conditions-selector>
           </div>

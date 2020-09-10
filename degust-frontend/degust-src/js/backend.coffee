@@ -105,13 +105,16 @@ class BackendRNACounts
         res = []
         if @have_replicates()
             res.push(
-                ['voom', 'Voom/Limma'],
-                ['edgeR-quasi', 'edgeR quasi-likelihood'],
-                ['edgeR', 'edgeR'],
-                ['voom-weights', 'Voom (samp weights)'],
-                ['voom-topconfects', 'Topconfects (voom)']
+                ['voom', 'Voom/Limma','Basic'],
+                ['edgeR-quasi', 'edgeR quasi-likelihood','Basic'],
+                ['voom-weights', 'Voom (samp weights)','Advanced'],
+                ['voom-topconfects', 'Topconfects (voom)','Advanced'],
+                ['RUV-edgeR', 'RUV (edgeR-quasi-likelihood)','Advanced'],
+                ['edgeR', 'edgeR', 'Deprecated'],
+                ['logFC-only', 'LogFC only (no P-values)', 'Deprecated']
             )
-        res.push(['logFC-only', 'LogFC only (no P-values)'])
+        else
+            res.push(['logFC-only', 'LogFC only (no P-values)'])
         res
 
     # Do we have more than 1 replicate in *any* of our conditions
@@ -224,9 +227,11 @@ class BackendRNACounts
             )
         )
 
-    request_normalized: (normalized, method,columns,contrast) ->
+    request_normalized: (normalized, method,columns,contrast,opt) ->
         new Promise((resolve) =>
-            req = @_gen_request('dge', method, columns,contrast,{normalized: normalized})
+            my_opt = {normalized: normalized}
+            Object.assign(my_opt, opt)
+            req = @_gen_request('dge', method, columns,contrast,my_opt)
             d3.json(req, (err,data) ->
                 log_debug("Downloaded R Code : len=#{data.length}",data,err)
                 resolve(data)
@@ -344,9 +349,11 @@ class BackendMaxQuant
             )
         )
 
-    request_normalized: (normalized, method,columns,contrast) ->
+    request_normalized: (normalized, method,columns,contrast,opt) ->
         new Promise((resolve) =>
-            req = @_gen_request('dge', method, columns,contrast,{normalized: normalized})
+            my_opt = {normalized: normalized}
+            Object.assign(my_opt, opt)
+            req = @_gen_request('dge', method, columns,contrast,my_opt)
             d3.json(req, (err,data) ->
                 log_debug("Downloaded R Code : len=#{data.length}",data,err)
                 resolve(data)

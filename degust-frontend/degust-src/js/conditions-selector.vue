@@ -26,6 +26,7 @@ a {font-size: 10px}
 
 .dge-filters { margin-top: 5px; }
 .dge-filters >>> label, .dge-filters >>> input { display: inline-block; font-size: 8pt; }
+.dge-filters >>> label { width: 120px; text-align: right;}
 .dge-filters >>> select { display: inline-block; font-size: 8pt; max-width: 200px; }
 .dge-filters >>> input { width: 50px; }
 .slider-control { display: inline-block; }
@@ -82,22 +83,67 @@ a {font-size: 10px}
                     <div v-show='dge_methods.length>0'>
                         <label>Method</label>
                         <select v-model='cur.dge_method' @mousedown='editing=true' class='dge-method'>
-                            <option v-for='method in dge_methods' :value='method[0]'>{{method[1]}}</option>
+                            <option v-for='method in dge_methods_grp.bare' :value='method[0]'>{{method[1]}}</option>
+                            <optgroup v-for='grp in dge_methods_grp.grps' :label='grp.label'>
+                                <option v-for='method in grp.list' :value='method[0]'>{{method[1]}}</option>
+                            </optgroup>
                         </select>
                     </div>
                 </div>
             </div>
+
             <div class='row dge-filters' v-if='cur.dge_method=="voom-topconfects"'>
               <div class='col-xs-12'>
                 <label>FDR cut-off</label>
                 <slider-text class='slider-control'
-                            :value_in='cur.confect_fdr' @input='fdrChanged'
+                            :value_in='cur.dge_parameters.confect_fdr' @input='fdrChanged'
                             :step-values='[0, 1e-6, 1e-5, 1e-4, 0.001, .01, .02, .03, .04, .05, 0.1, 0.5]'
                             :dropdowns="[{label: '1', value: 1},{label: '0.05',value: 0.05},{label:'0.01',value:0.01},{label:'0.001',value:0.001},{label:'0.0001',value:0.0001}]"
                             >
                 </slider-text>
               </div>
-            </div>
+            </div> <!-- topconfect options -->
+
+            <div v-if='cur.dge_method=="RUV-edgeR"'>
+                <small><b>Experimental feature! Using <a target=_blank href='https://bioconductor.org/packages/release/bioc/html/RUVSeq.html'>RUVSeq</a></b></small>
+                <div class='row dge-filters'>
+                  <div class='col-xs-12'>
+                    <label>Normalization</label>
+                    <select v-model='cur.dge_parameters.ruv.normalization' @mousedown='editing=true'
+                            v-tooltip='tip("Normalization to use with RUV")'>
+                        <option value='TMM'>TMM</option>
+                        <option value='none'>none</option>
+                        <option value='upperquartile'>upper-quartile</option>
+                        <option value='RLE'>relative log expression</option>
+                    </select>
+                  </div>
+                </div>
+                <div class='row dge-filters'>
+                  <div class='col-xs-12'>
+                    <label>Flavour</label>
+                    <select v-model='cur.dge_parameters.ruv.flavour' @mousedown='editing=true'
+                            v-tooltip='tip("Use RUVg or RUVr from the RUVSeq package")'>
+                        <option value='ruvg'>RUVg</option>
+                        <option value='ruvr'>RUVr</option>
+                    </select>
+                  </div>
+                </div>
+                <div class='row dge-filters'>
+                  <div class='col-xs-12'>
+                    <label>k</label>
+                    <input type="text" width=3 v-model='cur.dge_parameters.ruv.k' @mousedown='editing=true'
+                           v-tooltip='tip("Number of dimensions of unwanted variation to remove")' />
+                  </div>
+                </div>
+                <div class='row dge-filters' v-if='cur.dge_parameters.ruv.flavour=="ruvg"'>
+                  <div class='col-xs-12'>
+                    <label>Proportion empirical</label>
+                    <input type="text" width=3 v-model='cur.dge_parameters.ruv.prop_empirical' @mousedown='editing=true'
+                           v-tooltip='tip("Proportion of genes to use as empirical negative-control genes.")' />
+                  </div>
+                </div>
+            </div> <!-- RUV options -->
+
         </div>
     </edit-overlay>
 </template>
@@ -120,7 +166,7 @@ module.exports =
             required: true
         sel_contrast:
             required: true
-        confect_fdr:
+        dge_parameters:
             required: true
         settings:
             required: true
@@ -130,7 +176,13 @@ module.exports =
             sel_conditions: this.sel_conditions
             sel_contrast: this.sel_contrast
             sel_contrast_idx: null
-            confect_fdr: 0.05
+            dge_parameters:
+                confect_fdr: 0.05
+                ruv:
+                    flavour: 'ruvg'
+                    k: 1
+                    prop_empirical: 0.5
+                    normalization: 'TMM'
         editing: false
         overlayUpdate: 0
     watch:
@@ -144,6 +196,11 @@ module.exports =
             this.cur.sel_contrast=v
             this.update_sel_contrast_idx()
             this.editing = false
+        dge_parameters: () ->
+            deep: true,
+            handler: (v) ->
+                this.cur.dge_parameters = JSON.parse(JSON.stringify(v))  # Deep obj copy
+                this.editing=false
         'cur.sel_contrast_idx': () ->
             this.update_sel_contrast()
         'cur.dge_method': () ->
@@ -161,11 +218,28 @@ module.exports =
             if this.cur.sel_conditions.length>2
                 return this.cur.dge_method!='voom-topconfects'
             return this.cur.sel_conditions.length>1
+        dge_methods_grp: () ->
+            bare = []
+            grps = []
+            by_key = {}
+            for m in this.dge_methods
+                if m.length==2
+                    bare.push(m)
+                else
+                    k = m[2]
+                    if (!(k of by_key))
+                        by_key[k] = {label: k, list:[]}
+                        grps.push(by_key[k])
+                    by_key[k].list.push(m)
+            {bare: bare, grps: grps}
     methods:
+        tip: (txt) ->
+            {content:txt, placement:'right'}
+
         fdrChanged: (v) ->
-            if v != this.confect_fdr
+            if v != this.dge_parameters.confect_fdr
                 this.editing=true
-            this.cur.confect_fdr = v
+            this.cur.dge_parameters.confect_fdr = v
         update_sel_contrast_idx: () ->
             this.cur.sel_contrast_idx = this.contrasts.findIndex((x) => x==this.cur.sel_contrast)
         update_sel_contrast: () ->
@@ -190,7 +264,7 @@ module.exports =
             this.cur.dge_method = this.dge_method
             this.cur.sel_conditions = this.sel_conditions
             this.cur.sel_contrast = this.sel_contrast
-            this.cur.confect_fdr = this.confect_fdr
+            this.cur.dge_parameters = JSON.parse(JSON.stringify(this.dge_parameters))  # Deep obj copy
             this.update_sel_contrast_idx()
             this.editing=false
 
