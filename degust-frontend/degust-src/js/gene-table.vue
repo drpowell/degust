@@ -283,6 +283,9 @@ module.exports =
             this.$refs.slickGrid.resort()
         allColData: () ->
             this.keepCols = this.geneData.columns_by_type(['info','fdr','p','confect']).concat(this.fcColumns)
+        fcColumns: () ->
+            # Change in the fold-change columns.  Most likely change of the "relative to" selection.  For table redraw
+            this.$refs.slickGrid.invalidate()
 
     computed:
         allColData: () ->

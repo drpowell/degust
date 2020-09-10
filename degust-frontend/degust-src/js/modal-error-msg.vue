@@ -1,7 +1,9 @@
-<style scoped>
-pre {
+<style>
+.err-modal pre {
     font-size: 8pt;
+    max-height: 300px;
 }
+.err-modal .modal { bottom: auto; }
 </style>
 
 <template>
@@ -9,6 +11,7 @@ pre {
         <modal
             :showModal='show'
             :closeAction='close'
+            :containerClass='"err-modal"'
         >
             <h3 slot='header'>Error</h3>
             <div slot='body'>
