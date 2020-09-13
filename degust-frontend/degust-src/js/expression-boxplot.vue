@@ -7,12 +7,14 @@
   shape-rendering: crispEdges;
 }
 
+.loading { margin-left: auto; margin-right: auto; width: 50%;}
+
 </style>
 
 <template>
     <div class='box-plot'>
-        <svg>
-        </svg>
+        <div v-show='loading' class='loading'><img :src='$global.asset_base + "images/ajax-loader.gif"'></div>
+        <svg></svg>
         <div>
             <label>Normalized</label>
             <select v-model='normalization'>
@@ -55,6 +57,7 @@ module.exports =
             type: Boolean
             default: false
     data: () ->
+        loading: false
         normalization: 'cpm'
         normalization_cols: []
 
@@ -85,8 +88,10 @@ module.exports =
             Vue.noTrack(rle)
     methods:
         calc_normalization: () ->
+            this.loading=true
             this.getNormalized(this.normalization, 0.5)
                 .then((cols) =>
+                    this.loading=false
                     this.normalization_cols = cols;
                     this.render()
                 )

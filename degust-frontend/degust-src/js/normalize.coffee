@@ -18,11 +18,11 @@ class Normalize
 	# Handle normalization that needs to be handled on the backend.
 	# Takes the type (used to put in the table, and for caching)
 	# and a promise, that will issue the http request
-	@normalize_from_backend: (data,columns,type, req_promise) ->
+	@normalize_from_backend: (gene_data,columns,type, req_promise) ->
 		# First check if we have the data already
 		new_cols = columns.map((col) ->
 			idx = normalized_key+type+"_"+col.idx
-			data.column_by_idx(idx)
+			gene_data.column_by_idx(idx)
 		).filter((col) -> col!=null)
 		if (new_cols.length == columns.length)
 			return new Promise((resolve) -> resolve(new_cols))
@@ -33,18 +33,23 @@ class Normalize
 		new Promise((resolve) ->
 			req_promise.then((d) =>
 				console.log("Normalized data request took #{Date.now() - startTime }ms")
-				#this.ev_backend.$emit('done_loading')
-				new_cols = []
-				columns.forEach((col) =>
-					idx = normalized_key+type+"_"+col.idx
-					new_col = {idx: idx, name: "#{col.name}", type: 'norm', parent: col.parent, nice_name: data.nice_name(col.name)}
-					i = d.extra.normalized.columns.indexOf(col.name)
-					data.add_column(new_col, (r,rid) => d.extra.normalized.values[rid][i])
-					new_cols.push(new_col)
-				)
+				new_cols = Normalize.store_normalized(gene_data, columns, type, d.extra.normalized)
 				resolve(new_cols)
 			)
 		)
+
+	@store_normalized: (gene_data,columns,type, norm_data) ->
+		if !norm_data.columns? || !(norm_data.columns.length>0)
+			return []
+		new_cols = []
+		columns.forEach((col) =>
+			idx = normalized_key+type+"_"+col.idx
+			new_col = {idx: idx, name: "#{col.name}", type: 'norm', parent: col.parent, nice_name: gene_data.nice_name(col.name)}
+			i = norm_data.columns.indexOf(col.name)
+			gene_data.add_column(new_col, (r,rid) -> norm_data.values[rid][i])
+			new_cols.push(new_col)
+		)
+		new_cols
 
 
 # Calculate min/max for each dimension passed
