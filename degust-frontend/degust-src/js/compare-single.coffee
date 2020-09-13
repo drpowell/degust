@@ -148,10 +148,8 @@ module.exports =
         info_columns: () ->
             this.gene_data.columns_by_type(['info'])
         count_columns: () ->
-            if this.extraInfo_data? && this.extraInfo_data.contrasts?
-                # Use from the contrast matrix.  Find contasts with a non-zero entry
-                cs = this.extraInfo_data.contrasts.filter((c) -> Object.values(c).filter((x) -> typeof x == "number" && x!=0).length>0)
-                fc_names = cs.map((c) -> c._row)
+            if this.extraInfo_data? && this.extraInfo_data.conditions_used?
+                fc_names = this.extraInfo_data.conditions_used
             else
                 # Otherwise, try from the FC column names
                 fc_names = this.fc_calc_columns.map((c) -> c.name)

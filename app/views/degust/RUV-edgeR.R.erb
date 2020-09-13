@@ -73,6 +73,7 @@ extra$prior_df <- qlf$prior.df
 extra$design <- data.frame(qlf$design)
 extra$contrasts <- data.frame(extra$contrasts)
 extra$normalized <- list(columns=colnames(extra$normalized), values=extra$normalized)
+extra$conditions_used <- rownames(cont.matrix)[apply(cont.matrix!=0, 1, any)]
 cat(
    toJSON(extra),
    file=paste0(output_dir, "/extra.json")
