@@ -4,7 +4,10 @@ class UsersController < ApplicationController
 
   def index
     if current_user.admin?
-      @users = User.all
+      #@users = User.all
+      @users = User.joins('LEFT JOIN de_settings ON users.id=de_settings.user_id')
+                   .group('users.id')
+                   .select('users.*, COUNT(de_settings.id) as num')
     else
       redirect_to root_url, :alert => "Access denied."
     end

@@ -1,0 +1,44 @@
+:css
+
+  td.extra { white-space: nowrap; }
+
+.container
+  .row
+    .col-md-12
+      %h1 Users
+  .row
+    .col-md-12
+      %table.table.visited.tablesorter
+        %thead
+          %tr
+            %th Name
+            %th Admin?
+            %th Created
+            %th Last
+            %th Data sets
+            %th Extra
+        %tbody
+        - @users.each do |user|
+          %tr
+            %td
+              = link_to user.name, user
+            %td
+              = user.admin?
+            %td.smaller
+              = user.created_at.to_formatted_s(:rfc822)
+            %td
+              = user.num
+            - if current_user.admin?
+              %td.extra
+                = user.extra
+
+:javascript
+
+  $('.tablesorter').tablesorter({
+    theme : 'blue',
+    widgets: ["filter"],
+    widgetOptions : {
+      filter_columnFilters: false,
+    }
+
+  });
