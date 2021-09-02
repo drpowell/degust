@@ -65,7 +65,7 @@ For production build (minifies js, and no source-maps)
 
 For development:
 
-    (cd degust-frontend ; ./node_modules/.bin/webpack build)
+    (cd degust-frontend ; ./node_modules/.bin/webpack)
     (cd degust-frontend ; ./node_modules/.bin/webpack --watch)
     rails s
 
