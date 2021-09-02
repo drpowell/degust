@@ -200,9 +200,9 @@ remove_duplicates = (arr, by_key) ->
     res = []
     for v in arr
         k = by_key(v)
-        if !(k of res)
+        if !(k of keys)
             res.push(v)
-            res[k] = 1
+            keys[k] = 1
     res
 
 do_download = (filename, gene_data, gene_table, fmt) ->
