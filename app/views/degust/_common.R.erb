@@ -18,13 +18,14 @@ if (<%== @model_only_selected %>) {
     cont.matrix <- cont.matrix[use.conditions,,drop=F]
 }
 
-
+# fileEncoding='UTF-8-BOM' should strip the BOM marker FEFF that some windows tools add
 x<-read.delim(counts_file,
               sep="<%== @sep_char %>",
               check.names=FALSE,
               colClasses='character',
               na.strings=c(),
-              skip=<%= @skip_header_lines %>
+              skip=<%= @skip_header_lines %>,
+              fileEncoding='UTF-8-BOM'
               )
 
 # Now re-read the first header line.  Workaround R problem that always has strip.white=T for read.table
@@ -34,7 +35,8 @@ colnames(x) <- scan(counts_file,
                     nlines=1,
                     strip.white=F,
                     quote = "\"",
-                    skip="<%= @skip_header_lines %>"
+                    skip="<%= @skip_header_lines %>",
+                    fileEncoding='UTF-8-BOM'
                     )
 
 x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v))     # Force numeric count columns
