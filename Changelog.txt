@@ -1,3 +1,6 @@
+v4.1-dev
+  * Load csv in R using UTF-8-BOM to deal with BOM marker that windows sometimes adds
+  * Add a warning if no min expression filter is set
   * Allow renaming of samples
   * Add topconfects method for DGE, with new visualisation.  Only for pairwise comparison
   * Add header-menu to gene table.  Allow copy of sorted/filtered columns to the clipboard

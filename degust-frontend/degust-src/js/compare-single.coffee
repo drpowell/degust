@@ -120,6 +120,12 @@ module.exports =
         home_link: () -> this.settings?.home_link || '/'
         fdrWarning: () -> this.cur_plot == 'mds' && this.fdrThreshold<1
         fcWarning: () -> this.cur_plot == 'mds' && (this.fcThreshold>0 || this.confectThreshold>0)
+        minCpmWarning: () ->
+            if (!Object.keys(this.settings).length)
+                return false
+            !(this.settings?.min_counts>0) &&
+                !(this.settings?.min_cpm>0 && this.settings?.min_cpm_samples)
+
         experimentName: () -> this.settings?.name || "Unnamed"
         can_configure: () ->
             !this.settings.config_locked || this.full_settings.is_owner
@@ -224,6 +230,8 @@ module.exports =
             this.warningToggle(this.fdrWarning, 'fdrWarningElem', "MDS misleading : using FDR filter")
         fcWarning: () ->
             this.warningToggle(this.fcWarning, 'fcWarningElem', "MDS misleading : using FC filter")
+        minCpmWarning: () ->
+            this.warningToggle(this.minCpmWarning, 'minCpmElem', 'No gene expression filter.<br/>We recommend setting "<b>Min&nbsp;gene&nbsp;CPM</b>" in Configure')
 
     methods:
         init: () ->

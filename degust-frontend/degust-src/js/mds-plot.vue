@@ -148,7 +148,6 @@ module.exports =
         # Computes per-row variance (ie. variance for each gene)
         update_components: () ->
             return if !this.data
-            debugger
             startTime = Date.now()
             this.variances = {}
             this.data.forEach((row) => @variances[row.id] = @_compute_variance(row))
