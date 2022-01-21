@@ -25,11 +25,11 @@
               Data sets
           %ul.nav.navbar-nav
             %li
-              %button.btn.btn-default.navbar-btn{onclick: 'myScrollTo("mine")'}
+              %button.btn.btn-default.navbar-btn{onclick: 'myScrollTo("div.mine")'}
                 Mine (#{@mine.length})
             %li
             %li
-              %button.btn.btn-default.navbar-btn{onclick: 'myScrollTo("visited")'}
+              %button.btn.btn-default.navbar-btn{onclick: 'myScrollTo("div.visited")'}
                 Shared with me (#{@others.length})
           %form.navbar-form.navbar-right
             %input.search{:size=>'40', :type=>"search",
@@ -47,5 +47,6 @@
 :javascript
 
   function myScrollTo(cls) {
-    document.getElementsByClassName(cls)[0].scrollIntoView()
+    document.querySelector(cls).scrollIntoView()
+    window.scrollBy(0,-50)
   }
