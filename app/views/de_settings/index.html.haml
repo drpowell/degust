@@ -18,8 +18,22 @@
 
   .row
     .col-md-12
-      %input.search{:size=>'40', :type=>"search",
-                    :placeholder=>"Filter tables", "data-column"=>"0", :style=>"float: right"}
+      %nav.navbar.navbar-default#top-nav
+        .container-fluid
+          .navbar-header
+            .navbar-brand.bold
+              Data sets
+          %ul.nav.navbar-nav
+            %li
+              %button.btn.btn-default.navbar-btn{onclick: 'myScrollTo("mine")'}
+                Mine (#{@mine.length})
+            %li
+            %li
+              %button.btn.btn-default.navbar-btn{onclick: 'myScrollTo("visited")'}
+                Shared with me (#{@others.length})
+          %form.navbar-form.navbar-right
+            %input.search{:size=>'40', :type=>"search",
+                          :placeholder=>"Filter tables", "data-column"=>"0"}
 
       .mine
         - if @mine.length
@@ -29,3 +43,9 @@
         - if @others.length
           %h4 Data sets shared with me
           = render :partial => "table", :locals => { :list => @others }
+
+:javascript
+
+  function myScrollTo(cls) {
+    document.getElementsByClassName(cls)[0].scrollIntoView()
+  }
