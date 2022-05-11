@@ -10,8 +10,10 @@
           - python-pip
       become: yes
 
-    - name: install docker-py
-      pip: name=docker-py
+    - name: install docker py module
+      pip:
+        name: docker
+        version: 4.4.4
       become: yes
 
     - git:
