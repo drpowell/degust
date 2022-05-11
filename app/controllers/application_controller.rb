@@ -51,9 +51,12 @@ class ApplicationController < ActionController::Base
     # An empty version string should go to the canonical url, which should map to an older stable build
     # Note the special handling of 'dev' to go to the current build
     def dir_for_version(version)
+      if (version.length>10 || "..".in?(version))
+        version=''
+      end
       case version
       when ''
-        "degust-frontend/degust-dist-4.1"
+        "degust-frontend/degust-dist"
       when 'dev'
         "degust-frontend/degust-dist"
       else
