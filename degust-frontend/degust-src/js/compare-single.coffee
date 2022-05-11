@@ -263,7 +263,8 @@ module.exports =
                     log_error "Failed to get settings!",x
                     this.load_failed = true
                     this.$nextTick(() ->
-                        this.error_msg.msg = x.responseText
+                        if (this.error_msg)
+                            this.error_msg.msg = x.responseText
                         this.show_Error = true
                     )
                 )

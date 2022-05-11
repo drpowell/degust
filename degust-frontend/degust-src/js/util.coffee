@@ -19,8 +19,8 @@ log_msg = (msg,rest) ->
     return if msg=='DEBUG'
     logList = document.getElementsByClassName('log-list')[0]
     if logList?
-
-        logList.insertAdjacentHTML("beforeend", "<pre class='#{msg.toLowerCase()}'>#{msg}: #{args}")
+        logList.insertAdjacentHTML("beforeend", "<pre class='#{msg.toLowerCase()}'>")
+        logList.lastChild.innerText = "#{msg}: #{args}"
         if msg=='ERROR'
             logList.classList.add('btn-link')
             logList.classList.add('btn-danger')
