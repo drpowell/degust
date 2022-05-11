@@ -1,0 +1,68 @@
+{
+  "name": "scale-color-perceptual",
+  "version": "1.1.2",
+  "description": "Javascript exports of matplotlib's new default color scales; inferno, magma, plasma and viridis. Works with browserify and D3.js",
+  "main": "browser.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/politiken-journalism/scale-color-perceptual.git"
+  },
+  "keywords": [
+    "color",
+    "scale",
+    "perceptual",
+    "uniform",
+    "perception",
+    "matplotlib",
+    "viridis",
+    "inferno",
+    "magma",
+    "plasma",
+    "jet",
+    "d3",
+    "interpolation"
+  ],
+  "directories": {
+    "example": "example"
+  },
+  "author": {
+    "name": "Emil Bay",
+    "email": "emil.bay@pol.dk"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/politiken-journalism/scale-color-perceptual/issues"
+  },
+  "homepage": "https://github.com/politiken-journalism/scale-color-perceptual#readme",
+  "devDependencies": {
+    "standard": "^5.3.1"
+  },
+  "gitHead": "cdbc8d0b8e5ae0ed63961f641b01a137ece0ac03",
+  "_id": "scale-color-perceptual@1.1.2",
+  "_shasum": "370fb1aa1fc48261d3048f34edfe6155fb0a52d5",
+  "_from": "scale-color-perceptual@latest",
+  "_npmVersion": "2.14.7",
+  "_nodeVersion": "4.2.1",
+  "_npmUser": {
+    "name": "emilbay",
+    "email": "github@tixz.dk"
+  },
+  "dist": {
+    "shasum": "370fb1aa1fc48261d3048f34edfe6155fb0a52d5",
+    "tarball": "https://registry.npmjs.org/scale-color-perceptual/-/scale-color-perceptual-1.1.2.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "emilbay",
+      "email": "github@tixz.dk"
+    },
+    {
+      "name": "politiken-journalism",
+      "email": "emil.bay@pol.dk"
+    }
+  ],
+  "_resolved": "https://registry.npmjs.org/scale-color-perceptual/-/scale-color-perceptual-1.1.2.tgz"
+}

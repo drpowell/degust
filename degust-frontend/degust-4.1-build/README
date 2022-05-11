@@ -1,0 +1,11 @@
+Older frontend code.  Useful if we need to patch the 4.1 dist frontend
+
+Copied from the repo version : fec78afb6b34109e0b64c603ffbab2a6738cdace
+
+
+To use:
+
+  npm install
+  NODE_ENV=production ./node_modules/.bin/webpack
+  
+Then copy the degust-dist to ../degust-dist-4.1

@@ -1,0 +1,70 @@
+
+#main-loading { position: absolute; top: 100px; left: 250px; }
+
+.genesets-toggle, #genesets {display: none;}
+.geneset-save { width: 100%;}
+.geneset-search input.search { width: 150px; margin: 5px 0;}
+.geneset-search .ui-autocomplete-loading {
+    background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+}
+.weights {font-size: 12px;}
+.weights .name {font-weight: bold; text-align: right; width: 95px; display: inline-block; margin-right: 10px;}
+.weights .val { width:20px; width: 50px; display: inline-block;}
+.weights-toggle { margin-top: 8px; font-size: 10px; }
+
+div.right { float: right; }
+div.filter { font-size: 8pt; border: 1px solid #aaa; border-radius: 5px; background-color: #eee; padding: 0 3px; margin-top: 15px}
+.filter label, .filter input { display: inline-block; font-size: 8pt; }
+.filter select { display: inline-block; font-size: 8pt; max-width: 200px; }
+.filter label { width: 70px; text-align: right; }
+.filter input { width: 50px; }
+.kegg-filter { display: none; }
+.filter input.error { background-color: #fbb; }
+
+.ec-group { display: none; }
+
+.neg  { height: 100%; background-color: #ddf; }
+.pos  { height: 100%; background-color: #fdd; }
+
+.ui-dialog .ui-state-hover { border: 0; }
+
+.error-msg, .error-input { font-size: 11px; }
+
+
+.warning { background-color: red; }
+
+/* Tour ***********************************************************************/
+.popover.wide { max-width: 460px; }
+
+/* Print overlay ***********************************************************************/
+.print-popup {
+        position: absolute;
+        background-color: #f2f2f2;
+        border-radius: 4px;
+
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        border: 1px solid #d4d4d4;
+        width: 400px;
+        margin-left: -200px;     /* For centering */
+        left: 50%;
+        top: 300px;
+
+        z-index:11200;
+}
+
+.print-backdrop {
+        position: fixed;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: black;
+        opacity: 0.4;
+        z-index: 200;
+}
+
+.print-popup label {
+    width: 80px;
+}

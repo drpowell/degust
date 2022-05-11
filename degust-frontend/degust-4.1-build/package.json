@@ -1,0 +1,32 @@
+{
+  "name": "Degust",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "start": "webpack"
+  },
+  "dependencies": {
+    "@hscmap/vue-menu": "^1.4.0",
+    "v-tooltip": "^2.0.0-rc.31",
+    "vue-awesome-notifications": "^3.0.3",
+    "vue-clickaway": "^2.1.0",
+    "vue-router": "^3.0.1",
+    "webpack": "^3.7.1"
+  },
+  "devDependencies": {
+    "coffee-loader": "^0.8.0",
+    "coffeescript": "^2.0.1",
+    "copy-webpack-plugin": "^4.1.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "glob": "^7.1.2",
+    "html-loader": "^0.5.1",
+    "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
+    "vue": "^2.4.4",
+    "vue-loader": "^13.3.0",
+    "vue-multiselect": "^2.0.3",
+    "vue-template-compiler": "^2.4.4"
+  }
+}

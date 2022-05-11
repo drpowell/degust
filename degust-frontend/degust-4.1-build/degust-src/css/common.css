@@ -1,0 +1,150 @@
+
+.btn-inverse { color: #fff; background-color: #333; border-color: #555; }
+.btn-inverse:hover { background-color: #fff; }
+
+div#beta { position: relative; height: 0}
+#beta img { position: relative; width: 150px; top: -55px; left: -90px;}
+.supported-by a { display: block; }
+
+div#forkme { position: relative; height: 0 }
+#forkme img { position: absolute; top: -48px; right: -60px; border: 0; }
+
+/* Override bootstrap popover z-index to ensure it is on top of the navbar */
+.popover { z-index: 1090; }
+
+
+/*  ****************************************************/
+.warning-popover {
+    position: relative;
+    top: 70px;
+    z-index: 1100;
+}
+
+.warning-popover .browser-warning {
+    position: absolute;
+    width: 700px;
+    left: 50%;
+    margin-left: -350px;
+}
+
+.browser-warning {
+    background-color: #eaa;
+    padding: 5px 20px;
+}
+
+/* Fix slickgrid & bootstrap 3 incompatibility ******************************/
+
+#grid, #grid div {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+
+/* Vue tooltips ******************************/
+
+.v-tooltip {
+    display: block !important;
+    z-index: 11000;
+  }
+
+  .v-tooltip .tooltip-inner {
+    background: black;
+    color: white;
+    border-radius: 16px;
+    padding: 5px 10px 4px;
+  }
+
+  .v-tooltip .tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: 5px;
+    border-color: black;
+    z-index: 1;
+  }
+
+  .v-tooltip[x-placement^="top"] {
+    margin-bottom: 5px;
+  }
+
+  .v-tooltip[x-placement^="top"] .tooltip-arrow {
+    border-width: 5px 5px 0 5px;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+    border-bottom-color: transparent !important;
+    bottom: -5px;
+    left: calc(50% - 5px);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .v-tooltip[x-placement^="bottom"] {
+    margin-top: 5px;
+  }
+
+  .v-tooltip[x-placement^="bottom"] .tooltip-arrow {
+    border-width: 0 5px 5px 5px;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+    border-top-color: transparent !important;
+    top: -5px;
+    left: calc(50% - 5px);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .v-tooltip[x-placement^="right"] {
+    margin-left: 5px;
+  }
+
+  .v-tooltip[x-placement^="right"] .tooltip-arrow {
+    border-width: 5px 5px 5px 0;
+    border-left-color: transparent !important;
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+    left: -5px;
+    top: calc(50% - 5px);
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .v-tooltip[x-placement^="left"] {
+    margin-right: 5px;
+  }
+
+  .v-tooltip[x-placement^="left"] .tooltip-arrow {
+    border-width: 5px 0 5px 5px;
+    border-top-color: transparent !important;
+    border-right-color: transparent !important;
+    border-bottom-color: transparent !important;
+    right: -5px;
+    top: calc(50% - 5px);
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .v-tooltip.popover .popover-inner {
+    background: #f9f9f9;
+    color: black;
+    padding: 24px;
+    border-radius: 5px;
+    box-shadow: 0 5px 30px rgba(black, .1);
+  }
+
+  .v-tooltip.popover .popover-arrow {
+    border-color: #f9f9f9;
+  }
+
+  .v-tooltip[aria-hidden='true'] {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .15s, visibility .15s;
+  }
+
+  .v-tooltip[aria-hidden='false'] {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .15s;
+  }
