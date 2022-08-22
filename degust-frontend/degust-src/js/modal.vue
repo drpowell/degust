@@ -1,7 +1,7 @@
 
 <style scoped>
 .modal {
-    position: absolute;
+    position: fixed;
 }
 </style>
 
