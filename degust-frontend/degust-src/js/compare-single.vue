@@ -343,7 +343,7 @@
                 </volcano-plot>
                 <mds-plot v-if='cur_plot=="mds"'
                         :name='experimentName+" - "+"mds"'
-                        :data='gene_data_rows'
+                        :data='gene_data'
                         :filter='expr_filter'
                         :filter-changed='filter_changed'
                         :columns='normalizationColumns'
@@ -355,6 +355,7 @@
                         :plot2d3d='mds_2d3d'
                         @top-genes='set_genes_selected'
                         @dimension='v => mdsDimension = v'
+                        @variance-updated="forceTableRedraw+=1"
                         >
                 </mds-plot>
                 <topconfect v-if='cur_plot=="topconfect"'
@@ -411,6 +412,7 @@
                     :fc-columns='fc_calc_columns'
                     :rows='genes_selected'
                     :useProt='is_maxquant'
+                    :forceRecalc='forceTableRedraw'
                     @mouseover='gene_table_hover' @mouseout='gene_table_nohover'
                     >
         </gene-table>

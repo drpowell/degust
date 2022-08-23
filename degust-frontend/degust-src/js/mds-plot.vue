@@ -147,11 +147,12 @@ module.exports =
     methods:
         # Computes per-row variance (ie. variance for each gene)
         update_components: () ->
-            return if !this.data
+            return if !this.data || this.data.get_data().length==0
             startTime = Date.now()
-            this.variances = {}
-            this.data.forEach((row) => @variances[row.id] = @_compute_variance(row))
-            console.log( "MDS normalization took : #{Date.now() - startTime }ms");
+            var_col_info = {idx: "_gene_variance", name: "Variance", type: 'variance'}
+            this.data.add_column(var_col_info, (row) => @_compute_variance(row))
+            console.log( "MDS normalization took : #{Date.now() - startTime }ms")
+            this.$emit('variance-updated')
             @redraw()
 
         # Convert to log2 counts, and normalize for library size, and compute the gene variance.
@@ -163,9 +164,10 @@ module.exports =
             startTime = Date.now()
 
             # Log transformed counts
-            kept_data = this.data.filter((d) => this.filter(d))
+            kept_data = this.data.get_data().filter((d) => this.filter(d))
 
-            top_genes = kept_data.sort((a,b) => @variances[b.id] - @variances[a.id])
+            var_col = this.data.column_by_idx('_gene_variance')
+            top_genes = kept_data.sort((a,b) => b[var_col.idx] - a[var_col.idx])
             top_genes = top_genes[this.skipGenes ... (this.skipGenes + this.numGenes)]
 
             this.$emit('top-genes',top_genes)

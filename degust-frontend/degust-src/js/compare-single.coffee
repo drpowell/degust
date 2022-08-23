@@ -114,6 +114,7 @@ module.exports =
         show_ModalExperimentDesc: false
         descTooltipLoc: [0,0]
         confect_data_present: false
+        forceTableRedraw: 0
         #colour_by_condition: null  # Don't want to track changes to this!
 
     computed:

@@ -208,7 +208,7 @@ remove_duplicates = (arr, by_key) ->
 do_download = (filename, gene_data, gene_table, fmt) ->
     items = gene_table
     return if items.length==0
-    cols = gene_data.columns_by_type(['info','fc_calc','count','fdr','avg','p','confect'])
+    cols = gene_data.columns_by_type(['info','fc_calc','count','fdr','avg','p','confect','variance'])
     cols = remove_duplicates(cols, (x) -> x.idx)
     count_cols = gene_data.columns_by_type('count')
     count_cols = remove_duplicates(count_cols, (x) -> x.idx)
@@ -260,6 +260,8 @@ module.exports =
             required: true
         useProt:
             default: false
+        forceRecalc:
+            required: true
 
     data: () ->
         searchStr: ""
@@ -272,7 +274,7 @@ module.exports =
         showIntensity: "no"
         show_selectCols: false
         keepCols: []
-        colTypesToShow: ['info','fdr','p', 'fc_calc', 'confect']
+        colTypesToShow: ['info','fdr','p', 'fc_calc', 'confect','variance']
     watch:
         # Not detected automatically in the gene_table_columns cause only used in a callback
         showCounts: () ->
@@ -285,6 +287,8 @@ module.exports =
             this.keepCols = this.geneData.columns_by_type(['info','fdr','p','confect']).concat(this.fcColumns)
         fcColumns: () ->
             # Change in the fold-change columns.  Most likely change of the "relative to" selection.  For table redraw
+            this.$refs.slickGrid.invalidate()
+        forceRecalc: () ->
             this.$refs.slickGrid.invalidate()
 
     computed:
@@ -314,7 +318,7 @@ module.exports =
                         return "" if !val?
                         if col.type in ['fc_calc','confect']
                             me.fc_div(val, col, row)
-                        else if col.type in ['fdr','p']
+                        else if col.type in ['fdr','p','variance']
                             if val<0.01 then val.toExponential(2) else val.toFixed(2)
                         else if col.type == "info" && (typeof val == "string")
                             val.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
