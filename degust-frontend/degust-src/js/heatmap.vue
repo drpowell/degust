@@ -161,7 +161,6 @@ class Heatmap
     constructor: (@opts) ->
         @opts.h_pad ?= 20
         @opts.h ?= 20
-        @opts.label_width ?= 120
         @opts.legend_height ?= 50
         @opts.geneOrder ?= true
         @opts.enablecontextmenu ?= true
@@ -170,12 +169,13 @@ class Heatmap
         @opts.interactive ?= true
 
         @opts.width ?= d3.select(@opts.elem).node().clientWidth - 20;
+        @label_width = 10 # Overridden later when drawing column labels
 
         @svg = d3.select(@opts.elem).append('svg')
         @svg.append('g').attr("class", "labels")
-        g = @svg.append('g').attr("transform", "translate(#{@opts.label_width},0)")
-        g.append('g').attr("class", "genes")
-        g.append('g').attr("class", "highlight")
+        @heatmap_g = @svg.append('g')
+        @heatmap_g.append('g').attr("class", "genes")
+        @heatmap_g.append('g').attr("class", "highlight")
         @svg.attr("width", "100%").attr("height", 100)
 
         @mk_highlight()
@@ -432,14 +432,22 @@ class Heatmap
         cols.enter().append('text').attr("class","label")
         cols.exit().remove()
         cols.attr("text-anchor", "end")
+            .attr("alignment-baseline","middle")
             .text((d) -> if d.nice_name? then d.nice_name else d.name)
-            .transition()
-            .attr('x', @opts.label_width)
+
+        max_label = 0
+        cols.each(() -> max_label = d3.max([max_label,this.getComputedTextLength()]))
+        @label_width = max_label+2
+
+        cols.attr('x', @label_width-2)
             .attr('y', (d,i) => i * @opts.h + @opts.h/2)
+        @heatmap_g.attr("transform", "translate(#{@label_width},0)")
+
         if @opts.showlegend
             @_make_legend()
         else
             @colorScale = @get_color_scale()
+
 
         @columns_changed = false
 
@@ -452,7 +460,7 @@ class Heatmap
         kept_data = {}
         kept_data[d.id]=d for d in @data
 
-        @cell_w = w = d3.min([@opts.h, (@opts.width - @opts.label_width) / @data.length])
+        @cell_w = w = d3.min([@opts.h, (@opts.width - @label_width) / @data.length])
 
         # Make rows contain only the first that can be distinctly plotted
         rows = []
@@ -530,7 +538,7 @@ class Heatmap
     # NOT IN USE - not sure how to get it right.  How should it interact with parallel-coords or ma-plot?
     _create_brush: (w) ->
         # Create brush
-        x = d3.scale.identity().domain([0, (@opts.width - @opts.label_width)])
+        x = d3.scale.identity().domain([0, (@opts.width - @label_width)])
         brush = d3.svg.brush()
              .x(x)
              #.extent([0,200])
@@ -545,7 +553,7 @@ class Heatmap
         @svg.select("g.brush").remove()
         gBrush = @svg.append("g")
              .attr("class", "brush")
-             .attr("transform", "translate(#{@opts.label_width},0)")
+             .attr("transform", "translate(#{@label_width},0)")
              .call(brush)
             # .call(brush.event)
         gBrush.selectAll("rect")
