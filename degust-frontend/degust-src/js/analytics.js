@@ -1,22 +1,28 @@
 // Google Analytics
 // Please keep, we need this for user numbers for funding degust development
 
-window._gaq = window._gaq || [];
-window._gaq.push(['drp._setAccount', 'UA-45207067-1']);
-window._gaq.push(['drp._setCustomVar',1,'widget','degust']);
-window._gaq.push(['drp._setCustomVar',2,'degust-version',degust_version]);
-window._gaq.push(['drp._trackPageview']);
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SBXH4BS1QV');
+gtag('set', 'allow_google_signals', false);
+gtag('set', 'user_properties', {
+  'degust-version': degust_version
+});
 
 (function() {
   var ga = document.createElement('script');
   ga.type = 'text/javascript';
   ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  ga.src = "https://www.googletagmanager.com/gtag/js?id=G-SBXH4BS1QV"
   var s = document.getElementsByTagName('script')[0];
   s.parentNode.insertBefore(ga, s);
 })();
 
 window.onerror = function(message, file, line) {
   var sFormattedMessage = '[' + file + ' (' + line + ')] ' + message;
-  _gaq.push(['drp._trackEvent', 'Exceptions', 'Application', sFormattedMessage, null, true]);
+  gtag('event', 'exception', {
+    'description': sFormattedMessage,
+    'fatal': false   // set to true if the error is fatal
+  });
 }
