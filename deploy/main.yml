@@ -7,13 +7,6 @@
       vars:
         packages:
           - docker.io
-          - python-pip
-      become: yes
-
-    - name: install docker py module
-      pip:
-        name: docker
-        version: 4.4.4
       become: yes
 
     - git:
