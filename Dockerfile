@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install node and R
 RUN apt-get update \
-    && apt-get install -y curl git libsqlite3-dev \
+    && apt-get install -y curl git libsqlite3-dev libxml2-dev libssl-dev libcurl4-openssl-dev \
     && curl -sL https://deb.nodesource.com/setup_18.x | bash - \
     && echo "deb http://cran.rstudio.org/bin/linux/ubuntu noble-cran40/" > '/etc/apt/sources.list.d/r-base.list' \
     && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 51716619E084DAB9 \
