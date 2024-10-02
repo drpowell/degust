@@ -370,7 +370,7 @@
                                   <multiselect v-model="filt.column" :options="column_names" :allow-empty="false" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="--- Select ---"></multiselect>
                                 </span>
                                 <span class="controls col-sm-7">
-                                  <input v-model='filt.regexp' class="form-control" type="text" size='50' placeholder="Regex (Perl) must match to keep row" />
+                                  <input v-model='filt.regexp' class="form-control" type="text" size='50' placeholder="Regex (Perl) must match to keep row" v-tooltip.top="'Examples:<br/>Exclude Xist : ^(?!Xist)<br />Exclude mitochondrial genes : ^(?!mt-.*)'" />
                                 </span>
                                 <button v-on:click='delSettingFilter(idx)' type="button" class="del-condition" tabindex=-1>&times;</button>
                               </div>
