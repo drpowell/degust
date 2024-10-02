@@ -39,6 +39,15 @@ colnames(x) <- scan(counts_file,
                     fileEncoding='UTF-8-BOM'
                     )
 
+# Check which rows have dodgy values in the counts columns
+non_numeric_rows <- apply(x[, count_cols], 1, function(row) {
+    any(is.na(suppressWarnings(as.numeric(row))))
+  })
+
+if (any(non_numeric_rows)) {
+    warning("Bad CSV, non-numeric counts in these rows : ", toString(paste(which(non_numeric_rows))))
+}
+
 x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v))     # Force numeric count columns
 counts <- x[, count_cols]
 
