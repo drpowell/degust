@@ -43,13 +43,13 @@ td, th {
                 <!-- df_prior -->
                 <table v-else-if='selectShown == "df_prior"'>
                     <tr>
-                        <th>DF Prior</th><td>{{ formatData("df_prior")[0] }}</td>
+                        <th>DF Prior</th><td>{{ formatData("df_prior") }}</td>
                     </tr>
                 </table>
                 <!-- prior_df -->
                 <table v-else-if='selectShown == "prior_df"'>
                     <tr>
-                        <th>DF Prior</th><td>{{ formatData("prior_df")[0] }}</td>
+                        <th>DF Prior</th><td>{{ formatData("prior_df") }}</td>
                     </tr>
                 </table>
                 <!-- Design -->
@@ -123,9 +123,9 @@ module.exports =
                         when type == "rank"
                             this.extraInfoData.rank
                         when type == "df_prior"
-                            this.extraInfoData.df_prior
+                            this.extraInfoData.df_prior?[0]
                         when type == "prior_df"
-                            this.extraInfoData.prior_df
+                            this.extraInfoData.prior_df?[0]
                         when type == "design"
                             this.extraInfoData.design.map((el) ->
                                 shortKeys = Object.keys(el).slice(0, Object.keys(el).length-1)

@@ -208,6 +208,9 @@ module.exports =
             this.parse_url_params(n.query)
         settings: () ->
             this.dge_method = this.settings.dge_method || ''
+            if this.settings.fdrThreshold? && typeof this.settings.fdrThreshold is 'number' &&
+                this.settings.fdrThreshold>=0 && this.settings.fdrThreshold<=1
+                    this.fdrThreshold = this.settings.fdrThreshold
             this.sel_conditions = this.$route.query.sel_conditions || this.settings.init_select || []
             this.$global.asset_base = this.settings?.asset_base || ''
 
