@@ -2,6 +2,7 @@
 <style scoped>
 .modal {
     position: fixed;
+    overflow: auto;
 }
 </style>
 
