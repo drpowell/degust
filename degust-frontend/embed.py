@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
-import argparse, json, re, sys, csv, StringIO, math
+import argparse, json, re, sys, csv, math
+
+try:
+    from io import StringIO
+except ImportError:
+    from StringIO import StringIO
 
 def embed(csv, args):
     html="""
@@ -37,7 +42,7 @@ def check_args(args, csv_file):
     # Check args match csv file.
     delim = "\t" if args.tab else ","
     reader = csv.reader(csv_file.split('\n'), delimiter=delim)
-    headers = reader.next()
+    headers = next(reader)
     err = False
     if args.avg is None:
         sys.stderr.write("ERROR: Column for average expression not defined (use --avg) necessary for the ma-plot\n")
@@ -92,7 +97,7 @@ def cuffdiff_avg(csv_file,args):
     si = StringIO.StringIO()
     cw = csv.writer(si, delimiter=delim)
 
-    headers = reader.next()
+    headers = next(reader)
     cw.writerow(headers + ['Avg'])
     idx1 = headers.index("value_1")
     idx2 = headers.index("value_2")
