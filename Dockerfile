@@ -18,7 +18,8 @@ RUN git clone https://github.com/rbenv/ruby-build.git \
     && ruby-build -v 2.4.6 /usr/local
 
 # Install R libs
-RUN Rscript -e "install.packages(c('BiocManager','jsonlite')); BiocManager::install(pkgs=c('limma','edgeR','topconfects','RUVSeq'),version='3.19', ask=F)"
+RUN Rscript -e "install.packages(c('BiocManager','jsonlite')); BiocManager::install(pkgs=c('limma','edgeR','topconfects','RUVSeq'),version='3.22', ask=F)"
+
 
 ENV RAILS_ENV=production
 
