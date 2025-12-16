@@ -32,7 +32,8 @@ if (<%== @ruv["use"] %>) {
         qlf <- glmQLFTest(ruv.g.fit, contrast=ruv.g.contrast)
 
         out <- topTags(qlf, n=Inf, sort.by='none')$table
-        extra$normalized <- cpm(ruv.g$normalizedCounts, log=T, prior.count=0.5, normalized.lib.sizes=T)
+        # Do cpm conversion, but first replace any negative values with 0 (it seems RUV can produce small negatives)
+        extra$normalized <- cpm(apply(ruv.g$normalizedCounts, 2, function(x){pmax(x,0)}), log=T, prior.count=0.5, normalized.lib.sizes=T)
         extra$ruv.flavour <- 'RUVg'
         extra$ruv.k <- <%== @ruv["k"]%>
         extra$ruv.empirical <- length(empirical)
@@ -49,7 +50,8 @@ if (<%== @ruv["use"] %>) {
         qlf <- glmQLFTest(ruv.r.fit, contrast=ruv.r.contrast)
 
         out <- topTags(qlf, n=Inf, sort.by='none')$table
-        extra$normalized <- cpm(ruv.r$normalizedCounts, log=T, prior.count=0.5, normalized.lib.sizes=T)
+        # Do cpm conversion, but first replace any negative values with 0 (it seems RUV can produce small negatives)
+        extra$normalized <- cpm(apply(ruv.r$normalizedCounts, 2, function(x){pmax(x,0)}), log=T, prior.count=0.5, normalized.lib.sizes=T)
         extra$ruv.flavour <- 'RUVr'
         extra$ruv.k <- <%== @ruv["k"]%>
     } else {
