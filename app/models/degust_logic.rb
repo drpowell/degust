@@ -38,69 +38,69 @@ class DegustLogic
 
         return nil if method.nil?
 
-        params = {
+        config = {
             "sep_char" => settings['csv_format'] ? "," : "\t",
-            "counts_file" => real ? de_setting.user_file.location : de_setting.user_file.name,
-            "columns" => arrToR(count_columns(settings), true),
+            "counts_file" => real ? File.absolute_path(de_setting.user_file.location, Rails.root) : de_setting.user_file.name,
+            "columns" => count_columns(settings),
             "min_counts" => force_num(settings['min_counts']),
             "min_cpm" => force_num(settings['min_cpm']),
             "min_cpm_samples" => force_int(settings['min_cpm_samples']),
-            "design" => matToR(design_matrix(settings)),
-            "cont_matrix" => matToR(cont_mat),
+            "design" => design_matrix(settings),
+            "cont_matrix" => cont_mat,
             "normalized" => normalized,
-            "hidden_factors" => arrToR(settings["hidden_factor"] || [], true),
-            "export_cols" => arrToR(export_cols(settings), true),
+            "hidden_factors" => settings["hidden_factor"] || [],
+            "export_cols" => export_cols(settings),
             "output_dir" => output_dir,
             "skip_header_lines" => force_int(settings['skip_header_lines']),
             "method" => method,
-            "topconfects" => boolToR(topconfects),
+            "topconfects" => topconfects,
             "topconfects_fdr" => force_num(confect_fdr),
-            "model_only_selected" => boolToR(settings['model_only_selected']),
-            "filter_rows" => (settings["filter_rows"] || []).to_json,
+            "model_only_selected" => !!settings['model_only_selected'],
+            "filter_rows" => settings["filter_rows"] || [],
             "ruv" => ruv_params(query),
         }
 
-        ApplicationController.render(template: "degust/#{method}.R.erb", assigns: params, layout: false)
+        config_str = config.to_json
+        code_str = ApplicationController.render(template: "degust/#{method}.R.erb", assigns: {}, layout: false)
+        return {code: code_str, config: config_str}
     end
 
     def self.ruv_params(query)
-        res = {"use" => 'FALSE'}
+        res = {"use" => false}
         if (query['method']=="RUV-edgeR")
             ruv = JSON.parse(query['ruv'])
-            res["use"] = 'TRUE'
+            res["use"] = true
             res["k"] = force_int(ruv["k"])
             res["empiricalGenes"] = force_num(ruv["prop_empirical"])
-            res["flavour"] = case ruv["flavour"].downcase
-                                when 'ruvg' then "'ruvg'"
-                                when 'ruvr' then "'ruvr'"
-                             end
-            res["normalization"] = case ruv["normalization"].downcase
-                             when 'tmm' then "'TMM'"
-                             when 'upperquartile' then "'upperquartile'"
-                             when 'rle' then "'RLE'"
-                             when 'none' then "'none'"
-                             end
-     end
+            res["flavour"] = ruv["flavour"].to_s.downcase
+            res["normalization"] = ruv["normalization"].to_s.downcase
+        end
         res
     end
 
     def self.get_versions_code()
-        ApplicationController.render(template: "degust/versions.R.erb", layout: false)
+        code_str = ApplicationController.render(template: "degust/versions.R.erb", layout: false)
+        return {code: code_str}
     end
 
     def self.run_r_code(make_code)
         tempfile = Dir.mktmpdir("R-tmp", "#{Rails.root.to_s}/tmp/")
-        code = make_code.call(tempfile)
+        code_and_config = make_code.call(tempfile)
 
-        if code.nil?
+        if code_and_config.nil?
             return {error: {msg: "Invalid parameters" } }
         end
 
+        if code_and_config.key?(:config)
+            File.write(tempfile + "/params.json", code_and_config[:config])
+            puts "Config: #{code_and_config[:config]}"
+        end
+
         sout = serr = exit_status = timeout = nil
-        Open3.popen3('R','-q','--vanilla') do |stdin, stdout, stderr, wait_thr|
+        Open3.popen3('R','-q','--vanilla', chdir: tempfile) do |stdin, stdout, stderr, wait_thr|
             begin
                 Timeout.timeout(120) do   # R has to complete running within this time
-                    stdin.write(code)
+                    stdin.write(code_and_config[:code])
                     stdin.close_write
                     exit_status = wait_thr.value
                     sout = stdout.read
@@ -113,10 +113,10 @@ class DegustLogic
             end
         end
         if (timeout)
-            return {error: {input: code, msg: "R run timed out", stdout: sout, exit_status: exit_status}}
+            return {error: {input: code_and_config[:code], config: code_and_config[:config], msg: "R run timed out", stdout: sout, exit_status: exit_status}}
         end
         if (exit_status.exitstatus != 0)
-            return {error: {input: code, msg: serr, stdout: sout, exit_status: exit_status}}
+            return {error: {input: code_and_config[:code], config: code_and_config[:config], msg: serr, stdout: sout, exit_status: exit_status}}
         end
 
         output = ""
@@ -148,28 +148,10 @@ private
         str.to_i
     end
 
-    def self.boolToR(bool)
-        if (bool)
-            "TRUE"
-        else
-            "FALSE"
-        end
-    end
-
     def self.count_columns(settings)
         cols = {}
         settings['replicates'].each {|arr| arr[1].each {|c| cols[c]=1 } }
         cols.keys.sort
-    end
-
-    def self.arrToR(arr, quot=false)
-        "c(" + arr.map {|x| if (quot) then "'"+x+"'" else x end}.join(",") + ")"
-    end
-
-    def self.matToR(arr, quot=false)
-        "matrix("+arrToR(arr['mat'].map {|x| arrToR(x,quot)} ) +
-               ", ncol=#{arr['mat'].length}" +
-               ", dimnames=list("+arrToR(arr['row_names'],true)+","+arrToR(arr['col_names'],true)+"))"
     end
 
     def self.export_cols(settings)

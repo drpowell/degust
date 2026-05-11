@@ -2,9 +2,14 @@ library(limma)
 library(edgeR)
 library(jsonlite)
 
+params <- fromJSON("params.json")
+
 #From _common
-count_cols <- <%== @columns %>
-data<-read.delim('<%== @counts_file %>', sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
+count_cols <- params$columns
+counts_file <- params$counts_file
+output_dir <- params$output_dir
+
+data<-read.delim(counts_file, sep=params$sep_char, check.names=FALSE, colClasses='character', na.strings=c())
 
 rzr_col <- data$`Peptide counts (razor+unique)`
 rzr_uniq <- lapply(lapply(mapply(rzr_col, FUN = strsplit, ";"), FUN = as.numeric), FUN = sum)
@@ -17,8 +22,8 @@ data <- data[data$Reverse == "",] # Filter rows in reverse direction
 
 counts <- as.matrix(data[, count_cols])
 #Remove rows with >= 20% missing values (Missing mean NA, not 0)
-keepNonZero <- rowMeans(counts != 0) >= <%= @min_cpm %>
-keepIntensity <- rowSums(cpm(counts)> <%= @min_counts %>) >= <%= @min_cpm_samples %>
+keepNonZero <- rowMeans(counts != 0) >= params$min_cpm
+keepIntensity <- rowSums(cpm(counts)> params$min_counts) >= params$min_cpm_samples
 
 keep <- keepNonZero & keepIntensity
 data <- data[keep,]
@@ -62,8 +67,8 @@ for (a in seq_len(nrow(stat_tb))) {
 colnames(counts) <- paste(colnames(counts), "imputed")
 
 #No normalisaiton present?
-design <- <%== @design %>
-cont.matrix <- <%== @cont_matrix %>
+design <- matrix(unlist(params$design$mat), ncol=length(params$design$col_names), dimnames=list(params$design$row_names, params$design$col_names))
+cont.matrix <- matrix(unlist(params$cont_matrix$mat), ncol=length(params$cont_matrix$col_names), dimnames=list(params$cont_matrix$row_names, params$cont_matrix$col_names))
 
 fit <- lmFit(counts,design)
 fit2 <- contrasts.fit(fit, cont.matrix)
@@ -71,19 +76,20 @@ fit2 <- eBayes(fit2)
 
 out <- topTable(fit2, n=Inf, sort.by='none')
 
+export_cols <- params$export_cols
 out2 <- cbind(fit2$coef,
               out[, c('P.Value','adj.P.Val','AveExpr')],
-              data[, c(<%== @export_cols %>)],
+              data[, export_cols],
               counts)
 
-param_normalized <- '<%= @normalized %>'
+param_normalized <- params$normalized
 normalized <- matrix(0)
 if (param_normalized=='') {
-    write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+    write.csv(out2, file=paste0(output_dir, "/output.txt"), row.names=FALSE,na='')
 } else if (param_normalized=='backend') {
     normalized <- out2
 } else if (param_normalized=='remove-hidden') {
-    hidden_factors <- <%== @hidden_factors %>
+    hidden_factors <- params$hidden_factors
     if (length(hidden_factors)>0) {
         # Remove the batch effect (as done in removeBatchEffect)
         beta <- fit$coefficients[, hidden_factors, drop=FALSE]
@@ -97,5 +103,5 @@ cat(
                cov_coefficients=data.frame(fit2$cov.coefficients),
                normalized=list(columns=colnames(normalized), values=normalized)
          )),
-   file="<%== @output_dir %>/extra.json"
+   file=paste0(output_dir, "/extra.json")
 )

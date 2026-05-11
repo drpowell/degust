@@ -6,9 +6,14 @@ library(DEP)
 
 # NOT WORKING YET
 
+params <- fromJSON("params.json")
+
 #From _common
-count_cols <- <%== @columns %>
-x<-read.delim('<%== @counts_file %>', sep="<%== @sep_char %>", check.names=FALSE, colClasses='character', na.strings=c())
+count_cols <- params$columns
+counts_file <- params$counts_file
+output_dir <- params$output_dir
+
+x<-read.delim(counts_file, sep=params$sep_char, check.names=FALSE, colClasses='character', na.strings=c())
 x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v)) # Force numeric count columns
 
 #Pre-process here
@@ -20,9 +25,8 @@ data_imp_man<-impute(data_filter,fun="man",shift=1.8,scale=0.3)
 imputed_matrix<-assay(data_imp_man)
 
 counts <- imputed_matrix[, count_cols]
-design <- <%== @design %>
-
-cont.matrix <- <%== @cont_matrix %>
+design <- matrix(unlist(params$design$mat), ncol=length(params$design$col_names), dimnames=list(params$design$row_names, params$design$col_names))
+cont.matrix <- matrix(unlist(params$cont_matrix$mat), ncol=length(params$cont_matrix$col_names), dimnames=list(params$cont_matrix$row_names, params$cont_matrix$col_names))
 
 fit <- lmFit(y,design)
 fit2 <- contrasts.fit(fit, cont.matrix)
@@ -30,15 +34,16 @@ fit2 <- eBayes(fit2)
 
 out <- topTable(fit2, n=Inf, sort.by='none')
 
+export_cols <- params$export_cols
 out2 <- cbind(fit2$coef,
               out[, c('P.Value','adj.P.Val','AveExpr')],
-              x[, c(<%== @export_cols %>)] )
+              x[, export_cols] )
 
-write.csv(out2, file="<%== @output_dir %>/output.txt", row.names=FALSE,na='')
+write.csv(out2, file=paste0(output_dir, "/output.txt"), row.names=FALSE,na='')
 
 cat(
    toJSON(list(rank=fit2$rank, df_prior=fit2$df.prior,
                design=data.frame(fit2$design), contrasts=data.frame(fit2$contrasts),
                cov_coefficients=data.frame(fit2$cov.coefficients))),
-   file="<%== @output_dir %>/extra.json"
+   file=paste0(output_dir, "/extra.json")
 )

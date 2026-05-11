@@ -456,9 +456,7 @@
         <h3 slot='header'>DGE R Code</h3>
         <div slot='body'>
             This is the R code the backend used to perform the DGE analysis for the current page.
-            <pre class='r-code'>
-                {{r_code}}
-            </pre>
+            <pre class='r-code'>{{r_code}}</pre>
         </div>
         <div slot='footer'>
           <button class='btn btn-primary' @click='close_r_code'>Close</button>

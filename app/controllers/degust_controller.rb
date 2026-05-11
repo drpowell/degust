@@ -105,9 +105,13 @@ class DegustController < ApplicationController
 
     def dge_r_code
         de_setting = DeSetting.find_by_secure_id(params[:id])
-        str = DegustLogic.get_r_code(de_setting, params, 'output_dir', false)
-        json = DegustLogic.run_r_code( lambda{|tempfile| DegustLogic.get_versions_code()} )
-        render plain: str + json[:stdout].html_safe
+        code_and_config = DegustLogic.get_r_code(de_setting, params, 'output_dir', false)
+        ver_json = DegustLogic.run_r_code( lambda{|tempfile| DegustLogic.get_versions_code()} )
+        res = "--- params.json ---\n#{code_and_config[:config].strip}\n\n" \
+              "--- R code ---\n#{code_and_config[:code].strip}\n\n" \
+              "--- R Versions ---\n#{ver_json[:stdout].to_s.html_safe}"
+
+        render plain: res
     end
 
     require 'csv'

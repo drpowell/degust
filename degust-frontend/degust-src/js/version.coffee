@@ -1,1 +1,1 @@
-window.degust_version = '4.4-dev'
+window.degust_version = '4.5-dev'

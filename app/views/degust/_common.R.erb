@@ -1,14 +1,16 @@
 <%= render "degust/libraries.R.erb" %>
 
-counts_file <- '<%== @counts_file %>'
-output_dir <- "<%== @output_dir %>"
-count_cols <- <%== @columns %>
-design <- <%== @design %>
-cont.matrix <- <%== @cont_matrix %>
-export_cols <- c(<%== @export_cols %>)
+params <- fromJSON("params.json")
+
+counts_file <- params$counts_file
+output_dir <- params$output_dir
+count_cols <- params$columns
+design <- matrix(unlist(params$design$mat), ncol=length(params$design$col_names), dimnames=list(params$design$row_names, params$design$col_names))
+cont.matrix <- matrix(unlist(params$cont_matrix$mat), ncol=length(params$cont_matrix$col_names), dimnames=list(params$cont_matrix$row_names, params$cont_matrix$col_names))
+export_cols <- params$export_cols
 
 # Maybe filter out samples that are not used in the model
-if (<%== @model_only_selected %>) {
+if (params$model_only_selected) {
     # Remove columns not used in the comparison
     use.samples <- rowSums((design %*% cont.matrix)!=0)>0
     use.conditions <- colSums(design[use.samples,]!=0)>0
@@ -20,22 +22,22 @@ if (<%== @model_only_selected %>) {
 
 # fileEncoding='UTF-8-BOM' should strip the BOM marker FEFF that some windows tools add
 x<-read.delim(counts_file,
-              sep="<%== @sep_char %>",
+              sep=params$sep_char,
               check.names=FALSE,
               colClasses='character',
               na.strings=c(),
-              skip=<%= @skip_header_lines %>,
+              skip=params$skip_header_lines,
               fileEncoding='UTF-8-BOM'
               )
 
 # Now re-read the first header line.  Workaround R problem that always has strip.white=T for read.table
 colnames(x) <- scan(counts_file,
                     what="",
-                    sep="<%== @sep_char %>",
+                    sep=params$sep_char,
                     nlines=1,
                     strip.white=F,
                     quote = "\"",
-                    skip="<%= @skip_header_lines %>",
+                    skip=params$skip_header_lines,
                     fileEncoding='UTF-8-BOM'
                     )
 
@@ -52,15 +54,15 @@ x[,count_cols] <- apply(x[,count_cols], 2, function(v) as.numeric(v))     # Forc
 counts <- x[, count_cols]
 
 # Keep rows based on string based filters of columns.  Rows must match all filters
-filter_rows <- fromJSON('<%== @filter_rows %>')
+filter_rows <- params$filter_rows
 if (length(filter_rows)>0) {
     keepRows <- apply(apply(filter_rows, 1, function(r) grepl(r['regexp'], x[,r['column']], perl=T, ignore.case=T)), 1, all)
 } else {
     keepRows <- rep(TRUE, nrow(x))
 }
 
-keepMin <- apply(counts, 1, max) >= <%= @min_counts %>
-keepCpm <- rowSums(cpm(counts)> <%= @min_cpm %>) >= <%= @min_cpm_samples %>                  # Keep only genes with cpm above x in at least y samples
+keepMin <- apply(counts, 1, max) >= params$min_counts
+keepCpm <- rowSums(cpm(counts)> params$min_cpm) >= params$min_cpm_samples                  # Keep only genes with cpm above x in at least y samples
 
 keep <- keepMin & keepCpm & keepRows
 x <- x[keep,]

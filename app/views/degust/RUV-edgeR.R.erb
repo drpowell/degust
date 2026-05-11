@@ -3,7 +3,7 @@ library(RUVSeq)
 
 dge.list <- DGEList(counts=counts)
 
-dge.list.norm <- calcNormFactors(dge.list, method=<%== @ruv["normalization"] %>)
+dge.list.norm <- calcNormFactors(dge.list, method=params$ruv$normalization)
 
 y <- estimateDisp(dge.list.norm,design)
 
@@ -13,16 +13,16 @@ out <- topTags(qlf, n=Inf, sort.by='none')$table
 
 extra <- list()
 extra$contrasts <- cont.matrix
-extra$normalization <- <%== @ruv["normalization"] %>
+extra$normalization <- params$ruv$normalization
 extra$normalized <- matrix(0)
 
 # FROM Section 2.4 http://bioconductor.org/packages/release/bioc/vignettes/RUVSeq/inst/doc/RUVSeq.pdf
-if (<%== @ruv["use"] %>) {
-    if ('ruvg' == <%== @ruv["flavour"] %>) {
+if (params$ruv$use) {
+    if ('ruvg' == params$ruv$flavour) {
         # Here, we consider all but the top proportion of genes
         rows.by.pvalue <- rownames(out[order(out$PValue),])
-        empirical <- rows.by.pvalue[-c(1 : floor(nrow(counts)*(1-<%== @ruv["empiricalGenes"]%>)))]
-        ruv.g <- RUVg(as.matrix(counts), empirical, k=<%== @ruv["k"]%>)
+        empirical <- rows.by.pvalue[-c(1 : floor(nrow(counts)*(1-params$ruv$empiricalGenes)))]
+        ruv.g <- RUVg(as.matrix(counts), empirical, k=params$ruv$k)
         ruv.g.design <- cbind(design, ruv.g$W)
         ruv.g.contrast <- rbind(cont.matrix, matrix(0, ncol=ncol(cont.matrix), nrow=ncol(ruv.g$W)))
         extra$contrasts <- ruv.g.contrast
@@ -35,12 +35,12 @@ if (<%== @ruv["use"] %>) {
         # Do cpm conversion, but first replace any negative values with 0 (it seems RUV can produce small negatives)
         extra$normalized <- cpm(apply(ruv.g$normalizedCounts, 2, function(x){pmax(x,0)}), log=T, prior.count=0.5, normalized.lib.sizes=T)
         extra$ruv.flavour <- 'RUVg'
-        extra$ruv.k <- <%== @ruv["k"]%>
+        extra$ruv.k <- params$ruv$k
         extra$ruv.empirical <- length(empirical)
-    } else if ('ruvr' == <%== @ruv["flavour"] %>) {
+    } else if ('ruvr' == params$ruv$flavour) {
         resids <- residuals(fit)
         genes <- rownames(counts)       # Should this be a subset of neg controls?  vignette uses all
-        ruv.r <- RUVr(as.matrix(counts), genes, k=<%== @ruv["k"]%>, resids)
+        ruv.r <- RUVr(as.matrix(counts), genes, k=params$ruv$k, resids)
         ruv.r.design <- cbind(design, ruv.r$W)
         ruv.r.contrast <- rbind(cont.matrix, matrix(0, ncol=ncol(cont.matrix), nrow=ncol(ruv.r$W)))
         extra$contrasts <- ruv.r.contrast
@@ -53,7 +53,7 @@ if (<%== @ruv["use"] %>) {
         # Do cpm conversion, but first replace any negative values with 0 (it seems RUV can produce small negatives)
         extra$normalized <- cpm(apply(ruv.r$normalizedCounts, 2, function(x){pmax(x,0)}), log=T, prior.count=0.5, normalized.lib.sizes=T)
         extra$ruv.flavour <- 'RUVr'
-        extra$ruv.k <- <%== @ruv["k"]%>
+        extra$ruv.k <- params$ruv$k
     } else {
         warning("Unknown RUV flavour")
     }

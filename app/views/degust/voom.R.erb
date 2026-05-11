@@ -13,20 +13,20 @@ out2 <- cbind(fit2$coef,
               out[, c('P.Value','adj.P.Val','AveExpr')],
               x[, export_cols] )
 
-if (<%== @topconfects %>) {
+if (params$topconfects) {
     library(topconfects)
-    confect <- limma_confects(fit2, coef=1, fdr=<%== @topconfects_fdr %>)
+    confect <- limma_confects(fit2, coef=1, fdr=params$topconfects_fdr)
     out2 <- cbind(out2, confect=confect$table$confect[order(confect$table$index)])
 }
 
-param_normalized <- '<%= @normalized %>'
+param_normalized <- params$normalized
 normalized <- matrix(0)
 if (param_normalized=='') {
     write.csv(out2, file=paste0(output_dir, "/output.txt"), row.names=FALSE,na='')
 } else if (param_normalized=='backend') {
     normalized <- y$E
 } else if (param_normalized=='remove-hidden') {
-    hidden_factors <- <%== @hidden_factors %>
+    hidden_factors <- params$hidden_factors
     if (length(hidden_factors)>0) {
         # Remove the batch effect (as done in removeBatchEffect)
         beta <- fit$coefficients[, hidden_factors, drop=FALSE]
