@@ -67,7 +67,7 @@ class DeSetting < ApplicationRecord
             raise "Only use randomize_id for new record"
         end
         begin
-            self.secure_id = Digest::MD5.hexdigest(Random.rand.to_s)
+            self.secure_id = SecureRandom.hex(16)
         end while DeSetting.where(secure_id: self.secure_id).exists?
     end
 

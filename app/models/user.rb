@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # Create (or recreate) upload token
   def create_upload_token
     while true
-      tok = Digest::MD5.hexdigest(Random.rand.to_s)
+      tok = SecureRandom.hex(16)
       used = User.where(:upload_token => tok).count
       break if used==0
     end
