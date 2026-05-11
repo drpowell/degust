@@ -66,7 +66,7 @@
     <div>
         <div id="grid" ref='outer'></div>
         <div class='tooltip' v-if='showToolTip' :style='tooltipStyle' ref='tooltip'>
-            <tr v-html="colName"> <!-- Need to escape colName before it is returned, otherwise risk XSS -->
+            <tr v-text="colName">
             </tr>
         </div>
     </div>

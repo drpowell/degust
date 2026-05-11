@@ -12,7 +12,10 @@ class SessionsController < ApplicationController
     reset_session
     session[:user_id] = user.id
 
-    page = request.env['omniauth.origin'] || root_url
+    page = request.env['omniauth.origin']
+    if page.nil? || !page.start_with?('/') || page.start_with?('//')
+        page = root_url
+    end
     redirect_to page, :notice => 'Signed in!'
   end
 
