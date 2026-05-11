@@ -6,6 +6,7 @@
 FROM ubuntu:noble
 
 ARG DEBIAN_FRONTEND=noninteractive
+ARG R_VERSION=4.5.2-1.2404.0
 
 # Install node and R
 RUN apt-get update \
@@ -14,7 +15,8 @@ RUN apt-get update \
     && echo "deb http://cran.rstudio.org/bin/linux/ubuntu noble-cran40/" > '/etc/apt/sources.list.d/r-base.list' \
     && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 51716619E084DAB9 \
     && apt-get update \
-    && apt-get install -y nodejs r-base \
+    && apt-get install -y nodejs=18.20.8-1nodesource1 \
+                          r-base=${R_VERSION} r-recommended=${R_VERSION} r-base-core=${R_VERSION} r-base-dev=${R_VERSION} \
     && rm -rf /var/lib/apt/lists/*
 
 # Install ruby
