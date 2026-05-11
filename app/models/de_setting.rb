@@ -18,7 +18,7 @@ class DeSetting < ApplicationRecord
                 'analyze_server_side' => true,
                 'hidden_factor' => [],
                 'init_select' => [],
-                }
+               }.freeze
 
         res = settings_as_json
         # Set any defaults
@@ -26,11 +26,17 @@ class DeSetting < ApplicationRecord
             res[k] = v if !res.key?(k)
         end
 
+        if (!DeSetting.check_settings(res))
+            logger.warn "Settings for DeSetting #{secure_id} failed validation loaded from db"
+            return defs
+        end
+
         res
     end
 
     def update_from_json(new_settings)
         if (!DeSetting.check_settings(new_settings))
+            logger.warn "Attempt to write settings for DeSetting#{secure_id} failed validation"
             return false
         end
 
@@ -89,7 +95,7 @@ private
     def self.check_settings(settings)
         if (!check_array(settings['fc_columns']) ||
             !check_array(settings['info_columns']) ||
-            !check_array(settings['hidden_factors']))
+            !check_array(settings['hidden_factor']))
             return false
         end
 
