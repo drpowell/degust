@@ -59,6 +59,7 @@ class DegustLogic
             "filter_rows" => settings["filter_rows"] || [],
             "ruv" => ruv_params(query),
         }
+        #puts JSON.pretty_generate(config)
 
         config_str = config.to_json
         code_str = ApplicationController.render(template: "degust/#{method}.R.erb", assigns: {}, layout: false)
@@ -175,7 +176,7 @@ private
             mat.push(col)
             col_names.push(arr[0])
         end
-        return {'mat' => mat, 'col_names' => col_names, 'row_names' => count_cols}
+        return {'mat' => mat.transpose, 'col_names' => col_names, 'row_names' => count_cols}
     end
 
     # Create contrast matrix.  Columns are in order of passed "conditions" array.
@@ -195,7 +196,7 @@ private
             col_names.push(cond)
         end
         replicate_names = settings['replicates'].map {|r| r[0]}
-        return {'mat'=>mat, 'col_names'=>col_names, 'row_names' => replicate_names}
+        return {'mat'=>mat.transpose, 'col_names'=>col_names, 'row_names' => replicate_names}
     end
 
     # Alterative to "cont_matrix" above, but with explicit contrast
@@ -208,6 +209,6 @@ private
         end
         mat = [column]
         replicate_names = settings['replicates'].map {|r| r[0]}
-        return {'mat'=>mat, 'col_names'=>[name], 'row_names' => replicate_names}
+        return {'mat'=>mat.transpose, 'col_names'=>[name], 'row_names' => replicate_names}
     end
 end
