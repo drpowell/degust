@@ -49,6 +49,8 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
+  config.lograge.enabled = true
+
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
@@ -79,6 +81,10 @@ Rails.application.configure do
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
+  else
+    # Rotate logs: keep 7 files, 10MB each
+    config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 7, 10 * 1024 * 1024)
+    config.logger.formatter = config.log_formatter
   end
 
   # Do not dump schema after migrations.

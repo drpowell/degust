@@ -35,6 +35,7 @@ gem 'browser-timezone-rails'
 #gem 'rails-backup-migrate'
 
 gem 'jquery-tablesorter'
+gem 'lograge'
 
 
 group :development, :test do
