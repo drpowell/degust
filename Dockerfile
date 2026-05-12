@@ -35,6 +35,9 @@ RUN gem install bundler -v 2.3.5 \
 # Grab the rest of degust
 COPY . /opt/degust/
 
+# Ensure required directories exist
+RUN mkdir -p log tmp uploads db-file
+
 # Build the js front-end
 RUN rake degust:deps \
     && rake degust:build \
