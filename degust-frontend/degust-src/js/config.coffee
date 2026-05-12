@@ -272,7 +272,10 @@ module.exports =
             $.ajax(
                 type: "POST"
                 url: this.script("settings")
-                data: {settings: JSON.stringify(to_send)}
+                data: {
+                    settings: JSON.stringify(to_send),
+                    authenticity_token: this.orig_settings.tok
+                }
                 dataType: 'json'
             ).done((x) =>
                 this.modal.msgs_class = 'alert alert-success'

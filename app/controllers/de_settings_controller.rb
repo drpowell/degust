@@ -1,6 +1,6 @@
 class DeSettingsController < ApplicationController
-    # Skip verifying csrf to allow command line uploads.  This will be checked in the method below
-    skip_before_action :verify_authenticity_token, :only => [:create]
+    # Skip verifying csrf to allow command line uploads with an upload token.
+    skip_before_action :verify_authenticity_token, :only => [:create], if: -> { params['upload_token'].present? }
 
 
     def show
@@ -8,17 +8,16 @@ class DeSettingsController < ApplicationController
     end
 
     def create
-        # Either valid upload token OR CSRF tags
+        # Either valid upload token OR CSRF tags (checked by before_action)
         tok = params['upload_token']
-        if tok.nil? || !tok
-            user = current_user
-            verify_authenticity_token
-        else
+        if tok.present?
             user = User.find_by_upload_token(tok)
             if user.nil?
                 render status: 400, plain: 'Access denied'
                 return
             end
+        else
+            user = current_user
         end
 
         # All valid, create the file.

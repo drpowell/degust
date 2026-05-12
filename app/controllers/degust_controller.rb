@@ -1,7 +1,6 @@
 class DegustController < ApplicationController
     # Skip CSRF for static pages (these are safe anyway)
-    # FIXME: Also skip CSRF for saving settings.  The frontend should send the tokens.  Careful to still allow CLI where appropriate
-    skip_before_action :verify_authenticity_token, :only => [:static, :save_settings]
+    skip_before_action :verify_authenticity_token, :only => [:static]
 
     def static
         version = params['version'] || ''
@@ -34,6 +33,7 @@ class DegustController < ApplicationController
         send_file de_setting.user_file.location, :filename => ""  # Don't suggest a filename
     end
 
+    # TODO: check either the csrf, or the upload token.  See #create in DeSettingsController
     def settings
         de_setting = DeSetting.find_by_secure_id(params[:id])
         if de_setting.nil?
@@ -52,7 +52,8 @@ class DegustController < ApplicationController
         res['extra_menu_html'] = render_to_string(:partial => 'layouts/navigation_links.html.erb')
         res['is_logged_in'] = !current_user.nil?
         res['is_owner'] = de_setting.is_owner(current_user)
-        if de_setting.is_owner(current_user)
+        res['can_modify'] = de_setting.can_modify(current_user)
+        if de_setting.can_modify(current_user)
             res['delete_url'] = de_setting_path(params[:id])
             res['tok'] = form_authenticity_token
         end

@@ -473,7 +473,10 @@ module.exports =
             $.ajax(
                 type: "POST"
                 url: this.script("settings")
-                data: {settings: JSON.stringify(this.settings)}
+                data: {
+                    settings: JSON.stringify(this.settings),
+                    authenticity_token: this.full_settings.tok
+                }
                 dataType: 'json'
             ).done((x) =>
             ).fail((x) =>
