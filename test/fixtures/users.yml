@@ -1,11 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  name: MyString
-  provider: MyString
-  uid: MyString
+  name: "User One"
+  provider: "google_oauth2"
+  uid: "12345"
+  upload_token: "token123"
 
-two:
-  name: MyString
-  provider: MyString
-  uid: MyString
+admin:
+  name: "Admin User"
+  provider: "google_oauth2"
+  uid: "admin"
+  admin: true

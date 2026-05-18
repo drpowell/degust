@@ -11,3 +11,12 @@ Run a development environment using the current directory.  This will watch js f
     docker run --env SECRET_KEY_BASE=test -p 8001:3000 \
        --volume $(pwd):/opt/degust \
        degust-dev
+
+To run the integration tests:
+
+    docker run --rm --volume $(pwd):/opt/degust degust-dev bundle exec rails test -v test/integration/
+
+To display the full logging output
+
+    docker run --rm --env RAILS_LOG_TO_STDOUT=true --volume $(pwd):/opt/degust degust-dev bundle exec rails test -v test/integration/
+
