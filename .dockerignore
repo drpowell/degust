@@ -35,6 +35,9 @@ docs/dist/
 *.sqlite3
 *.sqlite3-journal
 
+# Exclude large tarballs
+*.tar.gz
+
 # Exclude testing reproduction scripts
 repro_rce.rb
 check_vulnerability.sh

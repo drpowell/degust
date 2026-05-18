@@ -6,7 +6,7 @@ class DegustController < ApplicationController
         version = params['version'] || ''
         filename = dir_for_version(version) + "/#{params['page'].to_s}.#{params['format'].to_s}"
 
-        if filename.include?('..') || !File.exists?(filename)
+        if filename.include?('..') || !File.exist?(filename)
             raise ActionController::RoutingError.new('Not Found')
         else
             send_file filename, disposition: 'inline'
@@ -15,7 +15,7 @@ class DegustController < ApplicationController
 
     def static_kegg
         page = 'degust-frontend/kegg/' + params['page'].to_s + '.' + params['format'].to_s
-        if page.include?('..') || !File.exists?(page)
+        if page.include?('..') || !File.exist?(page)
             raise ActionController::RoutingError.new('Not Found')
         else
             send_file page, disposition: 'inline'
@@ -43,13 +43,13 @@ class DegustController < ApplicationController
         # Store this visit in "visited"
         if !current_user.nil?
             v = de_setting.visiteds.find_or_create_by(:user => current_user)
-            v.last = DateTime.now
+            v.last = Time.current
             v.save
         end
         @current_id = params[:id]
         res = {settings: de_setting.settings_with_defaults}
         res['degust_name'] = helpers.app_name
-        res['extra_menu_html'] = render_to_string(:partial => 'layouts/navigation_links.html.erb')
+        res['extra_menu_html'] = render_to_string(partial: 'layouts/navigation_links', formats: [:html])
         res['is_logged_in'] = !current_user.nil?
         res['is_owner'] = de_setting.is_owner(current_user)
         res['can_modify'] = de_setting.can_modify(current_user)
@@ -124,7 +124,7 @@ class DegustController < ApplicationController
         lst.each do |codeTitle|
             f = "degust-frontend/kegg/kgml/map/map"+codeTitle[0]+".xml"
             ecs=[]
-            if File.exists?(f)
+            if File.exist?(f)
                 data = File.read(f)
                 ecs = data.scan(/name="ec:([.\d]+)"/)
             end

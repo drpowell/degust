@@ -8,7 +8,7 @@ class UserFile < ApplicationRecord
       self.md5 = Digest::MD5.file(f.path).to_s
       self.location = "uploads/#{self.md5}"
 
-      if !File.exists?(self.location)
+      if !File.exist?(self.location)
         FileUtils.cp f.tempfile, self.location
       else
         if File.size(location) != self.size

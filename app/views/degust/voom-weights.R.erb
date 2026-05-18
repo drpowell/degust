@@ -1,4 +1,4 @@
-<%= render "degust/common.R.erb" %>
+<%= render "degust/common" %>
 
 nf <- calcNormFactors(counts)
 y<-voomWithQualityWeights(counts, design, plot=FALSE,lib.size=colSums(counts)*nf)

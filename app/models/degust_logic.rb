@@ -62,7 +62,7 @@ class DegustLogic
         #puts JSON.pretty_generate(config)
 
         config_str = config.to_json
-        code_str = ApplicationController.render(template: "degust/#{method}.R.erb", assigns: {}, layout: false)
+        code_str = ApplicationController.render(template: "degust/#{method}", formats: [:R], handlers: [:erb], assigns: {}, layout: false)
         return {code: code_str, config: config_str}
     end
 
@@ -80,7 +80,7 @@ class DegustLogic
     end
 
     def self.get_versions_code()
-        code_str = ApplicationController.render(template: "degust/versions.R.erb", layout: false)
+        code_str = ApplicationController.render(template: "degust/versions", formats: [:R], handlers: [:erb], layout: false)
         return {code: code_str}
     end
 
