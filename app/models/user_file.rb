@@ -15,6 +15,6 @@ class UserFile < ApplicationRecord
           raise "Uploaded file already exists, but different size!"
         end
       end
-      p self
+    #   p self
     end
 end

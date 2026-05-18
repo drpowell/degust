@@ -94,7 +94,6 @@ class DegustLogic
 
         if code_and_config.key?(:config)
             File.write(tempfile + "/params.json", code_and_config[:config])
-            puts "Config: #{code_and_config[:config]}"
         end
 
         sout = serr = exit_status = timeout = nil
