@@ -3,7 +3,7 @@
 
 Create a docker container for development
 
-    docker build -f Dockerfile-dev . --tag degust-dev
+    docker build --target development . --tag degust-dev
 
 
 Run a development environment using the current directory.  This will watch js files and rebuild.

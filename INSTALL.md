@@ -77,7 +77,11 @@ repository, run:
 
     docker build . --tag degust
 
-Once the build process has completed, you will have a docker image tagged as "degust" on your system.
+To build a development image (which includes development dependencies and runs with webpack --watch):
+
+    docker build --target development . --tag degust-dev
+
+Once the build process has completed, you will have a docker image tagged as "degust" (or "degust-dev") on your system.
 To run this container, run:
 
     docker run --env SECRET_KEY_BASE=test -p 8001:3000 --volume /tmp/degust/uploads:/opt/degust/uploads --volume /tmp/degust/db:/opt/degust/db-file degust
