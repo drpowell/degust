@@ -74,7 +74,7 @@ class DegustLogic
             res["k"] = force_int(ruv["k"])
             res["empiricalGenes"] = force_num(ruv["prop_empirical"])
             res["flavour"] = ruv["flavour"].to_s.downcase
-            res["normalization"] = ruv["normalization"].to_s.downcase
+            res["normalization"] = ruv["normalization"].to_s
         end
         res
     end
