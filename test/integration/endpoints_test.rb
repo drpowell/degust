@@ -40,6 +40,17 @@ class EndpointsTest < ActionDispatch::IntegrationTest
     json = JSON.parse(response.body)
     assert json.key?('csv'), "Response should contain 'csv' key. Body: #{response.body}"
   end
+
+  test "degust dge with RUV-edgeR and all normalization types" do
+    fields = ["WT", "luxS"].to_json
+    ['TMM', 'RLE', 'upperquartile', 'none'].each do |norm|
+      ruv_params = { flavour: 'ruvg', k: 1, prop_empirical: 0.5, normalization: norm }.to_json
+      get dge_degust_path(@de_setting.secure_id), params: { method: 'RUV-edgeR', fields: fields, ruv: ruv_params }, as: :json
+      assert_response :success
+      json = JSON.parse(response.body)
+      assert json.key?('csv'), "Response for normalization #{norm} should contain 'csv' key. Body: #{response.body}"
+    end
+  end
   test "static page" do
     get "/degust/compare.html"
     assert_response :success
